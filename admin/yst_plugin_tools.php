@@ -90,7 +90,7 @@ if ( !class_exists( 'Yoast_GA_Plugin_Admin' ) ) {
 			$options = get_option( $this->optionname );
 			$val     = '';
 			if ( isset( $options[$id] ) )
-				$val = $options[$id];
+				$val = stripslashes($options[$id]);
 			return '<input class="text" type="text" id="' . $id . '" name="' . $id . '" size="30" value="' . $val . '"/>';
 		}
 
