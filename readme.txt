@@ -58,6 +58,9 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= Trunk =
+* Fixed a minor bug in the GA admin
+
 = 4.3.3 =
 
 * Fix a possible fatal error in tracking.

@@ -5,7 +5,7 @@
  * Version 0.2
  */
 
-if ( !class_exists( 'Yoast_GA_Plugin_Admin' ) ) {
+if ( ! class_exists( 'Yoast_GA_Plugin_Admin' ) ) {
 	class Yoast_GA_Plugin_Admin {
 
 		var $hook = '';
@@ -48,7 +48,7 @@ if ( !class_exists( 'Yoast_GA_Plugin_Admin' ) ) {
 		 */
 		function add_action_link( $links, $file ) {
 			static $this_plugin;
-			if ( empty( $this_plugin ) ) 
+			if ( empty( $this_plugin ) )
 				$this_plugin = 'google-analytics-for-wordpress/googleanalytics.php';
 			if ( $file == $this_plugin ) {
 				$settings_link = '<a href="' . $this->plugin_options_url() . '">' . __( 'Settings', 'gawp' ) . '</a>';
@@ -90,7 +90,7 @@ if ( !class_exists( 'Yoast_GA_Plugin_Admin' ) ) {
 			$options = get_option( $this->optionname );
 			$val     = '';
 			if ( isset( $options[$id] ) )
-				$val = $options[$id];
+				$val = stripslashes( $options[$id] );
 			return '<input class="text" type="text" id="' . $id . '" name="' . $id . '" size="30" value="' . $val . '"/>';
 		}
 
@@ -117,14 +117,14 @@ if ( !class_exists( 'Yoast_GA_Plugin_Admin' ) ) {
 		 */
 		function postbox( $id, $title, $content ) {
 			?>
-        <div id="<?php echo $id; ?>" class="postbox">
-            <div class="handlediv" title="Click to toggle"><br/></div>
-            <h3 class="hndle"><span><?php echo $title; ?></span></h3>
+			<div id="<?php echo $id; ?>" class="postbox">
+				<div class="handlediv" title="Click to toggle"><br /></div>
+				<h3 class="hndle"><span><?php echo $title; ?></span></h3>
 
-            <div class="inside">
-				<?php echo $content; ?>
-            </div>
-        </div>
+				<div class="inside">
+					<?php echo $content; ?>
+				</div>
+			</div>
 		<?php
 		}
 
@@ -150,11 +150,11 @@ if ( !class_exists( 'Yoast_GA_Plugin_Admin' ) ) {
 				$content .= '</th><td valign="top">';
 				$content .= $row['content'];
 				$content .= '</td></tr>';
-				if ( isset( $row['desc'] ) && !empty( $row['desc'] ) ) {
+				if ( isset( $row['desc'] ) && ! empty( $row['desc'] ) ) {
 					$content .= '<tr class="' . $class . '"><td colspan="2" class="yst_desc"><small>' . $row['desc'] . '</small></td></tr>';
 				}
 
-				$i++;
+				$i ++;
 			}
 			$content .= '</table>';
 			return $content;
@@ -179,7 +179,7 @@ if ( !class_exists( 'Yoast_GA_Plugin_Admin' ) ) {
 		function text_limit( $text, $limit, $finish = ' [&hellip;]' ) {
 			if ( strlen( $text ) > $limit ) {
 				$text = substr( $text, 0, $limit );
-				$text = substr( $text, 0, -( strlen( strrchr( $text, ' ' ) ) ) );
+				$text = substr( $text, 0, - ( strlen( strrchr( $text, ' ' ) ) ) );
 				$text .= $finish;
 			}
 			return $text;
