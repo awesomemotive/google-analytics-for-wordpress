@@ -86,7 +86,7 @@ if ( !class_exists( 'GA_Filter' ) ) {
 			if ( ( $current_user->user_level >= $this->options["ignore_userlevel"] ) )
 				return false;
 			else
-				return true;
+				return apply_filters( 'yoast-ga-do-tracking', true );
 		}
 
 		/**
@@ -307,7 +307,7 @@ if ( !class_exists( 'GA_Filter' ) ) {
             //]]></script>
 			<?php
 			} else if ( $this->options["uastring"] != "" ) {
-				echo "<!-- " . sprintf( __( "Google Analytics tracking code not shown because users over level %s are ignored.", "gawp" ), $this->options["ignore_userlevel"] ) . " -->\n";
+				echo "<!-- " . sprintf( __( "Google Analytics tracking code not shown because users over level %s are ignored or is being overruled by a custom filter.", "gawp" ), $this->options["ignore_userlevel"] ) . " -->\n";
 			}
 		}
 
