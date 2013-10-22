@@ -518,21 +518,21 @@ if ( !class_exists( 'GA_Filter' ) ) {
 			if ( !isset( $cart_log_id ) || empty( $cart_log_id ) )
 				return $push;
 
-			$city = $wpdb->get_var( "SELECT tf.value
-		                               FROM " . WPSC_TABLE_SUBMITED_FORM_DATA . " tf
-		                          LEFT JOIN " . WPSC_TABLE_CHECKOUT_FORMS . " cf
+			$city = $wpdb->get_var( $wpdb->prepare( "SELECT tf.value
+		                               FROM " . WPSC_TABLE_SUBMITED_FORM_DATA . " AS tf
+		                          LEFT JOIN " . WPSC_TABLE_CHECKOUT_FORMS . " AS cf
 		                                 ON cf.id = tf.form_id
 		                              WHERE cf.type = 'city'
-		                                AND log_id = " . $cart_log_id );
+		                                AND log_id = %s", $cart_log_id ) );
 
-			$country = $wpdb->get_var( "SELECT tf.value
-		                                  FROM " . WPSC_TABLE_SUBMITED_FORM_DATA . " tf
-		                             LEFT JOIN " . WPSC_TABLE_CHECKOUT_FORMS . " cf
+			$country = $wpdb->get_var( $wpdb->prepare( "SELECT tf.value
+		                                  FROM " . WPSC_TABLE_SUBMITED_FORM_DATA . " AS tf
+		                             LEFT JOIN " . WPSC_TABLE_CHECKOUT_FORMS . " AS cf
 		                                    ON cf.id = tf.form_id
 		                                 WHERE cf.type = 'country'
-		                                   AND log_id = " . $cart_log_id );
+		                                   AND log_id = %s", $cart_log_id ) );
 
-			$cart_items = $wpdb->get_results( "SELECT * FROM " . WPSC_TABLE_CART_CONTENTS . " WHERE purchaseid = " . $cart_log_id, ARRAY_A );
+			$cart_items = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM " . WPSC_TABLE_CART_CONTENTS . " WHERE purchaseid = %s", $cart_log_id ), ARRAY_A );
 
 			$total_shipping = $purchlogs->allpurchaselogs[0]->base_shipping;
 			$total_tax      = 0;
@@ -551,9 +551,9 @@ if ( !class_exists( 'GA_Filter' ) ) {
 				. "'" . $country . "'"; // Country
 
 			foreach ( $cart_items as $item ) {
-				$item['sku'] = $wpdb->get_var( "SELECT meta_value FROM " . WPSC_TABLE_PRODUCTMETA . " WHERE meta_key = 'sku' AND product_id = '" . $item['prodid'] . "' LIMIT 1" );
+				$item['sku'] = $wpdb->get_var( $wpdb->prepare( "SELECT meta_value FROM " . WPSC_TABLE_PRODUCTMETA . " WHERE meta_key = 'sku' AND product_id = %s LIMIT 1", $item['prodid'] ) );
 
-				$item['category'] = $wpdb->get_var( "SELECT pc.name FROM " . WPSC_TABLE_PRODUCT_CATEGORIES . " pc LEFT JOIN " . WPSC_TABLE_ITEM_CATEGORY_ASSOC . " ca ON pc.id = ca.category_id WHERE pc.group_id = '1' AND ca.product_id = '" . $item['prodid'] . "'" );
+				$item['category'] = $wpdb->get_var( $wpdb->prepare( "SELECT pc.name FROM " . WPSC_TABLE_PRODUCT_CATEGORIES . " AS pc LEFT JOIN " . WPSC_TABLE_ITEM_CATEGORY_ASSOC . " AS ca ON pc.id = ca.category_id WHERE pc.group_id = '1' AND ca.product_id = %s", $item['prodid'] ) );
 				$push[]           = "'_addItem',"
 					. "'" . $cart_log_id . "'," // Order ID
 					. "'" . $item['sku'] . "'," // Item SKU
