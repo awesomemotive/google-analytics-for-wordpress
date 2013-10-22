@@ -58,6 +58,10 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= Trunk =
+
+* Bugfix: Fixed error in a database query as reported by [mikeotgaar](http://wordpress.org/support/topic/wordpress-database-error-table-1) and applied some best practices for the database queries - props [Jrf](http://profiles.wordpress.org/jrf).
+
 = 4.3.3 =
 
 * Fix a possible fatal error in tracking.
