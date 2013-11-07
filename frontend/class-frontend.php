@@ -292,7 +292,7 @@ if ( !class_exists( 'GA_Filter' ) ) {
                 ga.async = true;
                 ga.src = <?php
 					if ( $this->options['gajslocalhosting'] && !empty( $this->options['gajsurl'] ) ) {
-						echo "'" . $this->options['gajsurl'] . "';";
+						echo "'" . $this->options['gajsurl'] . "'";
 					} else {
 						$script = 'ga.js';
 						if ( current_user_can( 'manage_options' ) && $this->options['debug'] )
