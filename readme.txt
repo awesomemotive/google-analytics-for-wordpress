@@ -61,6 +61,7 @@ This section describes how to install the plugin and get it working.
 = Trunk =
 * Fixed a minor bug in the GA admin
 * Fixed a minor bug in frontend when using 'Host ga.js locally'
+* Fixed a bug in displaying version information
 
 = 4.3.3 =
 

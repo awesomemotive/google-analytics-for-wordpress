@@ -277,8 +277,8 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 				?>
 
 				<script type="text/javascript">//<![CDATA[
-					// Google Analytics for WordPress by Yoast v
-					<?php echo GAWP_VERSION;  ?> | http://yoast.com/wordpress/google-analytics/
+					/* Google Analytics for WordPress by Yoast v
+					<?php echo GAWP_VERSION;  ?> | http://yoast.com/wordpress/google-analytics/ */
 					var _gaq = _gaq || [];
 					_gaq.push(['_setAccount', '<?php echo trim( $this->options["uastring"] ); ?>']);
 					<?php
