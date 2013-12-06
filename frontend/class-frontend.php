@@ -3,7 +3,7 @@
 /**
  * Code that actually inserts stuff into pages.
  */
-if ( ! class_exists( 'GA_Filter' ) ) {
+if ( !class_exists( 'GA_Filter' ) ) {
 	class GA_Filter {
 
 		var $options = array();
@@ -11,22 +11,21 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 		function __construct() {
 			$this->options = get_option( 'Yoast_Google_Analytics' );
 
-			if ( ! is_array( $this->options ) ) {
+			if ( !is_array( $this->options ) ) {
 				$this->options = get_option( 'GoogleAnalyticsPP' );
-				if ( ! is_array( $this->options ) )
+				if ( !is_array( $this->options ) )
 					return;
 			}
 
-			if ( ! isset( $this->options['uastring'] ) || $this->options['uastring'] == '' ) {
+			if ( !isset( $this->options['uastring'] ) || $this->options['uastring'] == '' ) {
 				add_action( 'wp_head', array( $this, 'not_shown_error' ) );
-			}
-			else {
+			} else {
 				if ( isset( $this->options['allowanchor'] ) && $this->options['allowanchor'] ) {
 					add_action( 'init', array( $this, 'utm_hashtag_redirect' ), 1 );
 				}
 
 				if ( ( isset( $this->options['trackoutbound'] ) && $this->options['trackoutbound'] ) ||
-						( isset( $this->options['trackcrossdomain'] ) && $this->options['trackcrossdomain'] )
+					( isset( $this->options['trackcrossdomain'] ) && $this->options['trackcrossdomain'] )
 				) {
 					// filters alter the existing content
 					add_filter( 'the_content', array( $this, 'the_content' ), 99 );
@@ -50,7 +49,7 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 				if ( isset( $this->options['trackadsense'] ) && $this->options['trackadsense'] )
 					add_action( 'wp_head', array( $this, 'spool_adsense' ), 1 );
 
-				if ( ! isset( $this->options['position'] ) )
+				if ( !isset( $this->options['position'] ) )
 					$this->options['position'] = 'header';
 
 				switch ( $this->options['position'] ) {
@@ -104,8 +103,7 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 					$url .= $_SERVER['SERVER_NAME'];
 					if ( strpos( $_SERVER['REQUEST_URI'], "?utm_" ) !== false ) {
 						$url .= str_replace( "?utm_", "#utm_", $_SERVER['REQUEST_URI'] );
-					}
-					else if ( strpos( $_SERVER['REQUEST_URI'], "&utm_" ) !== false ) {
+					} else if ( strpos( $_SERVER['REQUEST_URI'], "&utm_" ) !== false ) {
 						$url .= substr_replace( $_SERVER['REQUEST_URI'], "#utm_", strpos( $_SERVER['REQUEST_URI'], "&utm_" ), 5 );
 					}
 					wp_redirect( $url, 301 );
@@ -134,7 +132,7 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 			 * The order of custom variables is very, very important: custom vars should always take up the same slot to make analysis easy.
 			 */
 			$customvarslot = 1;
-			if ( $this->do_tracking() && ! is_preview() ) {
+			if ( $this->do_tracking() && !is_preview() ) {
 				$push = array();
 
 				if ( $this->options['allowanchor'] )
@@ -159,7 +157,7 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 					if ( $current_user && $current_user->ID != 0 )
 						$push[] = "'_setCustomVar',$customvarslot,'logged-in','" . $current_user->roles[0] . "',1";
 					// Customvar slot needs to be upped even when the user is not logged in, to make sure the variables below are always in the same slot.
-					$customvarslot ++;
+					$customvarslot++;
 				}
 
 				if ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() ) {
@@ -167,21 +165,20 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 						$post_type = get_post_type();
 						if ( $post_type ) {
 							$push[] = "'_setCustomVar'," . $customvarslot . ",'post_type','" . $post_type . "',3";
-							$customvarslot ++;
+							$customvarslot++;
 						}
 					}
-				}
-				else if ( is_singular() && ! is_home() ) {
+				} else if ( is_singular() && !is_home() ) {
 					if ( $this->options['cv_post_type'] ) {
 						$post_type = get_post_type();
 						if ( $post_type ) {
 							$push[] = "'_setCustomVar'," . $customvarslot . ",'post_type','" . $post_type . "',3";
-							$customvarslot ++;
+							$customvarslot++;
 						}
 					}
 					if ( $this->options['cv_authorname'] ) {
 						$push[] = "'_setCustomVar',$customvarslot,'author','" . $this->str_clean( get_the_author_meta( 'display_name', $wp_query->post->post_author ) ) . "',3";
-						$customvarslot ++;
+						$customvarslot++;
 					}
 					if ( $this->options['cv_tags'] ) {
 						$i = 0;
@@ -191,24 +188,24 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 								if ( $i > 0 )
 									$tagsstr .= ' ';
 								$tagsstr .= $tag->slug;
-								$i ++;
+								$i++;
 							}
 							// Max 64 chars for value and label combined, hence 64 - 4
 							$tagsstr = substr( $tagsstr, 0, 60 );
 							$push[]  = "'_setCustomVar',$customvarslot,'tags','" . $tagsstr . "',3";
 						}
-						$customvarslot ++;
+						$customvarslot++;
 					}
 					if ( is_singular() ) {
 						if ( $this->options['cv_year'] ) {
 							$push[] = "'_setCustomVar',$customvarslot,'year','" . get_the_time( 'Y' ) . "',3";
-							$customvarslot ++;
+							$customvarslot++;
 						}
 						if ( $this->options['cv_category'] && is_single() ) {
 							$cats = get_the_category();
 							if ( is_array( $cats ) && isset( $cats[0] ) )
 								$push[] = "'_setCustomVar',$customvarslot,'category','" . $cats[0]->slug . "',3";
-							$customvarslot ++;
+							$customvarslot++;
 						}
 						if ( $this->options['cv_all_categories'] && is_single() ) {
 							$i       = 0;
@@ -217,12 +214,12 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 								if ( $i > 0 )
 									$catsstr .= ' ';
 								$catsstr .= $cat->slug;
-								$i ++;
+								$i++;
 							}
 							// Max 64 chars for value and label combined, hence 64 - 10
 							$catsstr = substr( $catsstr, 0, 54 );
 							$push[]  = "'_setCustomVar',$customvarslot,'categories','" . $catsstr . "',3";
-							$customvarslot ++;
+							$customvarslot++;
 						}
 					}
 				}
@@ -233,23 +230,18 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 
 				if ( is_404() ) {
 					$push[] = "'_trackPageview','/404.html?page=' + document.location.pathname + document.location.search + '&from=' + document.referrer";
-				}
-				else if ( $wp_query->is_search ) {
+				} else if ( $wp_query->is_search ) {
 					$pushstr = "'_trackPageview','" . get_bloginfo( 'url' ) . "/?s=";
 					if ( $wp_query->found_posts == 0 ) {
 						$push[] = $pushstr . "no-results:" . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=no-results'";
-					}
-					else if ( $wp_query->found_posts == 1 ) {
+					} else if ( $wp_query->found_posts == 1 ) {
 						$push[] = $pushstr . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=1-result'";
-					}
-					else if ( $wp_query->found_posts > 1 && $wp_query->found_posts < 6 ) {
+					} else if ( $wp_query->found_posts > 1 && $wp_query->found_posts < 6 ) {
 						$push[] = $pushstr . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=2-5-results'";
-					}
-					else {
+					} else {
 						$push[] = $pushstr . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=plus-5-results'";
 					}
-				}
-				else {
+				} else {
 					$push[] = "'_trackPageview'";
 				}
 
@@ -266,7 +258,7 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 
 				$pushstr = "";
 				foreach ( $push as $key ) {
-					if ( ! empty( $pushstr ) )
+					if ( !empty( $pushstr ) )
 						$pushstr .= ",";
 
 					$pushstr .= "[" . $key . "]";
@@ -276,30 +268,29 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 					echo '<script src="https://getfirebug.com/firebug-lite.js" type="text/javascript"></script>';
 				?>
 
-				<script type="text/javascript">//<![CDATA[
-					/* Google Analytics for WordPress by Yoast v
-					<?php echo GAWP_VERSION;  ?> | http://yoast.com/wordpress/google-analytics/ */
-					var _gaq = _gaq || [];
-					_gaq.push(['_setAccount', '<?php echo trim( $this->options["uastring"] ); ?>']);
-					<?php
-					if ( $this->options["extrase"] ) {
-						if ( !empty( $this->options["extraseurl"] ) ) {
-							$url = $this->options["extraseurl"];
-						} else {
-							$url = GAWP_URL . 'custom_se_async.js';
-						}
-						echo '</script><script src="' . $url . '" type="text/javascript"></script>' . "\n" . '<script type="text/javascript">';
+            <script type="text/javascript">//<![CDATA[
+            // Google Analytics for WordPress by Yoast v<?php echo GAWP_VERSION;  ?> | http://yoast.com/wordpress/google-analytics/
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', '<?php echo trim( $this->options["uastring"] ); ?>']);
+				<?php
+				if ( $this->options["extrase"] ) {
+					if ( !empty( $this->options["extraseurl"] ) ) {
+						$url = $this->options["extraseurl"];
+					} else {
+						$url = GAWP_URL . 'custom_se_async.js';
 					}
+					echo '</script><script src="' . $url . '" type="text/javascript"></script>' . "\n" . '<script type="text/javascript">';
+				}
 
-					if ( $this->options['customcode'] && trim( $this->options['customcode'] ) != '' )
-						echo "\t" . stripslashes( $this->options['customcode'] ) . "\n";
-					?>
-					_gaq.push(<?php echo $pushstr; ?>);
-					(function () {
-						var ga = document.createElement('script');
-						ga.type = 'text/javascript';
-						ga.async = true;
-						ga.src = <?php
+				if ( $this->options['customcode'] && trim( $this->options['customcode'] ) != '' )
+					echo "\t" . stripslashes( $this->options['customcode'] ) . "\n";
+				?>
+            _gaq.push(<?php echo $pushstr; ?>);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = <?php
 					if ( $this->options['gajslocalhosting'] && !empty( $this->options['gajsurl'] ) ) {
 						echo "'" . $this->options['gajsurl'] . "'";
 					} else {
@@ -310,13 +301,12 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 					}
 					?>;
 
-						var s = document.getElementsByTagName('script')[0];
-						s.parentNode.insertBefore(ga, s);
-					})();
-					//]]></script>
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+            //]]></script>
 			<?php
-			}
-			else if ( $this->options["uastring"] != "" ) {
+			} else if ( $this->options["uastring"] != "" ) {
 				echo "<!-- " . sprintf( __( "Google Analytics tracking code not shown because users over level %s are ignored.", "gawp" ), $this->options["ignore_userlevel"] ) . " -->\n";
 			}
 		}
@@ -325,7 +315,7 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 		 * Insert the AdSense parameter code into the page. This'll go into the header per Google's instructions.
 		 */
 		function spool_adsense() {
-			if ( $this->do_tracking() && ! is_preview() ) {
+			if ( $this->do_tracking() && !is_preview() ) {
 				echo '<script type="text/javascript">' . "\n";
 				echo "\t" . 'window.google_analytics_uacct = "' . $this->options["uastring"] . '";' . "\n";
 				echo '</script>' . "\n";
@@ -338,13 +328,12 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 
 		function get_tracking_link( $prefix, $target, $jsprefix = 'javascript:' ) {
 			if (
-					( $prefix == 'download' && $this->options['downloadspageview'] ) ||
-					( $prefix != 'download' && $this->options['outboundpageview'] )
+				( $prefix == 'download' && $this->options['downloadspageview'] ) ||
+				( $prefix != 'download' && $this->options['outboundpageview'] )
 			) {
 				$prefix  = $this->get_tracking_prefix() . $prefix;
 				$pushstr = "['_trackPageview','" . $prefix . "/" . esc_js( esc_url( $target ) ) . "']";
-			}
-			else {
+			} else {
 				$pushstr = "['_trackEvent','" . $prefix . "','" . esc_js( esc_url( $target ) ) . "']";
 			}
 			return $jsprefix . "_gaq.push(" . $pushstr . ");";
@@ -356,11 +345,9 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 			// Break out immediately if the link is not an http or https link.
 			if ( strpos( $matches[2], "http" ) !== 0 ) {
 				$target = false;
-			}
-			else if ( ( strpos( $matches[2], "mailto" ) === 0 ) ) {
+			} else if ( ( strpos( $matches[2], "mailto" ) === 0 ) ) {
 				$target = 'email';
-			}
-			else {
+			} else {
 				$target = yoast_ga_get_domain( $matches[3] );
 			}
 			$trackBit     = "";
@@ -369,24 +356,20 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 			if ( $target ) {
 				if ( $target == 'email' ) {
 					$trackBit = $this->get_tracking_link( 'mailto', str_replace( 'mailto:', '', $matches[3] ), '' );
-				}
-				else if ( in_array( $extension, $dlextensions ) ) {
+				} else if ( in_array( $extension, $dlextensions ) ) {
 					$trackBit = $this->get_tracking_link( 'download', $matches[3], '' );
-				}
-				else if ( $target["domain"] != $origin["domain"] ) {
+				} else if ( $target["domain"] != $origin["domain"] ) {
 					$crossdomains = array();
-					if ( isset( $this->options['othercrossdomains'] ) && ! empty( $this->options['othercrossdomains'] ) )
+					if ( isset( $this->options['othercrossdomains'] ) && !empty( $this->options['othercrossdomains'] ) )
 						$crossdomains = explode( ',', str_replace( ' ', '', $this->options['othercrossdomains'] ) );
 
 					if ( isset( $this->options['trackcrossdomain'] ) && $this->options['trackcrossdomain'] && in_array( $target["host"], $crossdomains ) ) {
 						$trackBit = '_gaq.push([\'_link\', \'' . $matches[2] . '//' . $matches[3] . '\']); return false;"';
-					}
-					else if ( $this->options['trackoutbound'] && in_array( $this->options['domainorurl'], array( 'domain', 'url' ) ) ) {
+					} else if ( $this->options['trackoutbound'] && in_array( $this->options['domainorurl'], array( 'domain', 'url' ) ) ) {
 						$url      = $this->options['domainorurl'] == 'domain' ? $target["host"] : $matches[3];
 						$trackBit = $this->get_tracking_link( $category, $url, '' );
 					}
-				}
-				else if ( $target["domain"] == $origin["domain"] && isset( $this->options['internallink'] ) && $this->options['internallink'] != '' ) {
+				} else if ( $target["domain"] == $origin["domain"] && isset( $this->options['internallink'] ) && $this->options['internallink'] != '' ) {
 					$url         = preg_replace( '|' . $origin["host"] . '|', '', $matches[3] );
 					$extintlinks = explode( ',', $this->options['internallink'] );
 					foreach ( $extintlinks as $link ) {
@@ -404,12 +387,10 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 					// Check for manually tagged outbound clicks, and replace them with the tracking of choice.
 					if ( preg_match( '/.*_track(Pageview|Event).*/i', $matches[4] ) > 0 ) {
 						$matches[4] = preg_replace( '/onclick=[\'\"](javascript:)?(.*;)?[a-zA-Z0-9]+\._track(Pageview|Event)\([^\)]+\)(;)?(.*)?[\'\"]/i', 'onclick="javascript:' . $trackBit . '$2$5"', $matches[4] );
-					}
-					else {
+					} else {
 						$matches[4] = preg_replace( '/onclick=[\'\"](javascript:)?(.*?)[\'\"]/i', 'onclick="javascript:' . $trackBit . '$2"', $matches[4] );
 					}
-				}
-				else {
+				} else {
 					$matches[4] = 'onclick="javascript:' . $trackBit . '"' . $matches[4];
 				}
 			}
@@ -433,7 +414,7 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 		}
 
 		function widget_content( $text ) {
-			if ( ! $this->do_tracking() )
+			if ( !$this->do_tracking() )
 				return $text;
 			static $anchorPattern = '/<a (.*?)href=[\'\"](.*?)\/\/([^\'\"]+?)[\'\"](.*?)>(.*?)<\/a>/i';
 			$text = preg_replace_callback( $anchorPattern, array( $this, 'parse_widget_link' ), $text );
@@ -441,10 +422,10 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 		}
 
 		function the_content( $text ) {
-			if ( ! $this->do_tracking() )
+			if ( !$this->do_tracking() )
 				return $text;
 
-			if ( ! is_feed() ) {
+			if ( !is_feed() ) {
 				static $anchorPattern = '/<a (.*?)href=[\'\"](.*?)\/\/([^\'\"]+?)[\'\"](.*?)>(.*?)<\/a>/i';
 				$text = preg_replace_callback( $anchorPattern, array( $this, 'parse_article_link' ), $text );
 			}
@@ -452,10 +433,10 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 		}
 
 		function nav_menu( $text ) {
-			if ( ! $this->do_tracking() )
+			if ( !$this->do_tracking() )
 				return $text;
 
-			if ( ! is_feed() ) {
+			if ( !is_feed() ) {
 				static $anchorPattern = '/<a (.*?)href=[\'\"](.*?)\/\/([^\'\"]+?)[\'\"](.*?)>(.*?)<\/a>/i';
 				$text = preg_replace_callback( $anchorPattern, array( $this, 'parse_nav_menu' ), $text );
 			}
@@ -463,10 +444,10 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 		}
 
 		function comment_text( $text ) {
-			if ( ! $this->do_tracking() )
+			if ( !$this->do_tracking() )
 				return $text;
 
-			if ( ! is_feed() ) {
+			if ( !is_feed() ) {
 				static $anchorPattern = '/<a (.*?)href="(.*?)\/\/(.*?)"(.*?)>(.*?)<\/a>/i';
 				$text = preg_replace_callback( $anchorPattern, array( $this, 'parse_comment_link' ), $text );
 			}
@@ -474,12 +455,12 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 		}
 
 		function comment_author_link( $text ) {
-			if ( ! $this->do_tracking() )
+			if ( !$this->do_tracking() )
 				return $text;
 
 			static $anchorPattern = '/(.*\s+.*?href\s*=\s*)["\'](.*?)["\'](.*)/';
 			preg_match( $anchorPattern, $text, $matches );
-			if ( ! isset( $matches[2] ) || $matches[2] == "" ) return $text;
+			if ( !isset( $matches[2] ) || $matches[2] == "" ) return $text;
 
 			$trackBit = '';
 			$target   = yoast_ga_get_domain( $matches[2] );
@@ -495,7 +476,7 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 		}
 
 		function bookmarks( $bookmarks ) {
-			if ( ! $this->do_tracking() )
+			if ( !$this->do_tracking() )
 				return $bookmarks;
 
 			$i = 0;
@@ -503,7 +484,7 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 				$target     = yoast_ga_get_domain( $bookmarks[$i]->link_url );
 				$sitedomain = yoast_ga_get_domain( get_bloginfo( 'url' ) );
 				if ( $target['host'] == $sitedomain['host'] ) {
-					$i ++;
+					$i++;
 					continue;
 				}
 				if ( isset( $this->options['domainorurl'] ) && $this->options['domainorurl'] == "domain" )
@@ -512,7 +493,7 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 					$url = $bookmarks[$i]->link_url;
 				$trackBit = '" onclick="' . $this->get_tracking_link( 'outbound-blogroll', $url );
 				$bookmarks[$i]->link_target .= $trackBit;
-				$i ++;
+				$i++;
 			}
 			return $bookmarks;
 		}
@@ -522,8 +503,7 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 			if ( is_feed() ) {
 				if ( $this->options['allowanchor'] ) {
 					$delimiter = '#';
-				}
-				else {
+				} else {
 					$delimiter = '?';
 					if ( strpos( $guid, $delimiter ) > 0 )
 						$delimiter = '&amp;';
@@ -535,24 +515,24 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 
 		function wpec_transaction_tracking( $push ) {
 			global $wpdb, $purchlogs, $cart_log_id;
-			if ( ! isset( $cart_log_id ) || empty( $cart_log_id ) )
+			if ( !isset( $cart_log_id ) || empty( $cart_log_id ) )
 				return $push;
 
-			$city = $wpdb->get_var( "SELECT tf.value
-		                               FROM " . WPSC_TABLE_SUBMITED_FORM_DATA . " tf
-		                          LEFT JOIN " . WPSC_TABLE_CHECKOUT_FORMS . " cf
+			$city = $wpdb->get_var( $wpdb->prepare( "SELECT tf.value
+		                               FROM " . WPSC_TABLE_SUBMITED_FORM_DATA . " AS tf
+		                          LEFT JOIN " . WPSC_TABLE_CHECKOUT_FORMS . " AS cf
 		                                 ON cf.id = tf.form_id
 		                              WHERE cf.type = 'city'
-		                                AND log_id = " . $cart_log_id );
+		                                AND log_id = %s", $cart_log_id ) );
 
-			$country = $wpdb->get_var( "SELECT tf.value
-		                                  FROM " . WPSC_TABLE_SUBMITED_FORM_DATA . " tf
-		                             LEFT JOIN " . WPSC_TABLE_CHECKOUT_FORMS . " cf
+			$country = $wpdb->get_var( $wpdb->prepare( "SELECT tf.value
+		                                  FROM " . WPSC_TABLE_SUBMITED_FORM_DATA . " AS tf
+		                             LEFT JOIN " . WPSC_TABLE_CHECKOUT_FORMS . " AS cf
 		                                    ON cf.id = tf.form_id
 		                                 WHERE cf.type = 'country'
-		                                   AND log_id = " . $cart_log_id );
+		                                   AND log_id = %s", $cart_log_id ) );
 
-			$cart_items = $wpdb->get_results( "SELECT * FROM " . WPSC_TABLE_CART_CONTENTS . " WHERE purchaseid = " . $cart_log_id, ARRAY_A );
+			$cart_items = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM " . WPSC_TABLE_CART_CONTENTS . " WHERE purchaseid = %s", $cart_log_id ), ARRAY_A );
 
 			$total_shipping = $purchlogs->allpurchaselogs[0]->base_shipping;
 			$total_tax      = 0;
@@ -562,25 +542,25 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 			}
 
 			$push[] = "'_addTrans','" . $cart_log_id . "'," // Order ID
-					. "'" . $this->str_clean( get_bloginfo( 'name' ) ) . "'," // Store name
-					. "'" . nzshpcrt_currency_display( $purchlogs->allpurchaselogs[0]->totalprice, 1, true, false, true ) . "'," // Total price
-					. "'" . nzshpcrt_currency_display( $total_tax, 1, true, false, true ) . "'," // Tax
-					. "'" . nzshpcrt_currency_display( $total_shipping, 1, true, false, true ) . "'," // Shipping
-					. "'" . $city . "'," // City
-					. "''," // State
-					. "'" . $country . "'"; // Country
+				. "'" . $this->str_clean( get_bloginfo( 'name' ) ) . "'," // Store name
+				. "'" . nzshpcrt_currency_display( $purchlogs->allpurchaselogs[0]->totalprice, 1, true, false, true ) . "'," // Total price
+				. "'" . nzshpcrt_currency_display( $total_tax, 1, true, false, true ) . "'," // Tax
+				. "'" . nzshpcrt_currency_display( $total_shipping, 1, true, false, true ) . "'," // Shipping
+				. "'" . $city . "'," // City
+				. "''," // State
+				. "'" . $country . "'"; // Country
 
 			foreach ( $cart_items as $item ) {
-				$item['sku'] = $wpdb->get_var( "SELECT meta_value FROM " . WPSC_TABLE_PRODUCTMETA . " WHERE meta_key = 'sku' AND product_id = '" . $item['prodid'] . "' LIMIT 1" );
+				$item['sku'] = $wpdb->get_var( $wpdb->prepare( "SELECT meta_value FROM " . WPSC_TABLE_PRODUCTMETA . " WHERE meta_key = 'sku' AND product_id = %s LIMIT 1", $item['prodid'] ) );
 
-				$item['category'] = $wpdb->get_var( "SELECT pc.name FROM " . WPSC_TABLE_PRODUCT_CATEGORIES . " pc LEFT JOIN " . WPSC_TABLE_ITEM_CATEGORY_ASSOC . " ca ON pc.id = ca.category_id WHERE pc.group_id = '1' AND ca.product_id = '" . $item['prodid'] . "'" );
+				$item['category'] = $wpdb->get_var( $wpdb->prepare( "SELECT pc.name FROM " . WPSC_TABLE_PRODUCT_CATEGORIES . " AS pc LEFT JOIN " . WPSC_TABLE_ITEM_CATEGORY_ASSOC . " AS ca ON pc.id = ca.category_id WHERE pc.group_id = '1' AND ca.product_id = %s", $item['prodid'] ) );
 				$push[]           = "'_addItem',"
-						. "'" . $cart_log_id . "'," // Order ID
-						. "'" . $item['sku'] . "'," // Item SKU
-						. "'" . str_replace( "'", "", $item['name'] ) . "'," // Item Name
-						. "'" . $item['category'] . "'," // Item Category
-						. "'" . $item['price'] . "'," // Item Price
-						. "'" . $item['quantity'] . "'"; // Item Quantity
+					. "'" . $cart_log_id . "'," // Order ID
+					. "'" . $item['sku'] . "'," // Item SKU
+					. "'" . str_replace( "'", "", $item['name'] ) . "'," // Item Name
+					. "'" . $item['category'] . "'," // Item Category
+					. "'" . $item['price'] . "'," // Item Price
+					. "'" . $item['quantity'] . "'"; // Item Quantity
 			}
 			$push[] = "'_trackTrans'";
 
@@ -593,68 +573,67 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 			// Only process if we're in the checkout process (receipt page)
 			if ( version_compare( substr( SHOPP_VERSION, 0, 3 ), '1.1' ) >= 0 ) {
 				// Only process if we're in the checkout process (receipt page)
-				if ( function_exists( 'is_shopp_page' ) && ! is_shopp_page( 'checkout' ) ) return $push;
+				if ( function_exists( 'is_shopp_page' ) && !is_shopp_page( 'checkout' ) ) return $push;
 				if ( empty( $Shopp->Order->purchase ) ) return $push;
 
 				$Purchase = new Purchase( $Shopp->Order->purchase );
 				$Purchase->load_purchased();
-			}
-			else {
+			} else {
 				// For 1.0.x
 				// Only process if we're in the checkout process (receipt page)
-				if ( function_exists( 'is_shopp_page' ) && ! is_shopp_page( 'checkout' ) ) return $push;
+				if ( function_exists( 'is_shopp_page' ) && !is_shopp_page( 'checkout' ) ) return $push;
 				// Only process if we have valid order data
-				if ( ! isset( $Shopp->Cart->data->Purchase ) ) return $push;
+				if ( !isset( $Shopp->Cart->data->Purchase ) ) return $push;
 				if ( empty( $Shopp->Cart->data->Purchase->id ) ) return $push;
 
 				$Purchase = $Shopp->Cart->data->Purchase;
 			}
 
 			$push[] = "'_addTrans',"
-					. "'" . $Purchase->id . "'," // Order ID
-					. "'" . $this->str_clean( get_bloginfo( 'name' ) ) . "'," // Store
-					. "'" . number_format( $Purchase->total, 2 ) . "'," // Total price
-					. "'" . number_format( $Purchase->tax, 2 ) . "'," // Tax
-					. "'" . number_format( $Purchase->shipping, 2 ) . "'," // Shipping
-					. "'" . $Purchase->city . "'," // City
-					. "'" . $Purchase->state . "'," // State
-					. "'.$Purchase->country.'"; // Country
+				. "'" . $Purchase->id . "'," // Order ID
+				. "'" . $this->str_clean( get_bloginfo( 'name' ) ) . "'," // Store
+				. "'" . number_format( $Purchase->total, 2 ) . "'," // Total price
+				. "'" . number_format( $Purchase->tax, 2 ) . "'," // Tax
+				. "'" . number_format( $Purchase->shipping, 2 ) . "'," // Shipping
+				. "'" . $Purchase->city . "'," // City
+				. "'" . $Purchase->state . "'," // State
+				. "'.$Purchase->country.'"; // Country
 
 			foreach ( $Purchase->purchased as $item ) {
 				$sku    = empty( $item->sku ) ? 'PID-' . $item->product . str_pad( $item->price, 4, '0', STR_PAD_LEFT ) : $item->sku;
 				$push[] = "'_addItem',"
-						. "'" . $Purchase->id . "',"
-						. "'" . $sku . "',"
-						. "'" . str_replace( "'", "", $item->name ) . "',"
-						. "'" . $item->optionlabel . "',"
-						. "'" . number_format( $item->unitprice, 2 ) . "',"
-						. "'" . $item->quantity . "'";
+					. "'" . $Purchase->id . "',"
+					. "'" . $sku . "',"
+					. "'" . str_replace( "'", "", $item->name ) . "',"
+					. "'" . $item->optionlabel . "',"
+					. "'" . number_format( $item->unitprice, 2 ) . "',"
+					. "'" . $item->quantity . "'";
 			}
 			$push[] = "'_trackTrans'";
 			return $push;
 		}
 
 		function track_comment_form() {
-			if ( ! is_singular() )
+			if ( !is_singular() )
 				return;
 
 			global $comment_form_id;
 			?>
-			<script type="text/javascript">
-				jQuery(document).ready(function () {
-					jQuery('#<?php echo $comment_form_id; ?>').submit(function () {
-						_gaq.push(
-								['_setAccount', '<?php echo $this->options["uastring"]; ?>'],
-								['_trackEvent', 'comment', 'submit']
-						);
-					});
-				});
-			</script>
+        <script type="text/javascript">
+            jQuery(document).ready(function () {
+                jQuery('#<?php echo $comment_form_id; ?>').submit(function () {
+                    _gaq.push(
+                            ['_setAccount', '<?php echo $this->options["uastring"]; ?>'],
+                            ['_trackEvent', 'comment', 'submit']
+                    );
+                });
+            });
+        </script>
 		<?php
 		}
 
 		function track_comment_form_head() {
-			if ( ! is_singular() )
+			if ( !is_singular() )
 				return;
 
 			global $post;
