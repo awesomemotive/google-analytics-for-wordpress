@@ -10,7 +10,7 @@ Track your WordPress site easily and with lots of metadata: views per author & c
 
 == Description ==
 
-The Google Analytics for WordPress plugin allows you to track your blog easily and with lots of metadata. 
+The Google Analytics for WordPress plugin allows you to track your blog easily and with lots of metadata.
 
 Check out the [Google Analytics for WordPress video](http://www.youtube.com/watch?v=tnUXzbvXxSQ):
 
@@ -61,6 +61,9 @@ This section describes how to install the plugin and get it working.
 = Trunk =
 
 * Bugfix: Fixed error in a database query as reported by [mikeotgaar](http://wordpress.org/support/topic/wordpress-database-error-table-1) and applied some best practices for the database queries - props [Jrf](http://profiles.wordpress.org/jrf).
+* i18n Updates:
+	* Updated gawp.pot file
+	* Added de_DE, el_GR, es_ES, fi, fr_FR, hu_HU & nl_NL
 
 = 4.3.3 =
 
@@ -141,10 +144,10 @@ This section describes how to install the plugin and get it working.
 
 * Added:
 	* Google Site Speed tracking, turned it on by default.
-	
+
 * Fixed:
 	* Custom code now properly removes slashes.
-	
+
 = 4.0.12 =
 
 * Fixed:
@@ -154,18 +157,18 @@ This section describes how to install the plugin and get it working.
 	* Notice for unset variable.
 	* Error when user is not logged in in certain corner cases.
 	* Bug where $options was used but never loaded for blogroll links.
-	
+
 = 4.0.11 =
 
 * Bugs fixed:
 	* You can now disable comment form tracking properly.
 	* Removed charset property from script tags to allow validation with HTML5 doctype.
-	
+
 = 4.0.10 =
 
 * Known issues:
 	* Authentication with Google gives errors in quite a few cases. Please use the manual option to add your UA code until we find a way to reliably fix it.
-	
+
 * Added functionality:
 	* Option to set `_setAllowHash` to false, for proper subdomain tracking and some other uses.
 	* Option to add a custom string of code to the tracking, before the push string is sent out.
@@ -206,9 +209,9 @@ This section describes how to install the plugin and get it working.
 * Documentation fixes:
 	* Updated custom variable order in settings panel to reflect order of tracking. You can now determine their index key by counting down, first checked box is index 1, second 2, etc.
 	* Ignored users dropdown now correctly reflects that ignoring subcribers and up means ignoring ALL logged in users.
-	
+
 = 4.0.5 =
-* New features in this release: 
+* New features in this release:
 	* Added a simple check to see if the UA code, when entered manually, matches a basic pattern of UA-1234567-12.
 	* Added integration with [W3 Total Cache](http://wordpress.org/extend/plugins/w3-total-cache/) and [WP Super Cache](http://wordpress.org/extend/plugins/wp-super-cache/). The page cache is now automatically cleared after updating settings. Caching is recommended for all WordPress users, as faster page loads improve tracking reliability and W3 Total Cache is our recommended caching plugin.
 	* Added the option to enter a manual location for ga.js, allowing you to host it locally should you wish to.
@@ -224,7 +227,7 @@ This section describes how to install the plugin and get it working.
 * Fix for stupid boolean mistake in 4.0.3.
 
 = 4.0.3 =
-* New features in this release: 
+* New features in this release:
 	* Added versioning to the options array, to allow for easy addition of options.
 	* Added an option to enable comment form tracking (as this loads jQuery), defaults to on.
 * Bugs fixed:
@@ -233,7 +236,7 @@ This section describes how to install the plugin and get it working.
 
 = 4.0.2 =
 * Old settings from versions below 4.0 are now properly sanitized and inherited (slaps forehead about simplicity of fix).
-* New features in this release: 
+* New features in this release:
 	* Link sanitization added: relative links will be rewritten to absolute, so /out/ becomes http://example.com/out/ and is tracked properly.
 	* Added a feature to track and label internal links as outbound clicks, for instance /out/ links.
 	* Added tracking for mailto: links.
@@ -250,8 +253,8 @@ This section describes how to install the plugin and get it working.
 * Complete rewrite of the codebase
 * Switched to the new asynchronous event tracking model
 * Switched link tracking to an event tracking model, because of this change removed 5 settings from the settings panel that were no longer needed
-* Implemented custom variable tracking to track: 
-	* On the session level: whether the user is logged in or not. 
+* Implemented custom variable tracking to track:
+	* On the session level: whether the user is logged in or not.
 	* On the page level: the current posts's author, category, tags, year of publication and post type.
 * Added Google Analytics API integration, so you can easily select a site to track.
 * E-Commerce integration, tracking transactions, support for WP E-Commerce and Shopp.
@@ -310,15 +313,15 @@ This section describes how to install the plugin and get it working.
 * Prevent link tracking when admin is logged in and admin tracking is disabled.
 * Now prevents parsing of non http and https link.
 
-= 2.9 = 
+= 2.9 =
 * Re arranged admin panel to have "standard" and "advanced" settings.
 * Added domain tracking.
 * Added fix for double onclick parameter, as suggested [here](http://wordpress.org/support/topic/241757).
 
-= 2.8 = 
+= 2.8 =
 * Added the option to add setAllowAnchor to the tracking code, allowing you to track campaigns with # instead of ?.
 
-= 2.7 = 
+= 2.7 =
 * Added option to select either header of footer position.
 * Added new AdSense integration options.
 * Removed now unneeded adsense tracking script.
@@ -326,13 +329,13 @@ This section describes how to install the plugin and get it working.
 = 2.6.6=
 * Fixed settings link.
 
-= 2.6.5 = 
+= 2.6.5 =
 * added Ozh admin menu icon and settings link.
 
-= 2.6.4 = 
+= 2.6.4 =
 * Fixes for 2.7.
 
-= 2.6.3 = 
+= 2.6.3 =
 * Fixed bug that didn't allow saving of outbound clicks from comments string.
 
 = 2.6 =
@@ -342,13 +345,13 @@ This section describes how to install the plugin and get it working.
 * Fixed an issue with pluginpath being used globally.
 * Changed links to [new domain](http://yoast.com/).
 
-= 2.2 = 
+= 2.2 =
 * Switched to the new tracking code.
 
-= 2.1 = 
+= 2.1 =
 * Made sure tracking was disabled on preview pages.
 
-= 2.0 = 
+= 2.0 =
 * Added AdSense tracking.
 
 = 1.5 =
