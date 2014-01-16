@@ -140,7 +140,7 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
                 });
             });
         </script>
-        <link rel="shortcut icon" href="<?php echo GAWP_URL; ?>images/favicon.ico"/>
+        <link rel="shortcut icon" href="<?php echo plugins_url( 'images/favicon.ico', Yoast_Google_Analytics::get_file() ); ?>"/>
 		<?php
 		}
 	}
@@ -224,8 +224,8 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
 			if ( !isset( $options['ignore_userlevel'] ) || $options['ignore_userlevel'] == '' )
 				$options['ignore_userlevel'] = 11;
 		}
-		if ( !isset( $options['version'] ) || $options['version'] != GAWP_VERSION ) {
-			$options['version'] = GAWP_VERSION;
+		if ( !isset( $options['version'] ) || $options['version'] != Yoast_Google_Analytics::$version ) {
+			$options['version'] = Yoast_Google_Analytics::$version;
 		}
 		update_option( $this->optionname, $options );
 	}
@@ -247,7 +247,7 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
     <div class="wrap">
     <a href="http://yoast.com/">
         <div id="yoast-icon"
-             style="background: url('<?php echo GAWP_URL; ?>images/ga-icon-32x32.png') no-repeat;"
+             style="background: url('<?php echo plugins_url( 'images/ga-icon-32x32.png', Yoast_Google_Analytics::get_file() ); ?>') no-repeat;"
              class="icon32"><br/></div>
     </a>
 
@@ -703,7 +703,7 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
 				?>
                 <a target="_blank"
                    href="https://yoast.com/hire-us/website-review/#utm_source=gawp-config&utm_medium=banner&utm_campaign=website-review-banner"><img
-                        src="<?php echo GAWP_URL; ?>images/banner-website-review.png" alt="Website Review banner"/></a>
+                        src="<?php echo plugins_url( 'images/banner-website-review.png', Yoast_Google_Analytics::get_file() ); ?>" alt="Website Review banner"/></a>
             </div>
             <br/><br/><br/>
         </div>
@@ -713,51 +713,13 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
 	}
 
 	function set_defaults() {
-		$options = array(
-			'advancedsettings'   => false,
-			'allowanchor'        => false,
-			'allowhash'          => false,
-			'allowlinker'        => false,
-			'anonymizeip'        => false,
-			'customcode'         => '',
-			'cv_loggedin'        => false,
-			'cv_authorname'      => false,
-			'cv_category'        => false,
-			'cv_all_categories'  => false,
-			'cv_tags'            => false,
-			'cv_year'            => false,
-			'cv_post_type'       => false,
-			'debug'              => false,
-			'dlextensions'       => 'doc,exe,js,pdf,ppt,tgz,zip,xls',
-			'domain'             => '',
-			'domainorurl'        => 'domain',
-			'extrase'            => false,
-			'extraseurl'         => '',
-			'firebuglite'        => false,
-			'ga_token'           => '',
-			'ga_api_responses'   => array(),
-			'gajslocalhosting'   => false,
-			'gajsurl'            => '',
-			'ignore_userlevel'   => '11',
-			'internallink'       => false,
-			'internallinklabel'  => '',
-			'outboundpageview'   => false,
-			'downloadspageview'  => false,
-			'othercrossdomains'  => '',
-			'position'           => 'footer',
-			'primarycrossdomain' => '',
-			'theme_updated'      => false,
-			'trackcommentform'   => true,
-			'trackcrossdomain'   => false,
-			'trackadsense'       => false,
-			'trackoutbound'      => true,
-			'trackregistration'  => false,
-			'rsslinktagging'     => true,
-			'uastring'           => '',
-			'version'            => GAWP_VERSION,
-		);
-		update_option( $this->optionname, $options );
-		return $options;
+		
+		$defaults = Yoast_Google_Analytics::get_defaults();
+		
+		update_option( $this->optionname, $defaults );
+		
+		return $defaults;
+
 	}
 
 	function warning() {

@@ -67,8 +67,8 @@ if ( !class_exists( 'Yoast_GA_Plugin_Admin' ) ) {
 				wp_enqueue_script( 'dashboard' );
 				wp_enqueue_script( 'thickbox' );
 				wp_enqueue_script( 'media-upload' );
-				wp_enqueue_script( 'jquery-chosen', GAWP_URL . 'js/chosen.jquery.min.js', array( 'jquery' ) );
-				wp_enqueue_style( 'jquery-chosen-css', GAWP_URL . 'js/chosen.css' );
+				wp_enqueue_script( 'jquery-chosen', plugins_url( 'js/chosen.jquery.min.js', Yoast_Google_Analytics::get_file() ), array( 'jquery' ) );
+				wp_enqueue_style( 'jquery-chosen-css', plugins_url( 'js/chosen.css', Yoast_Google_Analytics::get_file() ) );
 			}
 		}
 
