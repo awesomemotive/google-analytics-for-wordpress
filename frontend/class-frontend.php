@@ -658,6 +658,6 @@ function yoast_analytics() {
 	if ( $options['position'] == 'manual' )
 		$yoast_ga->spool_analytics();
 	else
-		echo '<!-- ' . __( 'Please set Google Analytics position to "manual" in the settings, or remove this call to yoast_analytics();', 'gawp' ) . ' -->';
+		echo '<!-- ' . __( 'Please set Google Analytics position to "manual" in the settings, or remove this call to yoast_analytics();', 'google-analytics-for-wordpress' ) . ' -->';
 }
 

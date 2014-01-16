@@ -8,6 +8,8 @@ Version: 4.3.3
 Requires at least: 3.0
 Author URI: http://yoast.com/
 License: GPL v3
+Text Domain: google-analytics-for-wordpress
+Domain Path: /languages
 
 Google Analytics for WordPress
 Copyright (C) 2008-2013, Joost de Valk - joost@yoast.com
@@ -45,7 +47,7 @@ if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 		require_once GAWP_PATH . 'inc/class-tracking.php';
 
 } else {
-	load_plugin_textdomain( 'gawp', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	load_plugin_textdomain( 'google-analytics-for-wordpress', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
 	require_once GAWP_PATH . 'inc/functions.php';
 

@@ -34,19 +34,19 @@ class GA_Pointer {
 	 */
 	function tracking_request() {
 		$id      = '#wpadminbar';
-		$content = '<h3>' . __( 'Help improve Google Analytics for WordPress', 'gawp' ) . '</h3>';
-		$content .= '<p>' . __( 'You\'ve just installed Google Analytics for WordPress by Yoast. Please helps us improve it by allowing us to gather anonymous usage stats so we know which configurations, plugins and themes to test with.', 'gawp' ) . '</p>';
+		$content = '<h3>' . __( 'Help improve Google Analytics for WordPress', 'google-analytics-for-wordpress' ) . '</h3>';
+		$content .= '<p>' . __( 'You\'ve just installed Google Analytics for WordPress by Yoast. Please helps us improve it by allowing us to gather anonymous usage stats so we know which configurations, plugins and themes to test with.', 'google-analytics-for-wordpress' ) . '</p>';
 		$opt_arr = array(
 			'content'  => $content,
 			'position' => array( 'edge' => 'top', 'align' => 'center' )
 		);
-		$button2 = __( 'Allow tracking', 'gawp' );
+		$button2 = __( 'Allow tracking', 'google-analytics-for-wordpress' );
 		$nonce   = wp_create_nonce( 'wpga_activate_tracking' );
 
 		$function2 = 'wpga_store_answer("yes","'.$nonce.'");';
 		$function1 = 'wpga_store_answer("no","'.$nonce.'");';
 
-		$this->print_scripts( $id, $opt_arr, __( 'Do not allow tracking', 'gawp' ), $button2, $function2, $function1 );
+		$this->print_scripts( $id, $opt_arr, __( 'Do not allow tracking', 'google-analytics-for-wordpress' ), $button2, $function2, $function1 );
 	}
 
 	/**
