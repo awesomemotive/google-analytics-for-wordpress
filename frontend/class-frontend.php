@@ -269,7 +269,7 @@ if ( !class_exists( 'GA_Filter' ) ) {
 				?>
 
             <script type="text/javascript">//<![CDATA[
-            // Google Analytics for WordPress by Yoast v<?php echo GAWP_VERSION;  ?> | http://yoast.com/wordpress/google-analytics/
+            // Google Analytics for WordPress by Yoast v<?php echo Yoast_Google_Analytics::$version;  ?> | http://yoast.com/wordpress/google-analytics/
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', '<?php echo trim( $this->options["uastring"] ); ?>']);
 				<?php
@@ -277,7 +277,7 @@ if ( !class_exists( 'GA_Filter' ) ) {
 					if ( !empty( $this->options["extraseurl"] ) ) {
 						$url = $this->options["extraseurl"];
 					} else {
-						$url = GAWP_URL . 'custom_se_async.js';
+						$url = plugins_url( 'custom_se_async.js', Yoast_Google_Analytics::get_file() );
 					}
 					echo '</script><script src="' . $url . '" type="text/javascript"></script>' . "\n" . '<script type="text/javascript">';
 				}
