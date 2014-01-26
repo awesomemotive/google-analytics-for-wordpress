@@ -149,7 +149,7 @@ if ( !class_exists( 'Yoast_Tracking' ) ) {
 function ystga_tracking_additions( $options ) {
 	$opt = get_option('Yoast_Google_Analytics');
 
-	$options['gawp'] = array(
+	$options['google-analytics-for-wordpress'] = array(
 		'advanced_settigns' => isset( $opt['advancedsettings'] ) ? 1 : 0,
 	);
 	return $options;
