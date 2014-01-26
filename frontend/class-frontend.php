@@ -282,7 +282,7 @@ if ( !class_exists( 'GA_Filter' ) ) {
 					echo '</script><script src="' . $url . '" type="text/javascript"></script>' . "\n" . '<script type="text/javascript">';
 				}
 
-				if ( $this->options['customcode'] && trim( $this->options['customcode'] ) != '' )
+				if ( ! empty( $this->options['customcode'] ) && trim( $this->options['customcode'] ) != '' )
 					echo "\t" . stripslashes( $this->options['customcode'] ) . "\n";
 				?>
             _gaq.push(<?php echo $pushstr; ?>);
