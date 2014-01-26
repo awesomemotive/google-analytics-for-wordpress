@@ -51,7 +51,7 @@ if ( !class_exists( 'Yoast_GA_Plugin_Admin' ) ) {
 			if ( empty( $this_plugin ) ) 
 				$this_plugin = 'google-analytics-for-wordpress/googleanalytics.php';
 			if ( $file == $this_plugin ) {
-				$settings_link = '<a href="' . $this->plugin_options_url() . '">' . __( 'Settings', 'gawp' ) . '</a>';
+				$settings_link = '<a href="' . $this->plugin_options_url() . '">' . __( 'Settings', 'google-analytics-for-wordpress' ) . '</a>';
 				array_unshift( $links, $settings_link );
 			}
 			return $links;
@@ -167,13 +167,13 @@ if ( !class_exists( 'Yoast_GA_Plugin_Admin' ) ) {
 			if ( empty( $hook ) ) {
 				$hook = $this->hook;
 			}
-			$content = '<p>' . __( 'Why not do any or all of the following:', 'gawp' ) . '</p>';
+			$content = '<p>' . __( 'Why not do any or all of the following:', 'google-analytics-for-wordpress' ) . '</p>';
 			$content .= '<ul>';
-			$content .= '<li><a href="' . $this->homepage . '">' . __( 'Link to it so other folks can find out about it.', 'gawp' ) . '</a></li>';
-			$content .= '<li><a href="http://wordpress.org/extend/plugins/' . $hook . '/">' . __( 'Give it a 5 star rating on WordPress.org.', 'gawp' ) . '</a></li>';
-			$content .= '<li><a href="http://wordpress.org/extend/plugins/' . $hook . '/">' . __( 'Let other people know that it works with your WordPress setup.', 'gawp' ) . '</a></li>';
+			$content .= '<li><a href="' . $this->homepage . '">' . __( 'Link to it so other folks can find out about it.', 'google-analytics-for-wordpress' ) . '</a></li>';
+			$content .= '<li><a href="http://wordpress.org/extend/plugins/' . $hook . '/">' . __( 'Give it a 5 star rating on WordPress.org.', 'google-analytics-for-wordpress' ) . '</a></li>';
+			$content .= '<li><a href="http://wordpress.org/extend/plugins/' . $hook . '/">' . __( 'Let other people know that it works with your WordPress setup.', 'google-analytics-for-wordpress' ) . '</a></li>';
 			$content .= '</ul>';
-			$this->postbox( $hook . 'like', __( 'Like this plugin?', 'gawp' ), $content );
+			$this->postbox( $hook . 'like', __( 'Like this plugin?', 'google-analytics-for-wordpress' ), $content );
 		}
 
 		function text_limit( $text, $limit, $finish = ' [&hellip;]' ) {
