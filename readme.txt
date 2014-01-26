@@ -1,10 +1,10 @@
 ﻿=== Google Analytics for WordPress ===
-Contributors: joostdevalk
+Contributors: joostdevalk, barrykooij
 Donate link: http://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google
 Requires at least: 3.3
-Tested up to: 3.5
-Stable tag: 4.3.3
+Tested up to: 3.8.1
+Stable tag: 4.3.4
 
 Track your WordPress site easily and with lots of metadata: views per author & category, automatic tracking of outbound clicks and pageviews.
 
@@ -58,7 +58,7 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
-= Trunk =
+= 4.3.4 =
 
 * Bugfix: 
 	* Fixed error in a database query as reported by [mikeotgaar](http://wordpress.org/support/topic/wordpress-database-error-table-1) and applied some best practices for the database queries - props [Jrf](http://profiles.wordpress.org/jrf).
