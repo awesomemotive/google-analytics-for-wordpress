@@ -701,10 +701,18 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
 						. '<li><a href="http://wordpress.org/tags/google-analytics-for-wordpress">' . __( 'Help out other users in the forums', 'google-analytics-for-wordpress' ) . '</a></li>'
 						. '<li>' . sprintf( __( 'Blog about it & link to the %1$splugin page%2$s' ), '<a href="http://yoast.com/wordpress/google-analytics/#utm_source=wpadmin&utm_medium=sidebanner&utm_term=link&utm_campaign=wpgaplugin">', '</a>' ) . '</li></ul>' );
 				?>
-                <a target="_blank"
-                   href="https://yoast.com/hire-us/website-review/#utm_source=gawp-config&utm_medium=banner&utm_campaign=website-review-banner"><img
-                        src="<?php echo GAWP_URL; ?>images/banner-website-review.png" alt="Website Review banner"/></a>
-            </div>
+							<a target="_blank"
+								 href="https://yoast.com/hire-us/create-ga-goals/#utm_source=gawp-config&utm_medium=banner&utm_campaign=ga-goals-banner"><img
+										src="<?php echo GAWP_URL; ?>images/banner-ga-goals.png" alt="Google Analytics Goals"/></a><br/>
+							<br/>
+							<a target="_blank"
+								 href="https://yoast.com/hire-us/website-review/#utm_source=gawp-config&utm_medium=banner&utm_campaign=website-review-banner"><img
+										src="<?php echo GAWP_URL; ?>images/banner-website-review.png" alt="Website Review"/></a><br/>
+							<br/>
+							<a target="_blank"
+								 href="https://yoast.com/hire-us/conversion-review/#utm_source=gawp-config&utm_medium=banner&utm_campaign=conversion-review-banner"><img
+										src="<?php echo GAWP_URL; ?>images/banner-conversion-review.png" alt="Conversion Review"/></a>
+						</div>
             <br/><br/><br/>
         </div>
     </div>
