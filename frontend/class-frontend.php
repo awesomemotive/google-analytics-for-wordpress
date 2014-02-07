@@ -293,7 +293,12 @@ if ( !class_exists( 'GA_Filter' ) ) {
                 ga.src = <?php
 					if ( $this->options['gajslocalhosting'] && !empty( $this->options['gajsurl'] ) ) {
 						echo "'" . $this->options['gajsurl'] . "'";
-					} else {
+					} 
+					elseif($this->options['displayadvertising'] ){
+					  	$script ='dc.js';
+					  echo "('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/" . $script . "'";
+					}
+					else {
 						$script = 'ga.js';
 						if ( current_user_can( 'manage_options' ) && $this->options['debug'] )
 							$script = 'u/ga_debug.js';
