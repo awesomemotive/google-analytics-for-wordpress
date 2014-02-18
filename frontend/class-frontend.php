@@ -116,7 +116,7 @@ if ( !class_exists( 'GA_Filter' ) ) {
 		 * Cleans the variable to make it ready for storing in Google Analytics
 		 */
 		function str_clean( $val ) {
-			return remove_accents( str_replace( '---', '-', str_replace( ' ', '-', strtolower( html_entity_decode( $val ) ) ) ) );
+			return addslashes(remove_accents( str_replace( '---', '-', str_replace( ' ', '-', strtolower( html_entity_decode( $val ) ) ) ) ));
 		}
 
 		/*
