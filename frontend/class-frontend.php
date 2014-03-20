@@ -294,10 +294,10 @@ if ( !class_exists( 'GA_Filter' ) ) {
 					if ( $this->options['gajslocalhosting'] && !empty( $this->options['gajsurl'] ) ) {
 						echo "'" . $this->options['gajsurl'] . "'";
 					} else {
-						$script = 'ga.js';
+						$script = 'dc.js';
 						if ( current_user_can( 'manage_options' ) && $this->options['debug'] )
-							$script = 'u/ga_debug.js';
-						echo "('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/" . $script . "'";
+							$script = 'dc_debug.js';
+						echo "('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/" . $script . "'";
 					}
 					?>;
 
