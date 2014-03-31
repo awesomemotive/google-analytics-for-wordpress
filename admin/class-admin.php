@@ -312,41 +312,52 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
 				$ga_accounts = array();
 
 				$currentua = '';
-				if ( !empty( $options['uastring'] ) )
+				if ( !empty( $options['uastring'] ) ) {
 					$currentua = $options['uastring'];
+				}
 
-				if ( isset( $arr['feed']['entry'] ) && is_array( $arr['feed']['entry'] ) ) {
+				if ( isset( $arr['feed']['entry'] ) && is_array( $arr['feed']['entry'] ) && $arr['feed']['entry'] !== array() && isset( $arr['feed']['link_attr']['href'] ) ) {
 					// Check whether the feed output is the new one, first set, or the old one, second set.
 					if ( $arr['feed']['link_attr']['href'] == 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles' ) {
 						if ( isset( $arr['feed']['entry']['id'] ) ) {
 							// Single account in the feed
-							if ( isset( $arr['feed']['entry']['dxp:property']['1_attr']['value'] ) )
+							if ( isset( $arr['feed']['entry']['dxp:property']['1_attr']['value'] ) ) {
 								$ua = trim( $arr['feed']['entry']['dxp:property']['1_attr']['value'] );
-							if ( isset( $arr['feed']['entry']['dxp:property']['2_attr']['value'] ) )
+							}
+							if ( isset( $arr['feed']['entry']['dxp:property']['2_attr']['value'] ) ) {
 								$title = trim( $arr['feed']['entry']['dxp:property']['2_attr']['value'] );
-							if ( !empty( $ua ) && !empty( $title ) )
+							}
+							if ( !empty( $ua ) && !empty( $title ) ) {
 								$ga_accounts[$ua] = $title;
+							}
 						} else {
 							// Multiple accounts in the feed
 							foreach ( $arr['feed']['entry'] as $site ) {
-								if ( isset( $site['dxp:property']['1_attr']['value'] ) )
+								if ( is_array( $site ) && isset( $site['dxp:property']['1_attr']['value'] ) ) {
 									$ua = trim( $site['dxp:property']['1_attr']['value'] );
-								if ( isset( $site['dxp:property']['2_attr']['value'] ) )
+								}
+								if ( is_array( $site ) && isset( $site['dxp:property']['2_attr']['value'] ) ) {
 									$title = trim( $site['dxp:property']['2_attr']['value'] );
-								if ( !empty( $ua ) && !empty( $title ) )
+								}
+								if ( !empty( $ua ) && !empty( $title ) ) {
 									$ga_accounts[$ua] = $title;
+								}
 							}
 						}
 					} else if ( $arr['feed']['link_attr']['href'] == 'https://www.google.com/analytics/feeds/accounts/default' ) {
 						foreach ( $arr['feed']['entry'] as $site ) {
-							if ( isset( $site['dxp:property']['3_attr']['value'] ) )
+							if ( is_array( $site ) && isset( $site['dxp:property']['3_attr']['value'] ) ) {
 								$ua = trim( $site['dxp:property']['3_attr']['value'] );
-							if ( isset( $site['dxp:property']['1_attr']['value'] ) )
+							}
+							if ( is_array( $site ) && isset( $site['dxp:property']['1_attr']['value'] ) ) {
 								$title = trim( $site['dxp:property']['1_attr']['value'] );
-							if ( !empty( $ua ) && !empty( $title ) )
+							}
+							if ( !empty( $ua ) && !empty( $title ) ) {
 								$ga_accounts[$ua] = $title;
+							}
 						}
 					}
+
 					asort( $ga_accounts );
 
 					$select = '<select class="chzn-select" name="uastring" data-placeholder="' . __( 'Please select the correct Analytics Account', 'google-analytics-for-wordpress' ) . '"  id="ga_account">';
