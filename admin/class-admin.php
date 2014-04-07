@@ -51,7 +51,9 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
 		add_action( 'admin_head', array( &$this, 'config_page_head' ) );
 
 		// Drop a warning on each page of the admin when Google Analytics hasn't been configured
-		add_action( 'admin_footer', array( &$this, 'warning' ) );
+		if ( ! is_network_admin() ) {
+			add_action( 'admin_footer', array( &$this, 'warning' ) );
+		}
 
 		// Save settings
 		// TODO: replace with Options API
