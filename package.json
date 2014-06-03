@@ -1,6 +1,6 @@
 {
-    "name": "wordpress-seo-premium",
-    "description": "Development files for the WordPress SEO Premium plugin",
+    "name": "google-analytics-for-wordpress",
+    "description": "Development files for the Google Analytics for WordPress plugin",
     "dependencies": {},
     "devDependencies": {
         "grunt": "^0.4.5",
