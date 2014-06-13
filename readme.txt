@@ -58,6 +58,11 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= Trunk =
+
+* Bugfix:
+	* Fixed: Links for click tracking not always properly recognized as reported by [onehorsetown](https://github.com/onehorsetown) and [carmoreira](https://github.com/carmoreira) in [issue #35](https://github.com/Yoast/google-analytics-for-wordpress/issues/35) - props [Jrf](http://profiles.wordpress.org/jrf).
+
 = 4.3.5 =
 
 * Enhancement:
@@ -65,7 +70,7 @@ This section describes how to install the plugin and get it working.
 
 = 4.3.4 =
 
-* Bugfix: 
+* Bugfix:
 	* Fixed error in a database query as reported by [mikeotgaar](http://wordpress.org/support/topic/wordpress-database-error-table-1) and applied some best practices for the database queries - props [Jrf](http://profiles.wordpress.org/jrf).
 	* Fixed error in a database query.
 	* Made check for customcode option more robust - props [Rarst](https://github.com/Rarst).

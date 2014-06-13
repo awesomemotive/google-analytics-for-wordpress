@@ -416,7 +416,7 @@ if ( !class_exists( 'GA_Filter' ) ) {
 		function widget_content( $text ) {
 			if ( !$this->do_tracking() )
 				return $text;
-			static $anchorPattern = '/<a (.*?)href=[\'\"](.*?)\/\/([^\'\"]+?)[\'\"](.*?)>(.*?)<\/a>/i';
+			static $anchorPattern = '`<a ([^>]*)href=[\'"]([^\'":]*:)(?://)?([^\'"]+?)[\'"]([^>]*)>(.*?)</a>`i';
 			$text = preg_replace_callback( $anchorPattern, array( $this, 'parse_widget_link' ), $text );
 			return $text;
 		}
@@ -426,7 +426,7 @@ if ( !class_exists( 'GA_Filter' ) ) {
 				return $text;
 
 			if ( !is_feed() ) {
-				static $anchorPattern = '/<a (.*?)href=[\'\"](.*?)\/\/([^\'\"]+?)[\'\"](.*?)>(.*?)<\/a>/i';
+				static $anchorPattern = '`<a ([^>]*)href=[\'"]([^\'":]*:)(?://)?([^\'"]+?)[\'"]([^>]*)>(.*?)</a>`i';
 				$text = preg_replace_callback( $anchorPattern, array( $this, 'parse_article_link' ), $text );
 			}
 			return $text;
@@ -437,7 +437,7 @@ if ( !class_exists( 'GA_Filter' ) ) {
 				return $text;
 
 			if ( !is_feed() ) {
-				static $anchorPattern = '/<a (.*?)href=[\'\"](.*?)\/\/([^\'\"]+?)[\'\"](.*?)>(.*?)<\/a>/i';
+				static $anchorPattern = '`<a ([^>]*)href=[\'"]([^\'":]*:)(?://)?([^\'"]+?)[\'"]([^>]*)>(.*?)</a>`i';
 				$text = preg_replace_callback( $anchorPattern, array( $this, 'parse_nav_menu' ), $text );
 			}
 			return $text;
