@@ -208,7 +208,7 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
 			if ( function_exists( 'wp_cache_clear_cache' ) )
 				wp_cache_clear_cache();
 
-			$options['msg'] = "<div id=\"updatemessage\" class=\"updated fade\"><p>" . __( "Google Analytics settings updated.", "gawp" ) . "</p></div>\n";
+			$options['msg'] = "<div id=\"updatemessage\" class=\"updated fade\"><p>" . __( "Google Analytics settings updated.", "gawp", 'google-analytics-for-wordpress' ) . "</p></div>\n";
 			$options['msg'] .= "<script type=\"text/javascript\">setTimeout(function(){jQuery('#updatemessage').hide('slow');}, 3000);</script>";
 		}
 		update_option( $this->optionname, $options );
@@ -402,7 +402,7 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
 			echo '<div id="message" class="updated" style="background-color:lightgreen;border-color:green;"><p><strong>' . __( 'Notice', 'google-analytics-for-wordpress' ), ':</strong> ' . __( 'You switched your theme, please make sure your Google Analytics tracking is still ok. Save your settings to make sure Google Analytics gets loaded properly.', 'google-analytics-for-wordpress' ) . '</p></div>';
 			remove_action( 'admin_footer', array( &$this, 'theme_switch_warning' ) );
 		}
-		$desc = '<div id="position_header">' . sprintf( __( 'The header is by far the best spot to place the tracking code. If you\'d rather place the code manually, switch to manual placement. For more info %sread this page%s.' ), '<a href="http://yoast.com/wordpress/google-analytics/manual-placement/">', '</a>' ) . '</div>';
+		$desc = '<div id="position_header">' . sprintf( __( 'The header is by far the best spot to place the tracking code. If you\'d rather place the code manually, switch to manual placement. For more info %sread this page%s.', 'google-analytics-for-wordpress' ), '<a href="http://yoast.com/wordpress/google-analytics/manual-placement/">', '</a>' ) . '</div>';
 		$desc .= '<div id="position_manual">' . sprintf( __( '%sFollow the instructions here%s to choose the location for your tracking code manually.', 'google-analytics-for-wordpress' ), '<a href="http://yoast.com/wordpress/google-analytics/manual-placement/">', '</a>' ) . '</div>';
 
 		$rows[] = array(
@@ -699,7 +699,7 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
 					'<ul>'
 						. '<li><a href="http://wordpress.org/extend/plugins/google-analytics-for-wordpress/">' . __( 'Rate the plugin 5★ on WordPress.org', 'google-analytics-for-wordpress' ) . '</a></li>'
 						. '<li><a href="http://wordpress.org/tags/google-analytics-for-wordpress">' . __( 'Help out other users in the forums', 'google-analytics-for-wordpress' ) . '</a></li>'
-						. '<li>' . sprintf( __( 'Blog about it & link to the %1$splugin page%2$s' ), '<a href="http://yoast.com/wordpress/google-analytics/#utm_source=wpadmin&utm_medium=sidebanner&utm_term=link&utm_campaign=wpgaplugin">', '</a>' ) . '</li></ul>' );
+						. '<li>' . sprintf( __( 'Blog about it & link to the %1$splugin page%2$s', 'google-analytics-for-wordpress' ), '<a href="http://yoast.com/wordpress/google-analytics/#utm_source=wpadmin&utm_medium=sidebanner&utm_term=link&utm_campaign=wpgaplugin">', '</a>' ) . '</li></ul>' );
 				?>
 							<a target="_blank"
 								 href="https://yoast.com/hire-us/create-ga-goals/#utm_source=gawp-config&utm_medium=banner&utm_campaign=ga-goals-banner"><img
