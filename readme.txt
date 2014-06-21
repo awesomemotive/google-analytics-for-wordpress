@@ -58,6 +58,11 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= Trunk =
+
+* Bugfix:
+	* Fixed fatal error
+
 = 4.3.5 =
 
 * Enhancement:
