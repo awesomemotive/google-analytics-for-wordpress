@@ -8,7 +8,7 @@ if( !class_exists('Yoast_GA_JS') ){
 	class Yoast_GA_JS extends Yoast_GA_Frontend {
 
 		public function __construct(){
-			add_action('wp_head', array( $this, 'yoast_ga_tracking' ));
+			add_action('wp_head', array( $this, 'yst_ga_tracking' ));
 		}
 
 		/**
@@ -16,7 +16,7 @@ if( !class_exists('Yoast_GA_JS') ){
 		 *
 		 * @todo, add the tracking code and remove this test output
 		 */
-		public function yoast_ga_tracking(){
+		public function yst_ga_tracking(){
 			// Set tracking code here
 
 			// Include the tracking view
