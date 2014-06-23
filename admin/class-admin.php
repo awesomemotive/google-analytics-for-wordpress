@@ -24,7 +24,7 @@ if( !class_exists('Yoast_GA_Admin') ){
 			$submenu_pages = array(
 				array( 'yst_ga_dashboard', __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'Dashboard', 'google-analytics-for-wordpress' ), __( 'Dashboard', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_dashboard', array( $this, 'load_page' ), array( array( $this, 'yst_ga_dashboard' ) ) ),
 				array( 'yst_ga_dashboard', __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'Settings', 'google-analytics-for-wordpress' ), __( 'Settings', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_settings', array( $this, 'load_page' ), array( array( $this, 'yst_ga_settings' ) ) ),
-				array( 'yst_ga_dashboard', __( 'Yoast Google Analytics:', 'google-analytics-for-wordpres' ) . ' ' . __( 'Extensions', 'google-analytics-for-wordpress'), __('<span style="color:#f18500">'.__( 'Extensions', 'google-analytics-for-wordpress' ) .'</span>', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_licenses', array( $this, 'load_page' ), null ),
+				array( 'yst_ga_dashboard', __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'Extensions', 'google-analytics-for-wordpress'), __('<span style="color:#f18500">'.__( 'Extensions', 'google-analytics-for-wordpress' ) .'</span>', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_licenses', array( $this, 'load_page' ), null ),
 			);
 
 			if ( count( $submenu_pages ) ) {
