@@ -1,8 +1,8 @@
 <?php
 
-if( !class_exists('Yoast_GA_Frontend') ){
+if( !class_exists('Yoast_GA_Admin') ){
 
-	class Yoast_GA_Frontend {
+	class Yoast_GA_Admin {
 
 		public function __construct(){
 
@@ -10,5 +10,5 @@ if( !class_exists('Yoast_GA_Frontend') ){
 
 	}
 
-	$Yoast_GA_Frontend	=	Yoast_GA_Frontend;
+	$Yoast_GA_Admin	=	new Yoast_GA_Admin;
 }
