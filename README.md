@@ -44,3 +44,9 @@ There are various ways you can contribute:
 * Send us a Pull Request with your bug fixes and/or new features.
 * [Translate Google Analytics for WordPress by Yoast into different languages](http://translate.yoast.com/projects/google-analytics-for-wordpress).
 * Provide feedback and [suggestions on enhancements](https://github.com/Yoast/google-analytics-for-wordpress/issues?direction=desc&labels=Enhancement&page=1&sort=created&state=open).
+
+Changelog
+=========
+
+### 5.0.0: Date unknown ###
+* Complete rewrite of the Google Analytics plugin
