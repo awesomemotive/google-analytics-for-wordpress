@@ -1,14 +1,14 @@
-	<?php
+<?php
 /**
  * The frontend JS class
  */
 
-if( !class_exists('Yoast_GA_JS') ){
+if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 	class Yoast_GA_JS extends Yoast_GA_Frontend {
 
-		public function __construct(){
-			add_action('wp_head', array( $this, 'yst_ga_tracking' ));
+		public function __construct() {
+			add_action( 'wp_head', array( $this, 'tracking' ) );
 		}
 
 		/**
@@ -16,14 +16,14 @@ if( !class_exists('Yoast_GA_JS') ){
 		 *
 		 * @todo, add the tracking code and remove this test output
 		 */
-		public function yst_ga_tracking(){
+		public function tracking() {
 			// Set tracking code here
 
 			// Include the tracking view
-			require( GAWP_PATH . 'frontend/views/tracking_ga_js.php');
+			require( GAWP_PATH . 'frontend/views/tracking_ga_js.php' );
 		}
 
 	}
 
-	$Yoast_GA_JS 	=	new Yoast_GA_JS;
+	$Yoast_GA_JS = new Yoast_GA_JS;
 }
