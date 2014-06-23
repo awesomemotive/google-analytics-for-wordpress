@@ -17,17 +17,10 @@ if( !class_exists('Yoast_GA_JS') ){
 		 * @todo, add the tracking code and remove this test output
 		 */
 		public function yoast_ga_tracking(){
-			$output = NULL;
+			// Set tracking code here
 
-			$output .= '<!-- This site uses the Yoast Google Analytics plugin v' . GAWP_VERSION . ' - https://yoast.com/wordpress/plugins/#analytics -->';
-			$output .= '
-<script type="text/javascript">
-console.log("Test from the GA plugin");
-</script>';
-			$output .= '<!-- / Yoast Google Analytics -->
-			';
-
-			echo $output;
+			// Include the tracking view
+			require( GAWP_PATH . 'frontend/views/tracking_ga_js.php');
 		}
 
 	}
