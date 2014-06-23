@@ -77,7 +77,7 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 
 		function not_shown_error() {
 			if ( current_user_can( 'manage_options' ) ) {
-				echo "<!-- " . __( "Google Analytics tracking code not shown because you haven't setup Google Analytics for WordPress yet.", "gawp", 'google-analytics-for-wordpress' ) . " -->\n";
+				echo "<!-- " . __( "Google Analytics tracking code not shown because you haven't setup Google Analytics for WordPress yet.", "google-analytics-for-wordpress", 'google-analytics-for-wordpress' ) . " -->\n";
 			}
 		}
 
@@ -331,7 +331,7 @@ if ( ! class_exists( 'GA_Filter' ) ) {
 					//]]></script>
 			<?php
 			} else if ( $this->options["uastring"] != "" ) {
-				echo "<!-- " . sprintf( __( "Google Analytics tracking code not shown because users over level %s are ignored.", "gawp", 'google-analytics-for-wordpress' ), $this->options["ignore_userlevel"] ) . " -->\n";
+				echo "<!-- " . sprintf( __( "Google Analytics tracking code not shown because users over level %s are ignored.", "google-analytics-for-wordpress" ), $this->options["ignore_userlevel"] ) . " -->\n";
 			}
 		}
 
