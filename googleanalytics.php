@@ -36,8 +36,12 @@ define( "GAWP_URL", trailingslashit( plugin_dir_url( __FILE__ ) ) );
 
 define( "GAWP_PATH", plugin_dir_path( __FILE__ ) );
 
+// Only require the needed classes
 if ( is_admin() ) {
 	require_once GAWP_PATH . 'admin/class-admin.php';
 } else {
 	require_once GAWP_PATH . 'frontend/class-frontend.php';
+
+	// @todo, check here for the GA universal or JS Tracking
+	require_once GAWP_PATH . 'frontend/class-ga-js.php';
 }

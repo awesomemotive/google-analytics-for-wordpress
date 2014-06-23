@@ -1,4 +1,7 @@
 <?php
+/**
+ * This class is for the backend, extendable for all child classes
+ */
 
 if( !class_exists('Yoast_GA_Admin') ){
 
@@ -38,6 +41,12 @@ if( !class_exists('Yoast_GA_Admin') ){
 		public function load_page() {
 			if ( isset( $_GET['page'] ) ) {
 				switch ( $_GET['page'] ) {
+					case 'yst_ga_settings':
+						require_once( GAWP_PATH . 'admin/pages/settings.php' );
+						break;
+					case 'yst_ga_licenses':
+						require_once( GAWP_PATH . 'admin/pages/extensions.php' );
+						break;
 					case 'yst_ga_dashboard':
 					default:
 						require_once( GAWP_PATH . 'admin/pages/dashboard.php' );
