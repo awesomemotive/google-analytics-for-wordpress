@@ -38,7 +38,7 @@ if( !class_exists('Yoast_GA_Admin') ){
 		public function load_page() {
 			if ( isset( $_GET['page'] ) ) {
 				switch ( $_GET['page'] ) {
-					case 'ga_dashboard':
+					case 'yst_ga_dashboard':
 					default:
 						require_once( GAWP_PATH . 'admin/pages/dashboard.php' );
 						break;
