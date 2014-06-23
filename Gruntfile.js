@@ -103,7 +103,7 @@ module.exports = function(grunt) {
             files: {
                 expand: true,
                 src: [
-                    '**/*.php'
+                    '**/*.php', '!node_modules/**'
                 ]
             }
         },
@@ -148,7 +148,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('default', [
-        'build'
+        'check'
     ]);
 
     grunt.registerTask('fucking', [
