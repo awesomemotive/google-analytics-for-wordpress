@@ -32,7 +32,7 @@ if( !class_exists('Yoast_GA_Admin') ){
 					// Add submenu page
 					add_submenu_page( $submenu_page[0], $submenu_page[1], $submenu_page[2], $submenu_page[3], $submenu_page[4], $submenu_page[5] );
 				}
-		}
+			}
 		}
 
 		/**
