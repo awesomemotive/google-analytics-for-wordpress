@@ -131,10 +131,45 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function end_form( $button_label = "Save changes" ){
 			$output		=	NULL;
-			$output 	.=	'<input type="submit" name="submit" value="' . $button_label . '" class="button button-primary" id="yoast-ga-form-submit-' . $this->form_namespace . '">';
-			$output		.=	'</form>';
+			$output		.=	'<div class="ga-form ga-form-input">';
+			$output 	.=	'<input type="submit" name="submit" value="' . $button_label . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-' . $this->form_namespace . '">';
+			$output		.=	'</div></form>';
 
 			return $output;
+		}
+
+		/**
+		 * Create a input form element with our labels and wrap them
+		 * @param string $type
+		 * @param null   $title
+		 * @param null   $name
+		 * @param null   $text_label
+		 * @param int    $value
+		 * @param bool   $checked
+		 *
+		 * @return null|string
+		 */
+		public function input( $type = 'text', $title = NULL, $name = NULL, $text_label = NULL, $value = 1, $checked = false ){
+			$input   = 	NULL;
+			$input	.=	'<div class="ga-form ga-form-input">';
+			if( !is_null($title) ){
+				$input	.=	'<label class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . $this->form_namespace . '-' . $name . '" />' . __($title, 'google-analytics-for-wordpress') . ':</label>';
+			}
+
+			if( $checked ){
+				$input	.=	'<input type="' . $type . '" class="ga-form ga-form-checkbox" id="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $name . '" name="' . $name . '" value="' . $value . '" checked="checked" />';
+			}
+			else{
+				$input	.=	'<input type="' . $type . '" class="ga-form ga-form-checkbox" id="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $name . '" name="' . $name . '" value="' . $value . '" />';
+			}
+
+			if( !is_null($text_label) ){
+				$input	.=	'<label class="ga-form ga-form-' . $type . '-label" id="yoast-ga-form-label-' . $type . '-textlabel-' . $this->form_namespace . '-' . $name . '" for="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $name . '" />' . __($text_label, 'google-analytics-for-wordpress') . '</label>';
+			}
+
+			$input .= '</div>';
+
+			return $input;
 		}
 
 	}

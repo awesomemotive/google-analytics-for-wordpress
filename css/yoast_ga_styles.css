@@ -33,3 +33,18 @@ h2#yoast_ga_title {
 	font-weight: 400;
 	padding: 9px 15px 4px 0;
 }
+
+.ga-form-submit {
+	margin-top: 20px;
+}
+
+.ga-form-label-left {
+	width: 200px;
+	float: left;
+	margin: 0 0 0 5px;
+}
+
+.ga-form-input {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
