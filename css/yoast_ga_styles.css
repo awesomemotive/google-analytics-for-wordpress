@@ -48,3 +48,31 @@ h2#yoast_ga_title {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
+#yoast-ga-wrapper {
+	display: table;
+	width: 100%;
+}
+
+.yoast-ga-content {
+	display: table-cell;
+	min-width: 880px;
+	height: 500px;
+	padding: 0;
+	margin: 0;
+	vertical-align: top;
+}
+
+.yoast-ga-banners {
+	display: table-cell;
+	width: 261px;
+	height: 500px;
+	padding: 0;
+	margin: 0;
+	vertical-align: top;
+	padding: 20px;
+}
+
+.yoast-banner {
+	max-width: 100%;
+}

@@ -172,6 +172,31 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			return $input;
 		}
 
+		public function content_head(){
+			require("views/content_head.php");
+		}
+
+		public function content_footer(){
+			$banners = array();
+			$banners[]	=	array(
+				'url'		=>	'https://yoast.com',
+				'banner'	=>	GAWP_URL . 'img/banner-website-review.png',
+				'title'		=>	'Get a website review by Yoast'
+			);
+
+			if ( class_exists('Woocommerce') ) {
+				$banners[]	=	array(
+					'url'		=>	'https://yoast.com',
+					'banner'	=>	GAWP_URL . 'img/banner-local-seo.png',
+					'title'		=>	'Get WooCommerce integrated in your Analytics'
+				);
+			}
+
+			shuffle($banners);
+
+			require("views/content_footer.php");
+		}
+
 	}
 
 	global $yoast_ga_admin;

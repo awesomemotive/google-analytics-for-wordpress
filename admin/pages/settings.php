@@ -1,5 +1,7 @@
 <?php
 global $yoast_ga_admin;
+
+echo $yoast_ga_admin->content_head();
 ?>
 <h2 id="yoast_ga_title"><?php echo __('Yoast Google Analytics: Settings', ''); ?></h2>
 
@@ -34,4 +36,5 @@ echo $yoast_ga_admin->create_form('settings');
 </div>
 <?php
 echo $yoast_ga_admin->end_form();
+echo $yoast_ga_admin->content_footer();
 ?>
