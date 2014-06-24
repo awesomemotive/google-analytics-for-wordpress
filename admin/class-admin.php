@@ -9,6 +9,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 		public function __construct() {
 			add_action( 'admin_menu', array( $this, 'create_menu' ), 5 );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		}
 
 		/**
@@ -63,9 +65,34 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
+		 * Add the scripts to the admin head
+		 *
+		 * @todo add minified JS files
+		 */
+		public function enqueue_scripts(){
+			wp_enqueue_script( 'yoast_ga_admin', GAWP_URL . 'js/yoast_ga_admin.js' );
+		}
+
+		/**
+		 * Add the styles in the admin head
+		 *
+		 * @todo add minified CSS files
+		 */
+		public function enqueue_styles(){
+			wp_enqueue_style( 'yoast_ga_styles', GAWP_URL . 'css/yoast_ga_styles.css' );
+		}
+
+		/**
 		 * Load the page of a menu item in the GA plugin
 		 */
 		public function load_page() {
+
+			require_once GAWP_PATH . 'admin/class-admin-ga-js.php';
+			$ga_universal = false; // @todo get option if universal is enabled
+			if( $ga_universal ){
+				require_once GAWP_PATH . 'admin/class-admin-universal.php';
+			}
+
 			if ( isset( $_GET['page'] ) ) {
 				switch ( $_GET['page'] ) {
 					case 'yst_ga_settings':
