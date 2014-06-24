@@ -16,6 +16,9 @@ echo $yoast_ga_admin->create_form('settings');
 	<div id="general" class="gatab">
 	<?php
 	echo '<h2>' . __( 'Title settings', 'google-analytics-for-wordpress' ) . '</h2>';
+	echo $yoast_ga_admin->input( 'checkbox', 'Do you like this test', 'ga_general[like_test]', 'Yes, I do like it!');
+	echo $yoast_ga_admin->input( 'checkbox', 'Do you like this test', 'ga_general[like_test2]', 'Yes, I do like it! 2');
+	echo $yoast_ga_admin->input( 'checkbox', 'Do you like this test', 'ga_general[like_test3]', 'Yes, I do like it! 3');
 	?>
 	</div>
 	<div id="advanced" class="gatab">
