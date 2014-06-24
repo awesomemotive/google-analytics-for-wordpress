@@ -13,5 +13,6 @@ if ( ! class_exists( 'Yoast_GA_Admin_Universal' ) ) {
 
 	}
 
-	$Yoast_GA_Admin_Universal = new Yoast_GA_Admin_Universal;
+	global $yoast_ga_admin_universal;
+	$yoast_ga_admin_universal = new Yoast_GA_Admin_Universal;
 }

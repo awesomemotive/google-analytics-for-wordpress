@@ -1,3 +1,14 @@
+h2#yoast_ga_title {
+	font-size: 23px;
+	font-weight: 400;
+	padding: 9px 15px 4px 0;
+	line-height: 29px;
+}
+
+.nav-tab-wrapper {
+	margin-bottom: 0px;
+}
+
 .gatab {
 	display: none;
 }
@@ -9,4 +20,16 @@
 	border: 1px solid #ddd;
 	background-color: #fff;
 	border-radius: 0 3px 3px 3px;
+}
+
+.tabwrapper .gatab {
+	background: none;
+	border: none;
+	padding: 0px;
+}
+
+.tabwrapper .gatab h2 {
+	font-size: 23px;
+	font-weight: 400;
+	padding: 9px 15px 4px 0;
 }

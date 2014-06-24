@@ -13,5 +13,6 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 	}
 
-	$Yoast_GA_Universal = new Yoast_GA_Universal;
+	global $yoast_ga_universal;
+	$yoast_ga_universal = new Yoast_GA_Universal;
 }

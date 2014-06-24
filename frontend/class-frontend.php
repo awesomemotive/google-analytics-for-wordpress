@@ -13,5 +13,6 @@ if( !class_exists('Yoast_GA_Frontend') ){
 
 	}
 
-	$Yoast_GA_Frontend	=	new Yoast_GA_Frontend;
+	global $yoast_ga_frontend;
+	$yoast_ga_frontend	=	new Yoast_GA_Frontend;
 }

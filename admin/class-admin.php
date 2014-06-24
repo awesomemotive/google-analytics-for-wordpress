@@ -7,6 +7,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 	class Yoast_GA_Admin {
 
+		private $form_namespace;
+
 		public function __construct() {
 			add_action( 'admin_menu', array( $this, 'create_menu' ), 5 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
@@ -109,7 +111,34 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			}
 		}
 
+		/**
+		 * Create a form element to init a form
+		 * @param $namespace
+		 *
+		 * @return string
+		 */
+		public function create_form( $namespace ){
+			$this->form_namespace = $namespace;
+
+			return '<form action="' . $_SERVER['PHP_SELF'] . '" method="post" id="yoast-ga-form-' . $this->form_namespace . '" class="yoast_ga_form">';
+		}
+
+		/**
+		 * Return the form end tag and the submit button
+		 * @param string $button_label
+		 *
+		 * @return null|string
+		 */
+		public function end_form( $button_label = "Save changes" ){
+			$output		=	NULL;
+			$output 	.=	'<input type="submit" name="submit" value="' . $button_label . '" class="button button-primary" id="yoast-ga-form-submit-' . $this->form_namespace . '">';
+			$output		.=	'</form>';
+
+			return $output;
+		}
+
 	}
 
-	$Yoast_GA_Admin = new Yoast_GA_Admin;
+	global $yoast_ga_admin;
+	$yoast_ga_admin = new Yoast_GA_Admin;
 }

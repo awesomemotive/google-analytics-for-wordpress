@@ -25,5 +25,6 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 	}
 
-	$Yoast_GA_JS = new Yoast_GA_JS;
+	global $yoast_ga_js;
+	$yoast_ga_js = new Yoast_GA_JS;
 }
