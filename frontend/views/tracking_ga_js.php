@@ -1,4 +1,4 @@
-<!-- This site uses the Yoast Google Analytics plugin v<?php echo GAWP_VERSION; ?> - https://yoast.com/wordpress/plugins/#analytics -->
+<!-- This site uses the Yoast Google Analytics plugin v<?php echo GAWP_VERSION; ?> - https://yoast.com/wordpress/plugins/google-analytics/ -->
 <script type="text/javascript">
 
 	var _gaq = _gaq || [];
