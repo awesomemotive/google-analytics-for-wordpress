@@ -1,0 +1,12 @@
+.gatab {
+	display: none;
+}
+
+.gatab.active {
+	display: block;
+	overflow: auto;
+	padding: 0.5em 0.9em;
+	border: 1px solid #ddd;
+	background-color: #fff;
+	border-radius: 0 3px 3px 3px;
+}
