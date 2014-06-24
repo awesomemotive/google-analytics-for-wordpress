@@ -172,10 +172,16 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			return $input;
 		}
 
+		/**
+		 * Render the admin page head for the GA Plugin
+		 */
 		public function content_head(){
 			require("views/content_head.php");
 		}
 
+		/**
+		 * Render the admin page footer with sidebar for the GA Plugin
+		 */
 		public function content_footer(){
 			$banners = array();
 			$banners[]	=	array(
