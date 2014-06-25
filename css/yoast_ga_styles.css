@@ -39,9 +39,10 @@ h2#yoast_ga_title {
 }
 
 .ga-form-label-left {
-	width: 200px;
+	width: 250px;
 	float: left;
 	margin: 0 0 0 5px;
+	font-weight: bold;
 }
 
 .ga-form-input {
@@ -91,4 +92,11 @@ h2#yoast_ga_title {
 
 p.ga-topdescription {
 	max-width: 600px;
+}
+
+#ga-promote {
+	border: 1px solid #ccc;
+	background-color: #fff;
+	max-width: 600px;
+	padding-left: 10px;
 }

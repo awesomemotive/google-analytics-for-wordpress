@@ -18,8 +18,10 @@ echo $yoast_ga_admin->create_form('settings');
 	<div id="general" class="gatab">
 	<?php
 	echo '<h2>' . __( 'General settings', 'google-analytics-for-wordpress' ) . '</h2>';
+	echo '<div id="ga-promote">';
 	echo $yoast_ga_admin->select( 'Analytics profile', 'ga_general[analytics_profile]', $yoast_ga_admin->get_profiles(), 1432 );
 	echo $yoast_ga_admin->input( 'checkbox', NULL, 'ga_general[manual_ua_code]', 'Manually enter your UA code');
+	echo '</div>';
 	?>
 	<div class="clear"><br /></div>
 
