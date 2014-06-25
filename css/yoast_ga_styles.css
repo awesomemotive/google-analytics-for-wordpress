@@ -76,3 +76,19 @@ h2#yoast_ga_title {
 .yoast-banner {
 	max-width: 100%;
 }
+
+.ga-form-input {
+	display: table;
+}
+
+.ga-form-table {
+	display: table-cell;
+}
+
+.ga-form-description {
+	color: #999999;
+}
+
+p.ga-topdescription {
+	max-width: 600px;
+}
