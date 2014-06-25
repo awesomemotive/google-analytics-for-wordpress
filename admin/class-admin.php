@@ -146,10 +146,11 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * @param null   $text_label
 		 * @param int    $value
 		 * @param bool   $checked
+		 * @param null   $description
 		 *
 		 * @return null|string
 		 */
-		public function input( $type = 'text', $title = NULL, $name = NULL, $text_label = NULL, $value = 1, $checked = false ){
+		public function input( $type = 'text', $title = NULL, $name = NULL, $text_label = NULL, $value = 1, $checked = false, $description = NULL ){
 			$input   = 	NULL;
 			$input	.=	'<div class="ga-form ga-form-input">';
 			if( !is_null($title) ){
@@ -169,9 +170,27 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			$input .= '</div>';
 
+			// If we get a description, append it to this select field in a new row
+			if(!is_null($description)){
+				$input	.=	'<div class="ga-form ga-form-input">';
+				$input	.=	'<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-description-select-' . $this->form_namespace . '-' . $name . '" />&nbsp;</label>';
+				$input	.= 	'<span class="ga-form ga-form-description">'.__($description, 'google-analytics-for-wordpress').'</span>';
+				$input .= '</div>';
+			}
+
 			return $input;
 		}
 
+		/**
+		 * Generate a select box
+		 * @param      $title
+		 * @param      $name
+		 * @param      $values
+		 * @param      $selected
+		 * @param null $description
+		 *
+		 * @return null|string
+		 */
 		public function select( $title, $name, $values, $selected, $description = NULL ){
 			$select = NULL;
 			$select	.=	'<div class="ga-form ga-form-input">';
@@ -198,6 +217,26 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			return $select;
 		}
 
+		public function textarea( $title, $name, $value = '', $description = NULL ){
+			$text = NULL;
+			$text	.=	'<div class="ga-form ga-form-input">';
+			if( !is_null($title) ){
+				$text	.=	'<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $name . '" />' . __($title, 'google-analytics-for-wordpress') . ':</label>';
+			}
+			$text .= '<textarea rows="5" cols="60" name="' . $name . '" id="yoast-ga-form-textarea-' . $this->form_namespace . '-' . $name . '">' . $value . '</textarea>';
+			$text .= '</div>';
+
+			// If we get a description, append it to this select field in a new row
+			if(!is_null($description)){
+				$text	.=	'<div class="ga-form ga-form-input">';
+				$text	.=	'<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-description-select-' . $this->form_namespace . '-' . $name . '" />&nbsp;</label>';
+				$text	.= 	'<span class="ga-form ga-form-description">'.__($description, 'google-analytics-for-wordpress').'</span>';
+				$text .= '</div>';
+			}
+
+			return $text;
+		}
+
 		/**
 		 * Get the Google Analytics profiles which are in this google account
 		 * @return array
@@ -210,6 +249,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			);
 		}
 
+		/**
+		 * Get the user roles of this WordPress blog
+		 * @return array
+		 */
 		public function get_userroles(){
 			global $wp_roles;
 
@@ -224,6 +267,17 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			}
 
 			return $roles;
+		}
+
+		/**
+		 * Get types of how we can track downloads
+		 * @return array
+		 */
+		public function track_download_types(){
+			return array(
+				0 => array('id' => 'event', 'name' => 'Event'),
+				1 => array('id' => 'pageview', 'name' => 'Pageview'),
+			);
 		}
 
 		/**

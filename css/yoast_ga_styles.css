@@ -43,6 +43,7 @@ h2#yoast_ga_title {
 	float: left;
 	margin: 0 0 0 5px;
 	font-weight: bold;
+	cursor: default;
 }
 
 .ga-form-input {
@@ -88,6 +89,7 @@ h2#yoast_ga_title {
 
 .ga-form-description {
 	color: #999999;
+	max-width: 325px;
 }
 
 p.ga-topdescription {
@@ -99,4 +101,8 @@ p.ga-topdescription {
 	background-color: #fff;
 	max-width: 600px;
 	padding-left: 10px;
+}
+
+#yoast-ga-form-settings input[type="text"] {
+	width: 325px;
 }
