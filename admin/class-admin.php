@@ -172,6 +172,60 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			return $input;
 		}
 
+		public function select( $title, $name, $values, $selected, $description = NULL ){
+			$select = NULL;
+			$select	.=	'<div class="ga-form ga-form-input">';
+				if( !is_null($title) ){
+					$select	.=	'<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $name . '" />' . __($title, 'google-analytics-for-wordpress') . ':</label>';
+				}
+				$select .= '<select name="' . $name . '" id="yoast-ga-form-select-' . $this->form_namespace . '-' . $name . '">';
+				if(count($values)>=1){
+					foreach($values as $value){
+						$select .= '<option value="' . $value['id'] . '" ' . selected( $selected, $value['id'], false ) . '>' . $value['name'] . '</option>';
+					}
+				}
+				$select .= '</select>';
+			$select .= '</div>';
+
+			// If we get a description, append it to this select field in a new row
+			if(!is_null($description)){
+				$select	.=	'<div class="ga-form ga-form-input">';
+				$select	.=	'<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-description-select-' . $this->form_namespace . '-' . $name . '" />&nbsp;</label>';
+				$select	.= 	'<span class="ga-form ga-form-description">'.__($description, 'google-analytics-for-wordpress').'</span>';
+				$select .= '</div>';
+			}
+
+			return $select;
+		}
+
+		/**
+		 * Get the Google Analytics profiles which are in this google account
+		 * @return array
+		 * @todo OAuth connection to Google.com?
+		 */
+		public function get_profiles(){
+			return array(
+				0	=>	array('id' => '1234', 'ua_code'	=>	'UA-317889-17', 'name' => 'Yoast.com'),
+				1	=>	array('id' => '1432', 'ua_code'	=>	'UA-317889-18', 'name' => 'Yoast.com')
+			);
+		}
+
+		public function get_userroles(){
+			global $wp_roles;
+
+			$all_roles = $wp_roles->roles;
+			$roles = array();
+			$editable_roles = apply_filters('editable_roles', $all_roles);
+			foreach($editable_roles as $id => $name){
+				$roles[]	=	array(
+					'id'	=>	$id,
+					'name'	=>	$name['name'],
+				);
+			}
+
+			return $roles;
+		}
+
 		/**
 		 * Render the admin page head for the GA Plugin
 		 */
