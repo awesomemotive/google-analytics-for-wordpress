@@ -44,6 +44,7 @@ h2#yoast_ga_title {
 	margin: 0 0 0 5px;
 	font-weight: bold;
 	cursor: default;
+	font-size: 14px;
 }
 
 .ga-form-input {
