@@ -217,6 +217,15 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			return $select;
 		}
 
+		/**
+		 * Generate a textarea field
+		 * @param        $title
+		 * @param        $name
+		 * @param string $value
+		 * @param null   $description
+		 *
+		 * @return null|string
+		 */
 		public function textarea( $title, $name, $value = '', $description = NULL ){
 			$text = NULL;
 			$text	.=	'<div class="ga-form ga-form-input">';

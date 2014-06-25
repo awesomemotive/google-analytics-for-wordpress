@@ -24,7 +24,6 @@ echo $yoast_ga_admin->create_form('settings');
 	echo '</div>';
 	?>
 	<div class="clear"><br /></div>
-
 	<?php
 	echo $yoast_ga_admin->input( 'checkbox', 'Track outbound click & downloads', 'ga_general[track_outbound]');
 	echo $yoast_ga_admin->input( 'checkbox', 'Allow tracking of anonymous data', 'ga_general[anonymous_data]');
@@ -37,6 +36,8 @@ echo $yoast_ga_admin->create_form('settings');
 		echo '<h2>' . __( 'Advanced settings', 'google-analytics-for-wordpress' ) . '</h2>';
 		echo $yoast_ga_admin->select( 'Track downloads as', 'ga_general[track_download_as]', $yoast_ga_admin->track_download_types(), 1 );
 		echo $yoast_ga_admin->input( 'text', 'Track full URL of outbound clicks or just the domain', 'ga_general[track_full_url]', NULL, 'doc,exe,js,pdf,ppt,tgz,zip,xls', false, 'Comma separated');
+		echo $yoast_ga_admin->input( 'text', 'Subdomain tracking', 'ga_general[subdomain_tracking]', NULL, '', false, 'This allows you to set the domain that\'s set by <code>setDomainName</code> for tracking subdomains, if empty this will not be set.');
+		echo $yoast_ga_admin->input( 'checkbox', 'Tag links in RSS feed with campaign variables', 'ga_general[tag_links_in_rss]');
 		echo $yoast_ga_admin->textarea( 'Custom code', 'ga_general[custom_code]', '', 'This code will be added in the Google Analytics javascript.');
 		?>
 	</div>
