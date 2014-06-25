@@ -20,8 +20,11 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			echo '<h2>' . __( 'General settings', 'google-analytics-for-wordpress' ) . '</h2>';
 			echo '<div id="ga-promote">';
 			echo $yoast_ga_admin->select( 'Analytics profile', 'ga_general[analytics_profile]', $yoast_ga_admin->get_profiles(), 1432 );
+			echo '<label class="ga-form ga-form-checkbox-label ga-form-label-left">';
 			echo $yoast_ga_admin->input( 'checkbox', NULL, 'ga_general[manual_ua_code]', 'Manually enter your UA code' );
-			echo '</div>';
+			echo '</label>';
+			echo '<div id="enter_ua">Test to enter the GA code</div>';
+			echo '<div class="clear"></div></div>';
 			?>
 			<div class="clear"><br /></div>
 			<?php
@@ -35,9 +38,11 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			<?php
 			echo '<h2>' . __( 'Advanced settings', 'google-analytics-for-wordpress' ) . '</h2>';
 			echo $yoast_ga_admin->select( 'Track downloads as', 'ga_general[track_download_as]', $yoast_ga_admin->track_download_types(), 1 );
-			echo $yoast_ga_admin->input( 'text', 'Track full URL of outbound clicks or just the domain', 'ga_general[track_full_url]', NULL, 'doc,exe,js,pdf,ppt,tgz,zip,xls', false, 'Comma separated' );
+			echo $yoast_ga_admin->input( 'text', 'Extensions of files to track as downloads', 'ga_general[extensions_of_files]', NULL, 'doc,exe,js,pdf,ppt,tgz,zip,xls', false, 'Comma separated' );
+			echo $yoast_ga_admin->select( 'Track full URL of outbound clicks or just the domain', 'ga_general[track_full_url]', $yoast_ga_admin->get_track_full_url(), 0 );
 			echo $yoast_ga_admin->input( 'text', 'Subdomain tracking', 'ga_general[subdomain_tracking]', NULL, '', false, 'This allows you to set the domain that\'s set by <code>setDomainName</code> for tracking subdomains, if empty this will not be set.' );
 			echo $yoast_ga_admin->input( 'checkbox', 'Tag links in RSS feed with campaign variables', 'ga_general[tag_links_in_rss]' );
+			echo $yoast_ga_admin->input( 'checkbox', 'Add <code>_setAllowLinker</code>', 'ga_general[add_allow_linker]' );
 			echo $yoast_ga_admin->textarea( 'Custom code', 'ga_general[custom_code]', '', 'This code will be added in the Google Analytics javascript.' );
 			?>
 		</div>
@@ -46,7 +51,7 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			echo '<h2>' . __( 'Debug settings', 'google-analytics-for-wordpress' ) . '</h2>';
 
 			echo '<div id="ga-promote">';
-			echo '<p class="ga-topdescription">' . __( 'If you want to confirm that tracking on your blog is working as it should, enable this options and check th console in Firebug (for Firefox), Firebug Lite (for other browsers) or Chrome & Safari\'s Web Inspector. Be absolutely sure to disable debugging afterwards, as it is slower than normal tracking.', 'google-analytics-for-wordpress' ) . '</p>';
+			echo '<p class="ga-topdescription">' . __( 'If you want to confirm that tracking on your blog is working as it should, enable this options and check the console in Firebug (for Firefox), Firebug Lite (for other browsers) or Chrome & Safari\'s Web Inspector. Be absolutely sure to disable debugging afterwards, as it is slower than normal tracking.', 'google-analytics-for-wordpress' ) . '</p>';
 			echo '<p class="ga-topdescription"><strong>' . __( 'Note', 'google-analytics-for-wordpress' ) . ':</strong> ' . __( 'the debugging and firebug scripts are only loaded for admins.', 'google-analytics-for-wordpress' ) . '</p>';
 			echo '</div>';
 			echo $yoast_ga_admin->input( 'checkbox', 'Enable debug mode', 'ga_general[debug_mode]' );

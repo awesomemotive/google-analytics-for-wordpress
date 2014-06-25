@@ -293,6 +293,13 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			);
 		}
 
+		public function get_track_full_url(){
+			return array(
+				0 => array( 'id' => 0, 'name' => 'Just the domain'),
+				1 => array( 'id' => 1, 'name' => 'Full links'),
+			);
+		}
+
 		/**
 		 * Render the admin page head for the GA Plugin
 		 */

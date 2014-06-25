@@ -108,3 +108,8 @@ p.ga-topdescription {
 #yoast-ga-form-settings input[type="text"] {
 	width: 325px;
 }
+
+#enter_ua {
+	margin-top: 10px;
+	padding-top: 10px;
+}
