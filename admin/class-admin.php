@@ -157,6 +157,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$input = NULL;
 			$id = str_replace('[', '-', $name);
 			$id = str_replace(']', '', $id);
+
 			$input .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
 				$input .= '<label class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . $this->form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
@@ -169,7 +170,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			}
 
 			if ( ! is_null( $text_label ) ) {
-				$input .= '<label class="ga-form ga-form-' . $type . '-label" id="yoast-ga-form-label-' . $type . '-textlabel-' . $this->form_namespace . '-' . $id . '" for="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $name . '" />' . __( $text_label, 'google-analytics-for-wordpress' ) . '</label>';
+				$input .= '<label class="ga-form ga-form-' . $type . '-label" id="yoast-ga-form-label-' . $type . '-textlabel-' . $this->form_namespace . '-' . $id . '" for="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $id . '" />' . __( $text_label, 'google-analytics-for-wordpress' ) . '</label>';
 			}
 
 			$input .= '</div>';
