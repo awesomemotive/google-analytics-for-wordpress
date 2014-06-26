@@ -2,8 +2,8 @@
 /**
  * This class is for the backend, extendable for all child classes
  */
-if(!function_exists('wp_verify_nonce')){
-	require_once(ABSPATH .'wp-includes/pluggable.php');
+if ( ! function_exists( 'wp_verify_nonce' ) ) {
+	require_once( ABSPATH . 'wp-includes/pluggable.php' );
 }
 
 if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
@@ -17,8 +17,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 
-			if( $_SERVER['REQUEST_METHOD'] == 'POST' ){
-				if( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ){
+			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+				if ( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ) {
 					$this->save_settings( $_POST );
 				}
 			}
@@ -131,15 +131,16 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$this->form_namespace = $namespace;
 
 			$action = $_SERVER['PHP_SELF'];
-			if(isset($_GET['page'])){
+			if ( isset( $_GET['page'] ) ) {
 				$action .= '?page=' . $_GET['page'];
 			}
 
-			return '<form action="' . $action . '" method="post" id="yoast-ga-form-' . $this->form_namespace . '" class="yoast_ga_form">'.wp_nonce_field('save_settings','yoast_ga_nonce', NULL, false);
+			return '<form action="' . $action . '" method="post" id="yoast-ga-form-' . $this->form_namespace . '" class="yoast_ga_form">' . wp_nonce_field( 'save_settings', 'yoast_ga_nonce', NULL, false );
 		}
 
 		/**
 		 * Return the form end tag and the submit button
+		 *
 		 * @param string $button_label
 		 * @param string $name
 		 *
@@ -148,7 +149,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function end_form( $button_label = "Save changes", $name = 'submit' ) {
 			$output = NULL;
 			$output .= '<div class="ga-form ga-form-input">';
-			$output .= '<input type="submit" name="ga-form-'.$name.'" value="' . $button_label . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-' . $this->form_namespace . '">';
+			$output .= '<input type="submit" name="ga-form-' . $name . '" value="' . $button_label . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-' . $this->form_namespace . '">';
 			$output .= '</div></form>';
 
 			return $output;
@@ -169,8 +170,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function input( $type = 'text', $title = NULL, $name = NULL, $text_label = NULL, $value = 1, $checked = false, $description = NULL ) {
 			$input = NULL;
-			$id = str_replace('[', '-', $name);
-			$id = str_replace(']', '', $id);
+			$id    = str_replace( '[', '-', $name );
+			$id    = str_replace( ']', '', $id );
 
 			$input .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
@@ -213,8 +214,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function select( $title, $name, $values, $selected, $description = NULL ) {
 			$select = NULL;
-			$id = str_replace('[', '-', $name);
-			$id = str_replace(']', '', $id);
+			$id     = str_replace( '[', '-', $name );
+			$id     = str_replace( ']', '', $id );
 			$select .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
 				$select .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
@@ -251,8 +252,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function textarea( $title, $name, $value = '', $description = NULL ) {
 			$text = NULL;
-			$id = str_replace('[', '-', $name);
-			$id = str_replace(']', '', $id);
+			$id   = str_replace( '[', '-', $name );
+			$id   = str_replace( ']', '', $id );
 			$text .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
 				$text .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
@@ -318,10 +319,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Get options for the track full url or links setting
 		 * @return array
 		 */
-		public function get_track_full_url(){
+		public function get_track_full_url() {
 			return array(
-				0 => array( 'id' => 0, 'name' => 'Just the domain'),
-				1 => array( 'id' => 1, 'name' => 'Full links'),
+				0 => array( 'id' => 0, 'name' => 'Just the domain' ),
+				1 => array( 'id' => 1, 'name' => 'Full links' ),
 			);
 		}
 
@@ -356,9 +357,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			require( "views/content_footer.php" );
 		}
 
-		public function save_settings( $data ){
+		public function save_settings( $data ) {
 			echo 'Handle_settings<pre>';
-			print_r($data);
+			print_r( $data );
 			// redirect;
 		}
 
