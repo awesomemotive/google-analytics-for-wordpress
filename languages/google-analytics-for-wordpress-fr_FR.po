@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Google Analytics for WordPress package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2014-01-06 10:22:46+0000\n"
+"PO-Revision-Date: 2014-06-26 13:28:58+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -144,7 +144,7 @@ msgstr ""
 
 #: admin/class-admin.php:407
 msgid "Show advanced settings"
-msgstr ""
+msgstr "Afficher les réglages avancés"
 
 #: admin/class-admin.php:408
 msgid "Only adviced for advanced users who know their way around Google Analytics"
@@ -180,7 +180,7 @@ msgstr ""
 
 #: admin/class-admin.php:430
 msgid "Post type"
-msgstr ""
+msgstr "Type de contenu"
 
 #: admin/class-admin.php:431
 msgid "Allows you to see pageviews per post type, especially useful if you use multiple custom post types."
@@ -196,7 +196,7 @@ msgstr ""
 
 #: admin/class-admin.php:442
 msgid "Tags"
-msgstr "Mots-clefs"
+msgstr "Mots-clés"
 
 #: admin/class-admin.php:443
 msgid "Allows you to see pageviews per tags using advanced segments."
@@ -244,19 +244,19 @@ msgstr ""
 
 #: admin/class-admin.php:475
 msgid "Administrator"
-msgstr ""
+msgstr "Administrateur"
 
 #: admin/class-admin.php:476
 msgid "Editor"
-msgstr ""
+msgstr "Éditeur"
 
 #: admin/class-admin.php:477
 msgid "Author"
-msgstr ""
+msgstr "Auteur"
 
 #: admin/class-admin.php:478
 msgid "Contributor"
-msgstr ""
+msgstr "Contributeur"
 
 #: admin/class-admin.php:479
 msgid "Subscriber (ignores all logged in users)"
@@ -520,7 +520,7 @@ msgstr ""
 
 #: admin/class-admin.php:755
 msgid "Google Analytics is not active."
-msgstr ""
+msgstr "Google Analytics n'est pas actif."
 
 #: admin/class-admin.php:755
 msgid "You must %sselect which Analytics Profile to track%s before it can work."
@@ -544,7 +544,7 @@ msgstr ""
 
 #: admin/yst_plugin_tools.php:54
 msgid "Settings"
-msgstr ""
+msgstr "Réglages"
 
 #: admin/yst_plugin_tools.php:170
 msgid "Why not do any or all of the following:"
@@ -564,7 +564,7 @@ msgstr ""
 
 #: admin/yst_plugin_tools.php:176
 msgid "Like this plugin?"
-msgstr ""
+msgstr "Vous aimez ce plugin ?"
 
 #: frontend/class-frontend.php:75
 msgid "Google Analytics tracking code not shown because you haven't setup Google Analytics for WordPress yet."

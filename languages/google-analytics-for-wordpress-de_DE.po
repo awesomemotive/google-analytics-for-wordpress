@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Google Analytics for WordPress package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2014-01-06 10:23:18+0000\n"
+"PO-Revision-Date: 2014-06-26 13:29:37+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,7 +16,7 @@ msgstr "Google Analytics Konfiguration"
 
 #: admin/class-admin.php:31
 msgid "Google Analytics"
-msgstr ""
+msgstr "Google Analytics"
 
 #: admin/class-admin.php:129
 msgid "The maximum number of allowed custom variables in Google Analytics is 5, please unselect one of the other custom variables before selecting this one."
@@ -48,11 +48,11 @@ msgstr "Google Analytics Konfiguration aktualisiert."
 
 #: admin/class-admin.php:227
 msgid "Update Google Analytics Settings &raquo;"
-msgstr ""
+msgstr "Update Google Analytics Einstellungen &raquo;"
 
 #: admin/class-admin.php:263
 msgid "Google Analytics for WordPress Configuration"
-msgstr ""
+msgstr "Konfiguration Google Analytics for WordPress"
 
 #: admin/class-admin.php:275
 msgid "Please authenticate with Google Analytics to retrieve your tracking code:"
@@ -68,7 +68,7 @@ msgstr ""
 
 #: admin/class-admin.php:349
 msgid "Please select the correct Analytics account to track:"
-msgstr ""
+msgstr "Bitte den richtigen Analytics-Account auswählen:"
 
 #: admin/class-admin.php:351
 msgid "Profile"
@@ -96,19 +96,19 @@ msgstr ""
 
 #: admin/class-admin.php:375
 msgid "Manually enter your UA code: "
-msgstr ""
+msgstr "UA Code manuell eingeben:"
 
 #: admin/class-admin.php:380
 msgid "Analytics Profile"
-msgstr ""
+msgstr "Analytics Profil"
 
 #: admin/class-admin.php:381
 msgid "Manually enter your UA code"
-msgstr ""
+msgstr "UA Code manuell eingeben"
 
 #: admin/class-admin.php:384
 msgid "In the header (default)"
-msgstr ""
+msgstr "Im Header (Standart)"
 
 #: admin/class-admin.php:384
 msgid "Insert manually"
@@ -116,7 +116,7 @@ msgstr ""
 
 #: admin/class-admin.php:387
 msgid "Notice"
-msgstr ""
+msgstr "Hinweis"
 
 #: admin/class-admin.php:387
 msgid "You switched your theme, please make sure your Google Analytics tracking is still ok. Save your settings to make sure Google Analytics gets loaded properly."
@@ -132,7 +132,7 @@ msgstr ""
 
 #: admin/class-admin.php:395
 msgid "Where should the tracking code be placed"
-msgstr ""
+msgstr "Wo soll der Tracking Code eingefügt werden"
 
 #: admin/class-admin.php:401
 msgid "Track outbound clicks &amp; downloads"
@@ -144,7 +144,7 @@ msgstr ""
 
 #: admin/class-admin.php:407
 msgid "Show advanced settings"
-msgstr ""
+msgstr "Weitere Einstellungen anzeigen"
 
 #: admin/class-admin.php:408
 msgid "Only adviced for advanced users who know their way around Google Analytics"
@@ -152,7 +152,7 @@ msgstr ""
 
 #: admin/class-admin.php:413
 msgid "Allow tracking of anonymous data"
-msgstr ""
+msgstr "Tracking von anonymen Daten erlauben"
 
 #: admin/class-admin.php:414
 msgid "By allowing us to track anonymous data we can better help you, because we know with which WordPress configurations, themes and plugins we should test. No personal data will be submitted."
@@ -160,7 +160,7 @@ msgstr ""
 
 #: admin/class-admin.php:417
 msgid "Google Analytics Settings"
-msgstr ""
+msgstr "Google Analytics Einstellungen"
 
 #: admin/class-admin.php:420
 msgid "Google Analytics allows you to save up to 5 custom variables on each page, and this plugin helps you make the most use of these! Check which custom variables you'd like the plugin to save for you below. Please note that these will only be saved when they are actually available."
@@ -172,7 +172,7 @@ msgstr ""
 
 #: admin/class-admin.php:424
 msgid "Logged in Users"
-msgstr ""
+msgstr "Eingeloggte User"
 
 #: admin/class-admin.php:425
 msgid "Allows you to easily remove logged in users from your reports, or to segment by different user roles. The users primary role will be logged."
@@ -180,7 +180,7 @@ msgstr ""
 
 #: admin/class-admin.php:430
 msgid "Post type"
-msgstr ""
+msgstr "Post type"
 
 #: admin/class-admin.php:431
 msgid "Allows you to see pageviews per post type, especially useful if you use multiple custom post types."
@@ -188,7 +188,7 @@ msgstr ""
 
 #: admin/class-admin.php:436
 msgid "Author Name"
-msgstr ""
+msgstr "Name des Autors"
 
 #: admin/class-admin.php:437
 msgid "Allows you to see pageviews per author."
@@ -196,7 +196,7 @@ msgstr ""
 
 #: admin/class-admin.php:442
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
 
 #: admin/class-admin.php:443
 msgid "Allows you to see pageviews per tags using advanced segments."
@@ -220,7 +220,7 @@ msgstr ""
 
 #: admin/class-admin.php:460
 msgid "All Categories"
-msgstr ""
+msgstr "Alle Kategorien"
 
 #: admin/class-admin.php:461
 msgid "Allows you to see pageviews per category using advanced segments, should be used when you use multiple categories per post."
@@ -232,7 +232,7 @@ msgstr ""
 
 #: admin/class-admin.php:471
 msgid "Ignore users"
-msgstr ""
+msgstr "User ignorieren"
 
 #: admin/class-admin.php:472
 msgid "Users of the role you select and higher will be ignored, so if you select Editor, all Editors and Administrators will be ignored."
@@ -240,7 +240,7 @@ msgstr ""
 
 #: admin/class-admin.php:474
 msgid "Ignore no-one"
-msgstr ""
+msgstr "Niemand ignorieren"
 
 #: admin/class-admin.php:475
 msgid "Administrator"
@@ -248,7 +248,7 @@ msgstr ""
 
 #: admin/class-admin.php:476
 msgid "Editor"
-msgstr ""
+msgstr "Editor"
 
 #: admin/class-admin.php:477
 msgid "Author"
@@ -272,7 +272,7 @@ msgstr ""
 
 #: admin/class-admin.php:490
 msgid "Track downloads as pageviews"
-msgstr ""
+msgstr "Downloads als Pageviews tracken"
 
 #: admin/class-admin.php:491
 msgid "Not recommended, as this would skew your statistics, but it does make it possible to track downloads as goals."
@@ -296,15 +296,15 @@ msgstr ""
 
 #: admin/class-admin.php:511
 msgid "Just the domain"
-msgstr ""
+msgstr "Nur diese Domain"
 
 #: admin/class-admin.php:512
 msgid "Track the complete URL"
-msgstr ""
+msgstr "Komplette URL tracken"
 
 #: admin/class-admin.php:518
 msgid "Subdomain Tracking"
-msgstr ""
+msgstr "Subdomain Tracking"
 
 #: admin/class-admin.php:519
 msgid "This allows you to set the domain that's set by %s<code>setDomainName</code>%s for tracking subdomains, if empty this will not be set."
@@ -312,7 +312,7 @@ msgstr ""
 
 #: admin/class-admin.php:524
 msgid "Enable Cross Domain Tracking"
-msgstr ""
+msgstr "Cross Domain Tracking aktivieren"
 
 #: admin/class-admin.php:525
 msgid "This allows you to enable %sCross-Domain Tracking%s for this site.  When endabled <code>_setAllowLinker:</code> will be enabled if it is not already."
@@ -336,7 +336,7 @@ msgstr ""
 
 #: admin/class-admin.php:542
 msgid "Custom Code"
-msgstr ""
+msgstr "Benutzerdefinierter Code"
 
 #: admin/class-admin.php:543
 msgid "Not for the average user: this allows you to add a line of code, to be added before the <code>trackPageview</code> call."
@@ -344,7 +344,7 @@ msgstr ""
 
 #: admin/class-admin.php:548
 msgid "Track AdSense"
-msgstr ""
+msgstr "Track AdSense"
 
 #: admin/class-admin.php:549
 msgid "This requires integration of your Analytics and AdSense account, for help, <a href=\"http://google.com/support/analytics/bin/answer.py?answer=92625\">look here</a>."
@@ -384,7 +384,7 @@ msgstr ""
 
 #: admin/class-admin.php:582
 msgid "Add tracking to the comment forms"
-msgstr ""
+msgstr "Tracking im Kommentar-Formular hinzufügen"
 
 #: admin/class-admin.php:587
 msgid "Use # instead of ? for Campaign tracking"
@@ -412,7 +412,7 @@ msgstr ""
 
 #: admin/class-admin.php:605
 msgid "Anonymize IP's"
-msgstr ""
+msgstr "Anonymisierte IP's"
 
 #: admin/class-admin.php:606
 msgid "This adds <code><a href=\"http://code.google.com/apis/analytics/docs/gaJS/gaJSApi_gat.html#_gat._anonymizeIp\">_anonymizeIp</a></code>, telling Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage."
@@ -420,7 +420,7 @@ msgstr ""
 
 #: admin/class-admin.php:610
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Weitere Einstellungen"
 
 #: admin/class-admin.php:615
 msgid "Internal links to track as outbound"
@@ -468,7 +468,7 @@ msgstr ""
 
 #: admin/class-admin.php:653
 msgid "Note"
-msgstr ""
+msgstr "Hinweis"
 
 #: admin/class-admin.php:653
 msgid "the debugging and firebug scripts are only loaded for admins."
@@ -476,23 +476,23 @@ msgstr ""
 
 #: admin/class-admin.php:657
 msgid "Enable debug mode"
-msgstr ""
+msgstr "Debug Modus aktivieren"
 
 #: admin/class-admin.php:662
 msgid "Enable Firebug Lite"
-msgstr ""
+msgstr "Firebug Lite aktivieren"
 
 #: admin/class-admin.php:665
 msgid "Debug Mode"
-msgstr ""
+msgstr "Debug Mode"
 
 #: admin/class-admin.php:670
 msgid "Do you really want to reset all settings?"
-msgstr ""
+msgstr "Willst Du wirklich alle Einstellungen zurücksetzen?"
 
 #: admin/class-admin.php:674
 msgid "Reset All Settings &raquo;"
-msgstr ""
+msgstr "Alle Einstellungen zurücksetzen &raquo;"
 
 #: admin/class-admin.php:683
 msgid "Help Spread the Word!"
@@ -520,7 +520,7 @@ msgstr ""
 
 #: admin/class-admin.php:755
 msgid "Google Analytics is not active."
-msgstr ""
+msgstr "Google Analytics ist nicht aktiviert."
 
 #: admin/class-admin.php:755
 msgid "You must %sselect which Analytics Profile to track%s before it can work."
@@ -536,15 +536,15 @@ msgstr ""
 
 #: admin/class-pointer.php:43
 msgid "Allow tracking"
-msgstr ""
+msgstr "Tracking erlauben"
 
 #: admin/class-pointer.php:49
 msgid "Do not allow tracking"
-msgstr ""
+msgstr "Tracking nicht erlauben"
 
 #: admin/yst_plugin_tools.php:54
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #: admin/yst_plugin_tools.php:170
 msgid "Why not do any or all of the following:"
@@ -564,7 +564,7 @@ msgstr ""
 
 #: admin/yst_plugin_tools.php:176
 msgid "Like this plugin?"
-msgstr ""
+msgstr "Gefällt Dir das Plugin?"
 
 #: frontend/class-frontend.php:75
 msgid "Google Analytics tracking code not shown because you haven't setup Google Analytics for WordPress yet."
