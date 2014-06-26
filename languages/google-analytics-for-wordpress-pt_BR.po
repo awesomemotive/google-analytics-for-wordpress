@@ -1,0 +1,579 @@
+# Translation of Google Analytics for WordPress in Portuguese (Brazil)
+# This file is distributed under the same license as the Google Analytics for WordPress package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2014-06-26 13:32:54+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: GlotPress/0.1\n"
+"Project-Id-Version: Google Analytics for WordPress\n"
+
+#: admin/class-admin.php:30
+msgid "Google Analytics Configuration"
+msgstr "Configuração do Google Analytics"
+
+#: admin/class-admin.php:31
+msgid "Google Analytics"
+msgstr "Google Analytics"
+
+#: admin/class-admin.php:129
+msgid "The maximum number of allowed custom variables in Google Analytics is 5, please unselect one of the other custom variables before selecting this one."
+msgstr "O número máximo de variáveis customizadas no Google Analytics é 5, por favor desmarque uma das outras variáveis customizadas antes de selecionar esta."
+
+#: admin/class-admin.php:136
+msgid "That's not a valid UA ID, please make sure it matches the expected pattern of: UA-XXXXXX-X, and that there are no spaces or other characters in the input field."
+msgstr "Esta ID UA não é válida, por favor certifique se o código está no padrão: UA-XXXXXXX-X, e não tenha espaços ou outros caracteres no campo."
+
+#: admin/class-admin.php:151
+msgid "Having problems?"
+msgstr "Está com problemas?"
+
+#: admin/class-admin.php:152
+msgid "If you're having problems with this plugin, please refer to its <a href='%s'>FAQ page</a>."
+msgstr "Se você estiver com problemas neste plugin, por favor veja nossa <a href='%s'>Página FAQ</a>"
+
+#: admin/class-admin.php:171
+msgid "Google Analytics settings reset."
+msgstr "Configurações Google Analytics resetadas."
+
+#: admin/class-admin.php:174
+msgid "You cannot edit the Google Analytics for WordPress options."
+msgstr "Você não pode editar as opções do Google Analytics para WordPress."
+
+#: admin/class-admin.php:220
+msgid "Google Analytics settings updated."
+msgstr "Configurações Google Analytics atualizadas."
+
+#: admin/class-admin.php:227
+msgid "Update Google Analytics Settings &raquo;"
+msgstr "Atualize as configurações do Google Analytics &raquo;"
+
+#: admin/class-admin.php:263
+msgid "Google Analytics for WordPress Configuration"
+msgstr "Configuração Google Analytics para WordPress"
+
+#: admin/class-admin.php:275
+msgid "Please authenticate with Google Analytics to retrieve your tracking code:"
+msgstr "Por favor autentique com o Google Analytics para obter seu código de rastreamento:"
+
+#: admin/class-admin.php:275
+msgid "Click here to authenticate with Google"
+msgstr "Clique aqui para autenticar com o Google"
+
+#: admin/class-admin.php:340
+msgid "Please select the correct Analytics Account"
+msgstr "Por favor selecione a Conta Analytics correta"
+
+#: admin/class-admin.php:349
+msgid "Please select the correct Analytics account to track:"
+msgstr "Por favor selecione a conta Analytics correta para rastrear:"
+
+#: admin/class-admin.php:351
+msgid "Profile"
+msgstr "Perfil"
+
+#: admin/class-admin.php:363
+msgid "Please note that if you have several profiles of the same website, it doesn't matter which profile you select, and in fact another profile might show as selected later. You can check whether they're profiles for the same site by checking if they have the same UA code. If that's true, tracking will be correct."
+msgstr "Note que se você tiver vários perfis do mesmo website, não importa qual perfil você selecionar, provavelmente outro perfil será selecionado posteriormente. Você pode verificar se os perfis são do mesmo website verificando se eles possuem o mesmo código UA. Se estiver igual, o rastreamento será feito corretamente."
+
+#: admin/class-admin.php:365
+msgid "Refresh this listing or switch to another account: "
+msgstr "Atualizar esta lista ou trocar para outra conta:"
+
+#: admin/class-admin.php:367
+msgid "Unfortunately, an error occurred while connecting to Google, please try again:"
+msgstr "Infelizmente, um erro ocorreu ao conectar ao Google, por favor tente novamente:"
+
+#: admin/class-admin.php:371
+msgid "Re-authenticate with Google"
+msgstr "Re-autenticar com o Google"
+
+#: admin/class-admin.php:373
+msgid "Select another Analytics Profile &raquo;"
+msgstr "Selecione outro Perfil Analytics &raquo;"
+
+#: admin/class-admin.php:375
+msgid "Manually enter your UA code: "
+msgstr "Insira manualmente seu código UA:"
+
+#: admin/class-admin.php:380
+msgid "Analytics Profile"
+msgstr "Perfil Analytics"
+
+#: admin/class-admin.php:381
+msgid "Manually enter your UA code"
+msgstr "Insira manualmente seu código UA:"
+
+#: admin/class-admin.php:384
+msgid "In the header (default)"
+msgstr "No cabeçalho (padrão)"
+
+#: admin/class-admin.php:384
+msgid "Insert manually"
+msgstr "Inserir manualmente"
+
+#: admin/class-admin.php:387
+msgid "Notice"
+msgstr "Aviso"
+
+#: admin/class-admin.php:387
+msgid "You switched your theme, please make sure your Google Analytics tracking is still ok. Save your settings to make sure Google Analytics gets loaded properly."
+msgstr "Você trocou seu tema, por favor certifique-se que o rastreamento do Google Analytics está ok. Salve suas configurações para certificar que o Google Analytics está carregando corretamente."
+
+#: admin/class-admin.php:390
+msgid "The header is by far the best spot to place the tracking code. If you'd rather place the code manually, switch to manual placement. For more info %sread this page%s."
+msgstr "O cabeçalho é o melhor local para inserir o código de rastreamento. Se você prefere inserir o código manualmente, troque para inserção manual. Para mais informações %sleia esta página%s."
+
+#: admin/class-admin.php:391
+msgid "%sFollow the instructions here%s to choose the location for your tracking code manually."
+msgstr "%sSiga as instruções aqui%s para selecionar a localização do código de rastreamento manualmente."
+
+#: admin/class-admin.php:395
+msgid "Where should the tracking code be placed"
+msgstr "Onde o código de rastreamento deve ser inserido"
+
+#: admin/class-admin.php:401
+msgid "Track outbound clicks &amp; downloads"
+msgstr "Rastrear cliques & downloads de saída"
+
+#: admin/class-admin.php:402
+msgid "Clicks &amp; downloads will be tracked as events, you can find these under Content &raquo; Event Tracking in your Google Analytics reports."
+msgstr "Cliques e download serão rastreados como eventos, você pode encontrar estes em Conteúdo &raquo; Rastreador de Eventos nos relatórios Google Analytics."
+
+#: admin/class-admin.php:407
+msgid "Show advanced settings"
+msgstr "Mostrar configurações avançadas"
+
+#: admin/class-admin.php:408
+msgid "Only adviced for advanced users who know their way around Google Analytics"
+msgstr "Aconselhado apenas para usuários avançados que conhecem bem o Google Analytics"
+
+#: admin/class-admin.php:413
+msgid "Allow tracking of anonymous data"
+msgstr "Permitir rastreamento de dados anônimos"
+
+#: admin/class-admin.php:414
+msgid "By allowing us to track anonymous data we can better help you, because we know with which WordPress configurations, themes and plugins we should test. No personal data will be submitted."
+msgstr "Ao nos permitir rastrear dados anônimos podemos ajudar melhor você, pois nós sabemos com qual configurações, temas e plugins do WordPress devemos testar. Nenhuma informação pessoal será enviada."
+
+#: admin/class-admin.php:417
+msgid "Google Analytics Settings"
+msgstr "Configurações do Google Analytics"
+
+#: admin/class-admin.php:420
+msgid "Google Analytics allows you to save up to 5 custom variables on each page, and this plugin helps you make the most use of these! Check which custom variables you'd like the plugin to save for you below. Please note that these will only be saved when they are actually available."
+msgstr "Google Analytics lhe permite salvar até 5 variáveis customizadas em cada página, e este plugin te ajuda a usar a maioria destes! Verifique quais variáveis você gostaria que o plugin salve para você abaixo. Note que estes só serão salvos quando estiverem disponíveis."
+
+#: admin/class-admin.php:421
+msgid "If you want to start using these custom variables, go to Visitors &raquo; Custom Variables in your Analytics reports."
+msgstr "Se você deseja iniciar o uso destas variáveis customizadas, vá para Visitantes &raquo; Variáveis Customizadas nos relatórios do Analytics."
+
+#: admin/class-admin.php:424
+msgid "Logged in Users"
+msgstr "Usuários Online"
+
+#: admin/class-admin.php:425
+msgid "Allows you to easily remove logged in users from your reports, or to segment by different user roles. The users primary role will be logged."
+msgstr "Permitem a remoção de usuários autenticados dos seus relatórios, ou segmentar por diferentes funções de usuários. A função primária do usuário será arquivada."
+
+#: admin/class-admin.php:430
+msgid "Post type"
+msgstr "Tipo de post"
+
+#: admin/class-admin.php:431
+msgid "Allows you to see pageviews per post type, especially useful if you use multiple custom post types."
+msgstr "Permite que você visualize os pageviews por tipo de post, especialmente útil se você usa vários tipos de posts."
+
+#: admin/class-admin.php:436
+msgid "Author Name"
+msgstr "Nome do Autor"
+
+#: admin/class-admin.php:437
+msgid "Allows you to see pageviews per author."
+msgstr "Permite você ver os pageviews por autor."
+
+#: admin/class-admin.php:442
+msgid "Tags"
+msgstr "Tags"
+
+#: admin/class-admin.php:443
+msgid "Allows you to see pageviews per tags using advanced segments."
+msgstr "Permite você ver os pageviews por tags usando segmentos avançados."
+
+#: admin/class-admin.php:448
+msgid "Publication year"
+msgstr "Ano Publicação"
+
+#: admin/class-admin.php:449
+msgid "Allows you to see pageviews per year of publication, showing you if your old posts still get traffic."
+msgstr "Permite que você veja as pageviews por ano de publicação, mostrando se seus antigos posts ainda possuem tráfego."
+
+#: admin/class-admin.php:454
+msgid "Single Category"
+msgstr "Categoria única"
+
+#: admin/class-admin.php:455
+msgid "Allows you to see pageviews per category, works best when each post is in only one category."
+msgstr "Permite que você veja os pageviews por categoria, funciona melhor quando cada post tem uma categoria."
+
+#: admin/class-admin.php:460
+msgid "All Categories"
+msgstr "Todas as categorias"
+
+#: admin/class-admin.php:461
+msgid "Allows you to see pageviews per category using advanced segments, should be used when you use multiple categories per post."
+msgstr "Permite que você veja as pageviews por categoria usando segmentos avançados, deve ser usado quando você usa várias categorias por post."
+
+#: admin/class-admin.php:466
+msgid "Custom Variables Settings"
+msgstr "Configurações de Variáveis Customizadas"
+
+#: admin/class-admin.php:471
+msgid "Ignore users"
+msgstr "Ignorar usuários"
+
+#: admin/class-admin.php:472
+msgid "Users of the role you select and higher will be ignored, so if you select Editor, all Editors and Administrators will be ignored."
+msgstr "Usuários da função que você selecionou e funções acima serão ignorados, se você selecionou Editor, todos os editores e administradores serão ignorados."
+
+#: admin/class-admin.php:474
+msgid "Ignore no-one"
+msgstr "Não ignorar"
+
+#: admin/class-admin.php:475
+msgid "Administrator"
+msgstr "Administrador"
+
+#: admin/class-admin.php:476
+msgid "Editor"
+msgstr "Editor"
+
+#: admin/class-admin.php:477
+msgid "Author"
+msgstr "Autor"
+
+#: admin/class-admin.php:478
+msgid "Contributor"
+msgstr "Contribuidor"
+
+#: admin/class-admin.php:479
+msgid "Subscriber (ignores all logged in users)"
+msgstr "Inscritos (ignora todos os usuários cadastrados)"
+
+#: admin/class-admin.php:484
+msgid "Track outbound clicks as pageviews"
+msgstr "Rastrear cliques de saída como pageviews"
+
+#: admin/class-admin.php:485
+msgid "You do not need to enable this to enable outbound click tracking, this changes the default behavior of tracking clicks as events to tracking them as pageviews. This is therefore not recommended, as this would skew your statistics, but <em>is</em> sometimes necessary when you need to set outbound clicks as goals."
+msgstr "Você não precisa habilitar isto para habilitar o rastreio de cliques de saída, esta opção altera o comportamento do rastreio de cliques como eventos para rastreá-las como pageviews. Não é recomendando, pois isso pode bagunçar as estatísticas, Mas <em>é</em> necessária quando você precisa definir cliques de saída como objetivos."
+
+#: admin/class-admin.php:490
+msgid "Track downloads as pageviews"
+msgstr "Rastrear downloads como pageviews"
+
+#: admin/class-admin.php:491
+msgid "Not recommended, as this would skew your statistics, but it does make it possible to track downloads as goals."
+msgstr "Não recomendado, pois isso pode bagunçar as estatística, mas pode possibilitar o rastreio de downloads como objetivos."
+
+#: admin/class-admin.php:496
+msgid "Extensions of files to track as downloads"
+msgstr "Extensões de arquivos para rastrear como downloads"
+
+#: admin/class-admin.php:502
+msgid "Prefix to use in Analytics before the tracked pageviews"
+msgstr "Prefixo para usar no Analytics antes das pageviews rastreadas"
+
+#: admin/class-admin.php:503
+msgid "This prefix is used before all pageviews, they are then segmented automatically after that. If nothing is entered here, <code>/yoast-ga/</code> is used."
+msgstr "Este prefixo é usado antes de todas as pageviews, elas então são segmentadas automaticamente após. Se nada for inserido aqui, <code>/yoast-ga/</code> é usado."
+
+#: admin/class-admin.php:509
+msgid "Track full URL of outbound clicks or just the domain"
+msgstr "Rastrear a URL inteira dos cliques de saída ou apenas o domínio"
+
+#: admin/class-admin.php:511
+msgid "Just the domain"
+msgstr "Apenas o domínio"
+
+#: admin/class-admin.php:512
+msgid "Track the complete URL"
+msgstr "Rastrear a URL completa"
+
+#: admin/class-admin.php:518
+msgid "Subdomain Tracking"
+msgstr "Rastreio de subdomínio"
+
+#: admin/class-admin.php:519
+msgid "This allows you to set the domain that's set by %s<code>setDomainName</code>%s for tracking subdomains, if empty this will not be set."
+msgstr "Isto permite que você defina o domínio configurado por %s<code>setDomainName</code>%s para rastrear subdomínios, se o campo estiver vazio, não será configurado."
+
+#: admin/class-admin.php:524
+msgid "Enable Cross Domain Tracking"
+msgstr "Habilitar rastreio de Domínio Cruzado"
+
+#: admin/class-admin.php:525
+msgid "This allows you to enable %sCross-Domain Tracking%s for this site.  When endabled <code>_setAllowLinker:</code> will be enabled if it is not already."
+msgstr "Este permite habilitar %sRastreio de Domínios Cruzados%s para este site. Quando habilitado <code>_setAllowLinker:</code> será habilitado se não estiver ainda."
+
+#: admin/class-admin.php:530
+msgid "Cross-Domain Tracking, Primary Domain"
+msgstr "Rastreio Domínio Cruzado, Domínio Primário"
+
+#: admin/class-admin.php:531
+msgid "Set the primary domain used in %s<code>setDomainName</code>%s for cross domain tracking (eg. <code>example-petstore.com</code> ), if empty this will default to your configured Home URL."
+msgstr "Deifne o domínio primário usado em %s<code>setDomainName</code>%s para rastrear domínios cruzados (ex. <code>example-petstore.com</code> ), o padrão é a URL principal."
+
+#: admin/class-admin.php:536
+msgid "Cross-Domain Tracking, Other Domains"
+msgstr "Rastreio de Domínio Cruzado, outros domínios"
+
+#: admin/class-admin.php:537
+msgid "All links to these domains will have the <a href=\"http://code.google.com/apis/analytics/docs/tracking/gaTrackingSite.html#multipleDomains\"><code>_link</code></a> code automatically attached.  Separate domains/sub-domains with commas (eg. <code>dogs.example-petstore.com, cats.example-petstore.com</code>)"
+msgstr "Todos os links para este domínio terão o código <a href=\"http://code.google.com/apis/analytics/docs/tracking/gaTrackingSite.html#multipleDomains\"><code>_link</code></a> automaticamente anexado. Separe Domínios/subdomínios com vírgula (ex. <code>dogs.example-petstore.com, cats.example-petstore.com</code>)"
+
+#: admin/class-admin.php:542
+msgid "Custom Code"
+msgstr "Código customizado"
+
+#: admin/class-admin.php:543
+msgid "Not for the average user: this allows you to add a line of code, to be added before the <code>trackPageview</code> call."
+msgstr "Para usuários avançados: Isto permite adicionar uma linha de código, para ser adicionado antes da chamada do <code>trackPageview</code>."
+
+#: admin/class-admin.php:548
+msgid "Track AdSense"
+msgstr "Rastrear AdSense"
+
+#: admin/class-admin.php:549
+msgid "This requires integration of your Analytics and AdSense account, for help, <a href=\"http://google.com/support/analytics/bin/answer.py?answer=92625\">look here</a>."
+msgstr "Isto requer integração da sua conta do Analytics e do AdSense, para ajuda, <a href=\"http://google.com/support/analytics/bin/answer.py?answer=92625\">veja aqui</a>."
+
+#: admin/class-admin.php:554
+msgid "Host ga.js locally"
+msgstr "Armazenar ga.js localmente"
+
+#: admin/class-admin.php:556
+msgid "You have to provide a URL to your ga.js file:"
+msgstr "Você precisa informar uma URL para seu arquivo ga.js:"
+
+#: admin/class-admin.php:559
+msgid "For some reasons you might want to use a locally hosted ga.js file, or another ga.js file, check the box and then please enter the full URL including http here."
+msgstr "Por alguma razão você pode querer usar um arquivo ga.js arquivado localmente, ou outro arquivo ga.js, marque a opção e então insira a URL completa incluindo o http aqui."
+
+#: admin/class-admin.php:563
+msgid "Track extra Search Engines"
+msgstr "Rastrear Buscadores extras"
+
+#: admin/class-admin.php:565
+msgid "You can provide a custom URL to the extra search engines file if you want:"
+msgstr "Você pode fornecer uma URL customizada para o arquivo de buscador extra se você desejar:"
+
+#: admin/class-admin.php:571
+msgid "Tag links in RSS feed with campaign variables"
+msgstr "Tag links no feed RSS com variáveis de campanha"
+
+#: admin/class-admin.php:572
+msgid "Do not use this feature if you use FeedBurner, as FeedBurner can do this automatically, and better than this plugin can. Check <a href=\"http://www.google.com/support/feedburner/bin/answer.py?hl=en&amp;answer=165769\">this help page</a> for info on how to enable this feature in FeedBurner."
+msgstr "Não use esta funcionalidade se você usa o FeedBurner, visto que ele já faz isso automaticamente, e melhor do que este plugin pode fazer. Veja <a href=\"http://www.google.com/support/feedburner/bin/answer.py?hl=en&amp;answer=165769\">esta página</a> para informações de como habilitar essa funcionalidade no FeedBurner."
+
+#: admin/class-admin.php:577
+msgid "Add tracking to the login and registration forms"
+msgstr "Adicionar rastreamento para os formulários de login e registro"
+
+#: admin/class-admin.php:582
+msgid "Add tracking to the comment forms"
+msgstr "Adicionar rastreamento para os formulários de comentários"
+
+#: admin/class-admin.php:587
+msgid "Use # instead of ? for Campaign tracking"
+msgstr "Use # ao invés de ? para rastreamento de Campanhas"
+
+#: admin/class-admin.php:588
+msgid "This adds a <code><a href=\"http://code.google.com/apis/analytics/docs/gaJSApiCampaignTracking.html#_gat.GA_Tracker_._setAllowAnchor\">_setAllowAnchor</a></code> call to your tracking code, and makes RSS link tagging use a # as well."
+msgstr "Adiciona uma chamada  <code><a href=\"http://code.google.com/apis/analytics/docs/gaJSApiCampaignTracking.html#_gat.GA_Tracker_._setAllowAnchor\">_setAllowAnchor</a></code> para o código de rastreamento, e faz com que o link RSS usar # também."
+
+#: admin/class-admin.php:593
+msgid "Add <code>_setAllowLinker</code>"
+msgstr "Adicionar <code>_setAllowLinker</code>"
+
+#: admin/class-admin.php:594
+msgid "This adds a <code><a href=\"http://code.google.com/apis/analytics/docs/gaJS/gaJSApiDomainDirectory.html#_gat.GA_Tracker_._setAllowLinker\">_setAllowLinker</a></code> call to your tracking code,  allowing you to use <code>_link</code> and related functions."
+msgstr "Adiciona uma chamada <code><a href=\"http://code.google.com/apis/analytics/docs/gaJS/gaJSApiDomainDirectory.html#_gat.GA_Tracker_._setAllowLinker\">_setAllowLinker</a></code> para seu código de rastreamento, permitindo usar o <code>_link</code> e funções relacionadas."
+
+#: admin/class-admin.php:599
+msgid "Set <code>_setAllowHash</code> to false"
+msgstr "Define <code>_setAllowHash</code> para falso"
+
+#: admin/class-admin.php:600
+msgid "This sets <code><a href=\"http://code.google.com/apis/analytics/docs/gaJS/gaJSApiDomainDirectory.html#_gat.GA_Tracker_._setAllowHash\">_setAllowHash</a></code> to false, allowing you to track subdomains etc."
+msgstr "Define <code><a href=\"http://code.google.com/apis/analytics/docs/gaJS/gaJSApiDomainDirectory.html#_gat.GA_Tracker_._setAllowHash\">_setAllowHash</a></code> para falso, permitindo o rastreio de subdomínios."
+
+#: admin/class-admin.php:605
+msgid "Anonymize IP's"
+msgstr "Esconder IPs"
+
+#: admin/class-admin.php:606
+msgid "This adds <code><a href=\"http://code.google.com/apis/analytics/docs/gaJS/gaJSApi_gat.html#_gat._anonymizeIp\">_anonymizeIp</a></code>, telling Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage."
+msgstr "Adiciona <code><a href=\"http://code.google.com/apis/analytics/docs/gaJS/gaJSApi_gat.html#_gat._anonymizeIp\">_anonymizeIp</a></code>, dizendo ao Google Analytics para esconder a informação enviada para os objetos rastreados removendo o último octeto do endereço de IP."
+
+#: admin/class-admin.php:610
+msgid "Advanced Settings"
+msgstr "Configurações Avançadas"
+
+#: admin/class-admin.php:615
+msgid "Internal links to track as outbound"
+msgstr "Rastrear links internos como links de saída"
+
+#: admin/class-admin.php:616
+msgid "If you want to track all internal links that begin with <code>/out/</code>, enter <code>/out/</code> in the box above. If you have multiple prefixes you can separate them with comma's: <code>/out/,/recommends/</code>"
+msgstr "Se você deseja rastrar todos os links internos que começam com <code>/out/</code>, insira <code>/out/</code> na caixa acima. Se você tem múltiplos prefixos você pode separá-los com vírgulas: <code>/out/,/recommends/</code>"
+
+#: admin/class-admin.php:621
+msgid "Label to use"
+msgstr "Etiqueta para usar"
+
+#: admin/class-admin.php:622
+msgid "The label to use for these links, this will be added to where the click came from, so if the label is \"aff\", the label for a click from the content of an article becomes \"outbound-article-aff\"."
+msgstr "A etiqueta a ser usada para estes links, será adicionado de onde o clique veio, então se a etiqueta for \"aff\", a etiqueta de um clique para o conteúdo de um artigo se torna \"saída-artigo-aff\"."
+
+#: admin/class-admin.php:626
+msgid "Internal Links to Track as Outbound"
+msgstr "Rastrear links internos como links de saída"
+
+#: admin/class-admin.php:629
+msgid "The WordPress e-Commerce plugin has been detected. This plugin can automatically add transaction tracking for you. To do that, <a href=\"http://yoast.com/wordpress/google-analytics/enable-ecommerce/\">enable e-commerce for your reports in Google Analytics</a> and then check the box below."
+msgstr "O plugin WordPress e-Commerce foi detectado. Este plugin pode adicionar rastreamento de transação automaticamente. Para fazer isso, <a href=\"http://yoast.com/wordpress/google-analytics/enable-ecommerce/\">habilite e-commerce nos relatórios no Google Analytics</a> e então marque a opção abaixo."
+
+#: admin/class-admin.php:633 admin/class-admin.php:646
+msgid "Enable transaction tracking"
+msgstr "Habilitar rastreamento de transação"
+
+#: admin/class-admin.php:636
+msgid "WordPress e-Commerce Settings"
+msgstr "Configurações WordPrees e-Commerce"
+
+#: admin/class-admin.php:642
+msgid "The Shopp e-Commerce plugin has been detected. This plugin can automatically add transaction tracking for you. To do that, <a href=\"http://www.google.com/support/googleanalytics/bin/answer.py?hl=en&amp;answer=55528\">enable e-commerce for your reports in Google Analytics</a> and then check the box below."
+msgstr "O plugin Shopp e-Commerce foi detectado. Este plugin pode adicionar rastreamento de transação automaticamente. para fazer isso, <a href=\"http://www.google.com/support/googleanalytics/bin/answer.py?hl=en&answer=55528/\">habilite e-commerce nos relatórios no Google Analytics</a> e então marque a opção abaixo."
+
+#: admin/class-admin.php:649
+msgid "Shopp e-Commerce Settings"
+msgstr "Configurações Shopp e-Commerce"
+
+#: admin/class-admin.php:652
+msgid "If you want to confirm that tracking on your blog is working as it should, enable this option and check the console in %sFirebug%s (for Firefox), %sFirebug Lite%s (for other browsers) or Chrome &amp; Safari's Web Inspector. Be absolutely sure to disable debugging afterwards, as it is slower than normal tracking."
+msgstr "Se você deseja confirmar que o rastreamento do seu blog está funcionando como devia, habilite esta opção e verifique o console no %sFirebug%s (para Firefox), %sFirebug Lite%s (para outros navegadores) ou Chrome &amp; Safari Web Inspector. Lembre-se de desabilitar o debug após os testes, visto que é mais lento que o rastreaento normal."
+
+#: admin/class-admin.php:653
+msgid "Note"
+msgstr "Nota"
+
+#: admin/class-admin.php:653
+msgid "the debugging and firebug scripts are only loaded for admins."
+msgstr "os scripts de debug e firebug são carregados apenas para administradores."
+
+#: admin/class-admin.php:657
+msgid "Enable debug mode"
+msgstr "Habilitar modo debug"
+
+#: admin/class-admin.php:662
+msgid "Enable Firebug Lite"
+msgstr "Habilitar Firebug Lite"
+
+#: admin/class-admin.php:665
+msgid "Debug Mode"
+msgstr "Modo Debug"
+
+#: admin/class-admin.php:670
+msgid "Do you really want to reset all settings?"
+msgstr "Você realmente deseja resetar todas as configurações?"
+
+#: admin/class-admin.php:674
+msgid "Reset All Settings &raquo;"
+msgstr "Resetar todas as configurações &raquo;"
+
+#: admin/class-admin.php:683
+msgid "Help Spread the Word!"
+msgstr "Ajude a espalhar para o mundo!"
+
+#: admin/class-admin.php:683
+msgid "Want to help make this plugin even better? All donations are used to improve this plugin, so donate $20, $50 or $100 now!"
+msgstr "Deseja ajudar este plugin a ficar ainda melhor? Todas as doações são usadas para melhorar este plugin, então doe $20, $50 ou $100 agora!"
+
+#: admin/class-admin.php:689
+msgid "Or you could:"
+msgstr "Ou você poderia:"
+
+#: admin/class-admin.php:691
+msgid "Rate the plugin 5★ on WordPress.org"
+msgstr "Avaliar o plugin com 5★ no WordPress.org"
+
+#: admin/class-admin.php:692
+msgid "Help out other users in the forums"
+msgstr "Ajude outros usuários nos fóruns"
+
+#: admin/class-admin.php:693
+msgid "Blog about it & link to the %1$splugin page%2$s"
+msgstr "Blogar sobre isso e linkar para a %1$spágina de plugin%2$s"
+
+#: admin/class-admin.php:755
+msgid "Google Analytics is not active."
+msgstr "Google Analytics não está ativo."
+
+#: admin/class-admin.php:755
+msgid "You must %sselect which Analytics Profile to track%s before it can work."
+msgstr "Você deve %sselecionar qual Perfil Analytics para rastrear%s para funcionar."
+
+#: admin/class-pointer.php:37
+msgid "Help improve Google Analytics for WordPress"
+msgstr "Ajude Google Analytics para WordPress a mehorar"
+
+#: admin/class-pointer.php:38
+msgid "You've just installed Google Analytics for WordPress by Yoast. Please helps us improve it by allowing us to gather anonymous usage stats so we know which configurations, plugins and themes to test with."
+msgstr "Você acabou de instalar o Google Analytics para WordPress by Yoast. Por favor nos ajude a melhorá-lo permitindo que coletemos informações anônimas de uso para que possamos saber quais configurações, plugins e temas para testar."
+
+#: admin/class-pointer.php:43
+msgid "Allow tracking"
+msgstr "Permitir rastreamento"
+
+#: admin/class-pointer.php:49
+msgid "Do not allow tracking"
+msgstr "Não permitir rastreamento"
+
+#: admin/yst_plugin_tools.php:54
+msgid "Settings"
+msgstr "Configurações"
+
+#: admin/yst_plugin_tools.php:170
+msgid "Why not do any or all of the following:"
+msgstr "Porquê não fazer qualquer ou todos os seguintes:"
+
+#: admin/yst_plugin_tools.php:172
+msgid "Link to it so other folks can find out about it."
+msgstr "Linkar para que os outros possam descobrir sobre isso."
+
+#: admin/yst_plugin_tools.php:173
+msgid "Give it a 5 star rating on WordPress.org."
+msgstr "Dar uma avaliação 5 estrelas no WordPress.org."
+
+#: admin/yst_plugin_tools.php:174
+msgid "Let other people know that it works with your WordPress setup."
+msgstr "Conte para outras pessoas que funciona com seu WordPress."
+
+#: admin/yst_plugin_tools.php:176
+msgid "Like this plugin?"
+msgstr "Gostou do plugin?"
+
+#: frontend/class-frontend.php:75
+msgid "Google Analytics tracking code not shown because you haven't setup Google Analytics for WordPress yet."
+msgstr "o código de rastreamento do Google Analytics não é mostrado pois você não configurou o Google Analytics para WordPress ainda."
+
+#: frontend/class-frontend.php:310
+msgid "Google Analytics tracking code not shown because users over level %s are ignored."
+msgstr "código de rastreamento do Google Analytics não é mostrado pois usuários acima do nível %s são ignorados."
+
+#: frontend/class-frontend.php:661
+msgid "Please set Google Analytics position to \"manual\" in the settings, or remove this call to yoast_analytics();"
+msgstr "Por favor defina a posição do Google Analytics para \"manual\" nas configurações, ou remova esta chamada para o yoast_analytics();"
