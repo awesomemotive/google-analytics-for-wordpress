@@ -111,7 +111,7 @@ module.exports = function(grunt) {
         makepot: {
             theme: {
                 options: {
-                    domainPath: '/lib/languages',
+                    domainPath: '/languages',
                     processPot: function(pot) {
                         pot.headers['report-msgid-bugs-to'] = 'http://wordpress.org/support/plugin/google-analytics-for-wordpress\n';
                         pot.headers['plural-forms'] = 'nplurals=2; plural=n != 1;';
