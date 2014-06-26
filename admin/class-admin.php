@@ -2,6 +2,9 @@
 /**
  * This class is for the backend, extendable for all child classes
  */
+if(!function_exists('wp_verify_nonce')){
+	require_once(ABSPATH .'wp-includes/pluggable.php');
+}
 
 if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
@@ -13,6 +16,12 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			add_action( 'admin_menu', array( $this, 'create_menu' ), 5 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+
+			if( $_SERVER['REQUEST_METHOD'] == 'POST' ){
+				if( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ){
+					$this->save_settings( $_POST );
+				}
+			}
 		}
 
 		/**
@@ -121,20 +130,25 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function create_form( $namespace ) {
 			$this->form_namespace = $namespace;
 
-			return '<form action="' . $_SERVER['PHP_SELF'] . '" method="post" id="yoast-ga-form-' . $this->form_namespace . '" class="yoast_ga_form">';
+			$action = $_SERVER['PHP_SELF'];
+			if(isset($_GET['page'])){
+				$action .= '?page=' . $_GET['page'];
+			}
+
+			return '<form action="' . $action . '" method="post" id="yoast-ga-form-' . $this->form_namespace . '" class="yoast_ga_form">'.wp_nonce_field('save_settings','yoast_ga_nonce', NULL, false);
 		}
 
 		/**
 		 * Return the form end tag and the submit button
-		 *
 		 * @param string $button_label
+		 * @param string $name
 		 *
 		 * @return null|string
 		 */
-		public function end_form( $button_label = "Save changes" ) {
+		public function end_form( $button_label = "Save changes", $name = 'submit' ) {
 			$output = NULL;
 			$output .= '<div class="ga-form ga-form-input">';
-			$output .= '<input type="submit" name="submit" value="' . $button_label . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-' . $this->form_namespace . '">';
+			$output .= '<input type="submit" name="ga-form-'.$name.'" value="' . $button_label . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-' . $this->form_namespace . '">';
 			$output .= '</div></form>';
 
 			return $output;
@@ -340,6 +354,12 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			shuffle( $banners );
 
 			require( "views/content_footer.php" );
+		}
+
+		public function save_settings( $data ){
+			echo 'Handle_settings<pre>';
+			print_r($data);
+			// redirect;
 		}
 
 	}

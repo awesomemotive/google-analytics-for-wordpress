@@ -62,6 +62,6 @@ echo $yoast_ga_admin->create_form( 'settings' );
 		</div>
 	</div>
 <?php
-echo $yoast_ga_admin->end_form();
+echo $yoast_ga_admin->end_form( 'Save changes', 'settings' );
 echo $yoast_ga_admin->content_footer();
 ?>
