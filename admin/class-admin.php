@@ -208,7 +208,7 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
 			if ( function_exists( 'wp_cache_clear_cache' ) )
 				wp_cache_clear_cache();
 
-			$options['msg'] = "<div id=\"updatemessage\" class=\"updated fade\"><p>" . __( "Google Analytics settings updated.", "gawp", 'google-analytics-for-wordpress' ) . "</p></div>\n";
+			$options['msg'] = "<div id=\"updatemessage\" class=\"updated fade\"><p>" . __( "Google Analytics settings updated.", 'google-analytics-for-wordpress' ) . "</p></div>\n";
 			$options['msg'] .= "<script type=\"text/javascript\">setTimeout(function(){jQuery('#updatemessage').hide('slow');}, 3000);</script>";
 		}
 		update_option( $this->optionname, $options );
