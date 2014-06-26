@@ -20,4 +20,13 @@ jQuery(document).ready(function() {
 	jQuery('#' + active_tab).addClass('active');
 	jQuery('#' + active_tab + '-tab').addClass('nav-tab-active');
 
+	// Manually enter a UA code
+	jQuery('#yoast-ga-form-checkbox-settings-ga_general-manual_ua_code').click(function(){
+		if(jQuery(this).is(':checked')){
+			jQuery('#enter_ua').show();
+		}
+		else{
+			jQuery('#enter_ua').hide();
+		}
+	});
 });

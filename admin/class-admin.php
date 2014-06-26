@@ -155,19 +155,21 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function input( $type = 'text', $title = NULL, $name = NULL, $text_label = NULL, $value = 1, $checked = false, $description = NULL ) {
 			$input = NULL;
+			$id = str_replace('[', '-', $name);
+			$id = str_replace(']', '', $id);
 			$input .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
-				$input .= '<label class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . $this->form_namespace . '-' . $name . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
+				$input .= '<label class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . $this->form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
 			}
 
 			if ( $checked ) {
-				$input .= '<input type="' . $type . '" class="ga-form ga-form-checkbox" id="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $name . '" name="' . $name . '" value="' . $value . '" checked="checked" />';
+				$input .= '<input type="' . $type . '" class="ga-form ga-form-checkbox" id="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $id . '" name="' . $name . '" value="' . $value . '" checked="checked" />';
 			} else {
-				$input .= '<input type="' . $type . '" class="ga-form ga-form-checkbox" id="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $name . '" name="' . $name . '" value="' . $value . '" />';
+				$input .= '<input type="' . $type . '" class="ga-form ga-form-checkbox" id="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $id . '" name="' . $name . '" value="' . $value . '" />';
 			}
 
 			if ( ! is_null( $text_label ) ) {
-				$input .= '<label class="ga-form ga-form-' . $type . '-label" id="yoast-ga-form-label-' . $type . '-textlabel-' . $this->form_namespace . '-' . $name . '" for="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $name . '" />' . __( $text_label, 'google-analytics-for-wordpress' ) . '</label>';
+				$input .= '<label class="ga-form ga-form-' . $type . '-label" id="yoast-ga-form-label-' . $type . '-textlabel-' . $this->form_namespace . '-' . $id . '" for="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $name . '" />' . __( $text_label, 'google-analytics-for-wordpress' ) . '</label>';
 			}
 
 			$input .= '</div>';
@@ -175,7 +177,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			// If we get a description, append it to this select field in a new row
 			if ( ! is_null( $description ) ) {
 				$input .= '<div class="ga-form ga-form-input">';
-				$input .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-description-select-' . $this->form_namespace . '-' . $name . '" />&nbsp;</label>';
+				$input .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-description-select-' . $this->form_namespace . '-' . $id . '" />&nbsp;</label>';
 				$input .= '<span class="ga-form ga-form-description">' . __( $description, 'google-analytics-for-wordpress' ) . '</span>';
 				$input .= '</div>';
 			}
@@ -196,11 +198,13 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function select( $title, $name, $values, $selected, $description = NULL ) {
 			$select = NULL;
+			$id = str_replace('[', '-', $name);
+			$id = str_replace(']', '', $id);
 			$select .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
-				$select .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $name . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
+				$select .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
 			}
-			$select .= '<select name="' . $name . '" id="yoast-ga-form-select-' . $this->form_namespace . '-' . $name . '">';
+			$select .= '<select name="' . $name . '" id="yoast-ga-form-select-' . $this->form_namespace . '-' . $id . '">';
 			if ( count( $values ) >= 1 ) {
 				foreach ( $values as $value ) {
 					$select .= '<option value="' . $value['id'] . '" ' . selected( $selected, $value['id'], false ) . '>' . $value['name'] . '</option>';
@@ -212,7 +216,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			// If we get a description, append it to this select field in a new row
 			if ( ! is_null( $description ) ) {
 				$select .= '<div class="ga-form ga-form-input">';
-				$select .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-description-select-' . $this->form_namespace . '-' . $name . '" />&nbsp;</label>';
+				$select .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-description-select-' . $this->form_namespace . '-' . $id . '" />&nbsp;</label>';
 				$select .= '<span class="ga-form ga-form-description">' . __( $description, 'google-analytics-for-wordpress' ) . '</span>';
 				$select .= '</div>';
 			}
@@ -232,17 +236,19 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function textarea( $title, $name, $value = '', $description = NULL ) {
 			$text = NULL;
+			$id = str_replace('[', '-', $name);
+			$id = str_replace(']', '', $id);
 			$text .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
-				$text .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $name . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
+				$text .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
 			}
-			$text .= '<textarea rows="5" cols="60" name="' . $name . '" id="yoast-ga-form-textarea-' . $this->form_namespace . '-' . $name . '">' . $value . '</textarea>';
+			$text .= '<textarea rows="5" cols="60" name="' . $name . '" id="yoast-ga-form-textarea-' . $this->form_namespace . '-' . $id . '">' . $value . '</textarea>';
 			$text .= '</div>';
 
 			// If we get a description, append it to this select field in a new row
 			if ( ! is_null( $description ) ) {
 				$text .= '<div class="ga-form ga-form-input">';
-				$text .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-description-select-' . $this->form_namespace . '-' . $name . '" />&nbsp;</label>';
+				$text .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-description-select-' . $this->form_namespace . '-' . $id . '" />&nbsp;</label>';
 				$text .= '<span class="ga-form ga-form-description">' . __( $description, 'google-analytics-for-wordpress' ) . '</span>';
 				$text .= '</div>';
 			}

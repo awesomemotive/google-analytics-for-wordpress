@@ -23,7 +23,9 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			echo '<label class="ga-form ga-form-checkbox-label ga-form-label-left">';
 			echo $yoast_ga_admin->input( 'checkbox', NULL, 'ga_general[manual_ua_code]', 'Manually enter your UA code' );
 			echo '</label>';
-			echo '<div id="enter_ua">Test to enter the GA code</div>';
+			echo '<div id="enter_ua">';
+			echo $yoast_ga_admin->input( 'text', NULL, 'ga_general[manual_ua_code_field]', NULL, 'test');
+			echo '</div>';
 			echo '<div class="clear"></div></div>';
 			?>
 			<div class="clear"><br /></div>

@@ -112,4 +112,9 @@ p.ga-topdescription {
 #enter_ua {
 	margin-top: 10px;
 	padding-top: 10px;
+	display: none;
+}
+
+#yoast-ga-form-text-settings-ga_general-manual_ua_code_field {
+	margin-top: -30px;
 }
