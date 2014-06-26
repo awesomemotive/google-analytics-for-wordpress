@@ -293,6 +293,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			);
 		}
 
+		/**
+		 * Get options for the track full url or links setting
+		 * @return array
+		 */
 		public function get_track_full_url(){
 			return array(
 				0 => array( 'id' => 0, 'name' => 'Just the domain'),
