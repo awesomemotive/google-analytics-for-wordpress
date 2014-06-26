@@ -58,6 +58,13 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= trunk =
+
+* i18n
+	* Updated .pot file
+	* Updated fr_FR & de_DE
+	* Added cs_CZ, fa_IR, pl_PL, pt_BR & ru_RU
+
 = 4.3.5 =
 
 * Enhancement:
@@ -65,7 +72,7 @@ This section describes how to install the plugin and get it working.
 
 = 4.3.4 =
 
-* Bugfix: 
+* Bugfix:
 	* Fixed error in a database query as reported by [mikeotgaar](http://wordpress.org/support/topic/wordpress-database-error-table-1) and applied some best practices for the database queries - props [Jrf](http://profiles.wordpress.org/jrf).
 	* Fixed error in a database query.
 	* Made check for customcode option more robust - props [Rarst](https://github.com/Rarst).
