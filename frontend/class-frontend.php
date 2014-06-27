@@ -364,7 +364,7 @@ if ( !class_exists( 'GA_Filter' ) ) {
 						$crossdomains = explode( ',', str_replace( ' ', '', $this->options['othercrossdomains'] ) );
 
 					if ( isset( $this->options['trackcrossdomain'] ) && $this->options['trackcrossdomain'] && in_array( $target["host"], $crossdomains ) ) {
-						$trackBit = '_gaq.push([\'_link\', \'' . $matches[2] . '//' . $matches[3] . '\']); return false;"';
+						$trackBit = '_gaq.push([\'_link\', \'' . $matches[2] . '//' . $matches[3] . '\']); return false;';
 					} else if ( $this->options['trackoutbound'] && in_array( $this->options['domainorurl'], array( 'domain', 'url' ) ) ) {
 						$url      = $this->options['domainorurl'] == 'domain' ? $target["host"] : $matches[3];
 						$trackBit = $this->get_tracking_link( $category, $url, '' );
