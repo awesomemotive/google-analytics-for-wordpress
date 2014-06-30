@@ -2,8 +2,18 @@
 <script type="text/javascript">
 
 	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-XXXXX-X']);
-	_gaq.push(['_trackPageview']);
+<?php
+	if(count($gaq_push)>=1){
+		foreach($gaq_push as $key => $value){
+			if(is_null($value)){
+				echo "	_gaq.push(['" . $key . "']);\n";
+			}
+			else{
+				echo "	_gaq.push(['" . $key . "', '" .$value . "']);\n";
+			}
+		}
+	}
+?>
 
 	(function() {
 		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
