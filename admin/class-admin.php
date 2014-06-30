@@ -25,6 +25,19 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
+		 * Get the singleton instance of this class
+		 *
+		 * @return object
+		 */
+		public static function get_instance() {
+			if ( ! ( self::$instance instanceof self ) ) {
+				self::$instance = new self();
+			}
+
+			return self::$instance;
+		}
+
+		/**
 		 * Create the admin menu
 		 *
 		 * @todo, we need to implement a new icon for this, currently we're using the WP seo icon
