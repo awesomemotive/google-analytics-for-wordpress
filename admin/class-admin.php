@@ -12,16 +12,110 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 		private $form_namespace;
 
+		public $options;
+
+		private $form_prefix = 'ga_general';
+
 		public function __construct() {
+			add_action( 'plugins_loaded', array( $this, 'init_ga' ) );
+			add_action( 'admin_init', array( $this, 'init_settings' ) );
+		}
+
+		/**
+		 * Init function when the plugin is loaded
+		 */
+		public function init_ga() {
 			add_action( 'admin_menu', array( $this, 'create_menu' ), 5 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+		}
+
+		/**
+		 * Init function for the settings of GA
+		 */
+		public function init_settings() {
+			$this->options = get_option( 'yst_ga' );
+			if ( false == $this->options ) {
+				add_option( 'yst_ga', $this->default_ga_values() );
+				$this->options = get_option( 'yst_ga' );
+			}
 
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				if ( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ) {
+					// Post submitted and verified with our nonce
 					$this->save_settings( $_POST );
 				}
 			}
+		}
+
+		/**
+		 * Set the default GA settings here
+		 * @return array
+		 */
+		public function default_ga_values() {
+			return array(
+				'ga_general' => array(
+					'analytics_profile'    => NULL,
+					'manual_ua_code'       => 0,
+					'manual_ua_code_field' => NULL,
+					'track_outbound'       => 1,
+					'anonymous_data'       => 0,
+					'ignore_users'         => 'editor',
+					'anonymize_ips'        => NULL,
+					'track_download_as'    => 'event',
+					'extensions_of_files'  => 'doc,exe,js,pdf,ppt,tgz,zip,xls',
+					'track_full_url'       => 'domain',
+					'subdomain_tracking'   => NULL,
+					'tag_links_in_rss'     => 0,
+					'add_allow_linker'     => 0,
+					'custom_code'          => NULL,
+					'debug_mode'           => 0,
+					'firebug_lite'         => 0,
+				)
+			);
+		}
+
+		/**
+		 * Return the setting by name
+		 *
+		 * @param $name
+		 *
+		 * @return null
+		 */
+		public function get_setting( $name ) {
+
+			if ( isset( $this->options[$this->form_prefix][$name] ) ) {
+				return $this->options[$this->form_prefix][$name];
+			} else {
+				return NULL;
+			}
+		}
+
+		/**
+		 * This function saves the settings in the option field and returns a wp success message on success
+		 *
+		 * @param $data
+		 */
+		public function save_settings( $data ) {
+			foreach ( $data as $key => $value ) {
+				$this->options[$this->form_prefix][$key] = $value;
+			}
+
+			// Check checkboxes, on a uncheck they won't be posted to this function
+			$defaults = $this->default_ga_values();
+			foreach( $defaults['ga_general'] as $key => $value ){
+				if(!isset( $data[$key] )){
+					$this->options[$this->form_prefix][$key] = $value;
+				}
+			}
+
+			if(update_option( 'yst_ga', $this->options)){
+				// Success!
+			}
+			else{
+				// Fail..
+			}
+
 		}
 
 		/**
@@ -175,13 +269,11 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * @param null   $title
 		 * @param null   $name
 		 * @param null   $text_label
-		 * @param int    $value
-		 * @param bool   $checked
 		 * @param null   $description
 		 *
 		 * @return null|string
 		 */
-		public function input( $type = 'text', $title = NULL, $name = NULL, $text_label = NULL, $value = 1, $checked = false, $description = NULL ) {
+		public function input( $type = 'text', $title = NULL, $name = NULL, $text_label = NULL, $description = NULL ) {
 			$input = NULL;
 			$id    = str_replace( '[', '-', $name );
 			$id    = str_replace( ']', '', $id );
@@ -191,10 +283,12 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				$input .= '<label class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . $this->form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
 			}
 
-			if ( $checked ) {
-				$input .= '<input type="' . $type . '" class="ga-form ga-form-checkbox" id="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $id . '" name="' . $name . '" value="' . $value . '" checked="checked" />';
+			if ( $type == 'checkbox' && $this->get_setting( $name ) == 1 ) {
+				$input .= '<input type="' . $type . '" class="ga-form ga-form-checkbox" id="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $id . '" name="' . $name . '" value="1" checked="checked" />';
+			} elseif ( $type == 'checkbox' ) {
+				$input .= '<input type="' . $type . '" class="ga-form ga-form-checkbox" id="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $id . '" name="' . $name . '" value="1" />';
 			} else {
-				$input .= '<input type="' . $type . '" class="ga-form ga-form-checkbox" id="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $id . '" name="' . $name . '" value="' . $value . '" />';
+				$input .= '<input type="' . $type . '" class="ga-form ga-form-' . $type . '" id="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $id . '" name="' . $name . '" value="' . $this->get_setting( $name ) . '" />';
 			}
 
 			if ( ! is_null( $text_label ) ) {
@@ -236,7 +330,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$select .= '<select name="' . $name . '" id="yoast-ga-form-select-' . $this->form_namespace . '-' . $id . '">';
 			if ( count( $values ) >= 1 ) {
 				foreach ( $values as $value ) {
-					$select .= '<option value="' . $value['id'] . '" ' . selected( $selected, $value['id'], false ) . '>' . $value['name'] . '</option>';
+					$select .= '<option value="' . $value['id'] . '" ' . selected( $this->get_setting( $name ), $value['id'], false ) . '>' . $value['name'] . '</option>';
 				}
 			}
 			$select .= '</select>';
@@ -265,13 +359,12 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function textarea( $title, $name, $value = '', $description = NULL ) {
 			$text = NULL;
-			$id   = str_replace( '[', '-', $name );
-			$id   = str_replace( ']', '', $id );
+			$id   = $this->form_prefix . '_' . $name;
 			$text .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
 				$text .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
 			}
-			$text .= '<textarea rows="5" cols="60" name="' . $name . '" id="yoast-ga-form-textarea-' . $this->form_namespace . '-' . $id . '">' . $value . '</textarea>';
+			$text .= '<textarea rows="5" cols="60" name="' . $name . '" id="yoast-ga-form-textarea-' . $this->form_namespace . '-' . $id . '">' . $this->get_setting( $name ) . '</textarea>';
 			$text .= '</div>';
 
 			// If we get a description, append it to this select field in a new row
@@ -334,8 +427,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function get_track_full_url() {
 			return array(
-				0 => array( 'id' => 0, 'name' => 'Just the domain' ),
-				1 => array( 'id' => 1, 'name' => 'Full links' ),
+				0 => array( 'id' => 'domain', 'name' => 'Just the domain' ),
+				1 => array( 'id' => 'full_links', 'name' => 'Full links' ),
 			);
 		}
 
@@ -367,13 +460,14 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			shuffle( $banners );
 
-			require( "views/content_footer.php" );
-		}
+			if ( true == WP_DEBUG ) {
+				// Show the debug information if debug is enabled in the wp_config file
+				echo '<pre>';
+				var_dump( $this->options );
+				echo '</pre>';
+			}
 
-		public function save_settings( $data ) {
-			echo 'Handle_settings<pre>';
-			print_r( $data );
-			// redirect;
+			require( "views/content_footer.php" );
 		}
 
 	}
