@@ -54,7 +54,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function default_ga_values() {
 			return array(
-				'ga_general' => array(
+				$this->form_prefix => array(
 					'analytics_profile'    => NULL,
 					'manual_ua_code'       => 0,
 					'manual_ua_code_field' => NULL,
@@ -103,16 +103,15 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			// Check checkboxes, on a uncheck they won't be posted to this function
 			$defaults = $this->default_ga_values();
-			foreach( $defaults['ga_general'] as $key => $value ){
-				if(!isset( $data[$key] )){
+			foreach ( $defaults['ga_general'] as $key => $value ) {
+				if ( ! isset( $data[$key] ) ) {
 					$this->options[$this->form_prefix][$key] = $value;
 				}
 			}
 
-			if(update_option( 'yst_ga', $this->options)){
+			if ( update_option( 'yst_ga', $this->options ) ) {
 				// Success!
-			}
-			else{
+			} else {
 				// Fail..
 			}
 
