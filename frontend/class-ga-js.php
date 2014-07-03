@@ -19,10 +19,16 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		public function tracking() {
 			$options  = parent::$options['ga_general'];
 			$gaq_push = array();
-			// Set tracking code here
+			$hide_js  = false;
 
+			// Set tracking code here
 			if ( ! empty( $options['manual_ua_code_field'] ) ) {
 				$gaq_push['_setAccount'] = $options['manual_ua_code_field'];
+			}
+
+			// Anonymous data
+			if ( $options['anonymize_ips'] == 1 ) {
+				$gaq_push['_gat._anonymizeIp'] = NULL;
 			}
 			$gaq_push['_trackPageview'] = NULL;
 
