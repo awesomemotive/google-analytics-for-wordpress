@@ -7,10 +7,15 @@ if( !class_exists('Yoast_GA_Frontend') ){
 
 	class Yoast_GA_Frontend {
 
-		public function __construct(){
+		public static $options = array();
 
+		public function __construct(){
+			self::$options = get_option( 'yst_ga' );
 		}
 
+		public function get_options(){
+			return self::$options;
+		}
 	}
 
 	global $yoast_ga_frontend;

@@ -21,12 +21,17 @@ jQuery(document).ready(function() {
 	jQuery('#' + active_tab + '-tab').addClass('nav-tab-active');
 
 	// Manually enter a UA code
-	jQuery('#yoast-ga-form-checkbox-settings-ga_general-manual_ua_code').click(function(){
+	jQuery('#yoast-ga-form-checkbox-settings-manual_ua_code').click(function(){
 		if(jQuery(this).is(':checked')){
 			jQuery('#enter_ua').show();
 		}
 		else{
 			jQuery('#enter_ua').hide();
+			jQuery('#yoast-ga-form-text-settings-manual_ua_code_field').attr('value','');
 		}
 	});
+
+	if(jQuery("#yoast-ga-form-checkbox-settings-manual_ua_code").is(':checked')){
+		jQuery('#enter_ua').show();
+	}
 });

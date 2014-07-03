@@ -17,10 +17,14 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		 * @todo, add the tracking code and remove this test output
 		 */
 		public function tracking() {
+			$options  = parent::$options['ga_general'];
 			$gaq_push = array();
 			// Set tracking code here
-			$gaq_push['_setAccount']	=	'UA-XXXXX-X';
-			$gaq_push['_trackPageview']	=	NULL;
+
+			if ( ! empty( $options['manual_ua_code_field'] ) ) {
+				$gaq_push['_setAccount'] = $options['manual_ua_code_field'];
+			}
+			$gaq_push['_trackPageview'] = NULL;
 
 			// Include the tracking view
 			require( GAWP_PATH . 'frontend/views/tracking_ga_js.php' );
