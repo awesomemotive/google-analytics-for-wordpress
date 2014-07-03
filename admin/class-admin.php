@@ -58,7 +58,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					'analytics_profile'    => NULL,
 					'manual_ua_code'       => 0,
 					'manual_ua_code_field' => NULL,
-					'track_outbound'       => 1,
+					'track_outbound'       => 0,
 					'anonymous_data'       => 0,
 					'ignore_users'         => 'editor',
 					'anonymize_ips'        => NULL,
@@ -313,12 +313,11 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * @param      $title
 		 * @param      $name
 		 * @param      $values
-		 * @param      $selected
 		 * @param null $description
 		 *
 		 * @return null|string
 		 */
-		public function select( $title, $name, $values, $selected, $description = NULL ) {
+		public function select( $title, $name, $values, $description = NULL ) {
 			$select = NULL;
 			$id     = str_replace( '[', '-', $name );
 			$id     = str_replace( ']', '', $id );
@@ -351,12 +350,11 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 *
 		 * @param        $title
 		 * @param        $name
-		 * @param string $value
 		 * @param null   $description
 		 *
 		 * @return null|string
 		 */
-		public function textarea( $title, $name, $value = '', $description = NULL ) {
+		public function textarea( $title, $name, $description = NULL ) {
 			$text = NULL;
 			$id   = $this->form_prefix . '_' . $name;
 			$text .= '<div class="ga-form ga-form-input">';
