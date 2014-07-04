@@ -23,14 +23,14 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 			// Set tracking code here
 			if ( ! empty( $options['manual_ua_code_field'] ) ) {
-				$gaq_push['_setAccount'] = $options['manual_ua_code_field'];
+				$gaq_push[] = "'_setAccount', 'manual_ua_code_field'";
 			}
 
 			// Anonymous data
 			if ( $options['anonymize_ips'] == 1 ) {
-				$gaq_push['_gat._anonymizeIp'] = NULL;
+				$gaq_push[] = "'_gat._anonymizeIp'";
 			}
-			$gaq_push['_trackPageview'] = NULL;
+			$gaq_push[] = "'_trackPageview'";
 
 			// Include the tracking view
 			require( GAWP_PATH . 'frontend/views/tracking_ga_js.php' );

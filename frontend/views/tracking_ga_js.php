@@ -7,13 +7,8 @@ if( false == $hide_js ):
 	var _gaq = _gaq || [];
 <?php
 	if( count( $gaq_push )>=1 ){
-		foreach($gaq_push as $key => $value){
-			if( is_null( $value ) ){
-				echo "	_gaq.push(['" . $key . "']);\n";
-			}
-			else{
-				echo "	_gaq.push(['" . $key . "', '" .$value . "']);\n";
-			}
+		foreach($gaq_push as $item){
+			echo "	_gaq.push([".$item."]);\n";
 		}
 	}
 ?>
