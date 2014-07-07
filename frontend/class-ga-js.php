@@ -68,6 +68,11 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					$gaq_push[] = "'_setAllowLinker',true";
 				}
 
+				// add _setAllowLinker
+				if ( $options['demographics'] ){
+					$gaq_push[] = "'require', 'displayfeatures'";
+				}
+
 				// Anonymize IP
 //				if ( $options['anonymizeip'] ){
 //					$gaq_push[] = "'_gat._anonymizeIp'";
@@ -161,28 +166,24 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 //
 //				$gaq_push = apply_filters( 'yoast-ga-push-before-pageview', $gaq_push );
 
-//				if ( is_404() ) {
-//					$push[] = "'_trackPageview','/404.html?page=' + document.location.pathname + document.location.search + '&from=' + document.referrer";
-//				} else if ( $wp_query->is_search ) {
-//					$pushstr = "'_trackPageview','" . get_bloginfo( 'url' ) . "/?s=";
-//					if ( $wp_query->found_posts == 0 ) {
-//						$push[] = $pushstr . "no-results:" . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=no-results'";
-//					} else if ( $wp_query->found_posts == 1 ) {
-//						$push[] = $pushstr . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=1-result'";
-//					} else if ( $wp_query->found_posts > 1 && $wp_query->found_posts < 6 ) {
-//						$push[] = $pushstr . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=2-5-results'";
-//					} else {
-//						$push[] = $pushstr . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=plus-5-results'";
-//					}
-//				} else {
-//					$push[] = "'_trackPageview'";
-//				}
+				if ( is_404() ) {
+					$gaq_push[] = "'send','pageview','/404.html?page=' + document.location.pathname + document.location.search + '&from=' + document.referrer";
+				} else if ( $wp_query->is_search ) {
+					$pushstr = "'send','pageview','" . get_bloginfo( 'url' ) . "/?s=";
+					if ( $wp_query->found_posts == 0 ) {
+						$gaq_push[] = $pushstr . "no-results:" . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=no-results'";
+					} else if ( $wp_query->found_posts == 1 ) {
+						$gaq_push[] = $pushstr . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=1-result'";
+					} else if ( $wp_query->found_posts > 1 && $wp_query->found_posts < 6 ) {
+						$gaq_push[] = $pushstr . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=2-5-results'";
+					} else {
+						$gaq_push[] = $pushstr . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=plus-5-results'";
+					}
+				} else {
+					$gaq_push[] = "'send','pageview'";
+				}
 
 				//$push = apply_filters( 'yoast-ga-push-after-pageview', $push );
-
-
-
-				$gaq_push[] = "'send','pageview'";
 
 				// Include the tracking view
 				require( GAWP_PATH . 'frontend/views/tracking_ga_js.php' );

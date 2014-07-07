@@ -34,6 +34,7 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			echo $yoast_ga_admin->input( 'checkbox', 'Allow tracking of anonymous data', 'anonymous_data' );
 			echo $yoast_ga_admin->select( 'Ignore users', 'ignore_users', $yoast_ga_admin->get_userroles(), 'Users of the role you select and higher will be ignored, so if you select Editor, all Editors and Administrators will be ignored.' );
 			echo $yoast_ga_admin->input( 'checkbox', 'Anonymize IP\'s', 'anonymize_ips' );
+			echo $yoast_ga_admin->input( 'checkbox', 'Enable Demographics and Interest Reports', 'demographics' );
 			?>
 		</div>
 		<div id="advanced" class="gatab">
