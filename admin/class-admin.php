@@ -172,7 +172,7 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
 					$options[$option_name] = '';
 			}
 
-			foreach ( array( 'extrase', 'trackoutbound', 'admintracking', 'trackadsense', 'allowanchor', 'allowlinker', 'allowhash', 'rsslinktagging', 'advancedsettings', 'trackregistration', 'theme_updated', 'cv_loggedin', 'cv_authorname', 'cv_category', 'cv_all_categories', 'cv_tags', 'cv_year', 'cv_post_type', 'outboundpageview', 'downloadspageview', 'trackcrossdomain', 'gajslocalhosting', 'manual_uastring', 'taggfsubmit', 'wpec_tracking', 'shopp_tracking', 'anonymizeip', 'trackcommentform', 'debug', 'firebuglite', 'yoast_tracking' ) as $option_name ) {
+			foreach ( array( 'extrase', 'trackoutbound', 'admintracking', 'trackadsense', 'allowanchor', 'allowlinker', 'allowhash', 'rsslinktagging', 'advancedsettings', 'trackregistration', 'theme_updated', 'cv_loggedin', 'cv_authorname', 'cv_category', 'cv_all_categories', 'cv_tags', 'cv_year', 'cv_post_type', 'outboundpageview', 'displayadvertising', 'downloadspageview', 'trackcrossdomain', 'gajslocalhosting', 'manual_uastring', 'taggfsubmit', 'wpec_tracking', 'shopp_tracking', 'anonymizeip', 'trackcommentform', 'debug', 'firebuglite', 'yoast_tracking' ) as $option_name ) {
 				if ( isset( $_POST[$option_name] ) && $_POST[$option_name] == 'on' )
 					$options[$option_name] = true;
 				else
@@ -500,6 +500,14 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
 			'desc'    => __( 'You do not need to enable this to enable outbound click tracking, this changes the default behavior of tracking clicks as events to tracking them as pageviews. This is therefore not recommended, as this would skew your statistics, but <em>is</em> sometimes necessary when you need to set outbound clicks as goals.', 'google-analytics-for-wordpress' ),
 			'content' => $this->checkbox( 'outboundpageview' ),
 		);
+		
+		$rows[] = array(
+			'id'      => 'displayadvertising',
+			'label'   => __( 'Support Display Advertising', 'google-analytics-for-wordpress' ),
+			'desc'    => __( 'Enable this to implement Remarketing, Demographics and Interests reporting, or GDN Impression Reporting.', 'google-analytics-for-wordpress' ),
+			'content' => $this->checkbox( 'displayadvertising' ),
+		);		
+		
 		$rows[] = array(
 			'id'      => 'downloadspageview',
 			'label'   => __( 'Track downloads as pageviews', 'google-analytics-for-wordpress' ),
@@ -750,6 +758,7 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
 			'internallink'       => false,
 			'internallinklabel'  => '',
 			'outboundpageview'   => false,
+			'displayadvertising' => false,
 			'downloadspageview'  => false,
 			'othercrossdomains'  => '',
 			'position'           => 'footer',
