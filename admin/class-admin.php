@@ -382,10 +382,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * @todo OAuth connection to Google.com?
 		 */
 		public function get_profiles() {
-			return array(
-				0 => array( 'id' => '1234', 'ua_code' => 'UA-317889-17', 'name' => 'Yoast.com' ),
-				1 => array( 'id' => '1432', 'ua_code' => 'UA-317889-18', 'name' => 'Yoast.com' )
-			);
+			return array();
 		}
 
 		/**
