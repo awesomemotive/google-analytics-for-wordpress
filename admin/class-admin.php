@@ -310,11 +310,11 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 		/**
 		 * Generate a select box
-		 *
 		 * @param      $title
 		 * @param      $name
 		 * @param      $values
 		 * @param null $description
+		 * @param bool $multiple
 		 *
 		 * @return null|string
 		 */
