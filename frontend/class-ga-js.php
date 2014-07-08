@@ -169,7 +169,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				if ( is_404() ) {
 					$gaq_push[] = "'send','pageview','/404.html?page=' + document.location.pathname + document.location.search + '&from=' + document.referrer";
 				} else if ( $wp_query->is_search ) {
-					$pushstr = "'send','pageview','" . get_bloginfo( 'url' ) . "/?s=";
+					$pushstr = "'send','pageview','/?s=";
 					if ( $wp_query->found_posts == 0 ) {
 						$gaq_push[] = $pushstr . "no-results:" . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=no-results'";
 					} else if ( $wp_query->found_posts == 1 ) {
