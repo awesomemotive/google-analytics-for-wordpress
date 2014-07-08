@@ -19,7 +19,17 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			<?php
 			echo '<h2>' . __( 'General settings', 'google-analytics-for-wordpress' ) . '</h2>';
 			echo '<div id="ga-promote">';
-			echo $yoast_ga_admin->select( 'Analytics profile', 'analytics_profile', $yoast_ga_admin->get_profiles());
+			if( count($yoast_ga_admin->get_profiles()) == 0 ){
+
+				echo '<div class="ga-form ga-form-input">';
+				echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle" />' . __( 'Google profile', 'google-analytics-for-wordpress' ) . ':</label>';
+				echo '<input type="button" name="authenticate" value="' . __('Authenticate with your Google account', 'google-analytics-for-wordpress') . '" class="button button-primary ga-form-authenticate" id="ga-authenticate" />';
+				echo '</div>';
+
+			}
+			else{
+				echo $yoast_ga_admin->select( 'Analytics profile', 'analytics_profile', $yoast_ga_admin->get_profiles());
+			}
 			echo '<label class="ga-form ga-form-checkbox-label ga-form-label-left">';
 			echo $yoast_ga_admin->input( 'checkbox', NULL, 'manual_ua_code', 'Manually enter your UA code' );
 			echo '</label>';
