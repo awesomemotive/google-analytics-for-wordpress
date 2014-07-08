@@ -318,7 +318,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 *
 		 * @return null|string
 		 */
-		public function select( $title, $name, $values, $description = NULL ) {
+		public function select( $title, $name, $values, $description = NULL, $multiple = false ) {
 			$select = NULL;
 			$id     = str_replace( '[', '-', $name );
 			$id     = str_replace( ']', '', $id );
@@ -326,10 +326,24 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			if ( ! is_null( $title ) ) {
 				$select .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
 			}
-			$select .= '<select name="' . $name . '" id="yoast-ga-form-select-' . $this->form_namespace . '-' . $id . '">';
+
+			if ( $multiple ) {
+				$select .= '<select multiple name="' . $name . '[]" id="yoast-ga-form-select-' . $this->form_namespace . '-' . $id . '" class="ga-multiple">';
+			} else {
+				$select .= '<select name="' . $name . '" id="yoast-ga-form-select-' . $this->form_namespace . '-' . $id . '">';
+			}
 			if ( count( $values ) >= 1 ) {
 				foreach ( $values as $value ) {
-					$select .= '<option value="' . $value['id'] . '" ' . selected( $this->get_setting( $name ), $value['id'], false ) . '>' . $value['name'] . '</option>';
+					if ( is_array( $this->get_setting( $name ) ) ) {
+						if ( in_array( $value['id'], $this->get_setting( $name ) ) ) {
+							$select .= '<option value="' . $value['id'] . '" selected="selected">' . $value['name'] . '</option>';
+						} else {
+							$select .= '<option value="' . $value['id'] . '">' . $value['name'] . '</option>';
+						}
+					}
+					else{
+						$select .= '<option value="' . $value['id'] . '" ' . selected( $this->get_setting( $name ), $value['id'], false ) . '>' . $value['name'] . '</option>';
+					}
 				}
 			}
 			$select .= '</select>';

@@ -118,3 +118,8 @@ p.ga-topdescription {
 #yoast-ga-form-text-settings-ga_general-manual_ua_code_field {
 	margin-top: -30px;
 }
+
+select.ga-multiple {
+	width: 300px;
+	height: 150px !important;
+}

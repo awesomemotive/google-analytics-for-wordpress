@@ -51,12 +51,17 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 				// Set tracking code here
 				if ( ! empty( $options['manual_ua_code_field'] ) ) {
-					$gaq_push[] = "'create', '".$options['manual_ua_code_field'] ."', 'auto'";
+					if( $options['add_allow_linker'] ) {
+						$gaq_push[] = "'create', '".$options['manual_ua_code_field'] ."', 'auto', {'allowLinker': true}";
+					}
+					else{
+						$gaq_push[] = "'create', '".$options['manual_ua_code_field'] ."', 'auto'";
+					}
 				}
 
 				// Anonymous data
 				if ( $options['anonymize_ips'] == 1 ) {
-					$gaq_push[] = "'_gat._anonymizeIp'";
+					$gaq_push[] = "'set', 'anonymizeIp', true";
 				}
 
 //				if ( $options['allowanchor'] ){
@@ -64,19 +69,9 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 //				}
 
 				// add _setAllowLinker
-				if ( $options['add_allow_linker'] ){
-					$gaq_push[] = "'_setAllowLinker',true";
-				}
-
-				// add _setAllowLinker
 				if ( $options['demographics'] ){
 					$gaq_push[] = "'require', 'displayfeatures'";
 				}
-
-				// Anonymize IP
-//				if ( $options['anonymizeip'] ){
-//					$gaq_push[] = "'_gat._anonymizeIp'";
-//				}
 
 				// Set domain
 				if ( isset( $options['subdomain_tracking'] ) && $options['subdomain_tracking'] != "" ){
