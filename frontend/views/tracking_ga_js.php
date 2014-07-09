@@ -20,7 +20,7 @@
 
 	// Output the custom code that could be added in the WP backend
 	if( !empty( $ga_settings['custom_code'] ) ){
-		echo "	".$ga_settings['custom_code']."\n";
+		echo "	" . stripslashes( $ga_settings['custom_code'] ) . "\n";
 	}
 	?>
 
