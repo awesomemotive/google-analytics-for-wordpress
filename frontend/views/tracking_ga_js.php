@@ -11,10 +11,16 @@
 	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 <?php
+	// List the GA elements from the class-ga-js.php
 	if( count( $gaq_push )>=1 ){
 		foreach($gaq_push as $item){
 			echo "	ga(".$item.");\n";
 		}
+	}
+
+	// Output the custom code that could be added in the WP backend
+	if( !empty( $ga_settings['custom_code'] ) ){
+		echo "	".$ga_settings['custom_code']."\n";
 	}
 	?>
 
