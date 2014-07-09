@@ -50,12 +50,19 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 			if ( $this->do_tracking() && ! is_preview() ) {
 				$gaq_push = array();
 
+				if ( isset( $options['subdomain_tracking'] ) && $options['subdomain_tracking'] != "" ) {
+					$domain = $options['subdomain_tracking'];
+				}
+				else{
+					$domain = 'auto'; // Default domain value
+				}
+
 				// Set tracking code here
 				if ( ! empty( $options['manual_ua_code_field'] ) ) {
 					if ( $options['add_allow_linker'] ) {
-						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', 'auto', {'allowLinker': true}";
+						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', '".$domain."', {'allowLinker': true}";
 					} else {
-						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', 'auto'";
+						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', '".$domain."'";
 					}
 				}
 
@@ -71,15 +78,6 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				// add _setAllowLinker
 				if ( $options['demographics'] ) {
 					$gaq_push[] = "'require', 'displayfeatures'";
-				}
-
-				// Set domain
-				if ( isset( $options['subdomain_tracking'] ) && $options['subdomain_tracking'] != "" ) {
-					$gaq_push[] = "'_setDomainName','" . $options['subdomain_tracking'] . "'";
-				}
-
-				if ( isset( $options['trackcrossdomain'] ) && $options['trackcrossdomain'] ) {
-					$gaq_push[] = "'_setDomainName','" . $options['primarycrossdomain'] . "'";
 				}
 
 				if ( isset( $options['allowhash'] ) && $options['allowhash'] ) {
