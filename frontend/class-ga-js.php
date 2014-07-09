@@ -9,7 +9,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 
 		public function __construct() {
-			add_action( 'wp_head', array( $this, 'tracking' ) );
+			add_action( 'wp_head', array( $this, 'tracking' ), 8 );
 		}
 
 		public function do_tracking() {
@@ -183,6 +183,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				}
 
 				//$push = apply_filters( 'yoast-ga-push-after-pageview', $push );
+				$ga_settings = $options; // Assign the settings to the javascript include view
 
 				// Include the tracking view
 				require( GAWP_PATH . 'frontend/views/tracking_ga_js.php' );
