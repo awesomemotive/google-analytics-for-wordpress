@@ -12,7 +12,7 @@ if( !class_exists('Yoast_GA_Frontend') ){
 		public function __construct(){
 			self::$options = get_option( 'yst_ga' );
 
-			add_action( 'wp_enqueue_scripts', array( $this, 'add_ga_javascript' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'add_ga_javascript' ), 9 );
 		}
 
 		public function get_options(){
@@ -23,7 +23,7 @@ if( !class_exists('Yoast_GA_Frontend') ){
 		 * Hook a Google Analytics Javascript to track downloads and outbound links
 		 */
 		public function add_ga_javascript() {
-			wp_enqueue_script( 'yst_ga', GAWP_URL .'frontend/js/yst_ga.js' );
+			wp_enqueue_script( 'yst_ga', GAWP_URL .'frontend/js/yst_ga.js', array(), false, true );
 		}
 
 		/**
