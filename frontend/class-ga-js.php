@@ -57,10 +57,18 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					$domain = 'auto'; // Default domain value
 				}
 
+				if( !isset($options['allowanchor']) ){
+					$options['allowanchor'] = false;
+				}
+
 				// Set tracking code here
 				if ( ! empty( $options['manual_ua_code_field'] ) ) {
-					if ( $options['add_allow_linker'] ) {
+					if ( $options['add_allow_linker'] && !$options['allowanchor']  ) {
 						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', '".$domain."', {'allowLinker': true}";
+					} else if ( $options['allowanchor'] && !$options['add_allow_linker'] ){
+						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', '".$domain."', {'allowAnchor': true}";
+					} else if ( $options['allowanchor'] && $options['add_allow_linker'] ){
+						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', '".$domain."', {'allowAnchor': true, 'allowLinker': true}";
 					} else {
 						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', '".$domain."'";
 					}
@@ -70,10 +78,6 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				if ( $options['anonymize_ips'] == 1 ) {
 					$gaq_push[] = "'set', 'anonymizeIp', true";
 				}
-
-//				if ( $options['allowanchor'] ){
-//					$gaq_push[] = "'_setAllowAnchor',true";
-//				}
 
 				// add _setAllowLinker
 				if ( $options['demographics'] ) {
