@@ -55,6 +55,7 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			echo $yoast_ga_admin->select( 'Track full URL of outbound clicks or just the domain', 'track_full_url', $yoast_ga_admin->get_track_full_url() );
 			echo $yoast_ga_admin->input( 'text', 'Subdomain tracking', 'subdomain_tracking', NULL, 'This allows you to set the domain that\'s set by <code>setDomainName</code> for tracking subdomains, if empty this will not be set.' );
 			echo $yoast_ga_admin->input( 'checkbox', 'Tag links in RSS feed with campaign variables', 'tag_links_in_rss' );
+			echo $yoast_ga_admin->input( 'checkbox', 'Allow anchor', 'allow_anchor' );
 			echo $yoast_ga_admin->input( 'checkbox', 'Add <code>_setAllowLinker</code>', 'add_allow_linker' );
 			echo $yoast_ga_admin->textarea( 'Custom code', 'custom_code', 'This code will be added in the Google Analytics javascript.' );
 			?>
