@@ -55,6 +55,12 @@ if( !class_exists('Yoast_GA_Frontend') ){
 			}
 		}
 
+		/**
+		 * Add the UTM source parameters in the RSS feeds to track traffic
+		 * @param $guid
+		 *
+		 * @return string
+		 */
 		function rsslinktagger( $guid ) {
 			global $post;
 			if ( is_feed() ) {
