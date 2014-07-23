@@ -1,5 +1,5 @@
-console.log(ga_settings['download_types']); // Get the files which should be tracked as a download
-console.log(ga_settings['track_download']); // Get the files which should be tracked as a download
+console.log('Download types: ' + ga_settings['download_types']); // Get the files which should be tracked as a download
+console.log('Track as: ' + ga_settings['track_download']); // Get the files which should be tracked as a download
 
 
 var gh = this;
@@ -10,5 +10,6 @@ jQuery("a").click(function(){
 	if(ga_settings['track_download']=='event'){
 		// Track download as event
 		ga('send', 'event', 'Download file', 'click', jQuery(this).attr('href'), 4);
+		return true;
 	}
 });

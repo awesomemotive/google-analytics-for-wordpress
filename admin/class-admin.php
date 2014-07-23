@@ -68,6 +68,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					'track_full_url'       => 'domain',
 					'subdomain_tracking'   => NULL,
 					'tag_links_in_rss'     => 0,
+					'allow_anchor'     	   => 0,
 					'add_allow_linker'     => 0,
 					'custom_code'          => NULL,
 					'debug_mode'           => 0,

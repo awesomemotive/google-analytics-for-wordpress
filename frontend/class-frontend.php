@@ -13,6 +13,10 @@ if( !class_exists('Yoast_GA_Frontend') ){
 			self::$options = get_option( 'yst_ga' );
 
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_ga_javascript' ), 9 );
+
+			if ( isset( self::$options['ga_general']['tag_links_in_rss'] ) && self::$options['ga_general']['tag_links_in_rss']==1 ){
+				add_filter( 'the_permalink_rss', array( $this, 'rsslinktagger' ), 99 );
+			}
 		}
 
 		public function get_options(){
@@ -49,6 +53,21 @@ if( !class_exists('Yoast_GA_Frontend') ){
 			} else {
 				return false;
 			}
+		}
+
+		function rsslinktagger( $guid ) {
+			global $post;
+			if ( is_feed() ) {
+				if ( self::$options['ga_general']['allow_anchor'] ) {
+					$delimiter = '#';
+				} else {
+					$delimiter = '?';
+					if ( strpos( $guid, $delimiter ) > 0 )
+						$delimiter = '&amp;';
+				}
+				return $guid . $delimiter . 'utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=' . urlencode( $post->post_name );
+			}
+			return $guid;
 		}
 	}
 
