@@ -190,7 +190,12 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				$ga_settings = $options; // Assign the settings to the javascript include view
 
 				// Include the tracking view
-				require( GAWP_PATH . 'frontend/views/tracking_ga_js.php' );
+				if( $options['debug_mode'] == 1){
+					require( GAWP_PATH . 'frontend/views/tracking_debug.php' );
+				}
+				else{
+					require( GAWP_PATH . 'frontend/views/tracking_ga_js.php' );
+				}
 			}
 		}
 
