@@ -75,6 +75,11 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				}
 
 				// Anonymous data
+				if ( $options['force_ssl'] == 1 ) {
+					$gaq_push[] = "'set', 'forceSSL', true";
+				}
+
+				// Anonymous data
 				if ( $options['anonymize_ips'] == 1 ) {
 					$gaq_push[] = "'set', 'anonymizeIp', true";
 				}

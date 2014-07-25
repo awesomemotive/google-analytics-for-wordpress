@@ -57,6 +57,7 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			echo $yoast_ga_admin->input( 'checkbox', 'Tag links in RSS feed with campaign variables', 'tag_links_in_rss' );
 			echo $yoast_ga_admin->input( 'checkbox', 'Allow anchor', 'allow_anchor' );
 			echo $yoast_ga_admin->input( 'checkbox', 'Add <code>_setAllowLinker</code>', 'add_allow_linker' );
+			echo $yoast_ga_admin->input( 'checkbox', 'Force SSL', 'force_ssl' );
 			echo $yoast_ga_admin->textarea( 'Custom code', 'custom_code', 'This code will be added in the Google Analytics javascript.' );
 			?>
 		</div>
