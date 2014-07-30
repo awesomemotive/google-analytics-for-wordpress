@@ -24,6 +24,27 @@ if( !class_exists('Yoast_GA_Frontend') ){
 		}
 
 		/**
+		 * Check if we need to show an actual tracking code
+		 * @return bool
+		 */
+		public static function do_tracking() {
+			global $current_user;
+			$options = self::$options['ga_general'];
+
+			get_currentuserinfo();
+
+			if ( 0 == $current_user->ID ) {
+				return true;
+			}
+
+			if ( in_array( $current_user->roles[0], $options["ignore_users"] ) ) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		/**
 		 * Hook a Google Analytics Javascript to track downloads and outbound links
 		 */
 		public function add_ga_javascript() {
