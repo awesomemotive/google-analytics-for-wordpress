@@ -12,23 +12,6 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 			add_action( 'wp_head', array( $this, 'tracking' ), 8 );
 		}
 
-		public function do_tracking() {
-			global $current_user;
-			$options = parent::$options['ga_general'];
-
-			get_currentuserinfo();
-
-			if ( 0 == $current_user->ID ) {
-				return true;
-			}
-
-			if ( in_array( $current_user->roles[0], $options["ignore_users"] ) ) {
-				return false;
-			} else {
-				return true;
-			}
-		}
-
 		/**
 		 * Function to output the GA Tracking code in the wp_head()
 		 *
@@ -47,7 +30,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 			 * The order of custom variables is very, very important: custom vars should always take up the same slot to make analysis easy.
 			 */
 			$customvarslot = 1;
-			if ( $this->do_tracking() && ! is_preview() ) {
+			if ( parent::do_tracking() && ! is_preview() ) {
 				$gaq_push = array();
 
 				if ( isset( $options['subdomain_tracking'] ) && $options['subdomain_tracking'] != "" ) {
