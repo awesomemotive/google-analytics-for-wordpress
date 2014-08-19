@@ -147,15 +147,15 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			// Sub menu pages
 			$submenu_pages = array(
-				array(
-					'yst_ga_dashboard',
-					__( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'Dashboard', 'google-analytics-for-wordpress' ),
-					__( 'Dashboard', 'google-analytics-for-wordpress' ),
-					'manage_options',
-					'yst_ga_dashboard',
-					array( $this, 'load_page' ),
-					array( array( $this, 'yst_ga_dashboard' ) )
-				),
+//				array(
+//					'yst_ga_dashboard',
+//					__( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'Dashboard', 'google-analytics-for-wordpress' ),
+//					__( 'Dashboard', 'google-analytics-for-wordpress' ),
+//					'manage_options',
+//					'yst_ga_dashboard',
+//					array( $this, 'load_page' ),
+//					array( array( $this, 'yst_ga_dashboard' ) )
+//				),
 				array(
 					'yst_ga_dashboard',
 					__( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'Settings', 'google-analytics-for-wordpress' ),
@@ -282,7 +282,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			$input .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
-				$input .= '<label class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . $this->form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
+				$input .= '<label class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . $this->form_namespace . '-' . $id . '" />' . $title . ':</label>';
 			}
 
 			if ( $type == 'checkbox' && $this->get_setting( $name ) == 1 ) {
