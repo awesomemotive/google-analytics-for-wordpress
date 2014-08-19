@@ -10,6 +10,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 		public function __construct() {
 			add_action( 'wp_head', array( $this, 'tracking' ), 8 );
+			add_filter( 'the_content', array( $this, 'hook_downloads' ) );
 		}
 
 		/**
@@ -185,6 +186,16 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					require( GAWP_PATH . 'frontend/views/tracking_ga_js.php' );
 				}
 			}
+		}
+
+		/**
+		 * Hook on all download links in the_content() to track them as a pageview or event
+		 */
+		public function hook_downloads( $content ){
+
+
+			return 'TEST-'.$content;
+
 		}
 
 	}
