@@ -9,7 +9,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 		public function __construct() {
 			add_action( 'wp_head', array( $this, 'tracking' ), 8 );
-			add_filter( 'the_content', array( $this, 'hook_downloads' ) );
+			//add_filter( 'the_content', array( $this, 'hook_downloads' ) );
 		}
 
 		/**
@@ -107,7 +107,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 					require( GAWP_PATH . 'frontend/views/tracking_debug.php' );
 				}
 				else{
-					require( GAWP_PATH . 'frontend/views/tracking_ga_js.php' );
+					require( GAWP_PATH . 'frontend/views/tracking_universal.php' );
 				}
 			}
 		}

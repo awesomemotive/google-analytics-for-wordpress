@@ -1,4 +1,4 @@
-<!-- This site uses the Yoast Google Analytics plugin v<?php echo GAWP_VERSION; ?> - Universal disabled - https://yoast.com/wordpress/plugins/google-analytics/ -->
+<!-- This site uses the Yoast Google Analytics plugin v<?php echo GAWP_VERSION; ?> - Universal enabled - https://yoast.com/wordpress/plugins/google-analytics/ -->
 <script type="text/javascript">
 	var ga_settings = {
 		download_types:"<?php echo $ga_settings['extensions_of_files']; ?>",
