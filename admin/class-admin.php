@@ -60,6 +60,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					'manual_ua_code_field' => NULL,
 					'track_outbound'       => 0,
 					'anonymous_data'       => 0,
+					'enable_universal'     => 0,
 					'demographics'         => 0,
 					'ignore_users'         => 'editor',
 					'anonymize_ips'        => NULL,
