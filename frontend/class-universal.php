@@ -8,7 +8,8 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 	class Yoast_GA_Universal extends Yoast_GA_Frontend {
 
 		public function __construct() {
-
+			add_action( 'wp_head', array( $this, 'tracking' ), 8 );
+			add_filter( 'the_content', array( $this, 'hook_downloads' ) );
 		}
 
 		/**
