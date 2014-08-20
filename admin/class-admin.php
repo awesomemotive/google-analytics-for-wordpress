@@ -141,22 +141,22 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function create_menu() {
 			// Add main page
-			add_menu_page( __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'General Settings', 'google-analytics-for-wordpress' ), __( 'Analytics', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_dashboard', array(
+			add_menu_page( __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'General Settings', 'google-analytics-for-wordpress' ), __( 'Dashboard', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_dashboard', array(
 				$this,
 				'load_page'
 			), plugins_url( 'images/yoast-icon.png', WPSEO_FILE ), '2.00013467543' );
 
 			// Sub menu pages
 			$submenu_pages = array(
-//				array(
-//					'yst_ga_dashboard',
-//					__( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'Dashboard', 'google-analytics-for-wordpress' ),
-//					__( 'Dashboard', 'google-analytics-for-wordpress' ),
-//					'manage_options',
-//					'yst_ga_dashboard',
-//					array( $this, 'load_page' ),
-//					array( array( $this, 'yst_ga_dashboard' ) )
-//				),
+				array(
+					'yst_ga_dashboard',
+					__( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'Dashboard', 'google-analytics-for-wordpress' ),
+					__( 'Dashboard', 'google-analytics-for-wordpress' ),
+					'manage_options',
+					'yst_ga_dashboard',
+					array( $this, 'load_page' ),
+					array( array( $this, 'yst_ga_dashboard' ) )
+				),
 				array(
 					'yst_ga_dashboard',
 					__( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'Settings', 'google-analytics-for-wordpress' ),
@@ -209,10 +209,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function load_page() {
 
 			require_once GAWP_PATH . 'admin/class-admin-ga-js.php';
-			$ga_universal = false; // @todo get option if universal is enabled
-			if ( $ga_universal ) {
-				require_once GAWP_PATH . 'admin/class-admin-universal.php';
-			}
 
 			if ( isset( $_GET['page'] ) ) {
 				switch ( $_GET['page'] ) {
