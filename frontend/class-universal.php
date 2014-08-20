@@ -35,12 +35,11 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 				if ( isset( $options['subdomain_tracking'] ) && $options['subdomain_tracking'] != "" ) {
 					$domain = $options['subdomain_tracking'];
-				}
-				else{
+				} else {
 					$domain = 'auto'; // Default domain value
 				}
 
-				if( !isset($options['allowanchor']) ){
+				if ( ! isset( $options['allowanchor'] ) ) {
 					$options['allowanchor'] = false;
 				}
 
@@ -55,14 +54,18 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 				// Set tracking code here
 				if ( ! empty( $ua_code ) ) {
-					if ( $options['add_allow_linker'] && !$options['allowanchor']  ) {
-						$gaq_push[] = "'create', '" . $ua_code . "', '".$domain."', {'allowLinker': true}";
-					} else if ( $options['allowanchor'] && !$options['add_allow_linker'] ){
-						$gaq_push[] = "'create', '" . $ua_code . "', '".$domain."', {'allowAnchor': true}";
-					} else if ( $options['allowanchor'] && $options['add_allow_linker'] ){
-						$gaq_push[] = "'create', '" . $ua_code . "', '".$domain."', {'allowAnchor': true, 'allowLinker': true}";
+					if ( $options['add_allow_linker'] && ! $options['allowanchor'] ) {
+						$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowLinker': true}";
 					} else {
-						$gaq_push[] = "'create', '" . $ua_code . "', '".$domain."'";
+						if ( $options['allowanchor'] && ! $options['add_allow_linker'] ) {
+							$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowAnchor': true}";
+						} else {
+							if ( $options['allowanchor'] && $options['add_allow_linker'] ) {
+								$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowAnchor': true, 'allowLinker': true}";
+							} else {
+								$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "'";
+							}
+						}
 					}
 				}
 
@@ -112,10 +115,9 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 				$ga_settings = $options; // Assign the settings to the javascript include view
 
 				// Include the tracking view
-				if( $options['debug_mode'] == 1){
+				if ( $options['debug_mode'] == 1 ) {
 					require( GAWP_PATH . 'frontend/views/tracking_debug.php' );
-				}
-				else{
+				} else {
 					require( GAWP_PATH . 'frontend/views/tracking_universal.php' );
 				}
 			}
