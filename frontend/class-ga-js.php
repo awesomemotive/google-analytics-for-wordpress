@@ -38,43 +38,37 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					$domain = $options['subdomain_tracking'];
 				}
 				else{
-					$domain = 'auto'; // Default domain value
+					$domain = NULL; // Default domain value
 				}
 
 				if( !isset($options['allowanchor']) ){
 					$options['allowanchor'] = false;
 				}
 
-				// Set tracking code here
-				if ( ! empty( $options['manual_ua_code_field'] ) ) {
-					if ( $options['add_allow_linker'] && !$options['allowanchor']  ) {
-						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', '".$domain."', {'allowLinker': true}";
-					} else if ( $options['allowanchor'] && !$options['add_allow_linker'] ){
-						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', '".$domain."', {'allowAnchor': true}";
-					} else if ( $options['allowanchor'] && $options['add_allow_linker'] ){
-						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', '".$domain."', {'allowAnchor': true, 'allowLinker': true}";
-					} else {
-						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', '".$domain."'";
-					}
+				$gaq_push[]	=	"'_setAccount', '".$options['manual_ua_code_field']."'";
+
+				if(!is_null($domain)){
+					$gaq_push[]	=	"'_setDomainName', '".$domain."'";
 				}
 
-				// Anonymous data
+				if($options['add_allow_linker'] && !$options['allowanchor']){
+					$gaq_push[]	=	"'_setAllowAnchor', true";
+				}
+
+				// @todo, check for AllowLinker in GA.js? Universal only?
+
+				// SSL data
 				if ( $options['force_ssl'] == 1 ) {
-					$gaq_push[] = "'set', 'forceSSL', true";
+					$gaq_push[] = "'_gat._forceSSL'";
 				}
 
 				// Anonymous data
 				if ( $options['anonymize_ips'] == 1 ) {
-					$gaq_push[] = "'set', 'anonymizeIp', true";
-				}
-
-				// add _setAllowLinker
-				if ( $options['demographics'] ) {
-					$gaq_push[] = "'require', 'displayfeatures'";
+					$gaq_push[] = "'_gat._anonymizeIp'";
 				}
 
 				if ( isset( $options['allowhash'] ) && $options['allowhash'] ) {
-					$gaq_push[] = "'_setAllowHash',false";
+					$gaq_push[] = "'_gat._anonymizeIp',true";
 				}
 
 //				if ( $options['cv_loggedin'] ) {
@@ -171,7 +165,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 							}
 						}
 					} else {
-						$gaq_push[] = "'send','pageview'";
+						$gaq_push[] = "'_trackPageview'";
 					}
 				}
 
