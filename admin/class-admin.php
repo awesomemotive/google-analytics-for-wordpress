@@ -6,6 +6,8 @@ if ( ! function_exists( 'wp_verify_nonce' ) ) {
 	require_once( ABSPATH . 'wp-includes/pluggable.php' );
 }
 
+require_once plugin_dir_path( __FILE__ ) . '/wp-gdata/wp-gdata.php';
+
 if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 	class Yoast_GA_Admin {
@@ -46,6 +48,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					$this->save_settings( $_POST );
 				}
 			}
+
+			$this->connect_with_google_analytics();
 		}
 
 		/**
@@ -398,7 +402,140 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * @todo OAuth connection to Google.com?
 		 */
 		public function get_profiles() {
-			return array();
+
+			$option_name = 'Yoast_Google_Analytics';
+			$options     = get_option( $option_name );
+			$return      = array();
+
+			if( ! empty ( $options['ga_token'] ) ) {
+				$token = $options['ga_token'];
+
+				$args  = array(
+					'scope'              => 'https://www.googleapis.com/auth/analytics.readonly',
+					'xoauth_displayname' => 'Google Analytics for WordPress by Yoast',
+				);
+				$access_token = $options['gawp_oauth']['access_token'];
+				$gdata        = new WP_Gdata( $args, $access_token['oauth_token'], $access_token['oauth_token_secret'] );
+
+				$response  = $gdata->get( 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles' );
+				$http_code = wp_remote_retrieve_response_code( $response );
+				$response  = wp_remote_retrieve_body( $response );
+
+				if ( $http_code == 200 ) {
+					$options['ga_api_responses'][$token] = array(
+						'response' => array( 'code' => $http_code ),
+						'body'     => $response
+					);
+					$options['ga_token']                 = $token;
+					update_option( 'Yoast_Google_Analytics', $options );
+				}
+
+				$xml_reader  = new SimpleXMLElement( $options['ga_api_responses'][$token]['body'] );
+
+				if ( ! empty( $xml_reader->entry ) ) {
+
+					// Check whether the feed output is the new one, first set, or the old one, second set.
+					if ( $xml_reader->link['href'] == 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles' ) {
+						foreach ( $xml_reader->entry AS $entry ) {
+							$ns         = $entry->getNamespaces( true );
+							$properties = $entry->children( $ns['dxp'] )->property;
+
+							if ( isset ( $properties[1]->attributes()->value ) )
+								$ua = (string) trim( $properties[1]->attributes()->value );
+
+							if ( isset ( $properties[2]->attributes()->value ) )
+								$title = (string) trim( $properties[2]->attributes()->value );
+
+							if ( !empty( $ua ) && !empty( $title ) )
+								$ga_accounts[$ua] = $title;
+
+						}
+					} else {
+						if ( $xml_reader->link['href'] == 'https://www.google.com/analytics/feeds/accounts/default' ) {
+							foreach ( $xml_reader->entry AS $entry ) {
+								$ns         = $entry->getNamespaces( true );
+								$properties = $entry->children( $ns['dxp'] )->property;
+
+								if ( isset ( $properties[3]->attributes()->value ) )
+									$ua = (string) trim( $properties[3]->attributes()->value );
+
+								if ( isset ( $properties[2]->attributes()->value ) )
+									$title = (string) trim( $properties[2]->attributes()->value );
+
+								if ( !empty( $ua ) && !empty( $title ) )
+									$ga_accounts[$ua] = $title;
+
+							}
+						}
+					}
+
+					asort( $ga_accounts );
+
+					foreach ( $ga_accounts as $ga_ua => $ga_title ) {
+						$return[] = array(
+							'id'   => $ga_ua,
+							'name' => $ga_title . ' (' . $ga_ua . ')',
+						);
+					}
+				}
+			}
+
+			return $return;
+		}
+
+		/**
+		 * Checks if there is a callback or reauth to get token from Google Analytics api
+		 *
+		 */
+		private function connect_with_google_analytics() {
+
+			$option_name = 'Yoast_Google_Analytics';
+
+			if ( isset( $_REQUEST['ga_oauth_callback'] ) ) {
+				$o = get_option( $option_name );
+				if ( isset( $o['gawp_oauth']['oauth_token'] ) && $o['gawp_oauth']['oauth_token'] == $_REQUEST['oauth_token'] ) {
+					$gdata = new WP_GData(
+						array(
+							'scope'              => 'https://www.google.com/analytics/feeds/',
+							'xoauth_displayname' => 'Google Analytics for WordPress by Yoast'
+						),
+						$o['gawp_oauth']['oauth_token'],
+						$o['gawp_oauth']['oauth_token_secret']
+					);
+
+					$o['gawp_oauth']['access_token'] = $gdata->get_access_token( $_REQUEST['oauth_verifier'] );
+					unset( $o['gawp_oauth']['oauth_token'] );
+					unset( $o['gawp_oauth']['oauth_token_secret'] );
+					$o['ga_token'] = $o['gawp_oauth']['access_token']['oauth_token'];
+				}
+
+				update_option( $option_name, $o );
+
+				wp_redirect( menu_page_url( 'yst_ga_settings', false ) );
+				exit;
+			}
+
+			if ( ! empty ( $_GET['reauth'] ) ) {
+				$gdata = new WP_GData(
+					array(
+						'scope'              => 'https://www.google.com/analytics/feeds/',
+						'xoauth_displayname' => 'Google Analytics for WordPress by Yoast'
+					)
+				);
+
+				$oauth_callback = add_query_arg( array( 'ga_oauth_callback' => 1 ), menu_page_url( 'yst_ga_settings', false ) );
+				$request_token  = $gdata->get_request_token( $oauth_callback );
+
+				$options = get_option( $option_name );
+				unset( $options['ga_token'] );
+				unset( $options['gawp_oauth']['access_token'] );
+				$options['gawp_oauth']['oauth_token']        = $request_token['oauth_token'];
+				$options['gawp_oauth']['oauth_token_secret'] = $request_token['oauth_token_secret'];
+				update_option( $option_name, $options );
+
+				wp_redirect( $gdata->get_authorize_url( $request_token ) );
+				exit;
+			}
 		}
 
 		/**

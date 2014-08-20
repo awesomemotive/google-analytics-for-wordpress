@@ -19,17 +19,34 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			<?php
 			echo '<h2>' . __( 'General settings', 'google-analytics-for-wordpress' ) . '</h2>';
 			echo '<div id="ga-promote">';
-			if( count($yoast_ga_admin->get_profiles()) == 0 ){
 
+			$profiles = $yoast_ga_admin->get_profiles();
+			$ga_url   = $_SERVER['PHP_SELF'];
+			if ( isset( $_GET['page'] ) ) {
+				$ga_url .= '?page=' . $_GET['page'];
+			}
+			$ga_url .= '&reauth=true';
+
+			echo "<div id='google_ua_code_field'>";
+			if ( count( $profiles ) == 0 ) {
 				echo '<div class="ga-form ga-form-input">';
 				echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle" />' . __( 'Google profile', 'google-analytics-for-wordpress' ) . ':</label>';
-				echo '<input type="button" name="authenticate" value="' . __('Authenticate with your Google account', 'google-analytics-for-wordpress') . '" class="button button-primary ga-form-authenticate" id="ga-authenticate" />';
+				echo '<a class="button" href="' . $ga_url . '">' . __('Authenticate with your Google account', 'google-analytics-for-wordpress') . '</a>';
 				echo '</div>';
+				echo '<div class="ga-form ga-form-input">';
+				echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle" />' . __('Current UA-profile', 'google-analytics-for-wordpress') . '</label>';
+				echo $yoast_ga_admin->get_setting('analytics_profile');
+				echo '</div>';
+			} else {
+				echo $yoast_ga_admin->select( 'Analytics profile', 'analytics_profile', $profiles );
 
+				echo '<div class="ga-form ga-form-input">';
+				echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle" />&nbsp;</label>';
+				echo '<a class="button" href="' . $ga_url . '">' . __('Re-authenticate with your Google account', 'google-analytics-for-wordpress') . '</a>';
+				echo '</div>';
 			}
-			else{
-				echo $yoast_ga_admin->select( 'Analytics profile', 'analytics_profile', $yoast_ga_admin->get_profiles());
-			}
+			echo "</div>";
+
 			echo '<label class="ga-form ga-form-checkbox-label ga-form-label-left">';
 			echo $yoast_ga_admin->input( 'checkbox', NULL, 'manual_ua_code', 'Manually enter your UA code' );
 			echo '</label>';
