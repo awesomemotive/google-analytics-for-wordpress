@@ -42,7 +42,4 @@ if ( is_admin() ) {
 
 } else {
 	require_once GAWP_PATH . 'frontend/class-frontend.php';
-
-	// @todo, check here for the GA universal or JS Tracking
-	require_once GAWP_PATH . 'frontend/class-ga-js.php';
 }
