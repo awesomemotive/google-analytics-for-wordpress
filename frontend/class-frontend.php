@@ -17,6 +17,14 @@ if( !class_exists('Yoast_GA_Frontend') ){
 			if ( isset( self::$options['ga_general']['tag_links_in_rss'] ) && self::$options['ga_general']['tag_links_in_rss']==1 ){
 				add_filter( 'the_permalink_rss', array( $this, 'rsslinktagger' ), 99 );
 			}
+
+			// Check if the customer is running Universal or not (Enable in GA Settings -> Universal)
+			if ( isset( self::$options['ga_general']['enable_universal'] ) && self::$options['ga_general']['enable_universal']==1 ){
+				require_once GAWP_PATH . 'frontend/class-universal.php';
+			}
+			else{
+				require_once GAWP_PATH . 'frontend/class-ga-js.php';
+			}
 		}
 
 		public function get_options(){
