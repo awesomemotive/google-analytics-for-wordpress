@@ -64,6 +64,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					'manual_ua_code_field' => NULL,
 					'track_outbound'       => 0,
 					'anonymous_data'       => 0,
+					'enable_universal'     => 0,
 					'demographics'         => 0,
 					'ignore_users'         => 'editor',
 					'anonymize_ips'        => NULL,
@@ -144,7 +145,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function create_menu() {
 			// Add main page
-			add_menu_page( __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'General Settings', 'google-analytics-for-wordpress' ), __( 'Analytics', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_dashboard', array(
+			add_menu_page( __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'General Settings', 'google-analytics-for-wordpress' ), __( 'Dashboard', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_dashboard', array(
 				$this,
 				'load_page'
 			), plugins_url( 'images/yoast-icon.png', WPSEO_FILE ), '2.00013467543' );
@@ -212,10 +213,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function load_page() {
 
 			require_once GAWP_PATH . 'admin/class-admin-ga-js.php';
-			$ga_universal = false; // @todo get option if universal is enabled
-			if ( $ga_universal ) {
-				require_once GAWP_PATH . 'admin/class-admin-universal.php';
-			}
 
 			if ( isset( $_GET['page'] ) ) {
 				switch ( $_GET['page'] ) {
@@ -286,7 +283,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			$input .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
-				$input .= '<label class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . $this->form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
+				$input .= '<label class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . $this->form_namespace . '-' . $id . '" />' . $title . ':</label>';
 			}
 
 			if ( $type == 'checkbox' && $this->get_setting( $name ) == 1 ) {

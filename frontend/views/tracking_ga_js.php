@@ -1,20 +1,12 @@
-<!-- This site uses the Yoast Google Analytics plugin v<?php echo GAWP_VERSION; ?> - https://yoast.com/wordpress/plugins/google-analytics/ -->
+<!-- This site uses the Yoast Google Analytics plugin v<?php echo GAWP_VERSION; ?> - Universal disabled - https://yoast.com/wordpress/plugins/google-analytics/ -->
 <script type="text/javascript">
-	var ga_settings = {
-		download_types:"<?php echo $ga_settings['extensions_of_files']; ?>",
-		track_download:"<?php echo $ga_settings['track_download_as']; ?>"
-	};
 
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
+	var _gaq = _gaq || [];
 <?php
 	// List the GA elements from the class-ga-js.php
 	if( count( $gaq_push )>=1 ){
 		foreach($gaq_push as $item){
-			echo "	ga(".$item.");\n";
+			echo "	_gaq.push([".$item."]);\n";
 		}
 	}
 
@@ -23,6 +15,12 @@
 		echo "	" . stripslashes( $ga_settings['custom_code'] ) . "\n";
 	}
 	?>
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
 
 </script>
 <!-- / Yoast Google Analytics -->
