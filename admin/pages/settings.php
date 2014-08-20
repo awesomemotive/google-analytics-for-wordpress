@@ -7,6 +7,7 @@ echo $yoast_ga_admin->content_head();
 
 	<h2 class="nav-tab-wrapper" id="ga-tabs">
 		<a class="nav-tab" id="general-tab" href="#top#general"><?php _e( 'General', 'google-analytics-for-wordpress' ); ?></a>
+		<a class="nav-tab" id="universal-tab" href="#top#universal"><?php _e( 'Universal', 'google-analytics-for-wordpress' ); ?></a>
 		<a class="nav-tab" id="advanced-tab" href="#top#advanced"><?php _e( 'Advanced', 'google-analytics-for-wordpress' ); ?></a>
 		<a class="nav-tab" id="debugmode-tab" href="#top#debugmode"><?php _e( 'Debug mode', 'google-analytics-for-wordpress' ); ?></a>
 	</h2>
@@ -42,6 +43,12 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			echo $yoast_ga_admin->input( 'checkbox', __('Allow tracking of anonymous data', 'google-analytics-for-wordpress' ), 'anonymous_data' );
 			echo $yoast_ga_admin->select( 'Ignore users', 'ignore_users', $yoast_ga_admin->get_userroles(), __('Hint: Select multiple roles by using CTRL or CMD.', 'google-analytics-for-wordpress' ), true );
 			echo $yoast_ga_admin->input( 'checkbox', __('Anonymize IP\'s', 'google-analytics-for-wordpress' ), 'anonymize_ips' );
+			?>
+		</div>
+		<div id="universal" class="gatab">
+			<?php
+			echo '<h2>' . __( 'Universal settings', 'google-analytics-for-wordpress' ) . '</h2>';
+			echo $yoast_ga_admin->input( 'checkbox', __('Enable Universal tracking', 'google-analytics-for-wordpress' ), 'enable_universal' );
 			echo $yoast_ga_admin->input( 'checkbox', __('Enable Demographics and Interest Reports', 'google-analytics-for-wordpress' ), 'demographics' );
 			?>
 		</div>
