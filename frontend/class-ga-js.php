@@ -44,16 +44,25 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					$options['allowanchor'] = false;
 				}
 
+				$ua_code = '';
+				if ( ! empty( $options['analytics_profile'] ) ) {
+					$ua_code = $options['analytics_profile'];
+				}
+
+				if ( ! empty( $options['manual_ua_code_field'] ) && ! empty( $options['manual_ua_code'] ) ) {
+					$ua_code = $options['manual_ua_code_field'];
+				}
+
 				// Set tracking code here
-				if ( ! empty( $options['manual_ua_code_field'] ) ) {
+				if ( ! empty( $ua_code ) ) {
 					if ( $options['add_allow_linker'] && !$options['allowanchor']  ) {
-						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', '".$domain."', {'allowLinker': true}";
+						$gaq_push[] = "'create', '" . $ua_code . "', '".$domain."', {'allowLinker': true}";
 					} else if ( $options['allowanchor'] && !$options['add_allow_linker'] ){
-						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', '".$domain."', {'allowAnchor': true}";
+						$gaq_push[] = "'create', '" . $ua_code . "', '".$domain."', {'allowAnchor': true}";
 					} else if ( $options['allowanchor'] && $options['add_allow_linker'] ){
-						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', '".$domain."', {'allowAnchor': true, 'allowLinker': true}";
+						$gaq_push[] = "'create', '" . $ua_code . "', '".$domain."', {'allowAnchor': true, 'allowLinker': true}";
 					} else {
-						$gaq_push[] = "'create', '" . $options['manual_ua_code_field'] . "', '".$domain."'";
+						$gaq_push[] = "'create', '" . $ua_code . "', '".$domain."'";
 					}
 				}
 

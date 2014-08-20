@@ -24,14 +24,17 @@ jQuery(document).ready(function() {
 	jQuery('#yoast-ga-form-checkbox-settings-manual_ua_code').click(function(){
 		if(jQuery(this).is(':checked')){
 			jQuery('#enter_ua').show();
+			jQuery('#google_ua_code_field').hide();
 		}
 		else{
 			jQuery('#enter_ua').hide();
+			jQuery('#google_ua_code_field').show();
 			jQuery('#yoast-ga-form-text-settings-manual_ua_code_field').attr('value','');
 		}
 	});
 
 	if(jQuery("#yoast-ga-form-checkbox-settings-manual_ua_code").is(':checked')){
 		jQuery('#enter_ua').show();
+		jQuery('#google_ua_code_field').hide();
 	}
 });
