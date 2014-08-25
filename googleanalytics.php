@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Google Analytics for WordPress
+Plugin Name: Google Analytics by Yoast
 Plugin URI: http://yoast.com/wordpress/google-analytics/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wpgaplugin&utm_content=v420
 Description: This plugin makes it simple to add Google Analytics to your WordPress blog, adding lots of features, eg. custom variables and automatic clickout and download tracking.
 Author: Joost de Valk
