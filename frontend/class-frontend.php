@@ -44,15 +44,15 @@ if( !class_exists('Yoast_GA_Frontend') ){
 			if ( 0 == $current_user->ID ) {
 				return true;
 			}
-
-			if(isset($options["ignore_users"])){
-				if ( in_array( $current_user->roles[0], $options["ignore_users"] ) ) {
-					return false;
-				} else {
-					return true;
+			if( isset ( $options["ignore_users"] ) ) {
+				if ( is_array( $current_user->roles ) ) {
+					if ( array_key_exists( '0', $current_user->roles ) ) {
+						if ( in_array( $current_user->roles[0], $options["ignore_users"] ) ) {
+							false;
+						}
+					}
 				}
-			}
-			else{
+
 				return true;
 			}
 		}
