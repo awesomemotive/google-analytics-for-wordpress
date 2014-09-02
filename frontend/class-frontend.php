@@ -3,31 +3,30 @@
  * The basic frontend class for the GA plugin, extendable for the children
  */
 
-if( !class_exists('Yoast_GA_Frontend') ){
+if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
 	class Yoast_GA_Frontend {
 
 		public static $options = array();
 
-		public function __construct(){
+		public function __construct() {
 			self::$options = get_option( 'yst_ga' );
 
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_ga_javascript' ), 9 );
 
-			if ( isset( self::$options['ga_general']['tag_links_in_rss'] ) && self::$options['ga_general']['tag_links_in_rss']==1 ){
+			if ( isset( self::$options['ga_general']['tag_links_in_rss'] ) && self::$options['ga_general']['tag_links_in_rss'] == 1 ) {
 				add_filter( 'the_permalink_rss', array( $this, 'rsslinktagger' ), 99 );
 			}
 
 			// Check if the customer is running Universal or not (Enable in GA Settings -> Universal)
-			if ( isset( self::$options['ga_general']['enable_universal'] ) && self::$options['ga_general']['enable_universal']==1 ){
+			if ( isset( self::$options['ga_general']['enable_universal'] ) && self::$options['ga_general']['enable_universal'] == 1 ) {
 				require_once GAWP_PATH . 'frontend/class-universal.php';
-			}
-			else{
+			} else {
 				require_once GAWP_PATH . 'frontend/class-ga-js.php';
 			}
 		}
 
-		public function get_options(){
+		public function get_options() {
 			return self::$options;
 		}
 
@@ -45,14 +44,13 @@ if( !class_exists('Yoast_GA_Frontend') ){
 				return true;
 			}
 
-			if(isset($options["ignore_users"])){
-				if ( in_array( $current_user->roles[0], $options["ignore_users"] ) ) {
+			if ( isset( $options['ignore_users'] ) ) {
+				if ( in_array( $current_user->roles[0], $options['ignore_users'] ) ) {
 					return false;
 				} else {
 					return true;
 				}
-			}
-			else{
+			} else {
 				return true;
 			}
 		}
@@ -61,11 +59,12 @@ if( !class_exists('Yoast_GA_Frontend') ){
 		 * Hook a Google Analytics Javascript to track downloads and outbound links
 		 */
 		public function add_ga_javascript() {
-			wp_enqueue_script( 'yst_ga', GAWP_URL .'frontend/js/yst_ga.js', array(), false, true );
+			wp_enqueue_script( 'yst_ga', GAWP_URL . 'frontend/js/yst_ga.js', array(), false, true );
 		}
 
 		/**
 		 * Parse the domain
+		 *
 		 * @param $uri
 		 *
 		 * @return array|bool
@@ -77,10 +76,11 @@ if( !class_exists('Yoast_GA_Frontend') ){
 
 			preg_match( $hostPattern, $uri, $matches );
 			$host = $matches[2];
-			if ( preg_match( "/.*\..*\..*\..*$/", $host ) )
+			if ( preg_match( "/.*\..*\..*\..*$/", $host ) ) {
 				preg_match( $domainPatternUK, $host, $matches );
-			else
+			} else {
 				preg_match( $domainPatternUS, $host, $matches );
+			}
 
 			if ( isset( $matches[0] ) ) {
 				return array( "domain" => $matches[0], "host" => $host );
@@ -91,6 +91,7 @@ if( !class_exists('Yoast_GA_Frontend') ){
 
 		/**
 		 * Add the UTM source parameters in the RSS feeds to track traffic
+		 *
 		 * @param $guid
 		 *
 		 * @return string
@@ -102,15 +103,118 @@ if( !class_exists('Yoast_GA_Frontend') ){
 					$delimiter = '#';
 				} else {
 					$delimiter = '?';
-					if ( strpos( $guid, $delimiter ) > 0 )
+					if ( strpos( $guid, $delimiter ) > 0 ) {
 						$delimiter = '&amp;';
+					}
 				}
+
 				return $guid . $delimiter . 'utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=' . urlencode( $post->post_name );
 			}
+
 			return $guid;
+		}
+
+		/**
+		 * Return the target with a lot of parameters
+		 * @param $category
+		 * @param $matches
+		 *
+		 * @return array
+		 */
+		public function get_target( $category, $matches ) {
+			$protocol = $matches[2];
+			$domain   = $this->yoast_ga_get_domain( $matches[3] );
+			$origin   = $this->yoast_ga_get_domain( $_SERVER['HTTP_HOST'] );
+			$options = self::$options['ga_general'];
+			$download_extensions = explode( ",", str_replace( '.', '', $options['extensions_of_files'] ) );
+			$extension = substr( strrchr( $matches[3], '.' ), 1 );
+
+			// Break out immediately if the link is not an http or https link.
+			if ( $protocol != 'http' && $protocol != 'https' && $protocol != 'mailto' ) {
+				$type = NULL;
+			} else {
+				if ( ( $protocol == 'mailto' ) ) {
+					$type = 'email';
+				} elseif ( in_array( $extension, $download_extensions ) ){
+					$type	=	'download';
+				}
+				else {
+					if ( $domain['domain'] == $origin['domain'] ) {
+						$type = 'inbound';
+					} elseif ( $domain['domain'] != $origin['domain'] ) {
+						$type = 'outbound';
+					}
+				}
+			}
+
+			return array(
+				'category'        => $category,
+				'type'            => $type,
+				'protocol'        => $protocol,
+				'domain'          => $domain['domain'],
+				'host'            => $domain['host'],
+				'origin_domain'   => $origin['domain'],
+				'origin_host'     => $origin['host'],
+				'extension'       => $extension,
+				'link_attributes' => rtrim( $matches[1] . ' ' . $matches[4] ),
+				'link_text'       => $matches[5],
+				'original_url'    => $matches[3]
+			);
+		}
+
+		/**
+		 * Merge the existing onclick with a new one and append it
+		 *
+		 * @param $link_attribute
+		 * @param $onclick
+		 *
+		 * @return string
+		 */
+		public function output_add_onclick( $link_attribute, $onclick ){
+
+			if ( preg_match( '/onclick=[\'\"](.*?;)[\'\"]/i', $link_attribute, $matches ) > 0 ) {
+				$js_snippet = ' onclick="' . $matches[1] . ' ' . $onclick . '"';
+
+				return $js_snippet;
+			}
+			else{
+				return 'raar';
+			}
+
+		}
+
+		/**
+		 * Parse a link
+		 *
+		 * @param $category
+		 * @param $matches
+		 *
+		 * @return string
+		 */
+		public function parse_link( $category, $matches ) {
+			$options = self::$options['ga_general'];
+
+			//if ( $link_type ) {
+				$js_track_snippet = $this->get_target( $category, $matches );
+			//}
+//
+//			if ( $trackBit != "" ) {
+//				if ( preg_match( '/onclick=[\'\"](.*?)[\'\"]/i', $matches[4] ) > 0 ) {
+//					// Check for manually tagged outbound clicks, and replace them with the tracking of choice.
+//					if ( preg_match( '/.*_track(Pageview|Event).*/i', $matches[4] ) > 0 ) {
+//						$matches[4] = preg_replace( '/onclick=[\'\"](javascript:)?(.*;)?[a-zA-Z0-9]+\._track(Pageview|Event)\([^\)]+\)(;)?(.*)?[\'\"]/i', 'onclick="javascript:' . $trackBit . '$2$5"', $matches[4] );
+//					} else {
+//						$matches[4] = preg_replace( '/onclick=[\'\"](javascript:)?(.*?)[\'\"]/i', 'onclick="javascript:' . $trackBit . '$2"', $matches[4] );
+//					}
+//				} else {
+//					$matches[4] = 'onclick="javascript:' . $trackBit . '"' . $matches[4];
+//				}
+//			}
+//
+//			return '<a ' . $matches[1] . 'href="' . $matches[2] . '//' . $matches[3] . '"' . ' ' . $matches[4] . '>' . $matches[5] . '</a>';
 		}
 	}
 
 	global $yoast_ga_frontend;
-	$yoast_ga_frontend	=	new Yoast_GA_Frontend;
+	$yoast_ga_frontend = new Yoast_GA_Frontend;
 }

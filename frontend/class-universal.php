@@ -79,7 +79,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 					$gaq_push[] = "'set', 'anonymizeIp', true";
 				}
 
-				// add _setAllowLinker
+				// add demographics
 				if ( $options['demographics'] ) {
 					$gaq_push[] = "'require', 'displayfeatures'";
 				}
