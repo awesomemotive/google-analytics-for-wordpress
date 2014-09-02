@@ -143,7 +143,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 *
 		 * @todo, we need to implement a new icon for this, currently we're using the WP seo icon
 		 */
-		public function create_menu() {
+		public function create_menu( $param = NULL ) {
 			// Add main page
 			add_menu_page( __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'General Settings', 'google-analytics-for-wordpress' ), __( 'Analytics', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_dashboard', array(
 				$this,
@@ -494,7 +494,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					$gdata = new WP_GData(
 						array(
 							'scope'              => 'https://www.google.com/analytics/feeds/',
-							'xoauth_displayname' => 'Google Analytics for WordPress by Yoast'
+							'xoauth_displayname' => 'Google Analytics by Yoast'
 						),
 						$o['gawp_oauth']['oauth_token'],
 						$o['gawp_oauth']['oauth_token_secret']
@@ -516,7 +516,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				$gdata = new WP_GData(
 					array(
 						'scope'              => 'https://www.google.com/analytics/feeds/',
-						'xoauth_displayname' => 'Google Analytics for WordPress by Yoast'
+						'xoauth_displayname' => 'Google Analytics by Yoast'
 					)
 				);
 
