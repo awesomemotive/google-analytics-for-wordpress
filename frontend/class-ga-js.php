@@ -82,81 +82,6 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					$gaq_push[] = "'_gat._anonymizeIp',true";
 				}
 
-//				if ( $options['cv_loggedin'] ) {
-//					if ( $current_user && $current_user->ID != 0 )
-//						$gaq_push[] = "'_setCustomVar',$customvarslot,'logged-in','" . $current_user->roles[0] . "',1";
-//					// Customvar slot needs to be upped even when the user is not logged in, to make sure the variables below are always in the same slot.
-//					$customvarslot++;
-//				}
-
-//				if ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() ) {
-//					if ( $options['cv_post_type'] ) {
-//						$post_type = get_post_type();
-//						if ( $post_type ) {
-//							$gaq_push[] = "'_setCustomVar'," . $customvarslot . ",'post_type','" . $post_type . "',3";
-//							$customvarslot++;
-//						}
-//					}
-//				} else if ( is_singular() && !is_home() ) {
-//					if ( $options['cv_post_type'] ) {
-//						$post_type = get_post_type();
-//						if ( $post_type ) {
-//							$gaq_push[] = "'_setCustomVar'," . $customvarslot . ",'post_type','" . $post_type . "',3";
-//							$customvarslot++;
-//						}
-//					}
-//					if ( $options['cv_authorname'] ) {
-//						$push[] = "'_setCustomVar',$customvarslot,'author','" . $this->str_clean( get_the_author_meta( 'display_name', $wp_query->post->post_author ) ) . "',3";
-//						$customvarslot++;
-//					}
-//					if ( $options['cv_tags'] ) {
-//						$i = 0;
-//						if ( get_the_tags() ) {
-//							$tagsstr = '';
-//							foreach ( get_the_tags() as $tag ) {
-//								if ( $i > 0 )
-//									$tagsstr .= ' ';
-//								$tagsstr .= $tag->slug;
-//								$i++;
-//							}
-//							// Max 64 chars for value and label combined, hence 64 - 4
-//							$tagsstr = substr( $tagsstr, 0, 60 );
-//							$gaq_push[]  = "'_setCustomVar',$customvarslot,'tags','" . $tagsstr . "',3";
-//						}
-//						$customvarslot++;
-//					}
-//					if ( is_singular() ) {
-//						if ( $options['cv_year'] ) {
-//							$gaq_push[] = "'_setCustomVar',$customvarslot,'year','" . get_the_time( 'Y' ) . "',3";
-//							$customvarslot++;
-//						}
-//						if ( $options['cv_category'] && is_single() ) {
-//							$cats = get_the_category();
-//							if ( is_array( $cats ) && isset( $cats[0] ) )
-//								$gaq_push[] = "'_setCustomVar',$customvarslot,'category','" . $cats[0]->slug . "',3";
-//							$customvarslot++;
-//						}
-//						if ( $options['cv_all_categories'] && is_single() ) {
-//							$i       = 0;
-//							$catsstr = '';
-//							foreach ( (array) get_the_category() as $cat ) {
-//								if ( $i > 0 )
-//									$catsstr .= ' ';
-//								$catsstr .= $cat->slug;
-//								$i++;
-//							}
-//							// Max 64 chars for value and label combined, hence 64 - 10
-//							$catsstr = substr( $catsstr, 0, 54 );
-//							$gaq_push[]  = "'_setCustomVar',$customvarslot,'categories','" . $catsstr . "',3";
-//							$customvarslot++;
-//						}
-//					}
-//				}
-
-//				$gaq_push = apply_filters( 'yoast-ga-custom-vars', $gaq_push, $customvarslot );
-//
-//				$gaq_push = apply_filters( 'yoast-ga-push-before-pageview', $gaq_push );
-
 				if ( is_404() ) {
 					$gaq_push[] = "'send','pageview','/404.html?page=' + document.location.pathname + document.location.search + '&from=' + document.referrer";
 				} else {
@@ -210,35 +135,30 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		 * @return mixed
 		 */
 		private function output_parse_link( $link ){
-
-			echo '<pre>';
-			print_r($link);
-			echo '</pre>';
-
 			$onclick = NULL;
 
 			switch( $link['type'] ){
 				case 'download':
-
 					if( $link['action'] == 'pageview' ){
-						$onclick = "['_trackPageview','download/" . esc_js( esc_url( $link['target'] ) ) . "']";
+						$onclick = "_gaq.push(['_trackPageview','download/" . esc_js( esc_url( $link['target'] ) ) . "']);";
 					}
 					else{
-						$onclick = "['_trackEvent','mailto','" . esc_js( esc_url( $link['target'] ) ) . "']";
+						$onclick = "_gaq.push(['_trackEvent','download/" . esc_js( esc_url( $link['target'] ) ) . "']);";
 					}
 
 					break;
 				case 'mailto':
+					if( $link['action'] == 'pageview' ){
+						$onclick = "_gaq.push(['_trackPageview','mailto','" . esc_js( esc_url( $link['target'] ) ) . "']);";
+					}
+					else{
+						$onclick = "_gaq.push(['_trackEvent','mailto','" . esc_js( esc_url( $link['target'] ) ) . "']);";
+					}
 
 					break;
 			}
 
-			if(strpos($link['link_attributes'], 'onclick')){
-				$link['link_attributes']	.=	$this->output_add_onclick($link['link_attributes'], $onclick);
-			}
-			else{
-				$link['link_attributes']	.=	' onclick="' . $onclick . '"';
-			}
+			$link['link_attributes']	=	$this->output_add_onclick($link['link_attributes'], $onclick);
 
 			return '<a href="' . $link['protocol'] . '://' . $link['original_url'] . '" ' . $link['link_attributes'] . '>' . $link['link_text'] . '</a>';
 

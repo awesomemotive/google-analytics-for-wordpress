@@ -171,16 +171,19 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		 * @return string
 		 */
 		public function output_add_onclick( $link_attribute, $onclick ){
-
 			if ( preg_match( '/onclick=[\'\"](.*?;)[\'\"]/i', $link_attribute, $matches ) > 0 ) {
-				$js_snippet = ' onclick="' . $matches[1] . ' ' . $onclick . '"';
+				$js_snippet_single = "onclick='" . $matches[1] . " " . $onclick ."'";
+				$js_snippet_double = 'onclick="' . $matches[1] . ' ' . $onclick .'"';
 
-				return $js_snippet;
+				//echo '<br> onclick="'.$js_snippet_single.'"<br>';
+				$link_attribute = str_replace('onclick="'.$matches[1].'"', $js_snippet_double, $link_attribute);
+				$link_attribute = str_replace("onclick='".$matches[1]."'", $js_snippet_single, $link_attribute);
+
+				return $link_attribute;
 			}
 			else{
-				return 'raar';
+				return " onclick='" . $onclick ."'";
 			}
-
 		}
 
 		/**
