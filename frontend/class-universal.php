@@ -138,18 +138,17 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 		 *
 		 * @return mixed
 		 */
-		private function output_parse_link( $link ){
-			$onclick = NULL;
-			$options = $this->get_options();
-			$options = $options['ga_general'];
+		private function output_parse_link( $link ) {
+			$onclick  = NULL;
+			$options  = $this->get_options();
+			$options  = $options['ga_general'];
 			$full_url = $this->make_full_url( $link );
 
-			switch( $link['type'] ){
+			switch ( $link['type'] ) {
 				case 'download':
-					if( $options['track_download_as'] == 'pageview' ){
+					if ( $options['track_download_as'] == 'pageview' ) {
 						$onclick = "ga('send', 'pageview', '" . esc_js( $full_url ) . "');";
-					}
-					else{
+					} else {
 						$onclick = "ga('send', 'event', 'download', '" . esc_js( $full_url ) . "');";
 					}
 
@@ -158,21 +157,29 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 					$onclick = "ga('send', 'event', 'mailto', '" . esc_js( $link['original_url'] ) . "');";
 
 					break;
-				case 'inbound':
-					if($options['track_inbound']==1){
-						$onclick = "ga('send', 'event', 'inbound-link', '" . esc_js( $full_url ) . "', '" . esc_js( $link['link_text'] ) . "');";
+				case 'internal-as-outbound':
+					if ( ! is_null( $options['track_internal_as_label'] ) ) {
+						$label = $options['track_internal_as_label'];
+					} else {
+						$label = 'int';
 					}
+
+					$onclick = "ga('send', 'event', '" . $link['category'] . "-" . $label . "', '" . esc_js( $full_url ) . "', '" . esc_js( $link['link_text'] ) . "');";
+
+					break;
+				case 'internal':
+					$onclick = NULL;
 
 					break;
 				case 'outbound':
-					if($options['track_outbound']==1){
-						$onclick = "ga('send', 'event', '".$link['category']."', '" . esc_js( $full_url ) . "', '" . esc_js( $link['link_text'] ) . "');";
+					if ( $options['track_outbound'] == 1 ) {
+						$onclick = "ga('send', 'event', '" . $link['category'] . "', '" . esc_js( $full_url ) . "', '" . esc_js( $link['link_text'] ) . "');";
 					}
 
 					break;
 			}
 
-			$link['link_attributes']	=	$this->output_add_onclick($link['link_attributes'], $onclick);
+			$link['link_attributes'] = $this->output_add_onclick( $link['link_attributes'], $onclick );
 
 			return '<a href="' . $full_url . '" ' . $link['link_attributes'] . '>' . $link['link_text'] . '</a>';
 
@@ -180,6 +187,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 		/**
 		 * Parse article link
+		 *
 		 * @param $matches
 		 *
 		 * @return mixed
@@ -190,6 +198,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 		/**
 		 * Parse comment link
+		 *
 		 * @param $matches
 		 *
 		 * @return mixed
@@ -200,6 +209,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 		/**
 		 * Parse widget link
+		 *
 		 * @param $matches
 		 *
 		 * @return mixed
@@ -210,6 +220,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 		/**
 		 * Parse menu link
+		 *
 		 * @param $matches
 		 *
 		 * @return mixed
@@ -220,63 +231,72 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 		/**
 		 * Parse the_content or the_excerpt for links
+		 *
 		 * @param $text
 		 *
 		 * @return mixed
 		 */
 		public function the_content( $text ) {
-			if ( false == $this->do_tracking() ){
+			if ( false == $this->do_tracking() ) {
 				return $text;
 			}
 
-			if ( !is_feed() ) {
+			if ( ! is_feed() ) {
 				$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_article_link' ), $text );
 			}
+
 			return $text;
 		}
 
 		/**
 		 * Parse the widget content for links
+		 *
 		 * @param $text
 		 *
 		 * @return mixed
 		 */
 		public function widget_content( $text ) {
-			if ( !$this->do_tracking() )
+			if ( ! $this->do_tracking() ) {
 				return $text;
+			}
 			$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_widget_link' ), $text );
+
 			return $text;
 		}
 
 		/**
 		 * Parse the nav menu for links
+		 *
 		 * @param $text
 		 *
 		 * @return mixed
 		 */
 		public function nav_menu( $text ) {
-			if ( !$this->do_tracking() )
+			if ( ! $this->do_tracking() )
 				return $text;
 
-			if ( !is_feed() ) {
+			if ( ! is_feed() ) {
 				$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_nav_menu' ), $text );
 			}
+
 			return $text;
 		}
 
 		/**
 		 * Parse comment text for links
+		 *
 		 * @param $text
 		 *
 		 * @return mixed
 		 */
 		public function comment_text( $text ) {
-			if ( !$this->do_tracking() )
+			if ( ! $this->do_tracking() )
 				return $text;
 
-			if ( !is_feed() ) {
+			if ( ! is_feed() ) {
 				$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_comment_link' ), $text );
 			}
+
 			return $text;
 		}
 	}
