@@ -221,6 +221,25 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 //
 //			return '<a ' . $matches[1] . 'href="' . $matches[2] . '//' . $matches[3] . '"' . ' ' . $matches[4] . '>' . $matches[5] . '</a>';
 		}
+
+		/**
+		 * Generate the full URL
+		 * @param $link
+		 *
+		 * @return string
+		 */
+		public function make_full_url( $link ){
+			switch($link['type']){
+				case "download":
+				case "inbound":
+				case "outbound":
+					return $link['protocol'] .'://'. $link['original_url'];
+					break;
+				case "email":
+					return 'mailto:'. $link['original_url'];
+					break;
+			}
+		}
 	}
 
 	global $yoast_ga_frontend;

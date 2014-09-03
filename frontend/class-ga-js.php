@@ -137,20 +137,20 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		private function output_parse_link( $link ){
 			$onclick = NULL;
 			$options = $this->get_options()['ga_general'];
-			$full_url = $link['protocol'] .'://'. $link['original_url'];
+			$full_url = $this->make_full_url( $link );
 
 			switch( $link['type'] ){
 				case 'download':
 					if( $options['track_download_as'] == 'pageview' ){
-						$onclick = "_gaq.push(['_trackPageview','download/" . esc_js( esc_url( $full_url ) ) . "']);";
+						$onclick = "_gaq.push(['_trackPageview','download/" . esc_js( $full_url ) . "']);";
 					}
 					else{
-						$onclick = "_gaq.push(['_trackEvent','download/" . esc_js( esc_url( $full_url ) ) . "']);";
+						$onclick = "_gaq.push(['_trackEvent','download/" . esc_js( $full_url ) . "']);";
 					}
 
 					break;
-				case 'mailto':
-					$onclick = "_gaq.push(['_trackEvent','mailto','" . esc_js( esc_url( $full_url ) ) . "']);";
+				case 'email':
+					$onclick = "_gaq.push(['_trackEvent','mailto','" . esc_js( $link['original_url'] ) . "']);";
 
 					break;
 				case 'inbound':
