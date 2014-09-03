@@ -54,12 +54,13 @@ h2#yoast_ga_title {
 
 #yoast-ga-wrapper {
 	display: table;
-	width: 100%;
+	width: auto;
+	max-width: 1150px;
 }
 
 .yoast-ga-content {
 	display: table-cell;
-	min-width: 880px;
+	min-width: 850px;
 	height: 500px;
 	padding: 0;
 	margin: 0;
@@ -92,6 +93,8 @@ h2#yoast_ga_title {
 .ga-form-description {
 	color: #999999;
 	max-width: 325px;
+	display: block;
+	float: right;
 }
 
 p.ga-topdescription {
