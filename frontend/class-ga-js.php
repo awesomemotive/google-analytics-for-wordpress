@@ -137,6 +137,8 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		private function output_parse_link( $link ){
 			$onclick = NULL;
 
+			echo $link['type'].'<br>';
+
 			switch( $link['type'] ){
 				case 'download':
 					if( $link['action'] == 'pageview' ){
@@ -154,6 +156,20 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					else{
 						$onclick = "_gaq.push(['_trackEvent','mailto','" . esc_js( esc_url( $link['target'] ) ) . "']);";
 					}
+
+					break;
+				case 'inbound':
+					if( $link['action'] == 'pageview' ){
+						$onclick = "_gaq.push(['_trackPageview','download/" . esc_js( esc_url( $link['target'] ) ) . "']);";
+					}
+					else{
+						$onclick = "_gaq.push(['_trackEvent','download/" . esc_js( esc_url( $link['target'] ) ) . "']);";
+					}
+
+					break;
+				case 'outbound':
+					$onclick = "";
+					'_gaq.push([\'_link\', \'' . $matches[2] . '//' . $matches[3] . '\']); return false;"'
 
 					break;
 			}
