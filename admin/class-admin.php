@@ -51,7 +51,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					add_settings_error(
 						'yoast_google_analytics',
 						'yoast_google_analytics',
-						__('Settings saved!', 'google-analytics-for-wordpress'),
+						__( 'Settings saved!', 'google-analytics-for-wordpress' ),
 						'updated'
 					);
 				}
@@ -634,6 +634,16 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				'url'    => 'https://yoast.com',
 				'banner' => GAWP_URL . 'img/banner-website-review.png',
 				'title'  => 'Get a website review by Yoast'
+			);
+			$banners[] = array(
+				'url'    => 'https://yoast.com',
+				'banner' => GAWP_URL . 'img/banner-premium-seo.png',
+				'title'  => 'Get WordPress SEO premium'
+			);
+			$banners[] = array(
+				'url'    => 'https://yoast.com',
+				'banner' => GAWP_URL . 'img/banner-video-seo.png',
+				'title'  => 'Get Video SEO'
 			);
 
 			if ( class_exists( 'Woocommerce' ) ) {
