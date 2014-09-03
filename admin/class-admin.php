@@ -37,6 +37,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function init_settings() {
 			$this->options = get_option( 'yst_ga' );
+
 			if ( false == $this->options ) {
 				add_option( 'yst_ga', $this->default_ga_values() );
 				$this->options = get_option( 'yst_ga' );
@@ -46,6 +47,13 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				if ( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ) {
 					// Post submitted and verified with our nonce
 					$this->save_settings( $_POST );
+
+					add_settings_error(
+						'yoast_google_analytics',
+						'yoast_google_analytics',
+						__('Settings saved!', 'google-analytics-for-wordpress'),
+						'updated'
+					);
 				}
 			}
 
@@ -220,6 +228,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				switch ( $_GET['page'] ) {
 					case 'yst_ga_settings':
 						require_once( GAWP_PATH . 'admin/pages/settings.php' );
+
 						break;
 					case 'yst_ga_licenses':
 						require_once( GAWP_PATH . 'admin/pages/extensions.php' );
