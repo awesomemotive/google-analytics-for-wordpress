@@ -136,31 +136,31 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 		private function output_parse_link( $link ){
 			$onclick = NULL;
 			$options = $this->get_options()['ga_general'];
-			$full_url = $link['protocol'] .'://'. $link['original_url'];
+			$full_url = $this->make_full_url( $link );
 
 			switch( $link['type'] ){
 				case 'download':
 					if( $options['track_download_as'] == 'pageview' ){
-						$onclick = "ga('send', 'pageview', '" . esc_js( esc_url( $full_url ) ) . "');";
+						$onclick = "ga('send', 'pageview', '" . esc_js( $full_url ) . "');";
 					}
 					else{
-						$onclick = "ga('send', 'event', 'download', '" . esc_js( esc_url( $full_url ) ) . "');";
+						$onclick = "ga('send', 'event', 'download', '" . esc_js( $full_url ) . "');";
 					}
 
 					break;
-				case 'mailto':
-					$onclick = "ga('send', 'event', 'mailto', '" . esc_js( esc_url( $full_url ) ) . "');";
+				case 'email':
+					$onclick = "ga('send', 'event', 'mailto', '" . esc_js( $link['original_url'] ) . "');";
 
 					break;
 				case 'inbound':
 					if($options['track_inbound']==1){
-						$onclick = "ga('send', 'event', 'inbound-link', '" . esc_js( esc_url( $full_url ) ) . "');";
+						$onclick = "ga('send', 'event', 'inbound-link', '" . esc_js( $full_url ) . "', '" . esc_js( $link['link_text'] ) . "');";
 					}
 
 					break;
 				case 'outbound':
 					if($options['track_outbound']==1){
-						$onclick = "ga('send', 'event', '".$link['category']."', '" . esc_js( esc_url( $full_url ) ) . "');";
+						$onclick = "ga('send', 'event', '".$link['category']."', '" . esc_js( $full_url ) . "', '" . esc_js( $link['link_text'] ) . "');";
 					}
 
 					break;
