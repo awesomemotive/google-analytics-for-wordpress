@@ -182,7 +182,12 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 				return $link_attribute;
 			}
 			else{
-				return " onclick='" . $onclick ."'";
+				if(!is_null($onclick)){
+					return " onclick='" . $onclick ."'";
+				}
+				else{
+					return "";
+				}
 			}
 		}
 
