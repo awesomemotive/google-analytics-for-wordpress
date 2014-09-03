@@ -611,6 +611,16 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				'banner' => GAWP_URL . 'img/banner-website-review.png',
 				'title'  => 'Get a website review by Yoast'
 			);
+			$banners[] = array(
+				'url'    => 'https://yoast.com',
+				'banner' => GAWP_URL . 'img/banner-premium-seo.png',
+				'title'  => 'Get WordPress SEO premium'
+			);
+			$banners[] = array(
+				'url'    => 'https://yoast.com',
+				'banner' => GAWP_URL . 'img/banner-video-seo.png',
+				'title'  => 'Get Video SEO'
+			);
 
 			if ( class_exists( 'Woocommerce' ) ) {
 				$banners[] = array(
