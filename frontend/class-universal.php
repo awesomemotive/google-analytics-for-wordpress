@@ -135,7 +135,8 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 		 */
 		private function output_parse_link( $link ){
 			$onclick = NULL;
-			$options = $this->get_options()['ga_general'];
+			$options = $this->get_options();
+			$options = $options['ga_general'];
 			$full_url = $this->make_full_url( $link );
 
 			switch( $link['type'] ){
