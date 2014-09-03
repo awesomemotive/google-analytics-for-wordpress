@@ -411,6 +411,12 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function get_profiles() {
 
+			// Enqueue the chosen css file
+			wp_enqueue_style( 'chosen_css', plugins_url( 'js/chosen.css', GAWP_FILE ) );
+
+			// Eqneue the chosen js file
+			wp_enqueue_script( 'chosen_js', plugins_url( 'js/chosen.jquery.min.js', GAWP_FILE ), array(), false, true );
+
 			$option_name = 'Yoast_Google_Analytics';
 			$options     = get_option( $option_name );
 			$return      = array();
