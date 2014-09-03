@@ -136,40 +136,33 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		 */
 		private function output_parse_link( $link ){
 			$onclick = NULL;
-
-			echo $link['type'].'<br>';
+			$options = $this->get_options()['ga_general'];
+			$full_url = $link['protocol'] .'://'. $link['original_url'];
 
 			switch( $link['type'] ){
 				case 'download':
-					if( $link['action'] == 'pageview' ){
-						$onclick = "_gaq.push(['_trackPageview','download/" . esc_js( esc_url( $link['target'] ) ) . "']);";
+					if( $options['track_download_as'] == 'pageview' ){
+						$onclick = "_gaq.push(['_trackPageview','download/" . esc_js( esc_url( $full_url ) ) . "']);";
 					}
 					else{
-						$onclick = "_gaq.push(['_trackEvent','download/" . esc_js( esc_url( $link['target'] ) ) . "']);";
+						$onclick = "_gaq.push(['_trackEvent','download/" . esc_js( esc_url( $full_url ) ) . "']);";
 					}
 
 					break;
 				case 'mailto':
-					if( $link['action'] == 'pageview' ){
-						$onclick = "_gaq.push(['_trackPageview','mailto','" . esc_js( esc_url( $link['target'] ) ) . "']);";
-					}
-					else{
-						$onclick = "_gaq.push(['_trackEvent','mailto','" . esc_js( esc_url( $link['target'] ) ) . "']);";
-					}
+					$onclick = "_gaq.push(['_trackEvent','mailto','" . esc_js( esc_url( $full_url ) ) . "']);";
 
 					break;
 				case 'inbound':
-					if( $link['action'] == 'pageview' ){
-						$onclick = "_gaq.push(['_trackPageview','download/" . esc_js( esc_url( $link['target'] ) ) . "']);";
-					}
-					else{
-						$onclick = "_gaq.push(['_trackEvent','download/" . esc_js( esc_url( $link['target'] ) ) . "']);";
+					if($options['track_inbound']==1){
+						$onclick = "_gaq.push(['_trackEvent', 'inbound-link', '".$full_url."', '".$link['link_text']."']);";
 					}
 
 					break;
 				case 'outbound':
-					$onclick = "";
-					'_gaq.push([\'_link\', \'' . $matches[2] . '//' . $matches[3] . '\']); return false;"'
+					if($options['track_outbound']==1){
+						$onclick = "_gaq.push(['_trackEvent', '".$link['category']."', '".$full_url."', '".$link['link_text']."']);";
+					}
 
 					break;
 			}

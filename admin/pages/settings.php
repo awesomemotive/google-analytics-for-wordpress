@@ -59,6 +59,7 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			<div class="clear"><br /></div>
 			<?php
 			echo $yoast_ga_admin->input( 'checkbox', __('Track outbound click & downloads', 'google-analytics-for-wordpress' ), 'track_outbound' );
+			echo $yoast_ga_admin->input( 'checkbox', __('Track inbound clicks', 'google-analytics-for-wordpress' ), 'track_inbound' );
 			echo $yoast_ga_admin->input( 'checkbox', __('Allow tracking of anonymous data', 'google-analytics-for-wordpress' ), 'anonymous_data' );
 			echo $yoast_ga_admin->select( 'Ignore users', 'ignore_users', $yoast_ga_admin->get_userroles(), __('Hint: Select multiple roles by using CTRL or CMD.', 'google-analytics-for-wordpress' ), true );
 			echo $yoast_ga_admin->input( 'checkbox', __('Anonymize IP\'s', 'google-analytics-for-wordpress' ), 'anonymize_ips' );
