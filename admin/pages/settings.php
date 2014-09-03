@@ -110,3 +110,10 @@ echo $yoast_ga_admin->create_form( 'settings' );
 echo $yoast_ga_admin->end_form( 'Save changes', 'settings' );
 echo $yoast_ga_admin->content_footer();
 ?>
+<script	type="text/javascript">
+	jQuery(document).ready(
+		function() {
+			jQuery('#yoast-ga-form-select-settings-analytics_profile').chosen();
+		}
+	);
+</script>
