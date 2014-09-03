@@ -62,6 +62,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					'analytics_profile'    => NULL,
 					'manual_ua_code'       => 0,
 					'manual_ua_code_field' => NULL,
+					'track_inbound'        => 0,
 					'track_outbound'       => 0,
 					'anonymous_data'       => 0,
 					'enable_universal'     => 0,
