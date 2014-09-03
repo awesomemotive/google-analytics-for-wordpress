@@ -448,7 +448,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 							}
 
 							if ( ! empty( $ua ) && ! empty( $title ) ) {
-								$ga_accounts[$ua] = $title;
+								$ga_accounts[] = array(
+									'ua'    => $ua,
+									'title' => $title,
+								);
 							}
 
 						}
@@ -467,25 +470,40 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 								}
 
 								if ( ! empty( $ua ) && ! empty( $title ) ) {
-									$ga_accounts[$ua] = $title;
+									$ga_accounts[] = array(
+										'ua'    => $ua,
+										'title' => $title,
+									);
 								}
 
 							}
 						}
 					}
 
-					asort( $ga_accounts );
+					usort( $ga_account, array( $this, 'sort_profiles' ) );
 
-					foreach ( $ga_accounts as $ga_ua => $ga_title ) {
+					foreach ( $ga_accounts as $key => $ga_account ) {
 						$return[] = array(
-							'id'   => $ga_ua,
-							'name' => $ga_title . ' (' . $ga_ua . ')',
+							'id'   => $ga_account['ua'],
+							'name' => $ga_account['title'] . ' (' . $ga_account['ua'] . ')',
 						);
 					}
 				}
 			}
 
 			return $return;
+		}
+
+		/**
+		 * Sorting the array in alphabetic order
+		 *
+		 * @param $a
+		 * @param $b
+		 *
+		 * @return int
+		 */
+		public function sort_profiles($a, $b) {
+			return strcmp( $a["title"], $b["title"] );
 		}
 
 		/**
