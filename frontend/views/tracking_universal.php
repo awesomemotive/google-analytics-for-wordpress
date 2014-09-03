@@ -1,10 +1,5 @@
 <!-- This site uses the Yoast Google Analytics plugin v<?php echo GAWP_VERSION; ?> - Universal enabled - https://yoast.com/wordpress/plugins/google-analytics/ -->
 <script type="text/javascript">
-	var ga_settings = {
-		download_types:"<?php echo $ga_settings['extensions_of_files']; ?>",
-		track_download:"<?php echo $ga_settings['track_download_as']; ?>"
-	};
-
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
