@@ -136,7 +136,8 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		 */
 		private function output_parse_link( $link ){
 			$onclick = NULL;
-			$options = $this->get_options()['ga_general'];
+			$options = $this->get_options();
+			$options = $options['ga_general'];
 			$full_url = $this->make_full_url( $link );
 
 			switch( $link['type'] ){
@@ -170,7 +171,6 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 			$link['link_attributes']	=	$this->output_add_onclick($link['link_attributes'], $onclick);
 
 			return '<a href="' . $link['protocol'] . '://' . $link['original_url'] . '" ' . $link['link_attributes'] . '>' . $link['link_text'] . '</a>';
-
 		}
 
 		/**
