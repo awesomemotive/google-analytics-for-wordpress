@@ -43,12 +43,11 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 				if ( isset( $options['subdomain_tracking'] ) && $options['subdomain_tracking'] != "" ) {
 					$domain = $options['subdomain_tracking'];
-				}
-				else{
+				} else {
 					$domain = NULL; // Default domain value
 				}
 
-				if( !isset($options['allowanchor']) ){
+				if ( ! isset( $options['allowanchor'] ) ) {
 					$options['allowanchor'] = false;
 				}
 
@@ -61,14 +60,14 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					$ua_code = $options['manual_ua_code_field'];
 				}
 
-				$gaq_push[]	=	"'_setAccount', '".$ua_code."'";
+				$gaq_push[] = "'_setAccount', '" . $ua_code . "'";
 
-				if(!is_null($domain)){
-					$gaq_push[]	=	"'_setDomainName', '".$domain."'";
+				if ( ! is_null( $domain ) ) {
+					$gaq_push[] = "'_setDomainName', '" . $domain . "'";
 				}
 
-				if($options['add_allow_linker'] && !$options['allowanchor']){
-					$gaq_push[]	=	"'_setAllowAnchor', true";
+				if ( $options['add_allow_linker'] && ! $options['allowanchor'] ) {
+					$gaq_push[] = "'_setAllowAnchor', true";
 				}
 
 				// @todo, check for AllowLinker in GA.js? Universal only?
@@ -114,10 +113,9 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				$ga_settings = $options; // Assign the settings to the javascript include view
 
 				// Include the tracking view
-				if( $options['debug_mode'] == 1){
+				if ( $options['debug_mode'] == 1 ) {
 					require( GAWP_PATH . 'frontend/views/tracking_debug.php' );
-				}
-				else{
+				} else {
 					require( GAWP_PATH . 'frontend/views/tracking_ga_js.php' );
 				}
 			}
@@ -139,18 +137,17 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		 *
 		 * @return mixed
 		 */
-		private function output_parse_link( $link ){
-			$onclick = NULL;
-			$options = $this->get_options();
-			$options = $options['ga_general'];
+		private function output_parse_link( $link ) {
+			$onclick  = NULL;
+			$options  = $this->get_options();
+			$options  = $options['ga_general'];
 			$full_url = $this->make_full_url( $link );
 
-			switch( $link['type'] ){
+			switch ( $link['type'] ) {
 				case 'download':
-					if( $options['track_download_as'] == 'pageview' ){
+					if ( $options['track_download_as'] == 'pageview' ) {
 						$onclick = "_gaq.push(['_trackPageview','download/" . esc_js( $full_url ) . "']);";
-					}
-					else{
+					} else {
 						$onclick = "_gaq.push(['_trackEvent','download/" . esc_js( $full_url ) . "']);";
 					}
 
@@ -159,27 +156,36 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					$onclick = "_gaq.push(['_trackEvent','mailto','" . esc_js( $link['original_url'] ) . "']);";
 
 					break;
-				case 'inbound':
-					if($options['track_inbound']==1){
-						$onclick = "_gaq.push(['_trackEvent', 'inbound-link', '".$full_url."', '".$link['link_text']."']);";
+				case 'internal-as-outbound':
+					if ( ! is_null( $options['track_internal_as_label'] ) ) {
+						$label = $options['track_internal_as_label'];
+					} else {
+						$label = 'int';
 					}
+
+					$onclick = "_gaq.push(['_trackEvent', '" . $link['category'] . "-" . $label . "', '" . $full_url . "', '" . $link['link_text'] . "']);";
+
+					break;
+				case 'internal':
+					$onclick = NULL;
 
 					break;
 				case 'outbound':
-					if($options['track_outbound']==1){
-						$onclick = "_gaq.push(['_trackEvent', '".$link['category']."', '".$full_url."', '".$link['link_text']."']);";
+					if ( $options['track_outbound'] == 1 ) {
+						$onclick = "_gaq.push(['_trackEvent', '" . $link['category'] . "', '" . $full_url . "', '" . $link['link_text'] . "']);";
 					}
 
 					break;
 			}
 
-			$link['link_attributes']	=	$this->output_add_onclick($link['link_attributes'], $onclick);
+			$link['link_attributes'] = $this->output_add_onclick( $link['link_attributes'], $onclick );
 
 			return '<a href="' . $full_url . '" ' . $link['link_attributes'] . '>' . $link['link_text'] . '</a>';
 		}
 
 		/**
 		 * Parse article link
+		 *
 		 * @param $matches
 		 *
 		 * @return mixed
@@ -190,6 +196,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 		/**
 		 * Parse comment link
+		 *
 		 * @param $matches
 		 *
 		 * @return mixed
@@ -200,6 +207,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 		/**
 		 * Parse widget link
+		 *
 		 * @param $matches
 		 *
 		 * @return mixed
@@ -210,6 +218,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 		/**
 		 * Parse menu link
+		 *
 		 * @param $matches
 		 *
 		 * @return mixed
@@ -220,63 +229,72 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 		/**
 		 * Parse the_content or the_excerpt for links
+		 *
 		 * @param $text
 		 *
 		 * @return mixed
 		 */
 		public function the_content( $text ) {
-			if ( false == $this->do_tracking() ){
+			if ( false == $this->do_tracking() ) {
 				return $text;
 			}
 
-			if ( !is_feed() ) {
+			if ( ! is_feed() ) {
 				$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_article_link' ), $text );
 			}
+
 			return $text;
 		}
 
 		/**
 		 * Parse the widget content for links
+		 *
 		 * @param $text
 		 *
 		 * @return mixed
 		 */
 		public function widget_content( $text ) {
-			if ( !$this->do_tracking() )
+			if ( ! $this->do_tracking() ) {
 				return $text;
+			}
 			$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_widget_link' ), $text );
+
 			return $text;
 		}
 
 		/**
 		 * Parse the nav menu for links
+		 *
 		 * @param $text
 		 *
 		 * @return mixed
 		 */
 		public function nav_menu( $text ) {
-			if ( !$this->do_tracking() )
+			if ( ! $this->do_tracking() )
 				return $text;
 
-			if ( !is_feed() ) {
+			if ( ! is_feed() ) {
 				$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_nav_menu' ), $text );
 			}
+
 			return $text;
 		}
 
 		/**
 		 * Parse comment text for links
+		 *
 		 * @param $text
 		 *
 		 * @return mixed
 		 */
 		public function comment_text( $text ) {
-			if ( !$this->do_tracking() )
+			if ( ! $this->do_tracking() )
 				return $text;
 
-			if ( !is_feed() ) {
+			if ( ! is_feed() ) {
 				$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_comment_link' ), $text );
 			}
+
 			return $text;
 		}
 

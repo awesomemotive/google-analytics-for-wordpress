@@ -116,18 +116,20 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
 		/**
 		 * Return the target with a lot of parameters
+		 *
 		 * @param $category
 		 * @param $matches
 		 *
 		 * @return array
 		 */
 		public function get_target( $category, $matches ) {
-			$protocol = $matches[2];
-			$domain   = $this->yoast_ga_get_domain( $matches[3] );
-			$origin   = $this->yoast_ga_get_domain( $_SERVER['HTTP_HOST'] );
-			$options = self::$options['ga_general'];
+			$protocol            = $matches[2];
+			$original_url        = $matches[3];
+			$domain              = $this->yoast_ga_get_domain( $matches[3] );
+			$origin              = $this->yoast_ga_get_domain( $_SERVER['HTTP_HOST'] );
+			$options             = self::$options['ga_general'];
 			$download_extensions = explode( ",", str_replace( '.', '', $options['extensions_of_files'] ) );
-			$extension = substr( strrchr( $matches[3], '.' ), 1 );
+			$extension           = substr( strrchr( $original_url, '.' ), 1 );
 
 			// Break out immediately if the link is not an http or https link.
 			if ( $protocol != 'http' && $protocol != 'https' && $protocol != 'mailto' ) {
@@ -135,12 +137,19 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 			} else {
 				if ( ( $protocol == 'mailto' ) ) {
 					$type = 'email';
-				} elseif ( in_array( $extension, $download_extensions ) ){
-					$type	=	'download';
-				}
-				else {
+				} elseif ( in_array( $extension, $download_extensions ) ) {
+					$type = 'download';
+				} else {
 					if ( $domain['domain'] == $origin['domain'] ) {
-						$type = 'inbound';
+						foreach ( explode( ',', $options['track_internal_as_outbound'] ) as $out ) {
+							if ( strpos( $original_url, $domain['domain'] . $out ) !== false ) {
+								$type = 'internal-as-outbound';
+							}
+						}
+
+						if ( ! isset( $type ) ) {
+							$type = 'internal';
+						}
 					} elseif ( $domain['domain'] != $origin['domain'] ) {
 						$type = 'outbound';
 					}
@@ -158,7 +167,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 				'extension'       => $extension,
 				'link_attributes' => rtrim( $matches[1] . ' ' . $matches[4] ),
 				'link_text'       => $matches[5],
-				'original_url'    => $matches[3]
+				'original_url'    => $original_url
 			);
 		}
 
@@ -170,22 +179,20 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		 *
 		 * @return string
 		 */
-		public function output_add_onclick( $link_attribute, $onclick ){
+		public function output_add_onclick( $link_attribute, $onclick ) {
 			if ( preg_match( '/onclick=[\'\"](.*?;)[\'\"]/i', $link_attribute, $matches ) > 0 ) {
-				$js_snippet_single = "onclick='" . $matches[1] . " " . $onclick ."'";
-				$js_snippet_double = 'onclick="' . $matches[1] . ' ' . $onclick .'"';
+				$js_snippet_single = "onclick='" . $matches[1] . " " . $onclick . "'";
+				$js_snippet_double = 'onclick="' . $matches[1] . ' ' . $onclick . '"';
 
 				//echo '<br> onclick="'.$js_snippet_single.'"<br>';
-				$link_attribute = str_replace('onclick="'.$matches[1].'"', $js_snippet_double, $link_attribute);
-				$link_attribute = str_replace("onclick='".$matches[1]."'", $js_snippet_single, $link_attribute);
+				$link_attribute = str_replace( 'onclick="' . $matches[1] . '"', $js_snippet_double, $link_attribute );
+				$link_attribute = str_replace( "onclick='" . $matches[1] . "'", $js_snippet_single, $link_attribute );
 
 				return $link_attribute;
-			}
-			else{
-				if(!is_null($onclick)){
-					return ' onclick="' . $onclick .'"';
-				}
-				else{
+			} else {
+				if ( ! is_null( $onclick ) ) {
+					return 'onclick="' . $onclick . '"';
+				} else {
 					return "";
 				}
 			}
@@ -193,24 +200,26 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
 		/**
 		 * Generate the full URL
+		 *
 		 * @param $link
 		 *
 		 * @return string
 		 */
-		public function make_full_url( $link ){
-			switch($link['type']){
+		public function make_full_url( $link ) {
+			switch ( $link['type'] ) {
 				case "download":
-				case "inbound":
+				case "internal":
+				case "internal-as-outbound":
 				case "outbound":
-					return $link['protocol'] .'://'. $link['original_url'];
+					return $link['protocol'] . '://' . $link['original_url'];
 					break;
 				case "email":
-					return 'mailto:'. $link['original_url'];
+					return 'mailto:' . $link['original_url'];
 					break;
 			}
 		}
 	}
 
 	global $yoast_ga_frontend;
-	$yoast_ga_frontend	=	new Yoast_GA_Frontend;
+	$yoast_ga_frontend = new Yoast_GA_Frontend;
 }

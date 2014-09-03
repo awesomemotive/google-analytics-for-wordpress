@@ -59,27 +59,28 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function default_ga_values() {
 			return array(
 				$this->form_prefix => array(
-					'analytics_profile'    => NULL,
-					'manual_ua_code'       => 0,
-					'manual_ua_code_field' => NULL,
-					'track_inbound'        => 0,
-					'track_outbound'       => 0,
-					'anonymous_data'       => 0,
-					'enable_universal'     => 0,
-					'demographics'         => 0,
-					'ignore_users'         => 'editor',
-					'anonymize_ips'        => NULL,
-					'track_download_as'    => 'event',
-					'extensions_of_files'  => 'doc,exe,js,pdf,ppt,tgz,zip,xls',
-					'track_full_url'       => 'domain',
-					'subdomain_tracking'   => NULL,
-					'tag_links_in_rss'     => 0,
-					'force_ssl'     	   => 0,
-					'allow_anchor'     	   => 0,
-					'add_allow_linker'     => 0,
-					'custom_code'          => NULL,
-					'debug_mode'           => 0,
-					'firebug_lite'         => 0,
+					'analytics_profile'          => NULL,
+					'manual_ua_code'             => 0,
+					'manual_ua_code_field'       => NULL,
+					'track_internal_as_outbound' => NULL,
+					'track_internal_as_label'    => NULL,
+					'track_outbound'             => 0,
+					'anonymous_data'             => 0,
+					'enable_universal'           => 0,
+					'demographics'               => 0,
+					'ignore_users'               => 'editor',
+					'anonymize_ips'              => NULL,
+					'track_download_as'          => 'event',
+					'extensions_of_files'        => 'doc,exe,js,pdf,ppt,tgz,zip,xls',
+					'track_full_url'             => 'domain',
+					'subdomain_tracking'         => NULL,
+					'tag_links_in_rss'           => 0,
+					'force_ssl'                  => 0,
+					'allow_anchor'               => 0,
+					'add_allow_linker'           => 0,
+					'custom_code'                => NULL,
+					'debug_mode'                 => 0,
+					'firebug_lite'               => 0,
 				)
 			);
 		}
@@ -150,7 +151,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				$this,
 				'load_page'
 			), plugins_url( 'img/yoast-icon.png', GAWP_FILE ), '2.00013467543' );
-			
+
 			// Sub menu pages
 			$submenu_pages = array(
 				array(
@@ -314,6 +315,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 		/**
 		 * Generate a select box
+		 *
 		 * @param      $title
 		 * @param      $name
 		 * @param      $values
@@ -344,8 +346,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 						} else {
 							$select .= '<option value="' . $value['id'] . '">' . stripslashes( $value['name'] ) . '</option>';
 						}
-					}
-					else{
+					} else {
 						$select .= '<option value="' . $value['id'] . '" ' . selected( $this->get_setting( $name ), $value['id'], false ) . '>' . stripslashes( $value['name'] ) . '</option>';
 					}
 				}
@@ -405,10 +406,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$options     = get_option( $option_name );
 			$return      = array();
 
-			if( ! empty ( $options['ga_token'] ) ) {
+			if ( ! empty ( $options['ga_token'] ) ) {
 				$token = $options['ga_token'];
 
-				$args  = array(
+				$args         = array(
 					'scope'              => 'https://www.googleapis.com/auth/analytics.readonly',
 					'xoauth_displayname' => 'Google Analytics for WordPress by Yoast',
 				);
@@ -428,7 +429,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					update_option( 'Yoast_Google_Analytics', $options );
 				}
 
-				$xml_reader  = new SimpleXMLElement( $options['ga_api_responses'][$token]['body'] );
+				$xml_reader = new SimpleXMLElement( $options['ga_api_responses'][$token]['body'] );
 
 				if ( ! empty( $xml_reader->entry ) ) {
 
@@ -438,14 +439,17 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 							$ns         = $entry->getNamespaces( true );
 							$properties = $entry->children( $ns['dxp'] )->property;
 
-							if ( isset ( $properties[1]->attributes()->value ) )
+							if ( isset ( $properties[1]->attributes()->value ) ) {
 								$ua = (string) trim( $properties[1]->attributes()->value );
+							}
 
-							if ( isset ( $properties[2]->attributes()->value ) )
+							if ( isset ( $properties[2]->attributes()->value ) ) {
 								$title = (string) trim( $properties[2]->attributes()->value );
+							}
 
-							if ( !empty( $ua ) && !empty( $title ) )
+							if ( ! empty( $ua ) && ! empty( $title ) ) {
 								$ga_accounts[$ua] = $title;
+							}
 
 						}
 					} else {
@@ -454,14 +458,17 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 								$ns         = $entry->getNamespaces( true );
 								$properties = $entry->children( $ns['dxp'] )->property;
 
-								if ( isset ( $properties[3]->attributes()->value ) )
+								if ( isset ( $properties[3]->attributes()->value ) ) {
 									$ua = (string) trim( $properties[3]->attributes()->value );
+								}
 
-								if ( isset ( $properties[2]->attributes()->value ) )
+								if ( isset ( $properties[2]->attributes()->value ) ) {
 									$title = (string) trim( $properties[2]->attributes()->value );
+								}
 
-								if ( !empty( $ua ) && !empty( $title ) )
+								if ( ! empty( $ua ) && ! empty( $title ) ) {
 									$ga_accounts[$ua] = $title;
+								}
 
 							}
 						}

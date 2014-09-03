@@ -59,7 +59,6 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			<div class="clear"><br /></div>
 			<?php
 			echo $yoast_ga_admin->input( 'checkbox', __('Track outbound click & downloads', 'google-analytics-for-wordpress' ), 'track_outbound' );
-			echo $yoast_ga_admin->input( 'checkbox', __('Track inbound clicks', 'google-analytics-for-wordpress' ), 'track_inbound' );
 			echo $yoast_ga_admin->input( 'checkbox', __('Allow tracking of anonymous data', 'google-analytics-for-wordpress' ), 'anonymous_data' );
 			echo $yoast_ga_admin->input( 'checkbox', __('Anonymize IP\'s', 'google-analytics-for-wordpress' ), 'anonymize_ips' );
 			echo $yoast_ga_admin->select( 'Ignore users', 'ignore_users', $yoast_ga_admin->get_userroles(), __('Hint: Select multiple roles by using CTRL or CMD.', 'google-analytics-for-wordpress' ), true );
@@ -79,6 +78,10 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			echo $yoast_ga_admin->input( 'text', __('Extensions of files to track as downloads', 'google-analytics-for-wordpress' ), 'extensions_of_files', NULL, 'Please separate extensions using commas' );
 			echo $yoast_ga_admin->select( __('Track full URL of outbound clicks or just the domain', 'google-analytics-for-wordpress' ), 'track_full_url', $yoast_ga_admin->get_track_full_url() );
 			echo $yoast_ga_admin->input( 'text', __('Subdomain tracking', 'google-analytics-for-wordpress' ), 'subdomain_tracking', NULL, __('This allows you to set the domain that\'s set by <code>setDomainName</code> for tracking subdomains, if empty this will not be set.', 'google-analytics-for-wordpress' ) );
+
+			echo $yoast_ga_admin->input( 'text', __('Set path for internal links to track as outbound links', 'google-analytics-for-wordpress' ), 'track_internal_as_outbound', NULL, 'If you want to track all internal links that begin with <code>/out/</code>, enter <code>/out/</code> in the box above. If you have multiple prefixes you can separate them with comma\'s: <code>/out/,/recommends/</code>' );
+			echo $yoast_ga_admin->input( 'text', __('Label for those links', 'google-analytics-for-wordpress' ), 'track_internal_as_label', NULL, "The label to use for these links, this will be added to where the click came from, so if the label is \"aff\", the label for a click from the content of an article becomes \"outbound-article-aff\"." );
+
 			echo $yoast_ga_admin->input( 'checkbox', __('Tag links in RSS feed with campaign variables', 'google-analytics-for-wordpress' ), 'tag_links_in_rss' );
 			echo $yoast_ga_admin->input( 'checkbox', __('Allow anchor', 'google-analytics-for-wordpress' ), 'allow_anchor' );
 			echo $yoast_ga_admin->input( 'checkbox', __('Add <code>_setAllowLinker</code>', 'google-analytics-for-wordpress' ), 'add_allow_linker' );
