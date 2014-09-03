@@ -192,37 +192,6 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		}
 
 		/**
-		 * Parse a link
-		 *
-		 * @param $category
-		 * @param $matches
-		 *
-		 * @return string
-		 */
-		public function parse_link( $category, $matches ) {
-			$options = self::$options['ga_general'];
-
-			//if ( $link_type ) {
-				$js_track_snippet = $this->get_target( $category, $matches );
-			//}
-//
-//			if ( $trackBit != "" ) {
-//				if ( preg_match( '/onclick=[\'\"](.*?)[\'\"]/i', $matches[4] ) > 0 ) {
-//					// Check for manually tagged outbound clicks, and replace them with the tracking of choice.
-//					if ( preg_match( '/.*_track(Pageview|Event).*/i', $matches[4] ) > 0 ) {
-//						$matches[4] = preg_replace( '/onclick=[\'\"](javascript:)?(.*;)?[a-zA-Z0-9]+\._track(Pageview|Event)\([^\)]+\)(;)?(.*)?[\'\"]/i', 'onclick="javascript:' . $trackBit . '$2$5"', $matches[4] );
-//					} else {
-//						$matches[4] = preg_replace( '/onclick=[\'\"](javascript:)?(.*?)[\'\"]/i', 'onclick="javascript:' . $trackBit . '$2"', $matches[4] );
-//					}
-//				} else {
-//					$matches[4] = 'onclick="javascript:' . $trackBit . '"' . $matches[4];
-//				}
-//			}
-//
-//			return '<a ' . $matches[1] . 'href="' . $matches[2] . '//' . $matches[3] . '"' . ' ' . $matches[4] . '>' . $matches[5] . '</a>';
-		}
-
-		/**
 		 * Generate the full URL
 		 * @param $link
 		 *
