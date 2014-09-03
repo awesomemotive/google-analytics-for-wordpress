@@ -51,7 +51,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					add_settings_error(
 						'yoast_google_analytics',
 						'yoast_google_analytics',
-						__('Settings saved!', 'google-analytics-for-wordpress'),
+						__( 'Settings saved!', 'google-analytics-for-wordpress' ),
 						'updated'
 					);
 				}
