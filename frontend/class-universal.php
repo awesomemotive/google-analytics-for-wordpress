@@ -6,13 +6,18 @@
 if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 	class Yoast_GA_Universal extends Yoast_GA_Frontend {
+		public $link_regex;
 
 		public function __construct() {
+			$this->link_regex = '/<a (.*?)href=[\'\"](.*?):\/*([^\'\"]+?)[\'\"](.*?)>(.*?)<\/a>/i';
+
 			add_action( 'wp_head', array( $this, 'tracking' ), 8 );
 
 			// Check for outbound option
 			add_filter( 'the_content', array( $this, 'the_content' ), 99 );
+			add_filter( 'widget_text', array( $this, 'widget_content' ), 99 );
 			add_filter( 'the_excerpt', array( $this, 'the_content' ), 99 );
+			add_filter( 'comment_text', array( $this, 'comment_text' ), 99 );
 		}
 
 		/**
@@ -184,6 +189,36 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 		}
 
 		/**
+		 * Parse comment link
+		 * @param $matches
+		 *
+		 * @return mixed
+		 */
+		public function parse_comment_link( $matches ) {
+			return $this->output_parse_link( $this->get_target( 'outbound-comment', $matches ) );
+		}
+
+		/**
+		 * Parse widget link
+		 * @param $matches
+		 *
+		 * @return mixed
+		 */
+		public function parse_widget_link( $matches ) {
+			return $this->output_parse_link( $this->get_target( 'outbound-widget', $matches ) );
+		}
+
+		/**
+		 * Parse menu link
+		 * @param $matches
+		 *
+		 * @return mixed
+		 */
+		public function parse_nav_menu( $matches ) {
+			return $this->output_parse_link( $this->get_target( 'outbound-menu', $matches ) );
+		}
+
+		/**
 		 * Parse the_content or the_excerpt for links
 		 * @param $text
 		 *
@@ -195,8 +230,52 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 			}
 
 			if ( !is_feed() ) {
-				static $anchorPattern = '/<a (.*?)href=[\'\"](.*?):\/*([^\'\"]+?)[\'\"](.*?)>(.*?)<\/a>/i';
-				$text = preg_replace_callback( $anchorPattern, array( $this, 'parse_article_link' ), $text );
+				$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_article_link' ), $text );
+			}
+			return $text;
+		}
+
+		/**
+		 * Parse the widget content for links
+		 * @param $text
+		 *
+		 * @return mixed
+		 */
+		public function widget_content( $text ) {
+			if ( !$this->do_tracking() )
+				return $text;
+			$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_widget_link' ), $text );
+			return $text;
+		}
+
+		/**
+		 * Parse the nav menu for links
+		 * @param $text
+		 *
+		 * @return mixed
+		 */
+		public function nav_menu( $text ) {
+			if ( !$this->do_tracking() )
+				return $text;
+
+			if ( !is_feed() ) {
+				$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_nav_menu' ), $text );
+			}
+			return $text;
+		}
+
+		/**
+		 * Parse comment text for links
+		 * @param $text
+		 *
+		 * @return mixed
+		 */
+		public function comment_text( $text ) {
+			if ( !$this->do_tracking() )
+				return $text;
+
+			if ( !is_feed() ) {
+				$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_comment_link' ), $text );
 			}
 			return $text;
 		}
