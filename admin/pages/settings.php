@@ -5,6 +5,10 @@ echo $yoast_ga_admin->content_head();
 ?>
 	<h2 id="yoast_ga_title"><?php echo __( 'Yoast Google Analytics: Settings', 'google-analytics-for-wordpress' ); ?></h2>
 
+<?php
+settings_errors('yoast_google_analytics');
+?>
+
 	<h2 class="nav-tab-wrapper" id="ga-tabs">
 		<a class="nav-tab" id="general-tab" href="#top#general"><?php _e( 'General', 'google-analytics-for-wordpress' ); ?></a>
 		<a class="nav-tab" id="universal-tab" href="#top#universal"><?php _e( 'Universal', 'google-analytics-for-wordpress' ); ?></a>
