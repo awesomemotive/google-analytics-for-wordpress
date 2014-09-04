@@ -147,14 +147,14 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 			switch ( $link['type'] ) {
 				case 'download':
 					if ( $options['track_download_as'] == 'pageview' ) {
-						$onclick = "ga('send', 'pageview', '" . esc_js( $full_url ) . "');";
+						$onclick = "ga('send', 'pageview', '" . esc_attr( $full_url ) . "');";
 					} else {
-						$onclick = "ga('send', 'event', 'download', '" . esc_js( $full_url ) . "');";
+						$onclick = "ga('send', 'event', 'download', '" . esc_attr( $full_url ) . "');";
 					}
 
 					break;
 				case 'email':
-					$onclick = "ga('send', 'event', 'mailto', '" . esc_js( $link['original_url'] ) . "');";
+					$onclick = "ga('send', 'event', 'mailto', '" . esc_attr( $link['original_url'] ) . "');";
 
 					break;
 				case 'internal-as-outbound':
@@ -164,7 +164,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 						$label = 'int';
 					}
 
-					$onclick = "ga('send', 'event', '" . $link['category'] . "-" . $label . "', '" . esc_js( $full_url ) . "', '" . strip_tags( $link['link_text'] ) . "');";
+					$onclick = "ga('send', 'event', '" . esc_attr( $link['category'] ) . "-" .esc_attr ( $label ) . "', '" . esc_attr( $full_url ) . "', '" . esc_attr ( strip_tags( $link['link_text'] ) ) . "');";
 
 					break;
 				case 'internal':
@@ -173,7 +173,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 					break;
 				case 'outbound':
 					if ( $options['track_outbound'] == 1 ) {
-						$onclick = "ga('send', 'event', '" . $link['category'] . "', '" . esc_js( $full_url ) . "', '" . strip_tags( $link['link_text'] ) . "');";
+						$onclick = "ga('send', 'event', '" . esc_attr ( $link['category'] ) . "', '" . esc_attr( $full_url ) . "', '" . esc_attr( strip_tags( $link['link_text'] ) ) . "');";
 					}
 
 					break;
