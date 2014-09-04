@@ -658,9 +658,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			if ( true == WP_DEBUG ) {
 				// Show the debug information if debug is enabled in the wp_config file
-				echo '<pre>';
+				echo '<div id="ga-debug-info" class="postbox"><h3 class="hndle"><span>'.__('Debug information', 'google-analytics-for-wordpress').'</span></h3><div class="inside"><pre>';
 				var_dump( $this->options );
-				echo '</pre>';
+				echo '</pre></div></div>';
 			}
 
 			require( "views/content_footer.php" );
