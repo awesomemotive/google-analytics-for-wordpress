@@ -12,8 +12,6 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		public function __construct() {
 			self::$options = get_option( 'yst_ga' );
 
-			add_action( 'wp_enqueue_scripts', array( $this, 'add_ga_javascript' ), 9 );
-
 			if ( isset( self::$options['ga_general']['tag_links_in_rss'] ) && self::$options['ga_general']['tag_links_in_rss'] == 1 ) {
 				add_filter( 'the_permalink_rss', array( $this, 'rsslinktagger' ), 99 );
 			}
