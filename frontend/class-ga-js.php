@@ -131,11 +131,19 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		/**
 		 * Ouput tracking link
 		 *
-		 * @param $link
+		 * @param string $label
+		 * @param array $matches
 		 *
 		 * @return mixed
 		 */
-		private function output_parse_link( $link ) {
+		private function output_parse_link( $label, $matches ) {
+			$link = $this->get_target( $label, $matches );
+
+			// bail early for links that we can't handle
+			if ( is_null( $link['type'] ) ) {
+				return $matches[0];
+			}
+
 			$onclick  = NULL;
 			$options  = $this->get_options();
 			$options  = $options['ga_general'];
@@ -189,7 +197,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		 * @return mixed
 		 */
 		public function parse_article_link( $matches ) {
-			return $this->output_parse_link( $this->get_target( 'outbound-article', $matches ) );
+			return $this->output_parse_link( 'outbound-article', $matches );
 		}
 
 		/**
@@ -200,7 +208,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		 * @return mixed
 		 */
 		public function parse_comment_link( $matches ) {
-			return $this->output_parse_link( $this->get_target( 'outbound-comment', $matches ) );
+			return $this->output_parse_link( 'outbound-comment', $matches );
 		}
 
 		/**
@@ -211,7 +219,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		 * @return mixed
 		 */
 		public function parse_widget_link( $matches ) {
-			return $this->output_parse_link( $this->get_target( 'outbound-widget', $matches ) );
+			return $this->output_parse_link( 'outbound-widget', $matches );
 		}
 
 		/**
@@ -222,7 +230,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		 * @return mixed
 		 */
 		public function parse_nav_menu( $matches ) {
-			return $this->output_parse_link( $this->get_target( 'outbound-menu', $matches ) );
+			return $this->output_parse_link( 'outbound-menu', $matches );
 		}
 
 		/**
