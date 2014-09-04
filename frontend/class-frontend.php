@@ -131,7 +131,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
 			// Break out immediately if the link is not an http or https link.
 			if ( $protocol != 'http' && $protocol != 'https' && $protocol != 'mailto' ) {
-				$type = NULL;
+				$type = null;
 			} else {
 				if ( ( $protocol == 'mailto' ) ) {
 					$type = 'email';

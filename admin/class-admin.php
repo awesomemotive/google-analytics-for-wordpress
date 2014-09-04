@@ -79,25 +79,25 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function default_ga_values() {
 			return array(
 				$this->form_prefix => array(
-					'analytics_profile'          => NULL,
+					'analytics_profile'          => null,
 					'manual_ua_code'             => 0,
-					'manual_ua_code_field'       => NULL,
-					'track_internal_as_outbound' => NULL,
-					'track_internal_as_label'    => NULL,
+					'manual_ua_code_field'       => null,
+					'track_internal_as_outbound' => null,
+					'track_internal_as_label'    => null,
 					'track_outbound'             => 0,
 					'anonymous_data'             => 0,
 					'enable_universal'           => 0,
 					'demographics'               => 0,
 					'ignore_users'               => array( 'editor' ),
-					'anonymize_ips'              => NULL,
+					'anonymize_ips'              => null,
 					'track_download_as'          => 'event',
 					'extensions_of_files'        => 'doc,exe,js,pdf,ppt,tgz,zip,xls',
 					'track_full_url'             => 'domain',
-					'subdomain_tracking'         => NULL,
+					'subdomain_tracking'         => null,
 					'tag_links_in_rss'           => 0,
 					'allow_anchor'               => 0,
 					'add_allow_linker'           => 0,
-					'custom_code'                => NULL,
+					'custom_code'                => null,
 					'debug_mode'                 => 0,
 					'firebug_lite'               => 0,
 				)
@@ -113,10 +113,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function get_setting( $name ) {
 
-			if ( isset( $this->options[$this->form_prefix][$name] ) ) {
-				return $this->options[$this->form_prefix][$name];
+			if ( isset( $this->options[ $this->form_prefix ][ $name ] ) ) {
+				return $this->options[ $this->form_prefix ][ $name ];
 			} else {
-				return NULL;
+				return null;
 			}
 		}
 
@@ -127,14 +127,14 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function save_settings( $data ) {
 			foreach ( $data as $key => $value ) {
-				$this->options[$this->form_prefix][$key] = $value;
+				$this->options[ $this->form_prefix ][ $key ] = $value;
 			}
 
 			// Check checkboxes, on a uncheck they won't be posted to this function
 			$defaults = $this->default_ga_values();
 			foreach ( $defaults['ga_general'] as $key => $value ) {
-				if ( ! isset( $data[$key] ) ) {
-					$this->options[$this->form_prefix][$key] = $value;
+				if ( ! isset( $data[ $key ] ) ) {
+					$this->options[ $this->form_prefix ][ $key ] = $value;
 				}
 			}
 
@@ -164,7 +164,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 *
 		 * @todo, we need to implement a new icon for this, currently we're using the WP seo icon
 		 */
-		public function create_menu( $param = NULL ) {
+		public function create_menu( $param = null ) {
 			// Add main page
 			add_menu_page( __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'General Settings', 'google-analytics-for-wordpress' ), __( 'Analytics', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_dashboard', array(
 				$this,
@@ -267,7 +267,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				$action .= '?page=' . $_GET['page'];
 			}
 
-			return '<form action="' . $action . '" method="post" id="yoast-ga-form-' . $this->form_namespace . '" class="yoast_ga_form">' . wp_nonce_field( 'save_settings', 'yoast_ga_nonce', NULL, false );
+			return '<form action="' . $action . '" method="post" id="yoast-ga-form-' . $this->form_namespace . '" class="yoast_ga_form">' . wp_nonce_field( 'save_settings', 'yoast_ga_nonce', null, false );
 		}
 
 		/**
@@ -279,7 +279,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * @return null|string
 		 */
 		public function end_form( $button_label = "Save changes", $name = 'submit' ) {
-			$output = NULL;
+			$output = null;
 			$output .= '<div class="ga-form ga-form-input">';
 			$output .= '<input type="submit" name="ga-form-' . $name . '" value="' . $button_label . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-' . $this->form_namespace . '">';
 			$output .= '</div></form>';
@@ -298,8 +298,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 *
 		 * @return null|string
 		 */
-		public function input( $type = 'text', $title = NULL, $name = NULL, $text_label = NULL, $description = NULL ) {
-			$input = NULL;
+		public function input( $type = 'text', $title = null, $name = null, $text_label = null, $description = null ) {
+			$input = null;
 			$id    = str_replace( '[', '-', $name );
 			$id    = str_replace( ']', '', $id );
 
@@ -344,8 +344,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 *
 		 * @return null|string
 		 */
-		public function select( $title, $name, $values, $description = NULL, $multiple = false ) {
-			$select = NULL;
+		public function select( $title, $name, $values, $description = null, $multiple = false ) {
+			$select = null;
 			$id     = str_replace( '[', '-', $name );
 			$id     = str_replace( ']', '', $id );
 			$select .= '<div class="ga-form ga-form-input">';
@@ -394,8 +394,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 *
 		 * @return null|string
 		 */
-		public function textarea( $title, $name, $description = NULL ) {
-			$text = NULL;
+		public function textarea( $title, $name, $description = null ) {
+			$text = null;
 			$id   = $this->form_prefix . '_' . $name;
 			$text .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
@@ -447,15 +447,15 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				$response  = wp_remote_retrieve_body( $response );
 
 				if ( $http_code == 200 ) {
-					$options['ga_api_responses'][$token] = array(
+					$options['ga_api_responses'][ $token ] = array(
 						'response' => array( 'code' => $http_code ),
 						'body'     => $response
 					);
-					$options['ga_token']                 = $token;
+					$options['ga_token']                   = $token;
 					update_option( 'Yoast_Google_Analytics', $options );
 				}
 
-				$xml_reader = new SimpleXMLElement( $options['ga_api_responses'][$token]['body'] );
+				$xml_reader = new SimpleXMLElement( $options['ga_api_responses'][ $token ]['body'] );
 
 				if ( ! empty( $xml_reader->entry ) ) {
 
@@ -670,7 +670,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			if ( true == WP_DEBUG ) {
 				// Show the debug information if debug is enabled in the wp_config file
-				echo '<div id="ga-debug-info" class="postbox"><h3 class="hndle"><span>'.__('Debug information', 'google-analytics-for-wordpress').'</span></h3><div class="inside"><pre>';
+				echo '<div id="ga-debug-info" class="postbox"><h3 class="hndle"><span>' . __( 'Debug information', 'google-analytics-for-wordpress' ) . '</span></h3><div class="inside"><pre>';
 				var_dump( $this->options );
 				echo '</pre></div></div>';
 			}

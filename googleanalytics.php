@@ -38,7 +38,7 @@ define( "GAWP_URL", trailingslashit( plugin_dir_url( __FILE__ ) ) );
 
 define( "GAWP_PATH", plugin_dir_path( __FILE__ ) );
 
-if( !class_exists('Yoast_GA_Options') ){
+if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 	require_once GAWP_PATH . 'includes/class-options.php';
 }
 
