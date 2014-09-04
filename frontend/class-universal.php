@@ -180,7 +180,6 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 			}
 
 			$link['link_attributes'] = $this->output_add_onclick( $link['link_attributes'], $onclick );
-
 			return '<a href="' . $full_url . '" ' . $link['link_attributes'] . '>' . $link['link_text'] . '</a>';
 
 		}
