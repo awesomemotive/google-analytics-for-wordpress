@@ -15,7 +15,6 @@ h2#yoast_ga_title {
 
 .gatab.active {
 	display: block;
-	overflow: auto;
 	padding: 0.5em 0.9em;
 	border: 1px solid #ddd;
 	background-color: #fff;
