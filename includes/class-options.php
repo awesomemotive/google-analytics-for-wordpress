@@ -32,7 +32,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		 * @return null
 		 */
 		public function get_tracking_code() {
-			$tracking_code = NULL;
+			$tracking_code = null;
 			$options       = $this->options;
 			$options       = $options['ga_general'];
 
