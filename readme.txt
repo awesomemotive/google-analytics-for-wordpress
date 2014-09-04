@@ -1,18 +1,18 @@
-﻿=== Google Analytics for WordPress ===
-Contributors: joostdevalk
-Donate link: http://yoast.com/donate/
+﻿=== Google Analytics by Yoast ===
+Contributors: joostdevalk,PvW_NL
+Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
 Tested up to: 4.0
 Stable tag: 5.0
 
-Track your WordPress site easily and with lots of metadata: views per author & category, automatic tracking of outbound clicks and pageviews.
+Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
 == Description ==
 
 The Google Analytics by Yoast plugin for WordPress allows you to track your blog easily and always stays up to date with the newest features in Google Analytics.
 
-> <strong>Development on GitHub</strong>
+> <strong>Development on GitHub</strong><br>
 > The development of Google Analytics by Yoast [takes place on GitHub](https://github.com/Yoast/google-analytics-for-wordpress). Bugs and pull requests are welcomed there. For support, please refer to the forums. A premium version of Google Analytics by Yoast will be available soon which will give you access to email support.
 
 Full list of features:
@@ -29,7 +29,7 @@ Full list of features:
 * Tracking of your search result pages and 404 pages.
 * Full [debug mode](http://yoast.com/google-analytics-debug-mode/), including Firebug lite and ga_debug.js for debugging Google Analytics issues.
 
-> <strong>Coming soon: dashboards!</strong>
+> <strong>Coming soon: dashboards!</strong><br>
 > We're working hard on the next iteration of the plugin which will contain a Dashboard within your WordPress admin with the most important stats from Google Analytics.
 
 Other interesting stuff:
@@ -50,7 +50,11 @@ This section describes how to install the plugin and get it working.
 == Changelog ==
 
 = 5.0.0 =
-	* Complete rewrite of the Google Analytics plugin
+Release Date: September 4th, 2014
+
+Complete rewrite of the Google Analytics plugin.
+
+* Enhancements:
 	* Universal tracking added
 	* Better link tracking
 	* New Universal demographics feature
