@@ -43,6 +43,11 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				$this->options = get_option( 'yst_ga' );
 			}
 
+			global $Yoast_GA_Options;
+			if ( is_null( $Yoast_GA_Options->get_tracking_code() ) ) {
+				add_action( 'admin_notices', array( $this, 'config_warning' ) );
+			}
+
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				if ( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ) {
 					// Post submitted and verified with our nonce
@@ -58,6 +63,13 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			}
 
 			$this->connect_with_google_analytics();
+		}
+
+		/**
+		 * Throw a warning if no UA code is set.
+		 */
+		public function config_warning() {
+			echo '<div class="error"><p>' . sprintf( __( 'Please configure your %s$1Google Analytics settings%s$2!', 'google-analytics-for-wordpress' ), '<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">', '</a>' ) . '</p></div>';
 		}
 
 		/**

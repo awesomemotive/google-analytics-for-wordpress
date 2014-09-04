@@ -53,6 +53,16 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		 * @since 5.0.1
 		 */
 		private function upgrade() {
+			global $Yoast_GA_Options;
+			
+			if ( ! isset( $this->options['ga_general']['version'] ) && is_null( $Yoast_GA_Options->get_tracking_code() ) ) {
+				$old_options = get_option( 'Yoast_Google_Analytics' );
+
+				$this->options['ga_general']['manual_ua_code']       = 1;
+				$this->options['ga_general']['manual_ua_code_field'] = $old_options['uastring'];
+				delete_option( 'Yoast_Google_Analytics' );
+			}
+
 			// 5.0.0 to 5.0.1 fix of ignore users array
 			if ( ! isset( $this->options['ga_general']['version'] ) || version_compare( $this->options['ga_general']['version'], '5.0.1', '<' ) ) {
 				if ( ! is_array( $this->options['ga_general']['ignore_users'] ) ) {
@@ -65,7 +75,6 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 
 			update_option( 'yst_ga', $this->options );
 		}
-
 	}
 
 	global $Yoast_GA_Options;
