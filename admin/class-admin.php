@@ -630,28 +630,25 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function content_footer() {
 			$banners   = array();
 			$banners[] = array(
-				'url'    => 'https://yoast.com',
+				'url'    => 'https://yoast.com/hire-us/website-review/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
 				'banner' => GAWP_URL . 'img/banner-website-review.png',
 				'title'  => 'Get a website review by Yoast'
 			);
 			$banners[] = array(
-				'url'    => 'https://yoast.com',
+				'url'    => 'https://yoast.com/wordpress/plugins/seo-premium/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
 				'banner' => GAWP_URL . 'img/banner-premium-seo.png',
 				'title'  => 'Get WordPress SEO premium'
 			);
 			$banners[] = array(
-				'url'    => 'https://yoast.com',
-				'banner' => GAWP_URL . 'img/banner-video-seo.png',
-				'title'  => 'Get Video SEO'
+				'url'    => 'https://yoast.com/ebook-optimize-wordpress-site/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
+				'banner' => GAWP_URL . 'img/eBook_261x130.png',
+				'title'  => 'Get the Yoast ebook!'
 			);
-
-			if ( class_exists( 'Woocommerce' ) ) {
-				$banners[] = array(
-					'url'    => 'https://yoast.com',
-					'banner' => GAWP_URL . 'img/banner-local-seo.png',
-					'title'  => 'Get WooCommerce integrated in your Analytics'
-				);
-			}
+			$banners[] = array(
+				'url'    => 'https://yoast.com/wordpress/plugins/local-seo/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
+				'banner' => GAWP_URL . 'img/banner-local-seo.png',
+				'title'  => 'Get WooCommerce integrated in your Analytics'
+			);
 
 			shuffle( $banners );
 
