@@ -2,9 +2,6 @@
 /**
  * This class is for the backend, extendable for all child classes
  */
-if ( ! function_exists( 'wp_verify_nonce' ) ) {
-	require_once( ABSPATH . 'wp-includes/pluggable.php' );
-}
 
 require_once plugin_dir_path( __FILE__ ) . '/wp-gdata/wp-gdata.php';
 
@@ -49,6 +46,11 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			}
 
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+
+				if ( ! function_exists( 'wp_verify_nonce' ) ) {
+					require_once( ABSPATH . 'wp-includes/pluggable.php' );
+				}
+
 				if ( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ) {
 					if ( ! isset ( $_POST['ignore_users'] ) ) {
 						$_POST['ignore_users'] = array();
