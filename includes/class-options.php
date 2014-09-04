@@ -11,6 +11,10 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		 */
 		public function __construct() {
 			$this->options = $this->get_options();
+
+			if ( ! isset( $this->options['ga_general']['version'] ) || $this->options['ga_general']['version'] < GAWP_VERSION ) {
+				$this->upgrade();
+			}
 		}
 
 		/**
@@ -41,6 +45,25 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 			}
 
 			return $tracking_code;
+		}
+
+		/**
+		 * Upgrade the settings when settings are changed.
+		 *
+		 * @since 5.0.1
+		 */
+		private function upgrade() {
+			// 5.0.0 to 5.0.1 fix of ignore users array
+			if ( ! isset( $this->options['ga_general']['version'] ) || version_compare( $this->options['ga_general']['version'], '5.0.1', '<' ) ) {
+				if ( ! is_array( $this->options['ga_general']['ignore_users'] ) ) {
+					$this->options['ga_general']['ignore_users'] = (array) $this->options['ga_general']['ignore_users'];
+				}
+			}
+
+			// Set to the current version now that we've done all needed upgrades
+			$this->options['ga_general']['version'] = GAWP_VERSION;
+
+			update_option( 'yst_ga', $this->options );
 		}
 
 	}

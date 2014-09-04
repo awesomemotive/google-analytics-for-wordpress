@@ -76,7 +76,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					'anonymous_data'             => 0,
 					'enable_universal'           => 0,
 					'demographics'               => 0,
-					'ignore_users'               => 'editor',
+					'ignore_users'               => array( 'editor' ),
 					'anonymize_ips'              => NULL,
 					'track_download_as'          => 'event',
 					'extensions_of_files'        => 'doc,exe,js,pdf,ppt,tgz,zip,xls',
