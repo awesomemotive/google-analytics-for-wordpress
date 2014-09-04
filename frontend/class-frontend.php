@@ -141,9 +141,13 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 					$type = 'download';
 				} else {
 					if ( $domain['domain'] == $origin['domain'] ) {
-						foreach ( explode( ',', $options['track_internal_as_outbound'] ) as $out ) {
-							if ( strpos( $original_url, $domain['domain'] . $out ) !== false ) {
-								$type = 'internal-as-outbound';
+						$outlinks = explode( ',', $options['track_internal_as_outbound'] );
+
+						if ( count( $outlinks ) >= 1 ) {
+							foreach ( $outlinks as $out ) {
+								if ( strpos( $original_url, $domain['domain'] . $out ) !== false ) {
+									$type = 'internal-as-outbound';
+								}
 							}
 						}
 
@@ -184,7 +188,6 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 				$js_snippet_single = "onclick='" . $matches[1] . " " . $onclick . "'";
 				$js_snippet_double = 'onclick="' . $matches[1] . ' ' . $onclick . '"';
 
-				//echo '<br> onclick="'.$js_snippet_single.'"<br>';
 				$link_attribute = str_replace( 'onclick="' . $matches[1] . '"', $js_snippet_double, $link_attribute );
 				$link_attribute = str_replace( "onclick='" . $matches[1] . "'", $js_snippet_single, $link_attribute );
 
