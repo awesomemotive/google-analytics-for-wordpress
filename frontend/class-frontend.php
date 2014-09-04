@@ -72,16 +72,20 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 			$domainPatternUS = "/[^\.\/]+\.[^\.\/]+$/";
 			$domainPatternUK = "/[^\.\/]+\.[^\.\/]+\.[^\.\/]+$/";
 
-			preg_match( $hostPattern, $uri, $matches );
-			$host = $matches[2];
-			if ( preg_match( "/.*\..*\..*\..*$/", $host ) ) {
-				preg_match( $domainPatternUK, $host, $matches );
-			} else {
-				preg_match( $domainPatternUS, $host, $matches );
-			}
+			$matching = preg_match( $hostPattern, $uri, $matches );
+			if ( $matching ) {
+				$host = $matches[2];
+				if ( preg_match( "/.*\..*\..*\..*$/", $host ) ) {
+					preg_match( $domainPatternUK, $host, $matches );
+				} else {
+					preg_match( $domainPatternUS, $host, $matches );
+				}
 
-			if ( isset( $matches[0] ) ) {
-				return array( "domain" => $matches[0], "host" => $host );
+				if ( isset( $matches[0] ) ) {
+					return array( "domain" => $matches[0], "host" => $host );
+				} else {
+					return false;
+				}
 			} else {
 				return false;
 			}
@@ -130,7 +134,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 			$extension           = substr( strrchr( $original_url, '.' ), 1 );
 
 			// Break out immediately if the link is not an http or https link.
-			if ( $protocol != 'http' && $protocol != 'https' && $protocol != 'mailto' ) {
+			if ( $protocol !== 'http' && $protocol !== 'https' && $protocol !== 'mailto' ) {
 				$type = null;
 			} else {
 				if ( ( $protocol == 'mailto' ) ) {
