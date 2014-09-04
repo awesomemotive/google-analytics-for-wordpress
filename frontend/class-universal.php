@@ -77,10 +77,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 					}
 				}
 
-				// Anonymous data
-				if ( $options['force_ssl'] == 1 ) {
-					$gaq_push[] = "'set', 'forceSSL', true";
-				}
+				$gaq_push[] = "'set', 'forceSSL', true";
 
 				// Anonymous data
 				if ( $options['anonymize_ips'] == 1 ) {
@@ -128,6 +125,9 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 				} else {
 					require( GAWP_PATH . 'frontend/views/tracking_universal.php' );
 				}
+			}
+			else{
+				require( GAWP_PATH . 'frontend/views/tracking_usergroup.php' );
 			}
 		}
 

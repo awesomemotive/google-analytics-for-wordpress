@@ -73,9 +73,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				// @todo, check for AllowLinker in GA.js? Universal only?
 
 				// SSL data
-				if ( $options['force_ssl'] == 1 ) {
-					$gaq_push[] = "'_gat._forceSSL'";
-				}
+				$gaq_push[] = "'_gat._forceSSL'";
 
 				// Anonymous data
 				if ( $options['anonymize_ips'] == 1 ) {
@@ -118,6 +116,9 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				} else {
 					require( GAWP_PATH . 'frontend/views/tracking_ga_js.php' );
 				}
+			}
+			else{
+				require( GAWP_PATH . 'frontend/views/tracking_usergroup.php' );
 			}
 		}
 
