@@ -72,7 +72,7 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			<?php
 			echo '<h2>' . __( 'Universal settings', 'google-analytics-for-wordpress' ) . '</h2>';
 			echo $yoast_ga_admin->input( 'checkbox', __('Enable Universal tracking', 'google-analytics-for-wordpress' ), 'enable_universal', NULL, __('First enable Universal tracking in your Google Analytics account. How to do that, please read <a href="https://developers.google.com/analytics/devguides/collection/upgrade/guide" target="_blank">this guide</a> to learn how to do that.', 'google-analytics-for-wordpress') );
-			echo $yoast_ga_admin->input( 'checkbox', __('Enable Demographics and Interest Reports', 'google-analytics-for-wordpress' ), 'demographics' );
+			echo $yoast_ga_admin->input( 'checkbox', __('Enable Demographics and Interest Reports', 'google-analytics-for-wordpress' ), 'demographics', NULL, __('You have to enable the Demographics in Google Analytics before you can see the tracking data. We have a doc in our <a href="http://kb.yoast.com/article/154-enable-demographics-and-interests-report-in-google-analytics//#utm_medium=kb-link&utm_source=gawp-config&utm_campaign=wpgaplugin" target="_blank">knowlegde base</a> about this feature.', 'google-analytics-for-wordpress') );
 			?>
 		</div>
 		<div id="advanced" class="gatab">
