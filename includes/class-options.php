@@ -53,9 +53,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		 * @since 5.0.1
 		 */
 		private function upgrade() {
-			global $Yoast_GA_Options;
-			
-			if ( ! isset( $this->options['ga_general']['version'] ) && is_null( $Yoast_GA_Options->get_tracking_code() ) ) {
+			if ( ! isset( $this->options['ga_general']['version'] ) && is_null( $this->get_tracking_code() ) ) {
 				$old_options = get_option( 'Yoast_Google_Analytics' );
 
 				$this->options['ga_general']['manual_ua_code']       = 1;
