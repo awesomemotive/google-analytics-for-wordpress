@@ -28,7 +28,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 
-			add_filter( 'plugin_action_links_' . GAWP_BASE, array( $this, 'add_action_links' ), 10, 2 );
+			add_filter( 'plugin_action_links_' . plugin_basename( GAWP_FILE ), array( $this, 'add_action_links' ), 10, 2 );
 		}
 
 		/**
