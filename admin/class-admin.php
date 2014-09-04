@@ -27,6 +27,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			add_action( 'admin_menu', array( $this, 'create_menu' ), 5 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+
+			add_filter( 'plugin_action_links_' . GAWP_BASE, array( $this, 'add_action_links' ), 10, 2 );
 		}
 
 		/**
@@ -163,6 +165,27 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			}
 
 			return self::$instance;
+		}
+
+		/**
+		 * Add a link to the settings page to the plugins list
+		 *
+		 * @staticvar string $this_plugin holds the directory & filename for the plugin
+		 *
+		 * @param    array  $links array of links for the plugins, adapted when the current plugin is found.
+		 * @param    string $file  the filename for the current plugin, which the filter loops through.
+		 *
+		 * @return    array    $links
+		 */
+		function add_action_links( $links, $file ) {
+			// add link to knowledgebase
+			$faq_link = '<a title="Yoast Knowledge Base" href="http://kb.yoast.com/category/43-google-analytics-for-wordpress">' . __( 'FAQ', 'google-analytics-for-wordpress' ) . '</a>';
+			array_unshift( $links, $faq_link );
+
+			$settings_link = '<a href="' . esc_url( admin_url( 'admin.php?page=yst_ga_settings' ) ) . '">' . __( 'Settings', 'google-analytics-for-wordpress' ) . '</a>';
+			array_unshift( $links, $settings_link );
+
+			return $links;
 		}
 
 		/**
