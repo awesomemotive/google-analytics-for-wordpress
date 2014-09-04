@@ -77,10 +77,6 @@ h2#yoast_ga_title {
 	padding: 20px;
 }
 
-.yoast-banner {
-	max-width: 100%;
-}
-
 .ga-form-input {
 	display: table;
 	margin-bottom: 20px;
@@ -155,5 +151,5 @@ select.ga-multiple {
 }
 
 .ecommerce h3 {
-	background-image: url(../img/Premium_130x100.png);
+	background-image: url(../img/eComm_130x100.png) !important;
 }
