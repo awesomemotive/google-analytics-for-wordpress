@@ -79,6 +79,12 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 				}
 			}
 
+			// Check is API option already exists - if not add it
+			$yst_ga_api = get_option('yst_ga_api');
+			if($yst_ga_api === false) {
+				add_option( 'yst_ga_api', array(), '', 'no' );
+			}
+
 			// Set to the current version now that we've done all needed upgrades
 			$this->options['ga_general']['version'] = GAWP_VERSION;
 
