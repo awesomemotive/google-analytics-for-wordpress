@@ -50,6 +50,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				if ( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ) {
+					if ( ! isset ( $_POST['ignore_users'] ) ) {
+						$_POST['ignore_users'] = array();
+					}
+
 					// Post submitted and verified with our nonce
 					$this->save_settings( $_POST );
 
