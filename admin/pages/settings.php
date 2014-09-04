@@ -71,7 +71,7 @@ echo $yoast_ga_admin->create_form( 'settings' );
 		<div id="universal" class="gatab">
 			<?php
 			echo '<h2>' . __( 'Universal settings', 'google-analytics-for-wordpress' ) . '</h2>';
-			echo $yoast_ga_admin->input( 'checkbox', __('Enable Universal tracking', 'google-analytics-for-wordpress' ), 'enable_universal' );
+			echo $yoast_ga_admin->input( 'checkbox', __('Enable Universal tracking', 'google-analytics-for-wordpress' ), 'enable_universal', NULL, __('First enable Universal tracking in your Google Analytics account. How to do that, please read <a href="https://developers.google.com/analytics/devguides/collection/upgrade/guide" target="_blank">this guide</a> to learn how to do that.', 'google-analytics-for-wordpress') );
 			echo $yoast_ga_admin->input( 'checkbox', __('Enable Demographics and Interest Reports', 'google-analytics-for-wordpress' ), 'demographics' );
 			?>
 		</div>
