@@ -15,7 +15,6 @@ h2#yoast_ga_title {
 
 .gatab.active {
 	display: block;
-	overflow: auto;
 	padding: 0.5em 0.9em;
 	border: 1px solid #ddd;
 	background-color: #fff;
@@ -75,10 +74,6 @@ h2#yoast_ga_title {
 	margin: 0;
 	vertical-align: top;
 	padding: 20px;
-}
-
-.yoast-banner {
-	max-width: 100%;
 }
 
 .ga-form-input {
@@ -155,5 +150,12 @@ select.ga-multiple {
 }
 
 .ecommerce h3 {
-	background-image: url(../img/Premium_130x100.png);
+	background-image: url(../img/eComm_130x100.png) !important;
+}
+
+#ga-debug-info h3 {
+	font-size: 14px;
+	padding-left: 16px;
+	height: 30px;
+	margin-top: 10px;
 }
