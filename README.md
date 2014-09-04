@@ -48,5 +48,4 @@ There are various ways you can contribute:
 Changelog
 =========
 
-### 5.0.0: Date unknown ###
-* Complete rewrite of the Google Analytics plugin
+Please see readme.txt for the changelog.

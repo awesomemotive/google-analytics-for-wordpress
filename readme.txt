@@ -50,7 +50,11 @@ This section describes how to install the plugin and get it working.
 == Changelog ==
 
 = 5.0.0 =
-
+	* Complete rewrite of the Google Analytics plugin
+	* Universal tracking added
+	* Better link tracking
+	* New Universal demographics feature
+	* New menu items in the WordPress admin menu
 
 = 4.3.5 =
 
