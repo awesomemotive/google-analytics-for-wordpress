@@ -4,7 +4,7 @@ Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
 Tested up to: 4.0
-Stable tag: 5.0
+Stable tag: 5.0.1
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
@@ -48,6 +48,12 @@ This section describes how to install the plugin and get it working.
 1. Go to the options panel under the 'Settings' menu and add your Analytics account number and set the settings you want.
 
 == Changelog ==
+
+= 5.0.1 =
+Release Date: September 4th, 2014
+
+* Bugfixes:
+	* Fixed string where array expected warning.
 
 = 5.0.0 =
 Release Date: September 4th, 2014
@@ -370,32 +376,12 @@ Complete rewrite of the Google Analytics plugin.
 
 == Frequently Asked Questions ==
 
-= Can I run this plugin together with another Google Analytics plugin? =
-
-No. You can not. It will break tracking.
-
-= Another profile than the one I selected is showing as selected? =
-
-You probably have multiple profiles for the same website, that share the same UA-code. If so, it doesn't matter which of the profiles is shown as selected, tracking will be correct.
-
-= I've just installed the new tracking and Google Analytics says it's not receiving data yet? =
-
-Give it a couple of hours, usually it'll be fixed. It can take up to 24 hours to appear though.
-
-= Google Analytics says it's receiving data, but I don't see any stats yet? =
-
-This can take up to 24 hours after the installation of the new tracking code.
-
-= Why is the tracking code loaded in the head section of the site? =
-
-Because that's where it belongs. It makes the page load faster (yes, faster, due to the asynchronous method of loading the script) and tracking more reliable. If you must place it in the footer anyway, switch to manual mode and check out the docs for [manual placement of the Google Analytics code](http://yoast.com/wordpress/google-analytics/manual-placement/).
+For all frequently asked questions, and their answers, check the [Yoast Knowledge base](http://kb.yoast.com/category/43-google-analytics-for-wordpress).
 
 == Screenshots ==
 
-1. Screenshot of the basic settings panel for this plugin.
-2. Screenshot of the custom variable settings panel.
-3. Screenshot of the link tracking panel.
-4. Screenshot of the advanced settings panel.
-5. Screenshot of the debugging mode in action.
+1. Screenshot of the general settings panel for this plugin.
+2. Screenshot of the universal settings panel.
+3. Screenshot of the advanced settings panel.
 
 == Upgrade Notice ==
