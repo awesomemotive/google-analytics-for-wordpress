@@ -126,3 +126,34 @@ select.ga-multiple {
 	width: 300px;
 	height: 150px !important;
 }
+.wpseotab .extension {
+	box-sizing: border-box;
+	width: 350px;
+	height: 230px;
+	margin: 10px 20px 10px 0;
+	float: left;
+	border: 1px solid #ccc;
+}
+
+.wpseotab .extension p {
+	margin: 0;
+	padding: 10px;
+}
+
+.wpseotab .extension h3 {
+	box-sizing: border-box;
+	height: 110px;
+	margin: 0;
+	padding: 20px 10px 0 120px;
+	border-bottom: 1px solid #ccc;
+	background: #fff no-repeat left 10px;
+	background-size: 130px 100px;
+}
+
+.extension a {
+	text-decoration: none;
+}
+
+.ecommerce h3 {
+	background-image: url(../img/Premium_130x100.png);
+}
