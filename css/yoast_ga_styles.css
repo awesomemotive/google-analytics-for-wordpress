@@ -153,3 +153,10 @@ select.ga-multiple {
 .ecommerce h3 {
 	background-image: url(../img/eComm_130x100.png) !important;
 }
+
+#ga-debug-info h3 {
+	font-size: 14px;
+	padding-left: 16px;
+	height: 30px;
+	margin-top: 10px;
+}
