@@ -56,8 +56,19 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 			if ( ! isset( $this->options['ga_general']['version'] ) && is_null( $this->get_tracking_code() ) ) {
 				$old_options = get_option( 'Yoast_Google_Analytics' );
 
+				// Save UA as manual UA, instead of saving all the old GA crap
 				$this->options['ga_general']['manual_ua_code']       = 1;
 				$this->options['ga_general']['manual_ua_code_field'] = $old_options['uastring'];
+
+				// Other settings
+				$this->options['ga_general']['allow_anchor']               = $old_options['allowanchor'];
+				$this->options['ga_general']['add_allow_linker']           = $old_options['allowlinker'];
+				$this->options['ga_general']['anonymous_data']             = $old_options['anonymizeip'];
+				$this->options['ga_general']['track_outbound']             = $old_options['trackoutbound'];
+				$this->options['ga_general']['track_internal_as_outbound'] = $old_options['internallink'];
+				$this->options['ga_general']['track_internal_as_label']    = $old_options['internallinklabel'];
+				$this->options['ga_general']['extensions_of_files']        = $old_options['dlextensions'];
+
 				delete_option( 'Yoast_Google_Analytics' );
 			}
 
