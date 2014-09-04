@@ -454,44 +454,25 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 						'body'     => $response
 					);
 					update_option( $option_name, $options );
+				} else {
+					return $return;
 				}
 
-				$xml_reader = new SimpleXMLElement( $options['ga_api_response']['body'] );
+				try {
+					$xml_reader = new SimpleXMLElement( $options['ga_api_response']['body'] );
 
-				if ( ! empty( $xml_reader->entry ) ) {
+					if ( ! empty( $xml_reader->entry ) ) {
 
-					$ga_accounts = array();
+						$ga_accounts = array();
 
-					// Check whether the feed output is the new one, first set, or the old one, second set.
-					if ( $xml_reader->link['href'] == 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles' ) {
-						foreach ( $xml_reader->entry AS $entry ) {
-							$ns         = $entry->getNamespaces( true );
-							$properties = $entry->children( $ns['dxp'] )->property;
-
-							if ( isset ( $properties[1]->attributes()->value ) ) {
-								$ua = (string) trim( $properties[1]->attributes()->value );
-							}
-
-							if ( isset ( $properties[2]->attributes()->value ) ) {
-								$title = (string) trim( $properties[2]->attributes()->value );
-							}
-
-							if ( ! empty( $ua ) && ! empty( $title ) ) {
-								$ga_accounts[] = array(
-									'ua'    => $ua,
-									'title' => $title,
-								);
-							}
-
-						}
-					} else {
-						if ( $xml_reader->link['href'] == 'https://www.google.com/analytics/feeds/accounts/default' ) {
+						// Check whether the feed output is the new one, first set, or the old one, second set.
+						if ( $xml_reader->link['href'] == 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles' ) {
 							foreach ( $xml_reader->entry AS $entry ) {
 								$ns         = $entry->getNamespaces( true );
 								$properties = $entry->children( $ns['dxp'] )->property;
 
-								if ( isset ( $properties[3]->attributes()->value ) ) {
-									$ua = (string) trim( $properties[3]->attributes()->value );
+								if ( isset ( $properties[1]->attributes()->value ) ) {
+									$ua = (string) trim( $properties[1]->attributes()->value );
 								}
 
 								if ( isset ( $properties[2]->attributes()->value ) ) {
@@ -506,19 +487,44 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 								}
 
 							}
+						} else {
+							if ( $xml_reader->link['href'] == 'https://www.google.com/analytics/feeds/accounts/default' ) {
+								foreach ( $xml_reader->entry AS $entry ) {
+									$ns         = $entry->getNamespaces( true );
+									$properties = $entry->children( $ns['dxp'] )->property;
+
+									if ( isset ( $properties[3]->attributes()->value ) ) {
+										$ua = (string) trim( $properties[3]->attributes()->value );
+									}
+
+									if ( isset ( $properties[2]->attributes()->value ) ) {
+										$title = (string) trim( $properties[2]->attributes()->value );
+									}
+
+									if ( ! empty( $ua ) && ! empty( $title ) ) {
+										$ga_accounts[] = array(
+											'ua'    => $ua,
+											'title' => $title,
+										);
+									}
+
+								}
+							}
+						}
+
+						if ( is_array( $ga_accounts ) ) {
+							usort( $ga_accounts, array( $this, 'sort_profiles' ) );
+						}
+
+						foreach ( $ga_accounts as $key => $ga_account ) {
+							$return[] = array(
+								'id'   => $ga_account['ua'],
+								'name' => $ga_account['title'] . ' (' . $ga_account['ua'] . ')',
+							);
 						}
 					}
+				} catch ( Exception $e ) {
 
-					if ( is_array( $ga_accounts ) ) {
-						usort( $ga_accounts, array( $this, 'sort_profiles' ) );
-					}
-
-					foreach ( $ga_accounts as $key => $ga_account ) {
-						$return[] = array(
-							'id'   => $ga_account['ua'],
-							'name' => $ga_account['title'] . ' (' . $ga_account['ua'] . ')',
-						);
-					}
 				}
 			}
 
