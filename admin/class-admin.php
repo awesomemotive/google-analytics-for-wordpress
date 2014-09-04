@@ -73,7 +73,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Throw a warning if no UA code is set.
 		 */
 		public function config_warning() {
-			echo '<div class="error"><p>' . sprintf( __( 'Please configure your %s$1Google Analytics settings%s$2!', 'google-analytics-for-wordpress' ), '<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">', '</a>' ) . '</p></div>';
+			echo '<div class="error"><p>' . sprintf( __( 'Please configure your %sGoogle Analytics settings%s!', 'google-analytics-for-wordpress' ), '<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">', '</a>' ) . '</p></div>';
 		}
 
 		/**
