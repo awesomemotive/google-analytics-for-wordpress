@@ -51,13 +51,10 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					$options['allowanchor'] = false;
 				}
 
-				$ua_code = '';
-				if ( ! empty( $options['analytics_profile'] ) ) {
-					$ua_code = $options['analytics_profile'];
-				}
-
-				if ( ! empty( $options['manual_ua_code_field'] ) && ! empty( $options['manual_ua_code'] ) ) {
-					$ua_code = $options['manual_ua_code_field'];
+				global $Yoast_GA_Options;
+				$ua_code = $Yoast_GA_Options->get_tracking_code();
+				if ( is_null( $ua_code ) ) {
+					return;
 				}
 
 				$gaq_push[] = "'_setAccount', '" . $ua_code . "'";

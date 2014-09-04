@@ -51,14 +51,12 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 					$options['allowanchor'] = false;
 				}
 
-				$ua_code = '';
-				if ( ! empty( $options['analytics_profile'] ) ) {
-					$ua_code = $options['analytics_profile'];
+				global $Yoast_GA_Options;
+				$ua_code = $Yoast_GA_Options->get_tracking_code();
+				if ( is_null( $ua_code ) ) {
+					return;
 				}
 
-				if ( ! empty( $options['manual_ua_code_field'] ) && ! empty( $options['manual_ua_code'] ) ) {
-					$ua_code = $options['manual_ua_code_field'];
-				}
 
 				// Set tracking code here
 				if ( ! empty( $ua_code ) ) {
