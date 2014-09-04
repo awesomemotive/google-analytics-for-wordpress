@@ -447,6 +447,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 				if ( ! empty( $xml_reader->entry ) ) {
 
+					$ga_accounts = array();
+
 					// Check whether the feed output is the new one, first set, or the old one, second set.
 					if ( $xml_reader->link['href'] == 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles' ) {
 						foreach ( $xml_reader->entry AS $entry ) {
@@ -494,7 +496,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 						}
 					}
 
-					usort( $ga_account, array( $this, 'sort_profiles' ) );
+					if ( is_array( $ga_accounts ) ) {
+						usort( $ga_accounts, array( $this, 'sort_profiles' ) );
+					}
 
 					foreach ( $ga_accounts as $key => $ga_account ) {
 						$return[] = array(
@@ -516,7 +520,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 *
 		 * @return int
 		 */
-		public function sort_profiles($a, $b) {
+		public function sort_profiles( $a, $b ) {
 			return strcmp( $a["title"], $b["title"] );
 		}
 
