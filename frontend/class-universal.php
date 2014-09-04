@@ -164,7 +164,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 						$label = 'int';
 					}
 
-					$onclick = "ga('send', 'event', '" . $link['category'] . "-" . $label . "', '" . esc_js( $full_url ) . "', '" . esc_js( $link['link_text'] ) . "');";
+					$onclick = "ga('send', 'event', '" . $link['category'] . "-" . $label . "', '" . esc_js( $full_url ) . "', '" . strip_tags( $link['link_text'] ) . "');";
 
 					break;
 				case 'internal':
@@ -173,7 +173,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 					break;
 				case 'outbound':
 					if ( $options['track_outbound'] == 1 ) {
-						$onclick = "ga('send', 'event', '" . $link['category'] . "', '" . esc_js( $full_url ) . "', '" . esc_js( $link['link_text'] ) . "');";
+						$onclick = "ga('send', 'event', '" . $link['category'] . "', '" . esc_js( $full_url ) . "', '" . strip_tags( $link['link_text'] ) . "');";
 					}
 
 					break;
