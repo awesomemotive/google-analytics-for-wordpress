@@ -587,8 +587,14 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				$request_token  = $gdata->get_request_token( $oauth_callback );
 
 				$options = get_option( $option_name );
-				unset( $options['ga_token'] );
-				unset( $options['ga_oauth']['access_token'] );
+
+				if ( is_array( $options ) ) {
+					unset( $options['ga_token'] );
+					if ( is_array( $options['ga_oauth'] ) ) {
+						unset( $options['ga_oauth']['access_token'] );
+					}
+				}
+
 				$options['ga_oauth']['oauth_token']        = $request_token['oauth_token'];
 				$options['ga_oauth']['oauth_token_secret'] = $request_token['oauth_token_secret'];
 				update_option( $option_name, $options );
