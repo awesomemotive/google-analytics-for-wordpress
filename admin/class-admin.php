@@ -12,6 +12,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		private $form_namespace;
 
 		public function __construct() {
+			parent::__construct();
+
 			add_action( 'plugins_loaded', array( $this, 'init_ga' ) );
 			add_action( 'admin_init', array( $this, 'init_settings' ) );
 		}
@@ -220,7 +222,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Load the page of a menu item in the GA plugin
 		 */
 		public function load_page() {
-
 			require_once $this->plugin_path . 'admin/class-admin-ga-js.php';
 
 			if ( isset( $_GET['page'] ) ) {
