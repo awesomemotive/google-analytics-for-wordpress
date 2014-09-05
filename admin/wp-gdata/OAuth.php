@@ -618,7 +618,7 @@ class Yoast_OAuthServer {
 			throw new Yoast_OAuthException(
 				'Signature method ' . $signature_method . ' not supported ' .
 				'try one of the following: ' .
-				implode( ", ", array_keys( $this->signature_methods ) )
+				implode( ', ', array_keys( $this->signature_methods ) )
 			);
 		}
 

@@ -103,10 +103,10 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				if ( $this->options['debug_mode'] == 1 ) {
 					require( 'views/tracking-debug.php' );
 				} else {
-					require( 'views/tracking_ga_js.php' );
+					require( 'views/tracking-ga-js.php' );
 				}
 			} else {
-				require( 'views/tracking_usergroup.php' );
+				require( 'views/tracking-usergroup.php' );
 			}
 		}
 
