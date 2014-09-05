@@ -35,7 +35,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 			if ( $this->do_tracking() && ! is_preview() ) {
 				$gaq_push = array();
 
-				if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != "" ) {
+				if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != '' ) {
 					$domain = $this->options['subdomain_tracking'];
 				} else {
 					$domain = 'auto'; // Default domain value
@@ -113,10 +113,10 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 				if ( $this->options['debug_mode'] == 1 ) {
 					require( 'views/tracking-debug.php' );
 				} else {
-					require( 'views/tracking_universal.php' );
+					require( 'views/tracking-universal.php' );
 				}
 			} else {
-				require( 'views/tracking_usergroup.php' );
+				require( 'views/tracking-usergroup.php' );
 			}
 		}
 
