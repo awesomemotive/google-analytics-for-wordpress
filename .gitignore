@@ -1,4 +1,6 @@
 .DS_store
 .idea/
+tests.sh
+wp-tests-config.php
 
 node_modules/*
