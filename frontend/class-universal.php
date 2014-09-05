@@ -47,8 +47,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 					$options['allowanchor'] = false;
 				}
 
-				global $Yoast_GA_Options;
-				$ua_code = $Yoast_GA_Options->get_tracking_code();
+				$ua_code = $this->get_tracking_code();
 				if ( is_null( $ua_code ) ) {
 					return;
 				}
