@@ -4,14 +4,14 @@
 	var _gaq = _gaq || [];
 	<?php
 		// List the GA elements from the class-ga-js.php
-		if( count( $gaq_push )>=1 ){
-			foreach($gaq_push as $item){
+		if ( count( $gaq_push ) >= 1 ) {
+			foreach ( $gaq_push as $item ) {
 				echo '	_gaq.push([' . $item . "]);\n";
 			}
 		}
 
 		// Output the custom code that could be added in the WP backend
-		if( ! empty( $ga_settings['custom_code'] ) ){
+		if ( ! empty( $ga_settings['custom_code'] ) ) {
 			echo '	' . stripslashes( $ga_settings['custom_code'] ) . "\n";
 		}
 		?>
