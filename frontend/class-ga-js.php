@@ -15,7 +15,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 			add_action( 'wp_head', array( $this, 'tracking' ), 8 );
 
-			if ( $this->options[$this->option_prefix]['track_outbound'] == 1 ) {
+			if ( $this->options['track_outbound'] == 1 ) {
 				// Check for outbound
 				add_filter( 'the_content', array( $this, 'the_content' ), 99 );
 				add_filter( 'widget_text', array( $this, 'widget_content' ), 99 );
@@ -32,19 +32,17 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		public function tracking() {
 			global $wp_query;
 
-			$options = $this->options[$this->option_prefix];
-
 			if ( parent::do_tracking() && ! is_preview() ) {
 				$gaq_push = array();
 
-				if ( isset( $options['subdomain_tracking'] ) && $options['subdomain_tracking'] != "" ) {
-					$domain = $options['subdomain_tracking'];
+				if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != "" ) {
+					$domain = $this->options['subdomain_tracking'];
 				} else {
 					$domain = NULL; // Default domain value
 				}
 
-				if ( ! isset( $options['allowanchor'] ) ) {
-					$options['allowanchor'] = false;
+				if ( ! isset( $this->options['allowanchor'] ) ) {
+					$this->options['allowanchor'] = false;
 				}
 
 				$ua_code = $this->get_tracking_code();
@@ -58,7 +56,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					$gaq_push[] = "'_setDomainName', '" . $domain . "'";
 				}
 
-				if ( $options['add_allow_linker'] && ! $options['allowanchor'] ) {
+				if ( $this->options['add_allow_linker'] && ! $this->options['allowanchor'] ) {
 					$gaq_push[] = "'_setAllowAnchor', true";
 				}
 
@@ -68,11 +66,11 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				$gaq_push[] = "'_gat._forceSSL'";
 
 				// Anonymous data
-				if ( $options['anonymize_ips'] == 1 ) {
+				if ( $this->options['anonymize_ips'] == 1 ) {
 					$gaq_push[] = "'_gat._anonymizeIp'";
 				}
 
-				if ( isset( $options['allowhash'] ) && $options['allowhash'] ) {
+				if ( isset( $this->options['allowhash'] ) && $this->options['allowhash'] ) {
 					$gaq_push[] = "'_gat._anonymizeIp',true";
 				}
 
@@ -99,10 +97,10 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					}
 				}
 
-				$ga_settings = $options; // Assign the settings to the javascript include view
+				$ga_settings = $this->options; // Assign the settings to the javascript include view
 
 				// Include the tracking view
-				if ( $options['debug_mode'] == 1 ) {
+				if ( $this->options['debug_mode'] == 1 ) {
 					require( 'views/tracking_debug.php' );
 				} else {
 					require( 'views/tracking_ga_js.php' );
@@ -119,7 +117,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		 * @return string
 		 */
 		public function get_tracking_prefix() {
-			return ( empty( $this->options[$this->option_prefix]['trackprefix'] ) ) ? '/yoast-ga/' : $this->options[$this->option_prefix]['trackprefix'];
+			return ( empty( $this->options['trackprefix'] ) ) ? '/yoast-ga/' : $this->options['trackprefix'];
 		}
 
 		/**
@@ -139,13 +137,11 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 			}
 
 			$onclick  = NULL;
-			$options  = $this->get_options();
-			$options  = $options[$this->option_prefix];
 			$full_url = $this->make_full_url( $link );
 
 			switch ( $link['type'] ) {
 				case 'download':
-					if ( $options['track_download_as'] == 'pageview' ) {
+					if ( $this->options['track_download_as'] == 'pageview' ) {
 						$onclick = "_gaq.push(['_trackPageview','download/" . esc_attr( $full_url ) . "']);";
 					} else {
 						$onclick = "_gaq.push(['_trackEvent','download/" . esc_attr( $full_url ) . "']);";
@@ -157,8 +153,8 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 					break;
 				case 'internal-as-outbound':
-					if ( ! is_null( $options['track_internal_as_label'] ) ) {
-						$label = $options['track_internal_as_label'];
+					if ( ! is_null( $this->options['track_internal_as_label'] ) ) {
+						$label = $this->options['track_internal_as_label'];
 					} else {
 						$label = 'int';
 					}
