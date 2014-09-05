@@ -19,4 +19,4 @@ if( false !== getenv( 'WP_DEVELOP_DIR' ) ) {
 }
 
 // include unit test base class
-//require_once dirname( __FILE__ ) . '/framework/class-wpseo-unit-test-case.php';
+require_once dirname( __FILE__ ) . '/framework/class-ga-unit-test-case.php';
