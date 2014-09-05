@@ -10,6 +10,8 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		public static $options = array();
 
 		public function __construct() {
+			parent::__construct();
+			
 			self::$options = get_option( 'yst_ga' );
 
 			if ( isset( self::$options['ga_general']['tag_links_in_rss'] ) && self::$options['ga_general']['tag_links_in_rss'] == 1 ) {
