@@ -119,7 +119,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 			$original_url        = $matches[3];
 			$domain              = $this->yoast_ga_get_domain( $matches[3] );
 			$origin              = $this->yoast_ga_get_domain( $_SERVER['HTTP_HOST'] );
-			$download_extensions = explode( ",", str_replace( '.', '', $this->options['extensions_of_files'] ) );
+			$download_extensions = explode( ',', str_replace( '.', '', $this->options['extensions_of_files'] ) );
 			$extension           = substr( strrchr( $original_url, '.' ), 1 );
 
 			// Break out immediately if the link is not an http or https link.
@@ -163,7 +163,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 				'extension'       => $extension,
 				'link_attributes' => rtrim( $matches[1] . ' ' . $matches[4] ),
 				'link_text'       => $matches[5],
-				'original_url'    => $original_url
+				'original_url'    => $original_url,
 			);
 		}
 
@@ -177,7 +177,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		 */
 		public function output_add_onclick( $link_attribute, $onclick ) {
 			if ( preg_match( '/onclick=[\'\"](.*?;)[\'\"]/i', $link_attribute, $matches ) > 0 ) {
-				$js_snippet_single = 'onclick=\'' . $matches[1] . " " . $onclick . '\'';
+				$js_snippet_single = 'onclick=\'' . $matches[1] . ' ' . $onclick . '\'';
 				$js_snippet_double = 'onclick="' . $matches[1] . ' ' . $onclick . '"';
 
 				$link_attribute = str_replace( 'onclick="' . $matches[1] . '"', $js_snippet_double, $link_attribute );
