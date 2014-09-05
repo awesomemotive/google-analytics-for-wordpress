@@ -52,7 +52,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 				// Set tracking code here
 				if ( ! empty( $ua_code ) ) {
-					if ( $this->options['add_allow_linker'] && ! $this->ptions['allowanchor'] ) {
+					if ( $this->options['add_allow_linker'] && ! $this->options['allowanchor'] ) {
 						$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowLinker': true}";
 					} else {
 						if ( $this->options['allowanchor'] && ! $this->options['add_allow_linker'] ) {
