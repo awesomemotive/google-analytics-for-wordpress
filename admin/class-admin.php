@@ -180,7 +180,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					$page = add_submenu_page( $submenu_page[0], $submenu_page[1], $submenu_page[2], $submenu_page[3], $submenu_page[4], $submenu_page[5] );
 					add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_styles' ) );
 					if ( 'yst_ga_settings' === $submenu_page[4] ) {
-						add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_settings_styles' );
+						add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_settings_styles' ) );
 						add_action( 'admin_print_scripts-' . $page, array( $this, 'enqueue_scripts' ) );
 					}
 				}
