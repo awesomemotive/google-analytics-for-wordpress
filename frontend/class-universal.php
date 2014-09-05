@@ -89,7 +89,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 					if ( $wp_query->is_search ) {
 						$pushstr = "'send','pageview','/?s=";
 						if ( $wp_query->found_posts == 0 ) {
-							$gaq_push[] = $pushstr . "no-results:" . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=no-results'";
+							$gaq_push[] = $pushstr . 'no-results:' . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=no-results'";
 						} else {
 							if ( $wp_query->found_posts == 1 ) {
 								$gaq_push[] = $pushstr . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=1-result'";
@@ -111,7 +111,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 				// Include the tracking view
 				if ( $this->options['debug_mode'] == 1 ) {
-					require( 'views/tracking_debug.php' );
+					require( 'views/tracking-debug.php' );
 				} else {
 					require( 'views/tracking_universal.php' );
 				}
@@ -159,7 +159,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 						$label = 'int';
 					}
 
-					$onclick = "ga('send', 'event', '" . esc_attr( $link['category'] ) . "-" . esc_attr( $label ) . "', '" . esc_attr( $full_url ) . "', '" . esc_attr( strip_tags( $link['link_text'] ) ) . "');";
+					$onclick = "ga('send', 'event', '" . esc_attr( $link['category'] ) . '-' . esc_attr( $label ) . "', '" . esc_attr( $full_url ) . "', '" . esc_attr( strip_tags( $link['link_text'] ) ) . "');";
 
 					break;
 				case 'outbound':

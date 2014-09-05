@@ -12,7 +12,7 @@ class Yoast_OAuthConsumer {
 	public $key;
 	public $secret;
 
-	function __construct( $key, $secret, $callback_url = NULL ) {
+	function __construct( $key, $secret, $callback_url = null ) {
 		$this->key          = $key;
 		$this->secret       = $secret;
 		$this->callback_url = $callback_url;
@@ -42,9 +42,9 @@ class Yoast_OAuthToken {
 	 * would respond to request_token and access_token calls with
 	 */
 	function to_string() {
-		return "oauth_token=" .
+		return 'oauth_token=' .
 		Yoast_OAuthUtil::urlencode_rfc3986( $this->key ) .
-		"&oauth_token_secret=" .
+		'&oauth_token_secret=' .
 		Yoast_OAuthUtil::urlencode_rfc3986( $this->secret );
 	}
 
@@ -119,7 +119,7 @@ abstract class Yoast_OAuthSignatureMethod {
  */
 class Yoast_OAuthSignatureMethod_HMAC_SHA1 extends Yoast_OAuthSignatureMethod {
 	function get_name() {
-		return "HMAC-SHA1";
+		return 'HMAC-SHA1';
 	}
 
 	public function build_signature( $request, $consumer, $token ) {
@@ -128,7 +128,7 @@ class Yoast_OAuthSignatureMethod_HMAC_SHA1 extends Yoast_OAuthSignatureMethod {
 
 		$key_parts = array(
 			$consumer->secret,
-			( $token ) ? $token->secret : ""
+			( $token ) ? $token->secret : '',
 		);
 
 		$key_parts = Yoast_OAuthUtil::urlencode_rfc3986( $key_parts );
@@ -145,7 +145,7 @@ class Yoast_OAuthSignatureMethod_HMAC_SHA1 extends Yoast_OAuthSignatureMethod {
  */
 class Yoast_OAuthSignatureMethod_PLAINTEXT extends Yoast_OAuthSignatureMethod {
 	public function get_name() {
-		return "PLAINTEXT";
+		return 'PLAINTEXT';
 	}
 
 	/**
@@ -160,7 +160,7 @@ class Yoast_OAuthSignatureMethod_PLAINTEXT extends Yoast_OAuthSignatureMethod {
 	public function build_signature( $request, $consumer, $token ) {
 		$key_parts = array(
 			$consumer->secret,
-			( $token ) ? $token->secret : ""
+			( $token ) ? $token->secret : '',
 		);
 
 		$key_parts            = Yoast_OAuthUtil::urlencode_rfc3986( $key_parts );
@@ -181,7 +181,7 @@ class Yoast_OAuthSignatureMethod_PLAINTEXT extends Yoast_OAuthSignatureMethod {
  */
 abstract class Yoast_OAuthSignatureMethod_RSA_SHA1 extends Yoast_OAuthSignatureMethod {
 	public function get_name() {
-		return "RSA-SHA1";
+		return 'RSA-SHA1';
 	}
 
 	// Up to the SP to implement this lookup of keys. Possible ideas are:
@@ -247,7 +247,7 @@ class Yoast_OAuthRequest {
 	public static $version = '1.0';
 	public static $POST_INPUT = 'php://input';
 
-	function __construct( $http_method, $http_url, $parameters = NULL ) {
+	function __construct( $http_method, $http_url, $parameters = null ) {
 		$parameters        = ( $parameters ) ? $parameters : array();
 		$parameters        = array_merge( Yoast_OAuthUtil::parse_parameters( parse_url( $http_url, PHP_URL_QUERY ) ), $parameters );
 		$this->parameters  = $parameters;
@@ -259,8 +259,8 @@ class Yoast_OAuthRequest {
 	/**
 	 * attempt to build up a request from what was passed to the server
 	 */
-	public static function from_request( $http_method = NULL, $http_url = NULL, $parameters = NULL ) {
-		$scheme      = ( ! isset( $_SERVER['HTTPS'] ) || $_SERVER['HTTPS'] != "on" )
+	public static function from_request( $http_method = null, $http_url = null, $parameters = null ) {
+		$scheme      = ( ! isset( $_SERVER['HTTPS'] ) || $_SERVER['HTTPS'] != 'on' )
 			? 'http'
 			: 'https';
 		$http_url    = ( $http_url ) ? $http_url : $scheme .
@@ -283,7 +283,7 @@ class Yoast_OAuthRequest {
 
 			// It's a POST request of the proper content-type, so parse POST
 			// parameters and add those overriding any duplicates from GET
-			if ( $http_method == "POST"
+			if ( $http_method == 'POST'
 				&& isset( $request_headers['Content-Type'] )
 				&& strstr( $request_headers['Content-Type'],
 					'application/x-www-form-urlencoded' )
@@ -302,7 +302,6 @@ class Yoast_OAuthRequest {
 				);
 				$parameters        = array_merge( $parameters, $header_parameters );
 			}
-
 		}
 
 		return new Yoast_OAuthRequest( $http_method, $http_url, $parameters );
@@ -311,12 +310,14 @@ class Yoast_OAuthRequest {
 	/**
 	 * pretty much a helper function to set up the request
 	 */
-	public static function from_consumer_and_token( $consumer, $token, $http_method, $http_url, $parameters = NULL ) {
+	public static function from_consumer_and_token( $consumer, $token, $http_method, $http_url, $parameters = null ) {
 		$parameters = ( $parameters ) ? $parameters : array();
-		$defaults   = array( "oauth_version"      => Yoast_OAuthRequest::$version,
-							 "oauth_nonce"        => Yoast_OAuthRequest::generate_nonce(),
-							 "oauth_timestamp"    => Yoast_OAuthRequest::generate_timestamp(),
-							 "oauth_consumer_key" => $consumer->key );
+		$defaults   = array(
+			'oauth_version'      => Yoast_OAuthRequest::$version,
+			'oauth_nonce'        => Yoast_OAuthRequest::generate_nonce(),
+			'oauth_timestamp'    => Yoast_OAuthRequest::generate_timestamp(),
+			'oauth_consumer_key' => $consumer->key,
+		);
 		if ( $token ) {
 			$defaults['oauth_token'] = $token->key;
 		}
@@ -381,7 +382,7 @@ class Yoast_OAuthRequest {
 		$parts = array(
 			$this->get_normalized_http_method(),
 			$this->get_normalized_http_url(),
-			$this->get_signable_parameters()
+			$this->get_signable_parameters(),
 		);
 
 		$parts = Yoast_OAuthUtil::urlencode_rfc3986( $parts );
@@ -451,7 +452,7 @@ class Yoast_OAuthRequest {
 
 		$total = array();
 		foreach ( $this->parameters as $k => $v ) {
-			if ( substr( $k, 0, 5 ) != "oauth" ) {
+			if ( substr( $k, 0, 5 ) != 'oauth' ) {
 				continue;
 			}
 			if ( is_array( $v ) ) {
@@ -475,12 +476,12 @@ class Yoast_OAuthRequest {
 
 	public function sign_request( $signature_method, $consumer, $token ) {
 		$this->set_parameter(
-			"oauth_signature_method",
+			'oauth_signature_method',
 			$signature_method->get_name(),
 			false
 		);
 		$signature = $this->build_signature( $signature_method, $consumer, $token );
-		$this->set_parameter( "oauth_signature", $signature, false );
+		$this->set_parameter( 'oauth_signature', $signature, false );
 	}
 
 	public function build_signature( $signature_method, $consumer, $token ) {
@@ -535,7 +536,7 @@ class Yoast_OAuthServer {
 		$consumer = $this->get_consumer( $request );
 
 		// no token required for the initial token request
-		$token = NULL;
+		$token = null;
 
 		$this->check_signature( $request, $consumer, $token );
 
@@ -556,7 +557,7 @@ class Yoast_OAuthServer {
 		$consumer = $this->get_consumer( $request );
 
 		// requires authorized request token
-		$token = $this->get_token( $request, $consumer, "request" );
+		$token = $this->get_token( $request, $consumer, 'request' );
 
 		$this->check_signature( $request, $consumer, $token );
 
@@ -573,7 +574,7 @@ class Yoast_OAuthServer {
 	public function verify_request( &$request ) {
 		$this->get_version( $request );
 		$consumer = $this->get_consumer( $request );
-		$token    = $this->get_token( $request, $consumer, "access" );
+		$token    = $this->get_token( $request, $consumer, 'access' );
 		$this->check_signature( $request, $consumer, $token );
 
 		return array( $consumer, $token );
@@ -584,14 +585,14 @@ class Yoast_OAuthServer {
 	 * version 1
 	 */
 	private function get_version( &$request ) {
-		$version = $request->get_parameter( "oauth_version" );
+		$version = $request->get_parameter( 'oauth_version' );
 		if ( ! $version ) {
 			// Service Providers MUST assume the protocol version to be 1.0 if this parameter is not present.
 			// Chapter 7.0 ("Accessing Protected Ressources")
 			$version = '1.0';
 		}
 		if ( $version !== $this->version ) {
-			throw new Yoast_OAuthException( "OAuth version '$version' not supported" );
+			throw new Yoast_OAuthException( 'OAuth version ' . $version . ' not supported' );
 		}
 
 		return $version;
@@ -602,8 +603,8 @@ class Yoast_OAuthServer {
 	 */
 	private function get_signature_method( $request ) {
 		$signature_method = $request instanceof Yoast_OAuthRequest
-			? $request->get_parameter( "oauth_signature_method" )
-			: NULL;
+			? $request->get_parameter( 'oauth_signature_method' )
+			: null;
 
 		if ( ! $signature_method ) {
 			// According to chapter 7 ("Accessing Protected Ressources") the signature-method
@@ -615,8 +616,8 @@ class Yoast_OAuthServer {
 			array_keys( $this->signature_methods ) )
 		) {
 			throw new Yoast_OAuthException(
-				"Signature method '$signature_method' not supported " .
-				"try one of the following: " .
+				'Signature method ' . $signature_method . ' not supported ' .
+				'try one of the following: ' .
 				implode( ", ", array_keys( $this->signature_methods ) )
 			);
 		}
@@ -629,16 +630,16 @@ class Yoast_OAuthServer {
 	 */
 	private function get_consumer( $request ) {
 		$consumer_key = $request instanceof Yoast_OAuthRequest
-			? $request->get_parameter( "oauth_consumer_key" )
-			: NULL;
+			? $request->get_parameter( 'oauth_consumer_key' )
+			: null;
 
 		if ( ! $consumer_key ) {
-			throw new Yoast_OAuthException( "Invalid consumer key" );
+			throw new Yoast_OAuthException( 'Invalid consumer key' );
 		}
 
 		$consumer = $this->data_store->lookup_consumer( $consumer_key );
 		if ( ! $consumer ) {
-			throw new Yoast_OAuthException( "Invalid consumer" );
+			throw new Yoast_OAuthException( 'Invalid consumer' );
 		}
 
 		return $consumer;
@@ -647,10 +648,10 @@ class Yoast_OAuthServer {
 	/**
 	 * try to find the token for the provided request's token key
 	 */
-	private function get_token( $request, $consumer, $token_type = "access" ) {
+	private function get_token( $request, $consumer, $token_type = 'access' ) {
 		$token_field = $request instanceof Yoast_OAuthRequest
 			? $request->get_parameter( 'oauth_token' )
-			: NULL;
+			: null;
 
 		$token = $this->data_store->lookup_token(
 			$consumer, $token_type, $token_field
@@ -670,10 +671,10 @@ class Yoast_OAuthServer {
 		// this should probably be in a different method
 		$timestamp = $request instanceof Yoast_OAuthRequest
 			? $request->get_parameter( 'oauth_timestamp' )
-			: NULL;
+			: null;
 		$nonce     = $request instanceof Yoast_OAuthRequest
 			? $request->get_parameter( 'oauth_nonce' )
-			: NULL;
+			: null;
 
 		$this->check_timestamp( $timestamp );
 		$this->check_nonce( $consumer, $token, $nonce, $timestamp );
@@ -689,7 +690,7 @@ class Yoast_OAuthServer {
 		);
 
 		if ( ! $valid_sig ) {
-			throw new Yoast_OAuthException( "Invalid signature" );
+			throw new Yoast_OAuthException( 'Invalid signature' );
 		}
 	}
 
@@ -820,9 +821,9 @@ class Yoast_OAuthUtil {
 			$out = array();
 			foreach ( $headers AS $key => $value ) {
 				$key       = str_replace(
-					" ",
-					"-",
-					ucwords( strtolower( str_replace( "-", " ", $key ) ) )
+					' ',
+					'-',
+					ucwords( strtolower( str_replace( '-', ' ', $key ) ) )
 				);
 				$out[$key] = $value;
 			}
@@ -838,14 +839,14 @@ class Yoast_OAuthUtil {
 			}
 
 			foreach ( $_SERVER as $key => $value ) {
-				if ( substr( $key, 0, 5 ) == "HTTP_" ) {
+				if ( substr( $key, 0, 5 ) == 'HTTP_' ) {
 					// this is chaos, basically it is just there to capitalize the first
 					// letter of every word that is not an initial HTTP and strip HTTP
 					// code from przemek
 					$key       = str_replace(
-						" ",
-						"-",
-						ucwords( strtolower( str_replace( "_", " ", substr( $key, 5 ) ) ) )
+						' ',
+						'-',
+						ucwords( strtolower( str_replace( '_', ' ', substr( $key, 5 ) ) ) )
 					);
 					$out[$key] = $value;
 				}

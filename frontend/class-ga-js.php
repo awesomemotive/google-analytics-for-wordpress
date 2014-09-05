@@ -35,10 +35,10 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 			if ( parent::do_tracking() && ! is_preview() ) {
 				$gaq_push = array();
 
-				if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != "" ) {
+				if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != '' ) {
 					$domain = $this->options['subdomain_tracking'];
 				} else {
-					$domain = NULL; // Default domain value
+					$domain = null; // Default domain value
 				}
 
 				if ( ! isset( $this->options['allowanchor'] ) ) {
@@ -80,7 +80,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					if ( $wp_query->is_search ) {
 						$pushstr = "'_trackPageview','/?s=";
 						if ( $wp_query->found_posts == 0 ) {
-							$gaq_push[] = $pushstr . "no-results:" . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=no-results'";
+							$gaq_push[] = $pushstr . 'no-results:' . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=no-results'";
 						} else {
 							if ( $wp_query->found_posts == 1 ) {
 								$gaq_push[] = $pushstr . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=1-result'";
@@ -101,12 +101,11 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 				// Include the tracking view
 				if ( $this->options['debug_mode'] == 1 ) {
-					require( 'views/tracking_debug.php' );
+					require( 'views/tracking-debug.php' );
 				} else {
 					require( 'views/tracking_ga_js.php' );
 				}
-			}
-			else{
+			} else {
 				require( 'views/tracking_usergroup.php' );
 			}
 		}
@@ -124,7 +123,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		 * Ouput tracking link
 		 *
 		 * @param string $label
-		 * @param array $matches
+		 * @param array  $matches
 		 *
 		 * @return mixed
 		 */
@@ -136,7 +135,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				return $matches[0];
 			}
 
-			$onclick  = NULL;
+			$onclick  = null;
 			$full_url = $this->make_full_url( $link );
 
 			switch ( $link['type'] ) {
@@ -159,11 +158,11 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 						$label = 'int';
 					}
 
-					$onclick = "_gaq.push(['_trackEvent', '" . esc_attr ( $link['category'] ) . "-" . esc_attr ( $label ) . "', '" . esc_attr ( $full_url ) . "', '" . esc_attr ( strip_tags( $link['link_text'] ) ) . "']);";
+					$onclick = "_gaq.push(['_trackEvent', '" . esc_attr( $link['category'] ) . '-' . esc_attr( $label ) . "', '" . esc_attr( $full_url ) . "', '" . esc_attr( strip_tags( $link['link_text'] ) ) . "']);";
 
 					break;
 				case 'outbound':
-					$onclick = "_gaq.push(['_trackEvent', '" . esc_attr ( $link['category'] ) . "', '" . esc_attr ( $full_url ) . "', '" . esc_attr ( strip_tags( $link['link_text'] ) ) . "']);";
+					$onclick = "_gaq.push(['_trackEvent', '" . esc_attr( $link['category'] ) . "', '" . esc_attr( $full_url ) . "', '" . esc_attr( strip_tags( $link['link_text'] ) ) . "']);";
 
 					break;
 			}
@@ -260,8 +259,9 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		 * @return mixed
 		 */
 		public function nav_menu( $text ) {
-			if ( ! $this->do_tracking() )
+			if ( ! $this->do_tracking() ) {
 				return $text;
+			}
 
 			if ( ! is_feed() ) {
 				$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_nav_menu' ), $text );
@@ -278,8 +278,9 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		 * @return mixed
 		 */
 		public function comment_text( $text ) {
-			if ( ! $this->do_tracking() )
+			if ( ! $this->do_tracking() ) {
 				return $text;
+			}
 
 			if ( ! is_feed() ) {
 				$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_comment_link' ), $text );
