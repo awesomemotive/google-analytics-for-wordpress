@@ -66,7 +66,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				$gaq_push[] = "'_gat._forceSSL'";
 
 				// Anonymous data
-				if ( $this->options['anonymize_ips'] == 1 ) {
+				if ( issert($this->options['anonymize_ips']) && $this->options['anonymize_ips'] == 1 ) {
 					$gaq_push[] = "'_gat._anonymizeIp'";
 				}
 
@@ -100,7 +100,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				$ga_settings = $this->options; // Assign the settings to the javascript include view
 
 				// Include the tracking view
-				if ( $this->options['debug_mode'] == 1 ) {
+				if ( isset($this->options['debug_mode']) && $this->options['debug_mode'] == 1 ) {
 					require( 'views/tracking_debug.php' );
 				} else {
 					require( 'views/tracking_ga_js.php' );
