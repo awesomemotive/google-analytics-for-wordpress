@@ -71,36 +71,20 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
-		 * Return the setting by name
-		 *
-		 * @param $name
-		 *
-		 * @return null
-		 */
-		public function get_setting( $name ) {
-
-			if ( isset( $this->options[ $this->option_prefix ][ $name ] ) ) {
-				return $this->options[ $this->option_prefix ][ $name ];
-			} else {
-				return null;
-			}
-		}
-
-		/**
 		 * This function saves the settings in the option field and returns a wp success message on success
 		 *
 		 * @param $data
 		 */
 		public function save_settings( $data ) {
 			foreach ( $data as $key => $value ) {
-				$this->options[ $this->option_prefix ][ $key ] = $value;
+				$this->options[ $key ] = $value;
 			}
 
 			// Check checkboxes, on a uncheck they won't be posted to this function
 			$defaults = $this->default_ga_values();
 			foreach ( $defaults[ $this->option_prefix ] as $key => $value ) {
 				if ( ! isset( $data[ $key ] ) ) {
-					$this->options[ $this->option_prefix ][ $key ] = $value;
+					$this->options[ $key ] = $value;
 				}
 			}
 
@@ -295,12 +279,12 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				$input .= '<label class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . $this->form_namespace . '-' . $id . '" />' . $title . ':</label>';
 			}
 
-			if ( $type == 'checkbox' && $this->get_setting( $name ) == 1 ) {
+			if ( $type == 'checkbox' && $this->options[ $name ] == 1 ) {
 				$input .= '<input type="' . $type . '" class="ga-form ga-form-checkbox" id="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $id . '" name="' . $name . '" value="1" checked="checked" />';
 			} elseif ( $type == 'checkbox' ) {
 				$input .= '<input type="' . $type . '" class="ga-form ga-form-checkbox" id="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $id . '" name="' . $name . '" value="1" />';
 			} else {
-				$input .= '<input type="' . $type . '" class="ga-form ga-form-' . $type . '" id="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $id . '" name="' . $name . '" value="' . stripslashes( $this->get_setting( $name ) ) . '" />';
+				$input .= '<input type="' . $type . '" class="ga-form ga-form-' . $type . '" id="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $id . '" name="' . $name . '" value="' . stripslashes( $this->options[ $name ] ) . '" />';
 			}
 
 			if ( ! is_null( $text_label ) ) {
@@ -347,14 +331,14 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			}
 			if ( count( $values ) >= 1 ) {
 				foreach ( $values as $value ) {
-					if ( is_array( $this->get_setting( $name ) ) ) {
-						if ( in_array( $value['id'], $this->get_setting( $name ) ) ) {
+					if ( is_array( $this->options[ $name ] ) ) {
+						if ( in_array( $value['id'], $this->options[ $name ] ) ) {
 							$select .= '<option value="' . $value['id'] . '" selected="selected">' . stripslashes( $value['name'] ) . '</option>';
 						} else {
 							$select .= '<option value="' . $value['id'] . '">' . stripslashes( $value['name'] ) . '</option>';
 						}
 					} else {
-						$select .= '<option value="' . $value['id'] . '" ' . selected( $this->get_setting( $name ), $value['id'], false ) . '>' . stripslashes( $value['name'] ) . '</option>';
+						$select .= '<option value="' . $value['id'] . '" ' . selected( $this->options[ $name ], $value['id'], false ) . '>' . stripslashes( $value['name'] ) . '</option>';
 					}
 				}
 			}
@@ -388,7 +372,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			if ( ! is_null( $title ) ) {
 				$text .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
 			}
-			$text .= '<textarea rows="5" cols="60" name="' . $name . '" id="yoast-ga-form-textarea-' . $this->form_namespace . '-' . $id . '">' . stripslashes( $this->get_setting( $name ) ) . '</textarea>';
+			$text .= '<textarea rows="5" cols="60" name="' . $name . '" id="yoast-ga-form-textarea-' . $this->form_namespace . '-' . $id . '">' . stripslashes( $this->options[ $name ] ) . '</textarea>';
 			$text .= '</div>';
 
 			// If we get a description, append it to this select field in a new row

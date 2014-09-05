@@ -45,23 +45,26 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 
 			if ( false == $this->options ) {
 				add_option( $this->option_name, $this->default_ga_values() );
-				$this->options = get_option( $this->option_name );
+				$this->options = $this->get_options();
 			}
 
-			if ( ! isset( $this->options[ $this->option_prefix ]['version'] ) || $this->options[ $this->option_prefix ]['version'] < GAWP_VERSION ) {
+			if ( ! isset( $this->options['version'] ) || $this->options['version'] < GAWP_VERSION ) {
 				$this->upgrade();
 			}
 		}
 
 		/**
-		 * Updates the GA option
+		 * Updates the GA option within the current option_prefix
 		 *
 		 * @param array $val
 		 *
 		 * @return bool
 		 */
 		public function update_option( $val ) {
-			return update_option( $this->option_name, $val );
+			$options                         = get_option( $this->option_name );
+			$options[ $this->option_prefix ] = $val;
+
+			return update_option( $this->option_name, $options );
 		}
 
 		/**
@@ -70,7 +73,9 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		 * @return mixed|void
 		 */
 		public function get_options() {
-			return get_option( $this->option_name );
+			$options = get_option( $this->option_name );
+
+			return $options[ $this->option_prefix ];
 		}
 
 		/**
@@ -80,15 +85,13 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		 */
 		public function get_tracking_code() {
 			$tracking_code = null;
-			$options       = $this->options;
-			$options       = $options[ $this->option_prefix ];
 
-			if ( ! empty( $options['analytics_profile'] ) ) {
-				$tracking_code = $options['analytics_profile'];
+			if ( ! empty( $this->options['analytics_profile'] ) ) {
+				$tracking_code = $this->options['analytics_profile'];
 			}
 
-			if ( ! empty( $options['manual_ua_code_field'] ) && ! empty( $options['manual_ua_code'] ) ) {
-				$tracking_code = $options['manual_ua_code_field'];
+			if ( ! empty( $this->options['manual_ua_code_field'] ) && ! empty( $this->options['manual_ua_code'] ) ) {
+				$tracking_code = $this->options['manual_ua_code_field'];
 			}
 
 			return $tracking_code;
@@ -100,24 +103,24 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		 * @since 5.0.1
 		 */
 		private function upgrade() {
-			if ( ! isset( $this->options[ $this->option_prefix ]['version'] ) && is_null( $this->get_tracking_code() ) ) {
+			if ( ! isset( $this->options['version'] ) && is_null( $this->get_tracking_code() ) ) {
 				$old_options = get_option( 'Yoast_Google_Analytics' );
 
 				if ( isset( $old_options ) && is_array( $old_options ) ) {
 					if ( isset( $old_options['uastring'] ) && '' !== trim( $old_options['uastring'] ) ) {
 						// Save UA as manual UA, instead of saving all the old GA crap
-						$this->options[ $this->option_prefix ]['manual_ua_code']       = 1;
-						$this->options[ $this->option_prefix ]['manual_ua_code_field'] = $old_options['uastring'];
+						$this->options['manual_ua_code']       = 1;
+						$this->options['manual_ua_code_field'] = $old_options['uastring'];
 					}
 
 					// Other settings
-					$this->options[ $this->option_prefix ]['allow_anchor']               = $old_options['allowanchor'];
-					$this->options[ $this->option_prefix ]['add_allow_linker']           = $old_options['allowlinker'];
-					$this->options[ $this->option_prefix ]['anonymous_data']             = $old_options['anonymizeip'];
-					$this->options[ $this->option_prefix ]['track_outbound']             = $old_options['trackoutbound'];
-					$this->options[ $this->option_prefix ]['track_internal_as_outbound'] = $old_options['internallink'];
-					$this->options[ $this->option_prefix ]['track_internal_as_label']    = $old_options['internallinklabel'];
-					$this->options[ $this->option_prefix ]['extensions_of_files']        = $old_options['dlextensions'];
+					$this->options['allow_anchor']               = $old_options['allowanchor'];
+					$this->options['add_allow_linker']           = $old_options['allowlinker'];
+					$this->options['anonymous_data']             = $old_options['anonymizeip'];
+					$this->options['track_outbound']             = $old_options['trackoutbound'];
+					$this->options['track_internal_as_outbound'] = $old_options['internallink'];
+					$this->options['track_internal_as_label']    = $old_options['internallinklabel'];
+					$this->options['extensions_of_files']        = $old_options['dlextensions'];
 
 				}
 
@@ -125,9 +128,9 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 			}
 
 			// 5.0.0 to 5.0.1 fix of ignore users array
-			if ( ! isset( $this->options[ $this->option_prefix ]['version'] ) || version_compare( $this->options[ $this->option_prefix ]['version'], '5.0.1', '<' ) ) {
-				if ( ! is_array( $this->options[ $this->option_prefix ]['ignore_users'] ) ) {
-					$this->options[ $this->option_prefix ]['ignore_users'] = (array) $this->options[ $this->option_prefix ]['ignore_users'];
+			if ( ! isset( $this->options['version'] ) || version_compare( $this->options['version'], '5.0.1', '<' ) ) {
+				if ( ! is_array( $this->options['ignore_users'] ) ) {
+					$this->options['ignore_users'] = (array) $this->options['ignore_users'];
 				}
 			}
 
@@ -140,15 +143,15 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 			// Fallback to make sure every default option has a value
 			$defaults = $this->default_ga_values();
 			foreach ( $defaults[ $this->option_prefix ] as $key => $value ) {
-				if ( ! isset( $this->options[ $this->option_prefix ][ $key ] ) ) {
-					$this->options[ $this->option_prefix ][ $key ] = $value;
+				if ( ! isset( $this->options[ $key ] ) ) {
+					$this->options[ $key ] = $value;
 				}
 			}
 
 			// Set to the current version now that we've done all needed upgrades
-			$this->options[ $this->option_prefix ]['version'] = GAWP_VERSION;
+			$this->options['version'] = GAWP_VERSION;
 
-			update_option( $this->option_name, $this->options );
+			$this->update_option( $this->options );
 		}
 
 		/**

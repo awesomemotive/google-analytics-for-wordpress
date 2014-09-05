@@ -13,12 +13,12 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		public function __construct() {
 			parent::__construct();
 
-			if ( isset( $this->options[$this->option_prefix]['tag_links_in_rss'] ) && $this->options[$this->option_prefix]['tag_links_in_rss'] == 1 ) {
+			if ( isset( $this->options['tag_links_in_rss'] ) && $this->options['tag_links_in_rss'] == 1 ) {
 				add_filter( 'the_permalink_rss', array( $this, 'rsslinktagger' ), 99 );
 			}
 
 			// Check if the customer is running Universal or not (Enable in GA Settings -> Universal)
-			if ( isset( $this->options[$this->option_prefix]['enable_universal'] ) && $this->options[$this->option_prefix]['enable_universal'] == 1 ) {
+			if ( isset( $this->options['enable_universal'] ) && $this->options['enable_universal'] == 1 ) {
 				require_once 'class-universal.php';
 			} else {
 				require_once 'class-ga-js.php';
@@ -27,12 +27,11 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
 		/**
 		 * Check if we need to show an actual tracking code
-		 * 
+		 *
 		 * @return bool
 		 */
 		public function do_tracking() {
 			global $current_user;
-			$options = $this->options[$this->option_prefix];
 
 			get_currentuserinfo();
 
@@ -40,8 +39,8 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 				return true;
 			}
 
-			if ( isset( $options['ignore_users'] ) ) {
-				if ( in_array( $current_user->roles[0], $options['ignore_users'] ) ) {
+			if ( isset( $this->options['ignore_users'] ) ) {
+				if ( in_array( $current_user->roles[0], $this->options['ignore_users'] ) ) {
 					return false;
 				} else {
 					return true;
@@ -92,7 +91,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		public function rsslinktagger( $guid ) {
 			global $post;
 			if ( is_feed() ) {
-				if ( $this->options[$this->option_prefix]['allow_anchor'] ) {
+				if ( $this->options['allow_anchor'] ) {
 					$delimiter = '#';
 				} else {
 					$delimiter = '?';
@@ -110,8 +109,8 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		/**
 		 * Return the target with a lot of parameters
 		 *
-		 * @param $category
-		 * @param $matches
+		 * @param string $category
+		 * @param array $matches
 		 *
 		 * @return array
 		 */
@@ -120,8 +119,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 			$original_url        = $matches[3];
 			$domain              = $this->yoast_ga_get_domain( $matches[3] );
 			$origin              = $this->yoast_ga_get_domain( $_SERVER['HTTP_HOST'] );
-			$options             = $this->options[$this->option_prefix];
-			$download_extensions = explode( ",", str_replace( '.', '', $options['extensions_of_files'] ) );
+			$download_extensions = explode( ",", str_replace( '.', '', $this->options['extensions_of_files'] ) );
 			$extension           = substr( strrchr( $original_url, '.' ), 1 );
 
 			// Break out immediately if the link is not an http or https link.
@@ -135,7 +133,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 					$type = 'download';
 				} else {
 					if ( $domain['domain'] == $origin['domain'] ) {
-						$out_links = explode( ',', $options['track_internal_as_outbound'] );
+						$out_links = explode( ',', $this->options['track_internal_as_outbound'] );
 
 						if ( count( $out_links ) >= 1 ) {
 							foreach ( $out_links as $out ) {
@@ -172,8 +170,8 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		/**
 		 * Merge the existing onclick with a new one and append it
 		 *
-		 * @param $link_attribute
-		 * @param $onclick
+		 * @param string $link_attribute
+		 * @param string $onclick
 		 *
 		 * @return string
 		 */
@@ -198,7 +196,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		/**
 		 * Generate the full URL
 		 *
-		 * @param $link
+		 * @param string $link
 		 *
 		 * @return string
 		 */

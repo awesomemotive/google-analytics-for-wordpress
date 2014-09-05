@@ -40,7 +40,7 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			echo '</div>';
 			echo '<div class="ga-form ga-form-input">';
 			echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle" />' . __( 'Current UA-profile', 'google-analytics-for-wordpress' ) . '</label>';
-			echo $yoast_ga_admin->get_setting( 'analytics_profile' );
+			echo $yoast_ga_admin->get_tracking_code();
 			echo '</div>';
 		} else {
 			echo $yoast_ga_admin->select( 'Analytics profile', 'analytics_profile', $profiles );
