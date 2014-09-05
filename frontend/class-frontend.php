@@ -7,6 +7,9 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
 	class Yoast_GA_Frontend extends Yoast_GA_Options {
 
+		/**
+		 * Class constructor
+		 */
 		public function __construct() {
 			parent::__construct();
 
@@ -24,6 +27,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
 		/**
 		 * Check if we need to show an actual tracking code
+		 * 
 		 * @return bool
 		 */
 		public function do_tracking() {
@@ -85,7 +89,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		 *
 		 * @return string
 		 */
-		function rsslinktagger( $guid ) {
+		public function rsslinktagger( $guid ) {
 			global $post;
 			if ( is_feed() ) {
 				if ( $this->options[$this->option_prefix]['allow_anchor'] ) {
