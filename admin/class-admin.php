@@ -3,7 +3,7 @@
  * This class is for the backend, extendable for all child classes
  */
 
-require_once plugin_dir_path( __FILE__ ) . '/wp-gdata/wp-gdata.php';
+require_once 'wp-gdata/wp-gdata.php';
 
 if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
@@ -113,11 +113,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		/**
 		 * Add a link to the settings page to the plugins list
 		 *
-		 * @staticvar string $this_plugin holds the directory & filename for the plugin
+		 * @param array $links array of links for the plugins, adapted when the current plugin is found.
 		 *
-		 * @param    array $links array of links for the plugins, adapted when the current plugin is found.
-		 *
-		 * @return    array    $links
+		 * @return array $links
 		 */
 		function add_action_links( $links ) {
 			// add link to knowledgebase
@@ -519,7 +517,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * @return int
 		 */
 		public function sort_profiles( $a, $b ) {
-			return strcmp( $a["title"], $b["title"] );
+			return strcmp( $a['title'], $b['title'] );
 		}
 
 		/**
@@ -631,7 +629,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Render the admin page head for the GA Plugin
 		 */
 		public function content_head() {
-			require( "views/content_head.php" );
+			require 'views/content_head.php';
 		}
 
 		/**
@@ -669,7 +667,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				echo '</pre></div></div>';
 			}
 
-			require( "views/content_footer.php" );
+			require 'views/content_footer.php';
 		}
 
 	}

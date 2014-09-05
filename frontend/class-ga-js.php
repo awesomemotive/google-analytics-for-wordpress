@@ -9,12 +9,13 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		public $link_regex;
 
 		public function __construct() {
+			parent::__construct();
+
 			$this->link_regex = '/<a (.*?)href=[\'\"](.*?):\/*([^\'\"]+?)[\'\"](.*?)>(.*?)<\/a>/i';
 
 			add_action( 'wp_head', array( $this, 'tracking' ), 8 );
 
-			$options  = parent::$options['ga_general'];
-			if ( $options['track_outbound'] == 1 ) {
+			if ( $this->options[$this->option_prefix]['track_outbound'] == 1 ) {
 				// Check for outbound
 				add_filter( 'the_content', array( $this, 'the_content' ), 99 );
 				add_filter( 'widget_text', array( $this, 'widget_content' ), 99 );
@@ -31,7 +32,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		public function tracking() {
 			global $wp_query;
 
-			$options  = parent::$options['ga_general'];
+			$options = $this->options[$this->option_prefix];
 
 			if ( parent::do_tracking() && ! is_preview() ) {
 				$gaq_push = array();
@@ -46,8 +47,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					$options['allowanchor'] = false;
 				}
 
-				global $Yoast_GA_Options;
-				$ua_code = $Yoast_GA_Options->get_tracking_code();
+				$ua_code = $this->get_tracking_code();
 				if ( is_null( $ua_code ) ) {
 					return;
 				}
@@ -99,18 +99,17 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					}
 				}
 
-				//$push = apply_filters( 'yoast-ga-push-after-pageview', $push );
 				$ga_settings = $options; // Assign the settings to the javascript include view
 
 				// Include the tracking view
 				if ( $options['debug_mode'] == 1 ) {
-					require( GAWP_PATH . 'frontend/views/tracking_debug.php' );
+					require( 'views/tracking_debug.php' );
 				} else {
-					require( GAWP_PATH . 'frontend/views/tracking_ga_js.php' );
+					require( 'views/tracking_ga_js.php' );
 				}
 			}
 			else{
-				require( GAWP_PATH . 'frontend/views/tracking_usergroup.php' );
+				require( 'views/tracking_usergroup.php' );
 			}
 		}
 
@@ -120,7 +119,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		 * @return string
 		 */
 		public function get_tracking_prefix() {
-			return ( empty( $this->options['trackprefix'] ) ) ? '/yoast-ga/' : $this->options['trackprefix'];
+			return ( empty( $this->options[$this->option_prefix]['trackprefix'] ) ) ? '/yoast-ga/' : $this->options[$this->option_prefix]['trackprefix'];
 		}
 
 		/**
@@ -141,7 +140,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 			$onclick  = NULL;
 			$options  = $this->get_options();
-			$options  = $options['ga_general'];
+			$options  = $options[$this->option_prefix];
 			$full_url = $this->make_full_url( $link );
 
 			switch ( $link['type'] ) {

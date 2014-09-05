@@ -9,12 +9,13 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 		public $link_regex;
 
 		public function __construct() {
+			parent::__construct();
+			
 			$this->link_regex = '`<a (.*?)href=[\'\"](.*?):/*([^\'\"]+)[\'\"](.*?)>(.*?)</a>`i';
 
 			add_action( 'wp_head', array( $this, 'tracking' ), 8 );
 
-			$options  = parent::$options['ga_general'];
-			if ( $options['track_outbound'] == 1 ) {
+			if ( $this->options[$this->option_prefix]['track_outbound'] == 1 ) {
 				// Check for outbound option
 				add_filter( 'the_content', array( $this, 'the_content' ), 99 );
 				add_filter( 'widget_text', array( $this, 'widget_content' ), 99 );
@@ -31,7 +32,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 		public function tracking() {
 			global $wp_query;
 
-			$options  = parent::$options['ga_general'];
+			$options  = $this->options[$this->option_prefix];
 
 			if ( $this->do_tracking() && ! is_preview() ) {
 				$gaq_push = array();
@@ -114,12 +115,12 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 				// Include the tracking view
 				if ( $options['debug_mode'] == 1 ) {
-					require( GAWP_PATH . 'frontend/views/tracking_debug.php' );
+					require( 'views/tracking_debug.php' );
 				} else {
-					require( GAWP_PATH . 'frontend/views/tracking_universal.php' );
+					require( 'views/tracking_universal.php' );
 				}
 			} else {
-				require( GAWP_PATH . 'frontend/views/tracking_usergroup.php' );
+				require( 'views/tracking_usergroup.php' );
 			}
 		}
 
@@ -141,7 +142,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 			$onclick  = null;
 			$options  = $this->get_options();
-			$options  = $options['ga_general'];
+			$options  = $options[$this->option_prefix];
 			$full_url = $this->make_full_url( $link );
 
 			switch ( $link['type'] ) {
