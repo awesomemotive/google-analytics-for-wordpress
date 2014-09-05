@@ -183,8 +183,4 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 			);
 		}
 	}
-
-	global $Yoast_GA_Options;
-	$Yoast_GA_Options = new Yoast_GA_Options();
-
 }
