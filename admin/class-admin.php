@@ -124,7 +124,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			// Add main page
 			add_menu_page( __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'General Settings', 'google-analytics-for-wordpress' ), __( 'Analytics', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_dashboard', array(
 				$this,
-				'load_page'
+				'load_page',
 			), plugins_url( 'img/yoast-icon.png', GAWP_FILE ), '2.00013467543' );
 
 			// Sub menu pages
@@ -136,7 +136,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					'manage_options',
 					'yst_ga_dashboard',
 					array( $this, 'load_page' ),
-					array( array( $this, 'yst_ga_dashboard' ) )
+					array( array( $this, 'yst_ga_dashboard' ) ),
 				),
 				array(
 					'yst_ga_dashboard',
@@ -145,7 +145,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					'manage_options',
 					'yst_ga_settings',
 					array( $this, 'load_page' ),
-					array( array( $this, 'yst_ga_settings' ) )
+					array( array( $this, 'yst_ga_settings' ) ),
 				),
 				array(
 					'yst_ga_dashboard',
@@ -154,7 +154,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					'manage_options',
 					'yst_ga_licenses',
 					array( $this, 'load_page' ),
-					null
+					null,
 				),
 			);
 
@@ -249,7 +249,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 *
 		 * @return null|string
 		 */
-		public function end_form( $button_label = "Save changes", $name = 'submit' ) {
+		public function end_form( $button_label = 'Save changes', $name = 'submit' ) {
 			$output = null;
 			$output .= '<div class="ga-form ga-form-input">';
 			$output .= '<input type="submit" name="ga-form-' . $name . '" value="' . $button_label . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-' . $this->form_namespace . '">';
@@ -413,7 +413,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				if ( $http_code == 200 ) {
 					$options['ga_api_response'] = array(
 						'response' => array( 'code' => $http_code ),
-						'body'     => $response
+						'body'     => $response,
 					);
 					update_option( $option_name, $options );
 				} else {
@@ -447,7 +447,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 										'title' => $title,
 									);
 								}
-
 							}
 						} else {
 							if ( $xml_reader->link['href'] == 'https://www.google.com/analytics/feeds/accounts/default' ) {
@@ -469,7 +468,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 											'title' => $title,
 										);
 									}
-
 								}
 							}
 						}
@@ -518,7 +516,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					$gdata = new WP_GData(
 						array(
 							'scope'              => 'https://www.google.com/analytics/feeds/',
-							'xoauth_displayname' => 'Google Analytics by Yoast'
+							'xoauth_displayname' => 'Google Analytics by Yoast',
 						),
 						$o['ga_oauth']['oauth_token'],
 						$o['ga_oauth']['oauth_token_secret']
@@ -540,7 +538,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				$gdata = new WP_GData(
 					array(
 						'scope'              => 'https://www.google.com/analytics/feeds/',
-						'xoauth_displayname' => 'Google Analytics by Yoast'
+						'xoauth_displayname' => 'Google Analytics by Yoast',
 					)
 				);
 
@@ -625,22 +623,22 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$banners[] = array(
 				'url'    => 'https://yoast.com/hire-us/website-review/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
 				'banner' => $this->plugin_url . 'img/banner-website-review.png',
-				'title'  => 'Get a website review by Yoast'
+				'title'  => 'Get a website review by Yoast',
 			);
 			$banners[] = array(
 				'url'    => 'https://yoast.com/wordpress/plugins/seo-premium/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
 				'banner' => $this->plugin_url . 'img/banner-premium-seo.png',
-				'title'  => 'Get WordPress SEO premium'
+				'title'  => 'Get WordPress SEO premium',
 			);
 			$banners[] = array(
 				'url'    => 'https://yoast.com/ebook-optimize-wordpress-site/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
 				'banner' => $this->plugin_url . 'img/eBook_261x130.png',
-				'title'  => 'Get the Yoast ebook!'
+				'title'  => 'Get the Yoast ebook!',
 			);
 			$banners[] = array(
 				'url'    => 'https://yoast.com/wordpress/plugins/local-seo/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
 				'banner' => $this->plugin_url . 'img/banner-local-seo.png',
-				'title'  => 'Get WooCommerce integrated in your Analytics'
+				'title'  => 'Get WooCommerce integrated in your Analytics',
 			);
 
 			shuffle( $banners );
@@ -652,7 +650,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				echo '</pre></div></div>';
 			}
 
-			require 'views/content_footer.php';
+			require 'views/content-footer.php';
 		}
 
 	}

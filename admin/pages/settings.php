@@ -50,7 +50,7 @@ echo $yoast_ga_admin->create_form( 'settings' );
 			echo '<a class="button" href="' . $ga_url . '">' . __( 'Re-authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a>';
 			echo '</div>';
 		}
-		echo "</div>";
+		echo '</div>';
 
 		echo '<label class="ga-form ga-form-checkbox-label ga-form-label-left">';
 		echo $yoast_ga_admin->input( 'checkbox', null, 'manual_ua_code', __( 'Manually enter your UA code', 'google-analytics-for-wordpress' ) );
@@ -84,7 +84,7 @@ echo $yoast_ga_admin->create_form( 'settings' );
 		echo $yoast_ga_admin->input( 'text', __( 'Subdomain tracking', 'google-analytics-for-wordpress' ), 'subdomain_tracking', null, __( 'This allows you to set the domain that\'s set by <code>setDomainName</code> for tracking subdomains, if empty this will not be set.', 'google-analytics-for-wordpress' ) );
 
 		echo $yoast_ga_admin->input( 'text', __( 'Set path for internal links to track as outbound links', 'google-analytics-for-wordpress' ), 'track_internal_as_outbound', null, 'If you want to track all internal links that begin with <code>/out/</code>, enter <code>/out/</code> in the box above. If you have multiple prefixes you can separate them with comma\'s: <code>/out/,/recommends/</code>' );
-		echo $yoast_ga_admin->input( 'text', __( 'Label for those links', 'google-analytics-for-wordpress' ), 'track_internal_as_label', null, "The label to use for these links, this will be added to where the click came from, so if the label is \"aff\", the label for a click from the content of an article becomes \"outbound-article-aff\"." );
+		echo $yoast_ga_admin->input( 'text', __( 'Label for those links', 'google-analytics-for-wordpress' ), 'track_internal_as_label', null, 'The label to use for these links, this will be added to where the click came from, so if the label is "aff", the label for a click from the content of an article becomes "outbound-article-aff".' );
 
 		echo $yoast_ga_admin->input( 'checkbox', __( 'Tag links in RSS feed with campaign variables', 'google-analytics-for-wordpress' ), 'tag_links_in_rss', null, __( 'Do not use this feature if you use FeedBurner, as FeedBurner can do this automatically, and better than this plugin can. Check <a href="http://www.google.com/support/feedburner/bin/answer.py?hl=en&amp;answer=165769" target="_blank">this help page</a> for info on how to enable this feature in FeedBurner.', 'google-analytics-for-wordpress' ) );
 		echo $yoast_ga_admin->input( 'checkbox', __( 'Allow anchor', 'google-analytics-for-wordpress' ), 'allow_anchor', null, __( 'This adds a <code><a href="http://code.google.com/apis/analytics/docs/gaJSApiCampaignTracking.html#_gat.GA_Tracker_._setAllowAnchor" target="_blank">_setAllowAnchor</a></code> call to your tracking code, and makes RSS link tagging use a # as well.', 'google-analytics-for-wordpress' ) );
