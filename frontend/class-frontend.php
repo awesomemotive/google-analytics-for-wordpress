@@ -5,7 +5,7 @@
 
 if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
-	class Yoast_GA_Frontend {
+	class Yoast_GA_Frontend extends Yoast_GA_Options {
 
 		public static $options = array();
 
