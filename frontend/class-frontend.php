@@ -11,7 +11,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
 		public function __construct() {
 			parent::__construct();
-			
+
 			self::$options = get_option( 'yst_ga' );
 
 			if ( isset( self::$options['ga_general']['tag_links_in_rss'] ) && self::$options['ga_general']['tag_links_in_rss'] == 1 ) {
@@ -100,7 +100,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		 *
 		 * @return string
 		 */
-		function rsslinktagger( $guid ) {
+		public function rsslinktagger( $guid ) {
 			global $post;
 			if ( is_feed() ) {
 				if ( self::$options['ga_general']['allow_anchor'] ) {
