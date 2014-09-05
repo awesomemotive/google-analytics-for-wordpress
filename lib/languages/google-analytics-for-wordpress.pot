@@ -1,11 +1,11 @@
-# Copyright (C) 2014 Joost de Valk
+# Copyright (C) 2014 Team Yoast
 # This file is distributed under the GPL v3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Google Analytics by Yoast 5.0.0\n"
+"Project-Id-Version: Google Analytics by Yoast 5.0.5\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/google-analytics-for-wordpress\n"
-"POT-Creation-Date: 2014-09-04 10:56:39+00:00\n"
+"POT-Creation-Date: 2014-09-05 14:12:22+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,36 +25,45 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes\n"
 
-#: admin/class-admin.php:54
+#: admin/class-admin.php:57
 msgid "Settings saved!"
 msgstr ""
 
-#: admin/class-admin.php:157 admin/class-admin.php:166
-#: admin/class-admin.php:175 admin/class-admin.php:184
-msgid "Yoast Google Analytics:"
+#: admin/class-admin.php:70
+msgid "Please configure your %sGoogle Analytics settings%s!"
 msgstr ""
 
-#: admin/class-admin.php:157
-msgid "General Settings"
+#: admin/class-admin.php:109
+msgid "FAQ"
 msgstr ""
 
-#: admin/class-admin.php:157
-msgid "Analytics"
-msgstr ""
-
-#: admin/class-admin.php:166 admin/class-admin.php:167
-msgid "Dashboard"
-msgstr ""
-
-#: admin/class-admin.php:175 admin/class-admin.php:176
+#: admin/class-admin.php:112 admin/class-admin.php:143
+#: admin/class-admin.php:144
 msgid "Settings"
 msgstr ""
 
-#: admin/class-admin.php:184
+#: admin/class-admin.php:125 admin/class-admin.php:134
+#: admin/class-admin.php:143 admin/class-admin.php:152
+msgid "Yoast Google Analytics:"
+msgstr ""
+
+#: admin/class-admin.php:125
+msgid "General Settings"
+msgstr ""
+
+#: admin/class-admin.php:125
+msgid "Analytics"
+msgstr ""
+
+#: admin/class-admin.php:134 admin/class-admin.php:135
+msgid "Dashboard"
+msgstr ""
+
+#: admin/class-admin.php:152
 msgid "Extensions"
 msgstr ""
 
-#: admin/class-admin.php:661
+#: admin/class-admin.php:648
 msgid "Debug information"
 msgstr ""
 
@@ -311,8 +320,9 @@ msgstr ""
 msgid ""
 "First enable Universal tracking in your Google Analytics account. How to do "
 "that, please read <a "
-"href=\"https://developers.google.com/analytics/devguides/collection/upgrade/"
-"guide\" target=\"_blank\">this guide</a> to learn how to do that."
+"href=\"http://kb.yoast.com/article/125-universal-analytics#utm_medium=kb-"
+"link&utm_source=gawp-config&utm_campaign=wpgaplugin\" "
+"target=\"_blank\">this guide</a> to learn how to do that."
 msgstr ""
 
 #: admin/pages/settings.php:75
@@ -324,7 +334,7 @@ msgid ""
 "You have to enable the Demographics in Google Analytics before you can see "
 "the tracking data. We have a doc in our <a "
 "href=\"http://kb.yoast.com/article/154-enable-demographics-and-interests-"
-"report-in-google-analytics//#utm_medium=kb-link&utm_source=gawp-config&utm_"
+"report-in-google-analytics/#utm_medium=kb-link&utm_source=gawp-config&utm_"
 "campaign=wpgaplugin\" target=\"_blank\">knowlegde base</a> about this "
 "feature."
 msgstr ""
@@ -453,21 +463,21 @@ msgstr ""
 
 #. Plugin URI of the plugin/theme
 msgid ""
-"http://yoast.com/wordpress/google-analytics/#utm_source=wordpress&utm_"
-"medium=plugin&utm_campaign=wpgaplugin&utm_content=v500"
+"https://yoast.com/wordpress/plugins/google-analytics/#utm_source=wordpress&"
+"utm_medium=plugin&utm_campaign=wpgaplugin&utm_content=v504"
 msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
 "This plugin makes it simple to add Google Analytics to your WordPress blog, "
-"adding lots of features, eg. custom variables and automatic clickout and "
-"download tracking."
+"adding lots of features, eg. error page, search result and automatic "
+"clickout and download tracking."
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "Joost de Valk"
+msgid "Team Yoast"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://yoast.com/"
+msgid "https://yoast.com/"
 msgstr ""
