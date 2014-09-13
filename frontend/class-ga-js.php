@@ -15,7 +15,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 			add_action( 'wp_head', array( $this, 'tracking' ), 8 );
 
-			if ( $this->options['track_outbound'] == 1 ) {
+			if ( !empty($this->options['track_outbound']) ) {
 				// Check for outbound
 				add_filter( 'the_content', array( $this, 'the_content' ), 99 );
 				add_filter( 'widget_text', array( $this, 'widget_content' ), 99 );
