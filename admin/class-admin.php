@@ -233,7 +233,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function create_form( $namespace ) {
 			$this->form_namespace = $namespace;
 
-			$action = $_SERVER['PHP_SELF'];
+			$action = admin_url( 'admin.php' );
 			if ( isset( $_GET['page'] ) ) {
 				$action .= '?page=' . $_GET['page'];
 			}
