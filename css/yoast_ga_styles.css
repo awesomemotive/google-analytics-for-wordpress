@@ -1,12 +1,12 @@
 h2#yoast_ga_title {
+	padding: 9px 15px 4px 0;
 	font-size: 23px;
 	font-weight: 400;
-	padding: 9px 15px 4px 0;
 	line-height: 29px;
 }
 
 .nav-tab-wrapper {
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 .gatab {
@@ -17,20 +17,20 @@ h2#yoast_ga_title {
 	display: block;
 	padding: 0.5em 0.9em;
 	border: 1px solid #ddd;
-	background-color: #fff;
 	border-radius: 0 3px 3px 3px;
+	background-color: #fff;
 }
 
 .tabwrapper .gatab {
-	background: none;
+	padding: 0;
 	border: none;
-	padding: 0px;
+	background: none;
 }
 
 .tabwrapper .gatab h2 {
+	padding: 9px 15px 4px 0;
 	font-size: 23px;
 	font-weight: 400;
-	padding: 9px 15px 4px 0;
 }
 
 .ga-form-submit {
@@ -38,12 +38,12 @@ h2#yoast_ga_title {
 }
 
 .ga-form-label-left {
-	width: 250px;
 	float: left;
+	width: 250px;
 	margin: 0 0 0 5px;
+	font-size: 14px;
 	font-weight: bold;
 	cursor: default;
-	font-size: 14px;
 }
 
 .ga-form-input {
@@ -61,8 +61,8 @@ h2#yoast_ga_title {
 	display: table-cell;
 	min-width: 850px;
 	height: 500px;
-	padding: 0;
 	margin: 0;
+	padding: 0;
 	vertical-align: top;
 }
 
@@ -70,10 +70,10 @@ h2#yoast_ga_title {
 	display: table-cell;
 	width: 261px;
 	height: 500px;
-	padding: 0;
 	margin: 0;
-	vertical-align: top;
+	padding: 0;
 	padding: 20px;
+	vertical-align: top;
 }
 
 .ga-form-input {
@@ -86,10 +86,10 @@ h2#yoast_ga_title {
 }
 
 .ga-form-description {
-	color: #999999;
-	max-width: 325px;
 	display: block;
 	float: right;
+	max-width: 325px;
+	color: #999;
 }
 
 p.ga-topdescription {
@@ -97,10 +97,10 @@ p.ga-topdescription {
 }
 
 #ga-promote {
-	border: 1px solid #ccc;
-	background-color: #fff;
 	max-width: 600px;
 	padding-left: 10px;
+	border: 1px solid #ccc;
+	background-color: #fff;
 }
 
 #yoast-ga-form-settings input[type="text"] {
@@ -108,9 +108,9 @@ p.ga-topdescription {
 }
 
 #enter_ua {
+	display: none;
 	margin-top: 10px;
 	padding-top: 10px;
-	display: none;
 }
 
 #yoast-ga-form-text-settings-ga_general-manual_ua_code_field {
@@ -121,12 +121,13 @@ select.ga-multiple {
 	width: 300px;
 	height: 150px !important;
 }
+
 .wpseotab .extension {
+	float: left;
 	box-sizing: border-box;
 	width: 350px;
 	height: 230px;
 	margin: 10px 20px 10px 0;
-	float: left;
 	border: 1px solid #ccc;
 }
 
@@ -154,8 +155,8 @@ select.ga-multiple {
 }
 
 #ga-debug-info h3 {
-	font-size: 14px;
-	padding-left: 16px;
 	height: 30px;
 	margin-top: 10px;
+	padding-left: 16px;
+	font-size: 14px;
 }
