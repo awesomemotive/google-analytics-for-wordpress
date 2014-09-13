@@ -172,12 +172,24 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
-		 * Add the scripts to the admin head
+		 * Check whether we can include the minified version or not
 		 *
-		 * @todo add minified JS files
+		 * @param string $ext
+		 *
+		 * @return string
+		 */
+		private function file_ext( $ext ) {
+			if ( ! defined( 'SCRIPT_DEBUG' ) || ! SCRIPT_DEBUG ) {
+				$ext = '.min' . $ext;
+			}
+			return $ext;
+		}
+
+		/**
+		 * Add the scripts to the admin head
 		 */
 		public function enqueue_scripts() {
-			wp_enqueue_script( 'yoast_ga_admin', $this->plugin_url . 'js/yoast_ga_admin.js' );
+			wp_enqueue_script( 'yoast_ga_admin', $this->plugin_url . 'js/yoast_ga_admin' . $this->file_ext( '.js' ) );
 
 			// Eqneue the chosen js file
 			wp_enqueue_script( 'chosen_js', plugins_url( 'js/chosen.jquery.min.js', GAWP_FILE ), array(), false, true );
@@ -185,11 +197,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 		/**
 		 * Add the styles in the admin head
-		 *
-		 * @todo add minified CSS files
 		 */
 		public function enqueue_styles() {
-			wp_enqueue_style( 'yoast_ga_styles', $this->plugin_url . 'css/yoast_ga_styles.css' );
+			wp_enqueue_style( 'yoast_ga_styles', $this->plugin_url . 'css/yoast_ga_styles' . $this->file_ext( '.css' ) );
 		}
 
 		/**
@@ -197,7 +207,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function enqueue_settings_styles() {
 			// Enqueue the chosen css file
-			wp_enqueue_style( 'chosen_css', plugins_url( 'js/chosen.css', GAWP_FILE ) );
+			wp_enqueue_style( 'chosen_css', $this->plugin_url . 'css/chosen' . $this->file_ext( '.css' ) );
 		}
 
 		/**
