@@ -143,7 +143,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					if ( $this->options['track_download_as'] == 'pageview' ) {
 						$onclick = "_gaq.push(['_trackPageview','download/" . esc_attr( $full_url ) . "']);";
 					} else {
-						$onclick = "_gaq.push(['_trackEvent','download/" . esc_attr( $full_url ) . "']);";
+						$onclick = "_gaq.push(['_trackEvent','download','" . esc_attr( $full_url ) . "']);";
 					}
 
 					break;
