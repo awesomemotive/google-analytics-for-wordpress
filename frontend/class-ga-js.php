@@ -101,6 +101,13 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					}
 				}
 
+				/**
+				 * Filter: 'yoast-ga-push-array-ga-js' - Allows filtering of the commands to push
+				 *
+				 * @api array $gaq_push
+				 */
+				$gaq_push = apply_filters( 'yoast-ga-push-array-ga-js', $gaq_push );
+
 				$ga_settings = $this->options; // Assign the settings to the javascript include view
 
 				// Include the tracking view
