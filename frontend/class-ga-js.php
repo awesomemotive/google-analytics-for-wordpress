@@ -56,8 +56,12 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					$gaq_push[] = "'_setDomainName', '" . $domain . "'";
 				}
 
-				if ( $this->options['add_allow_linker'] && ! $this->options['allowanchor'] ) {
+				if ( $this->options['allowanchor'] ) {
 					$gaq_push[] = "'_setAllowAnchor', true";
+				}
+
+				if ( $this->options['add_allow_linker'] ) {
+					$gaq_push[] = "'_setAllowLinker', true";
 				}
 
 				// @todo, check for AllowLinker in GA.js? Universal only?
@@ -96,6 +100,13 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 						$gaq_push[] = "'_trackPageview'";
 					}
 				}
+
+				/**
+				 * Filter: 'yoast-ga-push-array-ga-js' - Allows filtering of the commands to push
+				 *
+				 * @api array $gaq_push
+				 */
+				$gaq_push = apply_filters( 'yoast-ga-push-array-ga-js', $gaq_push );
 
 				$ga_settings = $this->options; // Assign the settings to the javascript include view
 
@@ -143,7 +154,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					if ( $this->options['track_download_as'] == 'pageview' ) {
 						$onclick = "_gaq.push(['_trackPageview','download/" . esc_attr( $full_url ) . "']);";
 					} else {
-						$onclick = "_gaq.push(['_trackEvent','download/" . esc_attr( $full_url ) . "']);";
+						$onclick = "_gaq.push(['_trackEvent','download','" . esc_attr( $full_url ) . "']);";
 					}
 
 					break;
