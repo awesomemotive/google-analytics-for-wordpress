@@ -9,7 +9,7 @@
 				if ( ! is_array( $item ) ) {
 					echo '	_gaq.push([' . $item . "]);\n";
 				}
-				elseif( isset( $item['value'] ) ) {
+				elseif ( isset( $item['value'] ) ) {
 					echo '	'.$item['value'] . "\n";
 				}
 			}
