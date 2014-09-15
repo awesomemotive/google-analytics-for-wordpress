@@ -6,10 +6,10 @@
 		// List the GA elements from the class-ga-js.php
 		if ( count( $gaq_push ) >= 1 ) {
 			foreach ( $gaq_push as $item ) {
-				if( ! is_array($item) ){
+				if ( ! is_array( $item ) ) {
 					echo '	_gaq.push([' . $item . "]);\n";
 				}
-				elseif( isset($item['value']) ){
+				elseif( isset( $item['value'] ) ) {
 					echo '	'.$item['value'] . "\n";
 				}
 			}
