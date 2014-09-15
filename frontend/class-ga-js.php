@@ -56,8 +56,12 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					$gaq_push[] = "'_setDomainName', '" . $domain . "'";
 				}
 
-				if ( $this->options['add_allow_linker'] && ! $this->options['allowanchor'] ) {
+				if ( $this->options['allowanchor'] ) {
 					$gaq_push[] = "'_setAllowAnchor', true";
+				}
+
+				if ( $this->options['add_allow_linker'] ) {
+					$gaq_push[] = "'_setAllowLinker', true";
 				}
 
 				// @todo, check for AllowLinker in GA.js? Universal only?
