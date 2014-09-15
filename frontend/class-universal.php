@@ -153,7 +153,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 					break;
 				case 'internal-as-outbound':
-					if ( ! is_null( $this->options['track_internal_as_label'] ) ) {
+					if ( ! is_null( $this->options['track_internal_as_label'] ) && ! empty( $this->options['track_internal_as_label'] ) ) {
 						$label = $this->options['track_internal_as_label'];
 					} else {
 						$label = 'int';

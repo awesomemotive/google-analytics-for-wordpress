@@ -16,13 +16,13 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 	public function test_output_add_onclick() {
 		// Case 1
 		$link_attribute = '<a href="/test.html" onclick="alert(\'Test\');">link content</a>';
-		$onclick_add = 'dofunction();';
+		$onclick_add    = 'dofunction();';
 
 		$this->assertEquals( $this->class_instance->output_add_onclick( $link_attribute, $onclick_add ), '<a href="/test.html" onclick="alert(\'Test\'); dofunction();">link content</a>' );
 
 		// Case 2
 		$link_attribute = '<a href="/test.html" onclick="alert(\'Test\');" data-title="test title">link content</a>';
-		$onclick_add = 'dofunction();';
+		$onclick_add    = 'dofunction();';
 
 		$this->assertEquals( $this->class_instance->output_add_onclick( $link_attribute, $onclick_add ), '<a href="/test.html" onclick="alert(\'Test\'); dofunction();" data-title="test title">link content</a>' );
 	}
@@ -50,6 +50,15 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 		$this->assertEquals( $this->class_instance->make_full_url( $link ), 'http://yoast.com' );
 
 		// Case 3
+		$link = array(
+			'type'         => 'internal-as-outbound',
+			'protocol'     => 'https',
+			'original_url' => 'yoast.com/out/test'
+		);
+
+		$this->assertEquals( $this->class_instance->make_full_url( $link ), 'https://yoast.com/out/test' );
+
+		// Case 4
 		$link = array(
 			'type'         => 'email',
 			'protocol'     => 'mailto',
