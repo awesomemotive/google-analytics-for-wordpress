@@ -9,13 +9,13 @@
 	// List the GA elements from the class-ga-js.php
 	if ( count( $gaq_push ) >= 1 ) {
 		foreach ( $gaq_push as $item ) {
-			echo '	ga('.$item.");\n";
+			if( ! is_array($item) ){
+				echo '	ga('.$item.");\n";
+			}
+			elseif( isset($item['value']) ){
+				echo '	'.$item['value'] . "\n";
+			}
 		}
-	}
-
-	// Output the custom code that could be added in the WP backend
-	if ( ! empty( $ga_settings['custom_code'] ) ) {
-		echo '	' . stripslashes( $ga_settings['custom_code'] ) . "\n";
 	}
 	?>
 
