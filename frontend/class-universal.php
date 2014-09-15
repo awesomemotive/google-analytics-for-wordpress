@@ -106,7 +106,13 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 					}
 				}
 
-				//$push = apply_filters( 'yoast-ga-push-after-pageview', $push );
+				/**
+				 * Filter: 'yoast-ga-push-array-universal' - Allows filtering of the commands to push
+				 *
+				 * @api array $gaq_push
+				 */
+				$gaq_push = apply_filters( 'yoast-ga-push-array-universal', $gaq_push );
+
 				$ga_settings = $this->options; // Assign the settings to the javascript include view
 
 				// Include the tracking view

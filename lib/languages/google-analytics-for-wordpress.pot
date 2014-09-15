@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Google Analytics by Yoast 5.0.5\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/google-analytics-for-wordpress\n"
-"POT-Creation-Date: 2014-09-05 14:12:22+00:00\n"
+"POT-Creation-Date: 2014-09-13 11:11:39+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Extensions"
 msgstr ""
 
-#: admin/class-admin.php:648
+#: admin/class-admin.php:662
 msgid "Debug information"
 msgstr ""
 
@@ -299,13 +299,9 @@ msgid ""
 msgstr ""
 
 #: admin/pages/settings.php:68
-msgid "Hint: Select multiple roles by using CTRL or CMD."
-msgstr ""
-
-#: admin/pages/settings.php:68
 msgid ""
-"Users of the role you select and higher will be ignored, so if you select "
-"Editor, all Editors and Administrators will be ignored."
+"Users of the role you select will be ignored, so if you select Editor, all "
+"Editors will be ignored."
 msgstr ""
 
 #: admin/pages/settings.php:73

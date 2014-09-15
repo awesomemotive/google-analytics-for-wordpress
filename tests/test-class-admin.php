@@ -31,7 +31,7 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 	 * @covers Yoast_GA_Admin->create_form()
 	 */
 	public function test_create_form() {
-		$action = $_SERVER['PHP_SELF'];
+		$action = admin_url( 'admin.php' );
 
 		$this->assertEquals( $this->class_instance->create_form( 'phpunit' ), '<form action="' . $action . '" method="post" id="yoast-ga-form-phpunit" class="yoast_ga_form">' . wp_nonce_field( 'save_settings', 'yoast_ga_nonce', null, false ) );
 	}
