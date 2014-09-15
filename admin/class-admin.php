@@ -121,11 +121,18 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * @todo, we need to implement a new icon for this, currently we're using the WP seo icon
 		 */
 		public function create_menu() {
+			/**
+			 * Filter: 'wpga_menu_on_top' - Allows filtering of menu location of the GA plugin, if false is returned, it moves to bottom.
+			 *
+			 * @api book unsigned
+			 */
+			$on_top = apply_filters( 'wpga_menu_on_top', true );
+
 			// Add main page
 			add_menu_page( __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'General Settings', 'google-analytics-for-wordpress' ), __( 'Analytics', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_dashboard', array(
 				$this,
 				'load_page',
-			), plugins_url( 'img/yoast-icon.png', GAWP_FILE ), apply_filters( 'wpga_menu_on_top', true ) ? '2.00013467543': '100.00013467543' );
+			), plugins_url( 'img/yoast-icon.png', GAWP_FILE ), $on_top ? '2.00013467543': '100.00013467543' );
 
 			// Sub menu pages
 			$submenu_pages = array(
@@ -583,6 +590,12 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			$all_roles      = $wp_roles->roles;
 			$roles          = array();
+
+			/**
+			 * Filter: 'editable_roles' - Allows filtering of the roles shown within the plugin (and elsewhere in WP as it's a WP filter)
+			 *
+			 * @api array $all_roles
+			 */
 			$editable_roles = apply_filters( 'editable_roles', $all_roles );
 			foreach ( $editable_roles as $id => $name ) {
 				$roles[] = array(
