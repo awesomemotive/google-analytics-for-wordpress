@@ -125,7 +125,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			add_menu_page( __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'General Settings', 'google-analytics-for-wordpress' ), __( 'Analytics', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_dashboard', array(
 				$this,
 				'load_page',
-			), plugins_url( 'img/yoast-icon.png', GAWP_FILE ), '2.00013467543' );
+			), plugins_url( 'img/yoast-icon.png', GAWP_FILE ), apply_filters( 'wpga_menu_on_top', true ) ? '2.00013467543': '100.00013467543' );
 
 			// Sub menu pages
 			$submenu_pages = array(
