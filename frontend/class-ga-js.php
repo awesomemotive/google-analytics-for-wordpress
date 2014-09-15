@@ -69,6 +69,14 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				// SSL data
 				$gaq_push[] = "'_gat._forceSSL'";
 
+				if ( ! empty( $this->options['custom_code'] ) ) {
+					// Add custom code to the view
+					$gaq_push[] = array(
+						'type'  => 'custom_code',
+						'value' => $this->options['custom_code']
+					);
+				}
+
 				// Anonymous data
 				if ( $this->options['anonymize_ips'] == 1 ) {
 					$gaq_push[] = "'_gat._anonymizeIp'";
