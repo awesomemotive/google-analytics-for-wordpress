@@ -152,6 +152,11 @@ select.ga-multiple {
 	cursor: default;
 }
 
+.wpseotab .extension .button-primary.activate-link {
+	border-color: #f06000;
+	background-color: #f18500;
+}
+
 .extension a {
 	text-decoration: none;
 }
