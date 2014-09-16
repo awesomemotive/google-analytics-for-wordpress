@@ -146,6 +146,12 @@ select.ga-multiple {
 	background-size: 130px 100px;
 }
 
+.wpseotab .extension button.installed {
+	border-color: #00a000;
+	background-color: #00a000;
+	cursor: default;
+}
+
 .extension a {
 	text-decoration: none;
 }
