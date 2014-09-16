@@ -9,6 +9,13 @@ jQuery(document).ready(function() {
 		jQuery(this).addClass('nav-tab-active');
 	});
 
+	jQuery('a.activate-link').click(function() {
+		jQuery('#extensions.wpseotab').removeClass('active');
+		jQuery('#extensions-tab').removeClass('nav-tab-active');
+		jQuery('#licenses.wpseotab').addClass('active');
+		jQuery('#licenses-tab').addClass('nav-tab-active');
+	});
+
 	// init
 	var active_tab = window.location.hash.replace('#top#','');
 
