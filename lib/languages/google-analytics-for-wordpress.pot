@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Google Analytics by Yoast 5.0.5\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/google-analytics-for-wordpress\n"
-"POT-Creation-Date: 2014-09-13 11:11:39+00:00\n"
+"POT-Creation-Date: 2014-09-16 14:26:55+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,33 +37,33 @@ msgstr ""
 msgid "FAQ"
 msgstr ""
 
-#: admin/class-admin.php:112 admin/class-admin.php:143
-#: admin/class-admin.php:144
+#: admin/class-admin.php:112 admin/class-admin.php:153
+#: admin/class-admin.php:154
 msgid "Settings"
 msgstr ""
 
-#: admin/class-admin.php:125 admin/class-admin.php:134
-#: admin/class-admin.php:143 admin/class-admin.php:152
+#: admin/class-admin.php:135 admin/class-admin.php:144
+#: admin/class-admin.php:153 admin/class-admin.php:162
 msgid "Yoast Google Analytics:"
 msgstr ""
 
-#: admin/class-admin.php:125
+#: admin/class-admin.php:135
 msgid "General Settings"
 msgstr ""
 
-#: admin/class-admin.php:125
+#: admin/class-admin.php:135
 msgid "Analytics"
 msgstr ""
 
-#: admin/class-admin.php:134 admin/class-admin.php:135
+#: admin/class-admin.php:144 admin/class-admin.php:145
 msgid "Dashboard"
 msgstr ""
 
-#: admin/class-admin.php:152
+#: admin/class-admin.php:162 admin/pages/extensions.php:32
 msgid "Extensions"
 msgstr ""
 
-#: admin/class-admin.php:662
+#: admin/class-admin.php:674
 msgid "Debug information"
 msgstr ""
 
@@ -216,8 +216,32 @@ msgstr ""
 msgid "Yoast Google Analytics: Dashboard"
 msgstr ""
 
-#: admin/pages/extensions.php:6
+#: admin/pages/extensions.php:11
+msgid "Google Analytics"
+msgstr ""
+
+#: admin/pages/extensions.php:11
+msgid "E-Commerce tracking"
+msgstr ""
+
+#: admin/pages/extensions.php:12
+msgid ""
+"Track your E-Commerce data and transactions with this E-Commerce extension "
+"for Google Analytics."
+msgstr ""
+
+#: admin/pages/extensions.php:29
 msgid "Yoast Google Analytics: Extensions"
+msgstr ""
+
+#: admin/pages/extensions.php:33
+msgid "Licenses"
+msgstr ""
+
+#: admin/pages/extensions.php:64
+msgid ""
+"You have not installed any extensions for Yoast Google Analytics, so there "
+"are no licenses to activate."
 msgstr ""
 
 #: admin/pages/settings.php:6
