@@ -11,8 +11,13 @@ echo $yoast_ga_admin->content_head();
 				<h3>Google Analytics<br />E-Commerce tracking</h3>
 			</a>
 			<p>Track your E-Commerce data and transactions with this E-Commerce extension for Google Analytics.</p>
-			<p><a target="_blank" href="https://yoast.com/wordpress/plugins/ga-ecommerce-edd/#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary">
-					Get this extension				</a></p>
+			<p>
+				<?php if ( class_exists( 'Yoast_GA_eCommerce_Tracking' ) ) { ?>
+				<a target="_blank" href="https://yoast.com/wordpress/plugins/ga-ecommerce-edd/#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary">Get this extension</a>
+				<?php } else { ?>
+				<button class="button-primary installed">Installed</button>
+				<?php } ?>
+			</p>
 		</div>
 	</div>
 	<div class="clear"></div>
