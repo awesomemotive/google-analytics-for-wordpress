@@ -3,7 +3,7 @@
  * The basic frontend class for the GA plugin, extendable for the children
  */
 
-if ( !class_exists( 'Yoast_GA_Frontend' ) ) {
+if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
 	class Yoast_GA_Frontend extends Yoast_GA_Options {
 
@@ -137,7 +137,7 @@ if ( !class_exists( 'Yoast_GA_Frontend' ) ) {
 
 						if ( count( $out_links ) >= 1 ) {
 							foreach ( $out_links as $out ) {
-								if ( !empty( $original_url )  && !empty($domain['domain']) ) {
+								if ( ! empty( $original_url ) && ! empty( $domain['domain'] ) ) {
 									if ( strpos( $original_url, $domain['domain'] . $out ) !== false ) {
 										$type = 'internal-as-outbound';
 									}
@@ -145,7 +145,7 @@ if ( !class_exists( 'Yoast_GA_Frontend' ) ) {
 							}
 						}
 
-						if ( !isset( $type ) ) {
+						if ( ! isset( $type ) ) {
 							$type = 'internal';
 						}
 					} elseif ( $domain['domain'] != $origin['domain'] ) {
@@ -187,7 +187,7 @@ if ( !class_exists( 'Yoast_GA_Frontend' ) ) {
 
 				return $link_attribute;
 			} else {
-				if ( !is_null( $onclick ) ) {
+				if ( ! is_null( $onclick ) ) {
 					return 'onclick="' . $onclick . '" ' . $link_attribute;
 				} else {
 					return $link_attribute;
