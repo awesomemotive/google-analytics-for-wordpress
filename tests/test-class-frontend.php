@@ -43,6 +43,20 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 		else{
 			$this->assertTrue( $domain_result );
 		}
+
+		// Case 2 - HTTPS
+		$domain        = $this->class_instance->yoast_ga_get_domain( 'https://yoast.com' );
+		$domain_result = is_array( $domain );
+
+		if ( $domain_result ) {
+			$this->assertArrayHasKey( 'domain', $domain );
+			$this->assertArrayHasKey( 'host', $domain );
+
+			$this->assertEquals( 'yoast.com', $domain['host'] );
+		}
+		else{
+			$this->assertTrue( $domain_result );
+		}
 	}
 
 	/**
