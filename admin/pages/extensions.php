@@ -2,6 +2,19 @@
 global $yoast_ga_admin;
 
 echo $yoast_ga_admin->content_head();
+
+$has_extensions = false;
+
+$extensions = array(
+	'ecommerce' => (object) array(
+		'url'    => 'https://yoast.com/wordpress/plugins/google-analytics/',
+		'title'  => __( 'Google Analytics', 'google-analytics-for-wordpress' ) . '<br />' . __( 'E-Commerce tracking', 'google-analytics-for-wordpress' ),
+		'desc'   => __( 'Track your E-Commerce data and transactions with this E-Commerce extension for Google Analytics.', 'google-analytics-for-wordpress' ),
+		'status' => 'uninstalled',
+	),
+);
+
+$extensions = apply_filters('yst_ga_extension_status', $extensions);
 ?>
 	<h2 id="yoast_ga_title"><?php echo __( 'Yoast Google Analytics: Extensions', 'google-analytics-for-wordpress' ); ?></h2>
 
@@ -11,39 +24,39 @@ echo $yoast_ga_admin->content_head();
 	</h2>
 	<div class="tabwrapper">
 		<div id="extensions" class="wpseotab gatab">
-			<div class="extension ecommerce">
-				<a target="_blank" href="https://yoast.com/wordpress/plugins/seo-premium/#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners">
-					<h3>Google Analytics<br />E-Commerce tracking</h3>
-				</a>
-				<p>Track your E-Commerce data and transactions with this E-Commerce extension for Google Analytics.</p>
-				<p>
-					<?php if ( ! class_exists( 'Yoast_GA_eCommerce_Tracking' ) ) { ?>
-						<a target="_blank" href="https://yoast.com/wordpress/plugins/ga-ecommerce-edd/#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary">Get this extension</a>
-					<?php } else { ?>
-						<button class="button-primary installed">Installed</button>
-					<?php } ?>
-				</p>
-			</div>
+			<?php
+			foreach ( $extensions as $name => $extension ) {
+				if('uninstalled' !== $extension->status ) {
+					$has_extensions  = true;
+				}
+				?>
+				<div class="extension <?php echo $name; ?>">
+					<a target="_blank" href="<?php echo $extension->url; ?>#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners">
+						<h3><?php echo $extension->title; ?></h3>
+					</a>
+
+					<p><?php echo $extension->desc; ?></p>
+
+					<p>
+						<?php if ( 'uninstalled' == $extension->status ) { ?>
+							<a target="_blank" href="https://yoast.com/wordpress/plugins/ga-ecommerce-edd/#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary">Get this extension</a>
+						<?php } else if ( 'inactive' == $extension->status ) { ?>
+							<a href="#top#licenses" class="activate-link button-primary">Activate License</a>
+						<?php } else { ?>
+							<button class="button-primary installed">Installed</button>
+						<?php }  ?>
+					</p>
+				</div>
+			<?php
+			}
+			?>
 		</div>
 		<div id="licenses" class="wpseotab gatab">
 			<?php
-			$has_extensions = false;
-			if ( class_exists( 'Yoast_GA_eCommerce_Tracking' ) ) {
-				$has_extensions  = true;
-				$product         = new Yoast_Product_GA_eCommerce();
-				$license_manager = new Yoast_Plugin_License_Manager( $product );
-
-				echo $license_manager->show_license_form( false );
-
-				unset( $license_manager );
-			}
-
 			if ( ! $has_extensions ) {
-			?>
-			<p>
-				<?php echo __( 'You have not installed any extensions for Yoast Google Analytics, so there are no licenses to activate.', 'google-analytics-for-wordpress' ); ?>
-			</p>
-			<?php
+				echo '<p>' . __( 'You have not installed any extensions for Yoast Google Analytics, so there are no licenses to activate.', 'google-analytics-for-wordpress' ) . '</p>';
+			} else {
+				do_action('yst_ga_show_license_form');
 			}
 			?>
 		</div>
