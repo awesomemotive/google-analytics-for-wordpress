@@ -308,7 +308,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			}
 
 			if ( ! is_null( $text_label ) ) {
-				$input .= '<label class="ga-form ga-form-' . $type . '-label" id="yoast-ga-form-label-' . $type . '-textlabel-' . $this->form_namespace . '-' . $id . '" for="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $id . '" />' . __( $text_label, 'google-analytics-for-wordpress' ) . '</label>';
+				$input .= '<label class="ga-form ga-form-' . $type . '-label" id="yoast-ga-form-label-' . $type . '-textlabel-' . $this->form_namespace . '-' . $id . '" for="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $id . '" />' . $text_label . '</label>';
 			}
 
 			$input .= '</div>';
@@ -317,7 +317,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			if ( ! is_null( $description ) ) {
 				$input .= '<div class="ga-form ga-form-input">';
 				$input .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-description-select-' . $this->form_namespace . '-' . $id . '" />&nbsp;</label>';
-				$input .= '<span class="ga-form ga-form-description">' . __( $description, 'google-analytics-for-wordpress' ) . '</span>';
+				$input .= '<span class="ga-form ga-form-description">' .  $description . '</span>';
 				$input .= '</div>';
 			}
 
@@ -341,7 +341,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$id     = str_replace( ']', '', $id );
 			$select .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
-				$select .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
+				$select .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $id . '" />' . $title . ':</label>';
 			}
 
 			if ( $multiple ) {
