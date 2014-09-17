@@ -16,11 +16,20 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 		$this->class_instance = $yoast_ga_admin;
 	}
 
-	public static function setUpBeforeClass() {
+	/**
+	 * Test is the class is created successfully
+	 *
+	 * @covers Yoast_GA_Admin
+	 */
+	public function test_class() {
+		$yoast_ga_admin_class = class_exists( 'Yoast_GA_Admin' );
 
+		$this->assertTrue( $yoast_ga_admin_class );
 	}
 
 	/**
+	 * We shouldn't expect output here
+	 *
 	 * @covers Yoast_GA_Admin->init_ga()
 	 */
 	public function test_init_ga() {
@@ -28,6 +37,31 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Test user roles, we should get a few standard roles here. We also check if the role name is not empty
+	 *
+	 * @covers Yoast_GA_Admin->get_userroles()
+	 */
+	public function test_get_userroles() {
+		$roles        = $this->class_instance->get_userroles();
+		$roles_result = is_array( $roles );
+
+		if ( $roles_result ) {
+			foreach ( $roles as $values ) {
+				$this->assertArrayHasKey( 'id', $values );
+				$this->assertArrayHasKey( 'name', $values );
+				if ( isset( $values['name'] ) ) {
+					$this->assertNotEmpty( $values['name'] );
+				}
+			}
+		} else {
+			$this->assertTrue( $roles_result );
+		}
+
+	}
+
+	/**
+	 * Create a form, receives the html output
+	 *
 	 * @covers Yoast_GA_Admin->create_form()
 	 */
 	public function test_create_form() {
@@ -37,6 +71,8 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * End a form, receives the html output
+	 *
 	 * @covers Yoast_GA_Admin->end_form()
 	 */
 	public function test_end_form() {
