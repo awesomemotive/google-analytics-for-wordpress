@@ -13,6 +13,43 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 		$this->class_instance = $yoast_ga_frontend;
 	}
 
+	/**
+	 * Test is the class is created successfully
+	 *
+	 * @covers Yoast_GA_Frontend
+	 */
+	public function test_class() {
+		$yoast_ga_frontend_class = class_exists( 'yoast_ga_frontend' );
+
+		$this->assertTrue( $yoast_ga_frontend_class );
+	}
+
+	/**
+	 * Test if the domain and host are set
+	 *
+	 * @covers Yoast_GA_Frontend->yoast_ga_get_domain()
+	 */
+	public function test_yoast_ga_get_domain() {
+		// Case 1 - HTTP
+		$domain        = $this->class_instance->yoast_ga_get_domain( 'http://yoast.com' );
+		$domain_result = is_array( $domain );
+
+		if ( $domain_result ) {
+			$this->assertArrayHasKey( 'domain', $domain );
+			$this->assertArrayHasKey( 'host', $domain );
+
+			$this->assertEquals( 'yoast.com', $domain['host'] );
+		}
+		else{
+			$this->assertTrue( $domain_result );
+		}
+	}
+
+	/**
+	 * Test output for and return the full html link
+	 *
+	 * @covers Yoast_GA_Frontend->output_add_onclick()
+	 */
 	public function test_output_add_onclick() {
 		// Case 1
 		$link_attribute = '<a href="/test.html" onclick="alert(\'Test\');">link content</a>';
@@ -28,6 +65,8 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Create a few urls from a dataset (multiple cases)
+	 *
 	 * @covers Yoast_GA_Frontend->make_full_url()
 	 */
 	public function test_make_full_url() {
