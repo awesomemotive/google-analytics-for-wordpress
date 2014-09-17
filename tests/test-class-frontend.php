@@ -27,7 +27,7 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 	/**
 	 * Test if the domain and host are set
 	 *
-	 * @covers Yoast_GA_Frontend->yoast_ga_get_domain()
+	 * @covers Yoast_GA_Frontend::yoast_ga_get_domain()
 	 */
 	public function test_yoast_ga_get_domain() {
 		// Case 1 - HTTP
@@ -48,7 +48,7 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 	/**
 	 * Test output for and return the full html link
 	 *
-	 * @covers Yoast_GA_Frontend->output_add_onclick()
+	 * @covers Yoast_GA_Frontend::output_add_onclick()
 	 */
 	public function test_output_add_onclick() {
 		// Case 1
@@ -67,7 +67,7 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 	/**
 	 * Create a few urls from a dataset (multiple cases)
 	 *
-	 * @covers Yoast_GA_Frontend->make_full_url()
+	 * @covers Yoast_GA_Frontend::make_full_url()
 	 */
 	public function test_make_full_url() {
 		// Case 1
