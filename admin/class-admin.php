@@ -410,7 +410,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Get the Google Analytics profiles which are in this google account
 		 *
 		 * @return array
-		 * @todo OAuth connection to Google.com?
 		 */
 		public function get_profiles() {
 

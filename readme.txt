@@ -4,7 +4,7 @@ Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
 Tested up to: 4.0
-Stable tag: 5.0.5
+Stable tag: 5.0.6
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
@@ -48,6 +48,22 @@ This section describes how to install the plugin and get it working.
 1. Go to the options panel under the 'Settings' menu and add your Analytics account number and set the settings you want.
 
 == Changelog ==
+
+= 5.0.6 =
+Release Date: September 17th, 2014
+
+* Bugfixes:
+	* Fixed several notices.
+	* Improved support for premium extensions to this plugin.
+	* Fixed bug where on multi-site or subdirectory installs, settings wouldn't save.
+	* Fix the tracking of downloads in ga.js tracking.
+	* Fixed a bug where custom code would be output after the send pageview instead of before.
+	* Fixed an empty delimiter warning.
+
+* Enhancements:
+	* Improved admin icon.
+	* Added a filter `wpga_menu_on_top` which, when returned false, moves the analytics menu down.
+	* Added filters `yoast-ga-push-array-ga-js` and `yoast-ga-push-array-universal` to filter the push arrays.
 
 = 5.0.5 =
 Release Date: September 4th, 2014
