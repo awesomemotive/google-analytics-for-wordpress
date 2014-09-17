@@ -6,7 +6,7 @@ require_once dirname( __FILE__ ) . '/../admin/class-admin.php';
 class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 
 	/**
-	 * @var WPSEO_Twitter
+	 * @var Yoast_GA_Admin
 	 */
 	private $class_instance;
 
@@ -30,7 +30,7 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 	/**
 	 * We shouldn't expect output here
 	 *
-	 * @covers Yoast_GA_Admin->init_ga()
+	 * @covers Yoast_GA_Admin::init_ga()
 	 */
 	public function test_init_ga() {
 		$this->assertEquals( $this->class_instance->init_ga(), NULL );
@@ -39,7 +39,7 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 	/**
 	 * Test user roles, we should get a few standard roles here. We also check if the role name is not empty
 	 *
-	 * @covers Yoast_GA_Admin->get_userroles()
+	 * @covers Yoast_GA_Admin::get_userroles()
 	 */
 	public function test_get_userroles() {
 		$roles        = $this->class_instance->get_userroles();
@@ -62,7 +62,7 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 	/**
 	 * Test download types
 	 *
-	 * @covers Yoast_GA_Admin->track_download_types()
+	 * @covers Yoast_GA_Admin::track_download_types()
 	 */
 	public function test_track_download_types() {
 		$download_types        = $this->class_instance->track_download_types();
@@ -85,7 +85,7 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 	/**
 	 * Test track full url option
 	 *
-	 * @covers Yoast_GA_Admin->get_track_full_url()
+	 * @covers Yoast_GA_Admin::get_track_full_url()
 	 */
 	public function test_get_track_full_url() {
 		$track_options        = $this->class_instance->get_track_full_url();
@@ -108,7 +108,7 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 	/**
 	 * Create a form, receives the html output
 	 *
-	 * @covers Yoast_GA_Admin->create_form()
+	 * @covers Yoast_GA_Admin::create_form()
 	 */
 	public function test_create_form() {
 		$action = admin_url( 'admin.php' );
@@ -119,7 +119,7 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 	/**
 	 * End a form, receives the html output
 	 *
-	 * @covers Yoast_GA_Admin->end_form()
+	 * @covers Yoast_GA_Admin::end_form()
 	 */
 	public function test_end_form() {
 		$output = null;
