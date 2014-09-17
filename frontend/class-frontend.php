@@ -58,7 +58,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		 * @return array|bool
 		 */
 		public function yoast_ga_get_domain( $uri ) {
-			$hostPattern     = '/^(http:\/\/)?([^\/]+)/i';
+			$hostPattern     = '/^(https?:\/\/)?([^\/]+)/i';
 			$domainPatternUS = '/[^\.\/]+\.[^\.\/]+$/';
 			$domainPatternUK = '/[^\.\/]+\.[^\.\/]+\.[^\.\/]+$/';
 
