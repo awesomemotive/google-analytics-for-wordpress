@@ -14,17 +14,7 @@ $extensions = array(
 	),
 );
 
-if ( class_exists( 'Yoast_GA_eCommerce_Tracking' ) ) {
-	$has_extensions  = true;
-	$product         = new Yoast_Product_GA_eCommerce();
-	$license_manager = new Yoast_Plugin_License_Manager( $product );
-
-	if ( $license_manager->license_is_valid() ) {
-		$extensions['ecommerce']->status = 'active';
-	} else {
-		$extensions['ecommerce']->status = 'inactive';
-	}
-}
+$extensions = apply_filters( 'yst_ga_extension_status', $extensions );
 ?>
 	<h2 id="yoast_ga_title"><?php echo __( 'Yoast Google Analytics: Extensions', 'google-analytics-for-wordpress' ); ?></h2>
 
@@ -35,14 +25,17 @@ if ( class_exists( 'Yoast_GA_eCommerce_Tracking' ) ) {
 	<div class="tabwrapper">
 		<div id="extensions" class="wpseotab gatab">
 			<?php
-				foreach ( $extensions as $name => $extension ) {
-					?>
-					<div class="extension <?php echo $name; ?>">
-						<a target="_blank" href="<?php echo $extension->url; ?>#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners">
-							<h3><?php echo $extension->title; ?></h3>
-						</a>
+			foreach ( $extensions as $name => $extension ) {
+				if ( 'uninstalled' !== $extension->status ) {
+					$has_extensions = true;
+				}
+				?>
+				<div class="extension <?php echo $name; ?>">
+					<a target="_blank" href="<?php echo $extension->url; ?>#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners">
+						<h3><?php echo $extension->title; ?></h3>
+					</a>
 
-						<p><?php echo $extension->desc; ?></p>
+					<p><?php echo $extension->desc; ?></p>
 
 						<p>
 							<?php if ( 'uninstalled' == $extension->status ) { ?>
@@ -63,7 +56,7 @@ if ( class_exists( 'Yoast_GA_eCommerce_Tracking' ) ) {
 			if ( ! $has_extensions ) {
 				echo '<p>' . __( 'You have not installed any extensions for Yoast Google Analytics, so there are no licenses to activate.', 'google-analytics-for-wordpress' ) . '</p>';
 			} else {
-				echo $license_manager->show_license_form( false );
+				do_action( 'yst_ga_show_license_form' );
 			}
 			?>
 		</div>
