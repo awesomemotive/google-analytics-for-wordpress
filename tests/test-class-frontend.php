@@ -19,7 +19,7 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 	 * @covers Yoast_GA_Frontend
 	 */
 	public function test_class() {
-		$yoast_ga_frontend_class = class_exists( 'yoast_ga_frontend' );
+		$yoast_ga_frontend_class = class_exists( 'Yoast_GA_Frontend' );
 
 		$this->assertTrue( $yoast_ga_frontend_class );
 	}
