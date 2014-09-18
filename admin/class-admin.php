@@ -137,43 +137,43 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				'load_page',
 			), $icon_svg, $on_top ? '2.00013467543': '100.00013467543' );
 
-			// Sub menu pages
-			$submenu_pages = array(
-				array(
-					'yst_ga_dashboard',
-					__( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'Dashboard', 'google-analytics-for-wordpress' ),
-					__( 'Dashboard', 'google-analytics-for-wordpress' ),
-					'manage_options',
-					'yst_ga_dashboard',
-					array( $this, 'load_page' ),
-					array( array( $this, 'yst_ga_dashboard' ) ),
-				),
-				array(
-					'yst_ga_dashboard',
-					__( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'Settings', 'google-analytics-for-wordpress' ),
-					__( 'Settings', 'google-analytics-for-wordpress' ),
-					'manage_options',
-					'yst_ga_settings',
-					array( $this, 'load_page' ),
-					array( array( $this, 'yst_ga_settings' ) ),
-				),
-				array(
-					'yst_ga_dashboard',
-					__( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'Extensions', 'google-analytics-for-wordpress' ),
-					__( '<span style="color:#f18500">' . __( 'Extensions', 'google-analytics-for-wordpress' ) . '</span>', 'google-analytics-for-wordpress' ),
-					'manage_options',
-					'yst_ga_licenses',
-					array( $this, 'load_page' ),
-					array( array( $this, 'yst_ga_licenses' ) ),
-				),
+			$submenu_pages = array();
+			$submenu_types = array(
+				"dashboard" => "",
+				"settings" => "",
+				"licenses" => "#f18500"
 			);
+
+			foreach ( $submenu_types as $submenu_title => $font_color ) {
+				$parent_slug = 'yst_ga_dashboard';
+				$page_title = __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( ucfirst($submenu_title), 'google-analytics-for-wordpress' );
+
+				if ( empty($font_color) ){
+					$menu_title = __(  ucfirst($submenu_title), 'google-analytics-for-wordpress' );
+				} else {
+					$menu_title = __( '<span style="color:' . $font_color . '">' . __( ucfirst($submenu_title), 'google-analytics-for-wordpress' ) . '</span>', 'google-analytics-for-wordpress' );
+				}
+
+				$capability = 'manage_options';
+				$menu_slug = 'yst_ga_' . $submenu_title;
+				$submenu_function = array( $this, 'load_page' );
+
+				$submenu_pages[] = array(
+					'parent_slug' => $parent_slug,
+					'page_title' => $page_title,
+					'menu_title' => $menu_title,
+					'capability' => $capability,
+					'menu_slug' => $menu_slug,
+					'submenu_function' => $submenu_function,
+				);
+			}
 
 			if ( count( $submenu_pages ) ) {
 				foreach ( $submenu_pages as $submenu_page ) {
 					// Add submenu page
-					$page = add_submenu_page( $submenu_page[0], $submenu_page[1], $submenu_page[2], $submenu_page[3], $submenu_page[4], $submenu_page[5] );
+					$page = add_submenu_page( $submenu_page['parent_slug'], $submenu_page['page_title'], $submenu_page['menu_title'], $submenu_page['capability'], $submenu_page['menu_slug'], $submenu_page['submenu_function'] );
 					add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_styles' ) );
-					if ( 'yst_ga_settings' === $submenu_page[4] || 'yst_ga_licenses' === $submenu_page[4] ) {
+					if ( 'yst_ga_settings' === $submenu_page["menu_slug"] || 'yst_ga_licenses' === $submenu_page["menu_slug"] ) {
 						add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_settings_styles' ) );
 						add_action( 'admin_print_scripts-' . $page, array( $this, 'enqueue_scripts' ) );
 					}
