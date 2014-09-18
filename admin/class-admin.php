@@ -137,11 +137,33 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				'load_page',
 			), $icon_svg, $on_top ? '2.00013467543': '100.00013467543' );
 
+			$submenu_pages = $this->prepare_submenu_pages();
+
+			if ( count( $submenu_pages ) ) {
+				foreach ( $submenu_pages as $submenu_page ) {
+					// Add submenu page
+					$page = add_submenu_page( $submenu_page['parent_slug'], $submenu_page['page_title'], $submenu_page['menu_title'], $submenu_page['capability'], $submenu_page['menu_slug'], $submenu_page['submenu_function'] );
+					add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_styles' ) );
+					if ( 'yst_ga_settings' === $submenu_page["menu_slug"] || 'yst_ga_licenses' === $submenu_page["menu_slug"] ) {
+						add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_settings_styles' ) );
+						add_action( 'admin_print_scripts-' . $page, array( $this, 'enqueue_scripts' ) );
+					}
+				}
+			}
+		}
+
+
+		/**
+		 * Prepares the array used to build the submenu
+		 *
+		 * @return array
+		 */
+		private function prepare_submenu_pages () {
 			$submenu_pages = array();
 			$submenu_types = array(
 				"dashboard" => "",
 				"settings" => "",
-				"licenses" => "#f18500"
+				"licenses" => "#f18500",
 			);
 
 			foreach ( $submenu_types as $submenu_title => $font_color ) {
@@ -167,18 +189,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					'submenu_function' => $submenu_function,
 				);
 			}
-
-			if ( count( $submenu_pages ) ) {
-				foreach ( $submenu_pages as $submenu_page ) {
-					// Add submenu page
-					$page = add_submenu_page( $submenu_page['parent_slug'], $submenu_page['page_title'], $submenu_page['menu_title'], $submenu_page['capability'], $submenu_page['menu_slug'], $submenu_page['submenu_function'] );
-					add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_styles' ) );
-					if ( 'yst_ga_settings' === $submenu_page["menu_slug"] || 'yst_ga_licenses' === $submenu_page["menu_slug"] ) {
-						add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_settings_styles' ) );
-						add_action( 'admin_print_scripts-' . $page, array( $this, 'enqueue_scripts' ) );
-					}
-				}
-			}
+			return $submenu_pages;
 		}
 
 		/**
