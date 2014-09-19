@@ -37,12 +37,14 @@ class Yoast_GA_JS_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test tracking (Add output rendering?)
+	 * Test tracking (We just check the array that is sent to the view)
 	 *
 	 * @covers Yoast_GA_JS::tracking()
 	 */
 	public function test_tracking() {
-		echo $this->class_instance->tracking();
+		$tracking_data = $this->class_instance->tracking( true );
+		print_r($tracking_data);
+		$this->assertEquals( $tracking_data, 'test' );
 	}
 
 	/**

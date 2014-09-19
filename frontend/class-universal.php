@@ -73,7 +73,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 					// Add custom code to the view
 					$gaq_push[] = array(
 						'type'  => 'custom_code',
-						'value' => $this->options['custom_code'],
+						'value' => stripslashes( $this->options['custom_code'] ),
 					);
 				}
 
