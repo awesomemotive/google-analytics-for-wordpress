@@ -27,9 +27,9 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		/**
 		 * Function to output the GA Tracking code in the wp_head()
 		 *
-		 * @todo, add the tracking code and remove this test output
+		 * @param bool $return_array
 		 */
-		public function tracking() {
+		public function tracking( $return_array = false ) {
 			global $wp_query;
 
 			if ( parent::do_tracking() && ! is_preview() ) {
@@ -73,7 +73,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					// Add custom code to the view
 					$gaq_push[] = array(
 						'type'  => 'custom_code',
-						'value' => $this->options['custom_code'],
+						'value' => stripslashes( $this->options['custom_code'] ),
 					);
 				}
 
@@ -117,6 +117,10 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				$gaq_push = apply_filters( 'yoast-ga-push-array-ga-js', $gaq_push );
 
 				$ga_settings = $this->options; // Assign the settings to the javascript include view
+
+				if ( true == $return_array ) {
+					return $gaq_push;
+				}
 
 				// Include the tracking view
 				if ( $this->options['debug_mode'] == 1 ) {
