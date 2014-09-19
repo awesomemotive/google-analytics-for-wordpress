@@ -46,9 +46,15 @@ class Yoast_GA_JS_Test extends GA_UnitTestCase {
 		$post_id = $this->factory->post->create();
 		$this->go_to( get_permalink( $post_id ) );
 
-		$tracking_data = $this->class_instance->tracking( true );
-		//var_dump( $tracking_data );
-		//$this->assertEquals( $tracking_data, 'test' );
+		$tracking_data      = $this->class_instance->tracking( true );
+		$tracking_data_type = is_array( $tracking_data );
+		
+		if ( $tracking_data_type ) {
+			$this->assertTrue( in_array( "'_setAccount', ''", $tracking_data ) );
+			$this->assertTrue( in_array( "'_trackPageview'", $tracking_data ) );
+		} else {
+			$this->assertTrue( $tracking_data_type );
+		}
 	}
 
 	/**

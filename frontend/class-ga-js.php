@@ -46,7 +46,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				}
 
 				$ua_code = $this->get_tracking_code();
-				if ( is_null( $ua_code ) ) {
+				if ( is_null( $ua_code ) && $return_array == false ) {
 					return;
 				}
 
