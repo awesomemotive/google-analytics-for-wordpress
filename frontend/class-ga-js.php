@@ -114,13 +114,14 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				 *
 				 * @api array $gaq_push
 				 */
+				if ( true == $return_array ) {
+					return $gaq_push;
+				}
+
 				$gaq_push = apply_filters( 'yoast-ga-push-array-ga-js', $gaq_push );
 
 				$ga_settings = $this->options; // Assign the settings to the javascript include view
 
-				if ( true == $return_array ) {
-					return $gaq_push;
-				}
 
 				// Include the tracking view
 				if ( $this->options['debug_mode'] == 1 ) {

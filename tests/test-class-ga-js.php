@@ -42,9 +42,13 @@ class Yoast_GA_JS_Test extends GA_UnitTestCase {
 	 * @covers Yoast_GA_JS::tracking()
 	 */
 	public function test_tracking() {
+		// create and go to post
+		$post_id = $this->factory->post->create();
+		$this->go_to( get_permalink( $post_id ) );
+
 		$tracking_data = $this->class_instance->tracking( true );
-		print_r($tracking_data);
-		$this->assertEquals( $tracking_data, 'test' );
+		//var_dump( $tracking_data );
+		//$this->assertEquals( $tracking_data, 'test' );
 	}
 
 	/**
@@ -53,7 +57,7 @@ class Yoast_GA_JS_Test extends GA_UnitTestCase {
 	 * @covers Yoast_GA_JS::tracking_prefix()
 	 */
 	public function test_get_tracking_prefix() {
-		$this->assertEquals( $this->class_instance->get_tracking_prefix(), '/yoast-ga/');
+		$this->assertEquals( $this->class_instance->get_tracking_prefix(), '/yoast-ga/' );
 	}
 
 	/**
