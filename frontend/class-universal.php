@@ -29,7 +29,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 		 *
 		 * @todo, add the tracking code and remove this test output
 		 */
-		public function tracking() {
+		public function tracking( $return_array = false ) {
 			global $wp_query;
 
 			if ( $this->do_tracking() && ! is_preview() ) {
@@ -46,7 +46,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 				}
 
 				$ua_code = $this->get_tracking_code();
-				if ( is_null( $ua_code ) ) {
+				if ( is_null( $ua_code ) && $return_array == false ) {
 					return;
 				}
 
@@ -119,6 +119,10 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 				 *
 				 * @api array $gaq_push
 				 */
+				if ( true == $return_array ) {
+					return $gaq_push;
+				}
+
 				$gaq_push = apply_filters( 'yoast-ga-push-array-universal', $gaq_push );
 
 				$ga_settings = $this->options; // Assign the settings to the javascript include view

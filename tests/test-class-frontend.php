@@ -25,6 +25,31 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Manipulate the options (Retrieve options, save new settings and retrieve the data again)
+	 *
+	 * @covers Yoast_GA_Options
+	 */
+	public function test_options() {
+		$options      = $this->class_instance->get_options();
+		$options_type = is_array( $options );
+
+		$this->assertTrue( $options_type );
+
+		if ( $options_type ) {
+			$options['manual_ua_code']       = 1;
+			$options['manual_ua_code_field'] = 'UA-1234567-89';
+
+			$this->class_instance->update_option( $options );
+
+			$options      = $this->class_instance->get_options();
+			$options_type = is_array( $options );
+
+			$this->assertTrue( $options_type );
+			$this->assertEquals( $options['manual_ua_code_field'], 'UA-1234567-89' );
+		}
+	}
+
+	/**
 	 * Test if the domain and host are set
 	 *
 	 * @covers Yoast_GA_Frontend::yoast_ga_get_domain()
@@ -39,8 +64,7 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 			$this->assertArrayHasKey( 'host', $domain );
 
 			$this->assertEquals( 'yoast.com', $domain['host'] );
-		}
-		else{
+		} else {
 			$this->assertTrue( $domain_result );
 		}
 
@@ -53,8 +77,7 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 			$this->assertArrayHasKey( 'host', $domain );
 
 			$this->assertEquals( 'yoast.com', $domain['host'] );
-		}
-		else{
+		} else {
 			$this->assertTrue( $domain_result );
 		}
 	}
@@ -121,5 +144,4 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 		$this->assertEquals( $this->class_instance->make_full_url( $link ), 'mailto:peter@yoast.com' );
 
 	}
-
 }

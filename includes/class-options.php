@@ -85,6 +85,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		 */
 		public function get_tracking_code() {
 			$tracking_code = null;
+			$this->options = $this->get_options();
 
 			if ( ! empty( $this->options['analytics_profile'] ) ) {
 				$tracking_code = $this->options['analytics_profile'];
