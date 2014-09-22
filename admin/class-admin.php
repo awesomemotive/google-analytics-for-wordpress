@@ -174,7 +174,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		private function add_submenu_page( $submenu_page ) {
 			$page = add_submenu_page( $submenu_page['parent_slug'], $submenu_page['page_title'], $submenu_page['menu_title'], $submenu_page['capability'], $submenu_page['menu_slug'], $submenu_page['submenu_function'] );
 			add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_styles' ) );
-			if ( 'yst_ga_settings' === $submenu_page["menu_slug"] || 'yst_ga_extensions' === $submenu_page["menu_slug"] ) {
+			if ( 'yst_ga_settings' === $submenu_page['menu_slug'] || 'yst_ga_extensions' === $submenu_page['menu_slug'] ) {
 				add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_settings_styles' ) );
 				add_action( 'admin_print_scripts-' . $page, array( $this, 'enqueue_scripts' ) );
 			}
@@ -202,9 +202,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			 *
 			 */
 			$submenu_types = array(
-				"dashboard"  => "",
-				"settings"   => "",
-				"extensions" => "#f18500",
+				'dashboard'  => '',
+				'settings'   => '',
+				'extensions' => '#f18500',
 			);
 
 			foreach ( $submenu_types as $submenu_name => $font_color ) {
