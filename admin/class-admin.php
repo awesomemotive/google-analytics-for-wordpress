@@ -140,7 +140,14 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$this->add_submenu_pages();
 		}
 
-
+		/**
+		 * Prepares an array that can be used to add a submenu page to the Google Analytics for Wordpress menu
+		 *
+		 * @param $submenu_name
+		 * @param $font_color
+		 *
+		 * @return array
+		 */
 		private function prepare_submenu_page( $submenu_name, $font_color ) {
 			$menu_title = __( ucfirst( $submenu_name ), 'google-analytics-for-wordpress' );
 			if ( ! empty( $font_color ) ) {
@@ -159,6 +166,11 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			return $submenu_page;
 		}
 
+		/**
+		 * Adds a submenu page to the Google Analytics for WordPress menu
+		 *
+		 * @param $submenu_page
+		 */
 		private function add_submenu_page( $submenu_page ) {
 			$page = add_submenu_page( $submenu_page['parent_slug'], $submenu_page['page_title'], $submenu_page['menu_title'], $submenu_page['capability'], $submenu_page['menu_slug'], $submenu_page['submenu_function'] );
 			add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_styles' ) );
@@ -169,7 +181,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
-		 * Prepares the array used to build the submenu
+		 * Prepares and adds submenu pages to the Google Analytics for Wordpress menu:
+		 * - Dashboard
+		 * - Settings
+		 * - Extensions
 		 *
 		 * @return array
 		 */
