@@ -42,15 +42,23 @@ class Yoast_GA_JS_Test extends GA_UnitTestCase {
 	 * @covers Yoast_GA_JS::tracking()
 	 */
 	public function test_tracking() {
+		// Update the options
+		$options                         = $this->class_instance->get_options();
+		$options['allowanchor']          = 1;
+		$options['manual_ua_code']       = 1;
+		$options['manual_ua_code_field'] = 'UA-1234567-89';
+		$this->class_instance->update_option( $options );
+
 		// create and go to post
 		$post_id = $this->factory->post->create();
 		$this->go_to( get_permalink( $post_id ) );
 
+		// Get tracking code
 		$tracking_data      = $this->class_instance->tracking( true );
 		$tracking_data_type = is_array( $tracking_data );
-		
+
 		if ( $tracking_data_type ) {
-			$this->assertTrue( in_array( "'_setAccount', ''", $tracking_data ) );
+			$this->assertTrue( in_array( "'_setAccount', 'UA-1234567-89'", $tracking_data ) );
 			$this->assertTrue( in_array( "'_trackPageview'", $tracking_data ) );
 		} else {
 			$this->assertTrue( $tracking_data_type );

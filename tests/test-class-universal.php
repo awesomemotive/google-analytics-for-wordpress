@@ -37,6 +37,36 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Test tracking
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
+	 */
+	public function test_tracking() {
+		// Update the options
+		$options                         = $this->class_instance->get_options();
+		$options['enable_universal']     = 1;
+		$options['allowanchor']          = 1;
+		$options['manual_ua_code']       = 1;
+		$options['manual_ua_code_field'] = 'UA-1234567-89';
+		$this->class_instance->update_option( $options );
+
+		// create and go to post
+		$post_id = $this->factory->post->create();
+		$this->go_to( get_permalink( $post_id ) );
+
+		// Get tracking code
+		$tracking_data      = $this->class_instance->tracking( true );
+		$tracking_data_type = is_array( $tracking_data );
+		
+		if ( $tracking_data_type ) {
+			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor': true}", $tracking_data ) );
+			$this->assertTrue( in_array( "'send','pageview'", $tracking_data ) );
+		} else {
+			$this->assertTrue( $tracking_data_type );
+		}
+	}
+
+	/**
 	 * Test some content
 	 *
 	 * @covers Yoast_GA_Universal::the_content()
