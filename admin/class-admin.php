@@ -452,7 +452,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$return      = array();
 
 			$google_analytics = Yoast_Google_Analytics::instance();
-			if( $google_analytics->has_token() ) {
+			if ( $google_analytics->has_token() ) {
 				$return = $google_analytics->get_profiles();
 			}
 
@@ -556,7 +556,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 
-
 		/**
 		 * Checks if there is a callback or reauth to get token from Google Analytics api
 		 */
@@ -567,6 +566,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			if ( isset( $_REQUEST['ga_oauth_callback'] ) ) {
 
 				Yoast_Google_Analytics::instance()->connect( $_REQUEST['oauth_token'], $_REQUEST['oauth_verifier'] );
+
+				/*
 
 				$o = get_option( $option_name );
 				if ( isset( $o['ga_oauth']['oauth_token'] ) && $o['ga_oauth']['oauth_token'] == $_REQUEST['oauth_token'] ) {
@@ -586,6 +587,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				}
 
 				update_option( $option_name, $o );
+				*/
 
 				wp_redirect( menu_page_url( 'yst_ga_settings', false ) );
 				exit;
