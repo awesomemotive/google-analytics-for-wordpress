@@ -9,13 +9,13 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		private $secret;
 
 		private $option_name = 'yst_ga_api';
-		private $options     = array();
+		private $options = array();
 
 		private static $instance = null;
 
 		public function __construct() {
 
-			if ( is_null ( self::$instance ) ) {
+			if ( is_null( self::$instance ) ) {
 				self::$instance = $this;
 			}
 
@@ -46,7 +46,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 				'xoauth_displayname' => 'Google Analytics by Yoast',
 			);
 
-			if( !empty($token) && ! empty ($verifier) ) {
+			if ( ! empty( $token ) && ! empty ( $verifier ) ) {
 				if ( isset( $this->options['ga_oauth']['oauth_token'] ) && $this->options['ga_oauth']['oauth_token'] == $token ) {
 					$gdata = new WP_GData(
 						$args,
@@ -68,14 +68,14 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		}
 
 		public function get_profiles() {
-			$return    = array();
-			$args      = array(
+			$return   = array();
+			$args     = array(
 				'scope'              => 'https://www.googleapis.com/auth/analytics.readonly',
 				'xoauth_displayname' => 'Google Analytics for WordPress by Yoast',
 			);
-			$response  = $this->do_request( 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles', $args );
+			$response = $this->do_request( 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles', $args );
 
-			if( $response ) {
+			if ( $response ) {
 				$return = $this->parse_profile_response();
 			}
 
@@ -127,9 +127,9 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 					// Check whether the feed output is the new one, first set, or the old one, second set.
 					if ( $xml_reader->link['href'] == 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles' ) {
-						$ga_accounts = $this->parse_entries($xml_reader->entry, 1, 2);
+						$ga_accounts = $this->parse_entries( $xml_reader->entry, 1, 2 );
 					} elseif ( $xml_reader->link['href'] == 'https://www.google.com/analytics/feeds/accounts/default' ) {
-						$ga_accounts = $this->parse_entries($xml_reader->entry, 3, 2);
+						$ga_accounts = $this->parse_entries( $xml_reader->entry, 3, 2 );
 					}
 
 					if ( is_array( $ga_accounts ) ) {
@@ -149,7 +149,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 		}
 
-		private function parse_entries($entries, $ua_key, $title_key) {
+		private function parse_entries( $entries, $ua_key, $title_key ) {
 			$return = array();
 
 			foreach ( $entries->entry AS $entry ) {
@@ -187,11 +187,9 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 			return get_option( $this->option_name );
 		}
 
-		private function update_options( )  {
+		private function update_options() {
 			update_option( $this->option_name, $this->options );
 		}
-
-
 
 
 	}
