@@ -57,7 +57,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		// Get tracking code
 		$tracking_data      = $this->class_instance->tracking( true );
 		$tracking_data_type = is_array( $tracking_data );
-		
+
 		if ( $tracking_data_type ) {
 			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor': true}", $tracking_data ) );
 			$this->assertTrue( in_array( "'send','pageview'", $tracking_data ) );
