@@ -215,6 +215,20 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 					break;
 			}
 		}
+
+		/**
+		 * Adding adsense tracking
+		 *
+		 * This method will add adsense tracking code into the head
+		 */
+		public function add_adsense_tracking() {
+
+			$tracking_code = $this->get_tracking_code();
+
+			if ( ! empty( $tracking_code ) && $this->options['track_adsense'] == 1 ) {
+				require( 'views/tracking-adsense.php' );
+			}
+		}
 	}
 
 	global $yoast_ga_frontend;
