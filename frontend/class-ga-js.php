@@ -56,7 +56,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					$gaq_push[] = "'_setDomainName', '" . $domain . "'";
 				}
 
-				if ( isset($this->options['allowanchor']) && $this->options['allowanchor'] ) {
+				if ( isset( $this->options['allowanchor'] ) && $this->options['allowanchor'] ) {
 					$gaq_push[] = "'_setAllowAnchor', true";
 				}
 
