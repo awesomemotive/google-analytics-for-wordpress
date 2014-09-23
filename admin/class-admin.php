@@ -4,6 +4,7 @@
  */
 
 require_once 'wp-gdata/wp-gdata.php';
+require_once 'class-google-analytics.php';
 
 if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
@@ -450,11 +451,21 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$options     = get_option( $option_name );
 			$return      = array();
 
+			$google_analytics = Yoast_Google_Analytics::instance();
+			if( $google_analytics->has_token() ) {
+				$return = $google_analytics->get_profiles();
+			}
+
+			/*
 			if ( ! empty ( $options['ga_token'] ) ) {
+
+
+
 				$args         = array(
 					'scope'              => 'https://www.googleapis.com/auth/analytics.readonly',
 					'xoauth_displayname' => 'Google Analytics for WordPress by Yoast',
 				);
+
 				$access_token = $options['ga_oauth']['access_token'];
 				$gdata        = new WP_Gdata( $args, $access_token['oauth_token'], $access_token['oauth_token_secret'] );
 
@@ -539,21 +550,12 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 				}
 			}
+			*/
 
 			return $return;
 		}
 
-		/**
-		 * Sorting the array in alphabetic order
-		 *
-		 * @param string $a
-		 * @param string $b
-		 *
-		 * @return int
-		 */
-		public function sort_profiles( $a, $b ) {
-			return strcmp( $a['title'], $b['title'] );
-		}
+
 
 		/**
 		 * Checks if there is a callback or reauth to get token from Google Analytics api
@@ -563,6 +565,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$option_name = 'yst_ga_api';
 
 			if ( isset( $_REQUEST['ga_oauth_callback'] ) ) {
+
+				Yoast_Google_Analytics::instance()->connect( $_REQUEST['oauth_token'], $_REQUEST['oauth_verifier'] );
+
 				$o = get_option( $option_name );
 				if ( isset( $o['ga_oauth']['oauth_token'] ) && $o['ga_oauth']['oauth_token'] == $_REQUEST['oauth_token'] ) {
 					$gdata = new WP_GData(
