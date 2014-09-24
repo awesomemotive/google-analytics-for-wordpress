@@ -294,7 +294,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		private function update_options() {
 			update_option( $this->option_name, $this->options );
 		}
-		
+
 	}
 
 }
