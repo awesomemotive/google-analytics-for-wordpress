@@ -328,7 +328,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$id    = str_replace( ']', '', $id );
 
 			// Catch a notice if the option doesn't exist, yet
-			if ( !isset( $this->options[$name] ) ) {
+			if ( ! isset( $this->options[$name] ) ) {
 				$this->options[$name] = '';
 			}
 
@@ -379,7 +379,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$id     = str_replace( ']', '', $id );
 
 			// Catch a notice if the option doesn't exist, yet
-			if ( !isset( $this->options[$name] ) ) {
+			if ( ! isset( $this->options[$name] ) ) {
 				$this->options[$name] = '';
 			}
 
@@ -434,7 +434,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$id   = $this->option_prefix . '_' . $name;
 
 			// Catch a notice if the option doesn't exist, yet
-			if ( !isset( $this->options[$name] ) ) {
+			if ( ! isset( $this->options[$name] ) ) {
 				$this->options[$name] = '';
 			}
 
