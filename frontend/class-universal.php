@@ -54,13 +54,13 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 				// Set tracking code here
 				if ( ! empty( $ua_code ) ) {
-					if ( $this->options['add_allow_linker'] && ! $this->options['allowanchor'] ) {
+					if ( $this->options['add_allow_linker'] && ! $this->options['allow_anchor'] ) {
 						$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowLinker': true}";
 					} else {
-						if ( $this->options['allowanchor'] && ! $this->options['add_allow_linker'] ) {
+						if ( $this->options['allow_anchor'] && ! $this->options['add_allow_linker'] ) {
 							$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowAnchor': true}";
 						} else {
-							if ( $this->options['allowanchor'] && $this->options['add_allow_linker'] ) {
+							if ( $this->options['allow_anchor'] && $this->options['add_allow_linker'] ) {
 								$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowAnchor': true, 'allowLinker': true}";
 							} else {
 								$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "'";
