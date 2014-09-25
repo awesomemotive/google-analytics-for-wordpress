@@ -39,6 +39,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		 */
 		public function __construct() {
 			$this->options = $this->get_options();
+			$this->options = $this->check_options( $this->options );
 
 			$this->plugin_path = plugin_dir_path( GAWP_FILE );
 			$this->plugin_url  = trailingslashit( plugin_dir_url( GAWP_FILE ) );
@@ -61,8 +62,8 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		 * @return bool
 		 */
 		public function update_option( $val ) {
-			$options                         = get_option( $this->option_name );
-			$options[ $this->option_prefix ] = $val;
+			$options                       = get_option( $this->option_name );
+			$options[$this->option_prefix] = $val;
 
 			return update_option( $this->option_name, $options );
 		}
@@ -75,7 +76,32 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		public function get_options() {
 			$options = get_option( $this->option_name );
 
-			return $options[ $this->option_prefix ];
+			return $options[$this->option_prefix];
+		}
+
+		/**
+		 * Check if all the options are set, to prevent a notice if debugging is enabled
+		 * When we have new changes, the settings are saved to the options class
+		 *
+		 * @param $options
+		 *
+		 * @return mixed
+		 */
+		public function check_options( $options ) {
+
+			$changes = 0;
+			foreach ( $this->default_ga_values() as $key => $value ) {
+				if ( ! isset( $options[$key] ) ) {
+					$options[$key] = $value;
+					$changes ++;
+				}
+			}
+
+			if ( $changes >= 1 ) {
+				$this->update_option( $options );
+			}
+
+			return $options;
 		}
 
 		/**
@@ -143,9 +169,9 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 
 			// Fallback to make sure every default option has a value
 			$defaults = $this->default_ga_values();
-			foreach ( $defaults[ $this->option_prefix ] as $key => $value ) {
-				if ( ! isset( $this->options[ $key ] ) ) {
-					$this->options[ $key ] = $value;
+			foreach ( $defaults[$this->option_prefix] as $key => $value ) {
+				if ( ! isset( $this->options[$key] ) ) {
+					$this->options[$key] = $value;
 				}
 			}
 
