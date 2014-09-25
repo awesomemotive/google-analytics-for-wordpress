@@ -156,7 +156,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 
 			// 5.0.0 to 5.0.1 fix of ignore users array
 			if ( ! isset( $this->options['version'] ) || version_compare( $this->options['version'], '5.0.1', '<' ) ) {
-				if ( ! is_array( $this->options['ignore_users'] ) ) {
+				if ( isset( $this->options['ignore_users'] ) && ! is_array( $this->options['ignore_users'] ) ) {
 					$this->options['ignore_users'] = (array) $this->options['ignore_users'];
 				}
 			}
