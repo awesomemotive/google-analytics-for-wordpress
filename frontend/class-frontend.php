@@ -225,7 +225,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
 			$tracking_code = $this->get_tracking_code();
 
-			if ( ! empty( $tracking_code ) && $this->options['track_adsense'] == 1 ) {
+			if ( ! empty( $tracking_code ) && isset($this->options['track_adsense']) && $this->options['track_adsense'] == 1 ) {
 				require( 'views/tracking-adsense.php' );
 			}
 		}
