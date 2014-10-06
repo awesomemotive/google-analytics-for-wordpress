@@ -193,7 +193,6 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 					'manual_ua_code_field'       => null,
 					'track_internal_as_outbound' => null,
 					'track_internal_as_label'    => null,
-					'track_adsense'              => null,
 					'track_outbound'             => 0,
 					'anonymous_data'             => 0,
 					'enable_universal'           => 0,

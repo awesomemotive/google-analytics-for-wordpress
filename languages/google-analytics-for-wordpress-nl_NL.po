@@ -342,14 +342,6 @@ msgstr "Eigen code"
 msgid "Not for the average user: this allows you to add a line of code, to be added before the <code>trackPageview</code> call."
 msgstr "Niet voor de gemiddelde gebruiker: dit zorgt dat je een regel codes kan toevoegen voor de <code>trackPageview</code> call."
 
-#: admin/class-admin.php:548
-msgid "Track AdSense"
-msgstr "Track AdSense"
-
-#: admin/class-admin.php:549
-msgid "This requires integration of your Analytics and AdSense account, for help, <a href=\"http://google.com/support/analytics/bin/answer.py?answer=92625\">look here</a>."
-msgstr "Dit heeft een integratie van je Analytics en AdSense account nodig. Hulp nodig? <a href=\"http://google.com/support/analytics/bin/answer.py?answer=92625\">Kijk hier</a>."
-
 #: admin/class-admin.php:554
 msgid "Host ga.js locally"
 msgstr "Host ga.js lokaal"

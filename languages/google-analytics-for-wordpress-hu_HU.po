@@ -342,14 +342,6 @@ msgstr ""
 msgid "Not for the average user: this allows you to add a line of code, to be added before the <code>trackPageview</code> call."
 msgstr ""
 
-#: admin/class-admin.php:548
-msgid "Track AdSense"
-msgstr ""
-
-#: admin/class-admin.php:549
-msgid "This requires integration of your Analytics and AdSense account, for help, <a href=\"http://google.com/support/analytics/bin/answer.py?answer=92625\">look here</a>."
-msgstr ""
-
 #: admin/class-admin.php:554
 msgid "Host ga.js locally"
 msgstr ""
