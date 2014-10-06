@@ -62,42 +62,15 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @return string
 		 */
-		public function connect( $token = false, $verifier = false ) {
+		public function authenticate( $token = false, $verifier = false ) {
 
 			if ( ! empty( $token ) && ! empty ( $verifier ) ) {
 				if ( isset( $this->options['ga_oauth']['oauth_token'] ) && $this->options['ga_oauth']['oauth_token'] == $token ) {
-					$gdata = $this->get_gdata(
-						'https://www.google.com/analytics/feeds/',
-						$this->options['ga_oauth']['oauth_token'],
-						$this->options['ga_oauth']['oauth_token_secret']
-					);
-
-					$this->options['ga_oauth']['access_token'] = $gdata->get_access_token( $verifier );
-					unset( $this->options['ga_oauth']['oauth_token'] );
-					unset( $this->options['ga_oauth']['oauth_token_secret'] );
-					$this->options['ga_token'] = $this->options['ga_oauth']['access_token']['oauth_token'];
-
-					$this->update_options();
+					$this->get_access_token( $verifier );
 				}
 			} else {
-				$gdata = $this->get_gdata( 'https://www.google.com/analytics/feeds/' );
-
-				$oauth_callback = add_query_arg( array( 'ga_oauth_callback' => 1 ), menu_page_url( 'yst_ga_settings', false ) );
-				$request_token  = $gdata->get_request_token( $oauth_callback );
-
-				if ( is_array( $this->options ) ) {
-					unset( $this->options['ga_token'] );
-					if ( is_array( $this->options['ga_oauth'] ) ) {
-						unset( $this->options['ga_oauth']['access_token'] );
-					}
-				}
-
-				$this->options['ga_oauth']['oauth_token']        = $request_token['oauth_token'];
-				$this->options['ga_oauth']['oauth_token_secret'] = $request_token['oauth_token_secret'];
-
-				$this->update_options();
-
-				return $gdata->get_authorize_url( $request_token );
+				$authorize_url = $this->get_authorize_url();
+				return $authorize_url;
 			}
 
 		}
@@ -111,6 +84,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 * @return array
 		 */
 		public function get_profiles() {
+
 			$return   = array();
 			$response = $this->do_request( 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles', 'https://www.googleapis.com/auth/analytics.readonly' );
 
@@ -136,6 +110,69 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		}
 
 		/**
+		 * Getting a access token
+		 *
+		 * With this token a reconnection to Google Analytics is possible
+		 *
+		 * @param string $verifier
+		 */
+		protected function get_access_token( $verifier ) {
+			$gdata = $this->get_gdata(
+				'https://www.google.com/analytics/feeds/',
+				$this->options['ga_oauth']['oauth_token'],
+				$this->options['ga_oauth']['oauth_token_secret']
+			);
+
+			$access_token = $gdata->get_access_token( $verifier );
+
+			$this->options['ga_oauth']['access_token'] = $access_token;
+			$this->options['ga_token']                 = $access_token['oauth_token'];
+
+			unset( $this->options['ga_oauth']['oauth_token'] );
+			unset( $this->options['ga_oauth']['oauth_token_secret'] );
+
+			$this->update_options();
+		}
+
+		/**
+		 * Getting the URL to authenticate the use
+		 *
+		 * @return string
+		 */
+		protected function get_authorize_url() {
+			$gdata = $this->get_gdata( 'https://www.google.com/analytics/feeds/' );
+			$request_token = $this->get_request_token( $gdata ) ;
+
+			if ( is_array( $this->options ) ) {
+				unset( $this->options['ga_token'] );
+				if ( is_array( $this->options['ga_oauth'] ) ) {
+					unset( $this->options['ga_oauth']['access_token'] );
+				}
+			}
+
+			$this->options['ga_oauth']['oauth_token']        = $request_token['oauth_token'];
+			$this->options['ga_oauth']['oauth_token_secret'] = $request_token['oauth_token_secret'];
+
+			$this->update_options();
+
+			return $gdata->get_authorize_url( $request_token );
+		}
+
+		/**
+		 * Get the request token from Google Analytics
+		 *
+		 * @param WP_Gdata $gdata
+		 *
+		 * @return array
+		 */
+		protected function get_request_token( $gdata ) {
+			$oauth_callback = add_query_arg( array( 'ga_oauth_callback' => 1 ), menu_page_url( 'yst_ga_settings', false ) );
+			$request_token  = $gdata->get_request_token( $oauth_callback );
+
+			return $request_token;
+		}
+
+		/**
 		 * Doing request to Google Analytics
 		 *
 		 * This method will do a request to google and get the response code and body from content
@@ -145,7 +182,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @return array|null
 		 */
-		private function do_request( $target_url, $scope ) {
+		protected function do_request( $target_url, $scope ) {
 			$gdata     = $this->get_gdata( $scope, $this->access_token, $this->secret );
 			$response  = $gdata->get( $target_url );
 			$http_code = wp_remote_retrieve_response_code( $response );
@@ -159,7 +196,18 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 			}
 		}
 
-		private function get_gdata( $scope, $token = null, $secret = null ) {
+		/**
+		 * Getting WP_GData object
+		 *
+		 * If not available include class file and create an instance of WP_GDAta
+		 *
+		 * @param string $scope
+		 * @param null   $token
+		 * @param null   $secret
+		 *
+		 * @return WP_GData
+		 */
+		protected function get_gdata( $scope, $token = null, $secret = null ) {
 			if ( ! class_exists( 'WP_Gdata', false ) ) {
 				require_once 'wp-gdata/wp-gdata.php';
 			}
@@ -179,7 +227,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @param $response
 		 */
-		private function save_profile_response( $response ) {
+		protected function save_profile_response( $response ) {
 			$this->options['ga_api_response'] = $response;
 			$this->update_options();
 		}
@@ -192,7 +240,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @return array
 		 */
-		private function parse_profile_response() {
+		protected function parse_profile_response() {
 			$return = array();
 
 			try {
@@ -239,7 +287,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @return array
 		 */
-		private function parse_entries( $entries, $ua_key, $title_key ) {
+		protected function parse_entries( $entries, $ua_key, $title_key ) {
 			$return = array();
 
 			foreach ( $entries AS $entry ) {
@@ -268,14 +316,14 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		/**
 		 * Setting the token for Google Analytics api
 		 */
-		private function set_access_token() {
+		protected function set_access_token() {
 			$this->access_token = $this->options['ga_oauth']['access_token']['oauth_token'];
 		}
 
 		/**
 		 * Setting the token secret for Google Analytics API
 		 */
-		private function set_secret() {
+		protected function set_secret() {
 			$this->secret = $this->options['ga_oauth']['access_token']['oauth_token_secret'];
 		}
 
@@ -284,14 +332,14 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @return mixed
 		 */
-		private function get_options() {
+		protected function get_options() {
 			return get_option( $this->option_name );
 		}
 
 		/**
 		 * Updating the options based on $this->option_name and the internal property $this->options
 		 */
-		private function update_options() {
+		protected function update_options() {
 			update_option( $this->option_name, $this->options );
 		}
 
