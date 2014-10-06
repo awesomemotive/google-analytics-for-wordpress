@@ -465,14 +465,14 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			if ( isset( $_REQUEST['ga_oauth_callback'] ) ) {
 
-				Yoast_Google_Analytics::instance()->connect( $_REQUEST['oauth_token'], $_REQUEST['oauth_verifier'] );
+				Yoast_Google_Analytics::instance()->authenticate( $_REQUEST['oauth_token'], $_REQUEST['oauth_verifier'] );
 
 				wp_redirect( menu_page_url( 'yst_ga_settings', false ) );
 				exit;
 			}
 
 			if ( ! empty ( $_GET['reauth'] ) ) {
-				$authorize_url = Yoast_Google_Analytics::instance()->connect();
+				$authorize_url = Yoast_Google_Analytics::instance()->authenticate();
 
 				wp_redirect( $authorize_url );
 				exit;
