@@ -35,8 +35,6 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 			if ( $this->do_tracking() && ! is_preview() ) {
 				$gaq_push = array();
 
-				add_action( 'wp_head', array( $this, 'add_adsense_tracking' ) );
-
 				if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != '' ) {
 					$domain = $this->options['subdomain_tracking'];
 				} else {
