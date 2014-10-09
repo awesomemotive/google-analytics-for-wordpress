@@ -70,6 +70,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 				}
 			} else {
 				$authorize_url = $this->get_authorize_url();
+
 				return $authorize_url;
 			}
 
@@ -140,8 +141,8 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 * @return string
 		 */
 		protected function get_authorize_url() {
-			$gdata = $this->get_gdata( 'https://www.google.com/analytics/feeds/' );
-			$request_token = $this->get_request_token( $gdata ) ;
+			$gdata         = $this->get_gdata( 'https://www.google.com/analytics/feeds/' );
+			$request_token = $this->get_request_token( $gdata );
 
 			if ( is_array( $this->options ) ) {
 				unset( $this->options['ga_token'] );
