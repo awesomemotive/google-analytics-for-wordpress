@@ -44,7 +44,18 @@ class Yoast_Google_Analytics_Test extends GA_UnitTestCase {
 	public function test_has_token_DO_manipulate() {
 		$old_options = get_option( 'yst_ga_api' );
 
-		update_option( 'yst_ga_api', array( 'ga_token' => 'custom' ) );
+		update_option(
+			'yst_ga_api',
+			array(
+				'ga_token' => 'custom',
+				'ga_oauth' => array(
+					'access_token' => array(
+						'oauth_token'        => 123,
+						'oauth_token_secret' => 321
+					)
+				)
+			)
+		);
 
 		$instance = new Yoast_Google_Analytics();
 
