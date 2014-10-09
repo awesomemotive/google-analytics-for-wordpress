@@ -48,7 +48,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		 */
 		public static function instance() {
 
-			if( is_null( self::$instance ) ) {
+			if ( is_null( self::$instance ) ) {
 				self::$instance = new Yoast_GA_Options();
 			}
 
@@ -76,7 +76,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 			}
 
 			// If instance is null, create it. Prevent creating multiple instances of this class
-			if( is_null( self::$instance ) ) {
+			if ( is_null( self::$instance ) ) {
 				self::$instance = $this;
 			}
 		}
@@ -240,7 +240,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 				)
 			);
 
-			$options = apply_filters('yst_ga_default-ga-values', $options, $this->option_prefix );
+			$options = apply_filters( 'yst_ga_default-ga-values', $options, $this->option_prefix );
 
 			return $options;
 		}
