@@ -35,6 +35,9 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 			if ( parent::do_tracking() && ! is_preview() ) {
 				$gaq_push = array();
 
+				// Running action for adding possible code
+				do_action( 'yst_tracking' );
+
 				if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != '' ) {
 					$domain = $this->options['subdomain_tracking'];
 				} else {
@@ -56,7 +59,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					$gaq_push[] = "'_setDomainName', '" . $domain . "'";
 				}
 
-				if ( isset($this->options['allowanchor']) && $this->options['allowanchor'] ) {
+				if ( isset( $this->options['allowanchor'] ) && $this->options['allowanchor'] ) {
 					$gaq_push[] = "'_setAllowAnchor', true";
 				}
 
