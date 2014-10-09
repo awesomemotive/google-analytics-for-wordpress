@@ -25,6 +25,17 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Check the do_tracking function, it must be true
+	 *
+	 * @covers Yoast_GA_Frontend::do_tracking()
+	 */
+	public function test_do_tracking() {
+		$tracking = $this->class_instance->do_tracking();
+
+		$this->assertTrue( $tracking );
+	}
+
+	/**
 	 * Manipulate the options (Retrieve options, save new settings and retrieve the data again)
 	 *
 	 * @covers Yoast_GA_Options

@@ -59,10 +59,38 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$tracking_data_type = is_array( $tracking_data );
 
 		if ( $tracking_data_type ) {
-			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor': true}", $tracking_data ) );
+			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto'", $tracking_data ) );
 			$this->assertTrue( in_array( "'send','pageview'", $tracking_data ) );
 		} else {
 			$this->assertTrue( $tracking_data_type );
+		}
+	}
+
+	/**
+	 * Test the custom code in the tracking
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
+	 */
+	public function test_custom_code() {
+		$options                = $this->class_instance->get_options();
+		$options['custom_code'] = '__custom_code[\"test\"]';
+		$this->class_instance->update_option( $options );
+
+		// create and go to post
+		$post_id = $this->factory->post->create();
+		$this->go_to( get_permalink( $post_id ) );
+
+		// Get tracking code
+		$tracking_data = $this->class_instance->tracking( true );
+
+		if ( is_array( $tracking_data ) ) {
+			foreach ( $tracking_data as $row ) {
+				if(is_array($row)){
+					if($row['type']=='custom_code'){
+						$this->assertEquals( $row['value'], '__custom_code["test"]' );
+					}
+				}
+			}
 		}
 	}
 

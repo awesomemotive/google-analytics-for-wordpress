@@ -342,14 +342,6 @@ msgstr "Räätälöity koodi"
 msgid "Not for the average user: this allows you to add a line of code, to be added before the <code>trackPageview</code> call."
 msgstr "Ei normaaleille käyttäjille: mahdollistaa koodirivin lisäämisen ennen <code>trackPageview</code> kutsua."
 
-#: admin/class-admin.php:548
-msgid "Track AdSense"
-msgstr "Seuraa AdSenseä"
-
-#: admin/class-admin.php:549
-msgid "This requires integration of your Analytics and AdSense account, for help, <a href=\"http://google.com/support/analytics/bin/answer.py?answer=92625\">look here</a>."
-msgstr "Vaatii integraation Analytics ja AdSense tilien välillä. <a href=\"http://google.com/support/analytics/bin/answer.py?answer=92625\">Lue lisää</a>."
-
 #: admin/class-admin.php:554
 msgid "Host ga.js locally"
 msgstr "Lataa ga.js paikallisesti"

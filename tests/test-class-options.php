@@ -6,7 +6,7 @@ require_once dirname( __FILE__ ) . '/../includes/class-options.php';
 class Yoast_GA_Options_Test extends GA_UnitTestCase {
 
 	/**
-	 * @var Yoast_GA_Universal
+	 * @var Yoast_GA_Options
 	 */
 	private $class_instance;
 
@@ -77,7 +77,20 @@ class Yoast_GA_Options_Test extends GA_UnitTestCase {
 	public function test_default_ga_values() {
 		$defaults = $this->class_instance->default_ga_values();
 
-		$this->assertTrue( is_array($defaults) );
+		$this->assertTrue( is_array( $defaults ) );
+	}
+
+	/**
+	 * Check the options check function, we need at least the current dataset
+	 *
+	 * @covers Yoast_GA_Options::check_options()
+	 */
+	public function test_check_options() {
+		$options     = $this->class_instance->get_options();
+		$new_options = $this->class_instance->check_options( $options );
+
+		$this->assertEquals( count( $options ), count( $new_options ) );
+
 	}
 
 }

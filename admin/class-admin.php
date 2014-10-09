@@ -330,6 +330,11 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$id    = str_replace( '[', '-', $name );
 			$id    = str_replace( ']', '', $id );
 
+			// Catch a notice if the option doesn't exist, yet
+			if ( ! isset( $this->options[$name] ) ) {
+				$this->options[$name] = '';
+			}
+
 			$input .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
 				$input .= '<label class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . $this->form_namespace . '-' . $id . '" />' . $title . ':</label>';
@@ -375,6 +380,12 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$select = null;
 			$id     = str_replace( '[', '-', $name );
 			$id     = str_replace( ']', '', $id );
+
+			// Catch a notice if the option doesn't exist, yet
+			if ( ! isset( $this->options[$name] ) ) {
+				$this->options[$name] = '';
+			}
+
 			$select .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
 				$select .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $id . '" />' . $title . ':</label>';
@@ -424,6 +435,12 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function textarea( $title, $name, $description = null ) {
 			$text = null;
 			$id   = $this->option_prefix . '_' . $name;
+
+			// Catch a notice if the option doesn't exist, yet
+			if ( ! isset( $this->options[$name] ) ) {
+				$this->options[$name] = '';
+			}
+
 			$text .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
 				$text .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
