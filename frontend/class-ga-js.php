@@ -35,6 +35,9 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 			if ( parent::do_tracking() && ! is_preview() ) {
 				$gaq_push = array();
 
+				// Running action for adding possible code
+				do_action( 'yst_tracking' );
+
 				if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != '' ) {
 					$domain = $this->options['subdomain_tracking'];
 				} else {
@@ -87,7 +90,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				}
 
 				if ( is_404() ) {
-					$gaq_push[] = "'_trackPageview,'/404.html?page=' + document.location.pathname + document.location.search + '&from=' + document.referrer";
+					$gaq_push[] = "'_trackPageview','/404.html?page=' + document.location.pathname + document.location.search + '&from=' + document.referrer";
 				} else {
 					if ( $wp_query->is_search ) {
 						$pushstr = "'_trackPageview','/?s=";
