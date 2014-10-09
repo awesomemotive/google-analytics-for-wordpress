@@ -35,6 +35,28 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		public $plugin_url;
 
 		/**
+		 * Saving instance of it's own in this static var
+		 *
+		 * @var object
+		 */
+		private static $instance;
+
+		/**
+		 * Getting instance of this object. If instance doesn't exists it will be created.
+		 *
+		 * @return object|Yoast_GA_Options
+		 */
+		public static function instance() {
+
+			if( is_null( self::$instance ) ) {
+				self::$instance = new Yoast_GA_Options();
+			}
+
+			return self::$instance;
+
+		}
+
+		/**
 		 * Constructor for the options
 		 */
 		public function __construct() {
@@ -51,6 +73,11 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 
 			if ( ! isset( $this->options['version'] ) || $this->options['version'] < GAWP_VERSION ) {
 				$this->upgrade();
+			}
+
+			// If instance is null, create it. Prevent creating multiple instances of this class
+			if( is_null( self::$instance ) ) {
+				self::$instance = $this;
 			}
 		}
 
@@ -186,7 +213,8 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		 * @return array
 		 */
 		public function default_ga_values() {
-			return array(
+
+			$options = array(
 				$this->option_prefix => array(
 					'analytics_profile'          => null,
 					'manual_ua_code'             => 0,
@@ -211,6 +239,10 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 					'firebug_lite'               => 0,
 				)
 			);
+
+			$options = apply_filters('yst_ga_default-ga-values', $options, $this->option_prefix );
+
+			return $options;
 		}
 	}
 }
