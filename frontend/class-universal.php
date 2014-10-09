@@ -36,7 +36,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 				$gaq_push = array();
 
 				// Running action for adding possible code
-				do_action('yst_tracking');
+				do_action( 'yst_tracking' );
 
 				if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != '' ) {
 					$domain = $this->options['subdomain_tracking'];
