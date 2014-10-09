@@ -99,18 +99,6 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		}
 
 		/**
-		 * Sorting the array in alphabetic order
-		 *
-		 * @param string $a
-		 * @param string $b
-		 *
-		 * @return int
-		 */
-		public function sort_profiles( $a, $b ) {
-			return strcmp( $a['title'], $b['title'] );
-		}
-
-		/**
 		 * Getting a access token
 		 *
 		 * With this token a reconnection to Google Analytics is possible
@@ -276,6 +264,19 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 			return $return;
 
 		}
+
+		/**
+		 * Sorting the array in alphabetic order
+		 *
+		 * @param string $a
+		 * @param string $b
+		 *
+		 * @return int
+		 */
+		protected function sort_profiles( $a, $b ) {
+			return strcmp( $a['title'], $b['title'] );
+		}
+
 
 		/**
 		 * Parses the entries
