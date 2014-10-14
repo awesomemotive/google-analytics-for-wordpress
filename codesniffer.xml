@@ -27,6 +27,7 @@
 		<exclude name="Squiz.WhiteSpace" />
 		<exclude name="WordPress.WhiteSpace" />
 		<exclude name="WordPress.PHP.YodaConditions" />
+		<exclude name="WordPress.Functions.FunctionCallSignature" />
 
 	</rule>
 	<rule ref="WordPress.PHP.DiscouragedFunctions"/>
