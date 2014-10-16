@@ -29,6 +29,16 @@
 		<exclude name="WordPress.PHP.YodaConditions" />
 		<exclude name="WordPress.Functions.FunctionCallSignature" />
 
+		<!-- Demanding Yoda conditions is stupid. -->
+		<exclude name="WordPress.PHP.YodaConditions"/>
+
+		<!-- Temporarily disable this check until it's fixed -->
+		<exclude name="WordPress.Functions.FunctionCallSignature"/>
+
+		<exclude name="Squiz.WhiteSpace" />
+		<exclude name="WordPress.WhiteSpace" />
+
+		<exclude name="Generic.WhiteSpace.ScopeIndent" />
 	</rule>
 	<rule ref="WordPress.PHP.DiscouragedFunctions"/>
 </ruleset>
