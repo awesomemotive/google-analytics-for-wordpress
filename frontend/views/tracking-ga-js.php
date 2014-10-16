@@ -2,19 +2,19 @@
 <script type="text/javascript">
 
 	var _gaq = _gaq || [];
-<?php
-		// List the GA elements from the class-ga-js.php
-		if ( count( $gaq_push ) >= 1 ) {
-			foreach ( $gaq_push as $item ) {
-				if ( ! is_array( $item ) ) {
-					echo '	_gaq.push([' . $item . "]);\n";
-				}
-				elseif ( isset( $item['value'] ) ) {
-					echo '	' . stripslashes( $item['value'] ) . "\n";
+	<?php
+			// List the GA elements from the class-ga-js.php
+			if ( count( $gaq_push ) >= 1 ) {
+				foreach ( $gaq_push as $item ) {
+					if ( ! is_array( $item ) ) {
+						echo '	_gaq.push([' . $item . "]);\n";
+					}
+					elseif ( isset( $item['value'] ) ) {
+						echo '	' . stripslashes( $item['value'] ) . "\n";
+					}
 				}
 			}
-		}
-		?>
+			?>
 
 	(function () {
 		var ga = document.createElement('script');
