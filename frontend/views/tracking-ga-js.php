@@ -10,7 +10,7 @@
 					echo '	_gaq.push([' . $item . "]);\n";
 				}
 				elseif ( isset( $item['value'] ) ) {
-					echo '	'.$item['value'] . "\n";
+					echo '	' . stripslashes( $item['value'] ) . "\n";
 				}
 			}
 		}
