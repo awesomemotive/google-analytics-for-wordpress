@@ -37,6 +37,8 @@
 
 		<exclude name="Squiz.WhiteSpace" />
 		<exclude name="WordPress.WhiteSpace" />
+
+		<exclude name="Generic.WhiteSpace.ScopeIndent" />
 	</rule>
 	<rule ref="WordPress.PHP.DiscouragedFunctions"/>
 </ruleset>
