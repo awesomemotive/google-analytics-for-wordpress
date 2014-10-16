@@ -81,7 +81,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				}
 
 				// Anonymous data
-				if ( $this->options['anonymize_ips'] == 1 ) {
+				if ( array_key_exists( 'anonymize_ips', $options ) && $this->options['anonymize_ips'] == 1 ) {
 					$gaq_push[] = "'_gat._anonymizeIp'";
 				}
 
@@ -127,7 +127,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 
 				// Include the tracking view
-				if ( $this->options['debug_mode'] == 1 ) {
+				if ( array_key_exists( 'debug_mode', $options ) && $this->options['debug_mode'] == 1 ) {
 					require( 'views/tracking-debug.php' );
 				} else {
 					require( 'views/tracking-ga-js.php' );
