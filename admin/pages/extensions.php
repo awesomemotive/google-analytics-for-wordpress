@@ -37,18 +37,20 @@ $extensions = apply_filters( 'yst_ga_extension_status', $extensions );
 
 					<p><?php echo $extension->desc; ?></p>
 
-						<p>
-							<?php if ( 'uninstalled' == $extension->status ) { ?>
-								<a target="_blank" href="https://yoast.com/wordpress/plugins/ga-ecommerce-edd/#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary">Get this extension</a>
-							<?php } else if ( 'inactive' == $extension->status ) { ?>
+					<p>
+						<?php if ( 'uninstalled' == $extension->status ) { ?>
+							<a target="_blank" href="https://yoast.com/wordpress/plugins/ga-ecommerce-edd/#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary">Get this extension</a>
+						<?php } else {
+							if ( 'inactive' == $extension->status ) { ?>
 								<a href="#top#licenses" class="activate-link button-primary">Activate License</a>
 							<?php } else { ?>
 								<button class="button-primary installed">Installed</button>
-							<?php }  ?>
-						</p>
-					</div>
-				<?php
-				}
+							<?php }
+						} ?>
+					</p>
+				</div>
+			<?php
+			}
 			?>
 		</div>
 		<div id="licenses" class="wpseotab gatab">
