@@ -592,6 +592,32 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			require 'views/content-footer.php';
 		}
 
+		/**
+		 * Returns a list of all available extensions
+		 *
+		 * @return array
+		 */
+		public function get_extensions() {
+			$extensions = array(
+				'ga_premium' => (object) array(
+					'url'    => 'https://yoast.com/wordpress/plugins/google-analytics/',
+					'title'  => __( 'Google Analytics', 'google-analytics-for-wordpress' ) . '<br />' . __( 'Premium', 'google-analytics-for-wordpress' ),
+					'desc'   => __( 'The premium version of Google Analytics for WordPress with more features &amp; support.', 'google-analytics-for-wordpress' ),
+					'status' => 'uninstalled',
+				),
+				'ecommerce'  => (object) array(
+					'url'    => 'https://yoast.com/wordpress/plugins/google-analytics/',
+					'title'  => __( 'Google Analytics', 'google-analytics-for-wordpress' ) . '<br />' . __( 'E-Commerce tracking', 'google-analytics-for-wordpress' ),
+					'desc'   => __( 'Track your E-Commerce data and transactions with this E-Commerce extension for Google Analytics.', 'google-analytics-for-wordpress' ),
+					'status' => 'uninstalled',
+				),
+			);
+
+			$extensions = apply_filters( 'yst_ga_extension_status', $extensions );
+
+			return $extensions;
+		}
+
 	}
 
 	global $yoast_ga_admin;
