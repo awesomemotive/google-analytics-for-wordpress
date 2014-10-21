@@ -29,15 +29,23 @@ $extensions = $yoast_ga_admin->get_extensions();
 					<p><?php echo $extension->desc; ?></p>
 
 					<p>
-						<?php if ( 'uninstalled' == $extension->status ) { ?>
+						<?php
+						if ( 'uninstalled' == $extension->status ) {
+							?>
 							<a target="_blank" href="https://yoast.com/wordpress/plugins/ga-ecommerce-edd/#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary">Get this extension</a>
-						<?php } else {
-							if ( 'inactive' == $extension->status ) { ?>
+						<?php
+						} else {
+							if ( 'inactive' == $extension->status ) {
+								?>
 								<a href="#top#licenses" class="activate-link button-primary">Activate License</a>
-							<?php } else { ?>
+							<?php
+							} else {
+								?>
 								<button class="button-primary installed">Installed</button>
-							<?php }
-						} ?>
+							<?php
+							}
+						}
+						?>
 					</p>
 				</div>
 			<?php
