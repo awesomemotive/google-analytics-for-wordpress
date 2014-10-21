@@ -28,7 +28,6 @@
 		<exclude name="WordPress.WhiteSpace" />
 		<exclude name="WordPress.PHP.YodaConditions" />
 		<exclude name="WordPress.Functions.FunctionCallSignature" />
-		<exclude name="Generic.WhiteSpace.ScopeIndent"/>
 
 	</rule>
 	<rule ref="WordPress.PHP.DiscouragedFunctions"/>
