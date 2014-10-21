@@ -5,16 +5,7 @@ echo $yoast_ga_admin->content_head();
 
 $has_extensions = false;
 
-$extensions = array(
-	'ecommerce' => (object) array(
-		'url'    => 'https://yoast.com/wordpress/plugins/google-analytics/',
-		'title'  => __( 'Google Analytics', 'google-analytics-for-wordpress' ) . '<br />' . __( 'E-Commerce tracking', 'google-analytics-for-wordpress' ),
-		'desc'   => __( 'Track your E-Commerce data and transactions with this E-Commerce extension for Google Analytics.', 'google-analytics-for-wordpress' ),
-		'status' => 'uninstalled',
-	),
-);
-
-$extensions = apply_filters( 'yst_ga_extension_status', $extensions );
+$extensions = $yoast_ga_admin->get_extensions();
 ?>
 	<h2 id="yoast_ga_title"><?php echo __( 'Yoast Google Analytics: Extensions', 'google-analytics-for-wordpress' ); ?></h2>
 
@@ -37,18 +28,28 @@ $extensions = apply_filters( 'yst_ga_extension_status', $extensions );
 
 					<p><?php echo $extension->desc; ?></p>
 
-						<p>
-							<?php if ( 'uninstalled' == $extension->status ) { ?>
-								<a target="_blank" href="https://yoast.com/wordpress/plugins/ga-ecommerce-edd/#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary">Get this extension</a>
-							<?php } else if ( 'inactive' == $extension->status ) { ?>
+					<p>
+						<?php
+						if ( 'uninstalled' == $extension->status ) {
+							?>
+							<a target="_blank" href="https://yoast.com/wordpress/plugins/ga-ecommerce-edd/#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary">Get this extension</a>
+						<?php
+						} else {
+							if ( 'inactive' == $extension->status ) {
+								?>
 								<a href="#top#licenses" class="activate-link button-primary">Activate License</a>
-							<?php } else { ?>
+							<?php
+							} else {
+								?>
 								<button class="button-primary installed">Installed</button>
-							<?php }  ?>
-						</p>
-					</div>
-				<?php
-				}
+							<?php
+							}
+						}
+						?>
+					</p>
+				</div>
+			<?php
+			}
 			?>
 		</div>
 		<div id="licenses" class="wpseotab gatab">
