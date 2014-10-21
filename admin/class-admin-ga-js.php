@@ -13,5 +13,4 @@ if ( ! class_exists( 'Yoast_GA_Admin_GA_JS' ) ) {
 
 	}
 
-
 }
