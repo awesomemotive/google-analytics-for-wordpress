@@ -1,8 +1,5 @@
 <?php
 
-// include file
-require_once dirname( __FILE__ ) . '/../includes/class-options.php';
-
 class Yoast_GA_Options_Test extends GA_UnitTestCase {
 
 	/**

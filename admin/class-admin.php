@@ -35,11 +35,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				add_action( 'admin_notices', array( $this, 'config_warning' ) );
 			}
 
-			// Require analytics class
-			if ( ! class_exists( 'Yoast_Google_Analytics' ) ) {
-				require_once 'class-google-analytics.php';
-			}
-
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 				if ( ! function_exists( 'wp_verify_nonce' ) ) {
@@ -260,7 +255,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Load the page of a menu item in the GA plugin
 		 */
 		public function load_page() {
-			require_once $this->plugin_path . 'admin/class-admin-ga-js.php';
+			global $yoast_ga_admin_ga_js;
+			$yoast_ga_admin_ga_js = new Yoast_GA_Admin_GA_JS;
 
 			if ( isset( $_GET['page'] ) ) {
 				switch ( $_GET['page'] ) {
@@ -620,6 +616,4 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 	}
 
-	global $yoast_ga_admin;
-	$yoast_ga_admin = new Yoast_GA_Admin;
 }

@@ -9,7 +9,6 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		public $link_regex;
 
 		public function __construct() {
-			parent::__construct();
 
 			$this->link_regex = '/<a (.*?)href=[\'\"](.*?):\/*([^\'\"]+?)[\'\"](.*?)>(.*?)<\/a>/i';
 
@@ -318,6 +317,4 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 	}
 
-	global $yoast_ga_js;
-	$yoast_ga_js = new Yoast_GA_JS;
 }

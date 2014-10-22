@@ -10,9 +10,6 @@ class Yoast_Google_Analytics_Test extends GA_UnitTestCase {
 	public function __construct() {
 		parent::__construct();
 
-		echo dirname( GAWP_FILE );
-		require_once dirname( GAWP_FILE ) . "/admin/class-google-analytics.php";
-
 		$this->class_instance = new Yoast_Google_Analytics();
 	}
 
