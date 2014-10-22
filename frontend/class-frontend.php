@@ -19,9 +19,11 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
 			// Check if the customer is running Universal or not (Enable in GA Settings -> Universal)
 			if ( isset( $this->options['enable_universal'] ) && $this->options['enable_universal'] == 1 ) {
-				require_once 'class-universal.php';
+				global $yoast_ga_universal;
+				$yoast_ga_universal = new Yoast_GA_Universal;
 			} else {
-				require_once 'class-ga-js.php';
+				global $yoast_ga_js;
+				$yoast_ga_js = new Yoast_GA_JS;
 			}
 		}
 
@@ -217,6 +219,4 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		}
 	}
 
-	global $yoast_ga_frontend;
-	$yoast_ga_frontend = new Yoast_GA_Frontend;
 }
