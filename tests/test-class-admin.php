@@ -1,8 +1,5 @@
 <?php
 
-// include file because the test isn't runned in the admin panel
-require_once dirname( __FILE__ ) . '/../admin/class-admin.php';
-
 class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 
 	/**
@@ -11,9 +8,9 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 	private $class_instance;
 
 	public function __construct() {
-		global $yoast_ga_admin;
+		parent::__construct();
 
-		$this->class_instance = $yoast_ga_admin;
+		$this->class_instance = new Yoast_GA_Admin();
 	}
 
 	/**
@@ -122,6 +119,8 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 	 * @covers Yoast_GA_Admin::end_form()
 	 */
 	public function test_end_form() {
+		$this->class_instance->create_form( 'phpunit' );
+
 		$output = null;
 		$output .= '<div class="ga-form ga-form-input">';
 		$output .= '<input type="submit" name="ga-form-submit" value="Save changes" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-phpunit">';
