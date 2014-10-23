@@ -41,4 +41,28 @@ jQuery(document).ready(function() {
 	if(jQuery("#yoast-ga-form-checkbox-settings-manual_ua_code").is(':checked')){
 		jQuery('#enter_ua').show();
 	}
+
+	jQuery(".yoast_help").qtip({
+		position: {
+			corner: {
+				target : 'topMiddle',
+				tooltip: 'bottomLeft'
+			}
+		},
+		show    : {
+			when: {
+				event: 'mouseover'
+			}
+		},
+		hide    : {
+			fixed: true,
+			when : {
+				event: 'mouseout'
+			}
+		},
+		style   : {
+			tip : 'bottomLeft',
+			name: 'blue'
+		}
+	});
 });
