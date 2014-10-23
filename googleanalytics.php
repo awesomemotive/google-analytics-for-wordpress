@@ -36,14 +36,16 @@ define( 'GAWP_FILE', __FILE__ );
 
 define( 'GAWP_URL', trailingslashit( plugin_dir_url( __FILE__ ) ) );
 
-if ( ! class_exists( 'Yoast_GA_Options' ) ) {
-	require_once 'includes/class-options.php';
+if ( ! class_exists( 'Yoast_GA_Autoload', false ) ) {
+	require_once 'includes/class-autoload.php';
 }
 
 // Only require the needed classes
 if ( is_admin() ) {
-	require_once 'admin/class-admin.php';
+	global $yoast_ga_admin;
+	$yoast_ga_admin = new Yoast_GA_Admin;
 
 } else {
-	require_once 'frontend/class-frontend.php';
+	global $yoast_ga_frontend;
+	$yoast_ga_frontend = new Yoast_GA_Frontend;
 }
