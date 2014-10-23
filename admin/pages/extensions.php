@@ -15,18 +15,18 @@ $extensions = $yoast_ga_admin->get_extensions();
 	</h2>
 	<div class="tabwrapper">
 		<div id="extensions" class="wpseotab gatab">
-			<?php
-			foreach ( $extensions as $name => $extension ) {
-				if ( 'uninstalled' !== $extension->status ) {
-					$has_extensions = true;
-				}
-				?>
-				<div class="extension <?php echo $name; ?>">
-					<a target="_blank" href="<?php echo $extension->url; ?>#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners">
-						<h3><?php echo $extension->title; ?></h3>
-					</a>
+		<?php
+		foreach ( $extensions as $name => $extension ) {
+			if ( 'uninstalled' !== $extension->status ) {
+				$has_extensions = true;
+			}
+			?>
+			<div class="extension <?php echo $name; ?>">
+				<a target="_blank" href="<?php echo $extension->url; ?>#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners">
+					<h3><?php echo $extension->title; ?></h3>
+				</a>
 
-					<p><?php echo $extension->desc; ?></p>
+				<p><?php echo $extension->desc; ?></p>
 
 					<p>
 						<?php
@@ -53,13 +53,13 @@ $extensions = $yoast_ga_admin->get_extensions();
 			?>
 		</div>
 		<div id="licenses" class="wpseotab gatab">
-			<?php
-			if ( ! $has_extensions ) {
-				echo '<p>' . __( 'You have not installed any extensions for Yoast Google Analytics, so there are no licenses to activate.', 'google-analytics-for-wordpress' ) . '</p>';
-			} else {
-				do_action( 'yst_ga_show_license_form' );
-			}
-			?>
+		<?php
+		if ( ! $has_extensions ) {
+			echo '<p>' . __( 'You have not installed any extensions for Yoast Google Analytics, so there are no licenses to activate.', 'google-analytics-for-wordpress' ) . '</p>';
+		} else {
+			do_action( 'yst_ga_show_license_form' );
+		}
+		?>
 		</div>
 	</div>
 	<div class="clear"></div>
