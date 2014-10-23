@@ -360,8 +360,16 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			return $input;
 		}
 
+		/**
+		 * Show a question mark with help
+		 *
+		 * @param string $id
+		 * @param string $description
+		 *
+		 * @return string
+		 */
 		private function show_help( $id, $description ) {
-			$help = '<img src="' . plugins_url( 'img/question-mark.png', GAWP_FILE ) . '" class="alignright yoast_help" id="' . esc_attr( $id . 'help' ) . '" alt="' . esc_attr( $description ) . '" />';
+			$help = '<img src="' . plugins_url( 'img/question-mark.png', GAWP_FILE ) . '" class="alignleft yoast_help" id="' . esc_attr( $id . 'help' ) . '" alt="' . esc_attr( $description ) . '" />';
 
 			return $help;
 		}
