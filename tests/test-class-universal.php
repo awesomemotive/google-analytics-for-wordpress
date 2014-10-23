@@ -97,7 +97,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	public function test_the_content() {
 		$test_string = 'Lorem ipsum dolor sit amet, <a href="' . get_site_url() . '/test">Linking text</a> Lorem ipsum dolor sit amet';
 
-		$this->assertEquals( $this->class_instance->the_content( $test_string ), "Lorem ipsum dolor sit amet, <a href=\"http://example.org/test\" onclick=\"ga('send', 'event', 'outbound-article-int', 'http://example.org/test', 'Linking text');\" >Linking text</a> Lorem ipsum dolor sit amet" );
+		$this->assertEquals( $this->class_instance->the_content( $test_string ), "Lorem ipsum dolor sit amet, <a href=\"http://example.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-article-int', 'http://example.org/test', 'Linking text');\" >Linking text</a> Lorem ipsum dolor sit amet" );
 	}
 
 	/**
@@ -108,7 +108,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	public function test_widget_content() {
 		$test_string = '<a href="' . get_site_url() . '/test">Linking text</a>';
 
-		$this->assertEquals( $this->class_instance->widget_content( $test_string ), "<a href=\"http://example.org/test\" onclick=\"ga('send', 'event', 'outbound-widget-int', 'http://example.org/test', 'Linking text');\" >Linking text</a>" );
+		$this->assertEquals( $this->class_instance->widget_content( $test_string ), "<a href=\"http://example.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-widget-int', 'http://example.org/test', 'Linking text');\" >Linking text</a>" );
 	}
 
 	/**
@@ -119,7 +119,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	public function test_nav_menu() {
 		$test_string = '<a href="' . get_site_url() . '/test">Linking text</a>';
 
-		$this->assertEquals( $this->class_instance->nav_menu( $test_string ), "<a href=\"" . get_site_url() . "/test\" onclick=\"ga('send', 'event', 'outbound-menu-int', 'http://example.org/test', 'Linking text');\" >Linking text</a>" );
+		$this->assertEquals( $this->class_instance->nav_menu( $test_string ), "<a href=\"" . get_site_url() . "/test\" onclick=\"__gaTracker('send', 'event', 'outbound-menu-int', 'http://example.org/test', 'Linking text');\" >Linking text</a>" );
 	}
 
 	/**
@@ -130,7 +130,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	public function test_comment_text() {
 		$test_string = 'Lorem ipsum dolor sit amet, consectetur <a href="' . get_site_url() . '/test">adipiscing elit</a>. Etiam tincidunt ullamcorper porttitor. Nam dapibus tincidunt posuere. Proin dignissim nisl at posuere fringilla.';
 
-		$this->assertEquals( $this->class_instance->comment_text( $test_string ), "Lorem ipsum dolor sit amet, consectetur <a href=\"http://example.org/test\" onclick=\"ga('send', 'event', 'outbound-comment-int', '" . get_site_url() . "/test', 'adipiscing elit');\" >adipiscing elit</a>. Etiam tincidunt ullamcorper porttitor. Nam dapibus tincidunt posuere. Proin dignissim nisl at posuere fringilla." );
+		$this->assertEquals( $this->class_instance->comment_text( $test_string ), "Lorem ipsum dolor sit amet, consectetur <a href=\"http://example.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-comment-int', '" . get_site_url() . "/test', 'adipiscing elit');\" >adipiscing elit</a>. Etiam tincidunt ullamcorper porttitor. Nam dapibus tincidunt posuere. Proin dignissim nisl at posuere fringilla." );
 	}
 
 

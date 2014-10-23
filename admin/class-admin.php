@@ -230,6 +230,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Add the scripts to the admin head
 		 */
 		public function enqueue_scripts() {
+			wp_enqueue_script( 'jquery-qtip', $this->plugin_url . 'js/jquery.qtip.min.js', array( 'jquery' ), '1.0.0-RC3', true );
+
 			wp_enqueue_script( 'yoast_ga_admin', $this->plugin_url . 'js/yoast_ga_admin' . $this->file_ext( '.js' ) );
 
 			// Eqneue the chosen js file
@@ -348,17 +350,28 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				$input .= '<label class="ga-form ga-form-' . $type . '-label" id="yoast-ga-form-label-' . $type . '-textlabel-' . $this->form_namespace . '-' . $id . '" for="yoast-ga-form-' . $type . '-' . $this->form_namespace . '-' . $id . '" />' . $text_label . '</label>';
 			}
 
-			$input .= '</div>';
-
 			// If we get a description, append it to this select field in a new row
 			if ( ! is_null( $description ) ) {
-				$input .= '<div class="ga-form ga-form-input">';
-				$input .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-description-select-' . $this->form_namespace . '-' . $id . '" />&nbsp;</label>';
-				$input .= '<span class="ga-form ga-form-description">' . $description . '</span>';
-				$input .= '</div>';
+				$input .= $this->show_help( $id, $description );
 			}
 
+			$input .= '</div>';
+
 			return $input;
+		}
+
+		/**
+		 * Show a question mark with help
+		 *
+		 * @param string $id
+		 * @param string $description
+		 *
+		 * @return string
+		 */
+		private function show_help( $id, $description ) {
+			$help = '<img src="' . plugins_url( 'img/question-mark.png', GAWP_FILE ) . '" class="alignleft yoast_help" id="' . esc_attr( $id . 'help' ) . '" alt="' . esc_attr( $description ) . '" />';
+
+			return $help;
 		}
 
 		/**
@@ -406,15 +419,12 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				}
 			}
 			$select .= '</select>';
-			$select .= '</div>';
 
-			// If we get a description, append it to this select field in a new row
 			if ( ! is_null( $description ) ) {
-				$select .= '<div class="ga-form ga-form-input">';
-				$select .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-description-select-' . $this->form_namespace . '-' . $id . '" />&nbsp;</label>';
-				$select .= '<span class="ga-form ga-form-description">' . __( $description, 'google-analytics-for-wordpress' ) . '</span>';
-				$select .= '</div>';
+				$select .= $this->show_help( $id, $description );
 			}
+
+			$select .= '</div>';
 
 			return $select;
 		}
@@ -442,15 +452,12 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				$text .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . $this->form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
 			}
 			$text .= '<textarea rows="5" cols="60" name="' . $name . '" id="yoast-ga-form-textarea-' . $this->form_namespace . '-' . $id . '">' . stripslashes( $this->options[$name] ) . '</textarea>';
-			$text .= '</div>';
 
-			// If we get a description, append it to this select field in a new row
 			if ( ! is_null( $description ) ) {
-				$text .= '<div class="ga-form ga-form-input">';
-				$text .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-description-select-' . $this->form_namespace . '-' . $id . '" />&nbsp;</label>';
-				$text .= '<span class="ga-form ga-form-description">' . __( $description, 'google-analytics-for-wordpress' ) . '</span>';
-				$text .= '</div>';
+				$text .= $this->show_help( $id, $description );
 			}
+
+			$text .= '</div>';
 
 			return $text;
 		}

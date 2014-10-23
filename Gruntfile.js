@@ -1,5 +1,5 @@
 /* global require */
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 	'use strict';
 
 	require('load-grunt-tasks')(grunt, {
@@ -10,44 +10,44 @@ module.exports = function (grunt) {
 
 	// Project configuration.
 	grunt.initConfig({
-		pkg       : grunt.file.readJSON('package.json'),
+		pkg: grunt.file.readJSON('package.json'),
 
 		// Watch source files
-		watch     : {
+		watch: {
 			gruntfile: {
 				files: ['Gruntfile.js'],
 				tasks: ['jshint:grunt', 'jsvalidate', 'jscs']
 			},
-			php      : {
+			php: {
 				files: ['**/*.php', '*/*.php', '!node_modules/**'],
 				tasks: ['phplint', 'phpcs']
 			},
-			js       : {
+			js: {
 				files: ['js/*.js'],
 				tasks: ['jshint', 'jsvalidate', 'jscs', 'uglify']
 			},
-			css      : {
+			css: {
 				files: ['css/*css'],
 				tasks: ['build:css']
 			}
 		},        // JavaScript
 
 		// Lint JS code practices
-		jshint    : {
+		jshint: {
 			grunt: {
 				options: {
 					jshintrc: '.gruntjshintrc'
 				},
-				src    : ['Gruntfile.js']
+				src: ['Gruntfile.js']
 			}
 		},
 
 		// Lint JS for code standards
-		jscs      : {
+		jscs: {
 			options: {
 				config: '.jscsrc'
 			},
-			all    : {
+			all: {
 				files: {
 					src: [
 						'Gruntfile.js',
@@ -60,7 +60,7 @@ module.exports = function (grunt) {
 		},
 
 		// Lint JSON files for syntax errors
-		jsonlint  : {
+		jsonlint: {
 			all: {
 				src: [
 					'.gruntjshintrc',
@@ -76,7 +76,7 @@ module.exports = function (grunt) {
 				options: {
 					verbose: true
 				},
-				files  : {
+				files: {
 					src: [
 						'Gruntfile.js'
 					]
@@ -84,19 +84,19 @@ module.exports = function (grunt) {
 			}
 		},
 
-		uglify      : {
+		uglify: {
 			'google-analytics-for-wordpess': {
 				options: {
 					preserveComments: 'some',
-					report          : 'gzip'
+					report: 'gzip'
 				},
-				files  : [
+				files: [
 					{
 						expand: true,
-						cwd   : 'js',
-						src   : ['*.js', '!*.min.js'],
-						dest  : 'js',
-						ext   : '.min.js',
+						cwd: 'js',
+						src: ['*.js', '!*.min.js'],
+						dest: 'js',
+						ext: '.min.js',
 						extDot: 'first',
 						isFile: true
 					}
@@ -112,8 +112,8 @@ module.exports = function (grunt) {
 					'Explorer >= 8'
 				]
 			},
-			all    : {
-				src    : [
+			all: {
+				src: [
 					'css/*.css', '!css/*.min.css'
 				],
 				options: {
@@ -125,26 +125,26 @@ module.exports = function (grunt) {
 		csscomb: {
 			css: {
 				expand: true,
-				src   : ['css/*.css', '!css/*.min.css']
+				src: ['css/*.css', '!css/*.min.css']
 			}
 		},
 
 		cssbeautifier: {
-			files  : ['css/*.css', '!css/*.min.css'],
+			files: ['css/*.css', '!css/*.min.css'],
 			options: {
-				indent       : '\t',
-				openbrace    : 'end-of-line',
+				indent: '\t',
+				openbrace: 'end-of-line',
 				autosemicolon: true
 			}
 		},
 
-		cssmin       : {
+		cssmin: {
 			minify: {
 				expand: true,
-				cwd   : 'css/',
-				src   : ['*.css', '!*.min.css'],
-				dest  : 'css/',
-				ext   : '.min.css'
+				cwd: 'css/',
+				src: ['*.css', '!*.min.css'],
+				dest: 'css/',
+				ext: '.min.css'
 			}
 		},
 
@@ -153,7 +153,7 @@ module.exports = function (grunt) {
 			options: {
 				textdomain: 'google-analytics-for-wordpress'
 			},
-			php    : {
+			php: {
 				files: {
 					src: [
 						'**/*.php'
@@ -163,41 +163,41 @@ module.exports = function (grunt) {
 		},
 
 		// Lint .php files for syntax errors
-		phplint      : {
+		phplint: {
 			all: ['**/*.php', '!node_modules/**']
 		},
 
 		// Lint .php files for code standards
-		phpcs        : {
-			all    : {
+		phpcs: {
+			all: {
 				//adjust these to the folder you do and don't want to be treated
 				dir: ['**/*.php', '!admin/license-manager/**', '!node_modules/**']
 			},
 			options: {
-				standard      : 'codesniffer.xml',
-				reportFile    : 'phpcs.txt',
+				standard: 'codesniffer.xml',
+				reportFile: 'phpcs.txt',
 				ignoreExitCode: true
 			}
 		},
 
 // Optimize images to save bytes
-		imagemin     : {
+		imagemin: {
 			images: {
 				files: [{
 					expand: true,
 					// this would require the addition of a assets folder from which the images are
 					// processed and put inside the images folder
-					cwd   : 'img/',
-					src   : ['*.*'],
-					dest  : 'img/'
+					cwd: 'img/',
+					src: ['*.*'],
+					dest: 'img/'
 				}]
 			}
 		},
 
 		checktextdomain: {
 			options: {
-				text_domain: 'google-analytics-for-wordpress',
-				keywords   : [
+				textDomain: 'google-analytics-for-wordpress',
+				keywords: [
 					'__:1,2d',
 					'_e:1,2d',
 					'_x:1,2c,3d',
@@ -214,9 +214,9 @@ module.exports = function (grunt) {
 					'esc_html_x:1,2c,3d'
 				]
 			},
-			files  : {
+			files: {
 				expand: true,
-				src   : [
+				src: [
 					'**/*.php', '!node_modules/**', '!admin/license-manager/**'
 				]
 			}
@@ -226,7 +226,7 @@ module.exports = function (grunt) {
 			theme: {
 				options: {
 					domainPath: '/languages',
-					processPot: function (pot) {
+					processPot: function(pot) {
 						pot.headers['report-msgid-bugs-to'] = 'http://wordpress.org/support/plugin/google-analytics-for-wordpress\n';
 						pot.headers['plural-forms'] = 'nplurals=2; plural=n != 1;';
 						pot.headers['last-translator'] = 'Remkus de Vries <translations@yoast.com>\n';
@@ -242,7 +242,7 @@ module.exports = function (grunt) {
 						pot.headers['x-textdomain-support'] = 'yes';
 						return pot;
 					},
-					type      : 'wp-plugin'
+					type: 'wp-plugin'
 				}
 			}
 		}
@@ -282,5 +282,4 @@ module.exports = function (grunt) {
 	grunt.registerTask('default', [
 		'check'
 	]);
-
 };
