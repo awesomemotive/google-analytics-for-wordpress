@@ -8,9 +8,7 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 	private $class_instance;
 
 	public function __construct() {
-		global $yoast_ga_frontend;
-
-		$this->class_instance = $yoast_ga_frontend;
+		$this->class_instance = new Yoast_GA_Frontend();
 	}
 
 	/**

@@ -1,8 +1,5 @@
 <?php
 
-// include file
-require_once dirname( __FILE__ ) . '/../frontend/class-ga-js.php';
-
 class Yoast_GA_JS_Test extends GA_UnitTestCase {
 
 	/**
@@ -13,7 +10,7 @@ class Yoast_GA_JS_Test extends GA_UnitTestCase {
 	public function __construct() {
 		global $yoast_ga_js;
 
-		$this->class_instance = $yoast_ga_js;
+		$this->class_instance = new Yoast_GA_JS();
 	}
 
 	/**
