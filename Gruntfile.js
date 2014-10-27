@@ -196,7 +196,7 @@ module.exports = function(grunt) {
 
 		checktextdomain: {
 			options: {
-				textDomain: 'google-analytics-for-wordpress',
+				text_domain: 'google-analytics-for-wordpress',
 				keywords: [
 					'__:1,2d',
 					'_e:1,2d',
