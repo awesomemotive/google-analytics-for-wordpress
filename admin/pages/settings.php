@@ -20,6 +20,7 @@ settings_errors( 'yoast_google_analytics' );
 <?php
 echo $yoast_ga_admin->create_form( 'settings' );
 ?>
+<input type="hidden" name="return_tab" id="return_tab" value="general" />
 <div class="tabwrapper">
 	<div id="general" class="gatab">
 		<?php

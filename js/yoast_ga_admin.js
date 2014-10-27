@@ -7,6 +7,7 @@ jQuery(document).ready(function() {
 		var id = jQuery(this).attr('id').replace('-tab','');
 		jQuery('#' + id).addClass('active');
 		jQuery(this).addClass('nav-tab-active');
+		jQuery("#return_tab").val(id);
 	});
 
 	jQuery('a.activate-link').click(function() {
@@ -37,6 +38,8 @@ jQuery(document).ready(function() {
 			jQuery('#yoast-ga-form-text-settings-manual_ua_code_field').attr('value','');
 		}
 	});
+
+	jQuery('.nav-tab-active').click();
 
 	if(jQuery("#yoast-ga-form-checkbox-settings-manual_ua_code").is(':checked')){
 		jQuery('#enter_ua').show();
