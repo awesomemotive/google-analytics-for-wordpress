@@ -96,13 +96,14 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			} else {
 				// Fail, add a new notification
 				$this->add_notification( 'ga_notifications', array(
-					'type'        => 'success',
-					'description' => __( 'Settings saved!', 'google-analytics-for-wordpress' ),
+					'type'        => 'error',
+					'description' => __( 'There where no changes to save, please try again.', 'google-analytics-for-wordpress' ),
 				) );
 			}
 
 			#redirect
-			wp_redirect( admin_url('admin.php') . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
+			wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
+			exit;
 		}
 
 		/**
@@ -633,39 +634,41 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
-		 * Add a notification to the notification session
+		 * Add a notification to the notification transient
 		 *
-		 * @param $session_name
+		 * @param $transient_name
 		 * @param $settings
 		 */
-		private function add_notification( $session_name, $settings ) {
-			$_SESSION[$session_name] = $settings;
+		private function add_notification( $transient_name, $settings ) {
+			set_transient( $transient_name, $settings, MINUTE_IN_SECONDS );
 		}
 
 		/**
-		 * Show the notification that should be set, after showing the notification this function unsets the session
+		 * Show the notification that should be set, after showing the notification this function unset the transient
 		 *
-		 * @param string $session_name The name of the session which contains the notification
+		 * @param string $transient_name The name of the transient which contains the notification
 		 */
-		public function show_notification( $session_name ) {
-			if ( isset( $_SESSION[$session_name]['type'] ) && isset( $_SESSION[$session_name]['description'] ) ) {
-				if ( $_SESSION[$session_name]['type'] == 'success' ) {
+		public function show_notification( $transient_name ) {
+			$transient = get_transient( $transient_name );
+
+			if ( isset( $transient['type'] ) && isset( $transient['description'] ) ) {
+				if ( $transient['type'] == 'success' ) {
 					add_settings_error(
 						'yoast_google_analytics',
 						'yoast_google_analytics',
-						$_SESSION[$session_name]['description'],
+						$transient['description'],
 						'updated'
 					);
 				} else {
 					add_settings_error(
 						'yoast_google_analytics',
 						'yoast_google_analytics',
-						$_SESSION[$session_name]['description'],
+						$transient['description'],
 						'error'
 					);
 				}
 
-				unset( $session );
+				delete_transient( $transient_name );
 			}
 		}
 
