@@ -39,6 +39,8 @@ jQuery(document).ready(function() {
 		}
 	});
 
+	jQuery('.nav-tab-active').click();
+
 	if(jQuery("#yoast-ga-form-checkbox-settings-manual_ua_code").is(':checked')){
 		jQuery('#enter_ua').show();
 	}
