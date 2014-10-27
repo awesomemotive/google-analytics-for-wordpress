@@ -7,6 +7,7 @@ jQuery(document).ready(function() {
 		var id = jQuery(this).attr('id').replace('-tab','');
 		jQuery('#' + id).addClass('active');
 		jQuery(this).addClass('nav-tab-active');
+		jQuery("#return_tab").val(id);
 	});
 
 	jQuery('a.activate-link').click(function() {

@@ -48,15 +48,13 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 					// Post submitted and verified with our nonce
 					$this->save_settings( $_POST );
-
-					add_settings_error(
-						'yoast_google_analytics',
-						'yoast_google_analytics',
-						__( 'Settings saved!', 'google-analytics-for-wordpress' ),
-						'updated'
-					);
 				}
 			}
+
+			/**
+			 * Show the notifications if we have one
+			 */
+			$this->show_notification( 'ga_notifications' );
 
 			$this->connect_with_google_analytics();
 		}
@@ -75,7 +73,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function save_settings( $data ) {
 			foreach ( $data as $key => $value ) {
-				$this->options[$key] = $value;
+				if ( $key != 'return_tab' ) {
+					$this->options[$key] = $value;
+				}
 			}
 
 			// Check checkboxes, on a uncheck they won't be posted to this function
@@ -87,11 +87,22 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			}
 
 			if ( $this->update_option( $this->options ) ) {
-				// Success!
+				// Success, add a new notification
+				$this->add_notification( 'ga_notifications', array(
+					'type'        => 'success',
+					'description' => __( 'Settings saved!', 'google-analytics-for-wordpress' ),
+				) );
+
 			} else {
-				// Fail..
+				// Fail, add a new notification
+				$this->add_notification( 'ga_notifications', array(
+					'type'        => 'success',
+					'description' => __( 'Settings saved!', 'google-analytics-for-wordpress' ),
+				) );
 			}
 
+			#redirect
+			wp_redirect( admin_url('admin.php') . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
 		}
 
 		/**
@@ -101,7 +112,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 *
 		 * @return array $links
 		 */
-		function add_action_links( $links ) {
+		public function add_action_links( $links ) {
 			// add link to knowledgebase
 			// @todo UTM link fix
 			$faq_link = '<a title="Yoast Knowledge Base" href="http://kb.yoast.com/category/43-google-analytics-for-wordpress">' . __( 'FAQ', 'google-analytics-for-wordpress' ) . '</a>';
@@ -619,6 +630,43 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$extensions = apply_filters( 'yst_ga_extension_status', $extensions );
 
 			return $extensions;
+		}
+
+		/**
+		 * Add a notification to the notification session
+		 *
+		 * @param $session_name
+		 * @param $settings
+		 */
+		private function add_notification( $session_name, $settings ) {
+			$_SESSION[$session_name] = $settings;
+		}
+
+		/**
+		 * Show the notification that should be set, after showing the notification this function unsets the session
+		 *
+		 * @param string $session_name The name of the session which contains the notification
+		 */
+		public function show_notification( $session_name ) {
+			if ( isset( $_SESSION[$session_name]['type'] ) && isset( $_SESSION[$session_name]['description'] ) ) {
+				if ( $_SESSION[$session_name]['type'] == 'success' ) {
+					add_settings_error(
+						'yoast_google_analytics',
+						'yoast_google_analytics',
+						$_SESSION[$session_name]['description'],
+						'updated'
+					);
+				} else {
+					add_settings_error(
+						'yoast_google_analytics',
+						'yoast_google_analytics',
+						$_SESSION[$session_name]['description'],
+						'error'
+					);
+				}
+
+				unset( $session );
+			}
 		}
 
 	}
