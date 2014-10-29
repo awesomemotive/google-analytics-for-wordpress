@@ -32,6 +32,8 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
 		/**
 		 * Get the regex for Ga.js and universal tracking to detect links
+		 *
+		 * @return string Contains the regular expression for detecting links
 		 */
 		public function get_regex(){
 			return '/<a (.*?)href=[\'\"](.*?):\/*([^\'\"]+?)[\'\"](.*?)>(.*?)<\/a>/i';
