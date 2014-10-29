@@ -9,9 +9,8 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 		public $link_regex;
 
 		public function __construct() {
-
 			$this->options    = Yoast_GA_Options::instance()->options;
-			$this->link_regex = '`<a (.*?)href=[\'\"](.*?):/*([^\'\"]+)[\'\"](.*?)>(.*?)</a>`i';
+			$this->link_regex = $this->get_regex();
 
 			add_action( 'wp_head', array( $this, 'tracking' ), 8 );
 
@@ -28,8 +27,6 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 
 		/**
 		 * Function to output the GA Tracking code in the wp_head()
-		 *
-		 * @todo, add the tracking code and remove this test output
 		 */
 		public function tracking( $return_array = false ) {
 			global $wp_query;
