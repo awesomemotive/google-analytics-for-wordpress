@@ -616,7 +616,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$extensions = array(
 				'ga_premium' => (object) array(
 					'url'    => 'https://yoast.com/wordpress/plugins/google-analytics/',
-					'title'  => __( 'Google Analytics', 'google-analytics-for-wordpress' ) . '<br />' . __( 'Premium', 'google-analytics-for-wordpress' ),
+					'title'  => __( 'Google Analytics by Yoast Premium', 'google-analytics-for-wordpress' ),
 					'desc'   => __( 'The premium version of Google Analytics for WordPress with more features &amp; support.', 'google-analytics-for-wordpress' ),
 					'status' => 'uninstalled',
 				),
