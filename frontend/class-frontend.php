@@ -7,6 +7,8 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
 	class Yoast_GA_Frontend extends Yoast_GA_Options {
 
+		public $link_regex;
+
 		/**
 		 * Class constructor
 		 */
@@ -25,6 +27,14 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 				global $yoast_ga_js;
 				$yoast_ga_js = new Yoast_GA_JS;
 			}
+
+		}
+
+		/**
+		 * Get the regex for Ga.js and universal tracking to detect links
+		 */
+		public function get_regex(){
+			return '/<a (.*?)href=[\'\"](.*?):\/*([^\'\"]+?)[\'\"](.*?)>(.*?)<\/a>/i';
 		}
 
 		/**
