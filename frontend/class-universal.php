@@ -20,6 +20,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 				add_filter( 'the_content', array( $this, 'the_content' ), 99 );
 				add_filter( 'widget_text', array( $this, 'widget_content' ), 99 );
 				add_filter( 'wp_list_bookmarks', array( $this, 'widget_content' ), 99 );
+				add_filter( 'wp_nav_menu', array( $this, 'widget_content' ), 99 );
 				add_filter( 'the_excerpt', array( $this, 'the_content' ), 99 );
 				add_filter( 'comment_text', array( $this, 'comment_text' ), 99 );
 			}
