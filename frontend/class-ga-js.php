@@ -10,6 +10,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
 		public function __construct() {
 
+			$this->options    = Yoast_GA_Options::instance()->options;
 			$this->link_regex = '/<a (.*?)href=[\'\"](.*?):\/*([^\'\"]+?)[\'\"](.*?)>(.*?)<\/a>/i';
 
 			add_action( 'wp_head', array( $this, 'tracking' ), 8 );
@@ -18,6 +19,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				// Check for outbound
 				add_filter( 'the_content', array( $this, 'the_content' ), 99 );
 				add_filter( 'widget_text', array( $this, 'widget_content' ), 99 );
+				add_filter( 'wp_list_bookmarks', array( $this, 'widget_content' ), 99 );
 				add_filter( 'the_excerpt', array( $this, 'the_content' ), 99 );
 				add_filter( 'comment_text', array( $this, 'comment_text' ), 99 );
 			}
