@@ -35,7 +35,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		 *
 		 * @return string Contains the regular expression for detecting links
 		 */
-		public function get_regex(){
+		public function get_regex() {
 			return '/<a (.*?)href=[\'\"](.*?):\/*([^\'\"]+?)[\'\"](.*?)>(.*?)<\/a>/i';
 		}
 
