@@ -4,7 +4,7 @@ Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
 Tested up to: 4.0
-Stable tag: 5.0.7
+Stable tag: 5.1
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
@@ -48,6 +48,21 @@ This section describes how to install the plugin and get it working.
 1. Go to the options panel under the 'Settings' menu and add your Analytics account number and set the settings you want.
 
 == Changelog ==
+
+= 5.1 =
+
+Release Date: October 30th, 2014
+
+* Bugfixes:
+	* Fixes a possible JavaScript conflict within the tracking code.
+	* Makes sure translations are loaded correctly.
+
+* Enhancements:
+	* Improved UX for help texts in form.
+	* Added "Google Analytics by Yoast Premium" to the extensions page.
+	* Makes sure the user returns to the original settings tab after saving.
+	* Added a filter `wp_nav_menu` to enable tracking outbound links from the menu.
+	* Added a filter `wp_list_bookmarks` to enable tracking for blogroll widgets.
 
 = 5.0.7 =
 Release Date: October 14th, 2014
