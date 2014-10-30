@@ -226,7 +226,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 					'enable_universal'           => 0,
 					'demographics'               => 0,
 					'ignore_users'               => array( 'editor' ),
-					'anonymize_ips'              => null,
+					'anonymize_ips'              => 0,
 					'track_download_as'          => 'event',
 					'extensions_of_files'        => 'doc,exe,js,pdf,ppt,tgz,zip,xls',
 					'track_full_url'             => 'domain',
