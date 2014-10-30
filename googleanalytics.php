@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // This plugin was originally based on Rich Boakes' Analytics plugin: http://boakes.org/analytics, but has since been rewritten and refactored multiple times.
 
-define( 'GAWP_VERSION', '5.0.8' );
+define( 'GAWP_VERSION', '5.1' );
 
 define( 'GAWP_FILE', __FILE__ );
 
