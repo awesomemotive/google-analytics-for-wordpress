@@ -20,7 +20,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Init function when the plugin is loaded
 		 */
 		public function init_ga() {
-			add_action( 'admin_menu', array( $this, 'create_menu' ), 5 );
+			add_action( 'admin_menu', array( $this, 'create_admin_menu' ), 5 );
+			add_action( 'network_admin_menu', array( $this, 'create_admin_menu' ), 5 );
 
 			add_filter( 'plugin_action_links_' . plugin_basename( GAWP_FILE ), array( $this, 'add_action_links' ) );
 		}
@@ -130,7 +131,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 *
 		 * @todo, we need to implement a new icon for this, currently we're using the WP seo icon
 		 */
-		public function create_menu() {
+		public function create_admin_menu() {
 			/**
 			 * Filter: 'wpga_menu_on_top' - Allows filtering of menu location of the GA plugin, if false is returned, it moves to bottom.
 			 *
@@ -212,10 +213,18 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			 *
 			 */
 			$submenu_types = array(
-				'dashboard'  => '',
-				'settings'   => '',
 				'extensions' => '#f18500',
 			);
+
+			if ( ! is_network_admin() ) {
+				$submenu_types = array_merge(
+					array(
+						'dashboard'  => '',
+						'settings'   => '',
+					),
+					$submenu_types
+				);
+			}
 
 			foreach ( $submenu_types as $submenu_name => $font_color ) {
 				$submenu_page = $this->prepare_submenu_page( $submenu_name, $font_color );
