@@ -29,6 +29,9 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 					'yoast_license_manager'        => 'admin/license-manager/class-license-manager',
 					'yoast_plugin_license_manager' => 'admin/license-manager/class-plugin-license-manager',
 					'yoast_product'                => 'admin/license-manager/class-product',
+
+					// API libraries
+					'yoast_api_libs'               => 'admin/api-libs/class-api-libs',
 				);
 			}
 

@@ -9,6 +9,13 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 		private $form_namespace;
 
+		/**
+		 * Store the API instance
+		 *
+		 * @var
+		 */
+		public $api;
+
 		public function __construct() {
 			parent::__construct();
 
@@ -23,6 +30,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			add_action( 'admin_menu', array( $this, 'create_menu' ), 5 );
 
 			add_filter( 'plugin_action_links_' . plugin_basename( GAWP_FILE ), array( $this, 'add_action_links' ) );
+
+			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth' ) );
 		}
 
 		/**
