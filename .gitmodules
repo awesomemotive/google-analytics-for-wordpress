@@ -1,3 +1,6 @@
 [submodule "admin/license-manager"]
 	path = admin/license-manager
 	url = https://github.com/Yoast/License-Manager.git
+[submodule "admin/api-libs"]
+	path = admin/api-libs
+	url = https://github.com/Yoast/api-libs.git
