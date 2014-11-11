@@ -5,11 +5,6 @@
  * @author Pete Mall
  */
 
-// Load the OAuth library.
-if ( ! class_exists( 'Yoast_OAuthConsumer' ) ) {
-	require( 'OAuth.php' );
-}
-
 class WP_GData {
 	/* Contains the last HTTP status code returned. */
 	public $http_code;
