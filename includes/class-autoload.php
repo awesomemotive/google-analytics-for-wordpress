@@ -13,26 +13,30 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 			if ( self::$classes === null ) {
 
 				self::$classes = array(
-					'yoast_ga_options'             => 'includes/class-options',
+					'yoast_ga_options'              => 'includes/class-options',
 
 					// Frontend classes
-					'yoast_ga_frontend'            => 'frontend/class-frontend',
-					'yoast_ga_universal'           => 'frontend/class-universal',
-					'yoast_ga_js'                  => 'frontend/class-ga-js',
+					'yoast_ga_frontend'             => 'frontend/class-frontend',
+					'yoast_ga_universal'            => 'frontend/class-universal',
+					'yoast_ga_js'                   => 'frontend/class-ga-js',
 
 					// Admin classes
-					'yoast_ga_admin'               => 'admin/class-admin',
-					'yoast_google_analytics'       => 'admin/class-google-analytics',
-					'yoast_ga_admin_ga_js'         => 'admin/class-admin-ga-js',
-					'wp_gdata'                     => 'admin/wp-gdata/wp-gdata',
+					'yoast_ga_admin'                => 'admin/class-admin',
+					'yoast_google_analytics'        => 'admin/class-google-analytics',
+					'yoast_ga_admin_ga_js'          => 'admin/class-admin-ga-js',
+					'wp_gdata'                      => 'admin/wp-gdata/wp-gdata',
+
+					// Dashboards
+					'yoast_ga_dashboards'           => 'admin/class-admin-dashboards',
+					'yoast_ga_dashboards_aggregate' => 'admin/class-admin-dashboards-aggregate',
 
 					// License manager
-					'yoast_license_manager'        => 'admin/license-manager/class-license-manager',
-					'yoast_plugin_license_manager' => 'admin/license-manager/class-plugin-license-manager',
-					'yoast_product'                => 'admin/license-manager/class-product',
+					'yoast_license_manager'         => 'admin/license-manager/class-license-manager',
+					'yoast_plugin_license_manager'  => 'admin/license-manager/class-plugin-license-manager',
+					'yoast_product'                 => 'admin/license-manager/class-product',
 
 					// API libraries
-					'yoast_api_libs'               => 'admin/api-libs/class-api-libs',
+					'yoast_api_libs'                => 'admin/api-libs/class-api-libs',
 				);
 			}
 
