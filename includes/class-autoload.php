@@ -16,14 +16,15 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 					'yoast_ga_options'             => 'includes/class-options',
 
 					// Frontend classes
-					'yoast_ga_frontend'  		   => 'frontend/class-frontend',
-					'yoast_ga_universal' 		   => 'frontend/class-universal',
+					'yoast_ga_frontend'            => 'frontend/class-frontend',
+					'yoast_ga_universal'           => 'frontend/class-universal',
 					'yoast_ga_js'                  => 'frontend/class-ga-js',
 
 					// Admin classes
-					'yoast_ga_admin'			   => 'admin/class-admin',
+					'yoast_ga_admin'               => 'admin/class-admin',
 					'yoast_google_analytics'       => 'admin/class-google-analytics',
-					'yoast_ga_admin_ga_js'   	   => 'admin/class-admin-ga-js',
+					'yoast_ga_admin_ga_js'         => 'admin/class-admin-ga-js',
+					'wp_gdata'                     => 'admin/wp-gdata/wp-gdata',
 
 					// License manager
 					'yoast_license_manager'        => 'admin/license-manager/class-license-manager',

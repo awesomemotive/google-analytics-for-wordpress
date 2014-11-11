@@ -197,10 +197,6 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 * @return WP_GData
 		 */
 		protected function get_gdata( $scope, $token = null, $secret = null ) {
-			if ( ! class_exists( 'WP_Gdata', false ) ) {
-				require_once 'wp-gdata/wp-gdata.php';
-			}
-
 			$args = array(
 				'scope'              => $scope,
 				'xoauth_displayname' => 'Google Analytics by Yoast',
