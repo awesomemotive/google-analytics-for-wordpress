@@ -178,11 +178,26 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
+		 * Adds some promo text for the premium plugin on the custom dimensions tab.
+		 */
+		public function premium_promo() {
+			echo '<p>';
+			printf( __( 'If you want to track custom dimensions, to for instance track page views per author or post type, you should upgrade to the %1$spremium version of Google Analytics by Yoast%2$s.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=text-link&utm_source=gawp-config&utm_campaign=wpgaplugin&utm_content=custom_dimensions_tab">', '</a>' );
+			echo ' ';
+			_e( 'This will also give you email access to the support team at Yoast, who will provide support on the plugin 24/7.', 'google-analytics-for-wordpress' );
+			echo '</p>';
+		}
+
+		/**
 		 * Load the page of a menu item in the GA plugin
 		 */
 		public function load_page() {
 			global $yoast_ga_admin_ga_js;
 			$yoast_ga_admin_ga_js = new Yoast_GA_Admin_GA_JS;
+
+			if ( ! has_action( 'yst_ga_custom_dimensions_tab-content' ) ) {
+				add_action( 'yst_ga_custom_dimensions_tab-content', array( $this, 'premium_promo' ) );
+			}
 
 			if ( isset( $_GET['page'] ) ) {
 				switch ( $_GET['page'] ) {
@@ -485,29 +500,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Render the admin page footer with sidebar for the GA Plugin
 		 */
 		public function content_footer() {
-			$banners   = array();
-			$banners[] = array(
-				'url'    => 'https://yoast.com/hire-us/website-review/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/banner-website-review.png',
-				'title'  => 'Get a website review by Yoast',
-			);
-			$banners[] = array(
-				'url'    => 'https://yoast.com/wordpress/plugins/seo-premium/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/banner-premium-seo.png',
-				'title'  => 'Get WordPress SEO premium',
-			);
-			$banners[] = array(
-				'url'    => 'https://yoast.com/ebook-optimize-wordpress-site/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/eBook_261x130.png',
-				'title'  => 'Get the Yoast ebook!',
-			);
-			$banners[] = array(
-				'url'    => 'https://yoast.com/wordpress/plugins/local-seo/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/banner-local-seo.png',
-				'title'  => 'Get WooCommerce integrated in your Analytics',
-			);
-
-			shuffle( $banners );
 
 			if ( true == WP_DEBUG ) {
 				// Show the debug information if debug is enabled in the wp_config file
@@ -516,7 +508,39 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				echo '</pre></div></div>';
 			}
 
+			if ( class_exists( 'Yoast_Product_GA_Premium' ) ) {
+				$license_manager = new Yoast_Plugin_License_Manager( new Yoast_Product_GA_Premium() );
+				if ( $license_manager->license_is_valid() ) {
+					return;
+				}
+			}
+
+			$banners   = array();
+			$banners[] = array(
+				'url'    => 'https://yoast.com/hire-us/website-review/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
+				'banner' => $this->plugin_url . 'img/banner-website-review.png',
+				'title'  => 'Get a website review by Yoast',
+			);
+			$banners[] = array(
+				'url'    => 'https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
+				'banner' => $this->plugin_url . 'img/banner-premium-ga.png',
+				'title'  => 'Get the premium version of Google Analytics by Yoast!',
+			);
+			$banners[] = array(
+				'url'    => 'https://yoast.com/ebook-optimize-wordpress-site/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
+				'banner' => $this->plugin_url . 'img/eBook_261x130.png',
+				'title'  => 'Get the Yoast ebook!',
+			);
+			$banners[] = array(
+				'url'    => 'https://yoast.com/wordpress/plugins/ga-ecommerce/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
+				'banner' => $this->plugin_url . 'img/banner-ga-ecommerce.png',
+				'title'  => 'Get advanced eCommerce tracking for WooCommerce and Easy Digital Downloads!',
+			);
+
+			shuffle( $banners );
+
 			require 'views/content-footer.php';
+
 		}
 
 		/**
