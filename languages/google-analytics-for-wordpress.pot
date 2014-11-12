@@ -2,10 +2,10 @@
 # This file is distributed under the GPL v3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Google Analytics by Yoast 5.0.7\n"
+"Project-Id-Version: Google Analytics by Yoast 5.1\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/google-analytics-for-wordpress\n"
-"POT-Creation-Date: 2014-11-04 15:38:10+00:00\n"
+"POT-Creation-Date: 2014-11-12 13:33:49+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,61 +25,74 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes\n"
 
-#: admin/class-admin.php:66
-msgid "Please configure your %sGoogle Analytics settings%s!"
-msgstr ""
-
-#: admin/class-admin.php:93
-msgid "Settings saved!"
-msgstr ""
-
-#: admin/class-admin.php:100
-msgid "There where no changes to save, please try again."
-msgstr ""
-
-#: admin/class-admin.php:119
-msgid "FAQ"
-msgstr ""
-
-#: admin/class-admin.php:122
-msgid "Settings"
-msgstr ""
-
-#: admin/class-admin.php:145 admin/class-admin.php:169
+#: admin/class-admin-menu.php:55 admin/class-admin-menu.php:79
 msgid "Yoast Google Analytics:"
 msgstr ""
 
-#: admin/class-admin.php:145
+#: admin/class-admin-menu.php:55
 msgid "General Settings"
 msgstr ""
 
-#: admin/class-admin.php:145
+#: admin/class-admin-menu.php:55
 msgid "Analytics"
 msgstr ""
 
-#: admin/class-admin.php:602
+#: admin/class-admin.php:76
+msgid "Please configure your %sGoogle Analytics settings%s!"
+msgstr ""
+
+#: admin/class-admin.php:103
+msgid "Settings saved!"
+msgstr ""
+
+#: admin/class-admin.php:110
+msgid "There where no changes to save, please try again."
+msgstr ""
+
+#: admin/class-admin.php:129
+msgid "FAQ"
+msgstr ""
+
+#: admin/class-admin.php:132
+msgid "Settings"
+msgstr ""
+
+#: admin/class-admin.php:185
+msgid ""
+"If you want to track custom dimensions, to for instance track page views "
+"per author or post type, you should upgrade to the %1$spremium version of "
+"Google Analytics by Yoast%2$s."
+msgstr ""
+
+#: admin/class-admin.php:187
+msgid ""
+"This will also give you email access to the support team at Yoast, who will "
+"provide support on the plugin 24/7."
+msgstr ""
+
+#: admin/class-admin.php:506
 msgid "Debug information"
 msgstr ""
 
-#: admin/class-admin.php:619
+#: admin/class-admin.php:555
 msgid "Google Analytics by Yoast Premium"
 msgstr ""
 
-#: admin/class-admin.php:620
+#: admin/class-admin.php:556
 msgid ""
 "The premium version of Google Analytics for WordPress with more features "
 "&amp; support."
 msgstr ""
 
-#: admin/class-admin.php:625
+#: admin/class-admin.php:561
 msgid "Google Analytics"
 msgstr ""
 
-#: admin/class-admin.php:625
+#: admin/class-admin.php:561
 msgid "E-Commerce tracking"
 msgstr ""
 
-#: admin/class-admin.php:626
+#: admin/class-admin.php:562
 msgid ""
 "Track your E-Commerce data and transactions with this E-Commerce extension "
 "for Google Analytics."
@@ -268,60 +281,64 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: admin/pages/settings.php:17
+#: admin/pages/settings.php:16 admin/pages/settings.php:102
+msgid "Custom dimensions"
+msgstr ""
+
+#: admin/pages/settings.php:18
 msgid "Debug mode"
 msgstr ""
 
-#: admin/pages/settings.php:27
+#: admin/pages/settings.php:28
 msgid "General settings"
 msgstr ""
 
-#: admin/pages/settings.php:40
+#: admin/pages/settings.php:41
 msgid "Google profile"
 msgstr ""
 
-#: admin/pages/settings.php:41
+#: admin/pages/settings.php:42
 msgid "Authenticate with your Google account"
 msgstr ""
 
-#: admin/pages/settings.php:44
+#: admin/pages/settings.php:45
 msgid "Current UA-profile"
 msgstr ""
 
-#: admin/pages/settings.php:52
+#: admin/pages/settings.php:53
 msgid "Re-authenticate with your Google account"
 msgstr ""
 
-#: admin/pages/settings.php:58
+#: admin/pages/settings.php:59
 msgid "Manually enter your UA code"
 msgstr ""
 
-#: admin/pages/settings.php:67
+#: admin/pages/settings.php:68
 msgid "Track outbound click & downloads"
 msgstr ""
 
-#: admin/pages/settings.php:67
+#: admin/pages/settings.php:68
 msgid ""
 "Clicks &amp; downloads will be tracked as events, you can find these under "
 "Content &raquo; Event Tracking in your Google Analytics reports."
 msgstr ""
 
-#: admin/pages/settings.php:68
+#: admin/pages/settings.php:69
 msgid "Allow tracking of anonymous data"
 msgstr ""
 
-#: admin/pages/settings.php:68
+#: admin/pages/settings.php:69
 msgid ""
 "By allowing us to track anonymous data we can better help you, because we "
 "know with which WordPress configurations, themes and plugins we should "
 "test. No personal data will be submitted."
 msgstr ""
 
-#: admin/pages/settings.php:69
+#: admin/pages/settings.php:70
 msgid "Anonymize IP's"
 msgstr ""
 
-#: admin/pages/settings.php:69
+#: admin/pages/settings.php:70
 msgid ""
 "This adds <code><a "
 "href=\"http://code.google.com/apis/analytics/docs/gaJS/gaJSApi_gat.html#_"
@@ -330,21 +347,21 @@ msgid ""
 "by removing the last octet of the IP address prior to its storage."
 msgstr ""
 
-#: admin/pages/settings.php:70
+#: admin/pages/settings.php:71
 msgid ""
 "Users of the role you select will be ignored, so if you select Editor, all "
 "Editors will be ignored."
 msgstr ""
 
-#: admin/pages/settings.php:75
+#: admin/pages/settings.php:76
 msgid "Universal settings"
 msgstr ""
 
-#: admin/pages/settings.php:76
+#: admin/pages/settings.php:77
 msgid "Enable Universal tracking"
 msgstr ""
 
-#: admin/pages/settings.php:76
+#: admin/pages/settings.php:77
 msgid ""
 "First enable Universal tracking in your Google Analytics account. How to do "
 "that, please read <a "
@@ -353,11 +370,11 @@ msgid ""
 "target=\"_blank\">this guide</a> to learn how to do that."
 msgstr ""
 
-#: admin/pages/settings.php:77
+#: admin/pages/settings.php:78
 msgid "Enable Demographics and Interest Reports"
 msgstr ""
 
-#: admin/pages/settings.php:77
+#: admin/pages/settings.php:78
 msgid ""
 "You have to enable the Demographics in Google Analytics before you can see "
 "the tracking data. We have a doc in our <a "
@@ -367,64 +384,64 @@ msgid ""
 "feature."
 msgstr ""
 
-#: admin/pages/settings.php:82
+#: admin/pages/settings.php:83
 msgid "Advanced settings"
 msgstr ""
 
-#: admin/pages/settings.php:83
+#: admin/pages/settings.php:84
 msgid "Track downloads as"
 msgstr ""
 
-#: admin/pages/settings.php:83
+#: admin/pages/settings.php:84
 msgid ""
 "Not recommended, as this would skew your statistics, but it does make it "
 "possible to track downloads as goals."
 msgstr ""
 
-#: admin/pages/settings.php:84
+#: admin/pages/settings.php:85
 msgid "Extensions of files to track as downloads"
 msgstr ""
 
-#: admin/pages/settings.php:85
+#: admin/pages/settings.php:86
 msgid "Track full URL of outbound clicks or just the domain"
 msgstr ""
 
-#: admin/pages/settings.php:86
+#: admin/pages/settings.php:87
 msgid "Subdomain tracking"
 msgstr ""
 
-#: admin/pages/settings.php:86
+#: admin/pages/settings.php:87
 msgid ""
 "This allows you to set the domain that's set by <code>setDomainName</code> "
 "for tracking subdomains, if empty this will not be set."
 msgstr ""
 
-#: admin/pages/settings.php:88
+#: admin/pages/settings.php:89
 msgid "Set path for internal links to track as outbound links"
 msgstr ""
 
-#: admin/pages/settings.php:89
+#: admin/pages/settings.php:90
 msgid "Label for those links"
 msgstr ""
 
-#: admin/pages/settings.php:91
+#: admin/pages/settings.php:92
 msgid "Tag links in RSS feed with campaign variables"
 msgstr ""
 
-#: admin/pages/settings.php:91
+#: admin/pages/settings.php:92
 msgid ""
 "Do not use this feature if you use FeedBurner, as FeedBurner can do this "
 "automatically, and better than this plugin can. Check <a "
-"href=\"http://www.google.com/support/feedburner/bin/answer.py?hl=en&amp;"
-"answer=165769\" target=\"_blank\">this help page</a> for info on how to "
+"href=\"https://support.google.com/feedburner/answer/165769?hl=en&amp;ref_"
+"topic=13075\" target=\"_blank\">this help page</a> for info on how to "
 "enable this feature in FeedBurner."
 msgstr ""
 
-#: admin/pages/settings.php:92
+#: admin/pages/settings.php:93
 msgid "Allow anchor"
 msgstr ""
 
-#: admin/pages/settings.php:92
+#: admin/pages/settings.php:93
 msgid ""
 "This adds a <code><a "
 "href=\"http://code.google.com/apis/analytics/docs/gaJSApiCampaignTracking."
@@ -433,11 +450,11 @@ msgid ""
 "and makes RSS link tagging use a # as well."
 msgstr ""
 
-#: admin/pages/settings.php:93
+#: admin/pages/settings.php:94
 msgid "Add <code>_setAllowLinker</code>"
 msgstr ""
 
-#: admin/pages/settings.php:93
+#: admin/pages/settings.php:94
 msgid ""
 "This adds a <code><a "
 "href=\"http://code.google.com/apis/analytics/docs/gaJS/"
@@ -446,17 +463,17 @@ msgid ""
 "allowing you to use <code>_link</code> and related functions."
 msgstr ""
 
-#: admin/pages/settings.php:94
+#: admin/pages/settings.php:95
 msgid ""
 "Not for the average user: this allows you to add a line of code, to be "
 "added before the <code>trackPageview</code> call."
 msgstr ""
 
-#: admin/pages/settings.php:102
+#: admin/pages/settings.php:109
 msgid "Debug settings"
 msgstr ""
 
-#: admin/pages/settings.php:105
+#: admin/pages/settings.php:112
 msgid ""
 "If you want to confirm that tracking on your blog is working as it should, "
 "enable these options and check the console in Firebug (for Firefox), "
@@ -465,23 +482,23 @@ msgid ""
 "normal tracking."
 msgstr ""
 
-#: admin/pages/settings.php:106
+#: admin/pages/settings.php:113
 msgid "Note"
 msgstr ""
 
-#: admin/pages/settings.php:106
+#: admin/pages/settings.php:113
 msgid "the debugging and firebug scripts are only loaded for admins."
 msgstr ""
 
-#: admin/pages/settings.php:108
+#: admin/pages/settings.php:115
 msgid "Enable debug mode"
 msgstr ""
 
-#: admin/pages/settings.php:109
+#: admin/pages/settings.php:116
 msgid "Enable Firebug Lite"
 msgstr ""
 
-#: admin/pages/settings.php:121
+#: admin/pages/settings.php:128
 msgid "Select the users to ignore"
 msgstr ""
 
