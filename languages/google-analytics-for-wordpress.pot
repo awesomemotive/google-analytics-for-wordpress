@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Google Analytics by Yoast 5.1\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/google-analytics-for-wordpress\n"
-"POT-Creation-Date: 2014-11-12 13:33:49+00:00\n"
+"POT-Creation-Date: 2014-11-12 13:56:41+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -245,6 +245,13 @@ msgstr ""
 
 #: admin/pages/dashboard.php:6
 msgid "Yoast Google Analytics: Dashboard"
+msgstr ""
+
+#: admin/pages/dashboard.php:9
+msgid ""
+"This feature %1$swill be coming soon%2$s. For now, you can %3$sread our "
+"posts on Analytics%2$s, or of course, %4$slog into Google Analytics%2$s "
+"yourself."
 msgstr ""
 
 #: admin/pages/extensions.php:10
@@ -500,6 +507,14 @@ msgstr ""
 
 #: admin/pages/settings.php:128
 msgid "Select the users to ignore"
+msgstr ""
+
+#: admin/views/content-footer.php:8
+msgid "Remove these ads?"
+msgstr ""
+
+#: admin/views/content-footer.php:9
+msgid "Upgrade to Google Analytics By Yoast Premium »"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
