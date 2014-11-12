@@ -485,29 +485,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Render the admin page footer with sidebar for the GA Plugin
 		 */
 		public function content_footer() {
-			$banners   = array();
-			$banners[] = array(
-				'url'    => 'https://yoast.com/hire-us/website-review/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/banner-website-review.png',
-				'title'  => 'Get a website review by Yoast',
-			);
-			$banners[] = array(
-				'url'    => 'https://yoast.com/wordpress/plugins/seo-premium/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/banner-premium-seo.png',
-				'title'  => 'Get WordPress SEO premium',
-			);
-			$banners[] = array(
-				'url'    => 'https://yoast.com/ebook-optimize-wordpress-site/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/eBook_261x130.png',
-				'title'  => 'Get the Yoast ebook!',
-			);
-			$banners[] = array(
-				'url'    => 'https://yoast.com/wordpress/plugins/local-seo/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/banner-local-seo.png',
-				'title'  => 'Get WooCommerce integrated in your Analytics',
-			);
-
-			shuffle( $banners );
 
 			if ( true == WP_DEBUG ) {
 				// Show the debug information if debug is enabled in the wp_config file
@@ -516,7 +493,34 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				echo '</pre></div></div>';
 			}
 
-			require 'views/content-footer.php';
+			if ( ! class_exists('Yoast_GA_Premium') ) {
+
+				$banners   = array();
+				$banners[] = array(
+					'url'    => 'https://yoast.com/hire-us/website-review/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
+					'banner' => $this->plugin_url . 'img/banner-website-review.png',
+					'title'  => 'Get a website review by Yoast',
+				);
+				$banners[] = array(
+					'url'    => 'https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
+					'banner' => $this->plugin_url . 'img/banner-premium-ga.png',
+					'title'  => 'Get the premium version of Google Analytics by Yoast!',
+				);
+				$banners[] = array(
+					'url'    => 'https://yoast.com/ebook-optimize-wordpress-site/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
+					'banner' => $this->plugin_url . 'img/eBook_261x130.png',
+					'title'  => 'Get the Yoast ebook!',
+				);
+				$banners[] = array(
+					'url'    => 'https://yoast.com/wordpress/plugins/ga-ecommerce/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
+					'banner' => $this->plugin_url . 'img/banner-ga-ecommerce.png',
+					'title'  => 'Get advanced eCommerce tracking for WooCommerce and Easy Digital Downloads!',
+				);
+
+				shuffle( $banners );
+
+				require 'views/content-footer.php';
+			}
 		}
 
 		/**
