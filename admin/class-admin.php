@@ -181,7 +181,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Adds some promo text for the premium plugin on the custom dimensions tab.
 		 */
 		public function premium_promo() {
-			echo '<h2>' . __( 'Custom dimensions', 'google-analytics-for-wordpress' ) . '</h2>';
 			echo '<p>';
 			printf( __( 'If you want to track custom dimensions, to for instance track page views per author or post type, you should upgrade to the %1$spremium version of Google Analytics by Yoast%2$s.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=text-link&utm_source=gawp-config&utm_campaign=wpgaplugin&utm_content=custom_dimensions_tab">', '</a>' );
 			echo ' ';

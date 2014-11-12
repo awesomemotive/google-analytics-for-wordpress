@@ -98,7 +98,10 @@ echo $yoast_ga_admin->create_form( 'settings' );
 		?>
 	</div>
 	<div id="customdimensions" class="gatab">
-		<?php do_action( 'yst_ga_custom_dimensions_tab-content' ); ?>
+		<?php
+		echo '<h2>' . __( 'Custom dimensions', 'google-analytics-for-wordpress' ) . '</h2>';
+		do_action( 'yst_ga_custom_dimensions_tab-content' );
+		?>
 	</div>
 	<?php do_action( 'yst_ga_custom_tabs-content' ); ?>
 	<div id="debugmode" class="gatab">
