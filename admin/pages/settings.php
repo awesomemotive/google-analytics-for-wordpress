@@ -13,6 +13,7 @@ settings_errors( 'yoast_google_analytics' );
 	<a class="nav-tab" id="general-tab" href="#top#general"><?php _e( 'General', 'google-analytics-for-wordpress' ); ?></a>
 	<a class="nav-tab" id="universal-tab" href="#top#universal"><?php _e( 'Universal', 'google-analytics-for-wordpress' ); ?></a>
 	<a class="nav-tab" id="advanced-tab" href="#top#advanced"><?php _e( 'Advanced', 'google-analytics-for-wordpress' ); ?></a>
+	<a class="nav-tab" id="customdimensions-tab" href="#top#customdimensions"><?php _e( 'Custom dimensions', 'google-analytics-for-wordpress' ); ?></a>
 	<?php do_action( 'yst_ga_custom_tabs-tab' ); ?>
 	<a class="nav-tab" id="debugmode-tab" href="#top#debugmode"><?php _e( 'Debug mode', 'google-analytics-for-wordpress' ); ?></a>
 </h2>
@@ -95,6 +96,9 @@ echo $yoast_ga_admin->create_form( 'settings' );
 
 		do_action( 'yst_ga_advanced-tab' );
 		?>
+	</div>
+	<div id="customdimensions" class="gatab">
+		<?php do_action( 'yst_ga_custom_dimensions_tab-content' ); ?>
 	</div>
 	<?php do_action( 'yst_ga_custom_tabs-content' ); ?>
 	<div id="debugmode" class="gatab">
