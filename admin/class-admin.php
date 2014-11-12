@@ -493,7 +493,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				echo '</pre></div></div>';
 			}
 
-			if ( ! class_exists('Yoast_GA_Premium') ) {
+			if ( ! is_plugin_active( 'google-analytics-premium/googleanalytics-premium.php' ) ) {
 
 				$banners   = array();
 				$banners[] = array(
