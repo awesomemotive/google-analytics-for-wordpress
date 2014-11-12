@@ -46,15 +46,6 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 				require_once $include_path . '/' . self::$classes[$class_name] . '.php';
 			}
 
-			add_action( 'plugins_loaded', array( 'Yoast_GA_Autoload', 'yst_ga_load_textdomain' ) );
-
-		}
-
-		/**
-		 * Load plugin textdomain
-		 */
-		public static function yst_ga_load_textdomain() {
-			load_plugin_textdomain( 'google-analytics-for-wordpress', false, dirname( plugin_basename( GAWP_FILE ) ) . '/languages/' );
 		}
 
 	}
