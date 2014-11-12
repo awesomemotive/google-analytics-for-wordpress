@@ -79,6 +79,8 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = $this;
 			}
+
+			add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 		}
 
 		/**
@@ -244,5 +246,13 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 
 			return $options;
 		}
+
+		/**
+		 * Load plugin textdomain
+		 */
+		public static function load_textdomain() {
+			load_plugin_textdomain( 'google-analytics-for-wordpress', false, dirname( plugin_basename( GAWP_FILE ) ) . '/languages/' );
+		}
+
 	}
 }
