@@ -58,10 +58,12 @@ Release Date: November 12th, 2014
 	* Fixes a bug where links without the href attribute would cause the tracking code to be added wrongly.
 	* Fixes a multisite bug in Premium which was caused by the absence of a network admin menu.
 	* Fixes an issue with the version number.
+	* Fixes a bug where translations might be loaded several times.
 
 * Enhancements:
 	* Shows more relevant banners.
 	* Adds an image to the premium extension on the extensions page.
+	* Always show the custom dimension tab.
 	* Added translations for Finnish, Dutch and Russian.
 
 = 5.1 =
