@@ -178,6 +178,18 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
+		 * Adds some promo text for the premium plugin on the custom dimensions tab.
+		 */
+		public function premium_promo() {
+			echo '<h2>' . __( 'Custom dimensions', 'google-analytics-for-wordpress' ) . '</h2>';
+			echo '<p>';
+			printf( __( 'If you want to track custom dimensions, to for instance track page views per author or post type, you should upgrade to the %1$spremium version of Google Analytics by Yoast%2$s.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=text-link&utm_source=gawp-config&utm_campaign=wpgaplugin&utm_content=custom_dimensions_tab">', '</a>' );
+			echo ' ';
+			_e( 'This will also give you email access to the support team at Yoast, who will provide support on the plugin 24/7.', 'google-analytics-for-wordpress' );
+			echo '</p>';
+		}
+
+		/**
 		 * Load the page of a menu item in the GA plugin
 		 */
 		public function load_page() {
@@ -191,6 +203,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 						break;
 					case 'yst_ga_extensions':
+						if ( ! has_action( 'yst_ga_custom_dimensions_tab-content' ) ) {
+							add_action( 'yst_ga_custom_dimensions_tab-content', array( $this, 'premium_promo' ) );
+						}
 						require_once( $this->plugin_path . 'admin/pages/extensions.php' );
 						break;
 					case 'yst_ga_dashboard':
