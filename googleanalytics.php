@@ -34,6 +34,8 @@ define( 'GAWP_VERSION', '5.1' );
 
 define( 'GAWP_FILE', __FILE__ );
 
+define( 'GAWP_PATH', plugin_basename( __FILE__ ) );
+
 define( 'GAWP_URL', trailingslashit( plugin_dir_url( __FILE__ ) ) );
 
 if ( ! class_exists( 'Yoast_GA_Autoload', false ) ) {
