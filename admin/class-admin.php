@@ -195,6 +195,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			global $yoast_ga_admin_ga_js;
 			$yoast_ga_admin_ga_js = new Yoast_GA_Admin_GA_JS;
 
+			if ( ! has_action( 'yst_ga_custom_dimensions_tab-content' ) ) {
+				add_action( 'yst_ga_custom_dimensions_tab-content', array( $this, 'premium_promo' ) );
+			}
+
 			if ( isset( $_GET['page'] ) ) {
 				switch ( $_GET['page'] ) {
 					case 'yst_ga_settings':
@@ -202,9 +206,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 						break;
 					case 'yst_ga_extensions':
-						if ( ! has_action( 'yst_ga_custom_dimensions_tab-content' ) ) {
-							add_action( 'yst_ga_custom_dimensions_tab-content', array( $this, 'premium_promo' ) );
-						}
 						require_once( $this->plugin_path . 'admin/pages/extensions.php' );
 						break;
 					case 'yst_ga_dashboard':
