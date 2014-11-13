@@ -36,6 +36,23 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 			return $this->data;
 		}
 
+		/**
+		 * Register the dashboard types
+		 *
+		 * @param $types
+		 *
+		 * @return bool
+		 */
+		public static function register( $types ) {
+			if ( is_array( $types ) && count( $types ) >= 1 ) {
+				if ( Yoast_GA_Dashboards_Collector::validate_dashboard_types( $types ) ) {
+					return set_transient( 'yst_ga_dashboard_types', $types, 12 * HOUR_IN_SECONDS );
+				}
+			}
+
+			return false;
+		}
+
 	}
 
 }
