@@ -84,6 +84,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$this->show_notification( 'ga_notifications' );
 
 			$this->connect_with_google_analytics();
+
+			Yoast_GA_Dashboards::register( array('sessions', 'bouncerate') );
 		}
 
 		/**
