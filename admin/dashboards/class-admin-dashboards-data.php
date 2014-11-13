@@ -10,12 +10,13 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 
 		/**
 		 * Get a data object
-		 *
+		 * 
+		 * @param       $type
 		 * @param array $args
 		 *
 		 * @return array
 		 */
-		public function get( $args = array() ){
+		public function get( $type, $args = array() ){
 			$data = array();
 
 			return $data;
@@ -24,11 +25,12 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 		/**
 		 * Set a data object
 		 *
-		 * @param array $args
+		 * @param $type
+		 * @param $value
 		 *
 		 * @return bool
 		 */
-		public function set( $args = array() ){
+		public function set( $type, $value ){
 			return true;
 		}
 
