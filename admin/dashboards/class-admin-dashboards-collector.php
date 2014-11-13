@@ -22,6 +22,13 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		public $valid_types = array( 'sessions', 'bouncerate' );
 
 		/**
+		 * Placeholder for the classes which need to be loaded in the aggregate_data function
+		 *
+		 * @var array
+		 */
+		public static $aggregator_classes = array();
+
+		/**
 		 * Construct on the dashboards class for GA
 		 */
 		public function __construct() {
@@ -34,7 +41,9 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * Fetch the data from Google Analytics and store it
 		 */
 		public function aggregate_data() {
+			echo 'AGGREGATE!';
 
+			print_r(self::$aggregator_classes);
 		}
 
 		/**
@@ -68,20 +77,35 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * @param $types
 		 */
 		private static function load_valid_types( $types ) {
+			$load = array();
+
 			if ( is_array( $types ) ) {
 				foreach ( $types as $type ) {
 					$include_file = dirname( __FILE__ ) . '/class-admin-dashboards-collector-' . $type . '.php';
-					$class_name = 'Yoast_GA_Dashboards_Collector_' . ucfirst( $type );
-					echo $class_name;
+					$class_name   = 'Yoast_GA_Dashboards_Collector_' . ucfirst( $type );
+
 					if ( file_exists( $include_file ) ) {
 						require( $include_file );
-						echo $include_file;
-						if ( class_exists( $class_name ) ) {
-							new $class_name;
+
+						if( class_exists( $class_name, false ) ) {
+							$load[] = $class_name;
 						}
 					}
 				}
 			}
+
+			if ( is_array( $load ) && count( $load ) >= 1 ) {
+				self::load_on_aggregate( $load );
+			}
+		}
+
+		/**
+		 * Set the valid classes for the aggregation process
+		 *
+		 * @param $classes
+		 */
+		private static function load_on_aggregate( $classes ) {
+			self::$aggregator_classes = $classes;
 		}
 
 	}
