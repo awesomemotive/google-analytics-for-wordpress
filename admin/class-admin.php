@@ -136,48 +136,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
-		 * Check whether we can include the minified version or not
-		 *
-		 * @param string $ext
-		 *
-		 * @return string
-		 */
-		private function file_ext( $ext ) {
-			if ( ! defined( 'SCRIPT_DEBUG' ) || ! SCRIPT_DEBUG ) {
-				$ext = '.min' . $ext;
-			}
-
-			return $ext;
-		}
-
-		/**
-		 * Add the scripts to the admin head
-		 */
-		public function enqueue_scripts() {
-			wp_enqueue_script( 'jquery-qtip', $this->plugin_url . 'assets/dependencies/qtip/jquery.qtip.min.js', array( 'jquery' ), '1.0.0-RC3', true );
-
-			wp_enqueue_script( 'yoast_ga_admin', $this->plugin_url . 'assets/js/yoast_ga_admin' . $this->file_ext( '.js' ) );
-
-			// Eqneue the chosen js file
-			wp_enqueue_script( 'chosen_js', plugins_url( 'assets/dependencies/chosen/chosen.jquery.min.js', GAWP_FILE ), array(), false, true );
-		}
-
-		/**
-		 * Add the styles in the admin head
-		 */
-		public function enqueue_styles() {
-			wp_enqueue_style( 'yoast_ga_styles', $this->plugin_url . 'assets/css/yoast_ga_styles' . $this->file_ext( '.css' ) );
-		}
-
-		/**
-		 * Enqueues the settings page specific styles
-		 */
-		public function enqueue_settings_styles() {
-			// Enqueue the chosen css file
-			wp_enqueue_style( 'chosen_css', $this->plugin_url . 'assets/dependencies/chosen/chosen' . $this->file_ext( '.css' ) );
-		}
-
-		/**
 		 * Adds some promo text for the premium plugin on the custom dimensions tab.
 		 */
 		public function premium_promo() {
