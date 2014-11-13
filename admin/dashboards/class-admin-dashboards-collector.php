@@ -15,7 +15,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * Set the valid types here. Make sure you create a class with the following naming convention:
 		 * admin/dashboards/class-admin-dashboards-collector-TYPENAME.php
 		 *
-		 * TYPENAME is written in lowercase
+		 * TYPENAME is the type name written in lowercase
 		 *
 		 * @var array
 		 */
@@ -41,9 +41,20 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * Fetch the data from Google Analytics and store it
 		 */
 		public function aggregate_data() {
-			echo 'AGGREGATE!';
+			$classes  = self::$aggregator_classes;
+			$instance = NULL;
 
-			print_r(self::$aggregator_classes);
+			// Check if we need to fetch data, if so, authenticate and call child classes
+			if ( is_array( $classes ) ) {
+				$auth_status = $this->oauth_authenticate();
+
+				foreach ( $classes as $class ) {
+					$instance = NULL;
+					if ( class_exists( $class, false ) ) {
+						$instance = new $class( $auth_status );
+					}
+				}
+			}
 		}
 
 		/**
@@ -87,7 +98,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 					if ( file_exists( $include_file ) ) {
 						require( $include_file );
 
-						if( class_exists( $class_name, false ) ) {
+						if ( class_exists( $class_name, false ) ) {
 							$load[] = $class_name;
 						}
 					}
@@ -106,6 +117,15 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 */
 		private static function load_on_aggregate( $classes ) {
 			self::$aggregator_classes = $classes;
+		}
+
+		/**
+		 * Start OAuth authentication to Google Analytics
+		 *
+		 * @return bool
+		 */
+		private function oauth_authenticate() {
+			return true;
 		}
 
 	}
