@@ -18,6 +18,8 @@ if ( ! class_exists( 'Yoast_GA_Admin_Assets' ) ) {
 
 			// Enqueue the chosen js file
 			wp_enqueue_script( 'chosen_js', self::get_asset_path( 'assets/dependencies/chosen/chosen.jquery.min.js' ), array(), false, true );
+
+			self::enqueue_rickshaw_assets();
 		}
 
 		/**
@@ -33,6 +35,18 @@ if ( ! class_exists( 'Yoast_GA_Admin_Assets' ) ) {
 		public static function enqueue_settings_styles() {
 			// Enqueue the chosen css file
 			wp_enqueue_style( 'chosen_css', self::get_asset_path( 'assets/dependencies/chosen/chosen' ) . self::file_ext( '.css' ) );
+		}
+
+		public static function enqueue_rickshaw_assets() {
+			// Enqueue the d3 js file
+			wp_enqueue_script( 'd3_js', self::get_asset_path( 'assets/dependencies/rickshaw/d3.v3.min.js' ), array(), false, true );
+
+			// Enqueue the ricksaw js file
+			wp_enqueue_script( 'rickshaw_js', self::get_asset_path( 'assets/dependencies/rickshaw/rickshaw.min.js' ), array(), false, true );
+
+			// Enqueue the rickshaw css
+			wp_enqueue_style( 'rickshaw_css', self::get_asset_path( 'assets/dependencies/rickshaw/rickshaw.min.css' ) );
+
 		}
 
 		/**
