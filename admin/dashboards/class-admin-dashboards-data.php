@@ -10,7 +10,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 
 		/**
 		 * Get a data object
-		 * 
+		 *
 		 * @param       $type
 		 * @param array $args
 		 *
