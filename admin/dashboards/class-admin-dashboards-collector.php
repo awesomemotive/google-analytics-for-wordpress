@@ -7,7 +7,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		/**
 		 * API storage
 		 *
-		 * @var bool
+		 * @package
 		 */
 		public $api;
 

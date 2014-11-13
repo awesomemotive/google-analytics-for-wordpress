@@ -7,14 +7,14 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		/**
 		 * Store the data aggregator
 		 *
-		 * @var
+		 * @package
 		 */
 		public $aggregator;
 
 		/**
 		 * Store the Data instance
 		 *
-		 * @var
+		 * @package
 		 */
 		public $data;
 
