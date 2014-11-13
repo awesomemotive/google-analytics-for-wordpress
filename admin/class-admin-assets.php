@@ -18,8 +18,6 @@ if ( ! class_exists( 'Yoast_GA_Admin_Assets' ) ) {
 
 			// Enqueue the chosen js file
 			wp_enqueue_script( 'chosen_js', self::get_asset_path( 'assets/dependencies/chosen/chosen.jquery.min.js' ), array(), false, true );
-
-			self::enqueue_rickshaw_assets();
 		}
 
 		/**
@@ -37,7 +35,15 @@ if ( ! class_exists( 'Yoast_GA_Admin_Assets' ) ) {
 			wp_enqueue_style( 'chosen_css', self::get_asset_path( 'assets/dependencies/chosen/chosen' ) . self::file_ext( '.css' ) );
 		}
 
-		public static function enqueue_rickshaw_assets() {
+		/**
+		 * Loading the assets for dashboard
+		 */
+		public static function enqueue_dashboard_assets() {
+
+			//
+			wp_enqueue_script('ga-admin-dashboard', self::get_asset_path( 'assets/js/yoast_ga_admin_dashboard.js' ), array(), false, true );
+			wp_enqueue_style('ga-admin-dashboard-css', self::get_asset_path( 'assets/css/yoast_ga_admin_dashboard.css' ) ) ;
+
 			// Enqueue the d3 js file
 			wp_enqueue_script( 'd3_js', self::get_asset_path( 'assets/dependencies/rickshaw/d3.v3.min.js' ), array(), false, true );
 
