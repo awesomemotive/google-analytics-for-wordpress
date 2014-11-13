@@ -1,10 +1,15 @@
 <?php
 
-if ( ! class_exists( 'Yoast_GA_Dashboards_Aggregrate' ) ) {
+if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 
-	class Yoast_GA_Dashboards_Aggregrate extends Yoast_GA_Dashboards {
+	class Yoast_GA_Dashboards_Collector extends Yoast_GA_Dashboards {
 
-		private $api;
+		/**
+		 * API storage
+		 *
+		 * @var bool
+		 */
+		public $api;
 
 		/**
 		 * Construct on the dashboards class for GA

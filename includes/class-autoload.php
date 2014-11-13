@@ -22,14 +22,15 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 
 					// Admin classes
 					'yoast_ga_admin'                => 'admin/class-admin',
-					'yoast_ga_admin_menu'          	=> 'admin/class-admin-menu',
+					'yoast_ga_admin_menu'           => 'admin/class-admin-menu',
 					'yoast_google_analytics'        => 'admin/class-google-analytics',
 					'yoast_ga_admin_ga_js'          => 'admin/class-admin-ga-js',
 					'wp_gdata'                      => 'admin/wp-gdata/wp-gdata',
 
 					// Dashboards
-					'yoast_ga_dashboards'           => 'admin/class-admin-dashboards',
-					'yoast_ga_dashboards_aggregate' => 'admin/class-admin-dashboards-aggregate',
+					'yoast_ga_dashboards'           => 'admin/dashboards/class-admin-dashboards',
+					'yoast_ga_dashboards_collector' => 'admin/dashboards/class-admin-dashboards-collector',
+					'yoast_ga_dashboards_data'      => 'admin/dashboards/class-admin-dashboards-data',
 
 					// License manager
 					'yoast_license_manager'         => 'admin/license-manager/class-license-manager',
