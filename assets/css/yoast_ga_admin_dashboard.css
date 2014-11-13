@@ -1,0 +1,38 @@
+
+.yoast-graphs {
+	display: inline-block;
+	clear: both;
+	position: relative;
+}
+
+.yoast-graph {
+	width: 840px;
+	height: 400px;
+	float: left;
+	display: inline;
+	margin: 5px;
+}
+
+.yoast-graph h2 {
+	margin: 0 0 10px;
+
+}
+
+.yoast-graph-holder {
+	width: 100%;
+	height: 275px;
+}
+
+.yoast-graph-xaxis {
+	width: 100%;
+	height: 20px;
+}
+
+
+.yoast-graphs-after {
+	float: left;
+	clear: both;
+	width: 100%;
+	height: 10px;
+	display: block;
+}
