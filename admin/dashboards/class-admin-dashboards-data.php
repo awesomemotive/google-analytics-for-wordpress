@@ -4,19 +4,20 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 
 	class Yoast_GA_Dashboards_Data extends Yoast_GA_Dashboards {
 
-		public function __construct(){
+		public function __construct() {
 
 		}
 
 		/**
 		 * Get a data object
 		 *
-		 * @param       $type
-		 * @param array $args
+		 * @param      $type	  sessions,bouncerate etc.
+		 * @param      $startdate Unix timestamp
+		 * @param null $enddate   Unix timestamp
 		 *
 		 * @return array
 		 */
-		public function get( $type, $args = array() ){
+		public static function get( $type, $startdate, $enddate = NULL ) {
 			$data = array();
 
 			return $data;
@@ -30,7 +31,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 		 *
 		 * @return bool
 		 */
-		public function set( $type, $value ){
+		public static function set( $type, $value ) {
 			return true;
 		}
 
