@@ -19,12 +19,21 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		public $data;
 
 		/**
+		 * Get the options
+		 *
+		 * @var
+		 */
+		public $options;
+
+		/**
 		 * Construct on the dashboards class for GA
 		 */
 		public function __construct() {
 			$this->aggregator = new Yoast_GA_Dashboards_Collector;
 
 			$this->data = new Yoast_GA_Dashboards_Data;
+
+			$this->options = $this->get_options();
 		}
 
 		/**
