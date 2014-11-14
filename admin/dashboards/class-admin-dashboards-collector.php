@@ -29,12 +29,21 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		public static $aggregator_classes = array();
 
 		/**
+		 * Get the options
+		 *
+		 * @var mixed|void
+		 */
+		public $options;
+
+		/**
 		 * Construct on the dashboards class for GA
 		 */
 		public function __construct() {
 			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth' ) );
 
 			add_action( 'shutdown', array( $this, 'aggregate_data' ) );
+
+			$this->options = $this->get_options();
 		}
 
 		/**
@@ -120,12 +129,16 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		}
 
 		/**
-		 * Start OAuth authentication to Google Analytics
-		 *
-		 * @return bool
+		 * Get Tokens
 		 */
-		private function oauth_authenticate() {
-			return true;
+		public function oauth_authenticate() {
+
+			print_r($this->options);
+			echo '<pre>';
+			print_r(get_option('yst_ga'));
+			print_r($this->options['ga_token']);
+
+			echo 'Tokens';
 		}
 
 	}
