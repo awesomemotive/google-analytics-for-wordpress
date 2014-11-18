@@ -35,6 +35,9 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			$this->init_shutdown_hook();
 		}
 
+		/**
+		 * This hook runs on the shutdown to fetch data from GA
+		 */
 		private function init_shutdown_hook(){
 			if( is_admin() && !defined( 'DOING_AJAX' ) ) {
 				$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth' ) );
