@@ -29,21 +29,18 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		public static $aggregator_classes = array();
 
 		/**
-		 * Get the options
-		 *
-		 * @var mixed|void
-		 */
-		public $options;
-
-		/**
 		 * Construct on the dashboards class for GA
 		 */
 		public function __construct() {
-			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth' ) );
+			$this->init_shutdown_hook();
+		}
 
-			add_action( 'shutdown', array( $this, 'aggregate_data' ) );
+		private function init_shutdown_hook(){
+			if( is_admin() && !defined( 'DOING_AJAX' ) ) {
+				$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth' ) );
 
-			$this->options = $this->get_options();
+				add_action( 'shutdown', array( $this, 'aggregate_data' ) );
+			}
 		}
 
 		/**
@@ -55,7 +52,8 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 
 			// Check if we need to fetch data, if so, authenticate and call child classes
 			if ( is_array( $classes ) ) {
-				$auth_status = $this->oauth_authenticate();
+				//$auth_status = $this->oauth_authenticate();
+				$auth_status = NULL;
 
 				foreach ( $classes as $class ) {
 					$instance = NULL;
@@ -126,19 +124,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 */
 		private static function load_on_aggregate( $classes ) {
 			self::$aggregator_classes = $classes;
-		}
-
-		/**
-		 * Get Tokens
-		 */
-		public function oauth_authenticate() {
-
-			print_r($this->options);
-			echo '<pre>';
-			print_r(get_option('yst_ga'));
-			print_r($this->options['ga_token']);
-
-			echo 'Tokens';
 		}
 
 	}
