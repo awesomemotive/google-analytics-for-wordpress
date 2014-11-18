@@ -31,6 +31,7 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 					// Dashboards
 					'yoast_ga_dashboards'           => 'admin/class-admin-dashboards',
 					'yoast_ga_dashboards_aggregate' => 'admin/class-admin-dashboards-aggregate',
+					'yoast_ga_dashboards_graph'		=> 'admin/dashboard/class-dashboards-graph',
 
 					// License manager
 					'yoast_license_manager'         => 'admin/license-manager/class-license-manager',

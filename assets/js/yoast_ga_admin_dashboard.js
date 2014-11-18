@@ -25,6 +25,9 @@ jQuery.fn.extend (
 						},
 						graph_hover : [],	// Hover element
 
+						/**
+						 * Initialize 
+						 */
 						init: function () {
 							this.get_data();
 							this.add_events();
@@ -102,33 +105,42 @@ jQuery.fn.extend (
 							);
 						},
 
-						create_axis: function () {
-							var length = this.data.length;
+						create_axis : function() {
+							this.create_x_axis();
+							this.create_y_axis();
+						},
 
-							this.graph_axis.x = new Rickshaw.Graph.Axis.X(
-								{
-									element      : target.querySelector('.yoast-graph-xaxis'),
-									graph        : this.graph,
-									grid         : true,
-									tickFormat   : graph.format_axis_x,
-									orientation  : 'bottom',
-									pixelsPerTick: this.width / length
-								}
-							);
-
-							this.graph_axis.y = new Rickshaw.Graph.Axis.Y(
-								{
-									element       : target.querySelector('.yoast-graph-yaxis'),
-									graph         : this.graph,
-									orientation   : 'left',
-									pixelsPerTick : this.height / 5,
-
-									// If n is 0 return emptystring, to prevent zero displayed on graph
-									tickFormat   : function( n ) {
-										return (n === 0) ? '' : n;
+						create_x_axis: function () {
+							if( target.querySelector('.yoast-graph-xaxis').length === 1) {
+								this.graph_axis.x = new Rickshaw.Graph.Axis.X(
+									{
+										element      : target.querySelector('.yoast-graph-xaxis'),
+										graph        : this.graph,
+										grid         : true,
+										tickFormat   : this.format_axis_x,
+										orientation  : 'bottom',
+										pixelsPerTick: this.width / this.data.length
 									}
-								}
-							);
+								);
+							}
+						},
+
+						create_y_axis : function() {
+							if( target.querySelector('.yoast-graph-xaxis').length === 1) {
+								this.graph_axis.y = new Rickshaw.Graph.Axis.Y(
+									{
+										element      : target.querySelector('.yoast-graph-yaxis'),
+										graph        : this.graph,
+										orientation  : 'left',
+										pixelsPerTick: this.height / 5,
+
+										// If n is 0 return emptystring, to prevent zero displayed on graph
+										tickFormat   : function (n) {
+											return (n === 0) ? '' : n;
+										}
+									}
+								);
+							}
 
 						},
 
