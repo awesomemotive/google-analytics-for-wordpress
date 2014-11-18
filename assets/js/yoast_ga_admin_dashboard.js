@@ -1,27 +1,33 @@
+
 jQuery.fn.extend (
 	{
 		yoast_ga_graph : function( ) {
 
-			var registry = {};
-
 			return this.each(
 				function() {
 					var element  = jQuery(this);
-					var graph_id = jQuery(element).attr('id');
-					var target   = document.getElementById(graph_id);
+					var graph_id = jQuery(element).attr('id');			// Getting ID-attribute from element
+					var target   = document.getElementById(graph_id);	// Element obtaining doing the W3c way
 
+					// Object for doing the magic
 					var graph = {
-						data      : [],
-						axis      : {
+						data      : [],		// Placeholder for all getted data
+						axis      : {		// The values for X and Y axis
 							x: [],
 							y: []
 						},
-						width     : 810,
-						graph     : '',
-						graph_axis: '',
+						width     : 810,	// The width of the graph
+						height    : 300,
+						graph     : '',		// Graph element
+						graph_axis: {		// The axis for X and Y
+							x: '',
+							y: ''
+						},
+						graph_hover : [],	// Hover element
 
 						init: function () {
 							this.get_data();
+							this.add_events();
 						},
 
 						add_events : function() {
@@ -48,7 +54,6 @@ jQuery.fn.extend (
 
 							graph.create();
 
-							graph.add_events();
 						},
 
 						set_data: function (data) {
@@ -70,29 +75,37 @@ jQuery.fn.extend (
 						create: function () {
 							this.create_graph();
 							this.create_axis();
+							this.create_hover();
 							this.render();
 						},
 
+
 						create_graph: function () {
-							this.graph = new Rickshaw.Graph({
-								element : target.querySelector(".yoast-graph-holder"),
-								width   : this.width,
-								height  : 275,
-								series  : [{
-									name : 'visitors per day',
-									color: 'steelblue',
-									data : this.data
-								}],
-								renderer: 'line'
-							});
-
-
+							this.graph = new Rickshaw.Graph(
+								{
+									element : target.querySelector(".yoast-graph-holder"),
+									width   : this.width,
+									height  : this.height,
+									series  : [{
+										name : element.attr('date-label'),
+										color: 'steelblue',
+										data : this.data
+									}],
+									renderer : 'line',
+									padding : {
+										top    : 0.05,
+										left   : 0,
+										right  : 0,
+										bottom : 0.02
+									}
+								}
+							);
 						},
 
 						create_axis: function () {
 							var length = this.data.length;
 
-							this.graph_axis = new Rickshaw.Graph.Axis.X(
+							this.graph_axis.x = new Rickshaw.Graph.Axis.X(
 								{
 									element      : target.querySelector('.yoast-graph-xaxis'),
 									graph        : this.graph,
@@ -102,6 +115,35 @@ jQuery.fn.extend (
 									pixelsPerTick: this.width / length
 								}
 							);
+
+							this.graph_axis.y = new Rickshaw.Graph.Axis.Y(
+								{
+									element       : target.querySelector('.yoast-graph-yaxis'),
+									graph         : this.graph,
+									orientation   : 'left',
+									pixelsPerTick : this.height / 5,
+
+									// If n is 0 return emptystring, to prevent zero displayed on graph
+									tickFormat   : function( n ) {
+										return (n === 0) ? '' : n;
+									}
+								}
+							);
+
+						},
+
+						create_hover : function() {
+							this.graph_hover = new Rickshaw.Graph.HoverDetail(
+								{
+									graph     : this.graph,
+									formatter : function(series, x, y) {
+										var swatch = '<span class="detail_swatch" style="background-color: ' + series.color + '"></span>';
+										var content = swatch + series.name + ": " + parseInt(y) + '<br>';
+										return content;
+									}
+								}
+							);
+
 						},
 
 						render: function () {
@@ -140,6 +182,7 @@ jQuery(
 
 		jQuery('.yoast-graph').yoast_ga_graph();
 
+
 		/*
 		setTimeout(
 			function() {
@@ -153,79 +196,6 @@ jQuery(
 			500
 		);
 		*/
-
-		/*
-		var generate_graph = function (graph_id) {
-			var data   = [{x: 0, y: 10}, {x: 1, y: 2}, {x: 2, y: 2}, {x: 3, y: 20}, {x: 4, y: 13}];
-
-			var target = document.getElementById(graph_id);
-			var width  = 810;
-			var xaxis  = [15,16,1,2,3];
-
-
-
-			 wp.heartbeat.enqueue(
-			 'yoast_dashboard_graphdata',
-			 data,
-			 true
-			 )
-			 console.log($this.data);
-			 $this.data.push( { x: 30, y: 1 } );
-			 graph.graph.update();
-
-			 $this.x_axis.push( ['andy'] );
-			 $this.render();
-
-
-
-			var format = function (n) {
-
-				var map = {
-					0: 13,
-					1: 14,
-					2: 15,
-					3: 1,
-					4: 2
-				};
-
-				return map[n];
-
-
-			}
-
-		}
-		//jQuery('.yoast-graph').yoast_ga_graph_update(123);
-
-		/*
-		jQuery('.yoast-graph').each(
-			function (number, element) {
-				var graph_id = jQuery(element).attr('id');
-
-				generate_graph(graph_id);
-
-			}
-		);
-		*/
-
-
-		//
-		//
-		//var data = [ { x: 12, y: 2 }, { x: 2, y: 10 }, { x: 3, y: 0 }, { x: 4, y: 0 }, { x: 1, y: 0 } ];
-		//
-		//var graph = new Rickshaw.Graph( {
-		//	element: document.querySelector("#graph-visitors"),
-		//	width: 580,
-		//	height: 250,
-		//	series: [ {
-		//		color: 'steelblue',
-		//		data: data
-		//	} ],
-		//	renderer: 'line'
-		//} );
-		//
-		//graph.render();
-		//
-		//console.log(graph);
 
 
 	}
