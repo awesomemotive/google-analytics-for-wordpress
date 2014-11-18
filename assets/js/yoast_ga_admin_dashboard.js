@@ -1,12 +1,16 @@
-
+// Extending element functionality and bind them to element.
 jQuery.fn.extend (
 	{
 		yoast_ga_graph : function( ) {
 			'use strict';
 
+			/**
+			 * Is is possible to have more graph holders, so they will be taken and looped by each to do all
+			 * magic for each element.
+			 *
+			 */
 			return this.each(
 				function() {
-					'use strict';
 
 					var element  = jQuery(this);
 					var graph_id = jQuery(element).attr('id');			// Getting ID-attribute from element
@@ -19,7 +23,7 @@ jQuery.fn.extend (
 							x: [],
 							y: []
 						},
-						width     : 810,	// The width of the graph
+						width     : 780,	// The width of the graph
 						height    : 300,
 						graph     : '',		// Graph element
 						graph_axis: {		// The axis for X and Y
@@ -29,13 +33,17 @@ jQuery.fn.extend (
 						graph_hover : [],	// Hover element
 
 						/**
-						 * Initialize
+						 * Initialize the object. This will get the data and set the events
 						 */
 						init: function () {
 							this.get_data();
 							this.add_events();
 						},
 
+						/**
+						 * Adding the update event on object
+						 *
+						 */
 						add_events : function() {
 							var _this = this;
 							jQuery(element).on("graph_update", function (event, response) {
@@ -43,6 +51,9 @@ jQuery.fn.extend (
 							});
 						},
 
+						/**
+						 * Doing AJAX response to get the data for the graph
+						 */
 						get_data: function () {
 
 							var data = {
@@ -55,6 +66,12 @@ jQuery.fn.extend (
 							jQuery.getJSON(ajaxurl, data, this.parse_response);
 						},
 
+						/**
+						 * Parsing the JSON that is returned from request. Method will set the data, axis mapping and
+						 * after all setting, it will create the graph
+						 *
+						 * @param response
+						 */
 						parse_response: function (response) {
 							graph.set_data(response.data);
 							graph.set_x_axis_mapping(response.mapping);
@@ -62,29 +79,63 @@ jQuery.fn.extend (
 							graph.create();
 						},
 
+						/**
+						 * Setting the data with all values
+						 *
+						 * @param data
+						 */
 						set_data: function (data) {
 							this.data = data;
 						},
 
+						/**
+						 * Adding data to graph.data object
+						 *
+						 * @param data_to_add
+						 */
 						add_data : function( data_to_add ) {
 							graph.data.push( data_to_add );
 						},
 
+						/**
+						 * Setting the x-axis with all mapping values
+						 *
+						 * @param mapping
+						 */
 						set_x_axis_mapping: function (mapping) {
 							graph.axis.x = mapping;
 						},
 
+						/**
+						 * Add value to the x axis
+						 *
+						 * @param mapping_to_add
+						 */
 						add_x_axis_mapping: function( mapping_to_add ) {
 							this.axis.x.push( mapping_to_add );
 						},
 
+						/**
+						 * Creating all magic: the graph, axises and hovers and render graph after everything is created
+						 */
 						create: function () {
+							this.truncate_element();
 							this.create_graph();
 							this.create_axis();
 							this.create_hover();
 							this.render();
 						},
 
+						/**
+						 * Empty element to be sure nothing is displayed multiple times
+						 */
+						truncate_element : function() {
+							element.find('> div').html('');
+						},
+
+						/**
+						 * Creating the graph
+						 */
 						create_graph: function () {
 							this.graph = new Rickshaw.Graph(
 								{
@@ -107,11 +158,17 @@ jQuery.fn.extend (
 							);
 						},
 
+						/**
+						 * Holder for creating the axises, this method will call this.create_x_axis and this.create_y_axis
+						 */
 						create_axis : function() {
 							this.create_x_axis();
 							this.create_y_axis();
 						},
 
+						/**
+						 * Creating the x_axis
+						 */
 						create_x_axis: function () {
 							if( target.querySelector('.yoast-graph-xaxis') !== null) {
 								this.graph_axis.x = new Rickshaw.Graph.Axis.X(
@@ -127,6 +184,10 @@ jQuery.fn.extend (
 							}
 						},
 
+						/**
+						 * Creating the y_axis
+						 *
+						 */
 						create_y_axis : function() {
 							if( target.querySelector('.yoast-graph-xaxis') !== null) {
 								this.graph_axis.y = new Rickshaw.Graph.Axis.Y(
@@ -146,6 +207,10 @@ jQuery.fn.extend (
 
 						},
 
+						/**
+						 * Creating hover details on graph
+						 *
+						 */
 						create_hover : function() {
 							this.graph_hover = new Rickshaw.Graph.HoverDetail(
 								{
@@ -160,14 +225,28 @@ jQuery.fn.extend (
 
 						},
 
+						/**
+						 * Render the graph object
+						 */
 						render: function () {
 							this.graph.render();
 						},
 
+						/**
+						 * Returns the formatting for the x-axis
+						 *
+						 * @param number
+						 * @returns number
+						 */
 						format_axis_x: function (number) {
 							return graph.axis.x[number];
 						},
 
+						/**
+						 * Will be used to update the graph with new data
+						 * @param response
+						 * @param _this
+						 */
 						update: function (response, _this) {
 							_this.add_data(response.data);
 							_this.add_x_axis_mapping(response.mapping);
@@ -183,6 +262,13 @@ jQuery.fn.extend (
 
 		},
 
+		/**
+		 * Adding function to object to pass some response data to event graph_update
+		 *
+		 * This can be used for updating the graph
+		 *
+		 * @param response
+		 */
 		yoast_ga_graph_update : function(response) {
 			'use strict';
 			jQuery( this ).trigger( 'graph_update', [response] );
@@ -191,10 +277,9 @@ jQuery.fn.extend (
 
 );
 
-
 jQuery(
 	function () {
-
+		'use strict';
 		jQuery('.yoast-graph').yoast_ga_graph();
 
 
