@@ -2,7 +2,7 @@
 
 if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 
-	class Yoast_GA_Dashboards extends Yoast_GA_Admin {
+	class Yoast_GA_Dashboards {
 
 		/**
 		 * Store the data aggregator
@@ -26,6 +26,13 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		public $options;
 
 		/**
+		 * Store the access token
+		 *
+		 * @var
+		 */
+		public $access_token;
+
+		/**
 		 * Construct on the dashboards class for GA
 		 */
 		public function __construct() {
@@ -33,7 +40,42 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 
 			$this->data = new Yoast_GA_Dashboards_Data;
 
-			$this->options = $this->get_options();
+			$this->set_options();
+		}
+
+		/**
+		 * Set the API options
+		 */
+		public function set_options() {
+			$google_analytics = Yoast_Google_Analytics::instance();
+			$this->options    = $google_analytics->get_options();
+
+			if ( isset( $this->options['ga_oauth']['access_token']['oauth_token'] ) && isset( $this->options['ga_oauth']['access_token']['oauth_token_secret'] ) ) {
+				$this->access_token = $this->options['ga_oauth']['access_token'];
+			}
+		}
+
+		/**
+		 * Get the API options
+		 *
+		 * @return mixed
+		 */
+		public function get_options() {
+			return $this->options;
+		}
+
+		/**
+		 * Get the access token from the options API, false on fail
+		 *
+		 * @return bool
+		 */
+		public function get_access_token() {
+			if ( ! empty( $this->access_token ) ) {
+				return $this->access_token;
+			}
+			else{
+				return false;
+			}
 		}
 
 		/**

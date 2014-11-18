@@ -51,11 +51,9 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 		 * @return array
 		 */
 		private static function date_range( $first, $last, $step = '+1 day', $format = 'Y-m-d' ) {
-			$dates = array();
-//			$current = strtotime( $first );
+			$dates   = array();
 			$current = $first;
-//			$last    = strtotime( $last );
-			$last = $last;
+			$last    = $last;
 
 			while ( $current <= $last ) {
 				$dates[] = date( $format, $current );

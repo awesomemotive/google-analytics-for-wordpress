@@ -14,7 +14,6 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		private static $instance = null;
 
 		public function __construct() {
-
 			if ( is_null( self::$instance ) ) {
 				self::$instance = $this;
 			}
@@ -330,7 +329,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @return mixed
 		 */
-		protected function get_options() {
+		public function get_options() {
 			return get_option( $this->option_name );
 		}
 

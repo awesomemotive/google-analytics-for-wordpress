@@ -46,10 +46,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			add_filter( 'plugin_action_links_' . plugin_basename( GAWP_FILE ), array( $this, 'add_action_links' ) );
 
-			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth' ) );
-
-			$this->dashboards      = new Yoast_GA_Dashboards();
-			$this->dashboards_data = $this->dashboards->data();
 		}
 
 		/**
@@ -84,6 +80,12 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$this->show_notification( 'ga_notifications' );
 
 			$this->connect_with_google_analytics();
+
+
+			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
+
+			$this->dashboards      = new Yoast_GA_Dashboards();
+			$this->dashboards_data = $this->dashboards->data();
 
 			Yoast_GA_Dashboards::register( array('sessions', 'bouncerate') );
 		}
