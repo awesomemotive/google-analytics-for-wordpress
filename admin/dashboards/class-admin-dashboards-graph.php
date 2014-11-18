@@ -13,8 +13,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph' ) ) {
 
 		protected $dashboards = array();
 
-		protected $ajax_request = 'yoast_dashboard_graphdata';
-
 		/**
 		 * For the use of singleton pattern. Create instance of itself and return his instance
 		 *
@@ -35,26 +33,20 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph' ) ) {
 		 */
 		protected function __construct() {
 
-
 		}
 
 		public function initialize_ajax() {
-			add_action( 'wp_ajax_' . $this->ajax_request, array('Yoast_GA_Dashboards_Graph', 'get_graph_data') );
+			add_action( 'wp_ajax_yoast_dashboard_graphdata', array( 'Yoast_GA_Dashboards_Graph', 'get_graph_data' ) );
 		}
 
 		public static function get_graph_data() {
 
-			// @todo: Get this data from Peter
-			$data = array();
+			$graph = new Yoast_GA_Dashboards_Graph_Generate();
+			$json  = $graph->get_json();
 
-			// Calculate period, in this case for last month
-			$period = Yoast_GA_Dashboard_Period::calculate('lastmonth', time());
+			echo $json;
 
-			// Combine data and period data
-			$return = Yoast_GA_Dashboard_Mapper::combine($data, $period);
-
-			echo json_encode($return);
-			exit;
+			die();
 		}
 
 

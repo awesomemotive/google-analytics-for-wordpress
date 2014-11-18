@@ -16,14 +16,29 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public $api;
 
+		/**
+		 * Store the API dashboards class
+		 *
+		 * @var
+		 */
+		public $dashboards;
+
+		/**
+		 * Store the API dashboards data class
+		 *
+		 * @var
+		 */
+		public $dashboards_data;
+
 		public function __construct() {
 			parent::__construct();
 
 			add_action( 'plugins_loaded', array( $this, 'init_ga' ) );
 			add_action( 'admin_init', array( $this, 'init_settings' ) );
 
+			add_action( 'wp_ajax_yoast_dashboard_graphdata', array( 'Yoast_GA_Dashboards_Graph', 'get_graph_data' ) );
 
-			Yoast_GA_Dashboards_Graph::get_instance()->initialize_ajax();
+//			Yoast_GA_Dashboards_Graph::get_instance()->initialize_ajax();
 		}
 
 		/**
@@ -36,6 +51,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			add_filter( 'plugin_action_links_' . plugin_basename( GAWP_FILE ), array( $this, 'add_action_links' ) );
 
 			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth' ) );
+
+			$this->dashboards      = new Yoast_GA_Dashboards();
+			$this->dashboards_data = $this->dashboards->data();
 		}
 
 		/**
@@ -70,6 +88,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$this->show_notification( 'ga_notifications' );
 
 			$this->connect_with_google_analytics();
+
+			Yoast_GA_Dashboards::register( array('sessions', 'bouncerate') );
 		}
 
 		/**

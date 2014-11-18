@@ -45,7 +45,8 @@ jQuery.fn.extend (
 							var data = {
 								action     : 'yoast_dashboard_graphdata',
 								_ajax_nonce: yoast_ga_dashboard_nonce,
-								graph_id   : graph_id
+								graph_id   : graph_id,
+								period     : 'lastmonth'
 							}
 
 							jQuery.getJSON(ajaxurl, data, this.parse_response);
