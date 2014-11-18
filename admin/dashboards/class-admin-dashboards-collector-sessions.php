@@ -10,7 +10,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector_Sessions' ) ) {
 		public function __construct(){
 			//echo 'Sessions called';
 
-			//rint_r( $this->options );
+			//print_r( $this->options );
 			//echo 'printeds';
 		}
 
