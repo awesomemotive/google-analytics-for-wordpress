@@ -5,6 +5,7 @@ jQuery.fn.extend (
 
 			return this.each(
 				function() {
+					"use strict";
 					var element  = jQuery(this);
 					var graph_id = jQuery(element).attr('id');			// Getting ID-attribute from element
 					var target   = document.getElementById(graph_id);	// Element obtaining doing the W3c way
@@ -34,7 +35,7 @@ jQuery.fn.extend (
 						},
 
 						add_events : function() {
-							_this = this;
+							var _this = this;
 							jQuery(element).on("graph_update", function (event, response) {
 								_this.update(response, _this);
 							});
@@ -47,7 +48,7 @@ jQuery.fn.extend (
 								_ajax_nonce: yoast_ga_dashboard_nonce,
 								graph_id   : graph_id,
 								period     : 'lastmonth'
-							}
+							};
 
 							jQuery.getJSON(ajaxurl, data, this.parse_response);
 						},
@@ -57,7 +58,6 @@ jQuery.fn.extend (
 							graph.set_x_axis_mapping(response.mapping);
 
 							graph.create();
-
 						},
 
 						set_data: function (data) {
@@ -83,15 +83,14 @@ jQuery.fn.extend (
 							this.render();
 						},
 
-
 						create_graph: function () {
 							this.graph = new Rickshaw.Graph(
 								{
-									element : target.querySelector(".yoast-graph-holder"),
+									element : target.querySelector('.yoast-graph-holder'),
 									width   : this.width,
 									height  : this.height,
 									series  : [{
-										name : element.attr('date-label'),
+										name : element.attr('data-label'),
 										color: 'steelblue',
 										data : this.data
 									}],
@@ -112,7 +111,7 @@ jQuery.fn.extend (
 						},
 
 						create_x_axis: function () {
-							if( target.querySelector('.yoast-graph-xaxis').length === 1) {
+							if( target.querySelector('.yoast-graph-xaxis') !== null) {
 								this.graph_axis.x = new Rickshaw.Graph.Axis.X(
 									{
 										element      : target.querySelector('.yoast-graph-xaxis'),
@@ -127,13 +126,13 @@ jQuery.fn.extend (
 						},
 
 						create_y_axis : function() {
-							if( target.querySelector('.yoast-graph-xaxis').length === 1) {
+							if( target.querySelector('.yoast-graph-xaxis') !== null) {
 								this.graph_axis.y = new Rickshaw.Graph.Axis.Y(
 									{
 										element      : target.querySelector('.yoast-graph-yaxis'),
 										graph        : this.graph,
 										orientation  : 'left',
-										pixelsPerTick: this.height / 5,
+										pixelsPerTick: this.height / 15,
 
 										// If n is 0 return emptystring, to prevent zero displayed on graph
 										tickFormat   : function (n) {
@@ -151,7 +150,7 @@ jQuery.fn.extend (
 									graph     : this.graph,
 									formatter : function(series, x, y) {
 										var swatch = '<span class="detail_swatch" style="background-color: ' + series.color + '"></span>';
-										var content = swatch + series.name + ": " + parseInt(y) + '<br>';
+										var content = swatch + series.name + ": " + parseInt(y, null) + '<br>';
 										return content;
 									}
 								}
@@ -174,7 +173,7 @@ jQuery.fn.extend (
 							_this.graph.update();
 							_this.render();
 						}
-					}
+					};
 
 					graph.init();
 				}
@@ -183,7 +182,8 @@ jQuery.fn.extend (
 		},
 
 		yoast_ga_graph_update : function(response) {
-			jQuery( this ).trigger( "graph_update", [response] );
+			"use_strict";
+			jQuery( this ).trigger( 'graph_update', [response] );
 		}
 	}
 
