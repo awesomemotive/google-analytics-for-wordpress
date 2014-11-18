@@ -13,11 +13,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 		 *
 		 * @param      $type      sessions,bouncerate etc.
 		 * @param      $startdate Unix timestamp
-		 * @param null $enddate   Unix timestamp
+		 * @param      $enddate   Unix timestamp
 		 *
 		 * @return array
 		 */
-		public static function get( $type, $startdate, $enddate = NULL ) {
+		public static function get( $type, $startdate, $enddate ) {
 			$data  = array();
 			$range = self::date_range( $startdate, $enddate );
 
