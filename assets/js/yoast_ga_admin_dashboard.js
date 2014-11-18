@@ -2,10 +2,11 @@
 jQuery.fn.extend (
 	{
 		yoast_ga_graph : function( ) {
-			'use_strict';
+			'use strict';
 
 			return this.each(
 				function() {
+					'use strict';
 
 					var element  = jQuery(this);
 					var graph_id = jQuery(element).attr('id');			// Getting ID-attribute from element
@@ -183,7 +184,7 @@ jQuery.fn.extend (
 		},
 
 		yoast_ga_graph_update : function(response) {
-			'use_strict';
+			'use strict';
 			jQuery( this ).trigger( 'graph_update', [response] );
 		}
 	}
