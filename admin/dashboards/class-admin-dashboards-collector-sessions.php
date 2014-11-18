@@ -8,7 +8,10 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector_Sessions' ) ) {
 		 * Constructor is called when we start to aggregate data
 		 */
 		public function __construct(){
-			echo 'Sessions called';
+			//echo 'Sessions called';
+
+			//rint_r( $this->options );
+			//echo 'printeds';
 		}
 
 	}
