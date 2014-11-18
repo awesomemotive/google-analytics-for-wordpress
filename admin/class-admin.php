@@ -50,6 +50,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			$this->dashboards      = new Yoast_GA_Dashboards();
 			$this->dashboards_data = $this->dashboards->data();
+
+			print_r(Yoast_GA_Dashboards_Data::get('sessions', 1415698832, 1416303632));
 		}
 
 		/**
