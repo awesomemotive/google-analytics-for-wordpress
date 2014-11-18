@@ -23,7 +23,7 @@
 }
 
 .yoast-graph-holder, .yoast-graph-xaxis {
-	width: 810px;
+	width: 780px;
 }
 
 .yoast-graph-holder, .yoast-graph-yaxis, .yoast-graph-xaxis {
@@ -37,11 +37,11 @@
 
 .yoast-graph-xaxis {
 	height:      20px;
-	margin-left: 20px;
+	margin-left: 50px;
 }
 
 .yoast-graph-yaxis {
-	width: 20px;
+	width: 50px;
 }
 
 .x_label {
