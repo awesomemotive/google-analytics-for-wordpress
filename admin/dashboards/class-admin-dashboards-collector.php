@@ -2,7 +2,7 @@
 
 if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 
-	class Yoast_GA_Dashboards_Collector extends Yoast_GA_Dashboards {
+	class Yoast_GA_Dashboards_Collector {
 
 		/**
 		 * API storage
@@ -29,17 +29,27 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		public static $aggregator_classes = array();
 
 		/**
+		 * Store the options
+		 *
+		 * @var
+		 */
+		private $options;
+
+		/**
 		 * Construct on the dashboards class for GA
 		 */
 		public function __construct() {
+			$this->options = Yoast_GA_Dashboards_Api_Options::instance();
+
 			$this->init_shutdown_hook();
 		}
+
 
 		/**
 		 * This hook runs on the shutdown to fetch data from GA
 		 */
-		private function init_shutdown_hook(){
-			if( is_admin() && !defined( 'DOING_AJAX' ) ) {
+		private function init_shutdown_hook() {
+			if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
 				$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth' ) );
 
 				add_action( 'shutdown', array( $this, 'aggregate_data' ) );
@@ -52,6 +62,10 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		public function aggregate_data() {
 			$classes  = self::$aggregator_classes;
 			$instance = NULL;
+
+			$access_tokens = $this->options->get_access_token();
+
+			//var_dump( $access_tokens ); ->> WORKS!
 
 			// Check if we need to fetch data, if so, authenticate and call child classes
 			if ( is_array( $classes ) ) {
