@@ -7,32 +7,43 @@
 
 .yoast-graph {
 	width: 840px;
-	height: 400px;
+	height: 425px;
 	float: left;
 	display: inline;
 	margin: 5px;
+
 }
 
 .yoast-graph h2 {
 	margin: 0 0 10px;
+}
 
+.yoast-graph-holder, .yoast-graph-yaxis {
+	height: 300px;
+}
+
+.yoast-graph-holder, .yoast-graph-xaxis {
+	width: 810px;
+}
+
+.yoast-graph-holder, .yoast-graph-yaxis, .yoast-graph-xaxis {
+	float: left;
 }
 
 .yoast-graph-holder {
-	width: 100%;
-	height: 275px;
+	margin: 0 5px 0 0;
+	background: #FFF;
 }
 
 .yoast-graph-xaxis {
-	width: 100%;
-	height: 20px;
+	height:      20px;
+	margin-left: 20px;
 }
 
+.yoast-graph-yaxis {
+	width: 20px;
+}
 
-.yoast-graphs-after {
-	float: left;
-	clear: both;
-	width: 100%;
-	height: 10px;
-	display: block;
+.x_label {
+	display: none;
 }
