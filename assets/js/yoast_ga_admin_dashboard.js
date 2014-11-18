@@ -26,7 +26,7 @@ jQuery.fn.extend (
 						graph_hover : [],	// Hover element
 
 						/**
-						 * Initialize 
+						 * Initialize
 						 */
 						init: function () {
 							this.get_data();
