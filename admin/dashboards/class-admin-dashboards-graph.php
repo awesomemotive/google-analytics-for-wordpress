@@ -11,6 +11,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph' ) ) {
 		 */
 		protected static $instance;
 
+		/**
+		 * Container for holding setted dashboards
+		 *
+		 * @var array
+		 */
 		protected $dashboards = array();
 
 		/**
@@ -35,30 +40,35 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph' ) ) {
 
 		}
 
+		/**
+		 * Setting hook for doing ajax request
+		 *
+		 */
 		public function initialize_ajax() {
 			add_action( 'wp_ajax_yoast_dashboard_graphdata', array( 'Yoast_GA_Dashboards_Graph', 'get_graph_data' ) );
 		}
 
-		public static function get_graph_data() {
-
-			$graph = new Yoast_GA_Dashboards_Graph_Generate();
-			$json  = $graph->get_json();
-
-			echo $json;
-
-			die();
-		}
-
-
+		/**
+		 * Displaying the graph on screen
+		 *
+		 */
 		public function display() {
-
 			foreach ( $this->dashboards AS $dashboard => $settings ) {
 				require "views/graph.php";
 			}
-
 		}
 
-
+		/**
+		 * Register a dashboard with settings.
+		 *
+		 * Dashboard can contain multiple dashboard-types. If so, $values shouldn't be passed and $dashboard argument
+		 * should be key->value, key = dashboard and value should contain the values
+		 *
+		 * Given arguments will be marge with objects property dashboards
+		 *
+		 * @param mixed $dashboard
+		 * @param mixed $values
+		 */
 		public function register( $dashboard, $values = false ) {
 
 			if ( ! is_array( $dashboard ) ) {
@@ -69,7 +79,19 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph' ) ) {
 
 		}
 
+		/**
+		 * Method which will be called by AJAX
+		 *
+		 * Will echo json for graph
+		 */
+		public static function get_graph_data() {
 
+			$graph = new Yoast_GA_Dashboards_Graph_Generate();
+			$json  = $graph->get_json();
+
+			echo $json;
+			die();
+		}
 
 	}
 }

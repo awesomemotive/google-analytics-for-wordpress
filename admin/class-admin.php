@@ -36,9 +36,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			add_action( 'plugins_loaded', array( $this, 'init_ga' ) );
 			add_action( 'admin_init', array( $this, 'init_settings' ) );
 
-			add_action( 'wp_ajax_yoast_dashboard_graphdata', array( 'Yoast_GA_Dashboards_Graph', 'get_graph_data' ) );
-
-//			Yoast_GA_Dashboards_Graph::get_instance()->initialize_ajax();
+			Yoast_GA_Dashboards_Graph::get_instance()->initialize_ajax();
 		}
 
 		/**
@@ -195,13 +193,11 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					default:
 
 						$Dashboards = array(
-//							'pageviews'  => __('Visitors', 'google-analytics-for-wordpress'),
 							'sessions'  => array(
 								'title'      => __('Sessions', 'google-analytics-for-wordpress'),
 								'data-label' =>	__('Number of sessions', 'google-analytics-for-wordpress'),
 							)
 						);
-
 
 						Yoast_GA_Dashboards_Graph::get_instance()->register($Dashboards);
 
