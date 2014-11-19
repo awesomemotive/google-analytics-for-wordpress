@@ -189,11 +189,34 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
+		 * Initialize the promo class for our translate site
+		 *
+		 * @return yoast_i18n
+		 */
+		public function translate_promo() {
+			$yoast_ga_i18n = new yoast_i18n(
+				array(
+					'textdomain'     => 'google-analytics-for-wordpress',
+					'project_slug'   => 'google-analytics-for-wordpress',
+					'plugin_name'    => 'Google Analytics by Yoast',
+					'hook'           => 'yoast_ga_admin_footer',
+					'glotpress_url'  => 'http://translate.yoast.com',
+					'glotpress_name' => 'Yoast Translate',
+					'glotpress_logo' => 'https://cdn.yoast.com/wp-content/uploads/i18n-images/Yoast_Translate.svg',
+					'register_url '  => 'http://translate.yoast.com/projects#utm_source=plugin&utm_medium=promo-box&utm_campaign=yoast-ga-i18n-promo',
+				)
+			);
+			return $yoast_ga_i18n;
+		}
+
+		/**
 		 * Load the page of a menu item in the GA plugin
 		 */
 		public function load_page() {
 			global $yoast_ga_admin_ga_js;
 			$yoast_ga_admin_ga_js = new Yoast_GA_Admin_GA_JS;
+
+			$this->translate_promo();
 
 			if ( ! has_action( 'yst_ga_custom_dimensions_tab-content' ) ) {
 				add_action( 'yst_ga_custom_dimensions_tab-content', array( $this, 'premium_promo' ) );
@@ -500,6 +523,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Render the admin page footer with sidebar for the GA Plugin
 		 */
 		public function content_footer() {
+
+			do_action( 'yoast_ga_admin_footer' );
 
 			if ( true == WP_DEBUG ) {
 				// Show the debug information if debug is enabled in the wp_config file
