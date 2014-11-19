@@ -582,7 +582,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					'status' => 'uninstalled',
 				),
 				'ecommerce'  => (object) array(
-					'url'    => 'https://yoast.com/wordpress/plugins/google-analytics/',
+					'url'    => 'https://yoast.com/wordpress/plugins/ga-ecommerce/',
 					'title'  => __( 'Google Analytics', 'google-analytics-for-wordpress' ) . '<br />' . __( 'E-Commerce tracking', 'google-analytics-for-wordpress' ),
 					'desc'   => __( 'Track your E-Commerce data and transactions with this E-Commerce extension for Google Analytics.', 'google-analytics-for-wordpress' ),
 					'status' => 'uninstalled',
