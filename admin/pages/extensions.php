@@ -32,7 +32,7 @@ $extensions = $yoast_ga_admin->get_extensions();
 						<?php
 						if ( 'uninstalled' == $extension->status ) {
 							?>
-							<a target="_blank" href="https://yoast.com/wordpress/plugins/ga-ecommerce-edd/#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary">Get this extension</a>
+							<a target="_blank" href="<?php echo $extension->url; ?>#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary">Get this extension</a>
 						<?php
 						} else {
 							if ( 'inactive' == $extension->status ) {
