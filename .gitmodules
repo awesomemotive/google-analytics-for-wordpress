@@ -4,3 +4,6 @@
 [submodule "admin/api-libs"]
 	path = admin/api-libs
 	url = https://github.com/Yoast/api-libs.git
+[submodule "admin/i18n-module"]
+	path = admin/i18n-module
+	url = https://jdevalk@github.com/Yoast/i18n-module.git
