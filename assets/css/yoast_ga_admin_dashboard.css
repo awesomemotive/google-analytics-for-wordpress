@@ -42,6 +42,7 @@
 
 .yoast-graph-yaxis {
 	width: 50px;
+	overflow: hidden;
 }
 
 .x_label {
