@@ -38,6 +38,9 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 
 					// API libraries
 					'yoast_api_libs'                => 'admin/api-libs/class-api-libs',
+
+					// i18n module
+					'yoast_i18n'                    => 'admin/i18n-module/i18n-module',
 				);
 			}
 
