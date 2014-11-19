@@ -152,7 +152,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 						if ( count( $out_links ) >= 1 ) {
 							foreach ( $out_links as $out ) {
 								if ( ! empty( $original_url ) && ! empty( $domain['domain'] ) ) {
-									if ( strpos( $original_url, $domain['domain'] . $out ) !== false ) {
+									if ( $out && strpos( $original_url, $domain['domain'] . $out ) !== false ) {
 										$type = 'internal-as-outbound';
 									}
 								}
