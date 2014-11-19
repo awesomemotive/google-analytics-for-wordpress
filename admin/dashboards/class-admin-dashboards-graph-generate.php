@@ -45,14 +45,17 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 		 *
 		 * @var array
 		 */
-		private $data    = array();
+		private $data = array();
 
 		/**
 		 * Storage for mapping
 		 *
 		 * @var array
 		 */
-	    private $mapping = array();
+		private $mapping = array(
+			'x' => array(),
+			'y' => array()
+		);
 
 		/**
 		 * Construct will set all values and generate the date for response
@@ -133,6 +136,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 		 */
 		private function set_date_field() {
 			switch ( $this->period ) {
+				default:
 				case 'lastweek' :
 				case 'lastmonth' :
 					$date_field = 'j';
@@ -151,8 +155,10 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 
 			foreach ( $google_data AS $timestamp => $value ) {
 				$this->add_data( $value );
-				$this->add_mapping($timestamp);
+				$this->add_x_mapping( $timestamp );
 			}
+
+			$this->calculate_y_mapping( min( $google_data ), max( $google_data ) );
 		}
 
 		/**
@@ -161,7 +167,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 		 * @return array
 		 */
 		private function get_google_data() {
-			return Yoast_GA_Dashboards_Data::get($this->graph_type, $this->start_date, $this->end_date);
+			return Yoast_GA_Dashboards_Data::get( $this->graph_type, $this->start_date, $this->end_date );
 		}
 
 		/**
@@ -170,7 +176,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 		 * x is position on x-axis, always starting from 0
 		 * y is the value of that point.
 		 *
-		 * @param $value
+		 * @param integer $value
 		 */
 		private function add_data( $value ) {
 			static $current_x = 0;
@@ -180,19 +186,77 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 				'y' => $value
 			);
 
-			$current_x++;
+			$current_x ++;
 		}
 
 		/**
-		 * Add date field to the mapping
+		 * Add date field to the x-mapping
 		 *
 		 * Key will be auto numbered by PHP, starting with 0, the key will always point to the the x in x-axis
 		 * The value will be always the value that should be displayed.
 		 *
-		 * @param $timestamp
+		 * @param integer $timestamp
 		 */
-		private function add_mapping($timestamp) {
-			$this->mapping[] = date( $this->date_field, $timestamp );
+		private function add_x_mapping( $timestamp ) {
+			$this->mapping['x'][] = date( $this->date_field, $timestamp );
+		}
+
+		/**
+		 * Add date field to the y-mapping
+		 *
+		 * @param integer $value
+		 */
+		private function add_y_mapping( $value ) {
+			$this->mapping['y'][] = $value;
+		}
+
+		/**
+		 *
+		 */
+		private function calculate_y_mapping( $min_value, $max_value ) {
+
+			$start = $this->get_closest_number( $min_value, true );
+			$end   = $this->get_closest_number( $max_value );
+
+			// Always add a zero if $start hasn't
+			if ( $start > 0 ) {
+				$this->add_y_mapping( 0 );
+			}
+
+			$steps = $max_value / 10;
+
+			$range = range( 0, $end, $steps );
+
+			foreach ( $range AS $value ) {
+				if($range > 0 ) {
+					$this->add_y_mapping( ceil($value) );
+				}
+			}
+
+
+		}
+
+		private function get_closest_number( $number, $down_scale = false ) {
+
+			$numbers = array( 0, 50, 100, 150, 250, 500, 750, 1000, 5000, 10000, 50000, 10000 );
+
+			$previous_number = 0;
+
+			foreach ( $numbers AS $close_number ) {
+				if ( $close_number >= $number ) {
+					if ( $down_scale ) {
+						return $previous_number;
+					}
+					else {
+						return $close_number;
+					}
+				}
+
+				$previous_number = $close_number;
+
+
+			}
+
 		}
 
 	}

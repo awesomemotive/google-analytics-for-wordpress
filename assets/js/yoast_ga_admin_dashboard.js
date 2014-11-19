@@ -74,7 +74,14 @@ jQuery.fn.extend (
 						 */
 						parse_response: function (response) {
 							graph.set_data(response.data);
-							graph.set_x_axis_mapping(response.mapping);
+
+							if(response.mapping.x !== undefined) {
+								graph.set_x_axis_mapping(response.mapping.x);
+							}
+
+							if(response.mapping.y !== undefined) {
+								graph.set_y_axis_mapping(response.mapping.y);
+							}
 
 							graph.create();
 						},
@@ -113,6 +120,24 @@ jQuery.fn.extend (
 						 */
 						add_x_axis_mapping: function( mapping_to_add ) {
 							this.axis.x.push( mapping_to_add );
+						},
+
+						/**
+						 * Setting the x-axis with all mapping values
+						 *
+						 * @param mapping
+						 */
+						set_y_axis_mapping: function (mapping) {
+							graph.axis.y = mapping;
+						},
+
+						/**
+						 * Add value to the x axis
+						 *
+						 * @param mapping_to_add
+						 */
+						add_y_axis_mapping: function( mapping_to_add ) {
+							this.axis.y.push( mapping_to_add );
 						},
 
 						/**
@@ -195,8 +220,8 @@ jQuery.fn.extend (
 										element      : target.querySelector('.yoast-graph-yaxis'),
 										graph        : this.graph,
 										orientation  : 'left',
-										pixelsPerTick: this.height / 15,
-
+										tickValues   : this.axis.y,
+										height       : '300',
 										// If n is 0 return emptystring, to prevent zero displayed on graph
 										tickFormat   : function (n) {
 											return (n === 0) ? '' : n;
