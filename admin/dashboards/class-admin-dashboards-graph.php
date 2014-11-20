@@ -54,7 +54,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph' ) ) {
 		 */
 		public function display() {
 			foreach ( $this->dashboards AS $dashboard => $settings ) {
-				require "views/graph.php";
+				require 'views/graph.php';
 			}
 		}
 

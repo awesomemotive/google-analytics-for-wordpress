@@ -54,7 +54,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 		 */
 		private $mapping = array(
 			'x' => array(),
-			'y' => array()
+			'y' => array(),
 		);
 
 		/**
@@ -183,7 +183,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 
 			$this->data[] = array(
 				'x' => $current_x,
-				'y' => $value
+				'y' => $value,
 			);
 
 			$current_x++;
@@ -228,8 +228,8 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 			$range = range( 0, $end, $steps );
 
 			foreach ( $range AS $value ) {
-				if($range > 0 ) {
-					$this->add_y_mapping( ceil($value) );
+				if ( $range > 0 ) {
+					$this->add_y_mapping( ceil( $value ) );
 				}
 			}
 
@@ -246,8 +246,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 				if ( $close_number >= $number ) {
 					if ( $down_scale ) {
 						return $previous_number;
-					}
-					else {
+					} else {
 						return $close_number;
 					}
 				}
