@@ -36,6 +36,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		private $options;
 
 		/**
+		 * Store the API libs
+		 */
+		public $api_libs;
+
+		/**
 		 * Construct on the dashboards class for GA
 		 */
 		public function __construct() {
@@ -44,13 +49,12 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			$this->init_shutdown_hook();
 		}
 
-
 		/**
 		 * This hook runs on the shutdown to fetch data from GA
 		 */
 		private function init_shutdown_hook() {
 			if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
-				$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth' ) );
+				$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
 
 				add_action( 'shutdown', array( $this, 'aggregate_data' ) );
 			}
@@ -64,8 +68,17 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			$instance = NULL;
 
 			$access_tokens = $this->options->get_access_token();
+			if ( $access_tokens != false && is_array( $access_tokens ) ) {
+				echo '<pre>';
+				echo 'Access tokens available';
+				$api_ga = Yoast_Googleanalytics_Reporting::instance();
 
-			//var_dump( $access_tokens ); ->> WORKS!
+				var_dump( $api_ga->do_request( 'http://googleapis.com', 'https://googleapis.com', $access_tokens['oauth_token'], $access_tokens['oauth_token_secret'] ) );
+
+				var_dump( $access_tokens ); // ->> WORKS!
+				echo '</pre>';
+				exit;
+			}
 
 			// Check if we need to fetch data, if so, authenticate and call child classes
 			if ( is_array( $classes ) ) {
