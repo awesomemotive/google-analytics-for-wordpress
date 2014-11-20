@@ -329,7 +329,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @return mixed
 		 */
-		protected function get_options() {
+		public function get_options() {
 			return get_option( $this->option_name );
 		}
 
