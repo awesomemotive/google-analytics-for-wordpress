@@ -1,4 +1,3 @@
-
 .yoast-graphs {
 	display: inline-block;
 	clear: both;
@@ -6,12 +5,11 @@
 }
 
 .yoast-graph {
+	display: inline;
+	float: left;
 	width: 840px;
 	height: 425px;
-	float: left;
-	display: inline;
 	margin: 5px;
-
 }
 
 .yoast-graph h2 {
@@ -32,17 +30,17 @@
 
 .yoast-graph-holder {
 	margin: 0 5px 0 0;
-	background: #FFF;
+	background: #fff;
 }
 
 .yoast-graph-xaxis {
-	height:      20px;
+	height: 20px;
 	margin-left: 50px;
 }
 
 .yoast-graph-yaxis {
-	width: 50px;
 	overflow: hidden;
+	width: 50px;
 }
 
 .x_label {
