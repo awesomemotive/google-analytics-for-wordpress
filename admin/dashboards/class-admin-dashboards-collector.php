@@ -65,7 +65,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 */
 		public function aggregate_data() {
 			$classes  = self::$aggregator_classes;
-			$instance = NULL;
+			$instance = null;
 
 			$access_tokens = $this->options->get_access_token();
 			if ( $access_tokens != false && is_array( $access_tokens ) ) {
@@ -83,10 +83,10 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			// Check if we need to fetch data, if so, authenticate and call child classes
 			if ( is_array( $classes ) ) {
 				//$auth_status = $this->oauth_authenticate();
-				$auth_status = NULL;
+				$auth_status = null;
 
 				foreach ( $classes as $class ) {
-					$instance = NULL;
+					$instance = null;
 					if ( class_exists( $class, false ) ) {
 						$instance = new $class( $auth_status );
 					}
