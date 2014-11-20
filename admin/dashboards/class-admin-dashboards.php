@@ -33,49 +33,71 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		public $access_token;
 
 		/**
+		 * Store the active metrics
+		 *
+		 * @var
+		 */
+		public $active_metrics;
+
+		/**
+		 * Store the valid metrics which are available in the Google API
+		 *
+		 * @var array
+		 */
+		private $valid_metrics = array( 'sessions', 'bouncerate' );
+
+		/**
+		 * Store this instance
+		 *
+		 * @var null
+		 */
+		private static $instance = null;
+
+		/**
 		 * Construct on the dashboards class for GA
 		 */
 		public function __construct() {
-			$this->aggregator = new Yoast_GA_Dashboards_Collector;
+
+		}
+
+		/**
+		 * Init the dashboards
+		 */
+		public function init_dashboards( $ga_profile_id ) {
+			$Dashboards = array(
+				'sessions' => array(
+					'title'      => __( 'Sessions', 'google-analytics-for-wordpress' ),
+					'data-label' => __( 'Number of sessions', 'google-analytics-for-wordpress' ),
+				)
+			);
+
+			// Register the active metrics
+			$register = array();
+			foreach( $Dashboards as $metric => $value ){
+				$register[] = $metric;
+			}
+
+			// @TODO enable this after merging to features/dashboards
+			//Yoast_GA_Dashboards_Graph::get_instance()->register($Dashboards);
 
 			$this->data = new Yoast_GA_Dashboards_Data;
 
-			$this->set_options();
+			$this->aggregator = new Yoast_GA_Dashboards_Collector( $ga_profile_id, $register );
+
+			$this->register( $register );
 		}
 
 		/**
-		 * Set the API options
-		 */
-		public function set_options() {
-			$google_analytics = Yoast_Google_Analytics::instance();
-			$this->options    = $google_analytics->get_options();
-
-			if ( isset( $this->options['ga_oauth']['access_token']['oauth_token'] ) && isset( $this->options['ga_oauth']['access_token']['oauth_token_secret'] ) ) {
-				$this->access_token = $this->options['ga_oauth']['access_token'];
-			}
-		}
-
-		/**
-		 * Get the API options
+		 * Get the instance
 		 *
-		 * @return mixed
+		 * @return Yoast_GA_Dashboards
 		 */
-		public function get_options() {
-			return $this->options;
-		}
+		public static function instance() {
+			if ( is_null( self::$instance ) ) {
+				self::$instance = new self();
+			}
 
-		/**
-		 * Get the access token from the options API, false on fail
-		 *
-		 * @return bool
-		 */
-		public function get_access_token() {
-			if ( ! empty( $this->access_token ) ) {
-				return $this->access_token;
-			}
-			else{
-				return false;
-			}
+			return self::$instance;
 		}
 
 		/**
@@ -94,20 +116,45 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		 *
 		 * @return bool
 		 */
-		public static function register( $types ) {
+		public function register( $types ) {
 			if ( is_array( $types ) == false ) {
 				$types = array( $types );
 			}
 
 			if ( is_array( $types ) && count( $types ) >= 1 ) {
-				if ( Yoast_GA_Dashboards_Collector::validate_dashboard_types( $types ) ) {
-					return set_transient( 'yst_ga_dashboard_types', $types, 12 * HOUR_IN_SECONDS );
+				if ( $this->validate_dashboard_types( $types ) ) {
+					$this->active_metrics = $types;
+
+					return true;
+					//return set_transient( 'yst_ga_dashboard_types', $types, 12 * HOUR_IN_SECONDS );
 				}
 			}
 
 			return false;
 		}
 
+
+
+		/**
+		 * Validate the registered types of dashboards
+		 *
+		 * @param $types
+		 *
+		 * @return bool
+		 */
+		private function validate_dashboard_types( $types ) {
+			$valid = true;
+
+			if ( is_array( $types ) ) {
+				foreach ( $types as $check_type ) {
+					if ( ! in_array( $check_type, $this->valid_metrics ) ) {
+						$valid = false;
+					}
+				}
+			}
+
+			return $valid;
+		}
 	}
 
 }
