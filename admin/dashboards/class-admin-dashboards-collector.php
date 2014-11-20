@@ -19,6 +19,13 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		public $active_metrics;
 
 		/**
+		 * Store the GA Profile ID
+		 *
+		 * @var
+		 */
+		public $ga_profile_id;
+
+		/**
 		 * Store the API libs
 		 *
 		 * @package
@@ -27,8 +34,12 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 
 		/**
 		 * Construct on the dashboards class for GA
+		 *
+		 * @param $ga_profile_id
+		 * @param $active_metrics
 		 */
-		public function __construct( $active_metrics ) {
+		public function __construct( $ga_profile_id, $active_metrics ) {
+			$this->ga_profile_id = $ga_profile_id;
 			$this->active_metrics = $active_metrics;
 
 			$this->options = Yoast_GA_Dashboards_Api_Options::instance();
@@ -59,7 +70,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				// Access tokens are set, continue
 
 				foreach ( $this->active_metrics as $metric ) {
-					$this->execute_call( $access_tokens, $metric, '88258906', '2014-10-10', '2014-11-20' );
+					$this->execute_call( $access_tokens, $metric, date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ) );
 				}
 			} else {
 				// Failure on authenticating, please reauthenticate
@@ -71,15 +82,14 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 *
 		 * @param $access_tokens
 		 * @param $metric
-		 * @param $profile_id
 		 * @param $start_date 2014-10-16
 		 * @param $end_date   2014-11-20
 		 *
 		 * @return bool
 		 */
-		private function execute_call( $access_tokens, $metric, $profile_id, $start_date, $end_date ) {
+		private function execute_call( $access_tokens, $metric, $start_date, $end_date ) {
 			$params = array(
-				'ids'        => 'ga:' . $profile_id,
+				'ids'        => 'ga:' . $this->ga_profile_id,
 				'start-date' => $start_date,
 				'end-date'   => $end_date,
 				'dimensions' => 'ga:date',

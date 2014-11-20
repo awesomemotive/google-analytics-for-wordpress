@@ -86,9 +86,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			// Load the Google Analytics Dashboards functionality
 			$dashboards = Yoast_GA_Dashboards::instance();
-			$dashboards->init_dashboards();
+			$dashboards->init_dashboards( $this->get_current_profile() );
 
-			print_r( Yoast_GA_Dashboards_Data::get( 'sessions', strtotime( '2014-10-10' ), strtotime( '2014-11-20' ) ) );
+		//	print_r( Yoast_GA_Dashboards_Data::get( 'sessions', strtotime( '2014-11-10' ), strtotime( '2014-11-20' ) ) );
 		}
 
 		/**
@@ -443,6 +443,22 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				wp_redirect( $authorize_url );
 				exit;
 			}
+		}
+
+		/**
+		 * Get the current GA profile
+		 *
+		 * @return null
+		 */
+		private function get_current_profile( ) {
+			$current_profile = null;
+			foreach( $this->get_profiles() as $profile ){
+				if( $profile['id'] == $this->options['analytics_profile'] ){
+					$current_profile = $profile['profile_id'];
+				}
+			}
+
+			return $current_profile;
 		}
 
 		/**

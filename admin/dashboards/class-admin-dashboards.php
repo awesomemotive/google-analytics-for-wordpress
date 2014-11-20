@@ -63,7 +63,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		/**
 		 * Init the dashboards
 		 */
-		public function init_dashboards() {
+		public function init_dashboards( $ga_profile_id ) {
 			$Dashboards = array(
 				'sessions' => array(
 					'title'      => __( 'Sessions', 'google-analytics-for-wordpress' ),
@@ -82,7 +82,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 
 			$this->data = new Yoast_GA_Dashboards_Data;
 
-			$this->aggregator = new Yoast_GA_Dashboards_Collector( $register );
+			$this->aggregator = new Yoast_GA_Dashboards_Collector( $ga_profile_id, $register );
 
 			$this->register( $register );
 		}

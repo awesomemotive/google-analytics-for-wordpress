@@ -247,8 +247,9 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 					foreach ( $ga_accounts as $key => $ga_account ) {
 						$return[] = array(
-							'id'   => $ga_account['ua'],
-							'name' => $ga_account['title'] . ' (' . $ga_account['ua'] . ')',
+							'id'         => $ga_account['ua'],
+							'profile_id' => $ga_account['profile_id'],
+							'name'       => $ga_account['title'] . ' (' . $ga_account['ua'] . ')',
 						);
 					}
 				}
@@ -291,6 +292,8 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 				$ns         = $entry->getNamespaces( true );
 				$properties = $entry->children( $ns['dxp'] )->property;
 
+				$profile_id = (int) $properties[3]->attributes()->value; // ga:profileId
+
 				if ( isset ( $properties[$ua_key]->attributes()->value ) ) {
 					$ua = (string) trim( $properties[$ua_key]->attributes()->value );
 				}
@@ -301,8 +304,9 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 				if ( ! empty( $ua ) && ! empty( $title ) ) {
 					$return[] = array(
-						'ua'    => $ua,
-						'title' => $title,
+						'ua'         => $ua,
+						'profile_id' => $profile_id,
+						'title'      => $title,
 					);
 				}
 			}
