@@ -79,7 +79,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 
 			$return = array(
 				'data'    => $this->data,
-				'mapping' => $this->mapping
+				'mapping' => $this->mapping,
 			);
 
 			return json_encode( $return );
