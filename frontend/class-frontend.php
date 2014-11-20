@@ -7,6 +7,8 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
 	class Yoast_GA_Frontend extends Yoast_GA_Options {
 
+		public $link_regex;
+
 		/**
 		 * Class constructor
 		 */
@@ -25,6 +27,16 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 				global $yoast_ga_js;
 				$yoast_ga_js = new Yoast_GA_JS;
 			}
+
+		}
+
+		/**
+		 * Get the regex for Ga.js and universal tracking to detect links
+		 *
+		 * @return string Contains the regular expression for detecting links
+		 */
+		public function get_regex() {
+			return '/<a\s+([^>]*?)href=[\'\"](.*?):(\/\/)?([^\'\"]+?)[\'\"]\s?(.*?)>(.*?)<\/a>/i';
 		}
 
 		/**
@@ -118,8 +130,8 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 		 */
 		public function get_target( $category, $matches ) {
 			$protocol            = $matches[2];
-			$original_url        = $matches[3];
-			$domain              = $this->yoast_ga_get_domain( $matches[3] );
+			$original_url        = $matches[4];
+			$domain              = $this->yoast_ga_get_domain( $matches[4] );
 			$origin              = $this->yoast_ga_get_domain( $_SERVER['HTTP_HOST'] );
 			$download_extensions = explode( ',', str_replace( '.', '', $this->options['extensions_of_files'] ) );
 			$extension           = substr( strrchr( $original_url, '.' ), 1 );
@@ -165,8 +177,8 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 				'origin_domain'   => $origin['domain'],
 				'origin_host'     => $origin['host'],
 				'extension'       => $extension,
-				'link_attributes' => rtrim( $matches[1] . ' ' . $matches[4] ),
-				'link_text'       => $matches[5],
+				'link_attributes' => rtrim( $matches[1] . ' ' . $matches[5] ),
+				'link_text'       => $matches[6],
 				'original_url'    => $original_url,
 			);
 		}

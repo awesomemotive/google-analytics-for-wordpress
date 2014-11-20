@@ -24,7 +24,12 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 			$this->target_object = $target_object;
 
 			add_action( 'admin_menu', array( $this, 'create_admin_menu' ), 10 );
-			add_action( 'network_admin_menu', array( $this, 'create_admin_menu' ), 5 );
+
+			require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+
+			if ( is_plugin_active_for_network( GAWP_PATH ) ) {
+				add_action( 'network_admin_menu', array( $this, 'create_admin_menu' ), 5 );
+			}
 		}
 
 		/**
@@ -113,14 +118,16 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 		/**
 		 * Adding stylesheets and based on $is_not_dashboard maybe some more styles and scripts.
 		 *
-		 * @param string $page
+		 * @param string  $page
 		 * @param boolean $is_not_dashboard
 		 */
 		private function add_assets( $page, $is_not_dashboard ) {
-			add_action( 'admin_print_styles-' . $page, array( $this->target_object, 'enqueue_styles' ) );
+			add_action( 'admin_print_styles-' . $page, array( 'Yoast_GA_Admin_Assets', 'enqueue_styles' ) );
 			if ( $is_not_dashboard ) {
-				add_action( 'admin_print_styles-' . $page, array( $this->target_object, 'enqueue_settings_styles' ) );
-				add_action( 'admin_print_scripts-' . $page, array( $this->target_object, 'enqueue_scripts' ) );
+				add_action( 'admin_print_styles-' . $page, array( 'Yoast_GA_Admin_Assets', 'enqueue_settings_styles' ) );
+				add_action( 'admin_print_scripts-' . $page, array( 'Yoast_GA_Admin_Assets', 'enqueue_scripts' ) );
+			} else {
+				Yoast_GA_Admin_Assets::enqueue_dashboard_assets();
 			}
 		}
 

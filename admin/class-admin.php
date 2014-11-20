@@ -35,6 +35,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			add_action( 'plugins_loaded', array( $this, 'init_ga' ) );
 			add_action( 'admin_init', array( $this, 'init_settings' ) );
+
+			Yoast_GA_Dashboards_Graph::get_instance()->initialize_ajax();
 		}
 
 		/**
@@ -158,45 +160,14 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
-		 * Check whether we can include the minified version or not
-		 *
-		 * @param string $ext
-		 *
-		 * @return string
+		 * Adds some promo text for the premium plugin on the custom dimensions tab.
 		 */
-		private function file_ext( $ext ) {
-			if ( ! defined( 'SCRIPT_DEBUG' ) || ! SCRIPT_DEBUG ) {
-				$ext = '.min' . $ext;
-			}
-
-			return $ext;
-		}
-
-		/**
-		 * Add the scripts to the admin head
-		 */
-		public function enqueue_scripts() {
-			wp_enqueue_script( 'jquery-qtip', $this->plugin_url . 'js/jquery.qtip.min.js', array( 'jquery' ), '1.0.0-RC3', true );
-
-			wp_enqueue_script( 'yoast_ga_admin', $this->plugin_url . 'js/yoast_ga_admin' . $this->file_ext( '.js' ) );
-
-			// Eqneue the chosen js file
-			wp_enqueue_script( 'chosen_js', plugins_url( 'js/chosen.jquery.min.js', GAWP_FILE ), array(), false, true );
-		}
-
-		/**
-		 * Add the styles in the admin head
-		 */
-		public function enqueue_styles() {
-			wp_enqueue_style( 'yoast_ga_styles', $this->plugin_url . 'css/yoast_ga_styles' . $this->file_ext( '.css' ) );
-		}
-
-		/**
-		 * Enqueues the settings page specific styles
-		 */
-		public function enqueue_settings_styles() {
-			// Enqueue the chosen css file
-			wp_enqueue_style( 'chosen_css', $this->plugin_url . 'css/chosen' . $this->file_ext( '.css' ) );
+		public function premium_promo() {
+			echo '<p>';
+			printf( __( 'If you want to track custom dimensions, to for instance track page views per author or post type, you should upgrade to the %1$spremium version of Google Analytics by Yoast%2$s.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=text-link&utm_source=gawp-config&utm_campaign=wpgaplugin&utm_content=custom_dimensions_tab">', '</a>' );
+			echo ' ';
+			_e( 'This will also give you email access to the support team at Yoast, who will provide support on the plugin 24/7.', 'google-analytics-for-wordpress' );
+			echo '</p>';
 		}
 
 		/**
@@ -205,6 +176,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function load_page() {
 			global $yoast_ga_admin_ga_js;
 			$yoast_ga_admin_ga_js = new Yoast_GA_Admin_GA_JS;
+
+			if ( ! has_action( 'yst_ga_custom_dimensions_tab-content' ) ) {
+				add_action( 'yst_ga_custom_dimensions_tab-content', array( $this, 'premium_promo' ) );
+			}
 
 			if ( isset( $_GET['page'] ) ) {
 				switch ( $_GET['page'] ) {
@@ -217,6 +192,16 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 						break;
 					case 'yst_ga_dashboard':
 					default:
+
+						$Dashboards = array(
+							'sessions'  => array(
+								'title'      => __('Sessions', 'google-analytics-for-wordpress'),
+								'data-label' =>	__('Number of sessions', 'google-analytics-for-wordpress'),
+							)
+						);
+
+						Yoast_GA_Dashboards_Graph::get_instance()->register($Dashboards);
+
 						require_once( $this->plugin_path . 'admin/pages/dashboard.php' );
 						break;
 				}
@@ -315,7 +300,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * @return string
 		 */
 		private function show_help( $id, $description ) {
-			$help = '<img src="' . plugins_url( 'img/question-mark.png', GAWP_FILE ) . '" class="alignleft yoast_help" id="' . esc_attr( $id . 'help' ) . '" alt="' . esc_attr( $description ) . '" />';
+			$help = '<img src="' . plugins_url( 'assets/img/question-mark.png', GAWP_FILE ) . '" class="alignleft yoast_help" id="' . esc_attr( $id . 'help' ) . '" alt="' . esc_attr( $description ) . '" />';
 
 			return $help;
 		}
@@ -523,29 +508,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Render the admin page footer with sidebar for the GA Plugin
 		 */
 		public function content_footer() {
-			$banners   = array();
-			$banners[] = array(
-				'url'    => 'https://yoast.com/hire-us/website-review/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/banner-website-review.png',
-				'title'  => 'Get a website review by Yoast',
-			);
-			$banners[] = array(
-				'url'    => 'https://yoast.com/wordpress/plugins/seo-premium/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/banner-premium-seo.png',
-				'title'  => 'Get WordPress SEO premium',
-			);
-			$banners[] = array(
-				'url'    => 'https://yoast.com/ebook-optimize-wordpress-site/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/eBook_261x130.png',
-				'title'  => 'Get the Yoast ebook!',
-			);
-			$banners[] = array(
-				'url'    => 'https://yoast.com/wordpress/plugins/local-seo/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/banner-local-seo.png',
-				'title'  => 'Get WooCommerce integrated in your Analytics',
-			);
-
-			shuffle( $banners );
 
 			if ( true == WP_DEBUG ) {
 				// Show the debug information if debug is enabled in the wp_config file
@@ -554,7 +516,39 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				echo '</pre></div></div>';
 			}
 
+			if ( class_exists( 'Yoast_Product_GA_Premium' ) ) {
+				$license_manager = new Yoast_Plugin_License_Manager( new Yoast_Product_GA_Premium() );
+				if ( $license_manager->license_is_valid() ) {
+					return;
+				}
+			}
+
+			$banners   = array();
+			$banners[] = array(
+				'url'    => 'https://yoast.com/hire-us/website-review/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
+				'banner' => $this->plugin_url . 'assets/img/banner-website-review.png',
+				'title'  => 'Get a website review by Yoast',
+			);
+			$banners[] = array(
+				'url'    => 'https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
+				'banner' => $this->plugin_url . 'assets/img/banner-premium-ga.png',
+				'title'  => 'Get the premium version of Google Analytics by Yoast!',
+			);
+			$banners[] = array(
+				'url'    => 'https://yoast.com/ebook-optimize-wordpress-site/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
+				'banner' => $this->plugin_url . 'assets/img/eBook_261x130.png',
+				'title'  => 'Get the Yoast ebook!',
+			);
+			$banners[] = array(
+				'url'    => 'https://yoast.com/wordpress/plugins/ga-ecommerce/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
+				'banner' => $this->plugin_url . 'assets/img/banner-ga-ecommerce.png',
+				'title'  => 'Get advanced eCommerce tracking for WooCommerce and Easy Digital Downloads!',
+			);
+
+			shuffle( $banners );
+
 			require 'views/content-footer.php';
+
 		}
 
 		/**
