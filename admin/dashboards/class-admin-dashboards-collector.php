@@ -70,10 +70,19 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			$access_tokens = $this->options->get_access_token();
 			if ( $access_tokens != false && is_array( $access_tokens ) ) {
 				echo '<pre>';
-				echo 'Access tokens available';
+				$params = array(
+					'ids'        => 'ga:88258906',
+					'start-date' => '2014-10-10',
+					'end-date'   => '2014-11-20',
+					'metrics'    => 'ga:sessions,ga:bounces'
+				);
+				$params = http_build_query( $params );
+
 				$api_ga = Yoast_Googleanalytics_Reporting::instance();
 
-				var_dump( $api_ga->do_request( 'http://googleapis.com', 'https://googleapis.com', $access_tokens['oauth_token'], $access_tokens['oauth_token_secret'] ) );
+				$body = $api_ga->do_request( 'https://www.googleapis.com/analytics/v3/data/ga?' . $params, 'https://www.googleapis.com/analytics/v3/data/ga', $access_tokens['oauth_token'], $access_tokens['oauth_token_secret'] );
+
+				var_dump( json_decode( $body['body'] ) );
 
 				var_dump( $access_tokens ); // ->> WORKS!
 				echo '</pre>';
