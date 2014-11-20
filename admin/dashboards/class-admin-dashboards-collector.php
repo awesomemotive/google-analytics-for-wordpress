@@ -22,11 +22,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		public $valid_types = array( 'sessions', 'bouncerate' );
 
 		/**
-		 * Placeholder for the classes which need to be loaded in the aggregate_data function
+		 * Placeholder for the metrics which need to be loaded in the aggregate_data function
 		 *
 		 * @var array
 		 */
-		public static $aggregator_classes = array();
+		public static $aggregator_metrics = array();
 
 		/**
 		 * Store the options
@@ -64,14 +64,14 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * Fetch the data from Google Analytics and store it
 		 */
 		public function aggregate_data() {
-			$classes  = self::$aggregator_classes;
+			$metrics  = self::$aggregator_metrics;
 			$instance = null;
 
 			$access_tokens = $this->options->get_access_token();
 
 			if ( $access_tokens != false && is_array( $access_tokens ) ) {
 				// Access tokens are set, continue
-				// @TODO loop through all types
+				// @TODO loop through all types @metrics
 				$this->execute_call( $access_tokens, 'sessions', '88258906', '2014-10-10', '2014-11-20' );
 			}
 			else{
@@ -97,48 +97,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				}
 			}
 
-			if ( $valid ) {
-				self::load_valid_types( $types );
-			}
-
 			return $valid;
-		}
-
-		/**
-		 * Load the validated types, to add one go to line 22 of this class
-		 *
-		 * @param $types
-		 */
-		private static function load_valid_types( $types ) {
-			$load = array();
-
-			if ( is_array( $types ) ) {
-				foreach ( $types as $type ) {
-					$include_file = dirname( __FILE__ ) . '/class-admin-dashboards-collector-' . $type . '.php';
-					$class_name   = 'Yoast_GA_Dashboards_Collector_' . ucfirst( $type );
-
-					if ( file_exists( $include_file ) ) {
-						require( $include_file );
-
-						if ( class_exists( $class_name, false ) ) {
-							$load[] = $class_name;
-						}
-					}
-				}
-			}
-
-			if ( is_array( $load ) && count( $load ) >= 1 ) {
-				self::load_on_aggregate( $load );
-			}
-		}
-
-		/**
-		 * Set the valid classes for the aggregation process
-		 *
-		 * @param $classes
-		 */
-		private static function load_on_aggregate( $classes ) {
-			self::$aggregator_classes = $classes;
 		}
 
 		/**
@@ -163,14 +122,15 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			$params = http_build_query( $params );
 			$api_ga = Yoast_Googleanalytics_Reporting::instance();
 
-			$response = $api_ga->do_request( 'https://www.googleapis.com/analytics/v3/data/ga?' . $params, 'https://www.googleapis.com/analytics/v3/data/ga', $access_tokens['oauth_token'], $access_tokens['oauth_token_secret'] );
-			$response['response']['code'] ++;
+			$response = $api_ga->do_api_request( 'https://www.googleapis.com/analytics/v3/data/ga?' . $params, 'https://www.googleapis.com/analytics/v3/data/ga', $access_tokens['oauth_token'], $access_tokens['oauth_token_secret'] );
+
 			if ( is_array( $response ) && $response['response']['code'] == 200 ) {
 				// Success, store this data
 
 				return Yoast_GA_Dashboards_Data::set( $metric, $response );
 			} else {
 				// Failure on API call try to log it
+
 				if ( true == WP_DEBUG ) {
 					if ( function_exists( 'error_log' ) ) {
 						error_log( 'Yoast Google Analytics (Dashboard API): ' . print_r( $response['body_raw'], true ) );

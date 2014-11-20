@@ -84,10 +84,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
 
-			$this->dashboards      = new Yoast_GA_Dashboards();
-			$this->dashboards_data = $this->dashboards->data();
-
-			Yoast_GA_Dashboards::register( array('sessions', 'bouncerate') );
+			// Load the Google Analytics Dashboards functionality
+			$dashboards = Yoast_GA_Dashboards::instance();
+			$dashboards->init_dashboards();
 		}
 
 		/**
