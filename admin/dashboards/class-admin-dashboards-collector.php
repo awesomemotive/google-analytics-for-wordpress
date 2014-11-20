@@ -12,38 +12,25 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		public $api;
 
 		/**
-		 * Set the valid types here. Make sure you create a class with the following naming convention:
-		 * admin/dashboards/class-admin-dashboards-collector-TYPENAME.php
-		 *
-		 * TYPENAME is the type name written in lowercase
-		 *
-		 * @var array
-		 */
-		public $valid_types = array( 'sessions', 'bouncerate' );
-
-		/**
-		 * Placeholder for the metrics which need to be loaded in the aggregate_data function
-		 *
-		 * @var array
-		 */
-		public static $aggregator_metrics = array();
-
-		/**
-		 * Store the options
+		 * Store the active metrics
 		 *
 		 * @var
 		 */
-		private $options;
+		public $active_metrics;
 
 		/**
 		 * Store the API libs
+		 *
+		 * @package
 		 */
 		public $api_libs;
 
 		/**
 		 * Construct on the dashboards class for GA
 		 */
-		public function __construct() {
+		public function __construct( $active_metrics ) {
+			$this->active_metrics = $active_metrics;
+
 			$this->options = Yoast_GA_Dashboards_Api_Options::instance();
 
 			$this->init_shutdown_hook();
@@ -64,40 +51,19 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * Fetch the data from Google Analytics and store it
 		 */
 		public function aggregate_data() {
-			$metrics  = self::$aggregator_metrics;
 			$instance = null;
 
 			$access_tokens = $this->options->get_access_token();
 
 			if ( $access_tokens != false && is_array( $access_tokens ) ) {
 				// Access tokens are set, continue
-				// @TODO loop through all types @metrics
-				$this->execute_call( $access_tokens, 'sessions', '88258906', '2014-10-10', '2014-11-20' );
-			}
-			else{
+
+				foreach ( $this->active_metrics as $metric ) {
+					$this->execute_call( $access_tokens, $metric, '88258906', '2014-10-10', '2014-11-20' );
+				}
+			} else {
 				// Failure on authenticating, please reauthenticate
 			}
-		}
-
-		/**
-		 * Validate the registered types of dashboards
-		 *
-		 * @param $types
-		 *
-		 * @return bool
-		 */
-		public static function validate_dashboard_types( $types ) {
-			$valid = true;
-
-			if ( is_array( $types ) ) {
-				foreach ( $types as $check_type ) {
-					if ( ! in_array( $check_type, $types ) ) {
-						$valid = false;
-					}
-				}
-			}
-
-			return $valid;
 		}
 
 		/**
