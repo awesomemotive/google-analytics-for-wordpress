@@ -11,7 +11,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		public function __construct() {
 
 			$this->options    = Yoast_GA_Options::instance()->options;
-			$this->link_regex = '/<a (.*?)href=[\'\"](.*?):\/*([^\'\"]+?)[\'\"](.*?)>(.*?)<\/a>/i';
+			$this->link_regex = $this->get_regex();
 
 			add_action( 'wp_head', array( $this, 'tracking' ), 8 );
 
