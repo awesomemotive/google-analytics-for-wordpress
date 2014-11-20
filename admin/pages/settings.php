@@ -109,11 +109,10 @@ echo $yoast_ga_admin->create_form( 'settings' );
 		echo '<h2>' . __( 'Debug settings', 'google-analytics-for-wordpress' ) . '</h2>';
 
 		echo '<div id="ga-promote">';
-		echo '<p class="ga-topdescription">' . __( 'If you want to confirm that tracking on your blog is working as it should, enable these options and check the console in Firebug (for Firefox), Firebug Lite (for other browsers) or Chrome & Safari\'s Web Inspector. Be absolutely sure to disable debugging afterwards, as it is slower than normal tracking.', 'google-analytics-for-wordpress' ) . '</p>';
-		echo '<p class="ga-topdescription"><strong>' . __( 'Note', 'google-analytics-for-wordpress' ) . ':</strong> ' . __( 'the debugging and firebug scripts are only loaded for admins.', 'google-analytics-for-wordpress' ) . '</p>';
+		echo '<p class="ga-topdescription">' . __( 'If you want to confirm that tracking on your blog is working as it should, enable this option and check the console of your browser. Be absolutely sure to disable debugging afterwards, as it is slower than normal tracking.', 'google-analytics-for-wordpress' ) . '</p>';
+		echo '<p class="ga-topdescription"><strong>' . __( 'Note', 'google-analytics-for-wordpress' ) . ':</strong> ' . __( 'the debugging scripts is only loaded for admins.', 'google-analytics-for-wordpress' ) . '</p>';
 		echo '</div>';
 		echo $yoast_ga_admin->input( 'checkbox', __( 'Enable debug mode', 'google-analytics-for-wordpress' ), 'debug_mode' );
-		echo $yoast_ga_admin->input( 'checkbox', __( 'Enable Firebug Lite', 'google-analytics-for-wordpress' ), 'firebug_lite' );
 		?>
 	</div>
 </div>
