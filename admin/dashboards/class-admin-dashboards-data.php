@@ -4,6 +4,8 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 
 	class Yoast_GA_Dashboards_Data extends Yoast_GA_Dashboards {
 
+		private static $store_transient_time = DAY_IN_SECONDS;
+
 		public function __construct() {
 
 		}
@@ -20,9 +22,17 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 		public static function get( $type, $startdate, $enddate ) {
 			$data  = array();
 			$range = self::date_range( $startdate, $enddate );
+			$transient = get_transient( 'yst_ga_' . $type );
 
 			foreach ( $range as $date ) {
-				$data[strtotime( $date )] = rand( 5, 50 );
+				$date_unix = strtotime( $date );
+				$data[ $date_unix ] = 0; // Set default value
+
+				foreach($transient['value']['body'] as $value){
+					if( $date_unix == $value['date'] ){
+						$data[ $date_unix ] = $value['value'];
+					}
+				}
 			}
 
 			return $data;
@@ -33,11 +43,20 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 		 *
 		 * @param $type
 		 * @param $value
+		 * @param $start_date
+		 * @param $end_date
 		 *
 		 * @return bool
 		 */
-		public static function set( $type, $value ) {
-			return true;
+		public static function set( $type, $value, $start_date, $end_date ) {
+			$store = array(
+				'type'       => $type,
+				'start_date' => $start_date,
+				'end_date'   => $end_date,
+				'value'      => $value,
+			);
+
+			return set_transient( 'yst_ga_' . $type, $store, self::$store_transient_time );
 		}
 
 		/**

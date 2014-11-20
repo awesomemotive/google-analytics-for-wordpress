@@ -93,7 +93,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			if ( is_array( $response ) && $response['response']['code'] == 200 ) {
 				// Success, store this data
 
-				return Yoast_GA_Dashboards_Data::set( $metric, $response );
+				return Yoast_GA_Dashboards_Data::set( $metric, $response, strtotime( $start_date ), strtotime( $end_date ) );
 			} else {
 				// Failure on API call try to log it
 
