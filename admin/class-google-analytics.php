@@ -14,6 +14,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		private static $instance = null;
 
 		public function __construct() {
+
 			if ( is_null( self::$instance ) ) {
 				self::$instance = $this;
 			}
@@ -84,7 +85,6 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 * @return array
 		 */
 		public function get_profiles() {
-
 			$return   = array();
 			$response = $this->do_request( 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles', 'https://www.googleapis.com/auth/analytics.readonly' );
 
@@ -329,7 +329,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @return mixed
 		 */
-		public function get_options() {
+		protected function get_options() {
 			return get_option( $this->option_name );
 		}
 
