@@ -43,16 +43,27 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		 * Construct on the dashboards class for GA
 		 */
 		public function __construct() {
-			$this->init_dashboards();
+
 		}
 
 		/**
 		 * Init the dashboards
 		 */
-		private function init_dashboards() {
+		public function init_dashboards() {
+			$Dashboards = array(
+				'sessions'  => array(
+					'title'      => __('Sessions', 'google-analytics-for-wordpress'),
+					'data-label' =>	__('Number of sessions', 'google-analytics-for-wordpress'),
+				)
+			);
+			// @TODO enable this after merging to features/dashboards
+			//Yoast_GA_Dashboards_Graph::get_instance()->register($Dashboards);
+
 			$this->data = new Yoast_GA_Dashboards_Data;
 
 			$this->aggregator = new Yoast_GA_Dashboards_Collector;
+
+			$this->register( array('sessions', 'bouncerate') );
 		}
 
 		/**
@@ -84,14 +95,15 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		 *
 		 * @return bool
 		 */
-		public static function register( $types ) {
+		public function register( $types ) {
 			if ( is_array( $types ) == false ) {
 				$types = array( $types );
 			}
 
 			if ( is_array( $types ) && count( $types ) >= 1 ) {
 				if ( Yoast_GA_Dashboards_Collector::validate_dashboard_types( $types ) ) {
-					return set_transient( 'yst_ga_dashboard_types', $types, 12 * HOUR_IN_SECONDS );
+					echo 'Register: ' . print_r($types, true);
+					//return set_transient( 'yst_ga_dashboard_types', $types, 12 * HOUR_IN_SECONDS );
 				}
 			}
 
