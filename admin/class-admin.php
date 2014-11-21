@@ -81,7 +81,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			$this->connect_with_google_analytics();
 
-
 			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
 
 			// Load the Google Analytics Dashboards functionality
