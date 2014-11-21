@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 			},
 			css: 'css/',
 			grunt: 'grunt/',
-			images: 'images/',
+			images: 'img/',
 			js: 'js/',
 			languages: 'languages/',
 			logs: 'logs/'
@@ -30,7 +30,8 @@ module.exports = function(grunt) {
 				'*.php',
 				'admin/**/*.php',
 				'frontend/**/*.php',
-				'inc/**/*.php'
+				'includes/**/*.php',
+				'premium/**/*.php',
 			],
 			phptests: 'tests/**/*.php',
 			get config() {
