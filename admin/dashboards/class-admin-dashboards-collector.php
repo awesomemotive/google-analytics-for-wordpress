@@ -32,7 +32,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * @param $active_metrics
 		 */
 		public function __construct( $ga_profile_id, $active_metrics ) {
-			$this->ga_profile_id = $ga_profile_id;
+			$this->ga_profile_id  = $ga_profile_id;
 			$this->active_metrics = $active_metrics;
 
 			$this->options = Yoast_GA_Dashboards_Api_Options::instance();
@@ -44,10 +44,14 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * This hook runs on the shutdown to fetch data from GA
 		 */
 		private function init_shutdown_hook() {
-			if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
-				$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
+			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
+			add_action( 'wp_login', array( $this, 'aggregate_data' ), 30 );
 
-				add_action( 'shutdown', array( $this, 'aggregate_data' ) );
+			if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
+				if ( isset( $_GET['page'] ) && ( $_GET['page'] == 'yst_ga_dashboard' || $_GET['page'] == 'yst_ga_settings' || $_GET['page'] == 'yst_ga_extensions' ) ) {
+					add_action( 'shutdown', array( $this, 'aggregate_data' ), 10 );
+					return;
+				}
 			}
 		}
 
