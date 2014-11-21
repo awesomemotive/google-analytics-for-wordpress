@@ -4,6 +4,7 @@
 	zoom: 1;
 	position: relative;
 	font-size: 13px;
+
 	*display: inline;
 }
 
@@ -17,6 +18,7 @@
 	background: #fff;
 	box-shadow: 0 4px 5px rgba(0,0,0,0.15);
 }
+
 /* @end */
 
 /* @group Single Chosen */
@@ -36,6 +38,7 @@
 	line-height: 24px;
 	white-space: nowrap;
 	text-decoration: none;
+
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=0 );
 }
 
@@ -50,6 +53,7 @@
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	-ms-text-overflow: ellipsis;
+
 	-o-text-overflow: ellipsis;
 }
 
@@ -111,6 +115,7 @@
 	border-radius: 0 0 4px 4px;
 	background-clip: padding-box;
 }
+
 /* @end */
 
 .chzn-container-single-nosearch .chzn-search input {
@@ -173,6 +178,7 @@
 	box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05);
 	line-height: 13px;
 	cursor: default;
+
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#eeeeee', GradientType=0 );
 }
 
@@ -182,6 +188,7 @@
 	color: #666;
 	background-color: #e4e4e4;
 	background-image: linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eee 100%);
+
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#eeeeee', GradientType=0 );
 }
 
@@ -207,6 +214,7 @@
 .chzn-container-multi .chzn-choices .search-choice-focus .search-choice-close {
 	background-position: -42px -10px;
 }
+
 /* @end */
 
 /* @group Results */
@@ -217,6 +225,7 @@
 	max-height: 240px;
 	margin: 0 4px 4px 0;
 	padding: 0 0 0 4px;
+
 	-webkit-overflow-scrolling: touch;
 }
 
@@ -242,6 +251,7 @@
 	color: #fff;
 	background-color: #3875d7;
 	background-image: linear-gradient(#3875d7 20%, #2a62bc 90%);
+
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3875d7', endColorstr='#2a62bc', GradientType=0 );
 }
 
@@ -277,7 +287,7 @@
 	position: absolute;
 	z-index: 1;
 	width: 321px;
- /* This should by dynamic with js */
+	/* This should by dynamic with js */
 	margin: 0 4px;
 	background: white;
 	text-align: center;
@@ -301,6 +311,7 @@
 .chzn-container .chzn-results-scroll-up span {
 	background: url("../img/chosen-sprite.png") no-repeat -22px -3px;
 }
+
 /* @end */
 
 /* @group Active  */
@@ -316,6 +327,7 @@
 	background-color: #eee;
 	background-image: linear-gradient(#eee 20%, #fff 80%);
 	box-shadow: 0 1px 0 #fff inset;
+
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0 );
 }
 
@@ -336,6 +348,7 @@
 .chzn-container-active .chzn-choices .search-field input {
 	color: #111 !important;
 }
+
 /* @end */
 
 /* @group Disabled Support */
@@ -365,6 +378,7 @@
 .chzn-rtl .chzn-single span {
 	margin-right: 0;
 	margin-left: 26px;
+
 	direction: rtl;
 }
 
@@ -414,6 +428,7 @@
 	padding: 4px 5px 4px 20px;
 	background: #fff url("../img/chosen-sprite.png") no-repeat -30px -20px;
 	background: url("../img/chosen-sprite.png") no-repeat -30px -20px, linear-gradient(#eee 1%, #fff 15%);
+
 	direction: rtl;
 }
 
@@ -424,14 +439,22 @@
 .chzn-container-single.chzn-rtl .chzn-single-with-drop div b {
 	background-position: -12px 2px;
 }
+
 /* @end */
 
 /* @group Retina compatibility */
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 144dpi) {
-	.chzn-rtl .chzn-search input, .chzn-container-single .chzn-single abbr, .chzn-container-single .chzn-single div b, .chzn-container-single .chzn-search input, .chzn-container-multi .chzn-choices .search-choice .search-choice-close, .chzn-container .chzn-results-scroll-down span, .chzn-container .chzn-results-scroll-up span {
+	.chzn-rtl .chzn-search input,
+	.chzn-container-single .chzn-single abbr,
+	.chzn-container-single .chzn-single div b,
+	.chzn-container-single .chzn-search input,
+	.chzn-container-multi .chzn-choices .search-choice .search-choice-close,
+	.chzn-container .chzn-results-scroll-down span,
+	.chzn-container .chzn-results-scroll-up span {
 		background-image: url("../img/chosen-sprite@2x.png") !important;
 		background-repeat: no-repeat !important;
 		background-size: 52px 37px !important;
 	}
 }
+
 /* @end */
