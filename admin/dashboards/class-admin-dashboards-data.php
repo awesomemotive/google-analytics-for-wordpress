@@ -24,6 +24,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 			$range = self::date_range( $startdate, $enddate );
 			$transient = get_transient( 'yst_ga_' . $type );
 
+			if ( false === $transient ) {
+				// Transient does not exist, abort
+				return array();
+			}
+
 			foreach ( $range as $date ) {
 				$date_unix = strtotime( $date );
 				$data[ $date_unix ] = 0; // Set default value
