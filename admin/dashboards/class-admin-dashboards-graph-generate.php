@@ -90,7 +90,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 		 */
 		private function set_graph_type() {
 			$graph_id         = filter_input( INPUT_GET, 'graph_id' );
-			$graph_type       = substr( 'graph-', $graph_id );
+			$graph_type       = str_replace( 'graph-', '', $graph_id);
 			$this->graph_type = $graph_type;
 		}
 

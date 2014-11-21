@@ -172,7 +172,7 @@ jQuery.fn.extend (
 										color: 'steelblue',
 										data : this.data
 									}],
-									renderer : 'line',
+									renderer : 'area',
 									padding : {
 										top    : 0.05,
 										left   : 0,
