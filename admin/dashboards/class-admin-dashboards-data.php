@@ -4,6 +4,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 
 	class Yoast_GA_Dashboards_Data extends Yoast_GA_Dashboards {
 
+		/**
+		 * The time to store a transient (in seconds)
+		 *
+		 * @var int
+		 */
 		private static $store_transient_time = DAY_IN_SECONDS;
 
 		public function __construct() {
