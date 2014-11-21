@@ -19,20 +19,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		public $data;
 
 		/**
-		 * Get the options
-		 *
-		 * @var
-		 */
-		public $options;
-
-		/**
-		 * Store the access token
-		 *
-		 * @var
-		 */
-		public $access_token;
-
-		/**
 		 * Store the active metrics
 		 *
 		 * @var
