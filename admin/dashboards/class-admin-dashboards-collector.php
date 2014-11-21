@@ -26,13 +26,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		public $ga_profile_id;
 
 		/**
-		 * Store the API libs
-		 *
-		 * @package
-		 */
-		public $api_libs;
-
-		/**
 		 * Construct on the dashboards class for GA
 		 *
 		 * @param $ga_profile_id
