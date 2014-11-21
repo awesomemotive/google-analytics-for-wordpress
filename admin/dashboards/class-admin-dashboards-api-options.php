@@ -37,6 +37,13 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Api_Options' ) ) {
 		public function set_options() {
 			$this->options = Yoast_Google_Analytics::instance()->get_options();
 
+			$this->set_access_token();
+		}
+
+		/**
+		 * Set the access token if we have one
+		 */
+		private function set_access_token() {
 			if ( isset( $this->options['ga_oauth']['access_token']['oauth_token'] ) && isset( $this->options['ga_oauth']['access_token']['oauth_token_secret'] ) ) {
 				$this->access_token = $this->options['ga_oauth']['access_token'];
 			}
@@ -59,8 +66,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Api_Options' ) ) {
 		public function get_access_token() {
 			if ( ! empty( $this->access_token ) ) {
 				return $this->access_token;
-			}
-			else{
+			} else {
 				return false;
 			}
 		}
