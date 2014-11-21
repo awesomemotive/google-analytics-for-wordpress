@@ -114,7 +114,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 					$this->active_metrics = $types;
 
 					return true;
-					//return set_transient( 'yst_ga_dashboard_types', $types, 12 * HOUR_IN_SECONDS );
 				}
 			}
 
