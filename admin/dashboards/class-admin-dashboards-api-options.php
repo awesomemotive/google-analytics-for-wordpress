@@ -12,6 +12,20 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Api_Options' ) ) {
 		private static $instance = null;
 
 		/**
+		 * Store the access token
+		 *
+		 * @var
+		 */
+		private $access_token;
+
+		/**
+		 * Store the options
+		 *
+		 * @var
+		 */
+		private $options;
+
+		/**
 		 * Construct on the dashboards class for GA
 		 */
 		public function __construct() {
