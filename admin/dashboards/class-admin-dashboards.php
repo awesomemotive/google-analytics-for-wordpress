@@ -40,11 +40,13 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		public $active_metrics;
 
 		/**
-		 * Store the valid metrics which are available in the Google API
+		 * Store the valid metrics which are available in the Google API, more can be added
 		 *
 		 * @var array
+		 *
+		 * @link https://ga-dev-tools.appspot.com/explorer/
 		 */
-		private $valid_metrics = array( 'sessions', 'bouncerate' );
+		private $valid_metrics = array( 'sessions', 'bounces', 'users', 'newUsers', 'percentNewSessions', 'bounceRate', 'sessionDuration', 'avgSessionDuration', 'hits' );
 
 		/**
 		 * Store this instance
