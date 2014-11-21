@@ -7,7 +7,7 @@ module.exports = {
 			// processed and put inside the images folder
 			cwd: '<%= paths.images %>',
 			src: ['*.*'],
-			dest: 'images',
+			dest: '<%= paths.images %>',
 			isFile: true
 		}]
 	}
