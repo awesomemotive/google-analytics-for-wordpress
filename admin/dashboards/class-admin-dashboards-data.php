@@ -1,8 +1,16 @@
 <?php
 
+/**
+ * This class is used to store and get the data of the dashboards. The data is aggregated by
+ * the class-admin-dashboards-collector.php and saved with Yoast_GA_Dashboards_Data::set().
+ *
+ * You can retrieve the data by using the function Yoast_GA_Dashboards_Data::get() in this
+ * class.
+ */
+
 if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 
-	class Yoast_GA_Dashboards_Data extends Yoast_GA_Dashboards {
+	class Yoast_GA_Dashboards_Data {
 
 		/**
 		 * The time to store a transient (in seconds)
