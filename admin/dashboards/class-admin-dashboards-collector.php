@@ -72,7 +72,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * Fetch the data from Google Analytics and store it
 		 */
 		public function aggregate_data() {
-			$instance = null;
 			$access_tokens = $this->options->get_access_token();
 
 			if ( $access_tokens != false && is_array( $access_tokens ) ) {
