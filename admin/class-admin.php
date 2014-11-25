@@ -86,8 +86,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			// Load the Google Analytics Dashboards functionality
 			$dashboards = Yoast_GA_Dashboards::instance();
 			$dashboards->init_dashboards( $this->get_current_profile() );
-
-		//	print_r( Yoast_GA_Dashboards_Data::get( 'sessions', strtotime( '2014-11-10' ), strtotime( '2014-11-20' ) ) );
 		}
 
 		/**
