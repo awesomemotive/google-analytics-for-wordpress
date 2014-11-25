@@ -28,7 +28,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Api_Options' ) ) {
 		/**
 		 * Construct on the dashboards class for GA
 		 */
-		public function __construct() {
+		protected function __construct() {
 			$this->set_options();
 		}
 
