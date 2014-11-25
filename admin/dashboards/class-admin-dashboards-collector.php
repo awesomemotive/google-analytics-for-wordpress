@@ -35,7 +35,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			$this->ga_profile_id  = $ga_profile_id;
 			$this->active_metrics = $active_metrics;
 
-			$this->options = Yoast_GA_Dashboards_Api_Options::instance();
+			$this->options = Yoast_GA_Dashboards_Api_Options::get_instance();
 
 			$this->init_shutdown_hook();
 		}
