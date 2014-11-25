@@ -80,7 +80,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		 *
 		 * @return Yoast_GA_Dashboards
 		 */
-		public static function instance() {
+		public static function get_instance() {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
 			}

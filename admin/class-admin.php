@@ -70,7 +70,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
 
 			// Load the Google Analytics Dashboards functionality
-			$dashboards = Yoast_GA_Dashboards::instance();
+			$dashboards = Yoast_GA_Dashboards::get_instance();
 			$dashboards->init_dashboards( $this->get_current_profile() );
 		}
 
