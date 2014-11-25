@@ -57,7 +57,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 */
 		private function init_shutdown_hook() {
 			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
-			add_action( 'wp_login', array( $this, 'aggregate_data' ), 30 );
 
 			if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
 				if ( $this->run_shutdown_hook_get() || $this->run_shutdown_hook_page() ) {
