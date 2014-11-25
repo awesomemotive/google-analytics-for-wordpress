@@ -52,7 +52,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		 * Init the dashboards
 		 */
 		public function init_dashboards( $ga_profile_id ) {
-			$Dashboards = array(
+			$dashboards = array(
 				'sessions' => array(
 					'title'      => __( 'Sessions', 'google-analytics-for-wordpress' ),
 					'data-label' => __( 'Number of sessions', 'google-analytics-for-wordpress' ),
@@ -61,17 +61,14 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 
 			// Register the active metrics
 			$register = array();
-			foreach( $Dashboards as $metric => $value ){
+			foreach( $dashboards as $metric => $value ){
 				$register[] = $metric;
 			}
 
 			// @TODO enable this after merging to features/dashboards
 			//Yoast_GA_Dashboards_Graph::get_instance()->register($Dashboards);
 
-			$this->data = new Yoast_GA_Dashboards_Data;
-
 			$this->aggregator = new Yoast_GA_Dashboards_Collector( $ga_profile_id, $register );
-
 			$this->register( $register );
 		}
 
@@ -86,15 +83,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 			}
 
 			return self::$instance;
-		}
-
-		/**
-		 * Get the data instance
-		 *
-		 * @return Yoast_GA_Dashboards_Data
-		 */
-		public function data() {
-			return $this->data;
 		}
 
 		/**
