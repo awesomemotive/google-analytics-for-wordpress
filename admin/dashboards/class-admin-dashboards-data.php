@@ -19,10 +19,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 		 */
 		private static $store_transient_time = DAY_IN_SECONDS;
 
-		public function __construct() {
-
-		}
-
 		/**
 		 * Get a data object
 		 *
