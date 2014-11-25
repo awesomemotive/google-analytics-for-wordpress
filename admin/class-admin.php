@@ -16,20 +16,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public $api;
 
-		/**
-		 * Store the API dashboards class
-		 *
-		 * @var
-		 */
-		public $dashboards;
-
-		/**
-		 * Store the API dashboards data class
-		 *
-		 * @var
-		 */
-		public $dashboards_data;
-
 		public function __construct() {
 			parent::__construct();
 
