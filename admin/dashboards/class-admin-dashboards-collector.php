@@ -26,6 +26,18 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		public $ga_profile_id;
 
 		/**
+		 * The $_GET pages where the shutdown hook should be executed to aggregate data
+		 *
+		 * @var array
+		 */
+		private $shutdown_get_pages = array( 'yst_ga_dashboard', 'yst_ga_settings', 'yst_ga_extensions' );
+
+		/**
+		 * The $_SERVER['SCRIPT_NAME'] pages where the shutdown hook should be executed to aggregate data
+		 */
+		private $shutdown_pages = array( '/wp-admin/index.php' );
+
+		/**
 		 * Construct on the dashboards class for GA
 		 *
 		 * @param $ga_profile_id
@@ -48,8 +60,9 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			add_action( 'wp_login', array( $this, 'aggregate_data' ), 30 );
 
 			if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
-				if ( isset( $_GET['page'] ) && ( $_GET['page'] == 'yst_ga_dashboard' || $_GET['page'] == 'yst_ga_settings' || $_GET['page'] == 'yst_ga_extensions' ) ) {
+				if ( $this->run_shutdown_hook_get() || $this->run_shutdown_hook_page() ) {
 					add_action( 'shutdown', array( $this, 'aggregate_data' ), 10 );
+
 					return;
 				}
 			}
@@ -60,7 +73,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 */
 		public function aggregate_data() {
 			$instance = null;
-
 			$access_tokens = $this->options->get_access_token();
 
 			if ( $access_tokens != false && is_array( $access_tokens ) ) {
@@ -72,6 +84,32 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			} else {
 				// Failure on authenticating, please reauthenticate
 			}
+		}
+
+		/**
+		 * Check if the shutdown hook should be ran on the GET var
+		 *
+		 * @return bool
+		 */
+		private function run_shutdown_hook_get() {
+			if ( isset( $_GET['page'] ) && in_array( $_GET['page'], $this->shutdown_get_pages ) ) {
+				return true;
+			}
+
+			return false;
+		}
+
+		/**
+		 * Check if the shutdown hook should be ran on this page
+		 *
+		 * @return bool
+		 */
+		private function run_shutdown_hook_page() {
+			if ( isset( $_SERVER['SCRIPT_NAME'] ) && in_array( $_SERVER['SCRIPT_NAME'], $this->shutdown_pages ) ) {
+				return true;
+			}
+
+			return false;
 		}
 
 		/**
