@@ -84,6 +84,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function save_settings( $data ) {
 			foreach ( $data as $key => $value ) {
 				if ( $key != 'return_tab' ) {
+					if ( $key != 'custom_code' ) {
+						$value = strip_tags( $value );
+					}
 					$this->options[$key] = $value;
 				}
 			}
@@ -206,6 +209,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					'register_url '  => 'http://translate.yoast.com/projects#utm_source=plugin&utm_medium=promo-box&utm_campaign=yoast-ga-i18n-promo',
 				)
 			);
+
 			return $yoast_ga_i18n;
 		}
 
