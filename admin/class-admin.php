@@ -84,7 +84,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function save_settings( $data ) {
 			foreach ( $data as $key => $value ) {
 				if ( $key != 'return_tab' ) {
-					if ( $key != 'custom_code' ) {
+					if ( $key != 'custom_code' && ! is_array( $value ) ) {
 						$value = strip_tags( $value );
 					}
 					$this->options[$key] = $value;
