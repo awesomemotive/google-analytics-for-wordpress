@@ -85,8 +85,9 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 * @return array
 		 */
 		public function get_profiles() {
-
 			$return   = array();
+			$accounts = $this->format_accounts_call( $this->do_request( 'https://www.googleapis.com/analytics/v3/management/accounts/~all/webproperties', 'https://www.googleapis.com/auth/analytics.readonly' ) );
+
 			$response = $this->do_request( 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles', 'https://www.googleapis.com/auth/analytics.readonly' );
 
 			if ( $response ) {
@@ -96,6 +97,31 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 			}
 
 			return $return;
+		}
+
+		/**
+		 * Format the accounts request
+		 *
+		 * @param $response
+		 *
+		 * @return array
+		 */
+		private function format_accounts_call( $response ) {
+			if ( isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
+				$body = json_decode( $response['body'] );
+
+				if ( is_array( $body->items ) ) {
+					$accounts = array();
+
+					foreach ( $body->items as $item ) {
+						$accounts[(string) $item->id] = (string) $item->name;
+					}
+
+					return $accounts;
+				}
+			}
+
+			return array();
 		}
 
 		/**
