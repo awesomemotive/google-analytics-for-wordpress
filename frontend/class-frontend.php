@@ -54,7 +54,7 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 			}
 
 			if ( isset( $this->options['ignore_users'] ) ) {
-				if ( in_array( $current_user->roles[0], $this->options['ignore_users'] ) ) {
+				if ( ! empty( $current_user->roles ) && in_array( $current_user->roles[0], $this->options['ignore_users'] ) ) {
 					return false;
 				} else {
 					return true;
