@@ -85,17 +85,43 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 * @return array
 		 */
 		public function get_profiles() {
-
 			$return   = array();
+			$accounts = $this->format_accounts_call( $this->do_request( 'https://www.googleapis.com/analytics/v3/management/accounts/~all/webproperties', 'https://www.googleapis.com/auth/analytics.readonly' ) );
+
 			$response = $this->do_request( 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles', 'https://www.googleapis.com/auth/analytics.readonly' );
 
 			if ( $response ) {
-				$this->save_profile_response( $response );
+				$this->save_profile_response( $response, $accounts );
 
 				$return = $this->parse_profile_response( $response );
 			}
 
 			return $return;
+		}
+
+		/**
+		 * Format the accounts request
+		 *
+		 * @param $response
+		 *
+		 * @return array
+		 */
+		private function format_accounts_call( $response ) {
+			if ( isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
+				$body = json_decode( $response['body'] );
+
+				if ( is_array( $body->items ) ) {
+					$accounts = array();
+
+					foreach ( $body->items as $item ) {
+						$accounts[(string) $item->id] = (string) $item->name;
+					}
+
+					return $accounts;
+				}
+			}
+
+			return array();
 		}
 
 		/**
@@ -212,8 +238,10 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @param $response
 		 */
-		protected function save_profile_response( $response ) {
-			$this->options['ga_api_response'] = $response;
+		protected function save_profile_response( $response, $accounts ) {
+			$this->options['ga_api_response']          = $response;
+			$this->options['ga_api_response_accounts'] = $accounts;
+
 			$this->update_options();
 		}
 
@@ -247,10 +275,16 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 					}
 
 					foreach ( $ga_accounts as $key => $ga_account ) {
-						$return[] = array(
+						$tmp_array = array(
 							'id'   => $ga_account['ua'],
 							'name' => $ga_account['title'] . ' (' . $ga_account['ua'] . ')',
 						);
+
+						if ( isset( $this->options['ga_api_response_accounts'][$ga_account['ua']] ) ) {
+							$tmp_array['parent_name'] = $this->options['ga_api_response_accounts'][$ga_account['ua']];
+						}
+
+						$return[] = $tmp_array;
 					}
 				}
 			} catch ( Exception $e ) {
