@@ -75,7 +75,7 @@ class Yoast_Google_Analytics_Test extends GA_UnitTestCase {
 		$stub = $this->getMock( 'Yoast_Google_Analytics', array( 'do_request' ) );
 
 		// Configure the stub.
-		$stub->expects( $this->once() )
+		$stub->expects( $this->exactly(2) )
 			->method( 'do_request' );
 
 		$stub->get_profiles();
