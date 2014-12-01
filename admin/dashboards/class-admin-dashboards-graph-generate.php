@@ -211,7 +211,12 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 		}
 
 		/**
+		 * Calculate the Y-mapping
 		 *
+		 * Will use start and endpoint to display 10 grid lines with values
+		 *
+		 * @param integer $min_value
+		 * @param integer $max_value
 		 */
 		private function calculate_y_mapping( $min_value, $max_value ) {
 
@@ -233,9 +238,16 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 				}
 			}
 
-
 		}
 
+		/**
+		 * Getting the closest number
+		 *
+		 * @param      $number
+		 * @param bool $down_scale
+		 *
+		 * @return int
+		 */
 		private function get_closest_number( $number, $down_scale = false ) {
 
 			$numbers = array( 0, 50, 100, 150, 250, 500, 750, 1000, 5000, 10000, 50000, 10000 );
@@ -252,7 +264,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 				}
 
 				$previous_number = $close_number;
-
 
 			}
 
