@@ -69,7 +69,8 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 				$register[] = $metric;
 			}
 
-			// @TODO enable this after merging to features/dashboards
+			// Initialize the dashboard graphs
+			Yoast_GA_Dashboards_Graph::get_instance()->initialize_ajax();
 			Yoast_GA_Dashboards_Graph::get_instance()->register($dashboards);
 
 			$this->aggregator = new Yoast_GA_Dashboards_Collector( $ga_profile_id, $register );

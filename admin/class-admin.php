@@ -21,8 +21,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			add_action( 'plugins_loaded', array( $this, 'init_ga' ) );
 			add_action( 'admin_init', array( $this, 'init_settings' ) );
-
-			Yoast_GA_Dashboards_Graph::get_instance()->initialize_ajax();
 		}
 
 		/**
@@ -198,15 +196,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 						break;
 					case 'yst_ga_dashboard':
 					default:
-
-						$Dashboards = array(
-							'sessions'  => array(
-								'title'      => __('Sessions', 'google-analytics-for-wordpress'),
-								'data-label' =>	__('Number of sessions', 'google-analytics-for-wordpress'),
-							)
-						);
-
-						Yoast_GA_Dashboards_Graph::get_instance()->register($Dashboards);
 
 						require_once( $this->plugin_path . 'admin/pages/dashboard.php' );
 						break;
