@@ -85,6 +85,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph' ) ) {
 		 * Will echo json for graph
 		 */
 		public static function get_graph_data() {
+			check_ajax_referer( 'yoast-ga-dashboard-nonce', '_ajax_nonce' );
 
 			$graph = new Yoast_GA_Dashboards_Graph_Generate();
 			$json  = $graph->get_json();
