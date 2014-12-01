@@ -190,6 +190,13 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 				}
 			}
 
+			// 5.1.2+ Remove firebug_lite from options, if set
+			if ( ! isset ( $this->options['version']) || version_compare( $this->options['version'], '5.1.2', '<') ) {
+				if ( isset( $this->options['firebug_lite'] ) ) {
+					unset( $this->options['firebug_lite'] );
+				}
+			}
+
 			// Check is API option already exists - if not add it
 			$yst_ga_api = get_option( 'yst_ga_api' );
 			if ( $yst_ga_api === false ) {
@@ -238,7 +245,6 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 					'add_allow_linker'           => 0,
 					'custom_code'                => null,
 					'debug_mode'                 => 0,
-					'firebug_lite'               => 0,
 				)
 			);
 

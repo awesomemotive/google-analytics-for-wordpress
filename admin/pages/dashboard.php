@@ -3,7 +3,7 @@ global $yoast_ga_admin;
 
 echo $yoast_ga_admin->content_head();
 ?>
-	<h2 id="yoast_ga_title"><?php echo __( 'Yoast Google Analytics: Dashboard', 'google-analytics-for-wordpress' ); ?></h2>
+	<h2 id="yoast_ga_title"><?php echo __( 'Yoast Google Analytics: ', 'google-analytics-for-wordpress' ) . __( 'Dashboard', 'google-analytics-for-wordpress' ); ?></h2>
 
 	<script>
 		var yoast_ga_dashboard_nonce = '<?php echo wp_create_nonce( 'yoast-ga-dashboard-nonce' ); ?>';

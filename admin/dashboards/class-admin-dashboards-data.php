@@ -1,14 +1,23 @@
 <?php
 
+/**
+ * This class is used to store and get the data of the dashboards. The data is aggregated by
+ * the class-admin-dashboards-collector.php and saved with Yoast_GA_Dashboards_Data::set().
+ *
+ * You can retrieve the data by using the function Yoast_GA_Dashboards_Data::get() in this
+ * class.
+ */
+
 if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 
-	class Yoast_GA_Dashboards_Data extends Yoast_GA_Dashboards {
+	class Yoast_GA_Dashboards_Data {
 
+		/**
+		 * The time to store a transient (in seconds)
+		 *
+		 * @var int
+		 */
 		private static $store_transient_time = DAY_IN_SECONDS;
-
-		public function __construct() {
-
-		}
 
 		/**
 		 * Get a data object
@@ -23,6 +32,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 			$data  = array();
 			$range = self::date_range( $startdate, $enddate );
 			$transient = get_transient( 'yst_ga_' . $type );
+
+			if ( false === $transient ) {
+				// Transient does not exist, abort
+				return array();
+			}
 
 			foreach ( $range as $date ) {
 				$date_unix = strtotime( $date );

@@ -19,20 +19,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		public $data;
 
 		/**
-		 * Get the options
-		 *
-		 * @var
-		 */
-		public $options;
-
-		/**
-		 * Store the access token
-		 *
-		 * @var
-		 */
-		public $access_token;
-
-		/**
 		 * Store the active metrics
 		 *
 		 * @var
@@ -40,11 +26,13 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		public $active_metrics;
 
 		/**
-		 * Store the valid metrics which are available in the Google API
+		 * Store the valid metrics which are available in the Google API, more can be added
 		 *
 		 * @var array
+		 *
+		 * @link https://ga-dev-tools.appspot.com/explorer/
 		 */
-		private $valid_metrics = array( 'sessions', 'bounceRate' );
+		private $valid_metrics = array( 'sessions', 'bounces', 'users', 'newUsers', 'percentNewSessions', 'bounceRate', 'sessionDuration', 'avgSessionDuration', 'hits' );
 
 		/**
 		 * Store this instance
@@ -56,7 +44,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		/**
 		 * Construct on the dashboards class for GA
 		 */
-		public function __construct() {
+		protected function __construct() {
 
 		}
 
@@ -64,7 +52,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		 * Init the dashboards
 		 */
 		public function init_dashboards( $ga_profile_id ) {
-			$Dashboards = array(
+			$dashboards = array(
 				'sessions' => array(
 					'title'      => __( 'Sessions', 'google-analytics-for-wordpress' ),
 					'data-label' => __( 'Number of sessions', 'google-analytics-for-wordpress' ),
@@ -77,17 +65,14 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 
 			// Register the active metrics
 			$register = array();
-			foreach( $Dashboards as $metric => $value ){
+			foreach( $dashboards as $metric => $value ){
 				$register[] = $metric;
 			}
 
 			// @TODO enable this after merging to features/dashboards
-			Yoast_GA_Dashboards_Graph::get_instance()->register($Dashboards);
-
-			$this->data = new Yoast_GA_Dashboards_Data;
+			Yoast_GA_Dashboards_Graph::get_instance()->register($dashboards);
 
 			$this->aggregator = new Yoast_GA_Dashboards_Collector( $ga_profile_id, $register );
-
 			$this->register( $register );
 		}
 
@@ -96,21 +81,12 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		 *
 		 * @return Yoast_GA_Dashboards
 		 */
-		public static function instance() {
+		public static function get_instance() {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
 			}
 
 			return self::$instance;
-		}
-
-		/**
-		 * Get the data instance
-		 *
-		 * @return Yoast_GA_Dashboards_Data
-		 */
-		public function data() {
-			return $this->data;
 		}
 
 		/**
@@ -130,7 +106,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 					$this->active_metrics = $types;
 
 					return true;
-					//return set_transient( 'yst_ga_dashboard_types', $types, 12 * HOUR_IN_SECONDS );
 				}
 			}
 
