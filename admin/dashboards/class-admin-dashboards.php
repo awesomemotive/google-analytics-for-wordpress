@@ -61,7 +61,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 
 			// Register the active metrics
 			$register = array();
-			foreach( $dashboards as $metric => $value ){
+			foreach ( $dashboards as $metric => $value ) {
 				$register[] = $metric;
 			}
 
@@ -107,8 +107,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 
 			return false;
 		}
-
-
 
 		/**
 		 * Validate the registered types of dashboards

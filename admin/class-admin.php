@@ -211,6 +211,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					'register_url '  => 'http://translate.yoast.com/projects#utm_source=plugin&utm_medium=promo-box&utm_campaign=yoast-ga-i18n-promo',
 				)
 			);
+
 			return $yoast_ga_i18n;
 		}
 
@@ -471,10 +472,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 *
 		 * @return null
 		 */
-		private function get_current_profile( ) {
+		private function get_current_profile() {
 			$current_profile = null;
-			foreach( $this->get_profiles() as $profile ){
-				if( $profile['id'] == $this->options['analytics_profile'] ){
+			foreach ( $this->get_profiles() as $profile ) {
+				if ( $profile['id'] == $this->options['analytics_profile'] ) {
 					$current_profile = $profile['profile_id'];
 				}
 			}
