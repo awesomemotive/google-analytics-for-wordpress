@@ -42,7 +42,10 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 					'yoast_product'                      => 'admin/license-manager/class-product',
 
 					// API libraries
-					'yoast_api_libs'                     => 'admin/api-libs/class-api-libs',
+					'yoast_api_libs'                => 'admin/api-libs/class-api-libs',
+
+					// i18n module
+					'yoast_i18n'                    => 'admin/i18n-module/i18n-module',
 				);
 			}
 
@@ -50,9 +53,7 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 			if ( isset( self::$classes[$class_name] ) ) {
 				require_once $include_path . '/' . self::$classes[$class_name] . '.php';
 			}
-
 		}
-
 	}
 
 	// register class autoloader

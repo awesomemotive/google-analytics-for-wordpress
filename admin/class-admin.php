@@ -16,20 +16,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public $api;
 
-		/**
-		 * Store the API dashboards class
-		 *
-		 * @var
-		 */
-		public $dashboards;
-
-		/**
-		 * Store the API dashboards data class
-		 *
-		 * @var
-		 */
-		public $dashboards_data;
-
 		public function __construct() {
 			parent::__construct();
 
@@ -83,14 +69,11 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			$this->connect_with_google_analytics();
 
-
 			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
 
 			// Load the Google Analytics Dashboards functionality
-			$dashboards = Yoast_GA_Dashboards::instance();
+			$dashboards = Yoast_GA_Dashboards::get_instance();
 			$dashboards->init_dashboards( $this->get_current_profile() );
-
-		//	print_r( Yoast_GA_Dashboards_Data::get( 'sessions', strtotime( '2014-11-10' ), strtotime( '2014-11-20' ) ) );
 		}
 
 		/**
@@ -171,11 +154,34 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
+		 * Initialize the promo class for our translate site
+		 *
+		 * @return yoast_i18n
+		 */
+		public function translate_promo() {
+			$yoast_ga_i18n = new yoast_i18n(
+				array(
+					'textdomain'     => 'google-analytics-for-wordpress',
+					'project_slug'   => 'google-analytics-for-wordpress',
+					'plugin_name'    => 'Google Analytics by Yoast',
+					'hook'           => 'yoast_ga_admin_footer',
+					'glotpress_url'  => 'http://translate.yoast.com',
+					'glotpress_name' => 'Yoast Translate',
+					'glotpress_logo' => 'https://cdn.yoast.com/wp-content/uploads/i18n-images/Yoast_Translate.svg',
+					'register_url '  => 'http://translate.yoast.com/projects#utm_source=plugin&utm_medium=promo-box&utm_campaign=yoast-ga-i18n-promo',
+				)
+			);
+			return $yoast_ga_i18n;
+		}
+
+		/**
 		 * Load the page of a menu item in the GA plugin
 		 */
 		public function load_page() {
 			global $yoast_ga_admin_ga_js;
 			$yoast_ga_admin_ga_js = new Yoast_GA_Admin_GA_JS;
+
+			$this->translate_promo();
 
 			if ( ! has_action( 'yst_ga_custom_dimensions_tab-content' ) ) {
 				add_action( 'yst_ga_custom_dimensions_tab-content', array( $this, 'premium_promo' ) );
@@ -509,6 +515,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function content_footer() {
 
+			do_action( 'yoast_ga_admin_footer' );
+
 			if ( true == WP_DEBUG ) {
 				// Show the debug information if debug is enabled in the wp_config file
 				echo '<div id="ga-debug-info" class="postbox"><h3 class="hndle"><span>' . __( 'Debug information', 'google-analytics-for-wordpress' ) . '</span></h3><div class="inside"><pre>';
@@ -565,7 +573,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 					'status' => 'uninstalled',
 				),
 				'ecommerce'  => (object) array(
-					'url'    => 'https://yoast.com/wordpress/plugins/google-analytics/',
+					'url'    => 'https://yoast.com/wordpress/plugins/ga-ecommerce/',
 					'title'  => __( 'Google Analytics', 'google-analytics-for-wordpress' ) . '<br />' . __( 'E-Commerce tracking', 'google-analytics-for-wordpress' ),
 					'desc'   => __( 'Track your E-Commerce data and transactions with this E-Commerce extension for Google Analytics.', 'google-analytics-for-wordpress' ),
 					'status' => 'uninstalled',

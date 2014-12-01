@@ -7,7 +7,7 @@ $has_extensions = false;
 
 $extensions = $yoast_ga_admin->get_extensions();
 ?>
-	<h2 id="yoast_ga_title"><?php echo __( 'Yoast Google Analytics: Extensions', 'google-analytics-for-wordpress' ); ?></h2>
+	<h2 id="yoast_ga_title"><?php echo __( 'Yoast Google Analytics: ', 'google-analytics-for-wordpress' ) . __( 'Extensions', 'google-analytics-for-wordpress' ); ?></h2>
 
 	<h2 class="nav-tab-wrapper" id="ga-tabs">
 		<a class="nav-tab active" id="extensions-tab" href="#top#extensions"><?php _e( 'Extensions', 'google-analytics-for-wordpress' ); ?></a>
@@ -32,7 +32,7 @@ $extensions = $yoast_ga_admin->get_extensions();
 						<?php
 						if ( 'uninstalled' == $extension->status ) {
 							?>
-							<a target="_blank" href="https://yoast.com/wordpress/plugins/ga-ecommerce-edd/#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary">Get this extension</a>
+							<a target="_blank" href="<?php echo $extension->url; ?>#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary">Get this extension</a>
 						<?php
 						} else {
 							if ( 'inactive' == $extension->status ) {
