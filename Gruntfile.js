@@ -23,11 +23,11 @@ module.exports = function(grunt) {
 				tasks: ['phplint', 'phpcs']
 			},
 			js: {
-				files: ['js/*.js'],
+				files: ['assets/js/*.js'],
 				tasks: ['jshint', 'jsvalidate', 'jscs', 'uglify']
 			},
 			css: {
-				files: ['css/*css'],
+				files: ['assets/css/*css'],
 				tasks: ['build:css']
 			}
 		},        // JavaScript
@@ -93,9 +93,9 @@ module.exports = function(grunt) {
 				files: [
 					{
 						expand: true,
-						cwd: 'js',
+						cwd: 'assets/js',
 						src: ['*.js', '!*.min.js'],
-						dest: 'js',
+						dest: 'assets/js',
 						ext: '.min.js',
 						extDot: 'first',
 						isFile: true
@@ -114,7 +114,7 @@ module.exports = function(grunt) {
 			},
 			all: {
 				src: [
-					'css/*.css', '!css/*.min.css'
+					'assets/css/*.css', '!assets/css/*.min.css'
 				],
 				options: {
 					// diff: 'tmp/autoprefixer.patch'
@@ -125,12 +125,12 @@ module.exports = function(grunt) {
 		csscomb: {
 			css: {
 				expand: true,
-				src: ['css/*.css', '!css/*.min.css']
+				src: ['assets/css/*.css', '!assets/css/*.min.css']
 			}
 		},
 
 		cssbeautifier: {
-			files: ['css/*.css', '!css/*.min.css'],
+			files: ['assets/css/*.css', '!assets/css/*.min.css'],
 			options: {
 				indent: '\t',
 				openbrace: 'end-of-line',
@@ -141,9 +141,9 @@ module.exports = function(grunt) {
 		cssmin: {
 			minify: {
 				expand: true,
-				cwd: 'css/',
+				cwd: 'assets/css/',
 				src: ['*.css', '!*.min.css'],
-				dest: 'css/',
+				dest: 'assets/css/',
 				ext: '.min.css'
 			}
 		},
@@ -187,9 +187,9 @@ module.exports = function(grunt) {
 					expand: true,
 					// this would require the addition of a assets folder from which the images are
 					// processed and put inside the images folder
-					cwd: 'img/',
+					cwd: 'assets/img/',
 					src: ['*.*'],
-					dest: 'img/'
+					dest: 'assets/img/'
 				}]
 			}
 		},
