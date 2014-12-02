@@ -60,10 +60,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 			);
 
 			// Register the active metrics
-			$register = array();
-			foreach ( $dashboards as $metric => $value ) {
-				$register[] = $metric;
-			}
+			$register = array_keys($dashboards);
 
 			// @TODO enable this after merging to features/dashboards
 			//Yoast_GA_Dashboards_Graph::get_instance()->register($Dashboards);
