@@ -53,9 +53,14 @@ This section describes how to install the plugin and get it working.
 
 * Enhancements:
 	* Added GA property name to 'Analytics profile' selection in settings. Thanks [stephenyeargin](https://github.com/stephenyeargin) for reporting.
+	* Removed firebug lite as it's rather obsolete with todays development consoles.
+
+* i18n:
+    * Several string fixes for easier translation.
+    * Added en_GB and he_IL.
 
 * Bugfixes:
-	* Fixes a bug where siteadmins for sites on a multisite setup would receive a notice when visiting another site on the same setup which they didn't administrate, props [nerrad](https://github.com/nerrad).
+	* Fixes a bug where site admins for sites on a multisite setup would receive a notice when visiting another site on the same setup which they didn't administrate, props [nerrad](https://github.com/nerrad).
 	* Fixes a bug where saving the admin settings would cause non-string form fields to be ignored or rejected.
 
 = 5.1.3 =
