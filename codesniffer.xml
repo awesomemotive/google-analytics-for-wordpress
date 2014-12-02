@@ -30,6 +30,9 @@
 		<exclude name="WordPress.Classes.ValidClassName" />
 		<exclude name="Generic.WhiteSpace.ScopeIndent"/>
 
+        <!-- Space checks are stupid -->
+        <exclude name="PEAR.Functions.FunctionCallSignature.Indent"/>
+
 	</rule>
 	<rule ref="WordPress.PHP.DiscouragedFunctions"/>
 </ruleset>
