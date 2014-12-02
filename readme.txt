@@ -51,6 +51,8 @@ This section describes how to install the plugin and get it working.
 
 = 5.1.4 =
 
+Release Date: December 2nd, 2014
+
 * Enhancements:
 	* Added GA property name to 'Analytics profile' selection in settings. Thanks [stephenyeargin](https://github.com/stephenyeargin) for reporting.
 	* Removed firebug lite as it's rather obsolete with todays development consoles.
