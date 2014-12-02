@@ -23,7 +23,8 @@ module.exports = {
 		],
 		tasks: [
 			'phplint',
-			'phpcs'
+			'phpcs',
+            'checktextdomain'
 		]
 	},
 	js: {
