@@ -27,9 +27,11 @@
 		<exclude name="Squiz.WhiteSpace" />
 		<exclude name="WordPress.WhiteSpace" />
 		<exclude name="WordPress.PHP.YodaConditions" />
-		<exclude name="WordPress.Functions.FunctionCallSignature" />
 		<exclude name="WordPress.Classes.ValidClassName" />
 		<exclude name="Generic.WhiteSpace.ScopeIndent"/>
+
+        <!-- Space checks are stupid -->
+        <exclude name="PEAR.Functions.FunctionCallSignature"/>
 
 	</rule>
 	<rule ref="WordPress.PHP.DiscouragedFunctions"/>
