@@ -1,13 +1,12 @@
 jQuery(document).ready(function() {
-
 	jQuery('#ga-tabs').find('a').click(function() {
 		jQuery('#ga-tabs').find('a').removeClass('nav-tab-active');
 		jQuery('.gatab').removeClass('active');
 
-		var id = jQuery(this).attr('id').replace('-tab','');
+		var id = jQuery(this).attr('id').replace('-tab', '');
 		jQuery('#' + id).addClass('active');
 		jQuery(this).addClass('nav-tab-active');
-		jQuery("#return_tab").val(id);
+		jQuery('#return_tab').val(id);
 	});
 
 	jQuery('a.activate-link').click(function() {
@@ -18,53 +17,52 @@ jQuery(document).ready(function() {
 	});
 
 	// init
-	var active_tab = window.location.hash.replace('#top#','');
+	var activeTab = window.location.hash.replace('#top#', '');
 
 	// default to first tab
-	if ( active_tab == '' || active_tab == '#_=_') {
-		active_tab = jQuery('.gatab').attr('id');
+	if (activeTab === '' || activeTab === '#_=_') {
+		activeTab = jQuery('.gatab').attr('id');
 	}
 
-	jQuery('#' + active_tab).addClass('active');
-	jQuery('#' + active_tab + '-tab').addClass('nav-tab-active');
+	jQuery('#' + activeTab).addClass('active');
+	jQuery('#' + activeTab + '-tab').addClass('nav-tab-active');
 
 	// Manually enter a UA code
-	jQuery('#yoast-ga-form-checkbox-settings-manual_ua_code').click(function(){
-		if(jQuery(this).is(':checked')){
+	jQuery('#yoast-ga-form-checkbox-settings-manual_ua_code').click(function() {
+		if (jQuery(this).is(':checked')) {
 			jQuery('#enter_ua').show();
-		}
-		else{
+		} else {
 			jQuery('#enter_ua').hide();
-			jQuery('#yoast-ga-form-text-settings-manual_ua_code_field').attr('value','');
+			jQuery('#yoast-ga-form-text-settings-manual_ua_code_field').attr('value', '');
 		}
 	});
 
 	jQuery('.nav-tab-active').click();
 
-	if(jQuery("#yoast-ga-form-checkbox-settings-manual_ua_code").is(':checked')){
+	if (jQuery('#yoast-ga-form-checkbox-settings-manual_ua_code').is(':checked')) {
 		jQuery('#enter_ua').show();
 	}
 
-	jQuery(".yoast_help").qtip({
+	jQuery('.yoast_help').qtip({
 		position: {
 			corner: {
-				target : 'topMiddle',
+				target: 'topMiddle',
 				tooltip: 'bottomLeft'
 			}
 		},
-		show    : {
+		show: {
 			when: {
 				event: 'mouseover'
 			}
 		},
-		hide    : {
+		hide: {
 			fixed: true,
-			when : {
+			when: {
 				event: 'mouseout'
 			}
 		},
-		style   : {
-			tip : 'bottomLeft',
+		style: {
+			tip: 'bottomLeft',
 			name: 'blue'
 		}
 	});

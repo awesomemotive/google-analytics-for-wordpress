@@ -52,7 +52,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 
 			// Add main page
 			add_menu_page(
-				__( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'General Settings', 'google-analytics-for-wordpress' ), __( 'Analytics', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_' . $menu_name,
+				__( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'General settings', 'google-analytics-for-wordpress' ), __( 'Analytics', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_' . $menu_name,
 				array(
 					$this->target_object,
 					'load_page',
