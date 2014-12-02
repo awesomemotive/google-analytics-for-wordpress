@@ -88,7 +88,9 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				/**
 				 * Implement the metric data first
 				 */
-				$this->aggregate_metrics( $access_tokens, $this->active_metrics );
+				if ( is_array( $this->active_metrics ) && count( $this->active_metrics ) >= 1 ) {
+					$this->aggregate_metrics( $access_tokens, $this->active_metrics );
+				}
 
 				/**
 				 * Now implement the dimensions that are set
