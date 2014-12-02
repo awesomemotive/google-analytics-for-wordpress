@@ -187,7 +187,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				// Success, store this data
 				$name = $metric;
 
-				if ( $dimensions != 'ga:date' ) {
+				if ( $dimensions !== 'ga:date' ) {
 					$name = str_replace( 'ga:date,', '', $dimensions );
 				}
 
