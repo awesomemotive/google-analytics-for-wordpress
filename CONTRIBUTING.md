@@ -15,6 +15,8 @@ For localization, please refer to [translate.yoast.com](http://translate.yoast.c
   * Clearly describe the issue including steps to reproduce the bug.
   * Make sure you fill in the earliest version that you know has the issue as well as the version of WordPress you're using.
 
+_Note:_ do **not** report security issues here. Email them to security at yoast dot com so we can deal with them swiftly and securely.
+
 ## Making Changes
 
 * Fork the repository on GitHub
