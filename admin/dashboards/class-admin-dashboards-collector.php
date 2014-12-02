@@ -88,19 +88,13 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				/**
 				 * Implement the metric data first
 				 */
-				foreach ( $this->active_metrics as $metric ) {
-					$this->execute_call( $access_tokens, $metric, date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ) );
-				}
+				$this->aggregate_metrics( $access_tokens, $this->active_metrics );
 
 				/**
 				 * Now implement the dimensions that are set
 				 */
 				if ( is_array( $this->dimensions ) && count( $this->dimensions ) >= 1 ) {
-					foreach ( $this->dimensions as $dimension ) {
-						if ( isset( $dimension['id'] ) && isset( $dimension['metric'] ) ) {
-							$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ), 'ga:dimension' . $dimension['id'] );
-						}
-					}
+					$this->aggregate_dimensions( $access_tokens, $this->dimensions );
 				}
 			} else {
 				// Failure on authenticating, please reauthenticate
@@ -123,6 +117,32 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			}
 
 			return $this->dimensions;
+		}
+
+		/**
+		 * Aggregate metrics from GA. This function should be called in the shutdown function.
+		 *
+		 * @param $access_tokens
+		 * @param $dimensions
+		 */
+		private function aggregate_metrics( $access_tokens, $dimensions ) {
+			foreach ( $this->active_metrics as $metric ) {
+				$this->execute_call( $access_tokens, $metric, date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ) );
+			}
+		}
+
+		/**
+		 * Aggregate dimensions from GA. This function should be called in the shutdown function.
+		 *
+		 * @param $access_tokens
+		 * @param $dimensions
+		 */
+		private function aggregate_dimensions( $access_tokens, $dimensions ) {
+			foreach ( $dimensions as $dimension ) {
+				if ( isset( $dimension['id'] ) && isset( $dimension['metric'] ) ) {
+					$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ), 'ga:dimension' . $dimension['id'] );
+				}
+			}
 		}
 
 		/**
