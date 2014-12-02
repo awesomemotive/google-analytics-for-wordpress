@@ -495,3 +495,4 @@ For all frequently asked questions, and their answers, check the [Yoast Knowledg
 1. Screenshot of the general settings panel for this plugin.
 2. Screenshot of the universal settings panel.
 3. Screenshot of the advanced settings panel.
+4. Screenshot of the account selection drop down.
