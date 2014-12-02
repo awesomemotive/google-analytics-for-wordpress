@@ -54,7 +54,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			$this->ga_profile_id  = $ga_profile_id;
 			$this->active_metrics = $active_metrics;
 
-			add_filter( 'ga_dashboards_dimensions', array( $this, 'set_dimensions' ), 10, 1 );
+			add_filter( 'ga_dashboards_dimensions', array( $this, 'filter_dimensions' ), 10, 1 );
 
 			$this->options = Yoast_GA_Dashboards_Api_Options::get_instance();
 
@@ -116,8 +116,9 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 *
 		 * @return array
 		 */
-		public function set_dimensions( $dimensions = array() ) {
-			if ( is_array( $dimensions ) ) {
+		public function filter_dimensions( $dimensions = array() ) {
+			if ( is_array( $dimensions ) && count( $dimensions ) >= 1 ) {
+				$dimensions       = array_merge( $this->dimensions, $dimensions );
 				$this->dimensions = $dimensions;
 			}
 
