@@ -187,9 +187,8 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		private function execute_call( $access_tokens, $metric, $start_date, $end_date, $dimensions = 'ga:date' ) {
 			$dimensions = $this->prepare_dimensions( $dimensions );
 			$params     = $this->build_params_for_call( $start_date, $end_date, $dimensions, $metric );
-			$api_ga     = Yoast_Googleanalytics_Reporting::instance();
 
-			$response = $api_ga->do_api_request(
+			$response = Yoast_Googleanalytics_Reporting::instance()->do_api_request(
 				'https://www.googleapis.com/analytics/v3/data/ga?' . $params,
 				'https://www.googleapis.com/analytics/v3/data/ga',
 				$access_tokens['oauth_token'],
