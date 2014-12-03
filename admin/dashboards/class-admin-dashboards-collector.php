@@ -185,6 +185,28 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * @return bool
 		 */
 		private function execute_call( $access_tokens, $metric, $start_date, $end_date, $dimensions = 'ga:date' ) {
+			$dimensions = $this->prepare_dimensions( $dimensions );
+			$params     = $this->build_params_for_call( $start_date, $end_date, $dimensions, $metric );
+			$api_ga     = Yoast_Googleanalytics_Reporting::instance();
+
+			$response = $api_ga->do_api_request(
+				'https://www.googleapis.com/analytics/v3/data/ga?' . $params,
+				'https://www.googleapis.com/analytics/v3/data/ga',
+				$access_tokens['oauth_token'],
+				$access_tokens['oauth_token_secret']
+			);
+
+			return $this->handle_response( $response, $metric, $dimensions, $start_date, $end_date );
+		}
+
+		/**
+		 * Prepare dimensions before adding them as a parameter in a call
+		 *
+		 * @param $dimensions
+		 *
+		 * @return string
+		 */
+		private function prepare_dimensions( $dimensions ) {
 			// Check if the dimensions param is an array, if so, glue it with implode to a comma separated string.
 			if ( is_array( $dimensions ) ) {
 				$dimensions = implode( ',', $dimensions );
@@ -194,6 +216,20 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				$dimensions = 'ga:date,' . $dimensions;
 			}
 
+			return $dimensions;
+		}
+
+		/**
+		 * Build the params for a call to Google Analytics, return them prepared for a http query
+		 *
+		 * @param $start_date
+		 * @param $end_date
+		 * @param $dimensions
+		 * @param $metric
+		 *
+		 * @return array|string
+		 */
+		private function build_params_for_call( $start_date, $end_date, $dimensions, $metric ) {
 			$params = array(
 				'ids'        => 'ga:' . $this->ga_profile_id,
 				'start-date' => $start_date,
@@ -202,10 +238,22 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				'metrics'    => 'ga:' . $metric,
 			);
 			$params = http_build_query( $params );
-			$api_ga = Yoast_Googleanalytics_Reporting::instance();
 
-			$response = $api_ga->do_api_request( 'https://www.googleapis.com/analytics/v3/data/ga?' . $params, 'https://www.googleapis.com/analytics/v3/data/ga', $access_tokens['oauth_token'], $access_tokens['oauth_token_secret'] );
+			return $params;
+		}
 
+		/**
+		 * Handle the response from the Google Analytics api.
+		 *
+		 * @param $response
+		 * @param $metric
+		 * @param $dimensions
+		 * @param $start_date
+		 * @param $end_date
+		 *
+		 * @return bool
+		 */
+		private function handle_response( $response, $metric, $dimensions, $start_date, $end_date ) {
 			if ( is_array( $response ) && isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
 				// Success, store this data
 				$name = $metric;
@@ -217,14 +265,22 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				return Yoast_GA_Dashboards_Data::set( $name, $response, strtotime( $start_date ), strtotime( $end_date ) );
 			} else {
 				// Failure on API call try to log it
-
-				if ( true == WP_DEBUG ) {
-					if ( function_exists( 'error_log' ) ) {
-						error_log( 'Yoast Google Analytics (Dashboard API): ' . print_r( $response['body_raw'], true ) );
-					}
-				}
+				$this->log_error( print_r( $response['body_raw'], true ) );
 
 				return false;
+			}
+		}
+
+		/**
+		 * Log an error while calling the Google Analytics API
+		 *
+		 * @param $error
+		 */
+		private function log_error( $error ) {
+			if ( true == WP_DEBUG ) {
+				if ( function_exists( 'error_log' ) ) {
+					error_log( 'Yoast Google Analytics (Dashboard API): ' . $error );
+				}
 			}
 		}
 
