@@ -125,10 +125,10 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * Aggregate metrics from GA. This function should be called in the shutdown function.
 		 *
 		 * @param $access_tokens
-		 * @param $dimensions
+		 * @param $metrics
 		 */
-		private function aggregate_metrics( $access_tokens, $dimensions ) {
-			foreach ( $this->active_metrics as $metric ) {
+		private function aggregate_metrics( $access_tokens, $metrics ) {
+			foreach ( $metrics as $metric ) {
 				$this->execute_call( $access_tokens, $metric, date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ) );
 			}
 		}
