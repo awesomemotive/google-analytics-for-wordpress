@@ -141,48 +141,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
-		 * Check whether we can include the minified version or not
-		 *
-		 * @param string $ext
-		 *
-		 * @return string
-		 */
-		private function file_ext( $ext ) {
-			if ( ! defined( 'SCRIPT_DEBUG' ) || ! SCRIPT_DEBUG ) {
-				$ext = '.min' . $ext;
-			}
-
-			return $ext;
-		}
-
-		/**
-		 * Add the scripts to the admin head
-		 */
-		public function enqueue_scripts() {
-			wp_enqueue_script( 'jquery-qtip', $this->plugin_url . 'js/jquery.qtip.min.js', array( 'jquery' ), '1.0.0-RC3', true );
-
-			wp_enqueue_script( 'yoast_ga_admin', $this->plugin_url . 'js/yoast_ga_admin' . $this->file_ext( '.js' ) );
-
-			// Eqneue the chosen js file
-			wp_enqueue_script( 'chosen_js', plugins_url( 'js/chosen.jquery.min.js', GAWP_FILE ), array(), false, true );
-		}
-
-		/**
-		 * Add the styles in the admin head
-		 */
-		public function enqueue_styles() {
-			wp_enqueue_style( 'yoast_ga_styles', $this->plugin_url . 'css/yoast_ga_styles' . $this->file_ext( '.css' ) );
-		}
-
-		/**
-		 * Enqueues the settings page specific styles
-		 */
-		public function enqueue_settings_styles() {
-			// Enqueue the chosen css file
-			wp_enqueue_style( 'chosen_css', $this->plugin_url . 'css/chosen' . $this->file_ext( '.css' ) );
-		}
-
-		/**
 		 * Adds some promo text for the premium plugin on the custom dimensions tab.
 		 */
 		public function premium_promo() {
@@ -239,6 +197,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 						break;
 					case 'yst_ga_dashboard':
 					default:
+
 						require_once( $this->plugin_path . 'admin/pages/dashboard.php' );
 						break;
 				}
@@ -337,7 +296,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * @return string
 		 */
 		private function show_help( $id, $description ) {
-			$help = '<img src="' . plugins_url( 'img/question-mark.png', GAWP_FILE ) . '" class="alignleft yoast_help" id="' . esc_attr( $id . 'help' ) . '" alt="' . esc_attr( $description ) . '" />';
+			$help = '<img src="' . plugins_url( 'assets/img/question-mark.png', GAWP_FILE ) . '" class="alignleft yoast_help" id="' . esc_attr( $id . 'help' ) . '" alt="' . esc_attr( $description ) . '" />';
 
 			return $help;
 		}
@@ -565,22 +524,22 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$banners   = array();
 			$banners[] = array(
 				'url'    => 'https://yoast.com/hire-us/website-review/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/banner-website-review.png',
+				'banner' => $this->plugin_url . 'assets/img/banner-website-review.png',
 				'title'  => 'Get a website review by Yoast',
 			);
 			$banners[] = array(
 				'url'    => 'https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/banner-premium-ga.png',
+				'banner' => $this->plugin_url . 'assets/img/banner-premium-ga.png',
 				'title'  => 'Get the premium version of Google Analytics by Yoast!',
 			);
 			$banners[] = array(
 				'url'    => 'https://yoast.com/ebook-optimize-wordpress-site/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/eBook_261x130.png',
+				'banner' => $this->plugin_url . 'assets/img/eBook_261x130.png',
 				'title'  => 'Get the Yoast ebook!',
 			);
 			$banners[] = array(
 				'url'    => 'https://yoast.com/wordpress/plugins/ga-ecommerce/#utm_medium=banner&utm_source=gawp-config&utm_campaign=wpgaplugin',
-				'banner' => $this->plugin_url . 'img/banner-ga-ecommerce.png',
+				'banner' => $this->plugin_url . 'assets/img/banner-ga-ecommerce.png',
 				'title'  => 'Get advanced eCommerce tracking for WooCommerce and Easy Digital Downloads!',
 			);
 
