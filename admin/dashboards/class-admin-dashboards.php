@@ -61,6 +61,10 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 					'title'      => __( 'Traffic sources', 'google-analytics-for-wordpress' ),
 					'data-label' => __( 'Your best traffic sources', 'google-analytics-for-wordpress' ),
 				),
+				'top_pageviews'   => array(
+					'title'      => __( 'Popular pages', 'google-analytics-for-wordpress' ),
+					'data-label' => __( 'Your most popular pages', 'google-analytics-for-wordpress' ),
+				),
 			);
 
 			// Register the active metrics
@@ -72,11 +76,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 
 			$this->aggregator = new Yoast_GA_Dashboards_Collector( $ga_profile_id, $register, $this->valid_metrics );
 			$this->register( $register );
-
-
-			echo '<pre>';
-			print_r( Yoast_GA_Dashboards_Data::get( 'source' ) );
-			echo '</pre>';
 		}
 
 		/**

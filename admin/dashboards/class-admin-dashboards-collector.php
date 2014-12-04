@@ -56,6 +56,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 *
 		 * @param $ga_profile_id
 		 * @param $active_metrics
+		 * @param $valid_metrics
 		 */
 		public function __construct( $ga_profile_id, $active_metrics, $valid_metrics ) {
 			$this->ga_profile_id = $ga_profile_id;
@@ -143,9 +144,15 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 */
 		private function get_filter_metrics() {
 			return array(
-				'source' => array(
-					'metric'    => 'sessions',
-					'dimension' => 'source',
+				'source'        => array(
+					'metric'       => 'sessions',
+					'dimension'    => 'source',
+					'storage_name' => 'source',
+				),
+				'top_pageviews' => array(
+					'metric'       => 'pageViews',
+					'dimension'    => 'pagePath',
+					'storage_name' => 'top_pageviews',
 				),
 			);
 		}
@@ -192,7 +199,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 					if ( isset( $dimension['id'] ) ) {
 						$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ), 'ga:dimension' . $dimension['id'] );
 					} elseif ( isset( $dimension['dimension'] ) ) {
-						$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ), 'ga:' . $dimension['dimension'] );
+						if ( isset( $dimension['storage_name'] ) ) {
+							$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ), 'ga:' . $dimension['dimension'], $dimension['storage_name'] );
+						} else {
+							$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ), 'ga:' . $dimension['dimension'] );
+						}
 					}
 				}
 			}
@@ -229,15 +240,16 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 *
 		 * @param $access_tokens
 		 * @param $metric
-		 * @param $start_date 2014-10-16
-		 * @param $end_date   2014-11-20
-		 * @param $dimensions ga:date
+		 * @param $start_date   2014-10-16
+		 * @param $end_date     2014-11-20
+		 * @param $dimensions   ga:date
+		 * @param $storage_name string
 		 *
 		 * @return bool
 		 */
-		private function execute_call( $access_tokens, $metric, $start_date, $end_date, $dimensions = 'ga:date' ) {
-			$dimensions = $this->prepare_dimensions( $dimensions, $metric );
-			$params     = $this->build_params_for_call( $start_date, $end_date, $dimensions, $metric );
+		private function execute_call( $access_tokens, $metric, $start_date, $end_date, $dimensions = 'ga:date', $storage_name = 'auto' ) {
+			$dimensions   = $this->prepare_dimensions( $dimensions, $metric );
+			$params       = $this->build_params_for_call( $start_date, $end_date, $dimensions, $metric );
 			$storage_type = $this->get_storage_type( $dimensions );
 
 			$response = Yoast_Googleanalytics_Reporting::instance()->do_api_request(
@@ -251,9 +263,9 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			);
 
 			if ( strpos( 'ga:date', $dimensions ) !== false ) {
-				return $this->handle_response( $response, $metric, $dimensions, $start_date, $end_date, 'datelist' );
+				return $this->handle_response( $response, $metric, $dimensions, $start_date, $end_date, 'datelist', $storage_name );
 			} else {
-				return $this->handle_response( $response, $metric, $dimensions, $start_date, $end_date, 'table' );
+				return $this->handle_response( $response, $metric, $dimensions, $start_date, $end_date, 'table', $storage_name );
 			}
 		}
 
@@ -329,10 +341,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * @param $start_date
 		 * @param $end_date
 		 * @param $store_as
+		 * @param $storage_name
 		 *
 		 * @return bool
 		 */
-		private function handle_response( $response, $metric, $dimensions, $start_date, $end_date, $store_as = 'table' ) {
+		private function handle_response( $response, $metric, $dimensions, $start_date, $end_date, $store_as = 'table', $storage_name = 'auto' ) {
 			if ( is_array( $response ) && isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
 				// Success, store this data
 				$filter_metrics = $this->get_filter_metrics();
@@ -347,6 +360,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 
 				if ( $dimensions !== 'ga:date' && ! isset( $filter_metrics[$extracted] ) ) {
 					$name = str_replace( 'ga:date,', '', $dimensions );
+				}
+
+				// Overwrite the name if we have a defined one
+				if ( $storage_name != 'auto' ) {
+					$name = $storage_name;
 				}
 
 				return Yoast_GA_Dashboards_Data::set( $name, $response['body'], strtotime( $start_date ), strtotime( $end_date ), $store_as );
