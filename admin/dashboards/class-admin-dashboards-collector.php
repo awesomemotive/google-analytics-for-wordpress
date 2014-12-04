@@ -51,7 +51,9 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * @param $active_metrics
 		 */
 		public function __construct( $ga_profile_id, $active_metrics ) {
-			$this->ga_profile_id  = $ga_profile_id;
+			$this->ga_profile_id = $ga_profile_id;
+
+			$active_metrics       = $this->filter_metrics_to_dimensions( $active_metrics );
 			$this->active_metrics = $active_metrics;
 
 			add_filter( 'ga_dashboards_dimensions', array( $this, 'filter_dimensions' ), 10, 1 );
@@ -74,6 +76,44 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 					return;
 				}
 			}
+		}
+
+		/**
+		 * Remove metrics and set them as a dimension if needed
+		 *
+		 * @param $metrics
+		 *
+		 * @return mixed
+		 */
+		private function filter_metrics_to_dimensions( $metrics ) {
+			$filter_metrics = $this->get_filter_metrics();
+
+			foreach ( $metrics as $metric_name => $single_metric ) {
+				if ( isset( $filter_metrics[$metric_name] ) ) {
+					// Add and set the dimension
+					$dimension = $filter_metrics[$metric_name];
+					$this->dimensions = array_merge( $this->dimensions, $dimension );
+
+					// Remove it from the metrics after we've added it into dimensions
+					unset( $metrics[$metric_name] );
+				}
+			}
+
+			return $metrics;
+		}
+
+		/**
+		 * Get array with metrics which we need to filter as a dimension
+		 *
+		 * @return array
+		 */
+		private function get_filter_metrics() {
+			return array(
+				'referrers' => array(
+					'metric'    => 'sessions',
+					'dimension' => 'source',
+				),
+			);
 		}
 
 		/**
@@ -142,7 +182,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		private function aggregate_dimensions( $access_tokens, $dimensions ) {
 			foreach ( $dimensions as $dimension ) {
 				if ( isset( $dimension['id'] ) && isset( $dimension['metric'] ) ) {
-					$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ), 'ga:dimension' . $dimension['id'] );
+					if ( isset( $dimension['id'] ) ) {
+						$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ), 'ga:dimension' . $dimension['id'] );
+					} elseif ( isset( $dimension['dimension'] ) ) {
+						$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ), 'ga:dimension' . $dimension['id'] );
+					}
 				}
 			}
 		}
