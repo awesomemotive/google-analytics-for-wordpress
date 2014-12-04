@@ -22,15 +22,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 		/**
 		 * Get a data object
 		 *
-		 * @param      $type      sessions,bouncerate etc.
-		 * @param      $startdate Unix timestamp
-		 * @param      $enddate   Unix timestamp
+		 * @param      $type      String
 		 *
 		 * @return array
 		 */
-		public static function get( $type, $startdate, $enddate ) {
-			$data      = array();
-			$range     = self::date_range( $startdate, $enddate );
+		public static function get( $type ) {
 			$transient = get_transient( 'yst_ga_' . $type );
 
 			if ( false === $transient ) {
@@ -38,25 +34,9 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 				return array();
 			}
 
-			foreach ( $range as $date ) {
-				$date_unix        = strtotime( $date );
-				$data[$date_unix] = 0; // Set default value
+			// @TODO loop through transient to get the correct date range
 
-				foreach ( $transient['value']['body'] as $value ) {
-					if ( $date_unix == $value['date'] ) {
-						if ( isset( $value['bool'] ) ) {
-							$data[$date_unix] = array(
-								'value' => $value['value'],
-								'bool'  => $value['bool'],
-							);
-						} else {
-							$data[$date_unix] = $value['value'];
-						}
-					}
-				}
-			}
-
-			return $data;
+			return $transient;
 		}
 
 		/**
@@ -66,11 +46,13 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 		 * @param $value
 		 * @param $start_date
 		 * @param $end_date
+		 * @param $store_as
 		 *
 		 * @return bool
 		 */
-		public static function set( $type, $value, $start_date, $end_date ) {
+		public static function set( $type, $value, $start_date, $end_date, $store_as ) {
 			$store = array(
+				'store_as'   => $store_as,
 				'type'       => $type,
 				'start_date' => $start_date,
 				'end_date'   => $end_date,
@@ -78,29 +60,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 			);
 
 			return set_transient( 'yst_ga_' . $type, $store, self::$store_transient_time );
-		}
-
-		/**
-		 * Calculate the date range between 2 dates
-		 *
-		 * @param        $first
-		 * @param        $last
-		 * @param string $step
-		 * @param string $format
-		 *
-		 * @return array
-		 */
-		private static function date_range( $first, $last, $step = '+1 day', $format = 'Y-m-d' ) {
-			$dates   = array();
-			$current = $first;
-			$last    = $last;
-
-			while ( $current <= $last ) {
-				$dates[] = date( $format, $current );
-				$current = strtotime( $step, $current );
-			}
-
-			return $dates;
 		}
 	}
 
