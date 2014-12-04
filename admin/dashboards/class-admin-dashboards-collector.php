@@ -62,7 +62,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 
 			$this->init_shutdown_hook();
 		}
-		
+
 		/**
 		 * Fetch the data from Google Analytics and store it
 		 */
@@ -83,6 +83,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				 * Now implement the dimensions that are set
 				 */
 				if ( is_array( $this->dimensions ) && count( $this->dimensions ) >= 1 ) {
+					print_r( $this->dimensions );
 					$this->aggregate_dimensions( $access_tokens, $this->dimensions );
 				}
 			} else {
@@ -115,14 +116,14 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		private function filter_metrics_to_dimensions( $metrics ) {
 			$filter_metrics = $this->get_filter_metrics();
 
-			foreach ( $metrics as $metric_name => $single_metric ) {
+			foreach ( $metrics as $key => $metric_name ) {
 				if ( isset( $filter_metrics[$metric_name] ) ) {
 					// Add and set the dimension
-					$dimension = $filter_metrics[$metric_name];
+					$dimension        = array( $filter_metrics[$metric_name] );
 					$this->dimensions = array_merge( $this->dimensions, $dimension );
 
 					// Remove it from the metrics after we've added it into dimensions
-					unset( $metrics[$metric_name] );
+					unset( $metrics[$key] );
 				}
 			}
 
@@ -181,11 +182,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 */
 		private function aggregate_dimensions( $access_tokens, $dimensions ) {
 			foreach ( $dimensions as $dimension ) {
-				if ( isset( $dimension['id'] ) && isset( $dimension['metric'] ) ) {
+				if ( ( isset( $dimension['id'] ) || isset( $dimension['dimension'] ) ) && isset( $dimension['metric'] ) ) {
 					if ( isset( $dimension['id'] ) ) {
 						$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ), 'ga:dimension' . $dimension['id'] );
 					} elseif ( isset( $dimension['dimension'] ) ) {
-						$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ), 'ga:dimension' . $dimension['id'] );
+						$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ), 'ga:' . $dimension['dimension'] );
 					}
 				}
 			}
@@ -238,6 +239,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				$access_tokens['oauth_token'],
 				$access_tokens['oauth_token_secret']
 			);
+			print_r( $response );
 
 			return $this->handle_response( $response, $metric, $dimensions, $start_date, $end_date );
 		}
