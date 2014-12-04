@@ -64,10 +64,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 			);
 
 			// Register the active metrics
-			$register = array();
-			foreach( $dashboards as $metric => $value ){
-				$register[] = $metric;
-			}
+			$register = array_keys($dashboards);
 
 			// Initialize the dashboard graphs
 			Yoast_GA_Dashboards_Graph::get_instance()->initialize_ajax();
@@ -112,8 +109,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 
 			return false;
 		}
-
-
 
 		/**
 		 * Validate the registered types of dashboards
