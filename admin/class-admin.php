@@ -39,6 +39,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function init_settings() {
 			$this->options = $this->get_options();
+			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
 
 			if ( is_null( $this->get_tracking_code() ) ) {
 				add_action( 'admin_notices', array( $this, 'config_warning' ) );
@@ -66,8 +67,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$this->show_notification( 'ga_notifications' );
 
 			$this->connect_with_google_analytics();
-
-			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
 
 			// Load the Google Analytics Dashboards functionality
 			$dashboards = Yoast_GA_Dashboards::get_instance();

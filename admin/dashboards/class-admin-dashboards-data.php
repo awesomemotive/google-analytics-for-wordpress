@@ -22,7 +22,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 		/**
 		 * Get a data object
 		 *
-		 * @param      $type      sessions,bouncerate etc.
+		 * @param      $type      String
 		 * @param      $startdate Unix timestamp
 		 * @param      $enddate   Unix timestamp
 		 *
