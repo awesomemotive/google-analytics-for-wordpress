@@ -62,6 +62,33 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 
 			$this->init_shutdown_hook();
 		}
+		
+		/**
+		 * Fetch the data from Google Analytics and store it
+		 */
+		public function aggregate_data() {
+			$access_tokens = $this->options->get_access_token();
+
+			if ( $access_tokens != false && is_array( $access_tokens ) ) {
+				// Access tokens are set, continue
+
+				/**
+				 * Implement the metric data first
+				 */
+				if ( is_array( $this->active_metrics ) && count( $this->active_metrics ) >= 1 ) {
+					$this->aggregate_metrics( $access_tokens, $this->active_metrics );
+				}
+
+				/**
+				 * Now implement the dimensions that are set
+				 */
+				if ( is_array( $this->dimensions ) && count( $this->dimensions ) >= 1 ) {
+					$this->aggregate_dimensions( $access_tokens, $this->dimensions );
+				}
+			} else {
+				// Failure on authenticating, please reauthenticate
+			}
+		}
 
 		/**
 		 * This hook runs on the shutdown to fetch data from GA
@@ -114,33 +141,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 					'dimension' => 'source',
 				),
 			);
-		}
-
-		/**
-		 * Fetch the data from Google Analytics and store it
-		 */
-		public function aggregate_data() {
-			$access_tokens = $this->options->get_access_token();
-
-			if ( $access_tokens != false && is_array( $access_tokens ) ) {
-				// Access tokens are set, continue
-
-				/**
-				 * Implement the metric data first
-				 */
-				if ( is_array( $this->active_metrics ) && count( $this->active_metrics ) >= 1 ) {
-					$this->aggregate_metrics( $access_tokens, $this->active_metrics );
-				}
-
-				/**
-				 * Now implement the dimensions that are set
-				 */
-				if ( is_array( $this->dimensions ) && count( $this->dimensions ) >= 1 ) {
-					$this->aggregate_dimensions( $access_tokens, $this->dimensions );
-				}
-			} else {
-				// Failure on authenticating, please reauthenticate
-			}
 		}
 
 		/**
