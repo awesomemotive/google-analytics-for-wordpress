@@ -75,7 +75,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 
 
 			echo '<pre>';
-			print_r( Yoast_GA_Dashboards_Data::get( 'source', strtotime( "-30 days" ), time() ) );
+			print_r( Yoast_GA_Dashboards_Data::get( 'source' ) );
 			echo '</pre>';
 		}
 

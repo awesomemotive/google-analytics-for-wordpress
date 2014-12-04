@@ -245,7 +245,9 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				'https://www.googleapis.com/analytics/v3/data/ga',
 				$access_tokens['oauth_token'],
 				$access_tokens['oauth_token_secret'],
-				$storage_type
+				$storage_type,
+				$start_date,
+				$end_date
 			);
 
 			if ( strpos( 'ga:date', $dimensions ) !== false ) {
@@ -347,7 +349,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 					$name = str_replace( 'ga:date,', '', $dimensions );
 				}
 
-				return Yoast_GA_Dashboards_Data::set( $name, $response, strtotime( $start_date ), strtotime( $end_date ), $store_as );
+				return Yoast_GA_Dashboards_Data::set( $name, $response['body'], strtotime( $start_date ), strtotime( $end_date ), $store_as );
 			} else {
 				// Failure on API call try to log it
 				$this->log_error( print_r( $response['body_raw'], true ) );
