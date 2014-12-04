@@ -29,8 +29,8 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 		 * @return array
 		 */
 		public static function get( $type, $startdate, $enddate ) {
-			$data  = array();
-			$range = self::date_range( $startdate, $enddate );
+			$data      = array();
+			$range     = self::date_range( $startdate, $enddate );
 			$transient = get_transient( 'yst_ga_' . $type );
 
 			if ( false === $transient ) {
@@ -39,12 +39,19 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 			}
 
 			foreach ( $range as $date ) {
-				$date_unix = strtotime( $date );
-				$data[ $date_unix ] = 0; // Set default value
+				$date_unix        = strtotime( $date );
+				$data[$date_unix] = 0; // Set default value
 
-				foreach($transient['value']['body'] as $value){
-					if( $date_unix == $value['date'] ){
-						$data[ $date_unix ] = $value['value'];
+				foreach ( $transient['value']['body'] as $value ) {
+					if ( $date_unix == $value['date'] ) {
+						if ( isset( $value['bool'] ) ) {
+							$data[$date_unix] = array(
+								'value' => $value['value'],
+								'bool'  => $value['bool'],
+							);
+						} else {
+							$data[$date_unix] = $value['value'];
+						}
 					}
 				}
 			}
