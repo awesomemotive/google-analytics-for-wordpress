@@ -66,10 +66,12 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Data' ) ) {
 		 * @param $value
 		 * @param $start_date
 		 * @param $end_date
+		 * @param $store_as
 		 *
 		 * @return bool
 		 */
-		public static function set( $type, $value, $start_date, $end_date ) {
+		public static function set( $type, $value, $start_date, $end_date, $store_as ) {
+			//echo $store_as . '_' . $type;
 			$store = array(
 				'type'       => $type,
 				'start_date' => $start_date,
