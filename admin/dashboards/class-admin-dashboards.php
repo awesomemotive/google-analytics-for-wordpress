@@ -56,7 +56,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 				'sessions' => array(
 					'title'      => __( 'Sessions', 'google-analytics-for-wordpress' ),
 					'data-label' => __( 'Number of sessions', 'google-analytics-for-wordpress' ),
-				)
+				),
+				'referrers' => array(
+					'title'      => __( 'Referrers', 'google-analytics-for-wordpress' ),
+					'data-label' => __( 'Your best referrers', 'google-analytics-for-wordpress' ),
+				),
 			);
 
 			// Register the active metrics
