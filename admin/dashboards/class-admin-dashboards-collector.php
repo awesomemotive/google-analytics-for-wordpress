@@ -83,7 +83,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				 * Now implement the dimensions that are set
 				 */
 				if ( is_array( $this->dimensions ) && count( $this->dimensions ) >= 1 ) {
-					print_r( $this->dimensions );
 					$this->aggregate_dimensions( $access_tokens, $this->dimensions );
 				}
 			} else {
@@ -137,7 +136,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 */
 		private function get_filter_metrics() {
 			return array(
-				'referrers' => array(
+				'source' => array(
 					'metric'    => 'sessions',
 					'dimension' => 'source',
 				),
@@ -232,14 +231,13 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		private function execute_call( $access_tokens, $metric, $start_date, $end_date, $dimensions = 'ga:date' ) {
 			$dimensions = $this->prepare_dimensions( $dimensions );
 			$params     = $this->build_params_for_call( $start_date, $end_date, $dimensions, $metric );
-
+			echo $params . '<br />';
 			$response = Yoast_Googleanalytics_Reporting::instance()->do_api_request(
 				'https://www.googleapis.com/analytics/v3/data/ga?' . $params,
 				'https://www.googleapis.com/analytics/v3/data/ga',
 				$access_tokens['oauth_token'],
 				$access_tokens['oauth_token_secret']
 			);
-			print_r( $response );
 
 			return $this->handle_response( $response, $metric, $dimensions, $start_date, $end_date );
 		}
@@ -252,13 +250,19 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * @return string
 		 */
 		private function prepare_dimensions( $dimensions ) {
+			$filter_metrics = $this->get_filter_metrics();
+
 			// Check if the dimensions param is an array, if so, glue it with implode to a comma separated string.
 			if ( is_array( $dimensions ) ) {
 				$dimensions = implode( ',', $dimensions );
 			}
 
-			if ( strpos( 'ga:date', $dimensions ) === false ) {
+			if ( strpos( 'ga:date', $dimensions ) === false && ! isset( $filter_metrics[str_replace( 'ga:', '', $dimensions )] ) ) {
 				$dimensions = 'ga:date,' . $dimensions;
+			}
+			elseif( isset( $filter_metrics[str_replace( 'ga:', '', $dimensions )] ) ){
+				// Make sure we don't have a ga:date property here
+				$dimensions = str_replace('ga:date', '', $dimensions);
 			}
 
 			return $dimensions;
@@ -301,9 +305,17 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		private function handle_response( $response, $metric, $dimensions, $start_date, $end_date ) {
 			if ( is_array( $response ) && isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
 				// Success, store this data
-				$name = $metric;
+				$filter_metrics = $this->get_filter_metrics();
+				$extracted      = str_replace( 'ga:', '', str_replace( 'ga:date,', '', $dimensions ) );
 
-				if ( $dimensions !== 'ga:date' ) {
+				if ( isset( $filter_metrics[$extracted] ) ) {
+					$name = $extracted;
+
+				} else {
+					$name = $metric;
+				}
+
+				if ( $dimensions !== 'ga:date' && ! isset( $filter_metrics[$extracted] ) ) {
 					$name = str_replace( 'ga:date,', '', $dimensions );
 				}
 
