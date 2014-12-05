@@ -53,17 +53,25 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		 */
 		public function init_dashboards( $ga_profile_id ) {
 			$dashboards = array(
-				'sessions' => array(
-					'title'      => __( 'Sessions', 'google-analytics-for-wordpress' ),
-					'data-label' => __( 'Number of sessions', 'google-analytics-for-wordpress' ),
+				'sessions'      => array(
+					'title' => __( 'Sessions', 'google-analytics-for-wordpress' ),
+					'type'  => 'table',
+					'tab'   => 'general',
 				),
-				'source'   => array(
-					'title'      => __( 'Traffic sources', 'google-analytics-for-wordpress' ),
-					'data-label' => __( 'Your best traffic sources', 'google-analytics-for-wordpress' ),
+				'source'        => array(
+					'title' => __( 'Traffic sources', 'google-analytics-for-wordpress' ),
+					'type'  => 'table',
+					'tab'   => 'dimensions',
 				),
-				'top_pageviews'   => array(
-					'title'      => __( 'Popular pages', 'google-analytics-for-wordpress' ),
-					'data-label' => __( 'Your most popular pages', 'google-analytics-for-wordpress' ),
+				'top_pageviews' => array(
+					'title' => __( 'Popular pages', 'google-analytics-for-wordpress' ),
+					'type'  => 'table',
+					'tab'   => 'dimensions',
+				),
+				'top_countries' => array(
+					'title' => __( 'Countries', 'google-analytics-for-wordpress' ),
+					'type'  => 'table',
+					'tab'   => 'dimensions',
 				),
 			);
 
