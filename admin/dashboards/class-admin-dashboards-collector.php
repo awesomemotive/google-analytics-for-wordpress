@@ -75,6 +75,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * Fetch the data from Google Analytics and store it
 		 */
 		public function aggregate_data() {
+			$this->close_connection();
 			$access_tokens = $this->options->get_access_token();
 
 			if ( $access_tokens != false && is_array( $access_tokens ) ) {
@@ -387,6 +388,14 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 					error_log( 'Yoast Google Analytics (Dashboard API): ' . $error );
 				}
 			}
+		}
+
+		/**
+		 * Close the HTTP socket, to continue with the api calls to Google Analytics
+		 */
+		private function close_connection() {
+			header( "Connection: close" );
+			flush();
 		}
 
 	}
