@@ -7,7 +7,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Display' ) ) {
 		/**
 		 * Property for holding instance of itself
 		 *
-		 * @var Yoast_Plugin_Conflict
+		 * @var Yoast_GA_Dashboards_Display
 		 */
 		protected static $instance;
 
@@ -101,39 +101,17 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Display' ) ) {
 		 * Displaying the $dashboards on the screen. If $dashboards isn't given it will display all registered
 		 * dashboards
 		 *
-		 * @param array $dashboards
+		 * @param string $tab_to_show
 		 */
-		public function display( $dashboards = array(), $tab ) {
+		public function display( $tab_to_show ) {
 
-			$dashboards_to_show = $this->get_dashboards_to_display( $dashboards );
+			$dashboards_to_show = $this->dashboards;
 
 			foreach ( $dashboards_to_show AS $dashboard_name => $dashboard_settings ) {
-				if ( !empty($dashboard_settings['tab']) && $dashboard_settings['tab'] === $tab ) {
+				if ( !empty($dashboard_settings['tab']) && $dashboard_settings['tab'] === $tab_to_show ) {
 					$this->driver( $dashboard_settings['type'] )->display( $dashboard_name );
 				}
 			}
-		}
-
-		/**
-		 * Gets an array of all dashboard that should be displayed
-		 *
-		 * @param array $dashboards
-		 *
-		 * @return array
-		 */
-		protected function get_dashboards_to_display( $dashboards ) {
-
-			if ( ! empty( $dashboards ) ) {
-				$return = array();
-				foreach ( $dashboards AS $dashboard ) {
-					$return[$dashboard] = $this->dashboards[$dashboard];
-				}
-
-				return $return;
-			} else {
-				return $this->dashboards;
-			}
-
 		}
 
 		/**
