@@ -123,10 +123,10 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 		 */
 		private function add_assets( $page, $is_not_dashboard ) {
 			add_action( 'admin_print_styles-' . $page, array( 'Yoast_GA_Admin_Assets', 'enqueue_styles' ) );
-			if ( $is_not_dashboard ) {
-				add_action( 'admin_print_styles-' . $page, array( 'Yoast_GA_Admin_Assets', 'enqueue_settings_styles' ) );
-				add_action( 'admin_print_scripts-' . $page, array( 'Yoast_GA_Admin_Assets', 'enqueue_scripts' ) );
-			} else {
+
+			add_action( 'admin_print_styles-' . $page, array( 'Yoast_GA_Admin_Assets', 'enqueue_settings_styles' ) );
+			add_action( 'admin_print_scripts-' . $page, array( 'Yoast_GA_Admin_Assets', 'enqueue_scripts' ) );
+			if ( ! $is_not_dashboard ) {
 				Yoast_GA_Admin_Assets::enqueue_dashboard_assets();
 			}
 		}
