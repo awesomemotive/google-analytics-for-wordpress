@@ -71,7 +71,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 				),
 				'source'        => array(
 					'title'   => __( 'Traffic sources', 'google-analytics-for-wordpress' ),
-					'help'         => __( 'Every referral to a web site has an origin, or (traffic) source. Possible sources include: “google” (the name of a search engine), “facebook.com” (the name of a referring site), “spring_newsletter” (the name of one of your newsletters), and “direct” (users that typed your URL directly into their browser, or who had bookmarked your site). <a href="http://yoa.st/gabnce" target="_blank">[Learn more]</a>', 'google-analytics-for-wordpress' ),
+					'help'    => __( 'Every referral to a web site has an origin, or (traffic) source. Possible sources include: “google” (the name of a search engine), “facebook.com” (the name of a referring site), “spring_newsletter” (the name of one of your newsletters), and “direct” (users that typed your URL directly into their browser, or who had bookmarked your site). <a href="http://yoa.st/gabnce" target="_blank">[Learn more]</a>', 'google-analytics-for-wordpress' ),
 					'type'    => 'table',
 					'columns' => array(
 						__( 'Sessions', 'google-analytics-for-wordpress' )
@@ -80,7 +80,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 				),
 				'top_pageviews' => array(
 					'title'   => __( 'Popular pages', 'google-analytics-for-wordpress' ),
-					'help'         => __( 'Pages by url.' , 'google-analytics-for-wordpress' ),
+					'help'    => __( 'Pages by url.', 'google-analytics-for-wordpress' ),
 					'type'    => 'table',
 					'columns' => array(
 						__( 'Sessions', 'google-analytics-for-wordpress' )
@@ -88,13 +88,13 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 					'tab'     => 'dimensions'
 				),
 				'top_countries' => array(
-					'title' => __( 'Countries', 'google-analytics-for-wordpress' ),
-					'help'         => __( 'The country or territory from which visits originated. <a href="http://yoa.st/gacountry" target="_blank">[Learn more]</a>' , 'google-analytics-for-wordpress' ),
-					'type'  => 'table',
+					'title'   => __( 'Countries', 'google-analytics-for-wordpress' ),
+					'help'    => __( 'The country or territory from which visits originated. <a href="http://yoa.st/gacountry" target="_blank">[Learn more]</a>', 'google-analytics-for-wordpress' ),
+					'type'    => 'table',
 					'columns' => array(
 						__( 'Sessions', 'google-analytics-for-wordpress' )
 					),
-					'tab'   => 'dimensions',
+					'tab'     => 'dimensions',
 				),
 			);
 
@@ -167,8 +167,8 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 			// Now we can localize the script with our data.
 			$translation_array = array(
 				// For datatables
-				'sortAscending'       => __( ': activate to sort column ascending', 'google-analytics-for-wordpress' ),
-				'sortDescending'      => __( ': activate to sort column descending', 'google-analytics-for-wordpress' ),
+				'sort_ascending'      => __( ': activate to sort column ascending', 'google-analytics-for-wordpress' ),
+				'sort_descending'     => __( ': activate to sort column descending', 'google-analytics-for-wordpress' ),
 				'empty_table'         => __( 'No data available', 'google-analytics-for-wordpress' ),
 				'info'                => _x( 'Showing _START_ to _END_ of _TOTAL_ entries', '_START_, _END_ and _TOTAL_ will be replaced by JS (See: http://datatables.net/reference/option/language.info)', 'google-analytics-for-wordpress' ),
 				'info_empty'          => __( 'No entries to show', 'google-analytics-for-wordpress' ),
