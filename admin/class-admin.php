@@ -39,7 +39,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function init_settings() {
 			$this->options = $this->get_options();
-			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
+			$this->api     = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
 
 			if ( is_null( $this->get_tracking_code() ) ) {
 				add_action( 'admin_notices', array( $this, 'config_warning' ) );
@@ -188,6 +188,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				add_action( 'yst_ga_custom_dimensions_tab-content', array( $this, 'premium_promo' ) );
 			}
 
+			if ( ! has_action( 'yst_ga_custom_dimension_add-dashboards-tab' ) ) {
+				add_action( 'yst_ga_custom_dimension_add-dashboards-tab', array( $this, 'premium_promo' ) );
+			}
+
 			if ( isset( $_GET['page'] ) ) {
 				switch ( $_GET['page'] ) {
 					case 'yst_ga_settings':
@@ -334,7 +338,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			}
 			if ( count( $values ) >= 1 ) {
 				foreach ( $values as $value ) {
-					if( isset($value['parent_name']) ){
+					if ( isset( $value['parent_name'] ) ) {
 						$select .= '<optgroup label="' . $value['parent_name'] . '">';
 					}
 
@@ -348,7 +352,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 						$select .= '<option value="' . $value['id'] . '" ' . selected( $this->options[$name], $value['id'], false ) . '>' . stripslashes( $value['name'] ) . '</option>';
 					}
 
-					if( isset($value['parent_name']) ){
+					if ( isset( $value['parent_name'] ) ) {
 						$select .= '</optgroup>';
 					}
 				}
@@ -442,7 +446,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		private function get_current_profile() {
 			$current_profile = null;
 			foreach ( $this->get_profiles() as $profile ) {
-				if ( $profile['id'] == $this->options['analytics_profile'] ) {
+				if ( ! empty( $profile['id'] ) && $profile['id'] == $this->options['analytics_profile'] ) {
 					$current_profile = $profile['profile_id'];
 				}
 			}
