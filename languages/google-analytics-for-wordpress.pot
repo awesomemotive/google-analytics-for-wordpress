@@ -2,35 +2,35 @@
 # This file is distributed under the GPL v3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Google Analytics by Yoast 5.1.2\n"
+"Project-Id-Version: Google Analytics by Yoast 5.1.4\n"
 "Report-Msgid-Bugs-To: "
-"http://wordpress.org/support/plugin/google-analytics-for-wordpress\n"
-"POT-Creation-Date: 2014-11-20 14:21:15+00:00\n"
+"https://github.com/yoast/google-analytics-for-wordpress/issues\n"
+"POT-Creation-Date: 2014-12-02 13:22:29+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Remkus de Vries <translations@yoast.com>\n"
+"Last-Translator: Yoast Translate Team <translations@yoast.com>\n"
 "Language-Team: Yoast Translate <translations@yoast.com>\n"
-"X-Generator: grunt-wp-i18n 0.4.4\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-Country: UNITED STATES\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2; "
-"_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_attr__; esc_html__;esc_attr_e; "
-"esc_html_e;esc_attr_x:1,2c; esc_html_x:1,2c;\n"
-"X-Poedit-Bookmarks: \n"
+"X-Generator: grunt-wp-i18n 0.4.9\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
 #: admin/class-admin-menu.php:55 admin/class-admin-menu.php:79
 msgid "Yoast Google Analytics:"
 msgstr ""
 
-#: admin/class-admin-menu.php:55
-msgid "General Settings"
+#: admin/class-admin-menu.php:55 admin/pages/settings.php:28
+msgid "General settings"
 msgstr ""
 
 #: admin/class-admin-menu.php:55
@@ -41,58 +41,58 @@ msgstr ""
 msgid "Please configure your %sGoogle Analytics settings%s!"
 msgstr ""
 
-#: admin/class-admin.php:103
+#: admin/class-admin.php:106
 msgid "Settings saved!"
 msgstr ""
 
-#: admin/class-admin.php:110
+#: admin/class-admin.php:113
 msgid "There where no changes to save, please try again."
 msgstr ""
 
-#: admin/class-admin.php:129
+#: admin/class-admin.php:132
 msgid "FAQ"
 msgstr ""
 
-#: admin/class-admin.php:132
+#: admin/class-admin.php:135 admin/pages/settings.php:6
 msgid "Settings"
 msgstr ""
 
-#: admin/class-admin.php:185
+#: admin/class-admin.php:188
 msgid ""
 "If you want to track custom dimensions, to for instance track page views "
 "per author or post type, you should upgrade to the %1$spremium version of "
 "Google Analytics by Yoast%2$s."
 msgstr ""
 
-#: admin/class-admin.php:187
+#: admin/class-admin.php:190
 msgid ""
 "This will also give you email access to the support team at Yoast, who will "
 "provide support on the plugin 24/7."
 msgstr ""
 
-#: admin/class-admin.php:531
+#: admin/class-admin.php:543
 msgid "Debug information"
 msgstr ""
 
-#: admin/class-admin.php:580
+#: admin/class-admin.php:592
 msgid "Google Analytics by Yoast Premium"
 msgstr ""
 
-#: admin/class-admin.php:581
+#: admin/class-admin.php:593
 msgid ""
 "The premium version of Google Analytics for WordPress with more features "
 "&amp; support."
 msgstr ""
 
-#: admin/class-admin.php:586
+#: admin/class-admin.php:598
 msgid "Google Analytics"
 msgstr ""
 
-#: admin/class-admin.php:586
+#: admin/class-admin.php:598
 msgid "E-Commerce tracking"
 msgstr ""
 
-#: admin/class-admin.php:587
+#: admin/class-admin.php:599
 msgid ""
 "Track your E-Commerce data and transactions with this E-Commerce extension "
 "for Google Analytics."
@@ -273,8 +273,13 @@ msgstr ""
 msgid "%sRenew your license now%s."
 msgstr ""
 
+#: admin/pages/dashboard.php:6 admin/pages/extensions.php:10
+#: admin/pages/settings.php:6
+msgid "Yoast Google Analytics: "
+msgstr ""
+
 #: admin/pages/dashboard.php:6
-msgid "Yoast Google Analytics: Dashboard"
+msgid "Dashboard"
 msgstr ""
 
 #: admin/pages/dashboard.php:9
@@ -284,11 +289,7 @@ msgid ""
 "yourself."
 msgstr ""
 
-#: admin/pages/extensions.php:10
-msgid "Yoast Google Analytics: Extensions"
-msgstr ""
-
-#: admin/pages/extensions.php:13
+#: admin/pages/extensions.php:10 admin/pages/extensions.php:13
 msgid "Extensions"
 msgstr ""
 
@@ -300,10 +301,6 @@ msgstr ""
 msgid ""
 "You have not installed any extensions for Yoast Google Analytics, so there "
 "are no licenses to activate."
-msgstr ""
-
-#: admin/pages/settings.php:6
-msgid "Yoast Google Analytics: Settings"
 msgstr ""
 
 #: admin/pages/settings.php:13
@@ -324,10 +321,6 @@ msgstr ""
 
 #: admin/pages/settings.php:18
 msgid "Debug mode"
-msgstr ""
-
-#: admin/pages/settings.php:28
-msgid "General settings"
 msgstr ""
 
 #: admin/pages/settings.php:41
@@ -377,11 +370,9 @@ msgstr ""
 
 #: admin/pages/settings.php:70
 msgid ""
-"This adds <code><a "
-"href=\"http://code.google.com/apis/analytics/docs/gaJS/gaJSApi_gat.html#_"
-"gat._anonymizeIp\" target=\"_blank\">_anonymizeIp</a></code>, telling "
-"Google Analytics to anonymize the information sent by the tracker objects "
-"by removing the last octet of the IP address prior to its storage."
+"This adds <code>%1$s _anonymizeIp%2$s</code>, telling Google Analytics to "
+"anonymize the information sent by the tracker objects by removing the last "
+"octet of the IP address prior to its storage."
 msgstr ""
 
 #: admin/pages/settings.php:71
@@ -401,10 +392,7 @@ msgstr ""
 #: admin/pages/settings.php:77
 msgid ""
 "First enable Universal tracking in your Google Analytics account. How to do "
-"that, please read <a "
-"href=\"http://kb.yoast.com/article/125-universal-analytics#utm_medium=kb-"
-"link&utm_source=gawp-config&utm_campaign=wpgaplugin\" "
-"target=\"_blank\">this guide</a> to learn how to do that."
+"that, please read %1$sthis guide%2$s to learn how to do that."
 msgstr ""
 
 #: admin/pages/settings.php:78
@@ -414,10 +402,7 @@ msgstr ""
 #: admin/pages/settings.php:78
 msgid ""
 "You have to enable the Demographics in Google Analytics before you can see "
-"the tracking data. We have a doc in our <a "
-"href=\"http://kb.yoast.com/article/154-enable-demographics-and-interests-"
-"report-in-google-analytics/#utm_medium=kb-link&utm_source=gawp-config&utm_"
-"campaign=wpgaplugin\" target=\"_blank\">knowlegde base</a> about this "
+"the tracking data. We have a doc in our %1$sknowlegde base%2$s about this "
 "feature."
 msgstr ""
 
@@ -480,11 +465,8 @@ msgstr ""
 
 #: admin/pages/settings.php:93
 msgid ""
-"This adds a <code><a "
-"href=\"http://code.google.com/apis/analytics/docs/gaJSApiCampaignTracking."
-"html#_gat.GA_Tracker_._setAllowAnchor\" "
-"target=\"_blank\">_setAllowAnchor</a></code> call to your tracking code, "
-"and makes RSS link tagging use a # as well."
+"This adds a <code>%1$s_setAllowAnchor%2$s</code> call to your tracking "
+"code, and makes RSS link tagging use a # as well."
 msgstr ""
 
 #: admin/pages/settings.php:94
@@ -493,11 +475,8 @@ msgstr ""
 
 #: admin/pages/settings.php:94
 msgid ""
-"This adds a <code><a "
-"href=\"http://code.google.com/apis/analytics/docs/gaJS/"
-"gaJSApiDomainDirectory.html#_gat.GA_Tracker_._setAllowLinker\" "
-"target=\"_blank\">_setAllowLinker</a></code> call to your tracking code,  "
-"allowing you to use <code>_link</code> and related functions."
+"This adds a <code>%1$s_setAllowLinker%2$s</code> call to your tracking "
+"code,  allowing you to use <code>_link</code> and related functions."
 msgstr ""
 
 #: admin/pages/settings.php:95

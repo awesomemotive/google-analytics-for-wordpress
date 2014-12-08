@@ -4,7 +4,7 @@ Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
 Tested up to: 4.0
-Stable tag: 5.1.2
+Stable tag: 5.1.4
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
@@ -48,6 +48,28 @@ This section describes how to install the plugin and get it working.
 1. Go to the options panel under the 'Settings' menu and add your Analytics account number and set the settings you want.
 
 == Changelog ==
+
+= 5.1.4 =
+
+Release Date: December 2nd, 2014
+
+* Enhancements:
+	* Added GA property name to 'Analytics profile' selection in settings. Thanks [stephenyeargin](https://github.com/stephenyeargin) for reporting.
+	* Removed firebug lite as it's rather obsolete with todays development consoles.
+
+* i18n:
+    * Several string fixes for easier translation.
+    * Added en_GB and he_IL.
+
+* Bugfixes:
+	* Fixes a bug where site admins for sites on a multisite setup would receive a notice when visiting another site on the same setup which they didn't administrate, props [nerrad](https://github.com/nerrad).
+	* Fixes a bug where saving the admin settings would cause non-string form fields to be ignored or rejected.
+
+= 5.1.3 =
+
+Release Date: November 26th, 2014
+
+* Security fix: fixed a very minor cross site scripting issue with the manual UA code in de admin settings. The manual UA code is now sanitized before it is saved.
 
 = 5.1.2 =
 
@@ -480,3 +502,4 @@ For all frequently asked questions, and their answers, check the [Yoast Knowledg
 1. Screenshot of the general settings panel for this plugin.
 2. Screenshot of the universal settings panel.
 3. Screenshot of the advanced settings panel.
+4. Screenshot of the account selection drop down.
