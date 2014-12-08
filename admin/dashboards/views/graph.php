@@ -1,5 +1,13 @@
-<div id="graph-<?php echo $dashboard; ?>" class="yoast-graph" data-label="<?php echo $settings['data-label']; ?>">
-	<h2><?php echo $settings['title']; ?></h2>
+<div id="graph-<?php echo $dashboard; ?>" class="yoast-dashboard yoast-graph" data-label="<?php echo $settings['title']; ?>" data-percent="<?php echo ! empty( $settings['data-percent'] ); ?>">
+	<h3>
+		<span class='alignleft'><?php echo $settings['title']; ?></span>
+		<?php
+		if ( ! empty( $settings['help'] ) ) {
+			echo Yoast_GA_Admin_Form::get_instance()->show_help( 'graph-' . $dashboard, $settings['help'] );
+		}
+		?>
+		<span class='alignright period'><?php echo __( 'Last month', 'google-analytics-for-wordpress' ); ?></span>
+	</h3>
 
 	<?php if ( empty( $settings['hide_y_axis'] ) ) {
 		echo "<div class='yoast-graph-yaxis'></div >";
