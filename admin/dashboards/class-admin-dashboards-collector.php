@@ -155,6 +155,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 					'dimension'    => 'pagePath',
 					'storage_name' => 'top_pageviews',
 				),
+				'top_countries' => array(
+					'metric'       => 'sessions',
+					'dimension'    => 'country',
+					'storage_name' => 'top_countries',
+				),
 			);
 		}
 
