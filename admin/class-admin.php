@@ -88,6 +88,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function save_settings( $data ) {
 			foreach ( $data as $key => $value ) {
 				if ( $key != 'return_tab' ) {
+					if ( $key != 'custom_code' && is_string( $value ) ) {
+						$value = strip_tags( $value );
+					}
 					$this->options[$key] = $value;
 				}
 			}
@@ -333,6 +336,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			}
 			if ( count( $values ) >= 1 ) {
 				foreach ( $values as $value ) {
+					if( isset($value['parent_name']) ){
+						$select .= '<optgroup label="' . $value['parent_name'] . '">';
+					}
+
 					if ( is_array( $this->options[$name] ) ) {
 						if ( in_array( $value['id'], $this->options[$name] ) ) {
 							$select .= '<option value="' . $value['id'] . '" selected="selected">' . stripslashes( $value['name'] ) . '</option>';
@@ -341,6 +348,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 						}
 					} else {
 						$select .= '<option value="' . $value['id'] . '" ' . selected( $this->options[$name], $value['id'], false ) . '>' . stripslashes( $value['name'] ) . '</option>';
+					}
+
+					if( isset($value['parent_name']) ){
+						$select .= '</optgroup>';
 					}
 				}
 			}
