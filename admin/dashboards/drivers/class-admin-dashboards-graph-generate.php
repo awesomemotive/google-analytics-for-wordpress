@@ -4,7 +4,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 
 	class Yoast_GA_Dashboards_Graph_Generate extends Yoast_GA_Dashboards_Driver_Generate {
 
-
 		/**
 		 * The field that will be used for displaying on x-axis. Mostly it will be the j (day in month)
 		 *
@@ -15,20 +14,16 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 		private $date_field = 'j';
 
 		/**
-		 * Storage for $data
-		 *
-		 * @var array
+		 * @var array - Storage for $data
 		 */
 		private $data = array();
 
 		/**
-		 * Storage for mapping
-		 *
-		 * @var array
+		 * @var array - Storage for mapping
 		 */
 		private $mapping = array(
-			'x' => array(),
-			'y' => array(),
+			'x'     => array(),
+			'hover' => array(),
 		);
 
 		/**
@@ -48,13 +43,30 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 		 * @return string
 		 */
 		public function get_json() {
-
 			$return = array(
 				'data'    => $this->data,
 				'mapping' => $this->mapping,
 			);
 
 			return json_encode( $return );
+		}
+
+		/**
+		 * Filtering the current data to eliminate all values which are not in given period
+		 *
+		 * @param integer $google_data
+		 *
+		 * @return integer
+		 */
+		protected function filter_google_data( $google_data ) {
+
+			foreach ( $google_data['value'] AS $unix_timestamp => $value ) {
+				if ( $this->is_date_in_period( $unix_timestamp ) ) {
+					$return[$unix_timestamp] = $value;
+				}
+			}
+
+			return $return;
 		}
 
 		/**
@@ -102,7 +114,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 				'y' => $value,
 			);
 
-			$current_x++;
+			$current_x ++;
 		}
 
 		/**
@@ -118,32 +130,14 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 		}
 
 		/**
-		 * Add date field to the y-mapping
+		 * Add date field to the hover-mapping
 		 *
+		 * @param integer $timestamp
 		 * @param integer $value
 		 */
 		private function add_hover_mapping( $timestamp, $value ) {
-			$this->mapping['hover'][] = date( $this->date_field . ' M', $timestamp ). ': '.$value;
+			$this->mapping['hover'][] = date( $this->date_field . ' M', $timestamp ) . ': ' . $value;
 		}
-
-		/**
-		 * Filtering the current data to eliminate all values which are not in given period
-		 *
-		 * @param integer $google_data
-		 *
-		 * @return integer
-		 */
-		protected function filter_google_data( $google_data ) {
-
-			foreach ( $google_data['value'] AS $unix_timestamp => $value ) {
-				if( $this->is_date_in_period( $unix_timestamp ) ) {
-					$return[$unix_timestamp] = $value;
-				}
-			}
-
-			return $return;
-		}
-
 
 	}
 }
