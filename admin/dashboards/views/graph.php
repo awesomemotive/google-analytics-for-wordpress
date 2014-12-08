@@ -3,7 +3,7 @@
 		<span class='alignleft'><?php echo $settings['title']; ?></span>
 		<?php
 		if ( ! empty( $settings['help'] ) ) {
-			echo Yoast_GA_Admin_Form::get_instance()->show_help( 'graph-' . $dashboard, $settings['help'] );
+			echo Yoast_GA_Admin_Form::show_help( 'graph-' . $dashboard, $settings['help'] );
 		}
 		?>
 		<span class='alignright period'><?php echo __( 'Last month', 'google-analytics-for-wordpress' ); ?></span>
