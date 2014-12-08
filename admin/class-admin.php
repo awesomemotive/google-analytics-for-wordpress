@@ -192,14 +192,12 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				switch ( $_GET['page'] ) {
 					case 'yst_ga_settings':
 						require_once( $this->plugin_path . 'admin/pages/settings.php' );
-
 						break;
 					case 'yst_ga_extensions':
 						require_once( $this->plugin_path . 'admin/pages/extensions.php' );
 						break;
 					case 'yst_ga_dashboard':
 					default:
-
 						require_once( $this->plugin_path . 'admin/pages/dashboard.php' );
 						break;
 				}

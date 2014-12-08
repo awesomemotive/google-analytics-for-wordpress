@@ -8,12 +8,8 @@
 	display: inline;
 	float: left;
 	width: 840px;
-	height: 425px;
+	height: 375px;
 	margin: 5px;
-}
-
-.yoast-graph h2 {
-	margin: 0 0 10px;
 }
 
 .yoast-graph-holder, .yoast-graph-yaxis {
@@ -45,4 +41,30 @@
 
 .x_label {
 	display: none;
+}
+
+.yoast-data-table {
+	margin-top: 25px;
+}
+
+.yoast-dashboard h3 {
+	float: left;
+	clear: both;
+	width: 100%;
+	margin: 0 0 10px;
+}
+
+.yoast-dashboard .period {
+	color: #555;
+	font-size: 0.8em;
+	font-weight: normal;
+	font-style: italic;
+}
+
+.yoast-data-table table.dataTable thead .sorting {
+	border-color: #d3d3d3;
+}
+
+.yoast-data-table table.dataTable.no-footer {
+	border-bottom: none;
 }
