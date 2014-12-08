@@ -30,9 +30,7 @@ echo $yoast_ga_admin->content_head();
 
 		<div class="yoast-graphs">
 			<?php
-			Yoast_GA_Dashboards_Display::get_instance()->display(
-				false, 'general'
-			);
+			Yoast_GA_Dashboards_Display::get_instance()->display('general');
 			?>
 		</div>
 	</div>
@@ -46,14 +44,12 @@ echo $yoast_ga_admin->content_head();
 		<select data-rel='toggle_dimensions' id="toggle_dimensions" style="width: 350px"></select>
 
 		<?php
-			Yoast_GA_Dashboards_Display::get_instance()->display(
-				false, 'dimensions'
-			);
+			Yoast_GA_Dashboards_Display::get_instance()->display('dimensions');
 		?>
 	</div>
 
 	<div id="customdimensions" class="wpseotab gatab">
-		<h2><?php echo __( 'Dimension dashboards', 'google-analytics-for-wordpress' ); ?></h2>
+		<h2><?php echo __( 'Custom dimension dashboards', 'google-analytics-for-wordpress' ); ?></h2>
 		<?php
 			do_action('yst_ga_custom_dimension_add-dashboards-tab');
 		?>
