@@ -53,6 +53,13 @@ if ( ! class_exists( 'Yoast_GA_Admin_Assets' ) ) {
 			// Enqueue the rickshaw css
 			wp_enqueue_style( 'rickshaw_css', self::get_asset_path( 'assets/dependencies/rickshaw/rickshaw.min.css' ) );
 
+			// Enqueue the datatables js file
+			wp_enqueue_script( 'datatables_js', self::get_asset_path( 'assets/dependencies/datatables/js/jquery.dataTables.min.js' ), array(), false, true );
+
+			// Enqueue the datatables css
+			wp_enqueue_style( 'datatables_css', self::get_asset_path( 'assets/dependencies/datatables/css/jquery.dataTables.min.css' ) );
+
+			Yoast_GA_Dashboards::get_instance()->add_dashboard_js_translations();
 		}
 
 		/**
