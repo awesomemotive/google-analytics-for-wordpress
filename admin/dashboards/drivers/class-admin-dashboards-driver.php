@@ -2,7 +2,7 @@
 
 if ( ! class_exists( 'Yoast_GA_Dashboards_Driver' ) ) {
 
-	class Yoast_GA_Dashboards_Driver {
+	abstract class Yoast_GA_Dashboards_Driver {
 
 		/**
 		 * Container for holding set dashboards
@@ -65,13 +65,16 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Driver' ) ) {
 
 		/**
 		 * Setting hook for doing ajax request
-		 *
 		 */
 		protected function initialize_ajax() {
 			add_action( $this->ajax_hook, array( $this, 'get_ajax_data' ) );
 		}
 
-
+		/**
+		 * This method should always be available
+		 * @return mixed
+		 */
+		abstract protected function get_dashboard_generate_object();
 
 	}
 }

@@ -48,15 +48,15 @@ jQuery.fn.extend(
 						parse_response: function (response) {
 							element.find('table').dataTable(
 								{
-									columns     : [
+									columns : [
 										{"data": "name"},
 										{"data": "value"},
 									],
-									data        : response.data,
-									order       : [1, 'dsc'],
+									data    : response.data,
+									order   : [1, 'dsc'],
 
 									// Translations
-									language    : {
+									language: {
 										aria             : {
 											sortAscending : dashboard_translate.sort_ascending,
 											sortDescending: dashboard_translate.sort_descending
@@ -82,8 +82,6 @@ jQuery.fn.extend(
 							);
 						}
 					}
-
-					console.log('changed');
 
 					table.init();
 				}
@@ -435,10 +433,6 @@ function dimension_switch(switch_select) {
 
 	// First we have to hide all tables except the first one.
 	list_tables.not(':eq(0)').hide();
-
-	switch_select.on('change', function () {
-
-	});
 
 	setTimeout(
 		function () {

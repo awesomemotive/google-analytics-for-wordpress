@@ -2,32 +2,25 @@
 
 if ( ! class_exists( 'Yoast_GA_Dashboards_Driver_Generate' ) ) {
 
-	class Yoast_GA_Dashboards_Driver_Generate {
+	abstract class Yoast_GA_Dashboards_Driver_Generate {
 
 		/**
-		 * Which type of data should be loaded
-		 *
-		 * @var
+		 * @var string - Which type of data should be loaded
 		 */
 		protected $graph_type;
 
 		/**
-		 * For which period should the data be shown
-		 *
-		 * @var
+		 * @var string - For which period should the data be shown
 		 */
 		protected $period;
 
 		/**
-		 * The end date
-		 * @var
+		 * @var string - The end date
 		 */
 		protected $end_date;
 
 		/**
-		 * The start date
-		 *
-		 * @var
+		 * @var string - The start date
 		 */
 		protected $start_date;
 
@@ -41,13 +34,12 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Driver_Generate' ) ) {
 			$this->set_start_date();
 		}
 
-
 		/**
 		 * Getting graph_id from post and strip HTML-prefix graph- to get the type
 		 */
 		protected function set_graph_type() {
 			$graph_id         = filter_input( INPUT_GET, 'graph_id' );
-			$graph_type       = str_replace( array('graph-', 'table-'), '', $graph_id);
+			$graph_type       = str_replace( array( 'graph-', 'table-' ), '', $graph_id );
 			$this->graph_type = $graph_type;
 		}
 
@@ -95,15 +87,15 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Driver_Generate' ) ) {
 		 */
 		protected function get_google_data() {
 
-			$response = Yoast_GA_Dashboards_Data::get( $this->graph_type);
+			$response = Yoast_GA_Dashboards_Data::get( $this->graph_type );
 
-			if(array_key_exists('body', $response['value'])) {
+			if ( array_key_exists( 'body', $response['value'] ) ) {
 				$return = $response['value']['body'];
 			} else {
 				$return = $response;
 			}
 
-			return $this->filter_google_data($return);
+			return $this->filter_google_data( $return );
 		}
 
 		/**
@@ -117,6 +109,12 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Driver_Generate' ) ) {
 			return ( $timestamp >= $this->start_date && $timestamp <= $this->end_date );
 		}
 
+		/**
+		 * Should always be available
+		 *
+		 * @return mixed
+		 */
+		abstract public function get_json();
 
 	}
 

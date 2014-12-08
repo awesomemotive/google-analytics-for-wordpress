@@ -4,6 +4,9 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Table_Generate' ) ) {
 
 	class Yoast_GA_Dashboards_Table_Generate extends Yoast_GA_Dashboards_Driver_Generate {
 
+		/**
+		 * @var string - The ID of requested dimension
+		 */
 		protected $dimension_id;
 
 		/**
@@ -17,43 +20,17 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Table_Generate' ) ) {
 			$this->generate();
 		}
 
-
 		/**
 		 * Putting $this->data and $this->mapping and give them back as a json encoded string
 		 *
 		 * @return string
 		 */
 		public function get_json() {
-
 			$return = array(
 				'data' => $this->data
 			);
 
 			return json_encode( $return );
-		}
-
-		private function set_dimension_id() {
-			$this->dimension_id = filter_input( INPUT_GET, 'dimension_id' );
-
-			if ( ! empty( $this->dimension_id ) ) {
-				$this->graph_type = 'ga:dimension' . $this->dimension_id;
-			} else {
-				$this->graph_type = $this->graph_type;
-			}
-		}
-
-
-		/**
-		 * Generate the data for the frontend based on the $google_data
-		 */
-		private function generate() {
-
-			$google_data = $this->get_google_data();
-
-			foreach ( $google_data AS $key => $values ) {
-				$this->add_data( $values );
-			}
-
 		}
 
 		/**
@@ -68,15 +45,25 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Table_Generate' ) ) {
 		}
 
 		/**
-		 * Adding value to data property
-		 *
-		 * x is position on x-axis, always starting from 0
-		 * y is the value of that point.
-		 *
-		 * @param integer $value
+		 * Setting the dimension_id for current request. Based on dimension_id the graph_type will be set, this to
+		 * handle the request correctly
 		 */
-		private function add_data( $values ) {
-			$this->data[] = $values;
+		private function set_dimension_id() {
+			$this->dimension_id = filter_input( INPUT_GET, 'dimension_id' );
+
+			if ( ! empty( $this->dimension_id ) ) {
+				$this->graph_type = 'ga:dimension' . $this->dimension_id;
+			} else {
+				$this->graph_type = $this->graph_type;
+			}
+		}
+
+		/**
+		 * Generate the data for the frontend based on the $google_data
+		 */
+		private function generate() {
+			$google_data = $this->get_google_data();
+			$this->data  = array_values( $google_data );
 		}
 
 	}
