@@ -327,13 +327,36 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 */
 		private function build_params_for_call( $start_date, $end_date, $dimensions, $metric ) {
 			$params = array(
-				'ids'        => 'ga:' . $this->ga_profile_id,
-				'start-date' => $start_date,
-				'end-date'   => $end_date,
-				'dimensions' => $dimensions,
-				'metrics'    => 'ga:' . $metric,
+				'ids'         => 'ga:' . $this->ga_profile_id,
+				'start-date'  => $start_date,
+				'end-date'    => $end_date,
+				'dimensions'  => $dimensions,
+				'metrics'     => 'ga:' . $metric,
+				'max-results' => 10000,
 			);
+
+			$params = $this->add_sort_direction( $params, $dimensions, $metric );
 			$params = http_build_query( $params );
+
+			return $params;
+		}
+
+		/**
+		 * Add a sort direction if we need to (Especially on dimensions which are
+		 * listed in $this->get_filter_metrics())
+		 *
+		 * @param $params
+		 *
+		 * @return mixed
+		 */
+		private function add_sort_direction( $params, $dimensions, $metric ) {
+			$filter_dimensions = $this->get_filter_metrics();
+
+			foreach ( $filter_dimensions as $dimension ) {
+				if ( str_replace( 'ga:', '', $dimensions ) == $dimension['dimension'] && str_replace( 'ga:', '', $metric ) == $dimension['metric'] ) {
+					$params['sort'] = '-ga:' . $dimension['metric'];
+				}
+			}
 
 			return $params;
 		}
