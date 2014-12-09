@@ -328,7 +328,29 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				'metrics'     => 'ga:' . $metric,
 				'max-results' => 10000,
 			);
+
+			$params = $this->add_sort_direction( $params, $dimensions, $metric );
 			$params = http_build_query( $params );
+
+			return $params;
+		}
+
+		/**
+		 * Add a sort direction if we need to (Especially on dimensions which are
+		 * listed in $this->get_filter_metrics())
+		 *
+		 * @param $params
+		 *
+		 * @return mixed
+		 */
+		private function add_sort_direction( $params, $dimensions, $metric ) {
+			$filter_dimensions = $this->get_filter_metrics();
+
+			foreach ( $filter_dimensions as $dimension ) {
+				if ( str_replace( 'ga:', '', $dimensions ) == $dimension['dimension'] && str_replace( 'ga:', '', $metric ) == $dimension['metric'] ) {
+					$params['sort'] = '-ga:' . $dimension['dimension'];
+				}
+			}
 
 			return $params;
 		}
