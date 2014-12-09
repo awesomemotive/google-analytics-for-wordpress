@@ -142,8 +142,8 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 			$tracking_code = null;
 			$this->options = $this->get_options();
 
-			if ( ! empty( $this->options['analytics_profile'] ) ) {
-				$tracking_code = $this->options['analytics_profile'];
+			if ( ! empty( $this->options['analytics_profile'] ) && ! empty( $this->options['analytics_profile_code'] ) ) {
+				$tracking_code = $this->options['analytics_profile_code'];
 			}
 
 			if ( ! empty( $this->options['manual_ua_code_field'] ) && ! empty( $this->options['manual_ua_code'] ) ) {
@@ -191,7 +191,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 			}
 
 			// 5.1.2+ Remove firebug_lite from options, if set
-			if ( ! isset ( $this->options['version']) || version_compare( $this->options['version'], '5.1.2', '<') ) {
+			if ( ! isset ( $this->options['version'] ) || version_compare( $this->options['version'], '5.1.2', '<' ) ) {
 				if ( isset( $this->options['firebug_lite'] ) ) {
 					unset( $this->options['firebug_lite'] );
 				}
@@ -226,6 +226,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 			$options = array(
 				$this->option_prefix => array(
 					'analytics_profile'          => null,
+					'analytics_profile_code'     => null,
 					'manual_ua_code'             => 0,
 					'manual_ua_code_field'       => null,
 					'track_internal_as_outbound' => null,
