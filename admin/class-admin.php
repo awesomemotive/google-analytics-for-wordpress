@@ -95,10 +95,14 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				}
 			}
 
+			if ( ! empty( $this->options['analytics_profile'] ) ) {
+				$this->options['analytics_profile_code'] = $this->get_ua_code_from_profile( $this->options['analytics_profile'] );
+			}
+
 			// Check checkboxes, on a uncheck they won't be posted to this function
 			$defaults = $this->default_ga_values();
 			foreach ( $defaults[$this->option_prefix] as $key => $value ) {
-				if ( ! isset( $data[$key] ) ) {
+				if ( ! isset( $data[$key] ) && ! isset( $this->options[$key] ) ) {
 					$this->options[$key] = $value;
 				}
 			}
@@ -121,6 +125,26 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			#redirect
 			wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
 			exit;
+		}
+
+		/**
+		 * Transform the Profile ID into an helpful UA code
+		 *
+		 * @param $profile_id
+		 *
+		 * @return null
+		 */
+		private function get_ua_code_from_profile( $profile_id ) {
+			$profiles = $this->get_profiles();
+			$ua_code  = null;
+
+			foreach ( $profiles as $profile ) {
+				if ( $profile['id'] == $profile_id ) {
+					$ua_code = $profile['ua_code'];
+				}
+			}
+
+			return $ua_code;
 		}
 
 		/**
