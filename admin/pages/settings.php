@@ -28,7 +28,7 @@ echo $yoast_ga_admin->create_form( 'settings' );
 		echo '<h2>' . __( 'General settings', 'google-analytics-for-wordpress' ) . '</h2>';
 		echo '<div id="ga-promote">';
 
-		$profiles = $yoast_ga_admin->get_profiles();
+		$profiles = $yoast_ga_admin->parse_optgroups( $yoast_ga_admin->get_profiles() );
 		$ga_url   = $_SERVER['PHP_SELF'];
 		if ( isset( $_GET['page'] ) ) {
 			$ga_url .= '?page=' . $_GET['page'];
