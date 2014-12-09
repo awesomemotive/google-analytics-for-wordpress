@@ -450,7 +450,7 @@
 	.chzn-container-multi .chzn-choices .search-choice .search-choice-close,
 	.chzn-container .chzn-results-scroll-down span,
 	.chzn-container .chzn-results-scroll-up span {
-		background-image: url("../img/chosen-sprite@2x.png") !important;
+		background-image: url("img/chosen-sprite@2x.png") !important;
 		background-repeat: no-repeat !important;
 		background-size: 52px 37px !important;
 	}
