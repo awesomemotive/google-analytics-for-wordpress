@@ -124,7 +124,9 @@ echo $yoast_ga_admin->content_footer();
 <script type="text/javascript">
 	jQuery(document).ready(
 		function () {
-			jQuery('#yoast-ga-form-select-settings-analytics_profile').chosen();
+			jQuery('#yoast-ga-form-select-settings-analytics_profile').chosen({
+				group_search : true
+			});
 			jQuery('#yoast-ga-form-select-settings-ignore_users').chosen({placeholder_text_multiple: '<?php echo __( 'Select the users to ignore', 'google-analytics-for-wordpress' ); ?>'});
 		}
 	);
