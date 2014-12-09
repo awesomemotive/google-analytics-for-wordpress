@@ -49,8 +49,8 @@ jQuery.fn.extend(
 							element.find('table').dataTable(
 								{
 									columns : [
-										{"data": "name"},
-										{"data": "value"},
+										{data: 'name'},
+										{data: 'value'}
 									],
 									data    : response.data,
 									order   : [1, 'dsc'],
@@ -74,14 +74,14 @@ jQuery.fn.extend(
 											previous: dashboard_translate.pagination_previous
 										},
 										processing       : dashboard_translate.processing,
-										search           : "_INPUT_",
+										search           : '_INPUT_',
 										searchPlaceholder: dashboard_translate.search_placeholder,
 										zeroRecords      : dashboard_translate.zero_records
 									}
 								}
 							);
 						}
-					}
+					};
 
 					table.init();
 				}
@@ -135,7 +135,7 @@ jQuery.fn.extend(
 						 */
 						add_events: function () {
 							var _this = this;
-							jQuery(element).on("graph_update", function (event, response) {
+							jQuery(element).on('graph_update', function (event, response) {
 								_this.update(response, _this);
 							});
 						},
@@ -342,8 +342,8 @@ jQuery.fn.extend(
 									formatter: function (series, x, y) {
 										var value = graph.hover[x];
 
-										if (element.attr('data-percent') == '1') {
-											value += "%";
+										if (element.attr('data-percent') === '1') {
+											value += '%';
 										}
 										var swatch = '<span class="detail_swatch" style="background-color: ' + series.color + '"></span>';
 										var content = swatch + value + '<br />';
@@ -418,15 +418,15 @@ jQuery.fn.extend(
 );
 
 function dimension_switch(switch_select) {
-	"use strict";
+	'use strict';
 
-	var switch_select = jQuery(switch_select);
+	switch_select = jQuery(switch_select);
 
 	var list_tables = switch_select.closest('.wpseotab').find('.yoast-data-table');
-	var select_options = "";
+	var select_options = '';
 
 	jQuery.each(list_tables, function (num, table) {
-		select_options += "<option value='" + jQuery(table).attr('id') + "'>" + jQuery(table).attr('data-label') + "</option>";
+		select_options += '<option value="' + jQuery(table).attr('id') + '">' + jQuery(table).attr('data-label') + '</option>';
 	});
 
 	switch_select.append(select_options);
@@ -436,7 +436,7 @@ function dimension_switch(switch_select) {
 
 	setTimeout(
 		function () {
-			switch_select.chosen().change(function (test) {
+			switch_select.chosen().change(function () {
 				// Hide all elements
 				list_tables.hide();
 
