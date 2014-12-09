@@ -44,7 +44,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 *
 		 * @var array
 		 */
-		private $shutdown_get_pages = array( 'yst_ga_dashboard', 'yst_ga_settings', 'yst_ga_extensions' );
+		private $shutdown_get_pages = array( 'yst_ga_dashboard' );
 
 		/**
 		 * The $_SERVER['SCRIPT_NAME'] pages where the shutdown hook should be executed to aggregate data
@@ -332,7 +332,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				'end-date'    => $end_date,
 				'dimensions'  => $dimensions,
 				'metrics'     => 'ga:' . $metric,
-				'max-results' => 10000,
+				'max-results' => 100,
 			);
 
 			$params = $this->add_sort_direction( $params, $dimensions, $metric );
@@ -422,6 +422,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * Close the HTTP socket, to continue with the api calls to Google Analytics
 		 */
 		private function close_connection() {
+			ob_end_flush();
 			header( 'Connection: close' );
 			flush();
 		}
