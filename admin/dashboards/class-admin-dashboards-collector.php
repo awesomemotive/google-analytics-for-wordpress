@@ -422,7 +422,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * Close the HTTP socket, to continue with the api calls to Google Analytics
 		 */
 		private function close_connection() {
-			header( "Connection: close" );
+			header( 'Connection: close' );
 			flush();
 		}
 
