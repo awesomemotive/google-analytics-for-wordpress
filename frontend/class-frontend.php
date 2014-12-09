@@ -56,12 +56,9 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 			if ( isset( $this->options['ignore_users'] ) ) {
 				if ( ! empty( $current_user->roles ) && in_array( $current_user->roles[0], $this->options['ignore_users'] ) ) {
 					return false;
-				} else {
-					return true;
 				}
-			} else {
-				return true;
 			}
+			return true;
 		}
 
 		/**
@@ -87,12 +84,9 @@ if ( ! class_exists( 'Yoast_GA_Frontend' ) ) {
 
 				if ( isset( $matches[0] ) ) {
 					return array( 'domain' => $matches[0], 'host' => $host );
-				} else {
-					return false;
 				}
-			} else {
-				return false;
 			}
+			return false;
 		}
 
 		/**
