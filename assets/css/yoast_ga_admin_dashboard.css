@@ -12,15 +12,19 @@
 	margin: 5px;
 }
 
-.yoast-graph-holder, .yoast-graph-yaxis {
+.yoast-graph-holder,
+.yoast-graph-yaxis {
 	height: 300px;
 }
 
-.yoast-graph-holder, .yoast-graph-xaxis {
+.yoast-graph-holder,
+.yoast-graph-xaxis {
 	width: 780px;
 }
 
-.yoast-graph-holder, .yoast-graph-yaxis, .yoast-graph-xaxis {
+.yoast-graph-holder,
+.yoast-graph-yaxis,
+.yoast-graph-xaxis {
 	float: left;
 }
 
