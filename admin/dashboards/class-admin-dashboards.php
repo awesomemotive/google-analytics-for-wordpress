@@ -67,7 +67,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 					'help'         => __( 'Bounce Rate is the percentage of single-page sessions (i.e. sessions in which the person left your site from the entrance page without interacting with the page). <a href="http://yoa.st/gabounce" target="_blank">[Learn more]</a>', 'google-analytics-for-wordpress' ),
 					'data-percent' => true,
 					'type'         => 'graph',
-					'tab'          => 'general'
+					'tab'          => 'general',
 				),
 				'source'        => array(
 					'title'   => __( 'Traffic sources', 'google-analytics-for-wordpress' ),
@@ -76,7 +76,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 					'columns' => array(
 						__( 'Sessions', 'google-analytics-for-wordpress' )
 					),
-					'tab'     => 'dimensions'
+					'tab'     => 'dimensions',
 				),
 				'top_pageviews' => array(
 					'title'   => __( 'Popular pages', 'google-analytics-for-wordpress' ),
@@ -85,7 +85,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 					'columns' => array(
 						__( 'Sessions', 'google-analytics-for-wordpress' )
 					),
-					'tab'     => 'dimensions'
+					'tab'     => 'dimensions',
 				),
 				'top_countries' => array(
 					'title'   => __( 'Countries', 'google-analytics-for-wordpress' ),
