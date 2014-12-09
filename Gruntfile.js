@@ -10,21 +10,21 @@ module.exports = function(grunt) {
 			get config() {
 				return this.grunt + 'config/';
 			},
-			css: 'css/',
+			css: 'assets/css/',
 			grunt: 'grunt/',
-			images: 'img/',
-			js: 'js/',
+			images: 'assets/img/',
+			js: 'assets/js/',
 			languages: 'languages/',
 			logs: 'logs/'
 		},
 		files: {
 			css: [
-				'css/*.css',
-				'!css/*.min.css'
+				'assets/css/*.css',
+				'!assets/css/*.min.css'
 			],
 			js: [
-				'js/*.js',
-				'!js/*.min.js'
+				'assets/js/*.js',
+				'!assets/js/*.min.js'
 			],
 			php: [
 				'*.php',
