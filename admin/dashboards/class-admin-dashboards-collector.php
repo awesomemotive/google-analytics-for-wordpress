@@ -416,7 +416,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				}
 			}
 		}
-		
+
 	}
 
 }
