@@ -1,6 +1,10 @@
 <?php
 global $yoast_ga_admin;
 
+$options_class = Yoast_GA_Options::instance();
+$options       = $options_class->get_options();
+$tracking_code = $options_class->get_tracking_code();
+
 echo $yoast_ga_admin->content_head();
 ?>
 	<h2 id="yoast_ga_title"><?php echo __( 'Yoast Google Analytics: ', 'google-analytics-for-wordpress' ) . __( 'Dashboard', 'google-analytics-for-wordpress' ); ?></h2>
@@ -24,51 +28,66 @@ echo $yoast_ga_admin->content_head();
 		});
 	</script>
 
-<div class="tabwrapper">
-	<div id="general" class="wpseotab gatab active">
-		<div class="yoast-graphs">
-			<?php
+	<div class="tabwrapper">
+		<div id="general" class="wpseotab gatab active">
+			<div class="yoast-graphs">
+				<?php
+				if ( $tracking_code !== '' ) {
+					if ( empty( $options['analytics_profile'] ) ) {
+						echo sprintf(
+							__( 'We need you to authenticate with Google Analytics to use this functionality. If you set your UA-code manually, this won\'t work. You can %sauthenticate your Google Analytics profile here%s to enable dashboards.', 'google-analytics-for-wordpress' ),
+							'<a href=" ' . admin_url( 'admin.php?page=yst_ga_settings#top#general' ) . '">',
+							'</a>'
+						);
+					} else {
+						Yoast_GA_Dashboards_Display::get_instance()->display( 'general' );
+					}
+				} else {
+					echo sprintf(
+						__( 'You have not yet finished setting up Google Analytics for Wordpress by Yoast. Please %sadd your Analytics profile here%s to enable tracking.', 'google-analytics-for-wordpress' ),
+						'<a href=" ' . admin_url( 'admin.php?page=yst_ga_settings#top#general' ) . '">',
+						'</a>'
+					);
+				}
+				?>
+			</div>
+		</div>
 
-			if(Yoast_GA_Options::instance()->get_tracking_code() !== '') {
-				Yoast_GA_Dashboards_Display::get_instance()->display( 'general' );
+		<div id="dimensions" class="wpseotab gatab">
+			<?php
+			if ( $tracking_code !== '' ) {
+				if ( empty( $options['analytics_profile'] ) ) {
+					echo sprintf(
+						__( 'We need you to authenticate with Google Analytics to use this functionality. If you set your UA-code manually, this won\'t work. You can %sauthenticate your Google Analytics profile here%s to enable dashboards.', 'google-analytics-for-wordpress' ),
+						'<a href=" ' . admin_url( 'admin.php?page=yst_ga_settings#top#general' ) . '">',
+						'</a>'
+					);
+				} else {
+					?>
+					<div class="ga-form ga-form-input">
+						<label class="ga-form ga-form-checkbox-label ga-form-label-left"><?php echo __( 'Select a dimension', 'google-analytics-for-wordpress' ); ?></label>
+					</div>
+					<select data-rel='toggle_dimensions' id="toggle_dimensions" style="width: 350px"></select>
+
+					<?php
+					Yoast_GA_Dashboards_Display::get_instance()->display( 'dimensions' );
+				}
 			} else {
 				echo sprintf(
-					__( 'You have not yet finished setting up Google Analytics for Wordpress by Yoast. Please %sadd your Analytics profile here%s to enable tracking.','google-analytics-for-wordpress'),
-					'<a href=" ' .admin_url( 'admin.php?page=yst_ga_settings#top#general' ) . '">',
+					__( 'You have not yet finished setting up Google Analytics for Wordpress by Yoast. Please %sadd your Analytics profile here%s to enable tracking.', 'google-analytics-for-wordpress' ),
+					'<a href=" ' . admin_url( 'admin.php?page=yst_ga_settings#top#general' ) . '">',
 					'</a>'
 				);
 			}
 			?>
 		</div>
-	</div>
 
-	<div id="dimensions" class="wpseotab gatab">
-		<?php
-			if(Yoast_GA_Options::instance()->get_tracking_code() !== '') {
-				?>
-				<div class="ga-form ga-form-input">
-					<label class="ga-form ga-form-checkbox-label ga-form-label-left"><?php echo __( 'Select a dimension', 'google-analytics-for-wordpress' ); ?></label>
-				</div>
-				<select data-rel='toggle_dimensions' id="toggle_dimensions" style="width: 350px"></select>
-
-				<?php
-				Yoast_GA_Dashboards_Display::get_instance()->display( 'dimensions' );
-			} else {
-				echo sprintf(
-					__( 'You have not yet finished setting up Google Analytics for Wordpress by Yoast. Please %sadd your Analytics profile here%s to enable tracking.','google-analytics-for-wordpress'),
-					'<a href=" ' .admin_url( 'admin.php?page=yst_ga_settings#top#general' ) . '">',
-					'</a>'
-				);
-			}
-		?>
+		<div id="customdimensions" class="wpseotab gatab">
+			<?php
+			do_action( 'yst_ga_custom_dimension_add-dashboards-tab' );
+			?>
+		</div>
 	</div>
-
-	<div id="customdimensions" class="wpseotab gatab">
-		<?php
-			do_action('yst_ga_custom_dimension_add-dashboards-tab');
-		?>
-	</div>
-</div>
 
 
 <?php
