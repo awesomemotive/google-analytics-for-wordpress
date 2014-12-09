@@ -137,7 +137,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 		 */
 		private function add_hover_mapping( $timestamp, $value ) {
 			$this->mapping['hover'][] = date_i18n( 'l ' . $this->date_field . ' M', $timestamp ) . ': ' . $value;
-		}	
+		}
 
 	}
 }

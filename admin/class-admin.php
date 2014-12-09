@@ -337,23 +337,20 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				$select .= '<select name="' . $name . '" id="yoast-ga-form-select-' . $this->form_namespace . '-' . $id . '">';
 			}
 			if ( count( $values ) >= 1 ) {
-				foreach ( $values as $value ) {
-					if ( isset( $value['parent_name'] ) ) {
-						$select .= '<optgroup label="' . $value['parent_name'] . '">';
-					}
 
-					if ( is_array( $this->options[$name] ) ) {
-						if ( in_array( $value['id'], $this->options[$name] ) ) {
-							$select .= '<option value="' . $value['id'] . '" selected="selected">' . stripslashes( $value['name'] ) . '</option>';
-						} else {
-							$select .= '<option value="' . $value['id'] . '">' . stripslashes( $value['name'] ) . '</option>';
+				foreach ( $values as $optgroup => $value ) {
+
+					if( !empty($value['options'])) {
+						$select .= '<optgroup label="' . $optgroup . '">';
+
+						foreach($value['options'] AS $option) {
+							$select .= $this->option($name, $option);
 						}
-					} else {
-						$select .= '<option value="' . $value['id'] . '" ' . selected( $this->options[$name], $value['id'], false ) . '>' . stripslashes( $value['name'] ) . '</option>';
-					}
 
-					if ( isset( $value['parent_name'] ) ) {
 						$select .= '</optgroup>';
+
+					} else {
+						$select .= $this->option($name, $value);
 					}
 				}
 			}
@@ -366,6 +363,47 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$select .= '</div>';
 
 			return $select;
+		}
+
+		/**
+		 * Parsing a option string for select
+		 *
+		 * @param string $name
+		 * @param string $value
+		 *
+		 * @return string
+		 */
+		private function option($name, $value) {
+			if ( is_array( $this->options[$name] ) ) {
+				if ( in_array( $value['id'], $this->options[$name] ) ) {
+					return  '<option value="' . $value['id'] . '" selected="selected">' . stripslashes( $value['name'] ) . '</option>';
+				} else {
+					return '<option value="' . $value['id'] . '">' . stripslashes( $value['name'] ) . '</option>';
+				}
+			} else {
+				return '<option value="' . $value['id'] . '" ' . selected( $this->options[$name], $value['id'], false ) . '>' . stripslashes( $value['name'] ) . '</option>';
+			}
+		}
+
+		/**
+		 * Will parse the optgroups.
+		 *
+		 * @param array $values
+		 *
+		 * @return array
+		 */
+		public function parse_optgroups($values) {
+
+			$optgroups = array();
+			foreach($values AS $key => $value) {
+				if(empty($value['parent_name'])) {
+					$current = $value;
+				} else {
+					$optgroups[$value['parent_name']]['options'][] = $current;
+				}
+			}
+
+			return $optgroups;
 		}
 
 		/**
