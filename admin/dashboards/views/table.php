@@ -10,7 +10,7 @@
 	</h3>
 
 	<div>
-		<table class="wp-list-table widefat fixed">
+		<table class="widefat fixed stripe">
 			<thead>
 				<th><?php echo $settings['title']; ?></th>
 				<?php foreach($settings['columns'] As $columns) { ?>
