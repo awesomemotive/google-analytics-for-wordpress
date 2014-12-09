@@ -107,6 +107,10 @@ p.ga-topdescription {
 	width: 325px;
 }
 
+.ga-form .chosen-search input[type="text"] {
+	width: 100% !important;
+}
+
 #enter_ua {
 	display: none;
 	margin-top: 10px;
