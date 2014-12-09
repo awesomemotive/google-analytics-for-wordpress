@@ -41,7 +41,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Assets' ) ) {
 		public static function enqueue_dashboard_assets() {
 
 			//
-			wp_enqueue_script('ga-admin-dashboard', self::get_asset_path( 'assets/js/yoast_ga_admin_dashboard' ) . self::file_ext( '.js' ), array(), false, true );
+			wp_enqueue_script('ga-admin-dashboard', self::get_asset_path( 'assets/js/yoast_ga_admin_dashboard' ) . self::file_ext( '.js' ) );
 			wp_enqueue_style('ga-admin-dashboard-css', self::get_asset_path( 'assets/css/yoast_ga_admin_dashboard' ). self::file_ext( '.css' ) ) ;
 
 			// Enqueue the d3 js file

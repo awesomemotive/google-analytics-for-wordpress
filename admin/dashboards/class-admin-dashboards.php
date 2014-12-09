@@ -170,22 +170,22 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 				'sort_ascending'      => __( ': activate to sort column ascending', 'google-analytics-for-wordpress' ),
 				'sort_descending'     => __( ': activate to sort column descending', 'google-analytics-for-wordpress' ),
 				'empty_table'         => __( 'No data available', 'google-analytics-for-wordpress' ),
-				'info'                => _x( 'Showing _START_ to _END_ of _TOTAL_ entries', '_START_, _END_ and _TOTAL_ will be replaced by JS (See: http://datatables.net/reference/option/language.info)', 'google-analytics-for-wordpress' ),
-				'info_empty'          => __( 'No entries to show', 'google-analytics-for-wordpress' ),
-				'info_filtered'       => _x( '(filtered from _MAX_ total entries)', '_MAX_ will be replaced by JS (See: http://datatables.net/reference/option/language.infoFiltered)', 'google-analytics-for-wordpress' ),
-				'length_menu'         => _x( 'Show _MENU_ entries', '_MAX_ will be replaced by JS', 'google-analytics-for-wordpress' ),
+				'info'                => _x( 'Showing _START_ to _END_ of _TOTAL_ rows', '_START_, _END_ and _TOTAL_ will be replaced by JS (See: http://datatables.net/reference/option/language.info)', 'google-analytics-for-wordpress' ),
+				'info_empty'          => __( 'No rows to show', 'google-analytics-for-wordpress' ),
+				'info_filtered'       => _x( '(filtered from _MAX_ total rows)', '_MAX_ will be replaced by JS (See: http://datatables.net/reference/option/language.infoFiltered)', 'google-analytics-for-wordpress' ),
+				'length_menu'         => _x( 'Show _MENU_ rows', '_MAX_ will be replaced by JS', 'google-analytics-for-wordpress' ),
 				'loading_records'     => __( 'Loading...', 'google-analytics-for-wordpress' ),
 				'pagination_first'    => __( 'First', 'google-analytics-for-wordpress' ),
 				'pagination_last'     => __( 'Last', 'google-analytics-for-wordpress' ),
 				'pagination_next'     => __( 'Next', 'google-analytics-for-wordpress' ),
 				'pagination_previous' => __( 'Previous', 'google-analytics-for-wordpress' ),
 				'processing'          => __( 'Processing...', 'google-analytics-for-wordpress' ),
-				'search_placeholder'  => __( 'Search records', 'google-analytics-for-wordpress' ),
+				'search_placeholder'  => __( 'Search', 'google-analytics-for-wordpress' ),
 				'zero_records'        => __( 'No matching records found', 'google-analytics-for-wordpress' ),
 
 				// For dimensions
-				'dimensions'          => __( 'Dimensions', 'google-analytics-for-wordpress' ),
-				'custom_dimensions'   => __( 'Custom dimensions', 'google-analytics-for-wordpress' ),
+				'dimensions'          => __( 'Reports', 'google-analytics-for-wordpress' ),
+				'custom_dimensions'   => __( 'Custom dimension reports', 'google-analytics-for-wordpress' ),
 			);
 
 			wp_localize_script( 'ga-admin-dashboard', 'dashboard_translate', $translation_array );
