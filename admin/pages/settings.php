@@ -60,6 +60,7 @@ echo $yoast_ga_admin->create_form( 'settings' );
 		echo '</label>';
 		echo '<div id="enter_ua">';
 		echo $yoast_ga_admin->input( 'text', null, 'manual_ua_code_field' );
+		echo '<p><strong>' . __('Warning: If you use a manual UA code, you won\'t be able to use the dashboards.', 'google-analytics-for-wordpress') . '</strong></p>';
 		echo '</div>';
 		echo '<div class="clear"></div></div>';
 		?>
