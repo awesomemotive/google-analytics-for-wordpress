@@ -276,8 +276,9 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 					foreach ( $ga_accounts as $key => $ga_account ) {
 						$return[] = array(
-							'id'         => $ga_account['ua'],
+							'id'         => $ga_account['profile_id'],
 							'profile_id' => $ga_account['profile_id'],
+							'ua_code'    => $ga_account['ua'],
 							'name'       => $ga_account['title'] . ' (' . $ga_account['ua'] . ')',
 						);
 
