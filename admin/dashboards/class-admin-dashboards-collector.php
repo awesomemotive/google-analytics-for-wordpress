@@ -348,7 +348,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 
 			foreach ( $filter_dimensions as $dimension ) {
 				if ( str_replace( 'ga:', '', $dimensions ) == $dimension['dimension'] && str_replace( 'ga:', '', $metric ) == $dimension['metric'] ) {
-					$params['sort'] = '-ga:' . $dimension['dimension'];
+					$params['sort'] = '-ga:' . $dimension['metric'];
 				}
 			}
 
