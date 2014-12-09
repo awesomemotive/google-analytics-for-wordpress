@@ -12,15 +12,19 @@
 	margin: 5px;
 }
 
-.yoast-graph-holder, .yoast-graph-yaxis {
+.yoast-graph-holder,
+.yoast-graph-yaxis {
 	height: 300px;
 }
 
-.yoast-graph-holder, .yoast-graph-xaxis {
+.yoast-graph-holder,
+.yoast-graph-xaxis {
 	width: 780px;
 }
 
-.yoast-graph-holder, .yoast-graph-yaxis, .yoast-graph-xaxis {
+.yoast-graph-holder,
+.yoast-graph-yaxis,
+.yoast-graph-xaxis {
 	float: left;
 }
 
@@ -61,7 +65,9 @@
 	font-style: italic;
 }
 
-.yoast-data-table table.dataTable thead .sorting {
+.yoast-data-table table.dataTable thead .sorting,
+.yoast-data-table table.dataTable thead .sorting_asc,
+.yoast-data-table table.dataTable thead .sorting_desc {
 	border-color: #d3d3d3;
 }
 
