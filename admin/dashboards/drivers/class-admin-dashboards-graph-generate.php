@@ -19,7 +19,9 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 		private $data = array();
 
 		/**
-		 * @var array - Storage for mapping
+		 * Storage for mapping
+		 *
+		 * @var array
 		 */
 		private $mapping = array(
 			'x'     => array(),
@@ -114,7 +116,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 				'y' => $value,
 			);
 
-			$current_x ++;
+			$current_x++;
 		}
 
 		/**
