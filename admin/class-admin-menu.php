@@ -122,10 +122,12 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 		 * @param boolean $is_not_dashboard
 		 */
 		private function add_assets( $page, $is_not_dashboard ) {
-			add_action( 'admin_print_styles-' . $page, array( $this->target_object, 'enqueue_styles' ) );
-			if ( $is_not_dashboard ) {
-				add_action( 'admin_print_styles-' . $page, array( $this->target_object, 'enqueue_settings_styles' ) );
-				add_action( 'admin_print_scripts-' . $page, array( $this->target_object, 'enqueue_scripts' ) );
+			add_action( 'admin_print_styles-' . $page, array( 'Yoast_GA_Admin_Assets', 'enqueue_styles' ) );
+
+			add_action( 'admin_print_styles-' . $page, array( 'Yoast_GA_Admin_Assets', 'enqueue_settings_styles' ) );
+			add_action( 'admin_print_scripts-' . $page, array( 'Yoast_GA_Admin_Assets', 'enqueue_scripts' ) );
+			if ( ! $is_not_dashboard ) {
+				Yoast_GA_Admin_Assets::enqueue_dashboard_assets();
 			}
 		}
 
