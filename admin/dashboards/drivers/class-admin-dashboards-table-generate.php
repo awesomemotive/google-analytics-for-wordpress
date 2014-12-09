@@ -27,7 +27,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Table_Generate' ) ) {
 		 */
 		public function get_json() {
 			$return = array(
-				'data' => $this->data
+				'data' => $this->data,
 			);
 
 			return json_encode( $return );
