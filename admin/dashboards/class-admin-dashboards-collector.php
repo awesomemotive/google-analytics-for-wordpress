@@ -321,11 +321,12 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 */
 		private function build_params_for_call( $start_date, $end_date, $dimensions, $metric ) {
 			$params = array(
-				'ids'        => 'ga:' . $this->ga_profile_id,
-				'start-date' => $start_date,
-				'end-date'   => $end_date,
-				'dimensions' => $dimensions,
-				'metrics'    => 'ga:' . $metric,
+				'ids'         => 'ga:' . $this->ga_profile_id,
+				'start-date'  => $start_date,
+				'end-date'    => $end_date,
+				'dimensions'  => $dimensions,
+				'metrics'     => 'ga:' . $metric,
+				'max-results' => 10000,
 			);
 			$params = http_build_query( $params );
 
