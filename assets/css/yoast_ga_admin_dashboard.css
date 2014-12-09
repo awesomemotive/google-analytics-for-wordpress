@@ -61,7 +61,9 @@
 	font-style: italic;
 }
 
-.yoast-data-table table.dataTable thead .sorting {
+.yoast-data-table table.dataTable thead .sorting,
+.yoast-data-table table.dataTable thead .sorting_asc,
+.yoast-data-table table.dataTable thead .sorting_desc {
 	border-color: #d3d3d3;
 }
 
