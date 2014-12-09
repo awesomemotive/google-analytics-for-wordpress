@@ -139,7 +139,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$ua_code  = null;
 
 			foreach ( $profiles as $profile ) {
-				if ( $profile['id'] == $profile_id ) {
+				if ( isset( $profile['id'] ) && $profile['id'] == $profile_id ) {
 					$ua_code = $profile['ua_code'];
 				}
 			}
