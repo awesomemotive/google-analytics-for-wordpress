@@ -4,7 +4,7 @@ Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
 Tested up to: 4.0
-Stable tag: 5.2
+Stable tag: 5.2.1
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
@@ -48,6 +48,18 @@ This section describes how to install the plugin and get it working.
 1. Go to the options panel under the 'Settings' menu and add your Analytics account number and set the settings you want.
 
 == Changelog ==
+
+= 5.2.1 =
+
+Release Date: December 9th, 2014
+
+Enhancements:
+	* Replaced jQuery Chosen library with latest version to enable optgroup search.
+	* Shows a warning when configuring a manual UA-code that this will not work together with the dashboards functionality.
+
+Bugfixes:
+	* Fixes a 'headers already sent' warning.
+	* Fixes a bug where nothing was shown on the dashboards for setups with a manual UA-code. It now shows you a message that you need to authenticate with Google Analytics if you wish to make use of the dashboards feature.
 
 = 5.2 =
 
