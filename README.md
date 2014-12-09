@@ -1,7 +1,7 @@
 Google Analytics for WordPress
 ==============================
 
-[![Build Status](https://api.travis-ci.org/Yoast/google-analytics-for-wordpress.png?branch=master)](https://travis-ci.org/Yoast/google-analytics-for-wordpress)
+[![Build Status](https://api.travis-ci.org/Yoast/google-analytics-for-wordpress.png?branch=master)](https://travis-ci.org/Yoast/google-analytics-for-wordpress) [![Code Climate](https://codeclimate.com/repos/54523bb669568068b8093b43/badges/04d59b3dc67a0c7ff8ab/gpa.svg)](https://codeclimate.com/repos/54523bb669568068b8093b43/feed)
 
 Add Google Analytics to WordPress and be able to use all the powerful functions Google Analytics offers!
 
