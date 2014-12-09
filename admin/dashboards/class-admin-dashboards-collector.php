@@ -332,7 +332,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				'end-date'    => $end_date,
 				'dimensions'  => $dimensions,
 				'metrics'     => 'ga:' . $metric,
-				'max-results' => 100,
+				'max-results' => 10000,
 			);
 
 			$params = $this->add_sort_direction( $params, $dimensions, $metric );
