@@ -113,7 +113,7 @@ jQuery.fn.extend(
 						},
 						hover      : [],
 						width      : 780,	// The width of the graph
-						height     : 300,
+						height     : 240,
 						graph      : '',		// Graph element
 						graph_axis : {		// The axis for X and Y
 							x: '',
@@ -320,7 +320,7 @@ jQuery.fn.extend(
 										element    : target.querySelector('.yoast-graph-yaxis'),
 										graph      : this.graph,
 										orientation: 'left',
-										height     : '300',
+										height     : '240',
 										// If n is 0 return emptystring, to prevent zero displayed on graph
 										tickFormat : function (n) {
 											return (n === 0) ? '' : n;
