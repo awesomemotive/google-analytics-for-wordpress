@@ -95,16 +95,17 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				}
 			}
 
-			if ( ! empty( $this->options['analytics_profile'] ) ) {
-				$this->options['analytics_profile_code'] = $this->get_ua_code_from_profile( $this->options['analytics_profile'] );
-			}
-
 			// Check checkboxes, on a uncheck they won't be posted to this function
 			$defaults = $this->default_ga_values();
 			foreach ( $defaults[$this->option_prefix] as $key => $value ) {
-				if ( ! isset( $data[$key] ) && ! isset( $this->options[$key] ) ) {
+				if ( ! isset( $data[$key] ) ) {
+					// If no data was passed in, set it to the default.
 					$this->options[$key] = $value;
 				}
+			}
+
+			if ( ! empty( $this->options['analytics_profile'] ) ) {
+				$this->options['analytics_profile_code'] = $this->get_ua_code_from_profile( $this->options['analytics_profile'] );
 			}
 
 			if ( $this->update_option( $this->options ) ) {
