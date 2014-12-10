@@ -111,6 +111,10 @@ p.ga-topdescription {
 	width: 100% !important;
 }
 
+.yoast-ga-content .chosen-container {
+	width: 325px !important;
+}
+
 #enter_ua {
 	display: none;
 	margin-top: 10px;
