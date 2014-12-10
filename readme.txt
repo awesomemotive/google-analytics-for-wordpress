@@ -55,6 +55,7 @@ Release Date: December 10th, 2014
 
 Bugfixes:
 	* Fixes a bug where it was no longer possible to uncheck checkboxes in the settings.
+	* Fixes a bug where jQuery Chosen component was not rendered correctly on a hidden tab.
 
 = 5.2.1 =
 
