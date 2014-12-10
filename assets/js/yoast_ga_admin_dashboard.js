@@ -306,7 +306,7 @@ jQuery.fn.extend(
 										tickFormat   : this.format_axis_x,
 										grid         : true,
 										orientation  : 'bottom',
-										pixelsPerTick: this.width / 4
+										tickValues   : Object.keys(this.axis.x)
 									}
 								);
 							}
