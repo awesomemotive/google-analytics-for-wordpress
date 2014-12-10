@@ -270,11 +270,14 @@ jQuery.fn.extend(
 									width   : this.width,
 									height  : this.height,
 									series  : [{
-										name : element.attr('data-label'),
-										color: '#0074a2',
-										data : this.data
+										name  : element.attr('data-label'),
+										color : '#e6f4fa',
+										stroke: '#058dc7',
+										data  : this.data
 									}],
-									renderer: 'area',
+									renderer     : 'area',
+									stroke       : true,
+									interpolation: 'linear',
 									padding : {
 										top   : 0.10,
 										bottom: 0.02
