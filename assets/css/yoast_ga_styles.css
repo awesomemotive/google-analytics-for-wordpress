@@ -121,8 +121,10 @@ p.ga-topdescription {
 	padding-top: 10px;
 }
 
-#yoast-ga-form-text-settings-ga_general-manual_ua_code_field {
-	margin-top: -30px;
+#yoast-ga-form-text-settings-ga_general-manual_ua_code_field,
+#yoast-ga-form-text-settings-manual_ua_code_field {
+	display: block;
+	margin-top: -23px;
 }
 
 select.ga-multiple {
