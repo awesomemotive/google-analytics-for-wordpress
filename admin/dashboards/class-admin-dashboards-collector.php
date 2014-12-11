@@ -202,12 +202,12 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			foreach ( $dimensions as $dimension ) {
 				if ( ( isset( $dimension['id'] ) || isset( $dimension['dimension'] ) ) && isset( $dimension['metric'] ) ) {
 					if ( isset( $dimension['id'] ) ) {
-						$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-1 month' ) ), date( 'Y-m-d' ), 'ga:dimension' . $dimension['id'] );
+						$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-1 month' ) ), date( 'Y-m-d', strtotime( 'yesterday' ) ), 'ga:dimension' . $dimension['id'] );
 					} elseif ( isset( $dimension['dimension'] ) ) {
 						if ( isset( $dimension['storage_name'] ) ) {
-							$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-1 month' ) ), date( 'Y-m-d' ), 'ga:' . $dimension['dimension'], $dimension['storage_name'] );
+							$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-1 month' ) ), date( 'Y-m-d', strtotime( 'yesterday' ) ), 'ga:' . $dimension['dimension'], $dimension['storage_name'] );
 						} else {
-							$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-1 month' ) ), date( 'Y-m-d' ), 'ga:' . $dimension['dimension'] );
+							$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-1 month' ) ), date( 'Y-m-d', strtotime( 'yesterday' ) ), 'ga:' . $dimension['dimension'] );
 						}
 					}
 				}
