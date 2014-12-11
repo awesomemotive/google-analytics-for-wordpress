@@ -39,18 +39,18 @@ echo $yoast_ga_admin->create_form( 'settings' );
 		if ( count( $profiles ) == 0 ) {
 			echo '<div class="ga-form ga-form-input">';
 			echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle" />' . __( 'Google profile', 'google-analytics-for-wordpress' ) . ':</label>';
-			echo '<a class="button" href="' . $ga_url . '">' . __( 'Authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a>';
+			echo '<a id="yst_ga_authenticate" class="button" href="' . $ga_url . '">' . __( 'Authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a>';
 			echo '</div>';
 			echo '<div class="ga-form ga-form-input">';
 			echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle" />' . __( 'Current UA-profile', 'google-analytics-for-wordpress' ) . '</label>';
 			echo $yoast_ga_admin->get_tracking_code();
 			echo '</div>';
 		} else {
-			echo $yoast_ga_admin->select( 'Analytics profile', 'analytics_profile', $profiles );
+			echo $yoast_ga_admin->select( __('Analytics profile', 'google-analytics-for-wordpress' ), 'analytics_profile', $profiles, null, false, __( 'Select a profile', 'google-analytics-for-wordpress' ) );
 
 			echo '<div class="ga-form ga-form-input">';
 			echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle" />&nbsp;</label>';
-			echo '<a class="button" href="' . $ga_url . '">' . __( 'Re-authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a>';
+			echo '<a id="yst_ga_authenticate" class="button" href="' . $ga_url . '">' . __( 'Re-authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a>';
 			echo '</div>';
 		}
 		echo '</div>';
