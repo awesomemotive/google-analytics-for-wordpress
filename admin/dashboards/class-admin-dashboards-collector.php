@@ -82,10 +82,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 					$this->aggregate_dimensions( $access_tokens, $this->dimensions );
 				}
 
-				/**
-				 * Success, set a transient which stores the latest runtime
-				 */
-				set_transient( 'yst_ga_last_wp_run', date( 'Y-m-d' ), 48 * HOUR_IN_SECONDS );
 			} else {
 				// Failure on authenticating, please reauthenticate
 			}
@@ -408,6 +404,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				if ( $storage_name != 'auto' ) {
 					$name = $storage_name;
 				}
+				
+				/**
+				 * Success, set a transient which stores the latest runtime
+				 */
+				set_transient( 'yst_ga_last_wp_run', date( 'Y-m-d' ), 48 * HOUR_IN_SECONDS );
 
 				return Yoast_GA_Dashboards_Data::set( $name, $response['body'], strtotime( $start_date ), strtotime( $end_date ), $store_as );
 			} else {
