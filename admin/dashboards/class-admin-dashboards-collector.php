@@ -112,7 +112,8 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 */
 		public function setup_wp_cron_aggregate() {
 			if ( ! wp_next_scheduled( 'yst_ga_aggregate_data' ) ) {
-				wp_schedule_event( time(), 'daily', 'yst_ga_aggregate_data' );
+				// Set the next event of fetching data
+				wp_schedule_event( strtotime( date( 'Y-m-d', strtotime( 'tomorrow' ) ) . ' 00:05:00 ' ), 'daily', 'yst_ga_aggregate_data' );
 			}
 		}
 
@@ -131,7 +132,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				$this->aggregate_data();
 			} else {
 				// Transient exists
-				if ( $this->hours_between( strtotime($last_run), time() ) >= 24 ) {
+				if ( $this->hours_between( strtotime( $last_run ), time() ) >= 24 ) {
 					$this->aggregate_data();
 				}
 			}
@@ -147,11 +148,10 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 */
 		private function hours_between( $last_run, $now ) {
 			$calculate_result = $now - $last_run;
-			if( $calculate_result >= 3600 ) {
+			if ( $calculate_result >= 3600 ) {
 				$minutes = $calculate_result / 60;
 				$hours   = $minutes / 60;
-			}
-			else{
+			} else {
 				// Prevent errors
 				$hours = 0;
 			}
