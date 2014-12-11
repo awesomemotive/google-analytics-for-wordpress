@@ -147,16 +147,10 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 * @return int
 		 */
 		private function hours_between( $last_run, $now ) {
-			$calculate_result = $now - $last_run;
-			if ( $calculate_result >= 3600 ) {
-				$minutes = $calculate_result / 60;
-				$hours   = $minutes / 60;
-			} else {
-				// Prevent errors
-				$hours = 0;
-			}
-
-			return round( $hours );
+			$seconds = max( ( $now - $last_run ), 1 );
+			$hours   = $seconds / 3600;
+			
+			return floor( $hours );
 		}
 
 		/**
