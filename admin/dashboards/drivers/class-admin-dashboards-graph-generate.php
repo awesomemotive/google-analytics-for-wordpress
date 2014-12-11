@@ -98,6 +98,8 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 				$this->add_x_mapping( $timestamp );
 				$this->add_hover_mapping( $timestamp, $value );
 			}
+
+			$this->mapping['x'] = array_filter($this->mapping['x']);
 		}
 
 		/**
@@ -128,7 +130,9 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Graph_Generate' ) ) {
 		 * @param integer $timestamp
 		 */
 		private function add_x_mapping( $timestamp ) {
-			$this->mapping['x'][] = date( $this->date_field . ' M', $timestamp );
+
+			$is_monday            = ( 'Mon' === date( 'D', $timestamp ) );
+			$this->mapping['x'][] = $is_monday ? date( $this->date_field . ' M', $timestamp ) : null;
 		}
 
 		/**

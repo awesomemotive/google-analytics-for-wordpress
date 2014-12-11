@@ -113,7 +113,7 @@ jQuery.fn.extend(
 						},
 						hover      : [],
 						width      : 780,	// The width of the graph
-						height     : 300,
+						height     : 240,
 						graph      : '',		// Graph element
 						graph_axis : {		// The axis for X and Y
 							x: '',
@@ -270,11 +270,14 @@ jQuery.fn.extend(
 									width   : this.width,
 									height  : this.height,
 									series  : [{
-										name : element.attr('data-label'),
-										color: '#0074a2',
-										data : this.data
+										name  : element.attr('data-label'),
+										color : '#e6f4fa',
+										stroke: '#058dc7',
+										data  : this.data
 									}],
-									renderer: 'area',
+									renderer     : 'area',
+									stroke       : true,
+									interpolation: 'linear',
 									padding : {
 										top   : 0.10,
 										bottom: 0.02
@@ -303,7 +306,7 @@ jQuery.fn.extend(
 										tickFormat   : this.format_axis_x,
 										grid         : true,
 										orientation  : 'bottom',
-										pixelsPerTick: this.width / 4
+										tickValues   : Object.keys(this.axis.x)
 									}
 								);
 							}
@@ -320,7 +323,7 @@ jQuery.fn.extend(
 										element    : target.querySelector('.yoast-graph-yaxis'),
 										graph      : this.graph,
 										orientation: 'left',
-										height     : '300',
+										height     : '240',
 										// If n is 0 return emptystring, to prevent zero displayed on graph
 										tickFormat : function (n) {
 											return (n === 0) ? '' : n;
