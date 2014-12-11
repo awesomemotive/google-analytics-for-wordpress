@@ -40,18 +40,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		public $ga_profile_id;
 
 		/**
-		 * The $_GET pages where the shutdown hook should be executed to aggregate data
-		 *
-		 * @var array
-		 */
-		private $shutdown_get_pages = array( 'yst_ga_dashboard' );
-
-		/**
-		 * The $_SERVER['SCRIPT_NAME'] pages where the shutdown hook should be executed to aggregate data
-		 */
-		private $shutdown_pages = array( '/wp-admin/index.php' );
-
-		/**
 		 * Construct on the dashboards class for GA
 		 *
 		 * @param $ga_profile_id
@@ -93,6 +81,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				if ( is_array( $this->dimensions ) && count( $this->dimensions ) >= 1 ) {
 					$this->aggregate_dimensions( $access_tokens, $this->dimensions );
 				}
+
+				/**
+				 * Success, set a transient which stores the latest runtime
+				 */
+				set_transient( 'yst_ga_last_wp_run', date( 'Y-m-d' ), 48 * HOUR_IN_SECONDS );
 			} else {
 				// Failure on authenticating, please reauthenticate
 			}
@@ -104,13 +97,60 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		private function init_shutdown_hook() {
 			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
 
-			if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
-				if ( $this->run_shutdown_hook_get() || $this->run_shutdown_hook_page() ) {
-					add_action( 'shutdown', array( $this, 'aggregate_data' ), 10 );
+			// Hook the WP cron event
+			add_action( 'wp', array( $this, 'setup_wp_cron_aggregate' ) );
 
-					return;
+			// Hook our function to the WP cron event the fetch data daily
+			add_action( 'yst_ga_aggregate_data', array( $this, 'aggregate_data' ) );
+
+			// Check if the WP cron did run on time
+			add_action( 'shutdown', array( $this, 'check_api_call_hook' ) );
+		}
+
+		/**
+		 * Check if we scheduled the WP cron event, if not, do so.
+		 */
+		public function setup_wp_cron_aggregate() {
+			if ( ! wp_next_scheduled( 'yst_ga_aggregate_data' ) ) {
+				// Set the next event of fetching data
+				wp_schedule_event( strtotime( date( 'Y-m-d', strtotime( 'tomorrow' ) ) . ' 00:05:00 ' ), 'daily', 'yst_ga_aggregate_data' );
+			}
+		}
+
+		/**
+		 * Check if the WP cron did run yesterday. If not, we need to run it form here
+		 */
+		public function check_api_call_hook() {
+			$last_run = get_transient( 'yst_ga_last_wp_run' );
+
+			if ( $last_run === false ) {
+				/**
+				 * Transient doesn't exists, so we need to run the
+				 * hook (This function runs already on Shutdown so
+				 * we can call it directly from now on)
+				 */
+				$this->aggregate_data();
+			} else {
+				// Transient exists
+				if ( $this->hours_between( strtotime( $last_run ), time() ) >= 24 ) {
+					$this->aggregate_data();
 				}
 			}
+		}
+
+		/**
+		 * Calculate the date difference, return the amount of hours between the two dates
+		 *
+		 * @param $last_run datetime
+		 * @param $now      datetime
+		 *
+		 * @return int
+		 */
+		private function hours_between( $last_run, $now ) {
+			$seconds = max( ( $now - $last_run ), 1 );
+			$hours   = $seconds / 3600;
+			
+			return floor( $hours );
 		}
 
 		/**
@@ -188,7 +228,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 */
 		private function aggregate_metrics( $access_tokens, $metrics ) {
 			foreach ( $metrics as $metric ) {
-				$this->execute_call( $access_tokens, $metric, date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d' ) );
+				$this->execute_call( $access_tokens, $metric, date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d', strtotime( 'yesterday' ) ) );
 			}
 		}
 
@@ -202,42 +242,16 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			foreach ( $dimensions as $dimension ) {
 				if ( ( isset( $dimension['id'] ) || isset( $dimension['dimension'] ) ) && isset( $dimension['metric'] ) ) {
 					if ( isset( $dimension['id'] ) ) {
-						$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-1 month' ) ), date( 'Y-m-d' ), 'ga:dimension' . $dimension['id'] );
+						$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-1 month' ) ), date( 'Y-m-d', strtotime( 'yesterday' ) ), 'ga:dimension' . $dimension['id'] );
 					} elseif ( isset( $dimension['dimension'] ) ) {
 						if ( isset( $dimension['storage_name'] ) ) {
-							$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-1 month' ) ), date( 'Y-m-d' ), 'ga:' . $dimension['dimension'], $dimension['storage_name'] );
+							$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-1 month' ) ), date( 'Y-m-d', strtotime( 'yesterday' ) ), 'ga:' . $dimension['dimension'], $dimension['storage_name'] );
 						} else {
-							$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-1 month' ) ), date( 'Y-m-d' ), 'ga:' . $dimension['dimension'] );
+							$this->execute_call( $access_tokens, $dimension['metric'], date( 'Y-m-d', strtotime( '-1 month' ) ), date( 'Y-m-d', strtotime( 'yesterday' ) ), 'ga:' . $dimension['dimension'] );
 						}
 					}
 				}
 			}
-		}
-
-		/**
-		 * Check if the shutdown hook should be ran on the GET var
-		 *
-		 * @return bool
-		 */
-		private function run_shutdown_hook_get() {
-			if ( isset( $_GET['page'] ) && in_array( $_GET['page'], $this->shutdown_get_pages ) ) {
-				return true;
-			}
-
-			return false;
-		}
-
-		/**
-		 * Check if the shutdown hook should be ran on this page
-		 *
-		 * @return bool
-		 */
-		private function run_shutdown_hook_page() {
-			if ( isset( $_SERVER['SCRIPT_NAME'] ) && in_array( $_SERVER['SCRIPT_NAME'], $this->shutdown_pages ) ) {
-				return true;
-			}
-
-			return false;
 		}
 
 		/**
