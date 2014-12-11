@@ -27,21 +27,24 @@ jQuery(document).ready(function() {
 	jQuery('#' + activeTab).addClass('active');
 	jQuery('#' + activeTab + '-tab').addClass('nav-tab-active');
 
+    function yst_ga_switch_manual() {
+        if ( jQuery('#yoast-ga-form-checkbox-settings-manual_ua_code').is(':checked') ) {
+            jQuery('#enter_ua').show();
+            jQuery("#yoast-ga-form-select-settings-analytics_profile").prop('disabled', true).trigger("chosen:updated");
+            jQuery("#yst_ga_authenticate").attr('disabled', true);
+        } else {
+            jQuery('#enter_ua').hide();
+            jQuery('#yoast-ga-form-text-settings-manual_ua_code_field').attr('value', '');
+            jQuery("#yoast-ga-form-select-settings-analytics_profile").prop('disabled', false).trigger("chosen:updated");
+            jQuery("#yst_ga_authenticate").attr('disabled', false);
+        }
+    }
+
 	// Manually enter a UA code
-	jQuery('#yoast-ga-form-checkbox-settings-manual_ua_code').click(function() {
-		if (jQuery(this).is(':checked')) {
-			jQuery('#enter_ua').show();
-		} else {
-			jQuery('#enter_ua').hide();
-			jQuery('#yoast-ga-form-text-settings-manual_ua_code_field').attr('value', '');
-		}
-	});
+	jQuery('#yoast-ga-form-checkbox-settings-manual_ua_code').click( function() { yst_ga_switch_manual(); } );
+    yst_ga_switch_manual();
 
 	jQuery('.nav-tab-active').click();
-
-	if (jQuery('#yoast-ga-form-checkbox-settings-manual_ua_code').is(':checked')) {
-		jQuery('#enter_ua').show();
-	}
 
 	jQuery('.yoast_help').qtip({
 		position: {

@@ -187,3 +187,8 @@ select.ga-multiple {
 .yoast_help {
 	margin: 2px 5px 0 5px;
 }
+
+#enter_ua div {
+    display: inline-block;
+    margin: 0;
+}
