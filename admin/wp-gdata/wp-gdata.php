@@ -10,8 +10,13 @@ class WP_GData {
 	public $http_code;
 
 	const request_token_url = 'https://www.google.com/accounts/OAuthGetRequestToken';
-	const authorize_url     = 'https://www.google.com/accounts/OAuthAuthorizeToken';
+//	const authorize_url     = 'https://accounts.google.com/o/oauth2/auth?scope=email%20profile&redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=code&client_id=';
+	const authorize_url     = 'https://accounts.google.com/o/oauth2/auth';
 	const access_token_url  = 'https://www.google.com/accounts/OAuthGetAccessToken';
+
+//	const client_id         = '709980676664-2qov8c6m20s24rt8nec84scrdunej98b.apps.googleusercontent.com';
+	const client_id         = '709980676664-je7ob58uqsoknk551adio7tok60s1s90.apps.googleusercontent.com';
+	const client_secret     = 'q03hPj_Y76_52rqXayXZEg-3';
 
 	function __construct( $parameters = array(), $oauth_token = null, $oauth_token_secret = null ) {
 		$this->parameters       = $parameters;
@@ -57,7 +62,16 @@ class WP_GData {
 			$token = $token['oauth_token'];
 		}
 
-		return self::authorize_url . "?oauth_token={$token}";
+		$params = array(
+			'response_type' => 'code',
+			'redirect_uri'  => ('urn:ietf:wg:oauth:2.0:oob'),
+			'client_id'      => self::client_id,
+			'scope'          => urlencode('email,profile'),
+//			'access_type'    => urlencode($this->accessType),
+//			'approval_prompt='  urlencode($this->approvalPrompt),
+		);
+
+		return self::authorize_url . '?' . http_build_query($params);//"?oauth_token={$token}";
 	}
 
 	/**
