@@ -5,6 +5,8 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 	class Yoast_Google_Analytics {
 
+		private $http_response_code;
+
 		private $access_token;
 		private $secret;
 
@@ -12,6 +14,8 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		private $options = array();
 
 		private static $instance = null;
+
+		private $client;
 
 		public function __construct() {
 
@@ -21,10 +25,11 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 			$this->options = $this->get_options();
 
-			if ( $this->has_token() ) {
-				$this->set_access_token();
-				$this->set_secret();
-			}
+			// Setting the client
+			$this->set_client();
+
+			$response = $this->do_request( 'https://www.googleapis.com/analytics/v3/management/accounts/~all/webproperties' );
+
 		}
 
 		/**
@@ -42,6 +47,26 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 			return self::$instance;
 		}
+
+
+		protected function set_client() {
+			$config = array(
+				'application_name' => "Google Analytics for Wordpress",
+				'client_id'        => '709980676664-djogli4so02l820q0vegovol4nf2p9f9.apps.googleusercontent.com',
+				'client_secret'    => 'quP3lv-GQxSCCxJ5k0reu50g',
+			);
+
+			$config = apply_filters( 'yst-ga-filter-ga-config', $config );
+
+			$this->client = new Yoast_Google_Analytics_Client( $config );
+
+
+		}
+
+		public function authenticate( $authentication_code = null ) {
+			$this->client->authenticate_client( $authentication_code );
+		}
+
 
 		/**
 		 * Is there a token set
@@ -61,20 +86,20 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 * @param bool $verifier
 		 *
 		 * @return string
-		 */
 		public function authenticate( $token = false, $verifier = false ) {
-
-			if ( ! empty( $token ) && ! empty ( $verifier ) ) {
-				if ( isset( $this->options['ga_oauth']['oauth_token'] ) && $this->options['ga_oauth']['oauth_token'] == $token ) {
-					$this->get_access_token( $verifier );
-				}
-			} else {
-				$authorize_url = $this->get_authorize_url();
-
-				return $authorize_url;
-			}
-
-		}
+		 *
+		 * if ( ! empty( $token ) && ! empty ( $verifier ) ) {
+		 * if ( isset( $this->options['ga_oauth']['oauth_token'] ) && $this->options['ga_oauth']['oauth_token'] == $token ) {
+		 * $this->get_access_token( $verifier );
+		 * }
+		 * } else {
+		 * $authorize_url = $this->get_authorize_url();
+		 *
+		 * return $authorize_url;
+		 * }
+		 *
+		 * }
+		 */
 
 		/**
 		 * Getting the analytics profiles
@@ -87,63 +112,17 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		public function get_profiles() {
 			$return = array();
 			$result = array();
+			$return   = array();
+			$accounts = $this->format_profile_call( $this->do_request( 'https://www.googleapis.com/analytics/v3/management/accountSummaries' ) );
 
-			$result['accounts'] = $this->get_transient_api( 'yst_ga_accounts' );
-			$result['response'] = $this->get_transient_api( 'yst_ga_response' );
+			if (  is_array( $accounts ) ) {
+				$this->save_profile_response( $accounts );
 
-			if ( $result['accounts'] === false || $result['response'] === false ) {
-				$result = $this->fetch_api_profiles();
-			}
+				$return = $this->parse_profile_response( $accounts );
 
-			if ( $result['response'] ) {
-				$this->save_profile_response( $result['response'], $result['accounts'] );
-
-				$return = $this->parse_profile_response( $result['response'] );
 			}
 
 			return $return;
-		}
-
-		/**
-		 * Get the transient of an API call
-		 *
-		 * @param $name
-		 *
-		 * @return string
-		 */
-		private function get_transient_api( $name ) {
-			return get_transient( $name );
-		}
-
-		/**
-		 * Save the transient API
-		 *
-		 * @param $name
-		 * @param $value
-		 *
-		 * @return string
-		 */
-		private function save_transient_api( $name, $value ) {
-			return set_transient( $name, $value, 24 * HOUR_IN_SECONDS );
-		}
-
-		/**
-		 * Fetch the API profiles and store them
-		 *
-		 * @return array
-		 */
-		private function fetch_api_profiles() {
-			$accounts = $this->format_accounts_call( $this->do_request( 'https://www.googleapis.com/analytics/v3/management/accounts/~all/webproperties', 'https://www.googleapis.com/auth/analytics.readonly' ) );
-			$response = $this->do_request( 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles', 'https://www.googleapis.com/auth/analytics.readonly' );
-
-			// Save the accounts and response results in the new transient
-			$this->save_transient_api( 'yst_ga_accounts', $accounts );
-			$this->save_transient_api( 'yst_ga_response', $response );
-
-			return array(
-				'accounts' => $accounts,
-				'response' => $response,
-			);
 		}
 
 		/**
@@ -151,24 +130,38 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @param $response
 		 *
-		 * @return array
+		 * @return mixed
 		 */
-		private function format_accounts_call( $response ) {
-			if ( isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
-				$body = json_decode( $response['body'] );
+		private function format_profile_call( $response ) {
 
-				if ( is_array( $body->items ) ) {
+			if ( isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
+				if ( is_array( $response['body']['items'] ) ) {
 					$accounts = array();
 
-					foreach ( $body->items as $item ) {
-						$accounts[(string) $item->id] = (string) $item->name;
+					foreach ( $response['body']['items'] as $item ) {
+
+						$profiles = array();
+						foreach ( $item['webProperties'] AS $property ) {
+							foreach($property['profiles'] AS $key => $profile) {
+								$property['profiles'][$key]['name'] = $profile['name'] . ' (' . $property['id'] . ')';
+							}
+
+							$profiles = array_merge( $profiles, $property['profiles'] );
+						}
+
+						$accounts[$item['id']] = array(
+							'id'          => $item['id'],
+							'parent_name' => $item['name'],
+							'profiles'    => $profiles,
+						);
+
 					}
 
 					return $accounts;
 				}
 			}
 
-			return array();
+			return false;
 		}
 
 		/**
@@ -244,18 +237,23 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @return array|null
 		 */
-		protected function do_request( $target_url, $scope ) {
-			$gdata     = $this->get_gdata( $scope, $this->access_token, $this->secret );
-			$response  = $gdata->get( $target_url );
-			$http_code = wp_remote_retrieve_response_code( $response );
-			$response  = wp_remote_retrieve_body( $response );
+		protected function do_request( $target_request_url ) {
 
-			if ( $http_code == 200 ) {
+			// Do list sites request
+			$request = new Google_HttpRequest( $target_request_url );
+
+			// Get list sites response
+			$response = $this->client->getIo()->authenticatedRequest( $request );
+
+			$this->http_response_code = $response->getResponseHttpCode();
+
+			if ( 200 === $this->http_response_code ) {
 				return array(
-					'response' => array( 'code' => $http_code ),
-					'body'     => $response,
+					'response' => array( 'code' => '200' ),
+					'body'     => json_decode( $response->getResponseBody(), true ),
 				);
 			}
+
 		}
 
 		/**
@@ -285,8 +283,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @param $response
 		 */
-		protected function save_profile_response( $response, $accounts ) {
-			$this->options['ga_api_response']          = $response;
+		protected function save_profile_response( $accounts ) {
 			$this->options['ga_api_response_accounts'] = $accounts;
 
 			$this->update_options();
@@ -300,13 +297,20 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @return array
 		 */
-		protected function parse_profile_response() {
+		protected function parse_profile_response( $accounts ) {
 			$return = array();
 
 			try {
-				$xml_reader = new SimpleXMLElement( $this->options['ga_api_response']['body'] );
 
-				if ( ! empty( $xml_reader->entry ) ) {
+
+
+				return $accounts;
+
+				exit;
+				$xml_reader = $this->options['ga_api_response']['body'];
+				echo "<pre>";
+				print_r( $xml_reader );
+				if ( ! empty( $xml_reader['items'] ) ) {
 
 					$ga_accounts = array();
 

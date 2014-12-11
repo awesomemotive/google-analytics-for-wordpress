@@ -39,7 +39,11 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function init_settings() {
 			$this->options = $this->get_options();
-			$this->api     = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
+			$this->api     = Yoast_Api_Libs::load_api_libraries( array( 'google', 'googleanalytics' ) );
+
+
+			// Listener for reconnecting with google analytics
+			$this->connect_with_google_analytics();
 
 			if ( is_null( $this->get_tracking_code() ) ) {
 				add_action( 'admin_notices', array( $this, 'config_warning' ) );
@@ -66,8 +70,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			 */
 			$this->show_notification( 'ga_notifications' );
 
-			$this->connect_with_google_analytics();
-
 			// Load the Google Analytics Dashboards functionality
 			$dashboards = Yoast_GA_Dashboards::get_instance();
 			$dashboards->init_dashboards( $this->get_current_profile() );
@@ -86,6 +88,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * @param $data
 		 */
 		public function save_settings( $data ) {
+
+			unset($data['google_auth_code']);
+
 			foreach ( $data as $key => $value ) {
 				if ( $key != 'return_tab' ) {
 					if ( $key != 'custom_code' && is_string( $value ) ) {
@@ -369,17 +374,17 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 				foreach ( $values as $optgroup => $value ) {
 
-					if( !empty($value['options'])) {
+					if ( ! empty( $value['options'] ) ) {
 						$select .= '<optgroup label="' . $optgroup . '">';
 
-						foreach($value['options'] AS $option) {
-							$select .= $this->option($name, $option);
+						foreach ( $value['options'] AS $option ) {
+							$select .= $this->option( $name, $option );
 						}
 
 						$select .= '</optgroup>';
 
 					} else {
-						$select .= $this->option($name, $value);
+						$select .= $this->option( $name, $value );
 					}
 				}
 			}
@@ -402,10 +407,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 *
 		 * @return string
 		 */
-		private function option($name, $value) {
+		private function option( $name, $value ) {
 			if ( is_array( $this->options[$name] ) ) {
 				if ( in_array( $value['id'], $this->options[$name] ) ) {
-					return  '<option value="' . $value['id'] . '" selected="selected">' . stripslashes( $value['name'] ) . '</option>';
+					return '<option value="' . $value['id'] . '" selected="selected">' . stripslashes( $value['name'] ) . '</option>';
 				} else {
 					return '<option value="' . $value['id'] . '">' . stripslashes( $value['name'] ) . '</option>';
 				}
@@ -421,15 +426,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 *
 		 * @return array
 		 */
-		public function parse_optgroups($values) {
-
+		public function parse_optgroups( $values ) {
 			$optgroups = array();
-			foreach($values AS $key => $value) {
-				if(empty($value['parent_name'])) {
-					$current = $value;
-				} else {
-					$optgroups[$value['parent_name']]['options'][] = $current;
-				}
+			foreach ( $values AS $key => $value ) {
+				$optgroups[$value['parent_name']]['options'] = $value['profiles'];
 			}
 
 			return $optgroups;
@@ -476,9 +476,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function get_profiles() {
 			$return           = array();
 			$google_analytics = Yoast_Google_Analytics::instance();
-			if ( $google_analytics->has_token() ) {
-				$return = $google_analytics->get_profiles();
-			}
+			//if ( $google_analytics->has_token() ) {
+			$return = $google_analytics->get_profiles();
+
+			//}
 
 			return $return;
 		}
@@ -488,24 +489,14 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Checks if there is a callback or reauth to get token from Google Analytics api
 		 */
 		private function connect_with_google_analytics() {
-
-			if ( isset( $_REQUEST['ga_oauth_callback'] ) ) {
-
-				Yoast_Google_Analytics::instance()->authenticate( $_REQUEST['oauth_token'], $_REQUEST['oauth_verifier'] );
-
-				wp_redirect( menu_page_url( 'yst_ga_settings', false ) );
-				exit;
-			}
-
 			if ( ! empty ( $_GET['reauth'] ) ) {
-				$authorize_url = Yoast_Google_Analytics::instance()->authenticate();
-
-				delete_transient( 'yst_ga_accounts' );
-				delete_transient( 'yst_ga_response' );
-
-				wp_redirect( $authorize_url );
-				exit;
+				Yoast_Google_Analytics::instance()->authenticate();
 			}
+
+			if ( ! empty( $_POST['google_auth_code'] ) ) {
+				Yoast_Google_Analytics::instance()->authenticate($_POST['google_auth_code']);
+			}
+
 		}
 
 		/**
