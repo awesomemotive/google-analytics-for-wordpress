@@ -4,7 +4,7 @@ Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
 Tested up to: 4.0
-Stable tag: 5.2.2
+Stable tag: 5.2.3
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
@@ -48,6 +48,18 @@ This section describes how to install the plugin and get it working.
 1. Go to the options panel under the 'Settings' menu and add your Analytics account number and set the settings you want.
 
 == Changelog ==
+
+= 5.2.3 =
+
+Release Date: December 11th, 2014
+
+Enhancements:
+	* improved visual look and data representation for dashboard graphs, props [Andrey Savchenko](https://github.com/Rarst/)
+	* when manual UA-code is selected, the profile selection gets disabled to clarify that the user is choosing an alternative to regular profile selection.
+
+Bugfixes:
+	* Fixes a bug where GA profile was fetched with every admin request, resulting in a pile of unnecessary API requests.
+	* Fixes a problem where GA started throttling API requests done by our plugin because there were too many. We now fetch the data only once a day from GA. For realtime data, users should go to Google Analytics.
 
 = 5.2.2 =
 
