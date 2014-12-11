@@ -509,22 +509,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
-		 * Get the current GA profile
-		 *
-		 * @return null
-		 */
-		private function get_current_profile() {
-			$current_profile = null;
-			foreach ( $this->get_profiles() as $profile ) {
-				if ( ! empty( $profile['id'] ) && $profile['id'] == $this->options['analytics_profile'] ) {
-					$current_profile = $profile['profile_id'];
-				}
-			}
-
-			return $current_profile;
-		}
-
-		/**
 		 * Get the user roles of this WordPress blog
 		 *
 		 * @return array
