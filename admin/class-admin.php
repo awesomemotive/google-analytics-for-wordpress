@@ -89,7 +89,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function save_settings( $data ) {
 
-			unset($data['google_auth_code']);
+			unset( $data['google_auth_code'] );
 
 			foreach ( $data as $key => $value ) {
 				if ( $key != 'return_tab' ) {
@@ -366,7 +366,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				$select .= '<select multiple name="' . $name . '[]" id="yoast-ga-form-select-' . $this->form_namespace . '-' . $id . '" class="ga-multiple">';
 			} else {
 				$select .= '<select data-placeholder="' . $empty_text . '" name="' . $name . '" id="yoast-ga-form-select-' . $this->form_namespace . '-' . $id . '">';
-				if ( !is_null( $empty_text ) ) {
+				if ( ! is_null( $empty_text ) ) {
 					$select .= '<option></option>';
 				}
 			}
@@ -475,7 +475,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function get_profiles() {
 			$return           = array();
-			$google_analytics = Yoast_Google_Analytics::instance();
+			$google_analytics = Yoast_Google_Analytics::get_instance();
 			//if ( $google_analytics->has_token() ) {
 			$return = $google_analytics->get_profiles();
 
@@ -489,12 +489,13 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Checks if there is a callback or reauth to get token from Google Analytics api
 		 */
 		private function connect_with_google_analytics() {
+
 			if ( ! empty ( $_GET['reauth'] ) ) {
-				Yoast_Google_Analytics::instance()->authenticate();
+				Yoast_Google_Analytics::get_instance()->authenticate();
 			}
 
 			if ( ! empty( $_POST['google_auth_code'] ) ) {
-				Yoast_Google_Analytics::instance()->authenticate($_POST['google_auth_code']);
+				Yoast_Google_Analytics::get_instance()->authenticate( $_POST['google_auth_code'] );
 			}
 
 		}

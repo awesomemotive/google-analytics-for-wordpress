@@ -29,7 +29,6 @@ echo $yoast_ga_admin->create_form( 'settings' );
 		echo '<div id="ga-promote">';
 
 		$profiles = $yoast_ga_admin->parse_optgroups( $yoast_ga_admin->get_profiles() );
-		print_r($profiles);
 		$ga_url   = $_SERVER['PHP_SELF'];
 		if ( isset( $_GET['page'] ) ) {
 			$ga_url .= '?page=' . $_GET['page'];
