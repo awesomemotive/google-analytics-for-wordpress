@@ -500,8 +500,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			if ( ! empty ( $_GET['reauth'] ) ) {
 				$authorize_url = Yoast_Google_Analytics::instance()->authenticate();
 
-				delete_transient( 'yst_ga_accounts' );
-				delete_transient( 'yst_ga_response' );
+				delete_option( 'yst_ga_accounts' );
+				delete_option( 'yst_ga_response' );
 
 				wp_redirect( $authorize_url );
 				exit;
