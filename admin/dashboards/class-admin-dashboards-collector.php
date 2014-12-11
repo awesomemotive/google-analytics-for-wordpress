@@ -81,6 +81,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				if ( is_array( $this->dimensions ) && count( $this->dimensions ) >= 1 ) {
 					$this->aggregate_dimensions( $access_tokens, $this->dimensions );
 				}
+
+				/**
+				 * Success, set a transient which stores the latest runtime
+				 */
+				set_transient( 'yst_ga_last_wp_run', date( 'Y-m-d' ), 48 * HOUR_IN_SECONDS );
 			} else {
 				// Failure on authenticating, please reauthenticate
 			}
@@ -97,15 +102,61 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 
 			// Hook our function to the WP cron event the fetch data daily
 			add_action( 'yst_ga_aggregate_data', array( $this, 'aggregate_data' ) );
+
+			// Check if the WP cron did run on time
+			add_action( 'shutdown', array( $this, 'check_api_call_hook' ) );
 		}
 
 		/**
-		 * Check if we scheduled the WP cron event, if not, do so
+		 * Check if we scheduled the WP cron event, if not, do so.
 		 */
 		public function setup_wp_cron_aggregate() {
 			if ( ! wp_next_scheduled( 'yst_ga_aggregate_data' ) ) {
-				wp_schedule_event( time(), 'daily', 'yst_ga_aggregate_data');
+				wp_schedule_event( time(), 'daily', 'yst_ga_aggregate_data' );
 			}
+		}
+
+		/**
+		 * Check if the WP cron did run yesterday. If not, we need to run it form here
+		 */
+		public function check_api_call_hook() {
+			$last_run = get_transient( 'yst_ga_last_wp_run' );
+
+			if ( $last_run === false ) {
+				/**
+				 * Transient doesn't exists, so we need to run the
+				 * hook (This function runs already on Shutdown so
+				 * we can call it directly from now on)
+				 */
+				$this->aggregate_data();
+			} else {
+				// Transient exists
+				if ( $this->hours_between( strtotime($last_run), time() ) >= 24 ) {
+					$this->aggregate_data();
+				}
+			}
+		}
+
+		/**
+		 * Calculate the date difference, return the amount of hours between the two dates
+		 *
+		 * @param $last_run datetime
+		 * @param $now      datetime
+		 *
+		 * @return int
+		 */
+		private function hours_between( $last_run, $now ) {
+			$calculate_result = $now - $last_run;
+			if( $calculate_result >= 3600 ) {
+				$minutes = $calculate_result / 60;
+				$hours   = $minutes / 60;
+			}
+			else{
+				// Prevent errors
+				$hours = 0;
+			}
+
+			return round( $hours );
 		}
 
 		/**
