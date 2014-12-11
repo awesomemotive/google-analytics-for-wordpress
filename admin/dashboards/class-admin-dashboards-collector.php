@@ -40,18 +40,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		public $ga_profile_id;
 
 		/**
-		 * The $_GET pages where the shutdown hook should be executed to aggregate data
-		 *
-		 * @var array
-		 */
-		private $shutdown_get_pages = array( 'yst_ga_dashboard' );
-
-		/**
-		 * The $_SERVER['SCRIPT_NAME'] pages where the shutdown hook should be executed to aggregate data
-		 */
-		private $shutdown_pages = array( '/wp-admin/index.php' );
-
-		/**
 		 * Construct on the dashboards class for GA
 		 *
 		 * @param $ga_profile_id
@@ -104,12 +92,19 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		private function init_shutdown_hook() {
 			$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
 
-			if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
-				if ( $this->run_shutdown_hook_get() || $this->run_shutdown_hook_page() ) {
-					add_action( 'shutdown', array( $this, 'aggregate_data' ), 10 );
+			// Hook the WP cron event
+			add_action( 'wp', array( $this, 'setup_wp_cron_aggregate' ) );
 
-					return;
-				}
+			// Hook our function to the WP cron event the fetch data daily
+			add_action( 'yst_ga_aggregate_data', array( $this, 'aggregate_data' ) );
+		}
+
+		/**
+		 * Check if we scheduled the WP cron event, if not, do so
+		 */
+		public function setup_wp_cron_aggregate() {
+			if ( ! wp_next_scheduled( 'yst_ga_aggregate_data' ) ) {
+				wp_schedule_event( time(), 'daily', 'yst_ga_aggregate_data');
 			}
 		}
 
@@ -212,32 +207,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 					}
 				}
 			}
-		}
-
-		/**
-		 * Check if the shutdown hook should be ran on the GET var
-		 *
-		 * @return bool
-		 */
-		private function run_shutdown_hook_get() {
-			if ( isset( $_GET['page'] ) && in_array( $_GET['page'], $this->shutdown_get_pages ) ) {
-				return true;
-			}
-
-			return false;
-		}
-
-		/**
-		 * Check if the shutdown hook should be ran on this page
-		 *
-		 * @return bool
-		 */
-		private function run_shutdown_hook_page() {
-			if ( isset( $_SERVER['SCRIPT_NAME'] ) && in_array( $_SERVER['SCRIPT_NAME'], $this->shutdown_pages ) ) {
-				return true;
-			}
-
-			return false;
 		}
 
 		/**
