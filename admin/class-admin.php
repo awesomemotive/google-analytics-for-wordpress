@@ -338,10 +338,11 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * @param array       $values
 		 * @param null|string $description
 		 * @param bool        $multiple
+		 * @param string      $empty_text
 		 *
 		 * @return null|string
 		 */
-		public function select( $title, $name, $values, $description = null, $multiple = false ) {
+		public function select( $title, $name, $values, $description = null, $multiple = false, $empty_text = null ) {
 			$select = null;
 			$id     = str_replace( '[', '-', $name );
 			$id     = str_replace( ']', '', $id );
@@ -359,7 +360,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			if ( $multiple ) {
 				$select .= '<select multiple name="' . $name . '[]" id="yoast-ga-form-select-' . $this->form_namespace . '-' . $id . '" class="ga-multiple">';
 			} else {
-				$select .= '<select name="' . $name . '" id="yoast-ga-form-select-' . $this->form_namespace . '-' . $id . '">';
+				$select .= '<select data-placeholder="' . $empty_text . '" name="' . $name . '" id="yoast-ga-form-select-' . $this->form_namespace . '-' . $id . '">';
+				if ( !is_null( $empty_text ) ) {
+					$select .= '<option></option>';
+				}
 			}
 			if ( count( $values ) >= 1 ) {
 
