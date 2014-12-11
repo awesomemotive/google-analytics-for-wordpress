@@ -88,8 +88,8 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 			$return = array();
 			$result = array();
 
-			$result['accounts'] = $this->get_transient_api( 'yst_ga_accounts' );
-			$result['response'] = $this->get_transient_api( 'yst_ga_response' );
+			$result['accounts'] = $this->get_option_api( 'yst_ga_accounts' );
+			$result['response'] = $this->get_option_api( 'yst_ga_response' );
 
 			if ( $result['accounts'] === false || $result['response'] === false ) {
 				$result = $this->fetch_api_profiles();
@@ -111,20 +111,20 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @return string
 		 */
-		private function get_transient_api( $name ) {
-			return get_transient( $name );
+		private function get_option_api( $name ) {
+			return get_option( $name );
 		}
 
 		/**
-		 * Save the transient API
+		 * Save the option API
 		 *
 		 * @param $name
 		 * @param $value
 		 *
 		 * @return string
 		 */
-		private function save_transient_api( $name, $value ) {
-			return set_transient( $name, $value, 24 * HOUR_IN_SECONDS );
+		private function save_option_api( $name, $value ) {
+			return update_option( $name, $value );
 		}
 
 		/**
@@ -137,8 +137,8 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 			$response = $this->do_request( 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles', 'https://www.googleapis.com/auth/analytics.readonly' );
 
 			// Save the accounts and response results in the new transient
-			$this->save_transient_api( 'yst_ga_accounts', $accounts );
-			$this->save_transient_api( 'yst_ga_response', $response );
+			$this->save_option_api( 'yst_ga_accounts', $accounts );
+			$this->save_option_api( 'yst_ga_response', $response );
 
 			return array(
 				'accounts' => $accounts,
