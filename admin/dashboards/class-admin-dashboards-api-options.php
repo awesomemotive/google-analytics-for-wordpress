@@ -49,7 +49,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Api_Options' ) ) {
 		 * Set the API options
 		 */
 		public function set_options() {
-			$this->options = Yoast_Google_Analytics::instance()->get_options();
+			$this->options = Yoast_Google_Analytics::get_instance()->get_options();
 
 			$this->set_access_token();
 		}
