@@ -257,8 +257,14 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				Yoast_Google_Analytics::get_instance()->authenticate();
 			}
 
-			if ( ! empty( $_POST['google_auth_code'] ) ) {
-				Yoast_Google_Analytics::get_instance()->authenticate( $_POST['google_auth_code'] );
+			if ( ! empty ( $_GET['reauth'] ) ) {
+				$authorize_url = Yoast_Google_Analytics::instance()->authenticate();
+
+				delete_option( 'yst_ga_accounts' );
+				delete_option( 'yst_ga_response' );
+
+				wp_redirect( $authorize_url );
+				exit;
 			}
 
 		}
