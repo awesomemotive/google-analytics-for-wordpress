@@ -143,7 +143,6 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 			$this->client = new Yoast_Google_Analytics_Client( $config );
 		}
 
-
 		/**
 		 * Saving profile response in options
 		 *
