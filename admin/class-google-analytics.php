@@ -133,7 +133,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 */
 		protected function set_client() {
 			$config = array(
-				'application_name' => "Google Analytics for Wordpress",
+				'application_name' => 'Google Analytics for Wordpress',
 				'client_id'        => '709980676664-djogli4so02l820q0vegovol4nf2p9f9.apps.googleusercontent.com',
 				'client_secret'    => 'quP3lv-GQxSCCxJ5k0reu50g',
 			);
