@@ -5,15 +5,29 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 	class Yoast_Google_Analytics {
 
+		/**
+		 * @var string
+		 */
 		private $option_name     = 'yst_ga_api';
+
+		/**
+		 * @var array|mixed
+		 */
 		private $options         = array();
 
+		/**
+		 * @var null|Yoast_Google_Analytics
+		 */
 		private static $instance = null;
 
+		/**
+		 * @var The api client object holder
+		 */
 		private $client;
 
 		/**
 		 * Singleton
+		 *
 		 */
 		protected function __construct() {
 
