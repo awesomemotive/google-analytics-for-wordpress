@@ -43,7 +43,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 
 			// Listener for reconnecting with google analytics
-			$this->connect_with_google_analytics();
+			$this->google_analytics_listener();
 
 			if ( is_null( $this->get_tracking_code() ) ) {
 				add_action( 'admin_notices', array( $this, 'config_warning' ) );
@@ -474,12 +474,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * @return array
 		 */
 		public function get_profiles() {
-			$return           = array();
-			$google_analytics = Yoast_Google_Analytics::get_instance();
-			//if ( $google_analytics->has_token() ) {
-			$return = $google_analytics->get_profiles();
-
-			//}
+			$return = Yoast_Google_Analytics::get_instance()->get_profiles();
 
 			return $return;
 		}
@@ -488,7 +483,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		/**
 		 * Checks if there is a callback or reauth to get token from Google Analytics api
 		 */
-		private function connect_with_google_analytics() {
+		private function google_analytics_listener() {
 
 			if ( ! empty ( $_GET['reauth'] ) ) {
 				Yoast_Google_Analytics::get_instance()->authenticate();
