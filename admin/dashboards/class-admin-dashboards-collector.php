@@ -57,6 +57,8 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			$this->options = Yoast_GA_Dashboards_Api_Options::get_instance();
 
 			$this->init_shutdown_hook();
+
+			$this->aggregate_data();
 		}
 
 		/**
@@ -271,7 +273,13 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			$storage_type = $this->get_storage_type( $dimensions );
 
 			$response = Yoast_Google_Analytics::get_instance()->do_request( 'https://www.googleapis.com/analytics/v3/data/ga?' . $params );
-			$response = Yoast_Googleanalytics_Reporting::instance()->parse_response( $response, $storage_type, $start_date, $end_date );
+
+			if( isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
+				$response = Yoast_Googleanalytics_Reporting::instance()->parse_response( $response, $storage_type, $start_date, $end_date );
+			}
+			else{
+				return false;
+			}
 
 			if ( strpos( 'ga:date', $dimensions ) !== false ) {
 				return $this->handle_response( $response, $metric, $dimensions, $start_date, $end_date, 'datelist', $storage_name );
