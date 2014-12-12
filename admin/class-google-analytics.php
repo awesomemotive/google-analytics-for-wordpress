@@ -5,18 +5,16 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 	class Yoast_Google_Analytics {
 
-		private $http_response_code;
-
-		private $access_token;
-		private $secret;
-
-		private $option_name = 'yst_ga_api';
-		private $options = array();
+		private $option_name     = 'yst_ga_api';
+		private $options         = array();
 
 		private static $instance = null;
 
 		private $client;
 
+		/**
+		 * Singleton
+		 */
 		protected function __construct() {
 
 			if ( is_null( self::$instance ) ) {
@@ -27,9 +25,6 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 			// Setting the client
 			$this->set_client();
-
-			$response = $this->do_request( 'https://www.googleapis.com/analytics/v3/management/accounts/~all/webproperties' );
-
 		}
 
 		/**
@@ -48,21 +43,11 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 			return self::$instance;
 		}
 
-
-		protected function set_client() {
-			$config = array(
-				'application_name' => "Google Analytics for Wordpress",
-				'client_id'        => '709980676664-djogli4so02l820q0vegovol4nf2p9f9.apps.googleusercontent.com',
-				'client_secret'    => 'quP3lv-GQxSCCxJ5k0reu50g',
-			);
-
-			$config = apply_filters( 'yst-ga-filter-ga-config', $config );
-
-			$this->client = new Yoast_Google_Analytics_Client( $config );
-
-
-		}
-
+		/**
+		 * Wrapper for authenticate the client. If authentication code is send it will get and check an access token.
+		 *
+		 * @param mixed $authentication_code
+		 */
 		public function authenticate( $authentication_code = null ) {
 			$this->client->authenticate_client( $authentication_code );
 		}
@@ -92,7 +77,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 				$this->do_request( 'https://www.googleapis.com/analytics/v3/management/accountSummaries' )
 			);
 
-			if (  is_array( $accounts ) ) {
+			if ( is_array( $accounts ) ) {
 				$this->save_profile_response( $accounts );
 
 				return $accounts;
@@ -102,42 +87,36 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		}
 
 		/**
-		 * Format the accounts request
-		 *
-		 * @param $response
+		 * Getting the options bases on $this->option_name from the database
 		 *
 		 * @return mixed
 		 */
-		private function format_profile_call( $response ) {
+		public function get_options() {
+			return get_option( $this->option_name );
+		}
 
-			if ( isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
-				if ( is_array( $response['body']['items'] ) ) {
-					$accounts = array();
+		/**
+		 * Updating the options based on $this->option_name and the internal property $this->options
+		 */
+		protected function update_options() {
+			update_option( $this->option_name, $this->options );
+		}
 
-					foreach ( $response['body']['items'] as $item ) {
+		/**
+		 * Setting the client
+		 *
+		 * The filter is a hook to override the configuration/
+		 */
+		protected function set_client() {
+			$config = array(
+				'application_name' => "Google Analytics for Wordpress",
+				'client_id'        => '709980676664-djogli4so02l820q0vegovol4nf2p9f9.apps.googleusercontent.com',
+				'client_secret'    => 'quP3lv-GQxSCCxJ5k0reu50g',
+			);
 
-						$profiles = array();
-						foreach ( $item['webProperties'] AS $property ) {
-							foreach($property['profiles'] AS $key => $profile) {
-								$property['profiles'][$key]['name'] = $profile['name'] . ' (' . $property['id'] . ')';
-							}
+			$config = apply_filters( 'yst-ga-filter-ga-config', $config );
 
-							$profiles = array_merge( $profiles, $property['profiles'] );
-						}
-
-						$accounts[$item['id']] = array(
-							'id'          => $item['id'],
-							'parent_name' => $item['name'],
-							'profiles'    => $profiles,
-						);
-
-					}
-
-					return $accounts;
-				}
-			}
-
-			return false;
+			$this->client = new Yoast_Google_Analytics_Client( $config );
 		}
 
 		/**
@@ -153,7 +132,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 			$response = $this->client->do_request( $target_request_url );
 
-			if ( !empty( $response ) ) {
+			if ( ! empty( $response ) ) {
 				return array(
 					'response' => array( 'code' => '200' ),
 					'body'     => json_decode( $response->getResponseBody(), true ),
@@ -187,19 +166,42 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		}
 
 		/**
-		 * Getting the options bases on $this->option_name from the database
+		 * Format the accounts request
+		 *
+		 * @param $response
 		 *
 		 * @return mixed
 		 */
-		public function get_options() {
-			return get_option( $this->option_name );
-		}
+		private function format_profile_call( $response ) {
 
-		/**
-		 * Updating the options based on $this->option_name and the internal property $this->options
-		 */
-		protected function update_options() {
-			update_option( $this->option_name, $this->options );
+			if ( isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
+				if ( ! empty( $response['body']['items'] ) && is_array( $response['body']['items'] ) ) {
+					$accounts = array();
+
+					foreach ( $response['body']['items'] as $item ) {
+
+						$profiles = array();
+						foreach ( $item['webProperties'] AS $property ) {
+							foreach ( $property['profiles'] AS $key => $profile ) {
+								$property['profiles'][$key]['name'] = $profile['name'] . ' (' . $property['id'] . ')';
+							}
+
+							$profiles = array_merge( $profiles, $property['profiles'] );
+						}
+
+						$accounts[$item['id']] = array(
+							'id'          => $item['id'],
+							'parent_name' => $item['name'],
+							'profiles'    => $profiles,
+						);
+
+					}
+
+					return $accounts;
+				}
+			}
+
+			return false;
 		}
 
 	}
