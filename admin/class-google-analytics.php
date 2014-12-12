@@ -52,18 +52,6 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 			$this->client->authenticate_client( $authentication_code );
 		}
 
-
-		/**
-		 * Is there a token set
-		 *
-		 * Checks in options whether there is a token set or not. Will return true if token is set
-		 *
-		 * @return bool
-		 */
-		public function has_token() {
-			return ! empty( $this->options['ga_token'] );
-		}
-
 		/**
 		 * Getting the analytics profiles
 		 *
@@ -84,6 +72,28 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 			}
 
 			return array();
+		}
+
+		/**
+		 * Doing request to Google Analytics
+		 *
+		 * This method will do a request to google and get the response code and body from content
+		 *
+		 * @param string $target_request_url
+		 *
+		 * @return array|null
+		 */
+		public function do_request( $target_request_url ) {
+
+			$response = $this->client->do_request( $target_request_url );
+
+			if ( ! empty( $response ) ) {
+				return array(
+					'response' => array( 'code' => '200' ),
+					'body'     => json_decode( $response->getResponseBody(), true ),
+				);
+			}
+
 		}
 
 		/**
@@ -119,50 +129,16 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 			$this->client = new Yoast_Google_Analytics_Client( $config );
 		}
 
-		/**
-		 * Doing request to Google Analytics
-		 *
-		 * This method will do a request to google and get the response code and body from content
-		 *
-		 * @param string $target_url
-		 *
-		 * @return array|null
-		 */
-		protected function do_request( $target_request_url ) {
-
-			$response = $this->client->do_request( $target_request_url );
-
-			if ( ! empty( $response ) ) {
-				return array(
-					'response' => array( 'code' => '200' ),
-					'body'     => json_decode( $response->getResponseBody(), true ),
-				);
-			}
-
-		}
-
 
 		/**
 		 * Saving profile response in options
 		 *
-		 * @param $response
+		 * @param array $accounts
 		 */
 		protected function save_profile_response( $accounts ) {
 			$this->options['ga_api_response_accounts'] = $accounts;
 
 			$this->update_options();
-		}
-
-		/**
-		 * Sorting the array in alphabetic order
-		 *
-		 * @param string $a
-		 * @param string $b
-		 *
-		 * @return int
-		 */
-		protected function sort_profiles( $a, $b ) {
-			return strcmp( $a['title'], $b['title'] );
 		}
 
 		/**
