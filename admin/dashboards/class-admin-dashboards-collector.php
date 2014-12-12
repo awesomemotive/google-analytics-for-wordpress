@@ -273,7 +273,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			$response = Yoast_Google_Analytics::get_instance()->do_request( 'https://www.googleapis.com/analytics/v3/data/ga?' . $params );
 
 			if( isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
-				$response = Yoast_Googleanalytics_Reporting::instance()->parse_response( $response, $storage_type, $start_date, $end_date );
+				$response = Yoast_Googleanalytics_Reporting::get_instance()->parse_response( $response, $storage_type, $start_date, $end_date );
 			}
 			else{
 				return false;
