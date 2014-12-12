@@ -57,8 +57,6 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			$this->options = Yoast_GA_Dashboards_Api_Options::get_instance();
 
 			$this->init_shutdown_hook();
-
-			$this->aggregate_data();
 		}
 
 		/**
