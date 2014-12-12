@@ -8,12 +8,12 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		/**
 		 * @var string
 		 */
-		private $option_name     = 'yst_ga_api';
+		private $option_name = 'yst_ga_api';
 
 		/**
 		 * @var array|mixed
 		 */
-		private $options         = array();
+		private $options = array();
 
 		/**
 		 * @var null|Yoast_Google_Analytics
@@ -103,7 +103,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 			if ( ! empty( $response ) ) {
 				return array(
-					'response' => array( 'code' =>  $this->client->get_http_response_code() ),
+					'response' => array( 'code' => $this->client->get_http_response_code() ),
 					'body'     => json_decode( $response->getResponseBody(), true ),
 				);
 			}
