@@ -103,7 +103,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 			if ( ! empty( $response ) ) {
 				return array(
-					'response' => array( 'code' => '200' ),
+					'response' => array( 'code' =>  $this->client->get_http_response_code() ),
 					'body'     => json_decode( $response->getResponseBody(), true ),
 				);
 			}
