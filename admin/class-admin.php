@@ -506,14 +506,11 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * @return null
 		 */
 		private function get_current_profile() {
-			$current_profile = null;
-			foreach ( $this->get_profiles() as $profile ) {
-				if ( ! empty( $profile['id'] ) && $profile['id'] == $this->options['analytics_profile'] ) {
-					$current_profile = $profile['profile_id'];
-				}
+			if ( ! empty( $this->options['analytics_profile'] ) ) {
+				return $this->options['analytics_profile'];
+			} else {
+				return null;
 			}
-
-			return $current_profile;
 		}
 
 		/**
