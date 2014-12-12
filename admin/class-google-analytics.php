@@ -96,6 +96,28 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		}
 
 		/**
+		 * Doing request to Google Analytics
+		 *
+		 * This method will do a request to google and get the response code and body from content
+		 *
+		 * @param string $target_url
+		 *
+		 * @return array|null
+		 */
+		public function do_request( $target_request_url ) {
+
+			$response = $this->client->do_request( $target_request_url );
+
+			if ( ! empty( $response ) ) {
+				return array(
+					'response' => array( 'code' => '200' ),
+					'body'     => json_decode( $response->getResponseBody(), true ),
+				);
+			}
+
+		}
+
+		/**
 		 * Updating the options based on $this->option_name and the internal property $this->options
 		 */
 		protected function update_options() {
@@ -118,29 +140,6 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 			$this->client = new Yoast_Google_Analytics_Client( $config );
 		}
-
-		/**
-		 * Doing request to Google Analytics
-		 *
-		 * This method will do a request to google and get the response code and body from content
-		 *
-		 * @param string $target_url
-		 *
-		 * @return array|null
-		 */
-		protected function do_request( $target_request_url ) {
-
-			$response = $this->client->do_request( $target_request_url );
-
-			if ( ! empty( $response ) ) {
-				return array(
-					'response' => array( 'code' => '200' ),
-					'body'     => json_decode( $response->getResponseBody(), true ),
-				);
-			}
-
-		}
-
 
 		/**
 		 * Saving profile response in options
