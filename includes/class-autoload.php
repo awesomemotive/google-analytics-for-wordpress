@@ -30,8 +30,6 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 					'yoast_ga_admin_assets'               => 'admin/class-admin-assets',
 					'yoast_ga_admin_form'                 => 'admin/class-admin-form',
 
-					'wp_gdata'                            => 'admin/wp-gdata/wp-gdata',
-
 					// Dashboards
 					'yoast_ga_dashboards_api_options'     => 'admin/dashboards/class-admin-dashboards-api-options',
 					'yoast_ga_dashboards'                 => 'admin/dashboards/class-admin-dashboards',
