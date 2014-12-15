@@ -32,17 +32,24 @@ jQuery(document).ready(function() {
             jQuery('#enter_ua').show();
             jQuery("#yoast-ga-form-select-settings-analytics_profile").prop('disabled', true).trigger("chosen:updated");
             jQuery("#yst_ga_authenticate").attr('disabled', true);
+			jQuery('#oauth_code').hide();
         } else {
             jQuery('#enter_ua').hide();
             jQuery('#yoast-ga-form-text-settings-manual_ua_code_field').attr('value', '');
             jQuery("#yoast-ga-form-select-settings-analytics_profile").prop('disabled', false).trigger("chosen:updated");
             jQuery("#yst_ga_authenticate").attr('disabled', false);
+			jQuery('#oauth_code').show();
         }
     }
 
 	// Manually enter a UA code
 	jQuery('#yoast-ga-form-checkbox-settings-manual_ua_code').click( function() { yst_ga_switch_manual(); } );
     yst_ga_switch_manual();
+
+	jQuery('#oauth_code').hide();
+	jQuery("#yst_ga_authenticate").click( function() {
+		jQuery('#oauth_code').show().focus();
+	});
 
 	jQuery('.nav-tab-active').click();
 

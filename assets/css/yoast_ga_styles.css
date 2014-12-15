@@ -107,6 +107,14 @@ p.ga-topdescription {
 	width: 325px;
 }
 
+#yoast-ga-form-settings #oauth_code div {
+	margin: 0 0 0 5px;
+}
+
+#yoast-ga-form-settings #oauth_code input[type="text"] {
+	width: 275px;
+}
+
 .ga-form .chosen-search input[type="text"] {
 	width: 100% !important;
 }
@@ -189,6 +197,6 @@ select.ga-multiple {
 }
 
 #enter_ua div {
-    display: inline-block;
-    margin: 0;
+	display: inline-block;
+	margin: 0;
 }
