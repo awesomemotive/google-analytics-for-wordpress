@@ -96,11 +96,22 @@ p.ga-topdescription {
 	max-width: 600px;
 }
 
-#ga-promote {
+#ga-promote,
+.ga-promote {
 	max-width: 600px;
 	padding-left: 10px;
 	border: 1px solid #ccc;
 	background-color: #fff;
+}
+
+.ga-promote {
+	margin-bottom: 10px;
+}
+
+#ga-promote p,
+.ga-promote p {
+	margin: 0;
+	padding: 1em 1em 1em 0;
 }
 
 #yoast-ga-form-settings input[type="text"] {
