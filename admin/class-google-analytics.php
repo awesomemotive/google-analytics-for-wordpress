@@ -110,6 +110,15 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 		}
 
+
+		/**
+		 * Check if client has a refresh token
+		 * @return bool
+		 */
+		public function has_refresh_token() {
+			return ($this->client->get_refresh_token() != '');
+		}
+
 		/**
 		 * Getting the options bases on $this->option_name from the database
 		 *
