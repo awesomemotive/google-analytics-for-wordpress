@@ -173,6 +173,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 						foreach ( $item['webProperties'] AS $property ) {
 							foreach ( $property['profiles'] AS $key => $profile ) {
 								$property['profiles'][$key]['name'] = $profile['name'] . ' (' . $property['id'] . ')';
+								$property['profiles'][$key]['ua_code'] = $property['id'];
 							}
 
 							$profiles = array_merge( $profiles, $property['profiles'] );
@@ -180,6 +181,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 						$accounts[$item['id']] = array(
 							'id'          => $item['id'],
+							'ua_code'     => $property['id'],
 							'parent_name' => $item['name'],
 							'profiles'    => $profiles,
 						);
