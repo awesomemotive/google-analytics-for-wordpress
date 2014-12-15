@@ -139,7 +139,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 					if ( ! empty( $value['options'] ) ) {
 						$select .= '<optgroup label="' . $optgroup . '">';
 
-						foreach ( $value['options'] AS $option ) {
+						foreach ( $value['options'] as $option ) {
 							$select .= self::option( $select_value, $option );
 						}
 
@@ -240,7 +240,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 		 */
 		public static function parse_optgroups( $values ) {
 			$optgroups = array();
-			foreach ( $values AS $key => $value ) {
+			foreach ( $values as $key => $value ) {
 				$optgroups[$value['parent_name']]['options'] = $value['profiles'];
 			}
 
@@ -287,7 +287,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 		 */
 		private static function parse_attributes( $attributes_to_parse ) {
 			$parsed_attributes = '';
-			foreach ( $attributes_to_parse AS $attribute_name => $attribute_value ) {
+			foreach ( $attributes_to_parse as $attribute_name => $attribute_value ) {
 				$parsed_attributes .= $attribute_name . '="' . $attribute_value . '" ';
 			}
 
