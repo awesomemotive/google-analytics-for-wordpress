@@ -133,9 +133,9 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 */
 		protected function set_client() {
 			$config = array(
-				'application_name' => 'Google Analytics for Wordpress',
-				'client_id'        => '709980676664-djogli4so02l820q0vegovol4nf2p9f9.apps.googleusercontent.com',
-				'client_secret'    => 'quP3lv-GQxSCCxJ5k0reu50g',
+				'application_name' => 'Google Analytics by Yoast',
+				'client_id'        => '346753076522-21smrc6aq0hq8oij8001s57dfoo8igf5.apps.googleusercontent.com',
+				'client_secret'    => '5oWaEGFgp-bSrY6vWBmdPfIF',
 			);
 
 			$config = apply_filters( 'yst-ga-filter-ga-config', $config );
