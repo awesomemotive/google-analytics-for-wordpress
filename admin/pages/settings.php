@@ -39,7 +39,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		if ( count( $profiles ) == 0 ) {
 			echo '<div class="ga-form ga-form-input">';
 			echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle" />' . __( 'Google profile', 'google-analytics-for-wordpress' ) . ':</label>';
-			echo '<a class="button" href="' . $ga_url . '" target="_blank">' . __( 'Authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a>';
+			echo '<a id="yst_ga_authenticate" class="button" href="' . $ga_url . '" target="_blank">' . __( 'Authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a>';
 			echo '</div>';
 			echo '<div class="ga-form ga-form-input">';
 			echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle" />' . __( 'Current UA-profile', 'google-analytics-for-wordpress' ) . '</label>';
@@ -50,11 +50,11 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 
 			echo '<div class="ga-form ga-form-input">';
 			echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle" />&nbsp;</label>';
-			echo '<a class="button" href="' . $ga_url . '" target="_blank">' . __( 'Re-authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a>';
+			echo '<a id="yst_ga_authenticate" class="button" href="' . $ga_url . '" target="_blank">' . __( 'Re-authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a>';
 			echo '</div>';
 		}
 
-		echo '<div class="ga-form ga-form-input">';
+		echo '<div id="oauth_code" class="ga-form ga-form-input">';
 		echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle"  />' . __( 'Paste your Google code here', 'google-analytics-for-wordpress' ) . ':</label>';
 		echo Yoast_GA_Admin_Form::input( 'text', null, 'google_auth_code', null, __('Please leave this field empty if everything is all right for you', 'google-analytics-for-wordpress') );
 		echo '</label>';
