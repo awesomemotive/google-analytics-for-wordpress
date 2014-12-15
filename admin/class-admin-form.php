@@ -197,7 +197,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 		/**
 		 * Parsing a option string for select
 		 *
-		 * @param string $name
+		 * @param string $select_value
 		 * @param string $value
 		 *
 		 * @return string
@@ -281,7 +281,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 		/**
 		 * Parsing given array with attributes as an attribute string
 		 *
-		 * @param array $params_to_parse
+		 * @param array $attributes_to_parse
 		 *
 		 * @return string
 		 */
