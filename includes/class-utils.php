@@ -19,5 +19,20 @@ if ( ! class_exists( 'Yoast_GA_Utils' ) ) {
 			}
 			return $wp_seo_active;
 		}
+
+		/**
+		 * Calculate the date difference, return the amount of hours between the two dates
+		 *
+		 * @param $last_run datetime
+		 * @param $now      datetime
+		 *
+		 * @return int
+		 */
+		public static function hours_between( $last_run, $now ) {
+			$seconds = max( ( $now - $last_run ), 1 );
+			$hours   = $seconds / 3600;
+
+			return floor( $hours );
+		}
 	}
 }

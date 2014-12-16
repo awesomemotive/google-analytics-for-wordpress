@@ -47,8 +47,13 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				add_action( 'admin_notices', array( $this, 'config_warning' ) );
 			}
 
-			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+			$last_run = get_transient( 'yst_ga_last_wp_run' );
+			if ( $last_run === false || Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 48 ) {
+				// Show error, something went wrong
+				add_action( 'admin_notices', array( $this, 'warning_fetching_data' ) );
+			}
 
+			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				if ( ! function_exists( 'wp_verify_nonce' ) ) {
 					require_once( ABSPATH . 'wp-includes/pluggable.php' );
 				}
@@ -78,6 +83,13 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function config_warning() {
 			echo '<div class="error"><p>' . sprintf( __( 'Please configure your %sGoogle Analytics settings%s!', 'google-analytics-for-wordpress' ), '<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">', '</a>' ) . '</p></div>';
+		}
+
+		/**
+		 * Throw a warning when the fetching failed
+		 */
+		public function warning_fetching_data() {
+			echo '<div class="error"><p>' . sprintf( __( 'Failed to fetch the new data from Google Analytics. Please %sreauthenticate on the settings page%s!', 'google-analytics-for-wordpress' ), '<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">', '</a>' ) . '</p></div>';
 		}
 
 		/**
@@ -143,7 +155,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$ua_code  = null;
 
 			foreach ( $profiles as $profile ) {
-				foreach( $profile['profiles'] as $subprofile ) {
+				foreach ( $profile['profiles'] as $subprofile ) {
 					if ( isset( $subprofile['id'] ) && $subprofile['id'] == $profile_id ) {
 						$ua_code = $subprofile['ua_code'];
 					}
