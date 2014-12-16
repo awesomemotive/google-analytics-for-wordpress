@@ -50,7 +50,9 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$last_run = get_transient( 'yst_ga_last_wp_run' );
 			if ( $last_run === false || Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 48 ) {
 				// Show error, something went wrong
-				add_action( 'admin_notices', array( $this, 'warning_fetching_data' ) );
+				if( ! is_null( $this->get_tracking_code() ) ) {
+					add_action( 'admin_notices', array( $this, 'warning_fetching_data' ) );
+				}
 			}
 
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
