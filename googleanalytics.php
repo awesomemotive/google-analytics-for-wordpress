@@ -51,3 +51,5 @@ if ( is_admin() ) {
 	global $yoast_ga_frontend;
 	$yoast_ga_frontend = new Yoast_GA_Frontend;
 }
+
+register_deactivation_hook( __FILE__, array( 'Yoast_GA_Admin', 'ga_deactivation_hook' ) );

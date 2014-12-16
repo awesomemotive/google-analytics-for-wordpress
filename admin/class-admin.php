@@ -132,6 +132,20 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
+		 * Run a this deactivation hook on deactivation of GA. When this happens we'll
+		 * remove the options for the profiles and the refresh token.
+		 */
+		public static function ga_deactivation_hook() {
+			// Remove the refresh token
+			delete_option( 'yoast-ga-refresh_token' );
+
+			// Remove the ga accounts and response
+			delete_option( 'yst_ga_accounts' );
+			delete_option( 'yst_ga_response' );
+
+		}
+
+		/**
 		 * Transform the Profile ID into an helpful UA code
 		 *
 		 * @param $profile_id
@@ -143,7 +157,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$ua_code  = null;
 
 			foreach ( $profiles as $profile ) {
-				foreach( $profile['profiles'] as $subprofile ) {
+				foreach ( $profile['profiles'] as $subprofile ) {
 					if ( isset( $subprofile['id'] ) && $subprofile['id'] == $profile_id ) {
 						$ua_code = $subprofile['ua_code'];
 					}
