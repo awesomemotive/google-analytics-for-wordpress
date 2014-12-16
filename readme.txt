@@ -59,7 +59,7 @@ Release Date: December 16th, 2014
 
 * Bugfixes:
 	* Fixes the way of getting data from the Google API. cURL was used, but is changed into core wp_remote functionality to prevent errors when cURL isn't enabled.
-	* Using autoloader for Google OAuth library instead of require them immediately to prevent conflicts with already loaded files.
+	* Using autoloader for Google OAuth libraries instead of require them immediately to prevent conflicts with already loaded files.
 
 = 5.2.4 =
 
