@@ -35,6 +35,6 @@ if ( ! class_exists( 'Yoast_GA_Utils' ) ) {
 
 			return floor( $hours );
 		}
-		
+
 	}
 }
