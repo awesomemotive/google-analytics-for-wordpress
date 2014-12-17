@@ -116,7 +116,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 * @return bool
 		 */
 		public function has_refresh_token() {
-			return ($this->client->get_refresh_token() != '');
+			return ( $this->client->get_refresh_token() != '' );
 		}
 
 		/**
@@ -179,22 +179,31 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 					foreach ( $response['body']['items'] as $item ) {
 
 						$profiles = array();
-						foreach ( $item['webProperties'] AS $property ) {
-							foreach ( $property['profiles'] AS $key => $profile ) {
-								$property['profiles'][$key]['name'] = $profile['name'] . ' (' . $property['id'] . ')';
-								$property['profiles'][$key]['ua_code'] = $property['id'];
-							}
+						foreach ( $item['webProperties'] AS $property_key => $property ) {
 
-							$profiles = array_merge( $profiles, $property['profiles'] );
+							$profiles[$property_key] = array(
+								'id'    => $property['id'],
+								'name'  => $property['name'],
+								'items' => array(),
+							);
+
+							foreach ( $property['profiles'] AS $key => $profile ) {
+								$profiles[$property_key]['items'][$key] = array_merge(
+									$profile,
+									array(
+										'name'    => $profile['name'] . ' (' . $property['id'] . ')',
+										'ua_code' => $property['id'],
+									)
+								);
+							}
 						}
 
 						$accounts[$item['id']] = array(
 							'id'          => $item['id'],
 							'ua_code'     => $property['id'],
 							'parent_name' => $item['name'],
-							'profiles'    => $profiles,
+							'items'       => $profiles,
 						);
-
 					}
 
 					return $accounts;
