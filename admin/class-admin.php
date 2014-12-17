@@ -47,8 +47,8 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				add_action( 'admin_notices', array( $this, 'config_warning' ) );
 			}
 
-			$last_run = get_transient( 'yst_ga_last_wp_run' );
-			if ( $last_run === false || Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 1 ) {
+			$last_run = get_option( 'yst_ga_last_wp_run' );
+			if ( $last_run === false || Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 48 ) {
 				// Show error, something went wrong
 				if ( ! is_null( $this->get_tracking_code() ) && empty( $this->options['manual_ua_code_field'] ) && $this->show_admin_warning()  ) {
 					add_action( 'admin_notices', array( $this, 'warning_fetching_data' ) );
@@ -157,21 +157,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			delete_option( 'yst_ga_accounts' );
 			delete_option( 'yst_ga_response' );
 
-		}
-
-		/**
-		 * Are we allowed to show an warning message? returns true if it's allowed
-		 *
-		 * @return bool
-		 */
-		private function show_admin_warning() {
-			if ( current_user_can( 'manage_options' ) ) {
-				if ( ! isset( $_GET['page'] ) || ( isset( $_GET['page'] ) && $_GET['page'] !== 'yst_ga_settings' ) ) {
-					return true;
-				}
-			}
-
-			return false;
 		}
 
 		/**
