@@ -177,33 +177,39 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 					$accounts = array();
 
 					foreach ( $response['body']['items'] as $item ) {
+						// Check if webProperties is set
+						if ( isset( $item['webProperties'] ) ) {
+							$profiles = array();
 
-						$profiles = array();
-						foreach ( $item['webProperties'] AS $property_key => $property ) {
+							foreach ( $item['webProperties'] as $property_key => $property ) {
+								$profiles[$property_key] = array(
+									'id'    => $property['id'],
+									'name'  => $property['name'],
+									'items' => array(),
+								);
 
-							$profiles[$property_key] = array(
-								'id'    => $property['id'],
-								'name'  => $property['name'],
-								'items' => array(),
+								// Check if profiles is set
+								if ( isset( $property['profiles'] ) ) {
+									foreach ( $property['profiles'] as $key => $profile ) {
+										$profiles[$property_key]['items'][$key] = array_merge(
+											$profile,
+											array(
+												'name'    => $profile['name'] . ' (' . $property['id'] . ')',
+												'ua_code' => $property['id'],
+											)
+										);
+									}
+								}
+							}
+
+							$accounts[$item['id']] = array(
+								'id'          => $item['id'],
+								'ua_code'     => $property['id'],
+								'parent_name' => $item['name'],
+								'items'       => $profiles,
 							);
 
-							foreach ( $property['profiles'] AS $key => $profile ) {
-								$profiles[$property_key]['items'][$key] = array_merge(
-									$profile,
-									array(
-										'name'    => $profile['name'] . ' (' . $property['id'] . ')',
-										'ua_code' => $property['id'],
-									)
-								);
-							}
 						}
-
-						$accounts[$item['id']] = array(
-							'id'          => $item['id'],
-							'ua_code'     => $property['id'],
-							'parent_name' => $item['name'],
-							'items'       => $profiles,
-						);
 					}
 
 					return $accounts;

@@ -137,10 +137,11 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 
 				foreach ( $values as $optgroup => $value ) {
 					if ( ! empty( $value['items'] ) ) {
-						$select .= self::create_optgroup($optgroup, $value, $select_value);
+						$select .= self::create_optgroup( $optgroup, $value, $select_value );
 					} else {
 						$select .= self::option( $select_value, $value );
 					}
+
 				}
 			}
 			$select .= '</select>';
@@ -154,23 +155,6 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 			return $select;
 		}
 
-		private static function create_optgroup($optgroup, $value, $select_value ) {
-			$optgroup = '<optgroup label="' . $optgroup . '">';
-
-			foreach ( $value['items'] as $option ) {
-				if ( ! empty( $option['items'] ) ) {
-
-					$optgroup .= self::create_optgroup($option['name'], $option, $select_value );
-				}
-				else {
-					$optgroup .= self::option( $select_value, $option );
-				}
-			}
-
-			$optgroup .= '</optgroup>';
-
-			return $optgroup;
-		}
 
 		/**
 		 * Generate a textarea field
@@ -251,11 +235,11 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 		public static function parse_optgroups( $values ) {
 			$optgroups = array();
 			foreach ( $values as $key => $value ) {
-				foreach($value['items'] AS $subitem) {
+				foreach ( $value['items'] AS $subitem ) {
 					$optgroups[$subitem['name']]['items'] = $subitem['items'];
 				}
-			}
 
+			}
 
 			return $optgroups;
 		}
@@ -272,6 +256,33 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 		private static function label( $id, $title, $type ) {
 			return '<label class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . self::$form_namespace . '-' . $id . '" />' . $title . ':</label>';
 		}
+
+		/**
+		 * Creates a optgroup with the items. If items contain items it will create a nested optgroup
+		 *
+		 * @param string $optgroup
+		 * @param array  $value
+		 * @param array  $select_value
+		 *
+		 * @return string
+		 */
+		private static function create_optgroup( $optgroup, $value, $select_value ) {
+			$optgroup = '<optgroup label="' . $optgroup . '">';
+
+			foreach ( $value['items'] as $option ) {
+				if ( ! empty( $option['items'] ) ) {
+
+					$optgroup .= self::create_optgroup( $option['name'], $option, $select_value );
+				} else {
+					$optgroup .= self::option( $select_value, $option );
+				}
+			}
+
+			$optgroup .= '</optgroup>';
+
+			return $optgroup;
+		}
+
 
 		/**
 		 * Getting the value from the option, if it doesn't exist return empty string
