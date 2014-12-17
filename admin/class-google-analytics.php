@@ -178,6 +178,15 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		}
 
 		/**
+		 * Gets an authentication URL
+		 *
+		 * @return mixed
+		 */
+		public function create_auth_url() {
+			return $this->client->createAuthUrl();
+		}
+
+		/**
 		 * Saving profile response in options
 		 *
 		 * @param array $accounts
