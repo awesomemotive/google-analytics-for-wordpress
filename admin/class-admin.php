@@ -244,20 +244,24 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 *
 		 * @return bool
 		 */
-		public function check_google_access() {
+		public function check_google_access_from_wp() {
 			$can_access_google = true;
 			if ( defined( 'WP_HTTP_BLOCK_EXTERNAL' ) && WP_HTTP_BLOCK_EXTERNAL ) {
 				$can_access_google = false;
 				if ( defined( 'WP_ACCESSIBLE_HOSTS' ) ) {
 					// Better to use the internal WP logic from this point forward.
-					$wp_http = new WP_Http();
-					if ( $wp_http->block_request( 'https://www.googleapis.com/analytics/v3/management/accountSummaries' ) === false ) {
-						$can_access_google = true;
-					}
+					$can_access_google = $this->test_connection_to_google();
 				}
 			}
 
 			return $can_access_google;
+		}
+
+		/**
+		 * Check if we can access Google Apis from this server by making a dummy connection
+		 */
+		public function check_google_access() {
+			return $this->test_connection_to_google();
 		}
 
 		/**
@@ -305,6 +309,19 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			return $return;
 		}
 
+		/**
+		 * Test a connection to Google
+		 *
+		 * @return bool
+		 */
+		private function test_connection_to_google(){
+			$wp_http = new WP_Http();
+			if ( $wp_http->block_request( 'https://www.googleapis.com/analytics/v3/management/accountSummaries' ) === false ) {
+				return true;
+			}
+
+			return false;
+		}
 
 		/**
 		 * Checks if there is a callback or reauth to get token from Google Analytics api
