@@ -43,17 +43,15 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			// Listener for reconnecting with google analytics
 			$this->google_analytics_listener();
 
-			if ( is_null( $this->get_tracking_code() ) ) {
+			if ( is_null( $this->get_tracking_code() ) && $this->show_admin_warning() ) {
 				add_action( 'admin_notices', array( $this, 'config_warning' ) );
 			}
 
 			$last_run = get_option( 'yst_ga_last_wp_run' );
 			if ( $last_run === false || Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 48 ) {
 				// Show error, something went wrong
-				if ( ! is_null( $this->get_tracking_code() && current_user_can( 'manage_options' ) ) ) {
-					if ( ! isset( $_GET['page'] ) || ( isset( $_GET['page'] ) && $_GET['page'] !== 'yst_ga_settings' ) ) {
-						add_action( 'admin_notices', array( $this, 'warning_fetching_data' ) );
-					}
+				if ( ! is_null( $this->get_tracking_code() ) && empty( $this->options['manual_ua_code_field'] ) && $this->show_admin_warning()  ) {
+					add_action( 'admin_notices', array( $this, 'warning_fetching_data' ) );
 				}
 			}
 
