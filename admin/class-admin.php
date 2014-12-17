@@ -29,7 +29,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			new Yoast_GA_Admin_Menu( $this );
 
 			add_filter( 'plugin_action_links_' . plugin_basename( GAWP_FILE ), array( $this, 'add_action_links' ) );
-
 		}
 
 		/**
