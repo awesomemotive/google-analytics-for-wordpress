@@ -136,8 +136,15 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 				$select_value = self::get_formfield_from_options( $name );
 
 				foreach ( $values as $optgroup => $value ) {
-					if ( ! empty( $value['items'] ) ) {
-						$select .= self::create_optgroup($optgroup, $value, $select_value);
+					if ( ! empty( $value['options'] ) ) {
+						$select .= '<optgroup label="' . $optgroup . '">';
+
+						foreach ( $value['options'] as $option ) {
+							$select .= self::option( $select_value, $option );
+						}
+
+						$select .= '</optgroup>';
+
 					} else {
 						$select .= self::option( $select_value, $value );
 					}
@@ -154,23 +161,6 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 			return $select;
 		}
 
-		private static function create_optgroup($optgroup, $value, $select_value ) {
-			$optgroup = '<optgroup label="' . $optgroup . '">';
-
-			foreach ( $value['items'] as $option ) {
-				if ( ! empty( $option['items'] ) ) {
-
-					$optgroup .= self::create_optgroup($option['name'], $option, $select_value );
-				}
-				else {
-					$optgroup .= self::option( $select_value, $option );
-				}
-			}
-
-			$optgroup .= '</optgroup>';
-
-			return $optgroup;
-		}
 
 		/**
 		 * Generate a textarea field
@@ -251,11 +241,8 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 		public static function parse_optgroups( $values ) {
 			$optgroups = array();
 			foreach ( $values as $key => $value ) {
-				foreach($value['items'] AS $subitem) {
-					$optgroups[$subitem['name']]['items'] = $subitem['items'];
-				}
+				$optgroups[$value['parent_name']]['options'] = $value['profiles'];
 			}
-
 
 			return $optgroups;
 		}
