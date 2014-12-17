@@ -14,9 +14,10 @@ if ( ! class_exists( 'Yoast_GA_Utils' ) ) {
 
 			//Makes sure is_plugin_active is available when called from front end
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-			if (is_plugin_active( 'wordpress-seo/wp-seo.php' ) || is_plugin_active( 'wordpress-seo-premium/wp-seo-premium.php' ) ) {
+			if ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) || is_plugin_active( 'wordpress-seo-premium/wp-seo-premium.php' ) ) {
 				$wp_seo_active = true;
 			}
+
 			return $wp_seo_active;
 		}
 
@@ -33,6 +34,23 @@ if ( ! class_exists( 'Yoast_GA_Utils' ) ) {
 			$hours   = $seconds / 3600;
 
 			return floor( $hours );
+		}
+
+		/**
+		 * Get the current curl verison if curl is installed
+		 *
+		 * @return bool|string
+		 */
+		public static function get_curl_version() {
+			if ( function_exists( 'curl_version' ) ) {
+				$curl = curl_version();
+
+				if ( isset( $curl['version'] ) ) {
+					return $curl['version'];
+				}
+			}
+
+			return false;
 		}
 	}
 }
