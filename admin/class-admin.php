@@ -274,7 +274,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		private function google_analytics_listener() {
 
 			if ( ! empty( $_POST['google_auth_code'] ) ) {
-				Yoast_Google_Analytics::get_instance()->authenticate( $_POST['google_auth_code'] );
+				Yoast_Google_Analytics::get_instance()->authenticate( trim ( $_POST['google_auth_code'] ) );
 			}
 
 

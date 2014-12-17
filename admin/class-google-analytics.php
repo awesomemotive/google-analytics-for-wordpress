@@ -116,7 +116,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 * @return bool
 		 */
 		public function has_refresh_token() {
-			return ($this->client->get_refresh_token() != '');
+			return ( $this->client->get_refresh_token() != '' );
 		}
 
 		/**
@@ -180,12 +180,14 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 
 						$profiles = array();
 						foreach ( $item['webProperties'] AS $property ) {
-							foreach ( $property['profiles'] AS $key => $profile ) {
-								$property['profiles'][$key]['name'] = $profile['name'] . ' (' . $property['id'] . ')';
-								$property['profiles'][$key]['ua_code'] = $property['id'];
-							}
+							if ( isset( $property['profiles'] ) ) {
+								foreach ( $property['profiles'] AS $key => $profile ) {
+									$property['profiles'][$key]['name']    = $profile['name'] . ' (' . $property['id'] . ')';
+									$property['profiles'][$key]['ua_code'] = $property['id'];
+								}
 
-							$profiles = array_merge( $profiles, $property['profiles'] );
+								$profiles = array_merge( $profiles, $property['profiles'] );
+							}
 						}
 
 						$accounts[$item['id']] = array(
