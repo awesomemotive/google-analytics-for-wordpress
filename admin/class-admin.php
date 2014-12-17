@@ -47,7 +47,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				add_action( 'admin_notices', array( $this, 'config_warning' ) );
 			}
 
-			$last_run = get_transient( 'yst_ga_last_wp_run' );
+			$last_run = get_option( 'yst_ga_last_wp_run' );
 			if ( $last_run === false || Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 48 ) {
 				// Show error, something went wrong
 				if ( ! is_null( $this->get_tracking_code() && current_user_can( 'manage_options' ) ) ) {
