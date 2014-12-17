@@ -11,7 +11,9 @@ if ( ! class_exists( 'Yoast_GA_Admin_Assets' ) ) {
 		 * Add the scripts to the admin head
 		 */
 		public static function enqueue_scripts() {
-			wp_enqueue_script( 'yoast_ga_admin', self::get_asset_path( 'assets/js/yoast_ga_admin' ) . self::file_ext( '.js' ), array( 'jquery' ), GAWP_VERSION );
+			wp_enqueue_script( 'yoast_focusable', self::get_asset_path( 'assets/dependencies/focusable/focus-element-overlay.min.js' ), array( 'jquery' ), false );
+
+			wp_enqueue_script( 'yoast_ga_admin', self::get_asset_path( 'assets/js/yoast_ga_admin' ) . self::file_ext( '.js' ), array( 'jquery', 'yoast_focusable' ), GAWP_VERSION );
 
 			// Enqueue the qtip js file
 			wp_enqueue_script( 'jquery-qtip', self::get_asset_path( 'assets/dependencies/qtip/jquery.qtip.min.js' ) , array( 'jquery' ), '1.0.0-RC3', true );

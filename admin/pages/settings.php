@@ -31,17 +31,16 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		if ( $yoast_ga_admin->check_google_access() ) {
 
 			$profiles = Yoast_GA_Admin_Form::parse_optgroups( $yoast_ga_admin->get_profiles() );
-			$ga_url   = $_SERVER['PHP_SELF'];
-			if ( isset( $_GET['page'] ) ) {
-				$ga_url .= '?page=' . $_GET['page'];
-			}
-			$ga_url .= '&reauth=true';
+
+			$auth_url = Yoast_Google_Analytics::get_instance()->create_auth_url();
+			add_thickbox();
+			echo '<script>yst_thickbox_heading = "' . __( 'Paste your Google authentication code', 'google-analytics-for-wordpress' ) . '";</script>';
 
 			echo "<div id='google_ua_code_field'>";
 			if ( count( $profiles ) == 0 ) {
 				echo '<div class="ga-form ga-form-input">';
 				echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle" />' . __( 'Google profile', 'google-analytics-for-wordpress' ) . ':</label>';
-				echo '<a id="yst_ga_authenticate" class="button" href="' . $ga_url . '" target="_blank">' . __( 'Authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a>';
+				echo '<a id="yst_ga_authenticate" class="button" onclick="yst_popupwindow(\'' . $auth_url . '\',500,500);">' . __( 'Authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a>';
 				echo '</div>';
 				echo '<div class="ga-form ga-form-input">';
 				echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle" />' . __( 'Current UA-profile', 'google-analytics-for-wordpress' ) . '</label>';
@@ -52,14 +51,14 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 
 				echo '<div class="ga-form ga-form-input">';
 				echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle" />&nbsp;</label>';
-				echo '<a id="yst_ga_authenticate" class="button" href="' . $ga_url . '" target="_blank">' . __( 'Re-authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a>';
+				echo '<a id="yst_ga_authenticate" class="button" onclick="yst_popupwindow(\'' . $auth_url . '\',500,500);">' . __( 'Re-authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a>';
 				echo '</div>';
 			}
 			echo '</div>';
 
 			echo '<div id="oauth_code" class="ga-form ga-form-input">';
-			echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle"  />' . __( 'Paste your Google code here', 'google-analytics-for-wordpress' ) . ':</label>';
-			echo Yoast_GA_Admin_Form::input( 'text', null, 'google_auth_code', null, __('Please leave this field empty if everything is all right for you', 'google-analytics-for-wordpress') );
+			echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle"  />' . __( 'Paste your Google code and press return', 'google-analytics-for-wordpress' ) . ':</label>';
+			echo Yoast_GA_Admin_Form::input( 'text', null, 'google_auth_code', null, null );
 			echo '</label>';
 
 			echo '</div>';
