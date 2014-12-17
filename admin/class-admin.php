@@ -208,6 +208,27 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
+		 * Checks whether we'll ever be able to reach Google.
+		 *
+		 * @return bool
+		 */
+		public function check_google_access() {
+			$can_access_google = true;
+			if ( defined( 'WP_HTTP_BLOCK_EXTERNAL' ) && WP_HTTP_BLOCK_EXTERNAL ) {
+				$can_access_google = false;
+				if ( defined( 'WP_ACCESSIBLE_HOSTS' ) ) {
+					// Better to use the internal WP logic from this point forward.
+					$wp_http = new WP_Http();
+					if ( $wp_http->block_request( 'https://www.googleapis.com/analytics/v3/management/accountSummaries' ) === false ) {
+						$can_access_google = true;
+					}
+				}
+			}
+
+			return $can_access_google;
+		}
+
+		/**
 		 * Load the page of a menu item in the GA plugin
 		 */
 		public function load_page() {
@@ -239,6 +260,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				}
 			}
 		}
+
 
 		/**
 		 * Get the Google Analytics profiles which are in this google account
