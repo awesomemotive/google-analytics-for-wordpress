@@ -174,7 +174,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			foreach ( $profiles as $account ) {
 				foreach ( $account['items'] as $profile ) {
-					foreach ( $profile['items'] AS $subprofile ) {
+					foreach ( $profile['items'] as $subprofile ) {
 						if ( isset( $subprofile['id'] ) && $subprofile['id'] === $profile_id ) {
 							return $subprofile['ua_code'];
 						}
