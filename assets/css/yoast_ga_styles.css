@@ -118,6 +118,10 @@ p.ga-topdescription {
 	width: 325px;
 }
 
+#yoast-ga-form-settings #oauth_code {
+	padding: 20px;
+}
+
 #yoast-ga-form-settings #oauth_code div {
 	margin: 0 0 0 5px;
 }
