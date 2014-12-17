@@ -50,7 +50,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$last_run = get_transient( 'yst_ga_last_wp_run' );
 			if ( $last_run === false || Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 48 ) {
 				// Show error, something went wrong
-				if ( ! is_null( $this->get_tracking_code() ) ) {
+				if ( ! is_null( $this->get_tracking_code() && current_user_can( 'manage_options' ) ) ) {
 					if ( ! isset( $_GET['page'] ) || ( isset( $_GET['page'] ) && $_GET['page'] !== 'yst_ga_settings' ) ) {
 						add_action( 'admin_notices', array( $this, 'warning_fetching_data' ) );
 					}
@@ -138,7 +138,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				// Fail, add a new notification
 				$this->add_notification( 'ga_notifications', array(
 					'type'        => 'error',
-					'description' => __( 'There where no changes to save, please try again.', 'google-analytics-for-wordpress' ),
+					'description' => __( 'There were no changes to save, please try again.', 'google-analytics-for-wordpress' ),
 				) );
 			}
 
@@ -172,10 +172,12 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$profiles = $this->get_profiles();
 			$ua_code  = null;
 
-			foreach ( $profiles as $profile ) {
-				foreach ( $profile['profiles'] as $subprofile ) {
-					if ( isset( $subprofile['id'] ) && $subprofile['id'] == $profile_id ) {
-						$ua_code = $subprofile['ua_code'];
+			foreach ( $profiles as $account ) {
+				foreach ( $account['items'] as $profile ) {
+					foreach ( $profile['items'] as $subprofile ) {
+						if ( isset( $subprofile['id'] ) && $subprofile['id'] === $profile_id ) {
+							return $subprofile['ua_code'];
+						}
 					}
 				}
 			}
@@ -238,6 +240,27 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
+		 * Checks whether we'll ever be able to reach Google.
+		 *
+		 * @return bool
+		 */
+		public function check_google_access() {
+			$can_access_google = true;
+			if ( defined( 'WP_HTTP_BLOCK_EXTERNAL' ) && WP_HTTP_BLOCK_EXTERNAL ) {
+				$can_access_google = false;
+				if ( defined( 'WP_ACCESSIBLE_HOSTS' ) ) {
+					// Better to use the internal WP logic from this point forward.
+					$wp_http = new WP_Http();
+					if ( $wp_http->block_request( 'https://www.googleapis.com/analytics/v3/management/accountSummaries' ) === false ) {
+						$can_access_google = true;
+					}
+				}
+			}
+
+			return $can_access_google;
+		}
+
+		/**
 		 * Load the page of a menu item in the GA plugin
 		 */
 		public function load_page() {
@@ -270,6 +293,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			}
 		}
 
+
 		/**
 		 * Get the Google Analytics profiles which are in this google account
 		 *
@@ -288,7 +312,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		private function google_analytics_listener() {
 
 			if ( ! empty( $_POST['google_auth_code'] ) ) {
-				Yoast_Google_Analytics::get_instance()->authenticate( $_POST['google_auth_code'] );
+				Yoast_Google_Analytics::get_instance()->authenticate( trim( $_POST['google_auth_code'] ) );
 			}
 
 

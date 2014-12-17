@@ -49,6 +49,18 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= 5.2.7-beta =
+
+Release Date: December 17th, 2014
+
+* Bugfixes:
+	* Increase timeout limit for request to Google API to prevent quickly session time-outs.
+	* Setting SSL verifier to FALSE, to prevent checking SSL-chain.
+	* Checking for cURL version 7.19, it this version is used the plugin switches to http streams.
+
+* Enhancements:
+	* Using webproperties instead of account names in the select box for choosing the Google Analytics profile.
+
 = 5.2.6 =
 
 Release Date: December 16th, 2014
