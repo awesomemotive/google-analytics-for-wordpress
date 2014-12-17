@@ -29,9 +29,10 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 
 		echo '<div id="ga-promote">';
 
-		$wp_block_google     = $yoast_ga_admin->check_google_access_from_wp();
-		$check_google_access = $yoast_ga_admin->check_google_access();
-
+		$ga_class            = Yoast_Google_Analytics::get_instance();
+		$wp_block_google     = $ga_class->check_google_access_from_wp();
+		$check_google_access = $ga_class->check_google_access();
+		
 		if ( $wp_block_google && $check_google_access ) {
 
 			$profiles = Yoast_GA_Admin_Form::parse_optgroups( $yoast_ga_admin->get_profiles() );

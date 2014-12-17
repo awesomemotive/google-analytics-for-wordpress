@@ -240,31 +240,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
-		 * Checks whether we'll ever be able to reach Google.
-		 *
-		 * @return bool
-		 */
-		public function check_google_access_from_wp() {
-			$can_access_google = true;
-			if ( defined( 'WP_HTTP_BLOCK_EXTERNAL' ) && WP_HTTP_BLOCK_EXTERNAL ) {
-				$can_access_google = false;
-				if ( defined( 'WP_ACCESSIBLE_HOSTS' ) ) {
-					// Better to use the internal WP logic from this point forward.
-					$can_access_google = $this->test_connection_to_google();
-				}
-			}
-
-			return $can_access_google;
-		}
-
-		/**
-		 * Check if we can access Google Apis from this server by making a dummy connection
-		 */
-		public function check_google_access() {
-			return $this->test_connection_to_google();
-		}
-
-		/**
 		 * Load the page of a menu item in the GA plugin
 		 */
 		public function load_page() {
@@ -307,20 +282,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$return = Yoast_Google_Analytics::get_instance()->get_profiles();
 
 			return $return;
-		}
-
-		/**
-		 * Test a connection to Google
-		 *
-		 * @return bool
-		 */
-		private function test_connection_to_google(){
-			$wp_http = new WP_Http();
-			if ( $wp_http->block_request( 'https://www.googleapis.com/analytics/v3/management/accountSummaries' ) === false ) {
-				return true;
-			}
-
-			return false;
 		}
 
 		/**
