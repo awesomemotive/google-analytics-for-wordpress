@@ -172,12 +172,10 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$profiles = $this->get_profiles();
 			$ua_code  = null;
 
-			foreach ( $profiles as $account ) {
-				foreach ( $account['items'] as $profile ) {
-					foreach($profile['items'] AS $subprofile) {
-						if ( isset( $subprofile['id'] ) && $subprofile['id'] === $profile_id ) {
-							return $subprofile['ua_code'];
-						}
+			foreach ( $profiles as $profile ) {
+				foreach ( $profile['profiles'] as $subprofile ) {
+					if ( isset( $subprofile['id'] ) && $subprofile['id'] == $profile_id ) {
+						$ua_code = $subprofile['ua_code'];
 					}
 				}
 			}
