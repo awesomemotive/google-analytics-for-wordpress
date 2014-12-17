@@ -28,7 +28,12 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		echo '<h2>' . __( 'General settings', 'google-analytics-for-wordpress' ) . '</h2>';
 
 		echo '<div id="ga-promote">';
-		if ( $yoast_ga_admin->check_google_access() ) {
+
+		$ga_class            = Yoast_Google_Analytics::get_instance();
+		$wp_block_google     = $ga_class->check_google_access_from_wp();
+		$check_google_access = $ga_class->check_google_access();
+		
+		if ( $wp_block_google && $check_google_access ) {
 
 			$profiles = Yoast_GA_Admin_Form::parse_optgroups( $yoast_ga_admin->get_profiles() );
 
@@ -64,7 +69,11 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 			echo '</div>';
 		} else {
 			echo '<h3>' . __( 'Cannot connect to Google', 'google-analytics-for-wordpress' ) . '</h3>';
-			echo '<p>' . __( 'Your server is blocking requests to Google, to fix this, add <code>*.googleapis.com</code> to the <code>WP_ACCESSIBLE_HOSTS</code> constant in your <em>wp-config.php</em> or ask your webhost to do this.', 'google-analytics-for-wordpress' ) . '</p>';
+			if ( $wp_block_google == false && $check_google_access == false ) {
+				echo '<p>' . __( 'Your server is blocking requests to Google, to fix this, add <code>*.googleapis.com</code> to the <code>WP_ACCESSIBLE_HOSTS</code> constant in your <em>wp-config.php</em> or ask your webhost to do this.', 'google-analytics-for-wordpress' ) . '</p>';
+			} else {
+				echo '<p>' . __( 'Your firewall or webhost is blocking requests to Google, please ask your webhost company to fix this.', 'google-analytics-for-wordpress' ) . '</p>';
+			}
 			echo '<p>' . __( 'Until this is fixed, you can only use the manual authentication method and cannot use the dashboards feature.', 'google-analytics-for-wordpress' ) . '</p>';
 		}
 
@@ -73,7 +82,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		echo '</label>';
 		echo '<div id="enter_ua">';
 		echo Yoast_GA_Admin_Form::input( 'text', null, 'manual_ua_code_field' );
-		echo '<p><strong>' . __('Warning: If you use a manual UA code, you won\'t be able to use the dashboards.', 'google-analytics-for-wordpress') . '</strong></p>';
+		echo '<p><strong>' . __( 'Warning: If you use a manual UA code, you won\'t be able to use the dashboards.', 'google-analytics-for-wordpress' ) . '</strong></p>';
 		echo '</div>';
 		echo '<div class="clear"></div></div>';
 		?>
@@ -88,7 +97,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 	<div id="universal" class="gatab">
 		<?php
 		echo '<h2>' . __( 'Universal settings', 'google-analytics-for-wordpress' ) . '</h2>';
-		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Enable Universal tracking', 'google-analytics-for-wordpress' ), 'enable_universal', null,  sprintf( __( 'First enable Universal tracking in your Google Analytics account. How to do that, please read %1$sthis guide%2$s to learn how to do that.', 'google-analytics-for-wordpress' ), '<a href="http://kb.yoast.com/article/125-universal-analytics#utm_medium=kb-link&utm_source=gawp-config&utm_campaign=wpgaplugin" target="_blank">', '</a>' ) );
+		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Enable Universal tracking', 'google-analytics-for-wordpress' ), 'enable_universal', null, sprintf( __( 'First enable Universal tracking in your Google Analytics account. How to do that, please read %1$sthis guide%2$s to learn how to do that.', 'google-analytics-for-wordpress' ), '<a href="http://kb.yoast.com/article/125-universal-analytics#utm_medium=kb-link&utm_source=gawp-config&utm_campaign=wpgaplugin" target="_blank">', '</a>' ) );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Enable Demographics and Interest Reports', 'google-analytics-for-wordpress' ), 'demographics', null, sprintf( __( 'You have to enable the Demographics in Google Analytics before you can see the tracking data. We have a doc in our %1$sknowlegde base%2$s about this feature.', 'google-analytics-for-wordpress' ), '<a href="http://kb.yoast.com/article/154-enable-demographics-and-interests-report-in-google-analytics/#utm_medium=kb-link&utm_source=gawp-config&utm_campaign=wpgaplugin" target="_blank">', '</a>' ) );
 		?>
 	</div>
@@ -138,7 +147,7 @@ echo $yoast_ga_admin->content_footer();
 	jQuery(document).ready(
 		function () {
 			jQuery('#yoast-ga-form-select-settings-analytics_profile').chosen({
-				group_search : true
+				group_search: true
 			});
 			jQuery('#yoast-ga-form-select-settings-ignore_users').chosen({placeholder_text_multiple: '<?php echo __( 'Select the users to ignore', 'google-analytics-for-wordpress' ); ?>'});
 		}
