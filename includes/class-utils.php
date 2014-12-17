@@ -35,22 +35,6 @@ if ( ! class_exists( 'Yoast_GA_Utils' ) ) {
 
 			return floor( $hours );
 		}
-
-		/**
-		 * Get the current curl verison if curl is installed
-		 *
-		 * @return bool|string
-		 */
-		public static function get_curl_version() {
-			if ( function_exists( 'curl_version' ) ) {
-				$curl = curl_version();
-
-				if ( isset( $curl['version'] ) ) {
-					return $curl['version'];
-				}
-			}
-
-			return false;
-		}
+		
 	}
 }
