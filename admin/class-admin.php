@@ -173,7 +173,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			foreach ( $profiles as $account ) {
 				foreach ( $account['items'] as $profile ) {
-					foreach($profile['items'] AS $subprofile) {
+					foreach ( $profile['items'] AS $subprofile ) {
 						if ( isset( $subprofile['id'] ) && $subprofile['id'] === $profile_id ) {
 							return $subprofile['ua_code'];
 						}
@@ -311,7 +311,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		private function google_analytics_listener() {
 
 			if ( ! empty( $_POST['google_auth_code'] ) ) {
-				Yoast_Google_Analytics::get_instance()->authenticate( $_POST['google_auth_code'] );
+				Yoast_Google_Analytics::get_instance()->authenticate( trim( $_POST['google_auth_code'] ) );
 			}
 
 
