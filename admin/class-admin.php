@@ -138,7 +138,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				// Fail, add a new notification
 				$this->add_notification( 'ga_notifications', array(
 					'type'        => 'error',
-					'description' => __( 'There where no changes to save, please try again.', 'google-analytics-for-wordpress' ),
+					'description' => __( 'There were no changes to save, please try again.', 'google-analytics-for-wordpress' ),
 				) );
 			}
 
