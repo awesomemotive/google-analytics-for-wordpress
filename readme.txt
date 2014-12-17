@@ -1,10 +1,10 @@
-﻿=== Google Analytics by Yoast ===
+=== Google Analytics by Yoast ===
 Contributors: joostdevalk,PvW_NL
 Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 5.2.4
+Stable tag: 5.2.6
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
@@ -49,11 +49,33 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= 5.2.6 =
+
+Release Date: December 16th, 2014
+
+* Hotfix:
+	* Fixing API library to prevent fatal error.
+
+* Bugfixes:
+	* Fixes the way of getting data from the Google API. cURL was used, but is changed into core wp_remote functionality to prevent errors when cURL isn't enabled.
+
+= 5.2.5 =
+
+Release Date: December 16th, 2014
+
+* Enhancements:
+	* When deactivating the plugin the options with API-details will be cleared.
+	* Show notice when the plugin isn't able to fetch data from Google for more than 48 hours.
+
+* Bugfixes:
+	* Fixes the way of getting data from the Google API. cURL was used, but is changed into core wp_remote functionality to prevent errors when cURL isn't enabled.
+	* Using autoloader for Google OAuth libraries instead of require them immediately to prevent conflicts with already loaded files.
+
 = 5.2.4 =
 
 Release Date: December 15th, 2014
 
-Enhancements:
+* Enhancements:
 	* Moved from OAuth1 to OAuth2 for Google Analytics API requests.
 	* Open authentication and reauthentication for Google in a new window.
 	* Force reloading of CSS and JS on version change of plugin.
@@ -63,11 +85,11 @@ Enhancements:
 
 Release Date: December 11th, 2014
 
-Enhancements:
+* Enhancements:
 	* improved visual look and data representation for dashboard graphs, props [Andrey Savchenko](https://github.com/Rarst/)
 	* when manual UA-code is selected, the profile selection gets disabled to clarify that the user is choosing an alternative to regular profile selection.
 
-Bugfixes:
+* Bugfixes:
 	* Fixes a bug where GA profile was fetched with every admin request, resulting in a pile of unnecessary API requests.
 	* Fixes a problem where GA started throttling API requests done by our plugin because there were too many. We now fetch the data only once a day from GA. For realtime data, users should go to Google Analytics.
 
@@ -75,7 +97,7 @@ Bugfixes:
 
 Release Date: December 10th, 2014
 
-Bugfixes:
+* Bugfixes:
 	* Fixes a bug where it was no longer possible to uncheck checkboxes in the settings.
 	* Fixes a bug where jQuery Chosen component was not rendered correctly on a hidden tab.
 
@@ -83,11 +105,11 @@ Bugfixes:
 
 Release Date: December 9th, 2014
 
-Enhancements:
+* Enhancements:
 	* Replaced jQuery Chosen library with latest version to enable optgroup search.
 	* Shows a warning when configuring a manual UA-code that this will not work together with the dashboards functionality.
 
-Bugfixes:
+* Bugfixes:
 	* Fixes a 'headers already sent' warning.
 	* Fixes a bug where nothing was shown on the dashboards for setups with a manual UA-code. It now shows you a message that you need to authenticate with Google Analytics if you wish to make use of the dashboards feature.
 
