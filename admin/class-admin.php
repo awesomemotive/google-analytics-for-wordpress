@@ -50,7 +50,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$last_run = get_transient( 'yst_ga_last_wp_run' );
 			if ( $last_run === false || Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 48 ) {
 				// Show error, something went wrong
-				if ( ! is_null( $this->get_tracking_code() ) ) {
+				if ( ! is_null( $this->get_tracking_code() && current_user_can( 'manage_options' ) ) ) {
 					if ( ! isset( $_GET['page'] ) || ( isset( $_GET['page'] ) && $_GET['page'] !== 'yst_ga_settings' ) ) {
 						add_action( 'admin_notices', array( $this, 'warning_fetching_data' ) );
 					}
@@ -138,7 +138,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				// Fail, add a new notification
 				$this->add_notification( 'ga_notifications', array(
 					'type'        => 'error',
-					'description' => __( 'There where no changes to save, please try again.', 'google-analytics-for-wordpress' ),
+					'description' => __( 'There were no changes to save, please try again.', 'google-analytics-for-wordpress' ),
 				) );
 			}
 
