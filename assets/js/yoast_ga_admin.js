@@ -1,3 +1,9 @@
+function yst_popupwindow(url, w, h) {
+	var left = (screen.width/2)-(w/2);
+	var top = (screen.height/8);
+	return window.open(url, '', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+}
+
 jQuery(document).ready(function() {
 	jQuery('#ga-tabs').find('a').click(function() {
 		jQuery('#ga-tabs').find('a').removeClass('nav-tab-active');
@@ -27,7 +33,7 @@ jQuery(document).ready(function() {
 	jQuery('#' + activeTab).addClass('active');
 	jQuery('#' + activeTab + '-tab').addClass('nav-tab-active');
 
-    function yst_ga_switch_manual() {
+	function yst_ga_switch_manual() {
         if ( jQuery('#yoast-ga-form-checkbox-settings-manual_ua_code').is(':checked') ) {
             jQuery('#enter_ua').show();
             jQuery("#yoast-ga-form-select-settings-analytics_profile").prop('disabled', true).trigger("chosen:updated");
@@ -48,7 +54,9 @@ jQuery(document).ready(function() {
 
 	jQuery('#oauth_code').hide();
 	jQuery("#yst_ga_authenticate").click( function() {
-		jQuery('#oauth_code').show().focus();
+		jQuery('#oauth_code').show();
+		Focusable.setFocus(jQuery('#oauth_code'), {hideOnESC:true});
+		jQuery('#oauth_code input').focus();
 	});
 
 	jQuery('.nav-tab-active').click();
