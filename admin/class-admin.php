@@ -47,8 +47,17 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				add_action( 'admin_notices', array( $this, 'config_warning' ) );
 			}
 
-			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+			$last_run = get_transient( 'yst_ga_last_wp_run' );
+			if ( $last_run === false || Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 48 ) {
+				// Show error, something went wrong
+				if ( ! is_null( $this->get_tracking_code() && current_user_can( 'manage_options' ) ) ) {
+					if ( ! isset( $_GET['page'] ) || ( isset( $_GET['page'] ) && $_GET['page'] !== 'yst_ga_settings' ) ) {
+						add_action( 'admin_notices', array( $this, 'warning_fetching_data' ) );
+					}
+				}
+			}
 
+			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				if ( ! function_exists( 'wp_verify_nonce' ) ) {
 					require_once( ABSPATH . 'wp-includes/pluggable.php' );
 				}
@@ -78,6 +87,13 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 */
 		public function config_warning() {
 			echo '<div class="error"><p>' . sprintf( __( 'Please configure your %sGoogle Analytics settings%s!', 'google-analytics-for-wordpress' ), '<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">', '</a>' ) . '</p></div>';
+		}
+
+		/**
+		 * Throw a warning when the fetching failed
+		 */
+		public function warning_fetching_data() {
+			echo '<div class="error"><p>' . sprintf( __( 'Failed to fetch the new data from Google Analytics. Please %sreauthenticate on the settings page%s!', 'google-analytics-for-wordpress' ), '<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">', '</a>' ) . '</p></div>';
 		}
 
 		/**
@@ -122,13 +138,27 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				// Fail, add a new notification
 				$this->add_notification( 'ga_notifications', array(
 					'type'        => 'error',
-					'description' => __( 'There where no changes to save, please try again.', 'google-analytics-for-wordpress' ),
+					'description' => __( 'There were no changes to save, please try again.', 'google-analytics-for-wordpress' ),
 				) );
 			}
 
 			#redirect
 			wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
 			exit;
+		}
+
+		/**
+		 * Run a this deactivation hook on deactivation of GA. When this happens we'll
+		 * remove the options for the profiles and the refresh token.
+		 */
+		public static function ga_deactivation_hook() {
+			// Remove the refresh token
+			delete_option( 'yoast-ga-refresh_token' );
+
+			// Remove the ga accounts and response
+			delete_option( 'yst_ga_accounts' );
+			delete_option( 'yst_ga_response' );
+
 		}
 
 		/**
@@ -143,7 +173,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$ua_code  = null;
 
 			foreach ( $profiles as $profile ) {
-				foreach( $profile['profiles'] as $subprofile ) {
+				foreach ( $profile['profiles'] as $subprofile ) {
 					if ( isset( $subprofile['id'] ) && $subprofile['id'] == $profile_id ) {
 						$ua_code = $subprofile['ua_code'];
 					}

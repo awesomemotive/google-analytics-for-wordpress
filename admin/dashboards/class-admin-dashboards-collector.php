@@ -98,7 +98,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			add_action( 'yst_ga_aggregate_data', array( $this, 'aggregate_data' ) );
 
 			// Check if the WP cron did run on time
-			if ( isset( $_GET['page'] ) && $_GET['page'] === 'yst_ga_dashboard' ) {
+			if ( isset( $_GET['page'] ) && ( $_GET['page'] === 'yst_ga_dashboard' || $_GET['page'] === 'yst_ga_settings' ) ) {
 				add_action( 'shutdown', array( $this, 'check_api_call_hook' ) );
 			}
 		}
@@ -116,8 +116,8 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		/**
 		 * Check if the WP cron did run yesterday. If not, we need to run it form here
 		 */
-		public function check_api_call_hook() {
-			$last_run = get_transient( 'yst_ga_last_wp_run' );
+		public function check_api_call_hook( ) {
+			$last_run = $this->get_last_aggregate_run();
 
 			if ( $last_run === false ) {
 				/**
@@ -128,25 +128,20 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				$this->aggregate_data();
 			} else {
 				// Transient exists
-				if ( $this->hours_between( strtotime( $last_run ), time() ) >= 24 ) {
+				if ( Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 24 ) {
 					$this->aggregate_data();
 				}
 			}
 		}
 
-		/**
-		 * Calculate the date difference, return the amount of hours between the two dates
-		 *
-		 * @param $last_run datetime
-		 * @param $now      datetime
-		 *
-		 * @return int
-		 */
-		private function hours_between( $last_run, $now ) {
-			$seconds = max( ( $now - $last_run ), 1 );
-			$hours   = $seconds / 3600;
 
-			return floor( $hours );
+		/**
+		 * Get the datetime when the aggregate data function was succesful
+		 *
+		 * @return datetime
+		 */
+		private function get_last_aggregate_run() {
+			return get_transient( 'yst_ga_last_wp_run' );
 		}
 
 		/**
@@ -399,11 +394,11 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 				if ( $storage_name != 'auto' ) {
 					$name = $storage_name;
 				}
-				
+
 				/**
 				 * Success, set a transient which stores the latest runtime
 				 */
-				if ( ! empty($response['body'] ) ) {
+				if ( ! empty( $response ) ) {
 					set_transient( 'yst_ga_last_wp_run', date( 'Y-m-d' ), 48 * HOUR_IN_SECONDS );
 				}
 
