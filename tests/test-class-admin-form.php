@@ -98,4 +98,54 @@ class Yoast_GA_Admin_Form_Test extends GA_UnitTestCase {
 		$this->assertEquals( Yoast_GA_Admin_Form::show_help( $id, $description ), $output );
 
 	}
+
+	/**
+	 * Test parse optgroups function
+	 *
+	 * @covers Yoast_GA_Admin_Form::parse_optgroups()
+	 */
+	public function test_parse_optgroups() {
+		$optgroups   = array();
+		$optgroups[] = array(
+			'name'  => 'Name group 1',
+			'items' => array( array(
+				'name'  => 'Name_group_1',
+				'items' => array( array(
+					'id'   => 1,
+					'name' => 'Profile 1'
+				) ),
+			) ),
+		);
+		$optgroups[] = array(
+			'name'  => 'Name group 1',
+			'items' => array( array(
+				'name'  => 'Name_group_2',
+				'items' => array( array(
+					'id'   => 2,
+					'name' => 'Profile 2'
+				) ),
+			) ),
+		);
+		$result = Yoast_GA_Admin_Form::parse_optgroups( $optgroups );
+		$output = array(
+			'Name_group_1'	=>	array(
+				'items'	=>	array(
+					0	=>	array(
+						'id'	=>	1,
+						'name'	=> 'Profile 1',
+					),
+				),
+			),
+			'Name_group_2'	=>	array(
+				'items'	=>	array(
+					0	=>	array(
+						'id'	=>	2,
+						'name'	=> 'Profile 2',
+					),
+				),),
+		);
+
+		$this->assertEquals( $result, $output );
+	}
+
 }
