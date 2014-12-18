@@ -34,6 +34,16 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Call init_settings so the private functions get called too
+	 * We don't expect output here.
+	 *
+	 * @covers Yoast_GA_Admin::init_settings()
+	 */
+	public function init_settings() {
+		$this->assertEquals( $this->class_instance->init_settings(), NULL );
+	}
+
+	/**
 	 * Test a part of the config warning to make sure we have one
 	 */
 	public function test_config_warning() {
