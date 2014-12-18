@@ -46,6 +46,18 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Test the warning fetching data to make sure we have one
+	 */
+	public function test_warning_fetching_data() {
+		ob_start();
+		$this->class_instance->warning_fetching_data();
+		$output   = ob_get_clean();
+		$expected = '<div class="error"><p>Failed to fetch the new data from Google Analytics. Please <a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">reauthenticate on the settings page</a>!</p></div>';
+
+		$this->assertEquals( $output, $expected );
+	}
+
+	/**
 	 * Test user roles, we should get a few standard roles here. We also check if the role name is not empty
 	 *
 	 * @covers Yoast_GA_Admin::get_userroles()
