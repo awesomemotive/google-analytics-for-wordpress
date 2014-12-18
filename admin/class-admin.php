@@ -43,17 +43,15 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			// Listener for reconnecting with google analytics
 			$this->google_analytics_listener();
 
-			if ( is_null( $this->get_tracking_code() ) ) {
+			if ( is_null( $this->get_tracking_code() ) && $this->show_admin_warning() ) {
 				add_action( 'admin_notices', array( $this, 'config_warning' ) );
 			}
 
-			$last_run = get_transient( 'yst_ga_last_wp_run' );
+			$last_run = get_option( 'yst_ga_last_wp_run' );
 			if ( $last_run === false || Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 48 ) {
 				// Show error, something went wrong
-				if ( ! is_null( $this->get_tracking_code() && current_user_can( 'manage_options' ) ) ) {
-					if ( ! isset( $_GET['page'] ) || ( isset( $_GET['page'] ) && $_GET['page'] !== 'yst_ga_settings' ) ) {
-						add_action( 'admin_notices', array( $this, 'warning_fetching_data' ) );
-					}
+				if ( ! is_null( $this->get_tracking_code() ) && empty( $this->options['manual_ua_code_field'] ) && $this->show_admin_warning() ) {
+					add_action( 'admin_notices', array( $this, 'warning_fetching_data' ) );
 				}
 			}
 
@@ -162,6 +160,21 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
+		 * Are we allowed to show an warning message? returns true if it's allowed
+		 *
+		 * @return bool
+		 */
+		private function show_admin_warning() {
+			if ( current_user_can( 'manage_options' ) ) {
+				if ( ! isset( $_GET['page'] ) || ( isset( $_GET['page'] ) && $_GET['page'] !== 'yst_ga_settings' ) ) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/**
 		 * Transform the Profile ID into an helpful UA code
 		 *
 		 * @param $profile_id
@@ -240,27 +253,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
-		 * Checks whether we'll ever be able to reach Google.
-		 *
-		 * @return bool
-		 */
-		public function check_google_access() {
-			$can_access_google = true;
-			if ( defined( 'WP_HTTP_BLOCK_EXTERNAL' ) && WP_HTTP_BLOCK_EXTERNAL ) {
-				$can_access_google = false;
-				if ( defined( 'WP_ACCESSIBLE_HOSTS' ) ) {
-					// Better to use the internal WP logic from this point forward.
-					$wp_http = new WP_Http();
-					if ( $wp_http->block_request( 'https://www.googleapis.com/analytics/v3/management/accountSummaries' ) === false ) {
-						$can_access_google = true;
-					}
-				}
-			}
-
-			return $can_access_google;
-		}
-
-		/**
 		 * Load the page of a menu item in the GA plugin
 		 */
 		public function load_page() {
@@ -304,7 +296,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 			return $return;
 		}
-
 
 		/**
 		 * Checks if there is a callback or reauth to get token from Google Analytics api
