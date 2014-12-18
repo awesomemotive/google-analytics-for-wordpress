@@ -1,7 +1,7 @@
 <?php
 
 // Load dependencies from API-Libs
-require(dirname( __FILE__ ) . '/../../admin/api-libs/google/class-api-google.php');
+require( dirname( __FILE__ ) . '/../../admin/api-libs/google/class-api-google.php' );
 
 class Yoast_GA_Dashboards_Test extends GA_UnitTestCase {
 
@@ -11,7 +11,7 @@ class Yoast_GA_Dashboards_Test extends GA_UnitTestCase {
 	private $class_instance;
 
 	public function __construct() {
-		$this->google_api = new Yoast_Api_Google;
+		$this->google_api     = new Yoast_Api_Google;
 		$this->class_instance = Yoast_GA_Dashboards::get_instance();
 
 		parent::__construct();
@@ -23,7 +23,7 @@ class Yoast_GA_Dashboards_Test extends GA_UnitTestCase {
 	 * @covers Yoast_GA_Dashboards::init_dashboards()
 	 */
 	public function test_init_dashboards() {
-		$this->assertEquals( $this->class_instance->init_dashboards(1), NULL );
+		$this->assertEquals( $this->class_instance->init_dashboards( 1 ), NULL );
 	}
 
 	/**
@@ -31,9 +31,9 @@ class Yoast_GA_Dashboards_Test extends GA_UnitTestCase {
 	 *
 	 * @covers Yoast_GA_Dashboards::extend_dashboards()
 	 */
-	public function test_extend_dashboards(){
+	public function test_extend_dashboards() {
 		$dashboards = array(
-			'sessions'      => array(
+			'sessions' => array(
 				'title' => __( 'Sessions', 'google-analytics-for-wordpress' ),
 				'help'  => __( 'A session is a group of interactions that take place on your website within a given time frame. For example a single session can contain multiple screen or page views, events, social interactions, and ecommerce transactions. <a href="http://yoa.st/gasessions" target="_blank">[Learn more]</a>', 'google-analytics-for-wordpress' ),
 				'type'  => 'graph',
