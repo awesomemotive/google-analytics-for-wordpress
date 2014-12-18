@@ -60,11 +60,42 @@ class Yoast_GA_Admin_Form_Test extends GA_UnitTestCase {
 		$values[] = array( 'id' => 2, 'name' => 'Tests' );
 
 		$output = null;
-		$output .= '<div class="ga-form ga-form-input"><label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-phpunit-test_select" />';
-		$output .= 'Test select:</label><select data-placeholder="" name="test_select" id="yoast-ga-form-select-phpunit-test_select">';
+		$output .= '<div class="ga-form ga-form-input"><label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-phpunit-' . $name . '" />';
+		$output .= $title . ':</label><select data-placeholder="" name="' . $name . '" id="yoast-ga-form-select-phpunit-' . $name . '">';
 		$output .= '<option value="1" >PHP Unit</option><option value="2" >Tests</option></select></div>';
 
 		$this->assertEquals( Yoast_GA_Admin_Form::select( $title, $name, $values ), $output );
 	}
 
+	/**
+	 * Create a test textarea field
+	 *
+	 * @covers Yoast_GA_Admin_Form:select()
+	 */
+	public function test_textarea() {
+		Yoast_GA_Admin_Form::create_form( 'phpunit' );
+
+		$title  = 'Test textarea';
+		$name   = 'test_textarea';
+		$output = null;
+		$output .= '<div class="ga-form ga-form-input"><label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-phpunit-ga_general_' . $name . '" />';
+		$output .= $title . ':</label><textarea rows="5" cols="60" name="' . $name . '" id="yoast-ga-form-textarea-phpunit-ga_general_' . $name . '"></textarea></div>';
+
+		$this->assertEquals( Yoast_GA_Admin_Form::textarea( $title, $name ), $output );
+	}
+
+	/**
+	 * Render a help icon
+	 *
+	 * @covers Yoast_GA_Admin_Form::show_help()
+	 */
+	public function test_show_help() {
+		$id          = 'test_id';
+		$description = 'Test id description';
+		$output      = null;
+		$output .= '<img src="http://example.org/wp-content/plugins/google-analytics-for-wordpress/assets/img/question-mark.png" class="alignleft yoast_help" id="' . $id . 'help" alt="' . $description . '" />';
+
+		$this->assertEquals( Yoast_GA_Admin_Form::show_help( $id, $description ), $output );
+
+	}
 }
