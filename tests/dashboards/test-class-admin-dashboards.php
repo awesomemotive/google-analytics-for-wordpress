@@ -34,8 +34,8 @@ class Yoast_GA_Dashboards_Test extends GA_UnitTestCase {
 	public function test_extend_dashboards() {
 		$dashboards = array(
 			'sessions' => array(
-				'title' => __( 'Sessions', 'google-analytics-for-wordpress' ),
-				'help'  => __( 'A session is a group of interactions that take place on your website within a given time frame. For example a single session can contain multiple screen or page views, events, social interactions, and ecommerce transactions. <a href="http://yoa.st/gasessions" target="_blank">[Learn more]</a>', 'google-analytics-for-wordpress' ),
+				'title' => 'Sessions',
+				'help'  => 'Sessions helptext',
 				'type'  => 'graph',
 				'tab'   => 'general',
 			)
