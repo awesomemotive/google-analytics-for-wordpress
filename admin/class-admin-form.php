@@ -89,7 +89,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 			$input .= '<input ' . self::parse_attributes( $attributes ) . ' />';
 
 			if ( ! is_null( $text_label ) ) {
-				$input .= '<label class="ga-form ga-form-' . $type . '-label" id="yoast-ga-form-label-' . $type . '-textlabel-' . self::$form_namespace . '-' . $id . '" for="yoast-ga-form-' . $type . '-' . self::$form_namespace . '-' . $id . '" />' . $text_label . '</label>';
+				$input .= '<label class="ga-form ga-form-' . $type . '-label" id="yoast-ga-form-label-' . $type . '-textlabel-' . self::$form_namespace . '-' . $id . '" for="yoast-ga-form-' . $type . '-' . self::$form_namespace . '-' . $id . '">' . $text_label . '</label>';
 			}
 
 			// If we get a description, append it to this select field in a new row
@@ -121,7 +121,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 
 			$select .= '<div class="ga-form ga-form-input">';
 			if ( ! is_null( $title ) ) {
-				$select .= self::label( $id, $title, 'select' ); //'<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . self::$form_namespace . '-' . $id . '" />' . $title . ':</label>';
+				$select .= self::label( $id, $title, 'select' ); //'<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . self::$form_namespace . '-' . $id . '">' . $title . ':</label>';
 			}
 
 			if ( $multiple ) {
@@ -174,7 +174,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 			$text .= '<div class="ga-form ga-form-input">';
 
 			if ( ! is_null( $title ) ) {
-				$text .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . self::$form_namespace . '-' . $id . '" />' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
+				$text .= '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . self::$form_namespace . '-' . $id . '">' . __( $title, 'google-analytics-for-wordpress' ) . ':</label>';
 			}
 
 			$text .= '<textarea rows="5" cols="60" name="' . $name . '" id="yoast-ga-form-textarea-' . self::$form_namespace . '-' . $id . '">' . stripslashes( $textarea_value ) . '</textarea>';
@@ -254,7 +254,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Form' ) ) {
 		 * @return string
 		 */
 		private static function label( $id, $title, $type ) {
-			return '<label class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . self::$form_namespace . '-' . $id . '" />' . $title . ':</label>';
+			return '<label class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . self::$form_namespace . '-' . $id . '">' . $title . ':</label>';
 		}
 
 		/**
