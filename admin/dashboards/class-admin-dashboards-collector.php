@@ -416,7 +416,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		private function log_error( $error ) {
 			if ( true == WP_DEBUG ) {
 				if ( function_exists( 'error_log' ) ) {
-					error_log( 'Yoast Google Analytics (Dashboard API): ' . $error );
+					error_log( 'Google Analytics by Yoast (Dashboard API): ' . $error );
 				}
 			}
 		}
