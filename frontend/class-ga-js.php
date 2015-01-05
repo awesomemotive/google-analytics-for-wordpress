@@ -5,36 +5,18 @@
 
 if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 
-	class Yoast_GA_JS extends Yoast_GA_Frontend {
-		public $link_regex;
-
-		public function __construct() {
-
-			$this->options    = Yoast_GA_Options::instance()->options;
-			$this->link_regex = $this->get_regex();
-
-			add_action( 'wp_head', array( $this, 'tracking' ), 8 );
-
-			if ( $this->options['track_outbound'] == 1 ) {
-				// Check for outbound
-				add_filter( 'the_content', array( $this, 'the_content' ), 99 );
-				add_filter( 'widget_text', array( $this, 'widget_content' ), 99 );
-				add_filter( 'wp_list_bookmarks', array( $this, 'widget_content' ), 99 );
-				add_filter( 'wp_nav_menu', array( $this, 'widget_content' ), 99 );
-				add_filter( 'the_excerpt', array( $this, 'the_content' ), 99 );
-				add_filter( 'comment_text', array( $this, 'comment_text' ), 99 );
-			}
-		}
+	class Yoast_GA_JS extends Yoast_GA_Tracking {
 
 		/**
 		 * Function to output the GA Tracking code in the wp_head()
 		 *
 		 * @param bool $return_array
+		 * @return array
 		 */
 		public function tracking( $return_array = false ) {
 			global $wp_query;
 
-			if ( parent::do_tracking() && ! is_preview() ) {
+			if ( $this->do_tracking && ! is_preview() ) {
 				$gaq_push = array();
 
 				// Running action for adding possible code
@@ -156,7 +138,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		 *
 		 * @return mixed
 		 */
-		private function output_parse_link( $label, $matches ) {
+		protected function output_parse_link( $label, $matches ) {
 			$link = $this->get_target( $label, $matches );
 
 			// bail early for links that we can't handle
@@ -199,123 +181,6 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 			$link['link_attributes'] = $this->output_add_onclick( $link['link_attributes'], $onclick );
 
 			return '<a href="' . $full_url . '" ' . $link['link_attributes'] . '>' . $link['link_text'] . '</a>';
-		}
-
-		/**
-		 * Parse article link
-		 *
-		 * @param $matches
-		 *
-		 * @return mixed
-		 */
-		public function parse_article_link( $matches ) {
-			return $this->output_parse_link( 'outbound-article', $matches );
-		}
-
-		/**
-		 * Parse comment link
-		 *
-		 * @param $matches
-		 *
-		 * @return mixed
-		 */
-		public function parse_comment_link( $matches ) {
-			return $this->output_parse_link( 'outbound-comment', $matches );
-		}
-
-		/**
-		 * Parse widget link
-		 *
-		 * @param $matches
-		 *
-		 * @return mixed
-		 */
-		public function parse_widget_link( $matches ) {
-			return $this->output_parse_link( 'outbound-widget', $matches );
-		}
-
-		/**
-		 * Parse menu link
-		 *
-		 * @param $matches
-		 *
-		 * @return mixed
-		 */
-		public function parse_nav_menu( $matches ) {
-			return $this->output_parse_link( 'outbound-menu', $matches );
-		}
-
-		/**
-		 * Parse the_content or the_excerpt for links
-		 *
-		 * @param $text
-		 *
-		 * @return mixed
-		 */
-		public function the_content( $text ) {
-			if ( false == $this->do_tracking() ) {
-				return $text;
-			}
-
-			if ( ! is_feed() ) {
-				$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_article_link' ), $text );
-			}
-
-			return $text;
-		}
-
-		/**
-		 * Parse the widget content for links
-		 *
-		 * @param $text
-		 *
-		 * @return mixed
-		 */
-		public function widget_content( $text ) {
-			if ( ! $this->do_tracking() ) {
-				return $text;
-			}
-			$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_widget_link' ), $text );
-
-			return $text;
-		}
-
-		/**
-		 * Parse the nav menu for links
-		 *
-		 * @param $text
-		 *
-		 * @return mixed
-		 */
-		public function nav_menu( $text ) {
-			if ( ! $this->do_tracking() ) {
-				return $text;
-			}
-
-			if ( ! is_feed() ) {
-				$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_nav_menu' ), $text );
-			}
-
-			return $text;
-		}
-
-		/**
-		 * Parse comment text for links
-		 *
-		 * @param $text
-		 *
-		 * @return mixed
-		 */
-		public function comment_text( $text ) {
-			if ( ! $this->do_tracking() ) {
-				return $text;
-			}
-
-			if ( ! is_feed() ) {
-				$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_comment_link' ), $text );
-			}
-
-			return $text;
 		}
 
 	}

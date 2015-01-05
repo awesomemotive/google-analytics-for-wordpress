@@ -16,8 +16,8 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 					'yoast_ga_options'                    => 'includes/class-options',
 					'yoast_ga_utils'                      => 'includes/class-utils',
 
-
 					// Frontend classes
+					'yoast_ga_tracking'                   => 'frontend/abstract-class-tracking',
 					'yoast_ga_frontend'                   => 'frontend/class-frontend',
 					'yoast_ga_universal'                  => 'frontend/class-universal',
 					'yoast_ga_js'                         => 'frontend/class-ga-js',
@@ -26,7 +26,6 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 					'yoast_ga_admin'                      => 'admin/class-admin',
 					'yoast_ga_admin_menu'                 => 'admin/class-admin-menu',
 					'yoast_google_analytics'              => 'admin/class-google-analytics',
-					'yoast_ga_admin_ga_js'                => 'admin/class-admin-ga-js',
 					'yoast_ga_admin_assets'               => 'admin/class-admin-assets',
 					'yoast_ga_admin_form'                 => 'admin/class-admin-form',
 
