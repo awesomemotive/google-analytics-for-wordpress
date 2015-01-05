@@ -50,7 +50,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$last_run = get_option( 'yst_ga_last_wp_run' );
 			if ( $last_run === false || Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 48 ) {
 				// Show error, something went wrong
-				if ( ! is_null( $this->get_tracking_code() ) && empty( $this->options['manual_ua_code_field'] ) && $this->show_admin_warning() ) {
+				if ( ! is_null( $this->get_tracking_code() ) && empty( $this->options['manual_ua_code_field'] ) && $this->show_admin_dashboard_warning() ) {
 					add_action( 'admin_notices', array( $this, 'warning_fetching_data' ) );
 				}
 			}
@@ -91,7 +91,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Throw a warning when the fetching failed
 		 */
 		public function warning_fetching_data() {
-			echo '<div class="error"><p>' . sprintf( __( 'Failed to fetch the new data from Google Analytics. Please %sreauthenticate on the settings page%s!', 'google-analytics-for-wordpress' ), '<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">', '</a>' ) . '</p></div>';
+			echo '<div class="error"><p>' . sprintf( __( 'Failed to fetch the new data from Google Analytics. You might need to %sreauthenticate%s.', 'google-analytics-for-wordpress' ), '<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">', '</a>' ) . '</p></div>';
 		}
 
 		/**
@@ -160,7 +160,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		}
 
 		/**
-		 * Are we allowed to show an warning message? returns true if it's allowed
+		 * Are we allowed to show a warning message? returns true if it's allowed
 		 *
 		 * @return bool
 		 */
@@ -172,6 +172,15 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			}
 
 			return false;
+		}
+
+		/**
+		 * Are we allowed to show a warning message? returns true if it's allowed ( this is meant to be only for dashboard )
+		 * 
+		 * @return bool
+		 */
+		private function show_admin_dashboard_warning() {
+			return ( current_user_can( 'manage_options' ) && isset( $_GET['page'] ) && $_GET['page'] === 'yst_ga_dashboard' );
 		}
 
 		/**
@@ -256,8 +265,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * Load the page of a menu item in the GA plugin
 		 */
 		public function load_page() {
-			global $yoast_ga_admin_ga_js;
-			$yoast_ga_admin_ga_js = new Yoast_GA_Admin_GA_JS;
 
 			$this->translate_promo();
 
