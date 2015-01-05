@@ -2,7 +2,7 @@
 /*
 Plugin Name: Google Analytics by Yoast
 Plugin URI: https://yoast.com/wordpress/plugins/google-analytics/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wpgaplugin&utm_content=v504
-Description: This plugin makes it simple to add Google Analytics to your WordPress blog, adding lots of features, eg. error page, search result and automatic clickout and download tracking.
+Description: This plugin makes it simple to add Google Analytics to your WordPress site, adding lots of features, e.g. error page, search result and automatic outgoing links and download tracking.
 Author: Team Yoast
 Version: 5.2.7
 Requires at least: 3.8
