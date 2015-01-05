@@ -232,7 +232,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function premium_promo() {
 			echo '<div class="ga-promote">';
 			echo '<p>';
-			printf( __( 'If you want to track custom dimensions, to for instance track page views per author or post type, you should upgrade to the %1$spremium version of Google Analytics by Yoast%2$s.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=text-link&utm_source=gawp-config&utm_campaign=wpgaplugin&utm_content=custom_dimensions_tab">', '</a>' );
+			printf( __( 'If you want to track custom dimensions like page views per author or post type, you should upgrade to the %1$spremium version of Google Analytics by Yoast%2$s.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=text-link&utm_source=gawp-config&utm_campaign=wpgaplugin&utm_content=custom_dimensions_tab">', '</a>' );
 			echo ' ';
 			_e( 'This will also give you email access to the support team at Yoast, who will provide support on the plugin 24/7.', 'google-analytics-for-wordpress' );
 			echo '</p>';
@@ -454,13 +454,13 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				'ga_premium' => (object) array(
 					'url'    => 'https://yoast.com/wordpress/plugins/google-analytics/',
 					'title'  => __( 'Google Analytics by Yoast Premium', 'google-analytics-for-wordpress' ),
-					'desc'   => __( 'The premium version of Google Analytics for WordPress with more features &amp; support.', 'google-analytics-for-wordpress' ),
+					'desc'   => __( 'The premium version of Google Analytics by Yoast with more features and support.', 'google-analytics-for-wordpress' ),
 					'status' => 'uninstalled',
 				),
 				'ecommerce'  => (object) array(
 					'url'    => 'https://yoast.com/wordpress/plugins/ga-ecommerce/',
-					'title'  => __( 'Google Analytics', 'google-analytics-for-wordpress' ) . '<br />' . __( 'E-Commerce tracking', 'google-analytics-for-wordpress' ),
-					'desc'   => __( 'Track your E-Commerce data and transactions with this E-Commerce extension for Google Analytics.', 'google-analytics-for-wordpress' ),
+					'title'  => __( 'Google Analytics by Yoast', 'google-analytics-for-wordpress' ) . '<br />' . __( 'eCommerce tracking', 'google-analytics-for-wordpress' ),
+					'desc'   => __( 'Track your eCommerce data and transactions with this eCommerce extension for Google Analytics.', 'google-analytics-for-wordpress' ),
 					'status' => 'uninstalled',
 				),
 			);
