@@ -118,7 +118,7 @@
 		 * @return mixed
 		 */
 		public function the_content( $text ) {
-			if ( false == $this->do_tracking ) {
+			if ( false === $this->do_tracking ) {
 				return $text;
 			}
 
