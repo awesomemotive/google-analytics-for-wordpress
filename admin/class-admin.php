@@ -129,7 +129,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				// Success, add a new notification
 				$this->add_notification( 'ga_notifications', array(
 					'type'        => 'success',
-					'description' => __( 'Settings saved!', 'google-analytics-for-wordpress' ),
+					'description' => __( 'Settings saved.', 'google-analytics-for-wordpress' ),
 				) );
 
 			} else {
