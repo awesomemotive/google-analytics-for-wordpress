@@ -1,25 +1,14 @@
 <?php
 
-class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
+class Yoast_GA_Tracking_Test extends GA_UnitTestCase {
 
 	/**
 	 * @var Yoast_GA_Frontend
 	 */
 	private $class_instance;
 
-	public function __construct() {
-		$this->class_instance = new Yoast_GA_Frontend();
-	}
-
-	/**
-	 * Test is the class is created successfully
-	 *
-	 * @covers Yoast_GA_Frontend
-	 */
-	public function test_class() {
-		$yoast_ga_frontend_class = class_exists( 'Yoast_GA_Frontend' );
-
-		$this->assertTrue( $yoast_ga_frontend_class );
+	public function setUp() {
+		$this->class_instance = $this->getMockForAbstractClass('Yoast_GA_Tracking');
 	}
 
 	/**
@@ -31,31 +20,6 @@ class Yoast_GA_Frontend_Test extends GA_UnitTestCase {
 		$tracking = $this->class_instance->do_tracking();
 
 		$this->assertTrue( $tracking );
-	}
-
-	/**
-	 * Manipulate the options (Retrieve options, save new settings and retrieve the data again)
-	 *
-	 * @covers Yoast_GA_Options
-	 */
-	public function test_options() {
-		$options      = $this->class_instance->get_options();
-		$options_type = is_array( $options );
-
-		$this->assertTrue( $options_type );
-
-		if ( $options_type ) {
-			$options['manual_ua_code']       = 1;
-			$options['manual_ua_code_field'] = 'UA-1234567-89';
-
-			$this->class_instance->update_option( $options );
-
-			$options      = $this->class_instance->get_options();
-			$options_type = is_array( $options );
-
-			$this->assertTrue( $options_type );
-			$this->assertEquals( $options['manual_ua_code_field'], 'UA-1234567-89' );
-		}
 	}
 
 	/**
