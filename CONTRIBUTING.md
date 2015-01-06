@@ -37,7 +37,7 @@ At this point you're waiting on us to merge your pull request. We'll review all 
 <a name="patch-welcome"></a>
 ## "Patch welcome" issues
 
-Some issues are labeled "Patch-welcome". This means we see the value in the particular enhancement being suggested but have decided for now not to prioritize it. If you however decide to write a patch for it we'll gladly include it after some code review.
+Some issues are [labeled "Patch-welcome"](https://github.com/Yoast/google-analytics-for-wordpress/issues?q=is%3Aopen+is%3Aissue+label%3APatch-Welcome). This means we see the value in the particular enhancement being suggested but have decided for now not to prioritize it. If you however decide to write a patch for it we'll gladly include it after some code review.
 
 # Additional Resources
 * [General GitHub Documentation](http://help.github.com/)
