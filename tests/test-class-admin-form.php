@@ -60,7 +60,7 @@ class Yoast_GA_Admin_Form_Test extends GA_UnitTestCase {
 		$values[] = array( 'id' => 2, 'name' => 'Tests' );
 
 		$output = null;
-		$output .= '<div class="ga-form ga-form-input"><label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-phpunit-' . $name . '" />';
+		$output .= '<div class="ga-form ga-form-input"><label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-phpunit-' . $name . '">';
 		$output .= $title . ':</label><select data-placeholder="" name="' . $name . '" id="yoast-ga-form-select-phpunit-' . $name . '">';
 		$output .= '<option value="1" >PHP Unit</option><option value="2" >Tests</option></select></div>';
 
@@ -78,7 +78,7 @@ class Yoast_GA_Admin_Form_Test extends GA_UnitTestCase {
 		$title  = 'Test textarea';
 		$name   = 'test_textarea';
 		$output = null;
-		$output .= '<div class="ga-form ga-form-input"><label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-phpunit-ga_general_' . $name . '" />';
+		$output .= '<div class="ga-form ga-form-input"><label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-phpunit-ga_general_' . $name . '">';
 		$output .= $title . ':</label><textarea rows="5" cols="60" name="' . $name . '" id="yoast-ga-form-textarea-phpunit-ga_general_' . $name . '"></textarea></div>';
 
 		$this->assertEquals( Yoast_GA_Admin_Form::textarea( $title, $name ), $output );
