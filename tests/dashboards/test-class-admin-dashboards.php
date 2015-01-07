@@ -11,7 +11,8 @@ class Yoast_GA_Dashboards_Test extends GA_UnitTestCase {
 	private $class_instance;
 
 	public function __construct() {
-		$this->google_api     = new Yoast_Api_Google;
+		new Yoast_Api_Google;
+
 		$this->class_instance = Yoast_GA_Dashboards::get_instance();
 
 		parent::__construct();
