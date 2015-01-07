@@ -62,7 +62,7 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 		ob_start();
 		$this->class_instance->warning_fetching_data();
 		$output   = ob_get_clean();
-		$expected = '<div class="error"><p>Failed to fetch the new data from Google Analytics. Please <a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">reauthenticate on the settings page</a>!</p></div>';
+		$expected = '<div class="error"><p>Failed to fetch the new data from Google Analytics. You might need to <a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">reauthenticate</a>.</p></div>';
 
 		$this->assertEquals( $output, $expected );
 	}
