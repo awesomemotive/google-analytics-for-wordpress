@@ -31,7 +31,7 @@ class Yoast_Google_Analytics_Notice_Test extends GA_UnitTestCase {
 	 */
 	public function test_warning_fetching_data_authenticate() {
 		ob_start();
-		Yoast_Google_Analytics_Notice::warning_fetching_data();
+		Yoast_Google_Analytics_Notice::warning_fetching_data_authenticate();
 		$output   = ob_get_clean();
 		$expected = '<div class="error"><p>Failed to fetch the new data from Google Analytics. You might need to <a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">reauthenticate</a>.</p></div>';
 
