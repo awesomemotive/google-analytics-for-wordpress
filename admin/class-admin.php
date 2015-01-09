@@ -39,20 +39,17 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$this->options = $this->get_options();
 			$this->api     = Yoast_Api_Libs::load_api_libraries( array( 'google', 'googleanalytics' ) );
 
-
 			// Listener for reconnecting with google analytics
 			$this->google_analytics_listener();
 
 			if ( is_null( $this->get_tracking_code() ) && $this->show_admin_warning() ) {
-				add_action( 'admin_notices', array( $this, 'config_warning' ) );
+				add_action( 'admin_notices', array( 'Yoast_Google_Analytics_Notice', 'config_warning' ) );
 			}
 
-			$last_run = get_option( 'yst_ga_last_wp_run' );
-			if ( $last_run === false || Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 48 ) {
-				// Show error, something went wrong
-				if ( ! is_null( $this->get_tracking_code() ) && empty( $this->options['manual_ua_code_field'] ) && $this->show_admin_dashboard_warning() ) {
-					add_action( 'admin_notices', array( $this, 'warning_fetching_data' ) );
-				}
+			// Check if something has went wrong with GA-api calls
+			$has_tracking_code = (! is_null( $this->get_tracking_code() ) && empty( $this->options['manual_ua_code_field']) );
+			if ( $has_tracking_code && $this->show_admin_dashboard_warning()) {
+				Yoast_Google_Analytics::get_instance()->check_for_ga_issues();
 			}
 
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
@@ -78,20 +75,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			// Load the Google Analytics Dashboards functionality
 			$dashboards = Yoast_GA_Dashboards::get_instance();
 			$dashboards->init_dashboards( $this->get_current_profile() );
-		}
-
-		/**
-		 * Throw a warning if no UA code is set.
-		 */
-		public function config_warning() {
-			echo '<div class="error"><p>' . sprintf( __( 'Please configure your %sGoogle Analytics settings%s!', 'google-analytics-for-wordpress' ), '<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">', '</a>' ) . '</p></div>';
-		}
-
-		/**
-		 * Throw a warning when the fetching failed
-		 */
-		public function warning_fetching_data() {
-			echo '<div class="error"><p>' . sprintf( __( 'Failed to fetch the new data from Google Analytics. You might need to %sreauthenticate%s.', 'google-analytics-for-wordpress' ), '<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">', '</a>' ) . '</p></div>';
 		}
 
 		/**
