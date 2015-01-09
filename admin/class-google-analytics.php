@@ -312,21 +312,43 @@ if ( ! class_exists( 'Yoast_Google_Analytics_Notice', false ) ) {
 		 * Throw a warning if no UA code is set.
 		 */
 		public static function config_warning() {
-			echo '<div class="error"><p>' . sprintf( __( 'Please configure your %sGoogle Analytics settings%s!', 'google-analytics-for-wordpress' ), '<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">', '</a>' ) . '</p></div>';
+			self::show_error(
+				sprintf( __( 'Please configure your %sGoogle Analytics settings%s!', 'google-analytics-for-wordpress' ),
+					'<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">',
+					'</a>'
+				)
+			);
 		}
 
 		/**
 		 * Throw a warning when the fetching failed
 		 */
 		public static function warning_fetching_data_authenticate() {
-			echo '<div class="error"><p>' . sprintf( __( 'Failed to fetch the new data from Google Analytics. You might need to %sreauthenticate%s.', 'google-analytics-for-wordpress' ), '<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">', '</a>' ) . '</p></div>';
+			self::show_error(
+				sprintf(
+					__( 'Failed to fetch the new data from Google Analytics. You might need to %sreauthenticate%s.', 'google-analytics-for-wordpress' ),
+					'<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">',
+					'</a>'
+				)
+			);
 		}
 
 		/**
 		 * Throw a warning when the fetching failed
 		 */
 		public static function warning_fetching_data() {
-			echo '<div class="error"><p>' . __( 'Failed to fetch the new data from Google Analytics. This might be caused by a problem with the Google service.', 'google-analytics-for-wordpress' ) . '</p></div>';
+			self::show_error(
+				__( 'Failed to fetch the new data from Google Analytics. This might be caused by a problem with the Google service.', 'google-analytics-for-wordpress' )
+			);
+		}
+
+		/**
+		 * Showing the given error as an error div
+		 *
+		 * @param $error_message
+		 */
+		private static function show_error( $error_message ) {
+			echo '<div class="error"><p>' . $error_message . '</p></div>';
 		}
 
 	}
