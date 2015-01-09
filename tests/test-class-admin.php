@@ -48,7 +48,7 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 	 */
 	public function test_config_warning() {
 		ob_start();
-		$this->class_instance->config_warning();
+		Yoast_Google_Analytics_Notice::config_warning();
 		$output   = ob_get_clean();
 		$expected = '<div class="error"><p>Please configure your <a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">Google Analytics settings</a>!</p></div>';
 
