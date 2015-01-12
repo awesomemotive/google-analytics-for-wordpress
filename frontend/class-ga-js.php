@@ -16,7 +16,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		public function tracking( $return_array = false ) {
 			global $wp_query;
 
-			if ( $this->do_tracking && ! is_preview() ) {
+			if ( $this->do_tracking() && ! is_preview() ) {
 				$gaq_push = array();
 
 				// Running action for adding possible code

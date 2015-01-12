@@ -21,7 +21,7 @@
 		 * Should the tracking code be added
 		 * @var bool
 		 */
-		protected $do_tracking;
+		protected $do_tracking = null;
 
 		/**
 		 * Function to output the GA Tracking code in the wp_head()
@@ -48,7 +48,6 @@
 		public function __construct() {
 
 			$this->options     = Yoast_GA_Options::instance()->options;
-			$this->do_tracking = $this->do_tracking();
 
 			add_action( 'wp_head', array( $this, 'tracking' ), 8 );
 
@@ -118,7 +117,7 @@
 		 * @return mixed
 		 */
 		public function the_content( $text ) {
-			if ( false === $this->do_tracking ) {
+			if ( false === $this->do_tracking() ) {
 				return $text;
 			}
 
@@ -137,7 +136,7 @@
 		 * @return mixed
 		 */
 		public function widget_content( $text ) {
-			if ( ! $this->do_tracking ) {
+			if ( ! $this->do_tracking() ) {
 				return $text;
 			}
 			$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_widget_link' ), $text );
@@ -153,7 +152,7 @@
 		 * @return mixed
 		 */
 		public function nav_menu( $text ) {
-			if ( ! $this->do_tracking ) {
+			if ( ! $this->do_tracking() ) {
 				return $text;
 			}
 
@@ -172,7 +171,7 @@
 		 * @return mixed
 		 */
 		public function comment_text( $text ) {
-			if ( ! $this->do_tracking ) {
+			if ( ! $this->do_tracking() ) {
 				return $text;
 			}
 
@@ -277,24 +276,21 @@
 		 * @return bool
 		 */
 		public function do_tracking() {
-			global $current_user;
+			if( $this->do_tracking === null ) {
+				global $current_user;
 
-			if ( ! function_exists( 'get_currentuserinfo' ) ) {
-				require_once( ABSPATH . 'wp-includes/pluggable.php' );
-			}
+				get_currentuserinfo();
 
-			get_currentuserinfo();
+				$this->do_tracking = true;
 
-			if ( 0 == $current_user->ID ) {
-				return true;
-			}
-
-			if ( isset( $this->options['ignore_users'] ) ) {
-				if ( ! empty( $current_user->roles ) && in_array( $current_user->roles[0], $this->options['ignore_users'] ) ) {
-					return false;
+				if ( 0 != $current_user->ID && isset( $this->options['ignore_users'] ) ) {
+					if ( ! empty( $current_user->roles ) && in_array( $current_user->roles[0], $this->options['ignore_users'] ) ) {
+						$this->do_tracking = false;
+					}
 				}
 			}
-			return true;
+
+			return $this->do_tracking;
 		}
 
 		/**
