@@ -59,7 +59,7 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 			}
 
 			$class_name = strtolower( $class );
-			if ( isset( self::$classes[$class_name] ) ) {
+			if ( ! class_exists( $class ) && isset( self::$classes[$class_name] ) ) {
 				require_once $include_path . '/' . self::$classes[$class_name] . '.php';
 			}
 		}
