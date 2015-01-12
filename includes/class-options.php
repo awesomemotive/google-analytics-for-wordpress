@@ -157,13 +157,13 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		}
 
 		/**
-		 * Convert a checkbox value to a bool
+		 * Convert a option value to a bool
 		 *
 		 * @param $option_name
 		 *
 		 * @return bool
 		 */
-		public function checkbox_value_to_bool( $option_name ) {
+		public function option_value_to_bool( $option_name ) {
 			$this->options = $this->get_options();
 
 			if ( isset( $this->options[$option_name] ) && $this->options[$option_name] == 1 ) {
