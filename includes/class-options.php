@@ -164,7 +164,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		public function disable_dashboards() {
 			$this->options = $this->get_options();
 
-			if ( isset( $this->options['dashboards_disabled'] ) || $this->options['dashboards_disabled'] == 1 ){
+			if ( isset( $this->options['dashboards_disabled'] ) && $this->options['dashboards_disabled'] == 1 ){
 				return true;
 			}
 
