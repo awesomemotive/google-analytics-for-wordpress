@@ -8,7 +8,7 @@ class Yoast_GA_Options_Test extends GA_UnitTestCase {
 	private $class_instance;
 
 	public function __construct() {
-		$this->class_instance = new Yoast_GA_Options;
+		$this->class_instance = Yoast_GA_Options::instance();
 	}
 
 	/**
