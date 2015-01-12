@@ -32,7 +32,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 
 			add_action( 'admin_menu', array( $this, 'create_admin_menu' ), 10 );
 
-			if( function_exists( 'is_plugin_active_for_network' ) ){
+			if( ! function_exists( 'is_plugin_active_for_network' ) ){
 				require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 			}
 
