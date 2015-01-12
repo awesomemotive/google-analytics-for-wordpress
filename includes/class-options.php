@@ -144,8 +144,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 
 			if ( ! empty( $this->options['analytics_profile'] ) && ! empty( $this->options['analytics_profile_code'] ) ) {
 				$tracking_code = $this->options['analytics_profile_code'];
-			}
-			elseif ( ! empty( $this->options['analytics_profile'] ) && empty( $this->options['analytics_profile_code'] ) ) {
+			} elseif ( ! empty( $this->options['analytics_profile'] ) && empty( $this->options['analytics_profile_code'] ) ) {
 				// Analytics profile is still holding the UA code
 				$tracking_code = $this->options['analytics_profile'];
 			}
@@ -201,6 +200,11 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 				}
 			}
 
+			// 5.2.8+ Add disabled dashboards option
+			if ( ! isset ( $this->options['dashboards_disabled'] ) || version_compare( $this->options['version'], '5.2.8', '>' ) ) {
+				$this->options['dashboards_disabled'] = false;
+			}
+
 			// Check is API option already exists - if not add it
 			$yst_ga_api = get_option( 'yst_ga_api' );
 			if ( $yst_ga_api === false ) {
@@ -240,6 +244,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 					'enable_universal'           => 0,
 					'demographics'               => 0,
 					'ignore_users'               => array( 'editor' ),
+					'dashboards_disabled'        => false,
 					'anonymize_ips'              => 0,
 					'track_download_as'          => 'event',
 					'extensions_of_files'        => 'doc,exe,js,pdf,ppt,tgz,zip,xls',
