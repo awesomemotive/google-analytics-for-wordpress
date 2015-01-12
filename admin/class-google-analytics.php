@@ -326,7 +326,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics_Notice', false ) ) {
 		public static function warning_fetching_data_authenticate() {
 			self::show_error(
 				sprintf(
-					__( 'Failed to fetch the new data from Google Analytics. You might need to %sreauthenticate%s.', 'google-analytics-for-wordpress' ),
+					__( 'It seems the authentication for the plugin has expired, please %sre-authenticate%s with Google Analytics to allow the plugin to fetch data.', 'google-analytics-for-wordpress' ),
 					'<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">',
 					'</a>'
 				)
@@ -338,7 +338,11 @@ if ( ! class_exists( 'Yoast_Google_Analytics_Notice', false ) ) {
 		 */
 		public static function warning_fetching_data() {
 			self::show_error(
-				__( 'Failed to fetch the new data from Google Analytics. This might be caused by a problem with the Google service.', 'google-analytics-for-wordpress' )
+				sprintf(
+					__( 'Data is not up-to-date, there was an error in retrieving the data from Google Analytics. This error could be caused by several issues. If the error persists, please see %sthis page%s.', 'google-analytics-for-wordpress' ),
+					'<a href="http://yoa.st/2p">',
+					'</a>'
+				)
 			);
 		}
 
