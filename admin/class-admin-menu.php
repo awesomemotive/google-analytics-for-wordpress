@@ -52,7 +52,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 
 			// Add main page
 			add_menu_page(
-				__( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'General settings', 'google-analytics-for-wordpress' ), __( 'Analytics', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_' . $menu_name,
+				__( 'Google Analytics by Yoast:', 'google-analytics-for-wordpress' ) . ' ' . __( 'General settings', 'google-analytics-for-wordpress' ), __( 'Analytics', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_' . $menu_name,
 				array(
 					$this->target_object,
 					'load_page',
@@ -76,7 +76,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 			$menu_title   = $this->parse_menu_title( $submenu_name, $font_color );
 			$submenu_page = array(
 				'parent_slug'      => 'yst_ga_dashboard',
-				'page_title'       => __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( ucfirst( $submenu_name ), 'google-analytics-for-wordpress' ),
+				'page_title'       => __( 'Google Analytics by Yoast:', 'google-analytics-for-wordpress' ) . ' ' . __( ucfirst( $submenu_name ), 'google-analytics-for-wordpress' ),
 				'menu_title'       => $menu_title,
 				'capability'       => 'manage_options',
 				'menu_slug'        => 'yst_ga_' . $submenu_name,
