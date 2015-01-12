@@ -91,6 +91,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Allow tracking of anonymous data', 'google-analytics-for-wordpress' ), 'anonymous_data', null, __( 'By allowing us to track anonymous data we can better help you, because we know with which WordPress configurations, themes and plugins we should test. No personal data will be submitted.', 'google-analytics-for-wordpress' ) );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Anonymize IP\'s', 'google-analytics-for-wordpress' ), 'anonymize_ips', null, sprintf( __( 'This adds <code>%1$s _anonymizeIp%2$s</code>, telling Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage.', 'google-analytics-for-wordpress' ), '<a href="http://code.google.com/apis/analytics/docs/gaJS/gaJSApi_gat.html#_gat._anonymizeIp" target="_blank">', '</a>' ) );
 		echo Yoast_GA_Admin_Form::select( 'Ignore users', 'ignore_users', $yoast_ga_admin->get_userroles(), __( 'Users of the role you select will be ignored, so if you select Editor, all Editors will be ignored.', 'google-analytics-for-wordpress' ), true );
+		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Disable GA Dashboards', 'google-analytics-for-wordpress' ), 'dashboards_disabled', null, __( 'The Google Analytics dashboards can be disabled and we stop with aggregating analytics data from your Google account when this setting is enabled.', 'google-analytics-for-wordpress' ) );
 		?>
 	</div>
 	<div id="universal" class="gatab">
