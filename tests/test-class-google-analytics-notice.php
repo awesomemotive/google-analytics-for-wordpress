@@ -33,7 +33,7 @@ class Yoast_Google_Analytics_Notice_Test extends GA_UnitTestCase {
 		ob_start();
 		Yoast_Google_Analytics_Notice::warning_fetching_data_authenticate();
 		$output   = ob_get_clean();
-		$expected = '<div class="error"><p>It seems the authentication for the plugin has expired, please <a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">re-authenticate</a> with Google Analytics to allow the plugin to fetch data..</p></div>';
+		$expected = '<div class="error"><p>It seems the authentication for the plugin has expired, please <a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">re-authenticate</a> with Google Analytics to allow the plugin to fetch data.</p></div>';
 
 		$this->assertEquals( $output, $expected );
 	}
