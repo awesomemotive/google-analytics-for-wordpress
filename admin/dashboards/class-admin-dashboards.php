@@ -63,49 +63,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		 * @param integer $ga_profile_id
 		 */
 		public function init_dashboards( $ga_profile_id ) {
-
-			$dashboards = array(
-				'sessions'      => array(
-					'title' => __( 'Sessions', 'google-analytics-for-wordpress' ),
-					'help'  => __( 'A session is a group of interactions that take place on your website within a given time frame. For example a single session can contain multiple screen or page views, events, social interactions, and ecommerce transactions. <a href="http://yoa.st/gasessions" target="_blank">[Learn more]</a>', 'google-analytics-for-wordpress' ),
-					'type'  => 'graph',
-					'tab'   => 'general',
-				),
-				'bounceRate'    => array(
-					'title'        => __( 'Bounce rate', 'google-analytics-for-wordpress' ),
-					'help'         => __( 'Bounce Rate is the percentage of single-page sessions (i.e. sessions in which the person left your site from the entrance page without interacting with the page). <a href="http://yoa.st/gabounce" target="_blank">[Learn more]</a>', 'google-analytics-for-wordpress' ),
-					'data-percent' => true,
-					'type'         => 'graph',
-					'tab'          => 'general',
-				),
-				'source'        => array(
-					'title'   => __( 'Traffic sources', 'google-analytics-for-wordpress' ),
-					'help'    => __( 'Every referral to a web site has an origin, or (traffic) source. Possible sources include: “google” (the name of a search engine), “facebook.com” (the name of a referring site), “spring_newsletter” (the name of one of your newsletters), and “direct” (users that typed your URL directly into their browser, or who had bookmarked your site). <a href="http://yoa.st/gabnce" target="_blank">[Learn more]</a>', 'google-analytics-for-wordpress' ),
-					'type'    => 'table',
-					'columns' => array(
-						__( 'Sessions', 'google-analytics-for-wordpress' )
-					),
-					'tab'     => 'dimensions',
-				),
-				'top_pageviews' => array(
-					'title'   => __( 'Popular pages', 'google-analytics-for-wordpress' ),
-					'help'    => __( 'Pages by url.', 'google-analytics-for-wordpress' ),
-					'type'    => 'table',
-					'columns' => array(
-						__( 'Sessions', 'google-analytics-for-wordpress' )
-					),
-					'tab'     => 'dimensions',
-				),
-				'top_countries' => array(
-					'title'   => __( 'Countries', 'google-analytics-for-wordpress' ),
-					'help'    => __( 'The country or territory from which visits originated. <a href="http://yoa.st/gacountry" target="_blank">[Learn more]</a>', 'google-analytics-for-wordpress' ),
-					'type'    => 'table',
-					'columns' => array(
-						__( 'Sessions', 'google-analytics-for-wordpress' )
-					),
-					'tab'     => 'dimensions',
-				),
-			);
+			$dashboards = $this->get_default_dashboards();
 
 			if ( ! $this->dashboards_disabled ) {
 				$this->extend_dashboards( $dashboards );
@@ -201,6 +159,80 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 
 			wp_localize_script( 'ga-admin-dashboard', 'dashboard_translate', $translation_array );
 
+		}
+
+		/**
+		 * Reset all dashboards data by removing the options of the registered dashboards
+		 *
+		 * @return bool
+		 */
+		public function reset_dashboards_data() {
+			if ( ! $this->dashboards_disabled ) {
+				$dashboards = $this->get_default_dashboards();
+
+				if ( is_array( $dashboards ) && count( $dashboards ) >= 1 ) {
+					foreach ( $dashboards as $name => $board ) {
+						Yoast_GA_Dashboards_Data::reset( $name );
+					}
+
+					// Make sure we fetch new data if we enable the dashboards by updating the last_run option
+					update_option( 'yst_ga_last_wp_run', date( 'Y-m-d', strtotime( '-2 days' ) ) );
+
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/**
+		 * Get the defaults dashboard array to register
+		 *
+		 * @return array
+		 */
+		private function get_default_dashboards() {
+			return array(
+				'sessions'      => array(
+					'title' => __( 'Sessions', 'google-analytics-for-wordpress' ),
+					'help'  => __( 'A session is a group of interactions that take place on your website within a given time frame. For example a single session can contain multiple screen or page views, events, social interactions, and ecommerce transactions. <a href="http://yoa.st/gasessions" target="_blank">[Learn more]</a>', 'google-analytics-for-wordpress' ),
+					'type'  => 'graph',
+					'tab'   => 'general',
+				),
+				'bounceRate'    => array(
+					'title'        => __( 'Bounce rate', 'google-analytics-for-wordpress' ),
+					'help'         => __( 'Bounce Rate is the percentage of single-page sessions (i.e. sessions in which the person left your site from the entrance page without interacting with the page). <a href="http://yoa.st/gabounce" target="_blank">[Learn more]</a>', 'google-analytics-for-wordpress' ),
+					'data-percent' => true,
+					'type'         => 'graph',
+					'tab'          => 'general',
+				),
+				'source'        => array(
+					'title'   => __( 'Traffic sources', 'google-analytics-for-wordpress' ),
+					'help'    => __( 'Every referral to a web site has an origin, or (traffic) source. Possible sources include: “google” (the name of a search engine), “facebook.com” (the name of a referring site), “spring_newsletter” (the name of one of your newsletters), and “direct” (users that typed your URL directly into their browser, or who had bookmarked your site). <a href="http://yoa.st/gabnce" target="_blank">[Learn more]</a>', 'google-analytics-for-wordpress' ),
+					'type'    => 'table',
+					'columns' => array(
+						__( 'Sessions', 'google-analytics-for-wordpress' )
+					),
+					'tab'     => 'dimensions',
+				),
+				'top_pageviews' => array(
+					'title'   => __( 'Popular pages', 'google-analytics-for-wordpress' ),
+					'help'    => __( 'Pages by url.', 'google-analytics-for-wordpress' ),
+					'type'    => 'table',
+					'columns' => array(
+						__( 'Sessions', 'google-analytics-for-wordpress' )
+					),
+					'tab'     => 'dimensions',
+				),
+				'top_countries' => array(
+					'title'   => __( 'Countries', 'google-analytics-for-wordpress' ),
+					'help'    => __( 'The country or territory from which visits originated. <a href="http://yoa.st/gacountry" target="_blank">[Learn more]</a>', 'google-analytics-for-wordpress' ),
+					'type'    => 'table',
+					'columns' => array(
+						__( 'Sessions', 'google-analytics-for-wordpress' )
+					),
+					'tab'     => 'dimensions',
+				),
+			);
 		}
 
 		/**
