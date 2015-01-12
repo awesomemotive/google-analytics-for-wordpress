@@ -119,18 +119,14 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		public function check_api_call_hook( ) {
 			$last_run = $this->get_last_aggregate_run();
 
-			if ( $last_run === false ) {
-				/**
-				 * Transient doesn't exists, so we need to run the
-				 * hook (This function runs already on Shutdown so
-				 * we can call it directly from now on)
-				 */
+
+			/**
+			 * Transient doesn't exists, so we need to run the
+			 * hook (This function runs already on Shutdown so
+			 * we can call it directly from now on) or the last run has ben more than 24 hours
+			 */
+			if ( $last_run === false || Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 24 ) {
 				$this->aggregate_data();
-			} else {
-				// Transient exists
-				if ( Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 24 ) {
-					$this->aggregate_data();
-				}
 			}
 		}
 
