@@ -63,9 +63,9 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		 * @param integer $ga_profile_id
 		 */
 		public function init_dashboards( $ga_profile_id ) {
-			$dashboards = $this->get_default_dashboards();
-
 			if ( ! $this->dashboards_disabled ) {
+				$dashboards = $this->get_default_dashboards();
+
 				$this->extend_dashboards( $dashboards );
 
 				// Register the active metrics
