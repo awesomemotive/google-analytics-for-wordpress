@@ -57,12 +57,38 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 			return self::$instance;
 		}
 
+
+		/**
+		 * Check if something went wrong with API calls to Google Analytics
+		 */
+		public function check_for_ga_issues() {
+
+			$last_run   = get_option( 'yst_ga_last_wp_run' );
+			$has_failed = get_option( 'yst_ga_api_call_fail', false );
+
+			// Show error, something went wrong
+			if ( $has_failed && ( $last_run === false || Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 48 ) ) {
+				$notice_type = 'warning_fetching_data';
+
+				// Authentication has been successful, so there will be an access token
+				if ( ! $this->client->getAccessToken() ) {
+					$notice_type .= '_authenticate';
+				}
+
+				add_action( 'admin_notices', array( 'Yoast_Google_Analytics_Notice', $notice_type ) );
+			}
+
+		}
+
 		/**
 		 * Wrapper for authenticate the client. If authentication code is send it will get and check an access token.
 		 *
 		 * @param mixed $authentication_code
 		 */
 		public function authenticate( $authentication_code = null ) {
+			// When authentication again we should clean up some stuff
+			$this->api_cleanup();
+
 			$this->client->authenticate_client( $authentication_code );
 		}
 
@@ -202,7 +228,7 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 		 *
 		 * @return bool
 		 */
-		private function test_connection_to_google(){
+		private function test_connection_to_google() {
 			$wp_http = new WP_Http();
 			if ( $wp_http->block_request( 'https://www.googleapis.com/analytics/v3/management/accountSummaries' ) === false ) {
 				return true;
@@ -265,6 +291,68 @@ if ( ! class_exists( 'Yoast_Google_Analytics', false ) ) {
 			}
 
 			return false;
+		}
+
+		/**
+		 * Doing some clean up when this method is called
+		 */
+		private function api_cleanup() {
+			delete_option( 'yst_ga_api_call_fail' );
+		}
+
+	}
+
+}
+
+if ( ! class_exists( 'Yoast_Google_Analytics_Notice', false ) ) {
+
+	class Yoast_Google_Analytics_Notice {
+
+		/**
+		 * Throw a warning if no UA code is set.
+		 */
+		public static function config_warning() {
+			self::show_error(
+				sprintf( __( 'Please configure your %sGoogle Analytics settings%s!', 'google-analytics-for-wordpress' ),
+					'<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">',
+					'</a>'
+				)
+			);
+		}
+
+		/**
+		 * Throw a warning when the fetching failed
+		 */
+		public static function warning_fetching_data_authenticate() {
+			self::show_error(
+				sprintf(
+					__( 'It seems the authentication for the plugin has expired, please %sre-authenticate%s with Google Analytics to allow the plugin to fetch data.', 'google-analytics-for-wordpress' ),
+					'<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">',
+					'</a>'
+				)
+			);
+		}
+
+		/**
+		 * Throw a warning when the fetching failed
+		 */
+		public static function warning_fetching_data() {
+			self::show_error(
+				sprintf(
+					__( 'Data is not up-to-date, there was an error in retrieving the data from Google Analytics. This error could be caused by several issues. If the error persists, please see %sthis page%s.', 'google-analytics-for-wordpress' ),
+					'<a href="http://yoa.st/2p">',
+					'</a>'
+				)
+			);
+		}
+
+		/**
+		 * Showing the given error as an error div
+		 *
+		 * @param $error_message
+		 */
+		private static function show_error( $error_message ) {
+			echo '<div class="error"><p>' . $error_message . '</p></div>';
 		}
 
 	}
