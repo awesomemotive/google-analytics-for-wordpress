@@ -85,17 +85,32 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 			$on_top = apply_filters( 'wpga_menu_on_top', true );
 
 			if ( $on_top ) {
-				$position = '2.00013467543';
+				$position = $this->get_menu_position_value( 'top' );
 			} else {
-				$position = '100.00013467543';
+				$position = $this->get_menu_position_value( 'bottom' );
 			}
 
 			// If the dashboards are disabled, force the menu item to stay at the bottom of the menu
 			if ( $this->dashboards_disabled ) {
-				$position = '100.00013467543';
+				$position = $this->get_menu_position_value( 'bottom' );
 			}
 
 			return $position;
+		}
+
+		/**
+		 * Get the top or bottom menu location number
+		 *
+		 * @param $location
+		 *
+		 * @return string
+		 */
+		private function get_menu_position_value( $location ) {
+			if ( $location == 'top' ) {
+				return '2.00013467543';
+			} else {
+				return '100.00013467543';
+			}
 		}
 
 		/**
