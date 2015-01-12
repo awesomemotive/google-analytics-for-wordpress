@@ -42,10 +42,19 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 		private static $instance = null;
 
 		/**
+		 * Store the Dashboards disabled bool
+		 *
+		 * @var bool
+		 */
+		private $dashboards_disabled;
+
+		/**
 		 * Construct on the dashboards class for GA
 		 */
 		protected function __construct() {
 			add_filter( 'ga_extend_dashboards', array( $this, 'extend_dashboards' ), 10, 1 );
+
+			$this->dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
 		}
 
 		/**
@@ -98,14 +107,16 @@ if ( ! class_exists( 'Yoast_GA_Dashboards' ) ) {
 				),
 			);
 
-			$this->extend_dashboards( $dashboards );
+			if ( ! $this->dashboards_disabled ) {
+				$this->extend_dashboards( $dashboards );
 
-			// Register the active metrics
-			$register = array_keys( $dashboards );
+				// Register the active metrics
+				$register = array_keys( $dashboards );
 
-			$this->aggregator = new Yoast_GA_Dashboards_Collector( $ga_profile_id, $register, $this->valid_metrics );
+				$this->aggregator = new Yoast_GA_Dashboards_Collector( $ga_profile_id, $register, $this->valid_metrics );
 
-			$this->register( $register );
+				$this->register( $register );
+			}
 		}
 
 		/**

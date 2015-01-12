@@ -38,7 +38,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 				add_action( 'network_admin_menu', array( $this, 'create_admin_menu' ), 5 );
 			}
 
-			$this->dashboards_disabled = Yoast_GA_Settings::instance()->dashboards_disabled();
+			$this->dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
 		}
 
 		/**

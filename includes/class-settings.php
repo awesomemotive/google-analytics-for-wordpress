@@ -10,6 +10,13 @@ class Yoast_GA_Settings {
 	private static $instance;
 
 	/**
+	 * Store the options class instance
+	 *
+	 * @var mixed|void
+	 */
+	private $options_class;
+
+	/**
 	 * The main GA options
 	 *
 	 * @var
@@ -19,8 +26,9 @@ class Yoast_GA_Settings {
 	/**
 	 * Set the options of Google Analytics
 	 */
-	public function __construct() {
-		$this->options = Yoast_GA_Options::instance()->get_options();
+	protected function __construct() {
+		$this->options_class = Yoast_GA_Options::instance();
+		$this->options       = $this->options_class->get_options();
 	}
 
 	/**
@@ -28,7 +36,7 @@ class Yoast_GA_Settings {
 	 *
 	 * @return object|Yoast_GA_Settings
 	 */
-	public static function instance() {
+	public static function get_instance() {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new Yoast_GA_Settings();
 		}
@@ -37,16 +45,12 @@ class Yoast_GA_Settings {
 	}
 
 	/**
-	 * Dashboards disabled
+	 * Return the Dashboards disabled bool
 	 *
 	 * @return bool
 	 */
 	public function dashboards_disabled() {
-		if ( isset( $this->options['dashboards_disabled'] ) && $this->options['dashboards_disabled'] == 1 ){
-			return true;
-		}
-
-		return false;
+		return $this->options_class->checkbox_value_to_bool( 'dashboards_disabled' );
 	}
 
 }
