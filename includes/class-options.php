@@ -202,7 +202,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 
 			// 5.2.8+ Add disabled dashboards option
 			if ( ! isset ( $this->options['dashboards_disabled'] ) || version_compare( $this->options['version'], '5.2.8', '>' ) ) {
-				$this->options['dashboards_disabled'] = false;
+				$this->options['dashboards_disabled'] = 0;
 			}
 
 			// Check is API option already exists - if not add it
@@ -244,7 +244,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 					'enable_universal'           => 0,
 					'demographics'               => 0,
 					'ignore_users'               => array( 'editor' ),
-					'dashboards_disabled'        => false,
+					'dashboards_disabled'        => 0,
 					'anonymize_ips'              => 0,
 					'track_download_as'          => 'event',
 					'extensions_of_files'        => 'doc,exe,js,pdf,ppt,tgz,zip,xls',
