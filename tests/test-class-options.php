@@ -67,24 +67,24 @@ class Yoast_GA_Options_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test the checkbox default value (Manual UA code) to bool
+	 * Test the option default value (Manual UA code) to bool
 	 *
-	 * @covers Yoast_GA_Options::checkbox_value_to_bool()
+	 * @covers Yoast_GA_Options::option_value_to_bool()
 	 */
-	public function test_checkbox_value_to_bool() {
-		$settings_manual_ua = $this->class_instance->checkbox_value_to_bool( 'manual_ua_code' );
+	public function test_option_value_to_bool() {
+		$settings_manual_ua = $this->class_instance->option_value_to_bool( 'manual_ua_code' );
 		$this->assertFalse( $settings_manual_ua );
 	}
 
 	/**
-	 * Test if we can update the checkbox and check the new bool
+	 * Test if we can update the option and check the new bool
 	 *
-	 * @covers Yoast_GA_Options::checkbox_value_to_bool()
+	 * @covers Yoast_GA_Options::option_value_to_bool()
 	 */
-	public function test_checkbox_value_to_bool_AND_update_option() {
+	public function test_option_value_to_bool_AND_update_option() {
 		$this->test_update_option();
 
-		$settings_manual_ua = $this->class_instance->checkbox_value_to_bool( 'manual_ua_code' );
+		$settings_manual_ua = $this->class_instance->option_value_to_bool( 'manual_ua_code' );
 		$this->assertTrue( $settings_manual_ua );
 	}
 

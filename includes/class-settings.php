@@ -50,7 +50,7 @@ class Yoast_GA_Settings {
 	 * @return bool
 	 */
 	public function dashboards_disabled() {
-		return $this->options_class->checkbox_value_to_bool( 'dashboards_disabled' );
+		return $this->options_class->option_value_to_bool( 'dashboards_disabled' );
 	}
 
 }
