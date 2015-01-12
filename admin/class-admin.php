@@ -38,7 +38,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		public function init_settings() {
 			$this->options = $this->get_options();
 			$this->api     = Yoast_Api_Libs::load_api_libraries( array( 'google', 'googleanalytics' ) );
-
+			$dashboards    = Yoast_GA_Dashboards::get_instance();
 
 			// Listener for reconnecting with google analytics
 			$this->google_analytics_listener();
@@ -61,8 +61,14 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 				}
 
 				if ( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ) {
+					$dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
+
 					if ( ! isset ( $_POST['ignore_users'] ) ) {
 						$_POST['ignore_users'] = array();
+					}
+
+					if ( $dashboards_disabled == false && isset( $_POST['dashboards_disabled'] ) ) {
+						$dashboards->reset_dashboards_data();
 					}
 
 					// Post submitted and verified with our nonce
@@ -76,7 +82,6 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 			$this->show_notification( 'ga_notifications' );
 
 			// Load the Google Analytics Dashboards functionality
-			$dashboards = Yoast_GA_Dashboards::get_instance();
 			$dashboards->init_dashboards( $this->get_current_profile() );
 		}
 
@@ -176,7 +181,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 
 		/**
 		 * Are we allowed to show a warning message? returns true if it's allowed ( this is meant to be only for dashboard )
-		 * 
+		 *
 		 * @return bool
 		 */
 		private function show_admin_dashboard_warning() {
