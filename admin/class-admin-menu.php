@@ -15,6 +15,13 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 		private $target_object;
 
 		/**
+		 * The dashboards disabled bool
+		 *
+		 * @var
+		 */
+		private $dashboards_disabled;
+
+		/**
 		 * Setting the target_object and adding actions
 		 *
 		 * @param object $target_object
@@ -30,6 +37,8 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 			if ( is_plugin_active_for_network( GAWP_PATH ) ) {
 				add_action( 'network_admin_menu', array( $this, 'create_admin_menu' ), 5 );
 			}
+
+			$this->dashboards_disabled = Yoast_GA_Settings::instance()->dashboards_disabled();
 		}
 
 		/**
@@ -47,7 +56,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 
 			$menu_name = is_network_admin() ? 'extensions' : 'dashboard';
 
-			if ( $this->disable_dashboards() ) {
+			if ( $this->dashboards_disabled ) {
 				$menu_name = 'settings';
 			}
 
@@ -80,7 +89,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 			}
 
 			// If the dashboards are disabled, force the menu item to stay at the bottom of the menu
-			if ( $this->disable_dashboards() ) {
+			if ( $this->dashboards_disabled ) {
 				$position = '100.00013467543';
 			}
 
@@ -106,7 +115,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 				'submenu_function' => array( $this->target_object, 'load_page' ),
 			);
 
-			if ( $this->disable_dashboards() ) {
+			if ( $this->dashboards_disabled ) {
 				$submenu_page['parent_slug'] = 'yst_ga_settings';
 			}
 
@@ -193,7 +202,7 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 				);
 			}
 
-			if ( $this->disable_dashboards() ) {
+			if ( $this->dashboards_disabled ) {
 				unset( $submenu_types['dashboard'] );
 			}
 

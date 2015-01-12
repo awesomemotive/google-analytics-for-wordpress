@@ -157,14 +157,16 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		}
 
 		/**
-		 * Main function which returns the bool to disable the dashboards functionality
+		 * Convert a checkbox value to a bool
+		 *
+		 * @param $option_name
 		 *
 		 * @return bool
 		 */
-		public function disable_dashboards() {
+		public function checkbox_value_to_bool( $option_name ) {
 			$this->options = $this->get_options();
 
-			if ( isset( $this->options['dashboards_disabled'] ) && $this->options['dashboards_disabled'] == 1 ){
+			if ( isset( $this->options[$option_name] ) && $this->options[$option_name] == 1 ) {
 				return true;
 			}
 
