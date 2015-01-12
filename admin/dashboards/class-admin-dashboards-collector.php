@@ -289,10 +289,7 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		 *
 		 */
 		private function save_api_failure() {
-			$attempts = get_option('yst_ga_api_call_fail', false );
-			if( ! $attempts ) {
-				update_option( 'yst_ga_api_call_fail', true );
-			}
+			update_option( 'yst_ga_api_call_fail', true );
 		}
 
 		/**
