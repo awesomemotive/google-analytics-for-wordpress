@@ -119,18 +119,14 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 		public function check_api_call_hook( ) {
 			$last_run = $this->get_last_aggregate_run();
 
-			if ( $last_run === false ) {
-				/**
-				 * Transient doesn't exists, so we need to run the
-				 * hook (This function runs already on Shutdown so
-				 * we can call it directly from now on)
-				 */
+
+			/**
+			 * Transient doesn't exists, so we need to run the
+			 * hook (This function runs already on Shutdown so
+			 * we can call it directly from now on) or the last run has ben more than 24 hours
+			 */
+			if ( $last_run === false || Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 24 ) {
 				$this->aggregate_data();
-			} else {
-				// Transient exists
-				if ( Yoast_GA_Utils::hours_between( strtotime( $last_run ), time() ) >= 24 ) {
-					$this->aggregate_data();
-				}
 			}
 		}
 
@@ -263,11 +259,17 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 
 			if ( isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
 
+				// Delete option api_fail because there it's successful now
+				delete_option( 'yst_ga_api_call_fail' );
+
 				// Success, set a transient which stores the latest runtime
 				update_option( 'yst_ga_last_wp_run', date( 'Y-m-d' ) );
 
 				$response = Yoast_Googleanalytics_Reporting::get_instance()->parse_response( $response, $storage_type, $start_date, $end_date );
 			} else {
+				// When response is failing, we should count the number of
+				$this->save_api_failure();
+
 				return false;
 			}
 
@@ -276,6 +278,14 @@ if ( ! class_exists( 'Yoast_GA_Dashboards_Collector' ) ) {
 			} else {
 				return $this->handle_response( $response, $metric, $dimensions, $start_date, $end_date, 'table', $storage_name );
 			}
+		}
+
+		/**
+		 * When the API isn't able to get a successful response (code 200), we have to save that the call has failed
+		 *
+		 */
+		private function save_api_failure() {
+			update_option( 'yst_ga_api_call_fail', true );
 		}
 
 		/**
