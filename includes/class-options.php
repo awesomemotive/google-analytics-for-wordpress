@@ -140,6 +140,7 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		 */
 		public function get_tracking_code() {
 			$tracking_code = null;
+			$this->options = $this->get_options();
 
 			if ( ! empty( $this->options['analytics_profile'] ) && ! empty( $this->options['analytics_profile_code'] ) ) {
 				$tracking_code = $this->options['analytics_profile_code'];
@@ -163,6 +164,8 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		 * @return bool
 		 */
 		public function checkbox_value_to_bool( $option_name ) {
+			$this->options = $this->get_options();
+
 			if ( isset( $this->options[$option_name] ) && $this->options[$option_name] == 1 ) {
 				return true;
 			}
