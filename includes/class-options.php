@@ -157,6 +157,21 @@ if ( ! class_exists( 'Yoast_GA_Options' ) ) {
 		}
 
 		/**
+		 * Main function which returns the bool to disable the dashboards functionality
+		 *
+		 * @return bool
+		 */
+		public function disable_dashboards() {
+			$this->options = $this->get_options();
+
+			if ( isset( $this->options['dashboards_disabled'] ) || $this->options['dashboards_disabled'] == 1 ){
+				return true;
+			}
+
+			return false;
+		}
+
+		/**
 		 * Upgrade the settings when settings are changed.
 		 *
 		 * @since 5.0.1

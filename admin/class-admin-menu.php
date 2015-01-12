@@ -34,8 +34,6 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 
 		/**
 		 * Create the admin menu
-		 *
-		 * @todo, we need to implement a new icon for this, currently we're using the WP seo icon
 		 */
 		public function create_admin_menu() {
 			/**
@@ -58,10 +56,32 @@ if ( ! class_exists( 'Yoast_GA_Admin_Menu' ) ) {
 					'load_page',
 				),
 				$icon_svg,
-				$on_top ? '2.00013467543' : '100.00013467543'
+				$this->get_menu_position()
 			);
 
 			$this->add_submenu_pages();
+		}
+
+		/**
+		 * Get the menu position of the Analytics item
+		 *
+		 * @return string
+		 */
+		private function get_menu_position() {
+			$on_top = apply_filters( 'wpga_menu_on_top', true );
+
+			if ( $on_top ) {
+				$position = '2.00013467543';
+			} else {
+				$position = '100.00013467543';
+			}
+
+			// If the dashboards are disabled, force the menu item to stay at the bottom of the menu
+			if( $this->disable_dashboards() ){
+				$position = '100.00013467543';
+			}
+
+			return $position;
 		}
 
 		/**
