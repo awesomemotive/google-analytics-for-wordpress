@@ -148,13 +148,7 @@ if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
 		 * @return bool
 		 */
 		private function show_admin_warning() {
-			if ( current_user_can( 'manage_options' ) ) {
-				if ( ! isset( $_GET['page'] ) || ( isset( $_GET['page'] ) && $_GET['page'] !== 'yst_ga_settings' ) ) {
-					return true;
-				}
-			}
-
-			return false;
+			return ( current_user_can( 'manage_options' ) && ( ! isset( $_GET['page'] ) || ( isset( $_GET['page'] ) && $_GET['page'] !== 'yst_ga_settings' ) ) );
 		}
 
 		/**
