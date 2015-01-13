@@ -36,6 +36,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	public function init_settings() {
 		$this->options = $this->get_options();
 		$this->api     = Yoast_Api_Libs::load_api_libraries( array( 'google', 'googleanalytics' ) );
+		$dashboards    = Yoast_GA_Dashboards::get_instance();
 
 		// Listener for reconnecting with google analytics
 		$this->google_analytics_listener();
@@ -60,6 +61,12 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 					$_POST['ignore_users'] = array();
 				}
 
+				$dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
+
+				if ( $dashboards_disabled == false && isset( $_POST['dashboards_disabled'] ) ) {
+					$dashboards->reset_dashboards_data();
+				}
+
 				// Post submitted and verified with our nonce
 				$this->save_settings( $_POST );
 			}
@@ -71,7 +78,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		$this->show_notification( 'ga_notifications' );
 
 		// Load the Google Analytics Dashboards functionality
-		$dashboards = Yoast_GA_Dashboards::get_instance();
 		$dashboards->init_dashboards( $this->get_current_profile() );
 	}
 
