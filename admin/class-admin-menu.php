@@ -140,13 +140,12 @@ class Yoast_GA_Admin_Menu extends Yoast_GA_Options {
 	/**
 	 * Parsing the menutitle
 	 *
-	 * @param string $submenu_name
+	 * @param string $menu_title
 	 * @param string $font_color
 	 *
 	 * @return string
 	 */
-	private function parse_menu_title( $submenu_name, $font_color ) {
-		$menu_title = $submenu_name;
+	private function parse_menu_title( $menu_title, $font_color ) {
 		if ( ! empty( $font_color ) ) {
 			$menu_title = '<span style="color:' . $font_color . '">' . $menu_title . '</span>';
 		}
