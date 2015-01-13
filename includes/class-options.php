@@ -155,6 +155,23 @@ class Yoast_GA_Options {
 	}
 
 	/**
+	 * Convert a option value to a bool
+	 *
+	 * @param $option_name
+	 *
+	 * @return bool
+	 */
+	public function option_value_to_bool( $option_name ) {
+		$this->options = $this->get_options();
+
+		if ( isset( $this->options[$option_name] ) && $this->options[$option_name] == 1 ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
 	 * Upgrade the settings when settings are changed.
 	 *
 	 * @since 5.0.1
@@ -162,14 +179,12 @@ class Yoast_GA_Options {
 	private function upgrade() {
 		if ( ! isset( $this->options['version'] ) && is_null( $this->get_tracking_code() ) ) {
 			$old_options = get_option( 'Yoast_Google_Analytics' );
-
 			if ( isset( $old_options ) && is_array( $old_options ) ) {
 				if ( isset( $old_options['uastring'] ) && '' !== trim( $old_options['uastring'] ) ) {
 					// Save UA as manual UA, instead of saving all the old GA crap
 					$this->options['manual_ua_code']       = 1;
 					$this->options['manual_ua_code_field'] = $old_options['uastring'];
 				}
-
 				// Other settings
 				$this->options['allow_anchor']               = $old_options['allowanchor'];
 				$this->options['add_allow_linker']           = $old_options['allowlinker'];
@@ -178,32 +193,30 @@ class Yoast_GA_Options {
 				$this->options['track_internal_as_outbound'] = $old_options['internallink'];
 				$this->options['track_internal_as_label']    = $old_options['internallinklabel'];
 				$this->options['extensions_of_files']        = $old_options['dlextensions'];
-
 			}
-
 			delete_option( 'Yoast_Google_Analytics' );
 		}
-
 		// 5.0.0 to 5.0.1 fix of ignore users array
 		if ( ! isset( $this->options['version'] ) || version_compare( $this->options['version'], '5.0.1', '<' ) ) {
 			if ( isset( $this->options['ignore_users'] ) && ! is_array( $this->options['ignore_users'] ) ) {
 				$this->options['ignore_users'] = (array) $this->options['ignore_users'];
 			}
 		}
-
 		// 5.1.2+ Remove firebug_lite from options, if set
 		if ( ! isset ( $this->options['version'] ) || version_compare( $this->options['version'], '5.1.2', '<' ) ) {
 			if ( isset( $this->options['firebug_lite'] ) ) {
 				unset( $this->options['firebug_lite'] );
 			}
 		}
-
+		// 5.2.8+ Add disabled dashboards option
+		if ( ! isset ( $this->options['dashboards_disabled'] ) || version_compare( $this->options['version'], '5.2.8', '>' ) ) {
+			$this->options['dashboards_disabled'] = 0;
+		}
 		// Check is API option already exists - if not add it
 		$yst_ga_api = get_option( 'yst_ga_api' );
 		if ( $yst_ga_api === false ) {
 			add_option( 'yst_ga_api', array(), '', 'no' );
 		}
-
 		// Fallback to make sure every default option has a value
 		$defaults = $this->default_ga_values();
 		foreach ( $defaults[$this->option_prefix] as $key => $value ) {
@@ -211,10 +224,8 @@ class Yoast_GA_Options {
 				$this->options[$key] = $value;
 			}
 		}
-
 		// Set to the current version now that we've done all needed upgrades
 		$this->options['version'] = GAWP_VERSION;
-
 		$this->update_option( $this->options );
 	}
 
@@ -223,7 +234,6 @@ class Yoast_GA_Options {
 	 * @return array
 	 */
 	public function default_ga_values() {
-
 		$options = array(
 			$this->option_prefix => array(
 				'analytics_profile'          => null,
@@ -237,6 +247,7 @@ class Yoast_GA_Options {
 				'enable_universal'           => 0,
 				'demographics'               => 0,
 				'ignore_users'               => array( 'editor' ),
+				'dashboards_disabled'        => 0,
 				'anonymize_ips'              => 0,
 				'track_download_as'          => 'event',
 				'extensions_of_files'        => 'doc,exe,js,pdf,ppt,tgz,zip,xls',
@@ -249,9 +260,7 @@ class Yoast_GA_Options {
 				'debug_mode'                 => 0,
 			)
 		);
-
 		$options = apply_filters( 'yst_ga_default-ga-values', $options, $this->option_prefix );
-
 		return $options;
 	}
 

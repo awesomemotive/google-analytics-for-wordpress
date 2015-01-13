@@ -52,4 +52,14 @@ class Yoast_GA_Dashboards_Data {
 		return update_option( 'yst_ga_' . $type, $store );
 	}
 
+	/**
+	 * Reset an option of the GA dashboards storage engine
+	 *
+	 * @param $type
+	 *
+	 * @return bool
+	 */
+	public static function reset( $type ) {
+		return update_option( 'yst_ga_' . $type, array() );
+	}
 }
