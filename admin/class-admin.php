@@ -52,24 +52,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		}
 
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-			if ( ! function_exists( 'wp_verify_nonce' ) ) {
-				require_once( ABSPATH . 'wp-includes/pluggable.php' );
-			}
-
-			if ( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ) {
-				if ( ! isset ( $_POST['ignore_users'] ) ) {
-					$_POST['ignore_users'] = array();
-				}
-
-				$dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
-
-				if ( $dashboards_disabled == false && isset( $_POST['dashboards_disabled'] ) ) {
-					$dashboards->reset_dashboards_data();
-				}
-
-				// Post submitted and verified with our nonce
-				$this->save_settings( $_POST );
-			}
+			$this->handle_post_request( $dashboards );
 		}
 
 		/**
@@ -144,6 +127,32 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		delete_option( 'yst_ga_accounts' );
 		delete_option( 'yst_ga_response' );
 
+	}
+
+	/**
+	 * Handle the POST requests to this Google Analytics plugin
+	 *
+	 * @param instance $dashboards
+	 */
+	private function handle_post_request( $dashboards ) {
+		if ( ! function_exists( 'wp_verify_nonce' ) ) {
+			require_once( ABSPATH . 'wp-includes/pluggable.php' );
+		}
+
+		if ( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ) {
+			if ( ! isset ( $_POST['ignore_users'] ) ) {
+				$_POST['ignore_users'] = array();
+			}
+
+			$dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
+
+			if ( $dashboards_disabled == false && isset( $_POST['dashboards_disabled'] ) ) {
+				$dashboards->reset_dashboards_data();
+			}
+
+			// Post submitted and verified with our nonce
+			$this->save_settings( $_POST );
+		}
 	}
 
 	/**
@@ -291,7 +300,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	private function google_analytics_listener() {
 		if ( ! empty( $_POST['google_auth_code'] ) ) {
 			Yoast_GA_Dashboards::get_instance()->reset_dashboards_data();
-			
+
 			Yoast_Google_Analytics::get_instance()->authenticate( trim( $_POST['google_auth_code'] ) );
 		}
 
