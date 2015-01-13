@@ -289,13 +289,15 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 * Checks if there is a callback or reauth to get token from Google Analytics api
 	 */
 	private function google_analytics_listener() {
-
 		if ( ! empty( $_POST['google_auth_code'] ) ) {
+			Yoast_GA_Dashboards::get_instance()->reset_dashboards_data();
+			
 			Yoast_Google_Analytics::get_instance()->authenticate( trim( $_POST['google_auth_code'] ) );
 		}
 
 
 		if ( ! empty ( $_GET['reauth'] ) ) {
+			Yoast_GA_Dashboards::get_instance()->reset_dashboards_data();
 
 			delete_option( 'yst_ga_accounts' );
 			delete_option( 'yst_ga_response' );
