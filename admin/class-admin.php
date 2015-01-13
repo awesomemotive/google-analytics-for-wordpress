@@ -36,7 +36,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	public function init_settings() {
 		$this->options = $this->get_options();
 		$this->api     = Yoast_Api_Libs::load_api_libraries( array( 'google', 'googleanalytics' ) );
-		$dashboards    = Yoast_GA_Dashboards::get_instance();
 
 		// Listener for reconnecting with google analytics
 		$this->google_analytics_listener();
@@ -51,8 +50,9 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			Yoast_Google_Analytics::get_instance()->check_for_ga_issues();
 		}
 
+		// Add a listener for the POST requests (WP Nonce is checked in the handle_post_request() function)
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-			$this->handle_post_request( $dashboards );
+			$this->handle_post_request( );
 		}
 
 		/**
@@ -61,7 +61,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		$this->show_notification( 'ga_notifications' );
 
 		// Load the Google Analytics Dashboards functionality
-		$dashboards->init_dashboards( $this->get_current_profile() );
+		Yoast_GA_Dashboards::get_instance()->init_dashboards( $this->get_current_profile() );
 	}
 
 	/**
@@ -131,10 +131,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 	/**
 	 * Handle the POST requests to this Google Analytics plugin
-	 *
-	 * @param instance $dashboards
 	 */
-	private function handle_post_request( $dashboards ) {
+	private function handle_post_request( ) {
 		if ( ! function_exists( 'wp_verify_nonce' ) ) {
 			require_once( ABSPATH . 'wp-includes/pluggable.php' );
 		}
@@ -147,7 +145,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			$dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
 
 			if ( $dashboards_disabled == false && isset( $_POST['dashboards_disabled'] ) ) {
-				$dashboards->reset_dashboards_data();
+				Yoast_GA_Dashboards::get_instance()->reset_dashboards_data();
 			}
 
 			// Post submitted and verified with our nonce
