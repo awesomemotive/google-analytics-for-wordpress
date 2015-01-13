@@ -122,11 +122,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	public static function ga_deactivation_hook() {
 		// Remove the refresh token
 		delete_option( 'yoast-ga-refresh_token' );
-
-		// Remove the ga accounts and response
-		delete_option( 'yst_ga_accounts' );
-		delete_option( 'yst_ga_response' );
-
 	}
 
 	/**
@@ -305,9 +300,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 		if ( ! empty ( $_GET['reauth'] ) ) {
 			Yoast_GA_Dashboards::get_instance()->reset_dashboards_data();
-
-			delete_option( 'yst_ga_accounts' );
-			delete_option( 'yst_ga_response' );
 
 			Yoast_Google_Analytics::get_instance()->authenticate();
 		}
