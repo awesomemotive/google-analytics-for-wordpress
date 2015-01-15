@@ -33,6 +33,7 @@
 
         <!-- Space checks are stupid -->
         <exclude name="PEAR.Functions.FunctionCallSignature"/>
+		<exclude name="WordPress.Arrays.ArrayKeySpacingRestrictions.NoSpacesAroundArrayKeys" />
 
 	</rule>
 	<rule ref="WordPress.PHP.DiscouragedFunctions"/>
