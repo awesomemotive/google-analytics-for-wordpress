@@ -49,6 +49,20 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= 5.3-beta =
+
+Release Date: January 15th, 2015
+
+* Enhancements:
+	* Added an option for entirely disabling the dashboards functionality. If a user disables the dashboard, the menu item gets moved downward since there no longer is a reason for putting it so far up.
+	* Improved performance by making sure everything is autoloaded correctly and removing class inclusion checks everywhere.
+	* Makes sure the menu items become translatable.
+	* Added a button to save the GA authentication code as an alternative to hitting the return button.
+
+* Bugfixes:
+	* Makes sure reauthentication notice is only shown when authentication has actually failed.
+	* Introduces a notice for when authentication isn't the problem but the plugin was somehow not able to fetch data from GA.
+
 = 5.2.8 =
 
 Release Date: January 8th, 2015
