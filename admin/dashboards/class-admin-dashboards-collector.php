@@ -337,13 +337,21 @@ class Yoast_GA_Dashboards_Collector {
 	 * @return array|string
 	 */
 	private function build_params_for_call( $start_date, $end_date, $dimensions, $metric ) {
+		/**
+		 * Filter: 'yst-ga-filter-api-limit' - Allow people to change the max results value in the API
+		 * calls. Default value is 1000 results per call.
+		 *
+		 * @api int 1000
+		 */
+		$api_call_limit = apply_filters( 'yst-ga-filter-api-limit', 1000 );
+
 		$params = array(
 			'ids'         => 'ga:' . $this->ga_profile_id,
 			'start-date'  => $start_date,
 			'end-date'    => $end_date,
 			'dimensions'  => $dimensions,
 			'metrics'     => 'ga:' . $metric,
-			'max-results' => 10000,
+			'max-results' => $api_call_limit,
 		);
 
 		$params = $this->add_sort_direction( $params, $dimensions, $metric );
