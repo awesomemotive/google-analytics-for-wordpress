@@ -69,7 +69,7 @@ class Yoast_GA_Admin_Assets {
 	 *
 	 * @return string
 	 */
-	private static function get_asset_path( $asset ) {
+	public static function get_asset_path( $asset ) {
 		static $plugin_directory;
 
 		if ( $plugin_directory == null ) {
