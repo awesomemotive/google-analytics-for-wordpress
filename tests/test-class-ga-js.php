@@ -25,6 +25,7 @@ class Yoast_GA_JS_Test extends GA_UnitTestCase {
 		$options['allowanchor']          = 1;
 		$options['manual_ua_code']       = 1;
 		$options['manual_ua_code_field'] = 'UA-1234567-89';
+		$options['track_outbound']       = 1;
 		$options_singleton->update_option( $options );
 
 		// create and go to post
