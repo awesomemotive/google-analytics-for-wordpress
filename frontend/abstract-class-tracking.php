@@ -308,7 +308,7 @@ abstract class Yoast_GA_Tracking {
 		$domain       = $this->yoast_ga_get_domain( $matches[4] );
 		$origin       = $this->yoast_ga_get_domain( $_SERVER['HTTP_HOST'] );
 		$extension    = substr( strrchr( $original_url, '.' ), 1 );
-		$type         = $this->get_target_type( $protocol, $extension, $domain, $origin, $original_url );
+		$type         = $this->get_target_type( $extension, $domain, $origin, $matches );
 
 		return array(
 			'category'        => $category,
@@ -328,17 +328,18 @@ abstract class Yoast_GA_Tracking {
 	/**
 	 * Getting the type for current target
 	 *
-	 * @param string $protocol
 	 * @param string $extension
-	 * @param array $domain
-	 * @param array $origin
-	 * @param $original_url
+	 * @param array  $domain
+	 * @param array  $origin
+	 * @param array  $matches
 	 *
 	 * @return null|string
 	 */
-	protected function get_target_type( $protocol, $extension, $domain, $origin, $original_url ) {
+	protected function get_target_type( $extension, $domain, $origin, $matches ) {
 		$download_extensions = explode( ',', str_replace( '.', '', $this->options['extensions_of_files'] ) );
 		$download_extensions = array_map( 'trim', $download_extensions );
+		$protocol            = $matches[2];
+		$original_url        = $matches[4];
 
 		// Break out immediately if the link is not an http or https link.
 		$type = null;
