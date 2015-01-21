@@ -303,27 +303,12 @@ abstract class Yoast_GA_Tracking {
 	 * @return array
 	 */
 	protected function get_target( $category, $matches ) {
-		$protocol            = $matches[2];
-		$original_url        = $matches[4];
-		$domain              = $this->yoast_ga_get_domain( $matches[4] );
-		$origin              = $this->yoast_ga_get_domain( $_SERVER['HTTP_HOST'] );
-		$download_extensions = explode( ',', str_replace( '.', '', $this->options['extensions_of_files'] ) );
-		$download_extensions = array_map( 'trim', $download_extensions );
-		$extension           = substr( strrchr( $original_url, '.' ), 1 );
-
-		// Break out immediately if the link is not an http or https link.
-		$type = null;
-		if ( $protocol !== 'http' && $protocol !== 'https' && $protocol !== 'mailto' ) {
-			$type = null;
-		} else {
-			if ( ( $protocol == 'mailto' ) ) {
-				$type = 'email';
-			} elseif ( in_array( $extension, $download_extensions ) ) {
-				$type = 'download';
-			} else {
-				$type = $this->parse_outbound_type($domain, $origin, $original_url);
-			}
-		}
+		$protocol     = $matches[2];
+		$original_url = $matches[4];
+		$domain       = $this->yoast_ga_get_domain( $matches[4] );
+		$origin       = $this->yoast_ga_get_domain( $_SERVER['HTTP_HOST'] );
+		$extension    = substr( strrchr( $original_url, '.' ), 1 );
+		$type         = $this->get_target_type( $protocol, $extension, $domain, $origin, $original_url );
 
 		return array(
 			'category'        => $category,
@@ -341,6 +326,38 @@ abstract class Yoast_GA_Tracking {
 	}
 
 	/**
+	 * Getting the type for current target
+	 *
+	 * @param string $protocol
+	 * @param string $extension
+	 * @param array $domain
+	 * @param array $origin
+	 * @param $original_url
+	 *
+	 * @return null|string
+	 */
+	protected function get_target_type( $protocol, $extension, $domain, $origin, $original_url ) {
+		$download_extensions = explode( ',', str_replace( '.', '', $this->options['extensions_of_files'] ) );
+		$download_extensions = array_map( 'trim', $download_extensions );
+
+		// Break out immediately if the link is not an http or https link.
+		$type = null;
+		if ( $protocol !== 'http' && $protocol !== 'https' && $protocol !== 'mailto' ) {
+			$type = null;
+		} else {
+			if ( ( $protocol == 'mailto' ) ) {
+				$type = 'email';
+			} elseif ( in_array( $extension, $download_extensions ) ) {
+				$type = 'download';
+			} else {
+				$type = $this->parse_outbound_type( $domain, $origin, $original_url );
+			}
+		}
+
+		return $type;
+	}
+
+	/**
 	 * Parse the type for outbound links
 	 *
 	 * @param array  $domain
@@ -349,7 +366,7 @@ abstract class Yoast_GA_Tracking {
 	 *
 	 * @return string
 	 */
-	protected function parse_outbound_type($domain, $origin, $original_url) {
+	protected function parse_outbound_type( $domain, $origin, $original_url ) {
 		$type = null;
 
 		if ( $domain['domain'] == $origin['domain'] ) {
