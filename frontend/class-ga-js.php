@@ -162,11 +162,7 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 
 				break;
 			case 'internal-as-outbound':
-				if ( ! is_null( $this->options['track_internal_as_label'] ) && ! empty( $this->options['track_internal_as_label'] ) ) {
-					$label = $this->options['track_internal_as_label'];
-				} else {
-					$label = 'int';
-				}
+				$label = $this->sanitize_internal_label();
 
 				$onclick = "_gaq.push(['_trackEvent', '" . esc_attr( $link['category'] ) . '-' . esc_attr( $label ) . "', '" . esc_attr( $full_url ) . "', '" . esc_attr( strip_tags( $link['link_text'] ) ) . "']);";
 
