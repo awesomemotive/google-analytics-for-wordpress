@@ -354,7 +354,7 @@ abstract class Yoast_GA_Tracking {
 
 		if ( $domain['domain'] == $origin['domain'] ) {
 			$out_links = explode( ',', $this->options['track_internal_as_outbound'] );
-			$out_links = array_map( 'trim', $out_links );
+			$out_links = array_unique( array_map( 'trim', $out_links ) );
 
 			if ( ! empty( $original_url ) && ! empty( $domain['domain'] ) && count( $out_links ) >= 1 ) {
 				foreach ( $out_links as $out ) {
