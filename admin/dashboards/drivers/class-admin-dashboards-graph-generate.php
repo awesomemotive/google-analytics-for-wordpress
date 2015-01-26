@@ -112,8 +112,8 @@ class Yoast_GA_Dashboards_Graph_Generate extends Yoast_GA_Dashboards_Driver_Gene
 		static $current_x = 0;
 
 		$this->data[] = array(
-			'x'        => $current_x,
-			'y'        => $value,
+			'x' => $current_x,
+			'y' => $value,
 		);
 
 		$current_x ++;
