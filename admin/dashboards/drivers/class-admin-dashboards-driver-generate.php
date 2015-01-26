@@ -87,7 +87,7 @@ abstract class Yoast_GA_Dashboards_Driver_Generate {
 
 		$response = Yoast_GA_Dashboards_Data::get( $this->graph_type );
 
-		if ( array_key_exists( 'body', $response['value'] ) ) {
+		if ( $response != array() && array_key_exists( 'body', $response['value'] ) ) {
 			$return = $response['value']['body'];
 		} else {
 			$return = $response;
