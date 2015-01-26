@@ -140,7 +140,7 @@ class Yoast_GA_Dashboards_Graph_Generate extends Yoast_GA_Dashboards_Driver_Gene
 	 * @param integer $value
 	 */
 	private function add_hover_mapping( $timestamp, $value ) {
-		$this->mapping['hover'][] = date_i18n( 'l ' . $this->date_field . ' M', $timestamp ) . ': ' . $value;
+		$this->mapping['hover'][] = date_i18n( 'l ' . $this->date_field . ' M', $timestamp ) . ': ' . number_format_i18n( $value, 0 );
 	}
 
 }
