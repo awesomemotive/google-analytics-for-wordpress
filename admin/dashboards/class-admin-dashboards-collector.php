@@ -222,15 +222,24 @@ class Yoast_GA_Dashboards_Collector {
 	 * @param array $dimensions
 	 */
 	private function aggregate_dimensions( $dimensions ) {
+		$start_date = date( 'Y-m-d', strtotime( '-1 month' ) );
+		/**
+		 * Filter: 'yst-ga-filter-api-end-date' - Allow people to change the end date for the dashboard
+		 * data. Default: yesterday.
+		 *
+		 * @api string Date (Y-m-d)
+		 */
+		$end_date   = apply_filters( 'yst-ga-filter-api-end-date', date( 'Y-m-d', strtotime( 'yesterday' ) ) );
+
 		foreach ( $dimensions as $dimension ) {
 			if ( ( isset( $dimension['id'] ) || isset( $dimension['dimension'] ) ) && isset( $dimension['metric'] ) ) {
 				if ( isset( $dimension['id'] ) ) {
-					$this->execute_call( $dimension['metric'], date( 'Y-m-d', strtotime( '-1 month' ) ), date( 'Y-m-d', strtotime( 'yesterday' ) ), 'ga:dimension' . $dimension['id'] );
+					$this->execute_call( $dimension['metric'], $start_date, $end_date, 'ga:dimension' . $dimension['id'] );
 				} elseif ( isset( $dimension['dimension'] ) ) {
 					if ( isset( $dimension['storage_name'] ) ) {
-						$this->execute_call( $dimension['metric'], date( 'Y-m-d', strtotime( '-1 month' ) ), date( 'Y-m-d', strtotime( 'yesterday' ) ), 'ga:' . $dimension['dimension'], $dimension['storage_name'] );
+						$this->execute_call( $dimension['metric'], $start_date, $end_date, 'ga:' . $dimension['dimension'], $dimension['storage_name'] );
 					} else {
-						$this->execute_call( $dimension['metric'], date( 'Y-m-d', strtotime( '-1 month' ) ), date( 'Y-m-d', strtotime( 'yesterday' ) ), 'ga:' . $dimension['dimension'] );
+						$this->execute_call( $dimension['metric'], $start_date, $end_date, 'ga:' . $dimension['dimension'] );
 					}
 				}
 			}
