@@ -49,19 +49,27 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
-= 5.3-beta =
+= 5.3 =
 
-Release Date: January 15th, 2015
+Release Date: January 27th, 2015
 
 * Enhancements:
 	* Added an option for entirely disabling the dashboards functionality. If a user disables the dashboard, the menu item gets moved downward since there no longer is a reason for putting it so far up.
 	* Improved performance by making sure everything is autoloaded correctly and removing class inclusion checks everywhere.
 	* Makes sure the menu items become translatable.
 	* Added a button to save the GA authentication code as an alternative to hitting the return button.
+	* Format the page views number in the hover label of dashboards.
+	* Reduced the number of results retrieved from the Google Analytics API per call from 10,000 to 1,000. This is filterable through `yst-ga-filter-api-limit`.
 
 * Bugfixes:
-	* Makes sure reauthentication notice is only shown when authentication has actually failed.
-	* Introduces a notice for when authentication isn't the problem but the plugin was somehow not able to fetch data from GA.
+    * When toggling checkbox the authentication token input was showing up.
+    * Fixed internal links that were being tracked as outbound-article- (with trailing dash).
+	* Makes sure re-authentication notice is only shown when authentication has actually failed.
+	* Introduces a notice for when authentication isn't the problem but the plugin was somehow unable to fetch data from GA.
+
+* i18n:
+	* Added translations for `da_DK`, `es_MX`, `fr_FR`, `it_IT`, `nb_NO`, `pl_PL`, `pt_BR`.
+	* Updated translations for `en_GB`, `he_IL`, `nl_NL`, `ru_RU`.
 
 = 5.2.8 =
 
