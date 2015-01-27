@@ -33,16 +33,16 @@ class Yoast_GA_Dashboards_Collector {
 	/**
 	 * Store the GA Profile ID
 	 *
-	 * @var
+	 * @var int
 	 */
 	public $ga_profile_id;
 
 	/**
 	 * Construct on the dashboards class for GA
 	 *
-	 * @param $ga_profile_id
-	 * @param $active_metrics
-	 * @param $valid_metrics
+	 * @param int   $ga_profile_id
+	 * @param array $active_metrics
+	 * @param array $valid_metrics
 	 */
 	public function __construct( $ga_profile_id, $active_metrics, $valid_metrics ) {
 		$this->ga_profile_id = $ga_profile_id;
@@ -132,7 +132,7 @@ class Yoast_GA_Dashboards_Collector {
 	/**
 	 * Get the datetime when the aggregate data function was succesful
 	 *
-	 * @return datetime
+	 * @return mixed
 	 */
 	private function get_last_aggregate_run() {
 		return get_option( 'yst_ga_last_wp_run' );
@@ -141,7 +141,7 @@ class Yoast_GA_Dashboards_Collector {
 	/**
 	 * Remove metrics and set them as a dimension if needed
 	 *
-	 * @param $metrics
+	 * @param array $metrics
 	 *
 	 * @return mixed
 	 */
@@ -192,7 +192,7 @@ class Yoast_GA_Dashboards_Collector {
 	 *
 	 * @filter ga_dashboards_dimensions
 	 *
-	 * @param $dimensions
+	 * @param array $dimensions
 	 *
 	 * @return array
 	 */
@@ -208,7 +208,7 @@ class Yoast_GA_Dashboards_Collector {
 	/**
 	 * Aggregate metrics from GA. This function should be called in the shutdown function.
 	 *
-	 * @param $metrics
+	 * @param array $metrics
 	 */
 	private function aggregate_metrics( $metrics ) {
 		foreach ( $metrics as $metric ) {
@@ -219,7 +219,7 @@ class Yoast_GA_Dashboards_Collector {
 	/**
 	 * Aggregate dimensions from GA. This function should be called in the shutdown function.
 	 *
-	 * @param $dimensions
+	 * @param array $dimensions
 	 */
 	private function aggregate_dimensions( $dimensions ) {
 		foreach ( $dimensions as $dimension ) {
@@ -240,11 +240,11 @@ class Yoast_GA_Dashboards_Collector {
 	/**
 	 * Execute an API call to Google Analytics and store the data in the dashboards data class
 	 *
-	 * @param $metric
-	 * @param $start_date   2014-10-16
-	 * @param $end_date     2014-11-20
-	 * @param $dimensions   ga:date
-	 * @param $storage_name string
+	 * @param string $metric
+	 * @param string $start_date 2014-10-16
+	 * @param string $end_date   2014-11-20
+	 * @param string $dimensions ga:date
+	 * @param string $storage_name
 	 *
 	 * @return bool
 	 */
@@ -280,7 +280,6 @@ class Yoast_GA_Dashboards_Collector {
 
 	/**
 	 * When the API isn't able to get a successful response (code 200), we have to save that the call has failed
-	 *
 	 */
 	private function save_api_failure() {
 		update_option( 'yst_ga_api_call_fail', true );
@@ -289,7 +288,7 @@ class Yoast_GA_Dashboards_Collector {
 	/**
 	 * Get the storage type from dimensions
 	 *
-	 * @param $dimensions
+	 * @param string $dimensions
 	 *
 	 * @return string
 	 */
@@ -304,9 +303,10 @@ class Yoast_GA_Dashboards_Collector {
 	/**
 	 * Prepare dimensions before adding them as a parameter in a call
 	 *
-	 * @param $dimensions
+	 * @param array $dimensions
+	 * @param array $metric
 	 *
-	 * @return string
+	 * @return array
 	 */
 	private function prepare_dimensions( $dimensions, $metric ) {
 		$filter_metrics = $this->get_filter_metrics();
@@ -329,12 +329,12 @@ class Yoast_GA_Dashboards_Collector {
 	/**
 	 * Build the params for a call to Google Analytics, return them prepared for a http query
 	 *
-	 * @param $start_date
-	 * @param $end_date
-	 * @param $dimensions
-	 * @param $metric
+	 * @param string $start_date
+	 * @param string $end_date
+	 * @param string $dimensions
+	 * @param string $metric
 	 *
-	 * @return array|string
+	 * @return string
 	 */
 	private function build_params_for_call( $start_date, $end_date, $dimensions, $metric ) {
 		/**
@@ -364,9 +364,9 @@ class Yoast_GA_Dashboards_Collector {
 	 * Add a sort direction if we need to (Especially on dimensions which are
 	 * listed in $this->get_filter_metrics())
 	 *
-	 * @param $params
+	 * @param array $params
 	 *
-	 * @return mixed
+	 * @return array
 	 */
 	private function add_sort_direction( $params, $dimensions, $metric ) {
 		$filter_dimensions = $this->get_filter_metrics();
@@ -383,13 +383,13 @@ class Yoast_GA_Dashboards_Collector {
 	/**
 	 * Handle the response from the Google Analytics api.
 	 *
-	 * @param $response
-	 * @param $metric
-	 * @param $dimensions
-	 * @param $start_date
-	 * @param $end_date
-	 * @param $store_as
-	 * @param $storage_name
+	 * @param array|boolean $response
+	 * @param string        $metric
+	 * @param array         $dimensions
+	 * @param string        $start_date
+	 * @param string        $end_date
+	 * @param string        $store_as
+	 * @param string        $storage_name
 	 *
 	 * @return bool
 	 */
@@ -427,7 +427,7 @@ class Yoast_GA_Dashboards_Collector {
 	/**
 	 * Log an error while calling the Google Analytics API
 	 *
-	 * @param $error
+	 * @param string $error
 	 */
 	private function log_error( $error ) {
 		if ( true == WP_DEBUG ) {
