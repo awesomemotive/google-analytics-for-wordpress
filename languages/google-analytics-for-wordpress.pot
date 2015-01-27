@@ -2,10 +2,10 @@
 # This file is distributed under the GPL v3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Google Analytics by Yoast 5.2.8\n"
+"Project-Id-Version: Google Analytics by Yoast 5.3\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/yoast/google-analytics-for-wordpress/issues\n"
-"POT-Creation-Date: 2015-01-13 13:13:22+00:00\n"
+"POT-Creation-Date: 2015-01-27 12:07:54+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -588,14 +588,13 @@ msgid ""
 msgstr ""
 
 #: admin/pages/settings.php:96
-msgid "Disable dashboards functionality"
+msgid "Disable analytics dashboard"
 msgstr ""
 
 #: admin/pages/settings.php:96
 msgid ""
-"The Google Analytics dashboards can be disabled and we stop with "
-"aggregating analytics data from your Google account when this setting is "
-"enabled."
+"This will completely disable the dashboard and stop the plugin from "
+"fetching the latest analytics data."
 msgstr ""
 
 #: admin/pages/settings.php:101
