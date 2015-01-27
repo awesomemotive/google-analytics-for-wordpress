@@ -12,7 +12,7 @@ Text Domain: google-analytics-for-wordpress
 Domain Path: /languages
 
 Google Analytics for WordPress
-Copyright (C) 2008-2014, Joost de Valk - joost@yoast.com
+Copyright (C) 2008-2015, Team Yoast, support@yoast.com
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

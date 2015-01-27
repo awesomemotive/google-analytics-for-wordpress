@@ -1,10 +1,10 @@
 === Google Analytics by Yoast ===
-Contributors: joostdevalk,PvW_NL
+Contributors: joostdevalk
 Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 5.2.8
+Stable tag: 5.3
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
