@@ -7,9 +7,19 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	 */
 	private $class_instance;
 
-	public function __construct() {
-		parent::__construct();
-		
+	/**
+	 * Setting this up for each test
+	 */
+	public function setUp() {
+		parent::setUp();
+
+		// Update the options
+		$options_singleton               = Yoast_GA_Options::instance();
+		$options                         = $options_singleton->get_options();
+		$options['track_internal_as_outbound'] = '/test,/out/';
+		$options['track_outbound'] = 1;
+		$options_singleton->update_option( $options );
+
 		$this->class_instance = new Yoast_GA_Universal();
 	}
 

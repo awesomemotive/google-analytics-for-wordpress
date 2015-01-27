@@ -93,8 +93,8 @@ class Yoast_GA_Admin_Form_Test extends GA_UnitTestCase {
 		$id          = 'test_id';
 		$description = 'Test id description';
 		$output      = null;
-		$output .= '<img src="http://example.org/wp-content/plugins/google-analytics-for-wordpress/assets/img/question-mark.png" class="alignleft yoast_help" id="' . $id . 'help" alt="' . $description . '" />';
-
+		$output .= '<img src="' . GAWP_URL . 'assets/img/question-mark.png" class="alignleft yoast_help" id="' . $id . 'help" alt="' . $description . '" />';
+		
 		$this->assertEquals( Yoast_GA_Admin_Form::show_help( $id, $description ), $output );
 
 	}

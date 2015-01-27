@@ -14,6 +14,7 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 
 				self::$classes = array(
 					'yoast_ga_options'                    => 'includes/class-options',
+					'yoast_ga_settings'                   => 'includes/class-settings',
 					'yoast_ga_utils'                      => 'includes/class-utils',
 
 					// Frontend classes
@@ -26,6 +27,7 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 					'yoast_ga_admin'                      => 'admin/class-admin',
 					'yoast_ga_admin_menu'                 => 'admin/class-admin-menu',
 					'yoast_google_analytics'              => 'admin/class-google-analytics',
+					'yoast_google_analytics_notice'       => 'admin/class-google-analytics',
 					'yoast_ga_admin_assets'               => 'admin/class-admin-assets',
 					'yoast_ga_admin_form'                 => 'admin/class-admin-form',
 
@@ -58,7 +60,7 @@ if ( ! class_exists( 'Yoast_GA_Autoload' ) ) {
 			}
 
 			$class_name = strtolower( $class );
-			if ( isset( self::$classes[$class_name] ) ) {
+			if ( ! class_exists( $class ) && isset( self::$classes[$class_name] ) ) {
 				require_once $include_path . '/' . self::$classes[$class_name] . '.php';
 			}
 		}
