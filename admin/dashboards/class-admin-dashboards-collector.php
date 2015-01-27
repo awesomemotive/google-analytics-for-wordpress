@@ -206,13 +206,33 @@ class Yoast_GA_Dashboards_Collector {
 	}
 
 	/**
+	 * Get the start and and date for aggregation functionality
+	 *
+	 * @return array
+	 */
+	private function get_date_range() {
+		/**
+		 * Filter: 'yst-ga-filter-api-end-date' - Allow people to change the end date for the dashboard
+		 * data. Default: yesterday.
+		 *
+		 * @api string Date (Y-m-d)
+		 */
+		return array(
+			'start' => date( 'Y-m-d', strtotime( '-1 month' ) ),
+			'end'   => apply_filters( 'yst-ga-filter-api-end-date', date( 'Y-m-d', strtotime( 'yesterday' ) ) ),
+		);
+	}
+
+	/**
 	 * Aggregate metrics from GA. This function should be called in the shutdown function.
 	 *
 	 * @param array $metrics
 	 */
 	private function aggregate_metrics( $metrics ) {
+		$dates = $this->get_date_range();
+
 		foreach ( $metrics as $metric ) {
-			$this->execute_call( $metric, date( 'Y-m-d', strtotime( '-6 weeks' ) ), date( 'Y-m-d', strtotime( 'yesterday' ) ) );
+			$this->execute_call( $metric, $dates['start'], $dates['end'] );
 		}
 	}
 
@@ -222,24 +242,17 @@ class Yoast_GA_Dashboards_Collector {
 	 * @param array $dimensions
 	 */
 	private function aggregate_dimensions( $dimensions ) {
-		$start_date = date( 'Y-m-d', strtotime( '-1 month' ) );
-		/**
-		 * Filter: 'yst-ga-filter-api-end-date' - Allow people to change the end date for the dashboard
-		 * data. Default: yesterday.
-		 *
-		 * @api string Date (Y-m-d)
-		 */
-		$end_date   = apply_filters( 'yst-ga-filter-api-end-date', date( 'Y-m-d', strtotime( 'yesterday' ) ) );
+		$dates = $this->get_date_range();
 
 		foreach ( $dimensions as $dimension ) {
 			if ( ( isset( $dimension['id'] ) || isset( $dimension['dimension'] ) ) && isset( $dimension['metric'] ) ) {
 				if ( isset( $dimension['id'] ) ) {
-					$this->execute_call( $dimension['metric'], $start_date, $end_date, 'ga:dimension' . $dimension['id'] );
+					$this->execute_call( $dimension['metric'], $dates['start'], $dates['end'], 'ga:dimension' . $dimension['id'] );
 				} elseif ( isset( $dimension['dimension'] ) ) {
 					if ( isset( $dimension['storage_name'] ) ) {
-						$this->execute_call( $dimension['metric'], $start_date, $end_date, 'ga:' . $dimension['dimension'], $dimension['storage_name'] );
+						$this->execute_call( $dimension['metric'], $dates['start'], $dates['end'], 'ga:' . $dimension['dimension'], $dimension['storage_name'] );
 					} else {
-						$this->execute_call( $dimension['metric'], $start_date, $end_date, 'ga:' . $dimension['dimension'] );
+						$this->execute_call( $dimension['metric'], $dates['start'], $dates['end'], 'ga:' . $dimension['dimension'] );
 					}
 				}
 			}
