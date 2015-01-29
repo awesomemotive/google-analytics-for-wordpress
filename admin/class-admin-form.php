@@ -40,10 +40,10 @@ class Yoast_GA_Admin_Form {
 		$output = null;
 		$output .= '<div class="ga-form ga-form-input">';
 		$output .= '<input type="submit" name="ga-form-' . $name . '" value="' . $button_label . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-' . self::$form_namespace . '"';
-		if( !is_null( $onclick ) ){
+		if( ! is_null( $onclick ) ){
 			$output .= ' onclick="' . $onclick . '"';
 		}
-		$output .= '>';
+		$output .= ' />';
 		$output .= '</div></form>';
 
 		return $output;
