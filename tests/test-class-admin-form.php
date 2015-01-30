@@ -23,10 +23,24 @@ class Yoast_GA_Admin_Form_Test extends GA_UnitTestCase {
 
 		$output = null;
 		$output .= '<div class="ga-form ga-form-input">';
-		$output .= '<input type="submit" name="ga-form-submit" value="Save changes" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-phpunit">';
+		$output .= '<input type="submit" name="ga-form-submit" value="Save changes" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-phpunit" />';
 		$output .= '</div></form>';
 
 		$this->assertEquals( Yoast_GA_Admin_Form::end_form(), $output );
+	}
+
+	/**
+	 * End a form, receives the HTML output with an onclick action
+	 */
+	public function test_end_form_WITH_onclick() {
+		Yoast_GA_Admin_Form::create_form( 'phpunit' );
+
+		$output = null;
+		$output .= '<div class="ga-form ga-form-input">';
+		$output .= '<input type="submit" name="ga-form-submit" value="Save changes" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-phpunit" onclick="test();" />';
+		$output .= '</div></form>';
+
+		$this->assertEquals( Yoast_GA_Admin_Form::end_form('Save changes', 'submit', 'test();'), $output );
 	}
 
 	/**
