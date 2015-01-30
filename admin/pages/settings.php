@@ -66,7 +66,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 			echo Yoast_GA_Admin_Form::input( 'text', null, 'google_auth_code', null, null );
 
 			echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle-submit">&nbsp;</label>';
-			echo '<div class="ga-form ga-form-input"><input type="submit" name="ga-form-settings" value="' . __('Save authentication code', 'google-analytics-for-wordpress') . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-settings"></div>';
+			echo '<div class="ga-form ga-form-input"><input type="submit" name="ga-form-settings" value="' . __('Save authentication code', 'google-analytics-for-wordpress') . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-settings" onclick="yst_closepopupwindow();"></div>';
 			echo '</div>';
 		} else {
 			echo '<h3>' . __( 'Cannot connect to Google', 'google-analytics-for-wordpress' ) . '</h3>';
@@ -142,7 +142,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 	</div>
 </div>
 <?php
-echo Yoast_GA_Admin_Form::end_form( 'Save changes', 'settings' );
+echo Yoast_GA_Admin_Form::end_form( 'Save changes', 'settings', 'yst_closepopupwindow();' );
 echo $yoast_ga_admin->content_footer();
 ?>
 <script type="text/javascript">
