@@ -245,7 +245,7 @@ class Yoast_GA_Dashboards_Collector {
 		$dates = $this->get_date_range();
 
 		foreach ( $dimensions as $dimension ) {
-			if ( ( isset( $dimension['id'] ) || isset( $dimension['dimension'] ) ) && isset( $dimension['metric'] ) ) {
+			if ( isset( $dimension['metric'] ) ) {
 				if ( isset( $dimension['id'] ) ) {
 					$this->execute_call( $dimension['metric'], $dates['start'], $dates['end'], 'ga:dimension' . $dimension['id'] );
 				} elseif ( isset( $dimension['dimension'] ) ) {
