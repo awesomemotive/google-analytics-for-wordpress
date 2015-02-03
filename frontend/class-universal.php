@@ -73,6 +73,11 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 				$gaq_push[] = "'_setAllowHash',false";
 			}
 
+			// Check for Enhanced ilnk attribution
+			if( isset( $this->options['enhanced_link_attribution'] ) && $this->options['enhanced_link_attribution'] == 1 ){
+				$gaq_push[] = "'require', 'linkid', 'linkid.js'";
+			}
+
 			if ( is_404() ) {
 				$gaq_push[] = "'send','pageview','/404.html?page=' + document.location.pathname + document.location.search + '&from=' + document.referrer";
 			} else {
