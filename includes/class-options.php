@@ -256,6 +256,7 @@ class Yoast_GA_Options {
 				'tag_links_in_rss'           => 0,
 				'allow_anchor'               => 0,
 				'add_allow_linker'           => 0,
+				'enhanced_link_attribution'	 =>	1,
 				'custom_code'                => null,
 				'debug_mode'                 => 0,
 			)
