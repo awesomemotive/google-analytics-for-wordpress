@@ -38,8 +38,8 @@ define( 'GAWP_PATH', plugin_basename( __FILE__ ) );
 
 define( 'GAWP_URL', trailingslashit( plugin_dir_url( __FILE__ ) ) );
 
-if ( ! class_exists( 'Yoast_GA_Autoload', false ) ) {
-	require_once 'includes/class-autoload.php';
+if ( file_exists( dirname( GAWP_FILE ) . '/vendor/autoload_52.php' ) ) {
+	require dirname( GAWP_FILE ) . '/vendor/autoload_52.php';
 }
 
 // Only require the needed classes
