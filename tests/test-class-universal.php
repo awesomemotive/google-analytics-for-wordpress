@@ -180,6 +180,21 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Prepare function for tracking data
+	 *
+	 * @return array
+	 */
+	private function prepare_tracking() {
+		$this->class_instance = new Universal_Double( $this->options() );
+		$tracking_data        = $this->class_instance->tracking( true );
+
+		return array(
+			'data'		=>	$tracking_data,
+			'is_array'	=>	is_array( $tracking_data ),
+		);
+	}
+
+	/**
 	 * Test the tracking with a manual UA code
 	 *
 	 * @covers Yoast_GA_Universal::tracking()
@@ -188,15 +203,13 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->manual_ua_code       = 1;
 		$this->manual_ua_code_field = 'UA-1234567-89';
 
-		$this->class_instance = new Universal_Double( $this->options() );
-		$tracking_data        = $this->class_instance->tracking( true );
-		$tracking_data_type   = is_array( $tracking_data );
+		$tracking = $this->prepare_tracking();
 
-		if ( $tracking_data_type ) {
-			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto'", $tracking_data ) );
-			$this->assertTrue( in_array( "'send','pageview'", $tracking_data ) );
+		if ( $tracking['is_array'] ) {
+			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto'", $tracking['data'] ) );
+			$this->assertTrue( in_array( "'send','pageview'", $tracking['data'] ) );
 		} else {
-			$this->assertTrue( $tracking_data_type );
+			$this->assertTrue( $tracking['is_array'] );
 		}
 	}
 
@@ -208,15 +221,13 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	public function test_tracking_WITH_enhanced_link_attribution() {
 		$this->enhanced_link_attribution = 1;
 
-		$this->class_instance = new Universal_Double( $this->options() );
-		$tracking_data        = $this->class_instance->tracking( true );
-		$tracking_data_type   = is_array( $tracking_data );
+		$tracking = $this->prepare_tracking();
 
-		if ( $tracking_data_type ) {
-			$this->assertTrue( in_array( "'require', 'linkid', 'linkid.js'", $tracking_data ) );
-			$this->assertTrue( in_array( "'send','pageview'", $tracking_data ) );
+		if ( $tracking['is_array'] ) {
+			$this->assertTrue( in_array( "'require', 'linkid', 'linkid.js'", $tracking['data'] ) );
+			$this->assertTrue( in_array( "'send','pageview'", $tracking['data'] ) );
 		} else {
-			$this->assertTrue( $tracking_data_type );
+			$this->assertTrue( $tracking['is_array'] );
 		}
 	}
 
@@ -230,15 +241,13 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->manual_ua_code_field = 'UA-1234567-89';
 		$this->allow_anchor         = 1;
 
-		$this->class_instance = new Universal_Double( $this->options() );
-		$tracking_data        = $this->class_instance->tracking( true );
-		$tracking_data_type   = is_array( $tracking_data );
+		$tracking = $this->prepare_tracking();
 
-		if ( $tracking_data_type ) {
-			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor': true}", $tracking_data ) );
-			$this->assertTrue( in_array( "'send','pageview'", $tracking_data ) );
+		if ( $tracking['is_array'] ) {
+			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor': true}", $tracking['data'] ) );
+			$this->assertTrue( in_array( "'send','pageview'", $tracking['data'] ) );
 		} else {
-			$this->assertTrue( $tracking_data_type );
+			$this->assertTrue( $tracking['is_array'] );
 		}
 	}
 
@@ -252,15 +261,13 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->manual_ua_code_field = 'UA-1234567-89';
 		$this->add_allow_linker     = 1;
 
-		$this->class_instance = new Universal_Double( $this->options() );
-		$tracking_data        = $this->class_instance->tracking( true );
-		$tracking_data_type   = is_array( $tracking_data );
+		$tracking = $this->prepare_tracking();
 
-		if ( $tracking_data_type ) {
-			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowLinker': true}", $tracking_data ) );
-			$this->assertTrue( in_array( "'send','pageview'", $tracking_data ) );
+		if ( $tracking['is_array'] ) {
+			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowLinker': true}", $tracking['data'] ) );
+			$this->assertTrue( in_array( "'send','pageview'", $tracking['data'] ) );
 		} else {
-			$this->assertTrue( $tracking_data_type );
+			$this->assertTrue( $tracking['is_array'] );
 		}
 	}
 
@@ -275,15 +282,13 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->allow_anchor         = 1;
 		$this->add_allow_linker     = 1;
 
-		$this->class_instance = new Universal_Double( $this->options() );
-		$tracking_data        = $this->class_instance->tracking( true );
-		$tracking_data_type   = is_array( $tracking_data );
+		$tracking = $this->prepare_tracking();
 
-		if ( $tracking_data_type ) {
-			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor': true, 'allowLinker': true}", $tracking_data ) );
-			$this->assertTrue( in_array( "'send','pageview'", $tracking_data ) );
+		if ( $tracking['is_array'] ) {
+			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor': true, 'allowLinker': true}", $tracking['data'] ) );
+			$this->assertTrue( in_array( "'send','pageview'", $tracking['data'] ) );
 		} else {
-			$this->assertTrue( $tracking_data_type );
+			$this->assertTrue( $tracking['is_array'] );
 		}
 	}
 
