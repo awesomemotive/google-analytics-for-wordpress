@@ -189,8 +189,8 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$tracking_data        = $this->class_instance->tracking( true );
 
 		return array(
-			'data'		=>	$tracking_data,
-			'is_array'	=>	is_array( $tracking_data ),
+			'data'     => $tracking_data,
+			'is_array' => is_array( $tracking_data ),
 		);
 	}
 
@@ -286,6 +286,43 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 
 		if ( $tracking['is_array'] ) {
 			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor': true, 'allowLinker': true}", $tracking['data'] ) );
+			$this->assertTrue( in_array( "'send','pageview'", $tracking['data'] ) );
+		} else {
+			$this->assertTrue( $tracking['is_array'] );
+		}
+	}
+
+	/**
+	 * Test the tracking with a manual UA code with anonymize ips
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
+	 */
+	public function test_tracking_WITH_anonymize_ips() {
+		$this->anonymize_ips = 1;
+
+		$tracking = $this->prepare_tracking();
+
+		if ( $tracking['is_array'] ) {
+			$this->assertTrue( in_array( "'set', 'anonymizeIp', true", $tracking['data'] ) );
+			$this->assertTrue( in_array( "'send','pageview'", $tracking['data'] ) );
+		} else {
+			$this->assertTrue( $tracking['is_array'] );
+		}
+	}
+
+	/**
+	 * Test the tracking with a manual UA code with demographics
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
+	 */
+	public function test_tracking_WITH_demographics() {
+		$this->enable_universal = 1;
+		$this->demographics     = 1;
+
+		$tracking = $this->prepare_tracking();
+
+		if ( $tracking['is_array'] ) {
+			$this->assertTrue( in_array( "'require', 'displayfeatures'", $tracking['data'] ) );
 			$this->assertTrue( in_array( "'send','pageview'", $tracking['data'] ) );
 		} else {
 			$this->assertTrue( $tracking['is_array'] );

@@ -77,7 +77,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 			}
 
 			if ( isset( $this->options['allowhash'] ) && $this->options['allowhash'] ) {
-				$gaq_push[] = "'_setAllowHash',false";
+				$gaq_push[] = "'_setAllowHash',false"; // Deprecated @link https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory#_gat.GA_Tracker_._setAllowHash
 			}
 
 			// Check for Enhanced ilnk attribution
