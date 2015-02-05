@@ -219,7 +219,7 @@ class Yoast_GA_Options {
 		}
 		// Fallback to make sure every default option has a value
 		$defaults = $this->default_ga_values();
-		if( is_array( $defaults ) ) {
+		if ( is_array( $defaults ) ) {
 			foreach ( $defaults[$this->option_prefix] as $key => $value ) {
 				if ( ! isset( $this->options[$key] ) ) {
 					$this->options[$key] = $value;
@@ -258,12 +258,13 @@ class Yoast_GA_Options {
 				'tag_links_in_rss'           => 0,
 				'allow_anchor'               => 0,
 				'add_allow_linker'           => 0,
-				'enhanced_link_attribution'	 =>	0,
+				'enhanced_link_attribution'  => 0,
 				'custom_code'                => null,
 				'debug_mode'                 => 0,
 			)
 		);
 		$options = apply_filters( 'yst_ga_default-ga-values', $options, $this->option_prefix );
+
 		return $options;
 	}
 

@@ -18,7 +18,6 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 	public function tracking( $return_array = false ) {
 		global $wp_query;
 
-		//return 'Booom'.$this->options;
 		if ( $this->do_tracking() && ! is_preview() ) {
 			$gaq_push = array();
 
