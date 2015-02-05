@@ -6,11 +6,19 @@
 class Yoast_GA_Universal extends Yoast_GA_Tracking {
 
 	/**
+	 * Test helper function
+	 */
+	public function get_options(){
+		return $this->options;
+	}
+
+	/**
 	 * Function to output the GA Tracking code in the wp_head()
 	 */
 	public function tracking( $return_array = false ) {
 		global $wp_query;
 
+		//return 'Booom'.$this->options;
 		if ( $this->do_tracking() && ! is_preview() ) {
 			$gaq_push = array();
 
@@ -74,9 +82,10 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 			}
 
 			// Check for Enhanced ilnk attribution
-			if ( isset( $this->options['enhanced_link_attribution'] ) && $this->options['enhanced_link_attribution'] == 1 ) {
+			if ( $this->get_enhanced_link_attribution() == 1 ) {
 				$gaq_push[] = "'require', 'linkid', 'linkid.js'";
 			}
+			$gaq_push[] = 'Enhanced link value: ' . $this->get_enhanced_link_attribution();
 
 			if ( is_404() ) {
 				$gaq_push[] = "'send','pageview','/404.html?page=' + document.location.pathname + document.location.search + '&from=' + document.referrer";
