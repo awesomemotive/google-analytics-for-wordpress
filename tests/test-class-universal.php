@@ -395,7 +395,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->custom_code = '__custom_code[\"test\"]';
 
 		$tracking = $this->prepare_tracking();
-		var_dump( $tracking );
+		
 		if ( $tracking['is_array'] ) {
 			foreach ( $tracking['data'] as $row ) {
 				if ( is_array( $row ) ) {
@@ -408,5 +408,5 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 			$this->assertTrue( $tracking['is_array'] );
 		}
 	}
-	
+
 }
