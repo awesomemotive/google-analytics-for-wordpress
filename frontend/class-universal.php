@@ -85,7 +85,6 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 			if ( $this->get_enhanced_link_attribution() == 1 ) {
 				$gaq_push[] = "'require', 'linkid', 'linkid.js'";
 			}
-			$gaq_push[] = 'Enhanced link value: ' . $this->get_enhanced_link_attribution();
 
 			if ( is_404() ) {
 				$gaq_push[] = "'send','pageview','/404.html?page=' + document.location.pathname + document.location.search + '&from=' + document.referrer";
