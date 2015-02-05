@@ -221,6 +221,50 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Test the tracking with a manual UA code with allow anchor
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
+	 */
+	public function test_tracking_WITH_allow_anchor() {
+		$this->manual_ua_code       = 1;
+		$this->manual_ua_code_field = 'UA-1234567-89';
+		$this->allow_anchor         = 1;
+
+		$this->class_instance = new Universal_Double( $this->options() );
+		$tracking_data        = $this->class_instance->tracking( true );
+		$tracking_data_type   = is_array( $tracking_data );
+
+		if ( $tracking_data_type ) {
+			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor': true}", $tracking_data ) );
+			$this->assertTrue( in_array( "'send','pageview'", $tracking_data ) );
+		} else {
+			$this->assertTrue( $tracking_data_type );
+		}
+	}
+
+	/**
+	 * Test the tracking with a manual UA code with add allow linker
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
+	 */
+	public function test_tracking_WITH_add_allow_linker() {
+		$this->manual_ua_code       = 1;
+		$this->manual_ua_code_field = 'UA-1234567-89';
+		$this->add_allow_linker     = 1;
+
+		$this->class_instance = new Universal_Double( $this->options() );
+		$tracking_data        = $this->class_instance->tracking( true );
+		$tracking_data_type   = is_array( $tracking_data );
+
+		if ( $tracking_data_type ) {
+			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowLinker': true}", $tracking_data ) );
+			$this->assertTrue( in_array( "'send','pageview'", $tracking_data ) );
+		} else {
+			$this->assertTrue( $tracking_data_type );
+		}
+	}
+
+	/**
 	 * Test the tracking with a manual UA code with allow anchor and add allow linker
 	 *
 	 * @covers Yoast_GA_Universal::tracking()
@@ -234,7 +278,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->class_instance = new Universal_Double( $this->options() );
 		$tracking_data        = $this->class_instance->tracking( true );
 		$tracking_data_type   = is_array( $tracking_data );
-		
+
 		if ( $tracking_data_type ) {
 			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor': true, 'allowLinker': true}", $tracking_data ) );
 			$this->assertTrue( in_array( "'send','pageview'", $tracking_data ) );
