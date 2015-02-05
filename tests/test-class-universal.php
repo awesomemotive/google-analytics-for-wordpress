@@ -146,6 +146,16 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	/**
 	 * @var int
 	 */
+	private $debug_mode = 0;
+
+	/**
+	 * @var null|string
+	 */
+	private $custom_code = null;
+
+	/**
+	 * @var int
+	 */
 	private $allow_anchor = 0;
 
 	/**
@@ -172,8 +182,8 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 			'track_full_url'             => 'domain',
 			'subdomain_tracking'         => null,
 			'tag_links_in_rss'           => 0,
-			'custom_code'                => null,
-			'debug_mode'                 => 0,
+			'custom_code'                => $this->custom_code,
+			'debug_mode'                 => $this->debug_mode,
 			'add_allow_linker'           => $this->add_allow_linker,
 			'allow_anchor'               => $this->allow_anchor,
 		);
@@ -381,27 +391,22 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	 *
 	 * @covers Yoast_GA_JS::tracking()
 	 */
-//	public function test_custom_code() {
-//		$options_singleton      = Yoast_GA_Options::instance();
-//		$options                = $options_singleton->get_options();
-//		$options['custom_code'] = '__custom_code[\"test\"]';
-//		$options_singleton->update_option( $options );
-//
-//		// create and go to post
-//		$post_id = $this->factory->post->create();
-//		$this->go_to( get_permalink( $post_id ) );
-//
-//		// Get tracking code
-//		$tracking_data = $this->class_instance->tracking( true );
-//
-//		if ( is_array( $tracking_data ) ) {
-//			foreach ( $tracking_data as $row ) {
-//				if ( is_array( $row ) ) {
-//					if ( $row['type'] == 'custom_code' ) {
-//						$this->assertEquals( $row['value'], '__custom_code["test"]' );
-//					}
-//				}
-//			}
-//		}
-//	}
+	public function test_tracking_WITH_debug_mode() {
+		$this->custom_code = '__custom_code[\"test\"]';
+
+		$tracking = $this->prepare_tracking();
+		var_dump( $tracking );
+		if ( $tracking['is_array'] ) {
+			foreach ( $tracking['data'] as $row ) {
+				if ( is_array( $row ) ) {
+					if ( $row['type'] == 'custom_code' ) {
+						$this->assertEquals( $row['value'], '__custom_code["test"]' );
+					}
+				}
+			}
+		} else {
+			$this->assertTrue( $tracking['is_array'] );
+		}
+	}
+	
 }
