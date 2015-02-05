@@ -185,35 +185,23 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test tracking
-	 *
-	 * @covers Yoast_GA_Universal::tracking()
+	 * Test the tracking with a manual UA code with Enhanced link attribution
 	 */
-//	public function test_tracking() {
-//		// Update the options
-//		$options_singleton               = Yoast_GA_Options::instance();
-//		$options                         = $options_singleton->get_options();
-//		$options['enable_universal']     = 1;
-//		$options['allowanchor']          = 1;
-//		$options['manual_ua_code']       = 1;
-//		$options['manual_ua_code_field'] = 'UA-1234567-89';
-//		$options_singleton->update_option( $options );
-//
-//		// create and go to post
-//		$post_id = $this->factory->post->create();
-//		$this->go_to( get_permalink( $post_id ) );
-//
-//		// Get tracking code
-//		$tracking_data      = $this->class_instance->tracking( true );
-//		$tracking_data_type = is_array( $tracking_data );
-//
-//		if ( $tracking_data_type ) {
-//			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto'", $tracking_data ) );
-//			$this->assertTrue( in_array( "'send','pageview'", $tracking_data ) );
-//		} else {
-//			$this->assertTrue( $tracking_data_type );
-//		}
-//	}
+	public function test_tracking_WITH_enhanced_link_attribtion() {
+		$this->enhanced_link_attribution = 1;
+
+		$this->class_instance = new Universal_Double( $this->options() );
+		$tracking_data        = $this->class_instance->tracking( true );
+		$tracking_data_type   = is_array( $tracking_data );
+
+		if ( $tracking_data_type ) {
+			var_dump( $tracking_data );
+			$this->assertTrue( in_array( "'require', 'linkid', 'linkid.js'", $tracking_data ) );
+			$this->assertTrue( in_array( "'send','pageview'", $tracking_data ) );
+		} else {
+			$this->assertTrue( $tracking_data_type );
+		}
+	}
 
 	/**
 	 * Test tracking with the Enhanced link attribution enabled
