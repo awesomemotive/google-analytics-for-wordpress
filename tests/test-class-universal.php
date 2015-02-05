@@ -70,6 +70,10 @@ class Universal_Double extends Yoast_GA_Universal {
 		return new Options_Double( $this->test_options );
 	}
 
+	public function do_tracking() {
+		return true;
+	}
+
 }
 
 class Yoast_GA_Universal_Test extends GA_UnitTestCase {
@@ -135,6 +139,16 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	private $track_download_as = 'event';
 
 	/**
+	 * @var int
+	 */
+	private $add_allow_linker = 0;
+
+	/**
+	 * @var int
+	 */
+	private $allow_anchor = 0;
+
+	/**
 	 * Set the options
 	 *
 	 * @return array
@@ -158,15 +172,17 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 			'track_full_url'             => 'domain',
 			'subdomain_tracking'         => null,
 			'tag_links_in_rss'           => 0,
-			'allow_anchor'               => 0,
-			'add_allow_linker'           => 0,
 			'custom_code'                => null,
 			'debug_mode'                 => 0,
+			'add_allow_linker'           => $this->add_allow_linker,
+			'allow_anchor'               => $this->allow_anchor,
 		);
 	}
 
 	/**
 	 * Test the tracking with a manual UA code
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
 	 */
 	public function test_tracking() {
 		$this->manual_ua_code       = 1;
@@ -186,8 +202,10 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 
 	/**
 	 * Test the tracking with a manual UA code with Enhanced link attribution
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
 	 */
-	public function test_tracking_WITH_enhanced_link_attribtion() {
+	public function test_tracking_WITH_enhanced_link_attribution() {
 		$this->enhanced_link_attribution = 1;
 
 		$this->class_instance = new Universal_Double( $this->options() );
@@ -195,7 +213,6 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$tracking_data_type   = is_array( $tracking_data );
 
 		if ( $tracking_data_type ) {
-			var_dump( $tracking_data );
 			$this->assertTrue( in_array( "'require', 'linkid', 'linkid.js'", $tracking_data ) );
 			$this->assertTrue( in_array( "'send','pageview'", $tracking_data ) );
 		} else {
@@ -204,32 +221,27 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test tracking with the Enhanced link attribution enabled
+	 * Test the tracking with a manual UA code with allow anchor and add allow linker
 	 *
 	 * @covers Yoast_GA_Universal::tracking()
 	 */
-//	public function test_tracking_WITH_enhanced_link_attribution() {
-//		$options = array(
-//			'manual_ua_code'            => 1,
-//			'manual_ua_code_field'      => 'UA-1234567-89',
-//			'enable_universal'          => 1,
-//			'enhanced_link_attribution' => 1,
-//		);
-//
-//		// Configure the options in the options stub
-//		$stub = $this->getMockForAbstractClass( 'Yoast_GA_Tracking' );
-//		$stub->method( 'get_enhanced_link_attribution' )
-//			->willReturn( $options['enhanced_link_attribution'] );
-//
-//		//$result = $stub->tracking( true );
-//
-//		$stub_universal = $this->getMockBuilder( 'Yoast_GA_Universal' )
-//			->getMock();
-//
-//		$result = $stub_universal->tracking( true );
-//
-//		var_dump( $result );
-//	}
+	public function test_tracking_WITH_allow_anchor_AND_add_allow_linker() {
+		$this->manual_ua_code       = 1;
+		$this->manual_ua_code_field = 'UA-1234567-89';
+		$this->allow_anchor         = 1;
+		$this->add_allow_linker     = 1;
+
+		$this->class_instance = new Universal_Double( $this->options() );
+		$tracking_data        = $this->class_instance->tracking( true );
+		$tracking_data_type   = is_array( $tracking_data );
+		
+		if ( $tracking_data_type ) {
+			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor': true, 'allowLinker': true}", $tracking_data ) );
+			$this->assertTrue( in_array( "'send','pageview'", $tracking_data ) );
+		} else {
+			$this->assertTrue( $tracking_data_type );
+		}
+	}
 
 	/**
 	 * Test some content
@@ -237,9 +249,12 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	 * @covers Yoast_GA_Universal::the_content()
 	 */
 //	public function test_the_content() {
-//		$test_string = 'Lorem ipsum dolor sit amet, <a href="' . get_site_url() . '/test">Linking text</a> Lorem ipsum dolor sit amet';
+//		$this->track_outbound = 1;
 //
-//		$this->assertEquals( $this->class_instance->the_content( $test_string ), "Lorem ipsum dolor sit amet, <a href=\"http://example.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-article-int', 'http://example.org/test', 'Linking text');\" >Linking text</a> Lorem ipsum dolor sit amet" );
+//		$this->class_instance = new Universal_Double( $this->options() );
+//		$test_string          = 'Lorem ipsum dolor sit amet, <a href="' . get_site_url() . '/test">Linking text</a> Lorem ipsum dolor sit amet';
+//
+//		$this->assertEquals( "Lorem ipsum dolor sit amet, <a href=\"http://example.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-article-int', 'http://example.org/test', 'Linking text');\" >Linking text</a> Lorem ipsum dolor sit amet", $this->class_instance->the_content( $test_string ) );
 //	}
 
 	/**

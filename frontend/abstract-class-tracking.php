@@ -91,6 +91,7 @@ abstract class Yoast_GA_Tracking {
 	 * @return mixed
 	 */
 	public function parse_article_link( $matches ) {
+		var_dump( $matches );
 		return $this->output_parse_link( 'outbound-article', $matches );
 	}
 
