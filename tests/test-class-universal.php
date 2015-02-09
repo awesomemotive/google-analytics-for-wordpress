@@ -609,15 +609,4 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-comment', 'http://examples.org/test', 'Linking text');\"  title=\"test\" style=\"color: #fff;\">Linking text</a>", 'comment_text', 'title="test" style="color: #fff;"' );
 	}
 
-	/**
-	 * Test a text string
-	 *
-	 * @covers Yoast_GA_Universal::comment_text()
-	 */
-//	public function test_comment_text() {
-//		$test_string = 'Lorem ipsum dolor sit amet, consectetur <a href="' . get_site_url() . '/test">adipiscing elit</a>. Etiam tincidunt ullamcorper porttitor. Nam dapibus tincidunt posuere. Proin dignissim nisl at posuere fringilla.';
-//
-//		$this->assertEquals( $this->class_instance->comment_text( $test_string ), "Lorem ipsum dolor sit amet, consectetur <a href=\"http://example.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-comment-int', '" . get_site_url() . "/test', 'adipiscing elit');\" >adipiscing elit</a>. Etiam tincidunt ullamcorper porttitor. Nam dapibus tincidunt posuere. Proin dignissim nisl at posuere fringilla." );
-//	}
-
 }
