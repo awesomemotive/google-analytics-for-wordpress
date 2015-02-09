@@ -552,17 +552,6 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test a nav menu
-	 *
-	 * @covers Yoast_GA_Universal::nav_menu()
-	 */
-//	public function test_nav_menu() {
-//		$test_string = '<a href="' . get_site_url() . '/test">Linking text</a>';
-//
-//		$this->assertEquals( $this->class_instance->nav_menu( $test_string ), "<a href=\"" . get_site_url() . "/test\" onclick=\"__gaTracker('send', 'event', 'outbound-menu-int', 'http://example.org/test', 'Linking text');\" >Linking text</a>" );
-//	}
-
-	/**
 	 * Test a text string
 	 *
 	 * @covers Yoast_GA_Universal::comment_text()
