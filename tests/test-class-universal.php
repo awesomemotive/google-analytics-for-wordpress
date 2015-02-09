@@ -205,6 +205,20 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Helper to replace links in the_content, widget_content, nav_menu and the comments section
+	 *
+	 * @param $url
+	 * @param $expected_url
+	 * @param $method
+	 */
+	private function helper_replace_links( $url, $expected_url, $method ){
+		$this->class_instance = new Universal_Double( $this->options() );
+		$test_string          = 'Lorem ipsum dolor sit amet, <a href="' . $url . '">Linking text</a> Lorem ipsum dolor sit amet';
+
+		$this->assertEquals( "Lorem ipsum dolor sit amet, " . $expected_url . " Lorem ipsum dolor sit amet", $this->class_instance->$method( $test_string ) );
+	}
+
+	/**
 	 * Test the tracking with a manual UA code
 	 *
 	 * @covers Yoast_GA_Universal::tracking()
@@ -340,18 +354,38 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Test the custom code in the tracking
+	 *
+	 * @covers Yoast_GA_JS::tracking()
+	 */
+	public function test_tracking_WITH_debug_mode() {
+		$this->custom_code = '__custom_code[\"test\"]';
+
+		$tracking = $this->prepare_tracking();
+
+		if ( $tracking['is_array'] ) {
+			foreach ( $tracking['data'] as $row ) {
+				if ( is_array( $row ) ) {
+					if ( $row['type'] == 'custom_code' ) {
+						$this->assertEquals( $row['value'], '__custom_code["test"]' );
+					}
+				}
+			}
+		} else {
+			$this->assertTrue( $tracking['is_array'] );
+		}
+	}
+
+	/**
 	 * Test some content
 	 *
 	 * @covers Yoast_GA_Universal::the_content()
 	 */
-//	public function test_the_content() {
-//		$this->track_outbound = 1;
-//
-//		$this->class_instance = new Universal_Double( $this->options() );
-//		$test_string          = 'Lorem ipsum dolor sit amet, <a href="' . get_site_url() . '/test">Linking text</a> Lorem ipsum dolor sit amet';
-//
-//		$this->assertEquals( "Lorem ipsum dolor sit amet, <a href=\"http://example.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-article-int', 'http://example.org/test', 'Linking text');\" >Linking text</a> Lorem ipsum dolor sit amet", $this->class_instance->the_content( $test_string ) );
-//	}
+	public function test_the_content() {
+		$this->track_outbound = 1;
+
+		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-article', 'http://examples.org/test', 'Linking text');\" >Linking text</a>", 'the_content' );
+	}
 
 	/**
 	 * Test some widget content
@@ -385,28 +419,5 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 //
 //		$this->assertEquals( $this->class_instance->comment_text( $test_string ), "Lorem ipsum dolor sit amet, consectetur <a href=\"http://example.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-comment-int', '" . get_site_url() . "/test', 'adipiscing elit');\" >adipiscing elit</a>. Etiam tincidunt ullamcorper porttitor. Nam dapibus tincidunt posuere. Proin dignissim nisl at posuere fringilla." );
 //	}
-
-	/**
-	 * Test the custom code in the tracking
-	 *
-	 * @covers Yoast_GA_JS::tracking()
-	 */
-	public function test_tracking_WITH_debug_mode() {
-		$this->custom_code = '__custom_code[\"test\"]';
-
-		$tracking = $this->prepare_tracking();
-		
-		if ( $tracking['is_array'] ) {
-			foreach ( $tracking['data'] as $row ) {
-				if ( is_array( $row ) ) {
-					if ( $row['type'] == 'custom_code' ) {
-						$this->assertEquals( $row['value'], '__custom_code["test"]' );
-					}
-				}
-			}
-		} else {
-			$this->assertTrue( $tracking['is_array'] );
-		}
-	}
 
 }
