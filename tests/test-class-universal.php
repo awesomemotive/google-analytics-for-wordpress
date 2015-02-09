@@ -408,7 +408,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->track_internal_as_outbound = '/out/';
 		$this->track_internal_as_label    = 'test-label';
 
-		$this->helper_replace_links( '' . get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-article-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'the_content' );
+		$this->helper_replace_links( get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-article-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'the_content' );
 	}
 
 	/**
@@ -421,7 +421,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->track_internal_as_label    = 'test-label';
 		$this->track_download_as          = 'pageview';
 
-		$this->helper_replace_links( '' . get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-article-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'the_content' );
+		$this->helper_replace_links( get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-article-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'the_content' );
 	}
 
 	/**
@@ -466,7 +466,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->track_internal_as_outbound = '/out/';
 		$this->track_internal_as_label    = 'test-label';
 
-		$this->helper_replace_links( '' . get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-widget-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'widget_content' );
+		$this->helper_replace_links( get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-widget-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'widget_content' );
 	}
 
 	/**
@@ -479,7 +479,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->track_internal_as_label    = 'test-label';
 		$this->track_download_as          = 'pageview';
 
-		$this->helper_replace_links( '' . get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-widget-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'widget_content' );
+		$this->helper_replace_links( get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-widget-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'widget_content' );
 	}
 
 	/**
@@ -524,7 +524,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->track_internal_as_outbound = '/out/';
 		$this->track_internal_as_label    = 'test-label';
 
-		$this->helper_replace_links( '' . get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-menu-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'nav_menu' );
+		$this->helper_replace_links( get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-menu-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'nav_menu' );
 	}
 
 	/**
@@ -537,7 +537,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->track_internal_as_label    = 'test-label';
 		$this->track_download_as          = 'pageview';
 
-		$this->helper_replace_links( '' . get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-menu-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'nav_menu' );
+		$this->helper_replace_links( get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-menu-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'nav_menu' );
 	}
 
 	/**
@@ -582,7 +582,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->track_internal_as_outbound = '/out/';
 		$this->track_internal_as_label    = 'test-label';
 
-		$this->helper_replace_links( '' . get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-comment-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'comment_text' );
+		$this->helper_replace_links( get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-comment-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'comment_text' );
 	}
 
 	/**
@@ -595,7 +595,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->track_internal_as_label    = 'test-label';
 		$this->track_download_as          = 'pageview';
 
-		$this->helper_replace_links( '' . get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-comment-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'comment_text' );
+		$this->helper_replace_links( get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-comment-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'comment_text' );
 	}
 
 	/**
