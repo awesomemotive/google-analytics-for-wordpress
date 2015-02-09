@@ -494,6 +494,64 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Test some content
+	 *
+	 * @covers Yoast_GA_Universal::nav_menu()
+	 */
+	public function test_nav_menu_WITH_outbound_link() {
+		$this->track_outbound = 1;
+
+		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-menu', 'http://examples.org/test', 'Linking text');\">Linking text</a>", 'nav_menu' );
+	}
+
+	/**
+	 * Test some content
+	 *
+	 * @covers Yoast_GA_Universal::nav_menu()
+	 */
+	public function test_nav_menu_WITH_outbound_link_without_tracking() {
+		$this->track_outbound = 0;
+
+		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\">Linking text</a>", 'nav_menu' );
+	}
+
+	/**
+	 * Test some content
+	 *
+	 * @covers Yoast_GA_Universal::nav_menu()
+	 */
+	public function test_nav_menu_WITH_interal_link_as_outbound_link() {
+		$this->track_internal_as_outbound = '/out/';
+		$this->track_internal_as_label    = 'test-label';
+
+		$this->helper_replace_links( '' . get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-menu-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'nav_menu' );
+	}
+
+	/**
+	 * Test some content
+	 *
+	 * @covers Yoast_GA_Universal::nav_menu()
+	 */
+	public function test_nav_menu_WITH_interal_link_as_outbound_link_as_pageview() {
+		$this->track_internal_as_outbound = '/out/';
+		$this->track_internal_as_label    = 'test-label';
+		$this->track_download_as          = 'pageview';
+
+		$this->helper_replace_links( '' . get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-menu-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'nav_menu' );
+	}
+
+	/**
+	 * Test some content
+	 *
+	 * @covers Yoast_GA_Universal::nav_menu()
+	 */
+	public function test_nav_menu_WITH_outbound_link_WITH_link_attributes() {
+		$this->track_outbound = 1;
+
+		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-menu', 'http://examples.org/test', 'Linking text');\"  title=\"test\" style=\"color: #fff;\">Linking text</a>", 'nav_menu', 'title="test" style="color: #fff;"' );
+	}
+
+	/**
 	 * Test a nav menu
 	 *
 	 * @covers Yoast_GA_Universal::nav_menu()
