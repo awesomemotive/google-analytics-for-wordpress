@@ -411,6 +411,19 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Test some content
+	 *
+	 * @covers Yoast_GA_Universal::the_content()
+	 */
+	public function test_the_content_WITH_interal_link_as_outbound_link_as_pageview() {
+		$this->track_internal_as_outbound = '/out/';
+		$this->track_internal_as_label    = 'test-label';
+		$this->track_download_as          = 'pageview';
+
+		$this->helper_replace_links( '' . get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-article-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'the_content' );
+	}
+
+	/**
 	 * Test some widget content
 	 *
 	 * @covers Yoast_GA_Universal::widget_content()
