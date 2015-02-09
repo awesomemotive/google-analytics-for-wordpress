@@ -179,9 +179,8 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 		if( !empty( $link['link_attributes'] ) ) {
 			return '<a href="' . $full_url . '" ' . trim( $link['link_attributes'] ) . '>' . $link['link_text'] . '</a>';
 		}
-		else{
-			return '<a href="' . $full_url . '">' . $link['link_text'] . '</a>';
-		}
+
+		return '<a href="' . $full_url . '">' . $link['link_text'] . '</a>';
 	}
 
 }
