@@ -176,8 +176,12 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 
 		$link['link_attributes'] = $this->output_add_onclick( $link['link_attributes'], $onclick );
 
-		return '<a href="' . $full_url . '" ' . $link['link_attributes'] . '>' . $link['link_text'] . '</a>';
-
+		if( !empty( $link['link_attributes'] ) ) {
+			return '<a href="' . $full_url . '" ' . trim( $link['link_attributes'] ) . '>' . $link['link_text'] . '</a>';
+		}
+		else{
+			return '<a href="' . $full_url . '">' . $link['link_text'] . '</a>';
+		}
 	}
 
 }

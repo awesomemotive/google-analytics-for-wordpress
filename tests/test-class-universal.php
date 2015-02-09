@@ -381,10 +381,21 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	 *
 	 * @covers Yoast_GA_Universal::the_content()
 	 */
-	public function test_the_content() {
+	public function test_the_content_WITH_outbound_link() {
 		$this->track_outbound = 1;
 
-		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-article', 'http://examples.org/test', 'Linking text');\" >Linking text</a>", 'the_content' );
+		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-article', 'http://examples.org/test', 'Linking text');\">Linking text</a>", 'the_content' );
+	}
+
+	/**
+	 * Test some content
+	 *
+	 * @covers Yoast_GA_Universal::the_content()
+	 */
+	public function test_the_content_WITH_outbound_link_without_tracking() {
+		$this->track_outbound = 0;
+
+		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\">Linking text</a>", 'the_content' );
 	}
 
 	/**
