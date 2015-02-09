@@ -207,10 +207,10 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	/**
 	 * Helper to replace links in the_content, widget_content, nav_menu and the comments section
 	 *
-	 * @param      $url
-	 * @param      $expected_url
-	 * @param      $method
-	 * @param null $link_attributes
+	 * @param string $url
+	 * @param string $expected_url
+	 * @param string $method
+	 * @param null   $link_attributes
 	 */
 	private function helper_replace_links( $url, $expected_url, $method, $link_attributes = null ) {
 		$this->class_instance = new Universal_Double( $this->options() );
@@ -378,7 +378,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content with an outbound link
 	 *
 	 * @covers Yoast_GA_Universal::the_content()
 	 */
@@ -389,7 +389,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content without link tracking
 	 *
 	 * @covers Yoast_GA_Universal::the_content()
 	 */
@@ -400,7 +400,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content with an internal link as outbound
 	 *
 	 * @covers Yoast_GA_Universal::the_content()
 	 */
@@ -412,7 +412,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content as internal link as outbound and track as pageview
 	 *
 	 * @covers Yoast_GA_Universal::the_content()
 	 */
@@ -425,7 +425,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content with outbound links and link attributes
 	 *
 	 * @covers Yoast_GA_Universal::the_content()
 	 */
@@ -436,7 +436,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content with an outbound link
 	 *
 	 * @covers Yoast_GA_Universal::widget_content()
 	 */
@@ -447,7 +447,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content without link tracking
 	 *
 	 * @covers Yoast_GA_Universal::widget_content()
 	 */
@@ -458,7 +458,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content with an internal link as outbound
 	 *
 	 * @covers Yoast_GA_Universal::widget_content()
 	 */
@@ -470,7 +470,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content as internal link as outbound and track as pageview
 	 *
 	 * @covers Yoast_GA_Universal::widget_content()
 	 */
@@ -483,7 +483,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content with outbound links and link attributes
 	 *
 	 * @covers Yoast_GA_Universal::widget_content()
 	 */
@@ -494,7 +494,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content with an outbound link
 	 *
 	 * @covers Yoast_GA_Universal::nav_menu()
 	 */
@@ -505,7 +505,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content without link tracking
 	 *
 	 * @covers Yoast_GA_Universal::nav_menu()
 	 */
@@ -516,7 +516,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content with an internal link as outbound
 	 *
 	 * @covers Yoast_GA_Universal::nav_menu()
 	 */
@@ -528,7 +528,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content as internal link as outbound and track as pageview
 	 *
 	 * @covers Yoast_GA_Universal::nav_menu()
 	 */
@@ -541,7 +541,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content with outbound links and link attributes
 	 *
 	 * @covers Yoast_GA_Universal::nav_menu()
 	 */
@@ -552,7 +552,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content with an outbound link
 	 *
 	 * @covers Yoast_GA_Universal::comment_text()
 	 */
@@ -563,7 +563,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content without link tracking
 	 *
 	 * @covers Yoast_GA_Universal::comment_text()
 	 */
@@ -574,7 +574,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content with an internal link as outbound
 	 *
 	 * @covers Yoast_GA_Universal::comment_text()
 	 */
@@ -586,7 +586,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content as internal link as outbound and track as pageview
 	 *
 	 * @covers Yoast_GA_Universal::comment_text()
 	 */
@@ -599,7 +599,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content
+	 * Test some content with outbound links and link attributes
 	 *
 	 * @covers Yoast_GA_Universal::comment_text()
 	 */
