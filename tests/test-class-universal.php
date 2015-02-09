@@ -207,13 +207,14 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	/**
 	 * Helper to replace links in the_content, widget_content, nav_menu and the comments section
 	 *
-	 * @param $url
-	 * @param $expected_url
-	 * @param $method
+	 * @param      $url
+	 * @param      $expected_url
+	 * @param      $method
+	 * @param null $link_attributes
 	 */
-	private function helper_replace_links( $url, $expected_url, $method ) {
+	private function helper_replace_links( $url, $expected_url, $method, $link_attributes = null ) {
 		$this->class_instance = new Universal_Double( $this->options() );
-		$test_string          = 'Lorem ipsum dolor sit amet, <a href="' . $url . '">Linking text</a> Lorem ipsum dolor sit amet';
+		$test_string          = 'Lorem ipsum dolor sit amet, <a href="' . $url . '" ' . $link_attributes . '>Linking text</a> Lorem ipsum dolor sit amet';
 
 		$this->assertEquals( "Lorem ipsum dolor sit amet, " . $expected_url . " Lorem ipsum dolor sit amet", $this->class_instance->$method( $test_string ) );
 	}
@@ -424,15 +425,73 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some widget content
+	 * Test some content
+	 *
+	 * @covers Yoast_GA_Universal::the_content()
+	 */
+	public function test_the_content_WITH_outbound_link_WITH_link_attributes() {
+		$this->track_outbound = 1;
+
+		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-article', 'http://examples.org/test', 'Linking text');\"  title=\"test\" style=\"color: #fff;\">Linking text</a>", 'the_content', 'title="test" style="color: #fff;"' );
+	}
+
+	/**
+	 * Test some content
 	 *
 	 * @covers Yoast_GA_Universal::widget_content()
 	 */
-//	public function test_widget_content() {
-//		$test_string = '<a href="' . get_site_url() . '/test">Linking text</a>';
-//
-//		$this->assertEquals( $this->class_instance->widget_content( $test_string ), "<a href=\"http://example.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-widget-int', 'http://example.org/test', 'Linking text');\" >Linking text</a>" );
-//	}
+	public function test_widget_content_WITH_outbound_link() {
+		$this->track_outbound = 1;
+
+		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-widget', 'http://examples.org/test', 'Linking text');\">Linking text</a>", 'widget_content' );
+	}
+
+	/**
+	 * Test some content
+	 *
+	 * @covers Yoast_GA_Universal::widget_content()
+	 */
+	public function test_widget_content_WITH_outbound_link_without_tracking() {
+		$this->track_outbound = 0;
+
+		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\">Linking text</a>", 'widget_content' );
+	}
+
+	/**
+	 * Test some content
+	 *
+	 * @covers Yoast_GA_Universal::widget_content()
+	 */
+	public function test_widget_content_WITH_interal_link_as_outbound_link() {
+		$this->track_internal_as_outbound = '/out/';
+		$this->track_internal_as_label    = 'test-label';
+
+		$this->helper_replace_links( '' . get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-widget-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'widget_content' );
+	}
+
+	/**
+	 * Test some content
+	 *
+	 * @covers Yoast_GA_Universal::widget_content()
+	 */
+	public function test_widget_content_WITH_interal_link_as_outbound_link_as_pageview() {
+		$this->track_internal_as_outbound = '/out/';
+		$this->track_internal_as_label    = 'test-label';
+		$this->track_download_as          = 'pageview';
+
+		$this->helper_replace_links( '' . get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-widget-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'widget_content' );
+	}
+
+	/**
+	 * Test some content
+	 *
+	 * @covers Yoast_GA_Universal::widget_content()
+	 */
+	public function test_widget_content_WITH_outbound_link_WITH_link_attributes() {
+		$this->track_outbound = 1;
+
+		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-widget', 'http://examples.org/test', 'Linking text');\"  title=\"test\" style=\"color: #fff;\">Linking text</a>", 'widget_content', 'title="test" style="color: #fff;"' );
+	}
 
 	/**
 	 * Test a nav menu
