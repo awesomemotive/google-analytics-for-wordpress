@@ -211,7 +211,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	 * @param $expected_url
 	 * @param $method
 	 */
-	private function helper_replace_links( $url, $expected_url, $method ){
+	private function helper_replace_links( $url, $expected_url, $method ) {
 		$this->class_instance = new Universal_Double( $this->options() );
 		$test_string          = 'Lorem ipsum dolor sit amet, <a href="' . $url . '">Linking text</a> Lorem ipsum dolor sit amet';
 
@@ -396,6 +396,18 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->track_outbound = 0;
 
 		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\">Linking text</a>", 'the_content' );
+	}
+
+	/**
+	 * Test some content
+	 *
+	 * @covers Yoast_GA_Universal::the_content()
+	 */
+	public function test_the_content_WITH_interal_link_as_outbound_link() {
+		$this->track_internal_as_outbound = '/out/';
+		$this->track_internal_as_label    = 'test-label';
+
+		$this->helper_replace_links( '' . get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-article-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'the_content' );
 	}
 
 	/**
