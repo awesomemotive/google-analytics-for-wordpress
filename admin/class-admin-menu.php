@@ -20,6 +20,13 @@ class Yoast_GA_Admin_Menu {
 	private $dashboards_disabled;
 
 	/**
+	 * The parent slug for the submenu items based on if the dashboards are disabled or not.
+	 *
+	 * @var string
+	 */
+	private $parent_slug;
+
+	/**
 	 * Setting the target_object and adding actions
 	 *
 	 * @param object $target_object
@@ -39,6 +46,7 @@ class Yoast_GA_Admin_Menu {
 		}
 
 		$this->dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
+		$this->parent_slug = ( $this->dashboards_disabled ? 'yst_ga_settings' : 'yst_ga_dashboard' );
 	}
 
 	/**
@@ -121,22 +129,13 @@ class Yoast_GA_Admin_Menu {
 	 */
 	private function prepare_submenu_page( $submenu_name, $submenu_slug, $font_color = '' ) {
 		return array(
-			'parent_slug'      => $this->get_parent_slug(),
+			'parent_slug'      => $this->parent_slug,
 			'page_title'       => __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . $submenu_name,
 			'menu_title'       => $this->parse_menu_title( $submenu_name, $font_color ),
 			'capability'       => 'manage_options',
 			'menu_slug'        => 'yst_ga_' . $submenu_slug,
 			'submenu_function' => array( $this->target_object, 'load_page' ),
 		);
-	}
-
-	/**
-	 * Determines the parent_slug based on if the dashboards are disabled or not.
-	 *
-	 * @return string
-	 */
-	private function get_parent_slug() {
-		return ( $this->dashboards_disabled ? 'yst_ga_settings' : 'yst_ga_dashboard' );
 	}
 
 	/**
