@@ -6,6 +6,13 @@
 class Yoast_GA_Universal extends Yoast_GA_Tracking {
 
 	/**
+	 * Test helper function
+	 */
+	public function get_options(){
+		return $this->options;
+	}
+
+	/**
 	 * Function to output the GA Tracking code in the wp_head()
 	 */
 	public function tracking( $return_array = false ) {
@@ -69,8 +76,9 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 				$gaq_push[] = "'require', 'displayfeatures'";
 			}
 
-			if ( isset( $this->options['allowhash'] ) && $this->options['allowhash'] ) {
-				$gaq_push[] = "'_setAllowHash',false";
+			// Check for Enhanced link attribution
+			if ( $this->get_enhanced_link_attribution() == 1 ) {
+				$gaq_push[] = "'require', 'linkid', 'linkid.js'";
 			}
 
 			if ( is_404() ) {
@@ -155,7 +163,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 			case 'internal-as-outbound':
 				$label = $this->sanitize_internal_label();
 
-				$onclick = "__gaTracker('send', 'event', '" . esc_attr( $link['category'] ) . '-' . esc_attr( $label ) . "', '" . esc_attr( $full_url ) . "', '" . esc_attr( strip_tags( $link['link_text'] ) ) . "');";
+				$onclick = "__gaTracker('send', '" . $this->options['track_download_as'] . "', '" . esc_attr( $link['category'] ) . '-' . esc_attr( $label ) . "', '" . esc_attr( $full_url ) . "', '" . esc_attr( strip_tags( $link['link_text'] ) ) . "');";
 
 				break;
 			case 'outbound':
@@ -168,8 +176,11 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 
 		$link['link_attributes'] = $this->output_add_onclick( $link['link_attributes'], $onclick );
 
-		return '<a href="' . $full_url . '" ' . $link['link_attributes'] . '>' . $link['link_text'] . '</a>';
+		if( !empty( $link['link_attributes'] ) ) {
+			return '<a href="' . $full_url . '" ' . trim( $link['link_attributes'] ) . '>' . $link['link_text'] . '</a>';
+		}
 
+		return '<a href="' . $full_url . '">' . $link['link_text'] . '</a>';
 	}
 
 }
