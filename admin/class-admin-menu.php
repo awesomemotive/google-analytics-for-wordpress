@@ -3,7 +3,7 @@
 /**
  * This class is for the backend, extendable for all child classes
  */
-class Yoast_GA_Admin_Menu extends Yoast_GA_Options {
+class Yoast_GA_Admin_Menu {
 
 	/**
 	 * The property used for storing target object (class admin)
@@ -119,14 +119,14 @@ class Yoast_GA_Admin_Menu extends Yoast_GA_Options {
 	 *
 	 * @return array
 	 */
-	private function prepare_submenu_page( $submenu_name, $font_color = '' ) {
+	private function prepare_submenu_page( $submenu_name, $submenu_slug, $font_color = '' ) {
 		$menu_title   = $this->parse_menu_title( $submenu_name, $font_color );
 		$submenu_page = array(
 			'parent_slug'      => 'yst_ga_dashboard',
 			'page_title'       => __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . $submenu_name,
 			'menu_title'       => $menu_title,
 			'capability'       => 'manage_options',
-			'menu_slug'        => 'yst_ga_' . strtolower( $submenu_name ),
+			'menu_slug'        => 'yst_ga_' . $submenu_slug,
 			'submenu_function' => array( $this->target_object, 'load_page' ),
 		);
 
@@ -159,6 +159,7 @@ class Yoast_GA_Admin_Menu extends Yoast_GA_Options {
 	 * @param $submenu_page
 	 */
 	private function add_submenu_page( $submenu_page ) {
+		print_r("I am adding a submenu_page");
 		$page             = add_submenu_page( $submenu_page['parent_slug'], $submenu_page['page_title'], $submenu_page['menu_title'], $submenu_page['capability'], $submenu_page['menu_slug'], $submenu_page['submenu_function'] );
 		$is_not_dashboard = ( 'yst_ga_settings' === $submenu_page['menu_slug'] || 'yst_ga_extensions' === $submenu_page['menu_slug'] );
 
@@ -208,6 +209,7 @@ class Yoast_GA_Admin_Menu extends Yoast_GA_Options {
 			'extensions' => array(
 				'color' => '#f18500',
 				'label' => __( 'Extensions', 'google-analytics-for-wordpress' ),
+				'slug' => 'extensions',
 			),
 		);
 
@@ -216,9 +218,11 @@ class Yoast_GA_Admin_Menu extends Yoast_GA_Options {
 				array(
 					'dashboard' => array(
 						'label' => __( 'Dashboard', 'google-analytics-for-wordpress' ),
+						'slug' => 'dashboard',
 					),
 					'settings'  => array(
 						'label' => __( 'Settings', 'google-analytics-for-wordpress' ),
+						'slug' => 'settings',
 					),
 				),
 				$submenu_types
@@ -231,9 +235,9 @@ class Yoast_GA_Admin_Menu extends Yoast_GA_Options {
 
 		foreach ( $submenu_types as $submenu_key => $submenu ) {
 			if ( isset( $submenu['color'] ) ) {
-				$submenu_page = $this->prepare_submenu_page( $submenu['label'], $submenu['color'] );
+				$submenu_page = $this->prepare_submenu_page( $submenu['label'], $submenu['slug'], $submenu['color'] );
 			} else {
-				$submenu_page = $this->prepare_submenu_page( $submenu['label'] );
+				$submenu_page = $this->prepare_submenu_page( $submenu['label'], $submenu['slug'] );
 			}
 			$this->add_submenu_page( $submenu_page );
 		}
