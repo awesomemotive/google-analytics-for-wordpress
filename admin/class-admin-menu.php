@@ -3,7 +3,7 @@
 /**
  * This class is for the backend, extendable for all child classes
  */
-class Yoast_GA_Admin_Menu extends Yoast_GA_Options {
+class Yoast_GA_Admin_Menu {
 
 	/**
 	 * The property used for storing target object (class admin)
@@ -18,6 +18,13 @@ class Yoast_GA_Admin_Menu extends Yoast_GA_Options {
 	 * @var
 	 */
 	private $dashboards_disabled;
+
+	/**
+	 * The parent slug for the submenu items based on if the dashboards are disabled or not.
+	 *
+	 * @var string
+	 */
+	private $parent_slug;
 
 	/**
 	 * Setting the target_object and adding actions
@@ -39,6 +46,7 @@ class Yoast_GA_Admin_Menu extends Yoast_GA_Options {
 		}
 
 		$this->dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
+		$this->parent_slug = ( $this->dashboards_disabled ? 'yst_ga_settings' : 'yst_ga_dashboard' );
 	}
 
 	/**
@@ -106,9 +114,9 @@ class Yoast_GA_Admin_Menu extends Yoast_GA_Options {
 	private function get_menu_position_value( $location ) {
 		if ( $location == 'top' ) {
 			return '2.00013467543';
-		} else {
-			return '100.00013467543';
 		}
+
+		return '100.00013467543';
 	}
 
 	/**
@@ -119,22 +127,15 @@ class Yoast_GA_Admin_Menu extends Yoast_GA_Options {
 	 *
 	 * @return array
 	 */
-	private function prepare_submenu_page( $submenu_name, $font_color = '' ) {
-		$menu_title   = $this->parse_menu_title( $submenu_name, $font_color );
-		$submenu_page = array(
-			'parent_slug'      => 'yst_ga_dashboard',
+	private function prepare_submenu_page( $submenu_name, $submenu_slug, $font_color = '' ) {
+		return array(
+			'parent_slug'      => $this->parent_slug,
 			'page_title'       => __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . $submenu_name,
-			'menu_title'       => $menu_title,
+			'menu_title'       => $this->parse_menu_title( $submenu_name, $font_color ),
 			'capability'       => 'manage_options',
-			'menu_slug'        => 'yst_ga_' . strtolower( $submenu_name ),
+			'menu_slug'        => 'yst_ga_' . $submenu_slug,
 			'submenu_function' => array( $this->target_object, 'load_page' ),
 		);
-
-		if ( $this->dashboards_disabled ) {
-			$submenu_page['parent_slug'] = 'yst_ga_settings';
-		}
-
-		return $submenu_page;
 	}
 
 	/**
@@ -190,13 +191,34 @@ class Yoast_GA_Admin_Menu extends Yoast_GA_Options {
 	 * @return array
 	 */
 	private function add_submenu_pages() {
+		foreach ( $this->get_submenu_types() as $submenu ) {
+			if ( isset( $submenu['color'] ) ) {
+				$submenu_page = $this->prepare_submenu_page( $submenu['label'], $submenu['slug'], $submenu['color'] );
+			} else {
+				$submenu_page = $this->prepare_submenu_page( $submenu['label'], $submenu['slug'] );
+			}
+			$this->add_submenu_page( $submenu_page );
+		}
+	}
+
+	/**
+	 * Determine which submenu types should be added as a submenu page.
+	 *
+	 * Dashboard can be disables by user
+	 *
+	 * Dashboard and settings are disables in network admin
+	 *
+	 * @return array
+	 */
+	private function get_submenu_types() {
 		/**
 		 * Array structure:
 		 *
 		 * array(
 		 *   $submenu_name => array(
 		 *        'color' => $font_color,
-		 *        'label'    =>    __( 'text-label', 'google-analytics-for-wordpress' ),
+		 *        'label' => __( 'text-label', 'google-analytics-for-wordpress' ),
+		 * 		  'slug'  => $menu_slug,
 		 *        ),
 		 *   ..,
 		 * )
@@ -204,38 +226,29 @@ class Yoast_GA_Admin_Menu extends Yoast_GA_Options {
 		 * $font_color can be left empty.
 		 *
 		 */
-		$submenu_types = array(
-			'extensions' => array(
-				'color' => '#f18500',
-				'label' => __( 'Extensions', 'google-analytics-for-wordpress' ),
-			),
-		);
+		$submenu_types = array();
 
 		if ( ! is_network_admin() ) {
-			$submenu_types = array_merge(
-				array(
-					'dashboard' => array(
-						'label' => __( 'Dashboard', 'google-analytics-for-wordpress' ),
-					),
-					'settings'  => array(
-						'label' => __( 'Settings', 'google-analytics-for-wordpress' ),
-					),
-				),
-				$submenu_types
+
+			if ( ! $this->dashboards_disabled ) {
+				$submenu_types['dashboard'] = array(
+					'label' => __( 'Dashboard', 'google-analytics-for-wordpress' ),
+					'slug'  => 'dashboard',
+				);
+			}
+
+			$submenu_types['settings'] = array(
+				'label' => __( 'Settings', 'google-analytics-for-wordpress' ),
+				'slug'  => 'settings',
 			);
 		}
 
-		if ( $this->dashboards_disabled ) {
-			unset( $submenu_types['dashboard'] );
-		}
+		$submenu_types['extensions'] = array(
+			'color' => '#f18500',
+			'label' => __( 'Extensions', 'google-analytics-for-wordpress' ),
+			'slug'  => 'extensions',
+		);
 
-		foreach ( $submenu_types as $submenu_key => $submenu ) {
-			if ( isset( $submenu['color'] ) ) {
-				$submenu_page = $this->prepare_submenu_page( $submenu['label'], $submenu['color'] );
-			} else {
-				$submenu_page = $this->prepare_submenu_page( $submenu['label'] );
-			}
-			$this->add_submenu_page( $submenu_page );
-		}
+		return $submenu_types;
 	}
 }
