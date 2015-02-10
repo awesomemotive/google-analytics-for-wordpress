@@ -120,11 +120,10 @@ class Yoast_GA_Admin_Menu {
 	 * @return array
 	 */
 	private function prepare_submenu_page( $submenu_name, $submenu_slug, $font_color = '' ) {
-		$menu_title   = $this->parse_menu_title( $submenu_name, $font_color );
 		$submenu_page = array(
 			'parent_slug'      => 'yst_ga_dashboard',
 			'page_title'       => __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . $submenu_name,
-			'menu_title'       => $menu_title,
+			'menu_title'       => $this->parse_menu_title( $submenu_name, $font_color ),
 			'capability'       => 'manage_options',
 			'menu_slug'        => 'yst_ga_' . $submenu_slug,
 			'submenu_function' => array( $this->target_object, 'load_page' ),
