@@ -159,7 +159,7 @@ class Yoast_GA_Admin_Menu {
 	 * @param $submenu_page
 	 */
 	private function add_submenu_page( $submenu_page ) {
-		print_r("I am adding a submenu_page");
+		print_r( "I am adding a submenu_page" );
 		$page             = add_submenu_page( $submenu_page['parent_slug'], $submenu_page['page_title'], $submenu_page['menu_title'], $submenu_page['capability'], $submenu_page['menu_slug'], $submenu_page['submenu_function'] );
 		$is_not_dashboard = ( 'yst_ga_settings' === $submenu_page['menu_slug'] || 'yst_ga_extensions' === $submenu_page['menu_slug'] );
 
@@ -209,7 +209,7 @@ class Yoast_GA_Admin_Menu {
 			'extensions' => array(
 				'color' => '#f18500',
 				'label' => __( 'Extensions', 'google-analytics-for-wordpress' ),
-				'slug' => 'extensions',
+				'slug'  => 'extensions',
 			),
 		);
 
@@ -218,11 +218,11 @@ class Yoast_GA_Admin_Menu {
 				array(
 					'dashboard' => array(
 						'label' => __( 'Dashboard', 'google-analytics-for-wordpress' ),
-						'slug' => 'dashboard',
+						'slug'  => 'dashboard',
 					),
 					'settings'  => array(
 						'label' => __( 'Settings', 'google-analytics-for-wordpress' ),
-						'slug' => 'settings',
+						'slug'  => 'settings',
 					),
 				),
 				$submenu_types
