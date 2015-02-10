@@ -104,7 +104,12 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		foreach ( $defaults[$this->option_prefix] as $key => $value ) {
 			if ( ! isset( $data[$key] ) ) {
 				// If no data was passed in, set it to the default.
-				$this->options[$key] = $value;
+				if ( $value === 1 ) {
+					// Disable the checkbox for now, use value 0
+					$this->options[$key] = 0;
+				} else {
+					$this->options[$key] = $value;
+				}
 			}
 		}
 
