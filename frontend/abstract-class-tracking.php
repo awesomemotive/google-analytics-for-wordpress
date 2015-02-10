@@ -15,7 +15,7 @@ abstract class Yoast_GA_Tracking {
 	 * Storage for the currently set options
 	 * @var mixed|void
 	 */
-	protected $options;
+	public $options;
 
 	/**
 	 * Should the tracking code be added
@@ -46,8 +46,8 @@ abstract class Yoast_GA_Tracking {
 	 * Class constructor
 	 */
 	public function __construct() {
-
-		$this->options = Yoast_GA_Options::instance()->options;
+		$options_class = $this->get_options_class();
+		$this->options = $options_class->options;
 
 		add_action( 'wp_head', array( $this, 'tracking' ), 8 );
 
@@ -57,12 +57,30 @@ abstract class Yoast_GA_Tracking {
 	}
 
 	/**
+	 * Get the options class
+	 *
+	 * @return object|Yoast_GA_Options
+	 */
+	protected function get_options_class() {
+		return Yoast_GA_Options::instance();
+	}
+
+	/**
 	 * Delegates `get_tracking_code` to the options class
 	 *
 	 * @return null
 	 */
 	public function get_tracking_code() {
-		return Yoast_GA_Options::instance()->get_tracking_code();
+		return $this->get_options_class()->get_tracking_code();
+	}
+
+	/**
+	 * Get 1 or 0 if we need to do enhanced link attribution
+	 *
+	 * @return mixed
+	 */
+	public function get_enhanced_link_attribution() {
+		return $this->options['enhanced_link_attribution'];
 	}
 
 	/**
