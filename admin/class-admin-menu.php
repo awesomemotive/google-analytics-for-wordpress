@@ -106,9 +106,9 @@ class Yoast_GA_Admin_Menu {
 	private function get_menu_position_value( $location ) {
 		if ( $location == 'top' ) {
 			return '2.00013467543';
-		} else {
-			return '100.00013467543';
 		}
+
+		return '100.00013467543';
 	}
 
 	/**
