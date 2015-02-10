@@ -120,20 +120,23 @@ class Yoast_GA_Admin_Menu {
 	 * @return array
 	 */
 	private function prepare_submenu_page( $submenu_name, $submenu_slug, $font_color = '' ) {
-		$submenu_page = array(
-			'parent_slug'      => 'yst_ga_dashboard',
+		return array(
+			'parent_slug'      => $this->get_parent_slug(),
 			'page_title'       => __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . $submenu_name,
 			'menu_title'       => $this->parse_menu_title( $submenu_name, $font_color ),
 			'capability'       => 'manage_options',
 			'menu_slug'        => 'yst_ga_' . $submenu_slug,
 			'submenu_function' => array( $this->target_object, 'load_page' ),
 		);
+	}
 
-		if ( $this->dashboards_disabled ) {
-			$submenu_page['parent_slug'] = 'yst_ga_settings';
-		}
-
-		return $submenu_page;
+	/**
+	 * Determines the parent_slug based on if the dashboards are disabled or not.
+	 *
+	 * @return string
+	 */
+	private function get_parent_slug() {
+		return ( $this->dashboards_disabled ? 'yst_ga_settings' : 'yst_ga_dashboard' );
 	}
 
 	/**
