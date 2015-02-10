@@ -51,7 +51,10 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			Yoast_Google_Analytics::get_instance()->check_for_ga_issues();
 		}
 
-		$this->handle_ga_post_request( $dashboards );
+
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+			$this->handle_ga_post_request( $dashboards );
+		}
 
 		/**
 		 * Show the notifications if we have one
@@ -149,25 +152,23 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 * @param $dashboards
 	 */
 	private function handle_ga_post_request( $dashboards ) {
-		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-			if ( ! function_exists( 'wp_verify_nonce' ) ) {
-				require_once( ABSPATH . 'wp-includes/pluggable.php' );
+		if ( ! function_exists( 'wp_verify_nonce' ) ) {
+			require_once( ABSPATH . 'wp-includes/pluggable.php' );
+		}
+
+		if ( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ) {
+			if ( ! isset ( $_POST['ignore_users'] ) ) {
+				$_POST['ignore_users'] = array();
 			}
 
-			if ( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ) {
-				if ( ! isset ( $_POST['ignore_users'] ) ) {
-					$_POST['ignore_users'] = array();
-				}
+			$dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
 
-				$dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
-
-				if ( $dashboards_disabled == false && isset( $_POST['dashboards_disabled'] ) ) {
-					$dashboards->reset_dashboards_data();
-				}
-
-				// Post submitted and verified with our nonce
-				$this->save_settings( $_POST );
+			if ( $dashboards_disabled == false && isset( $_POST['dashboards_disabled'] ) ) {
+				$dashboards->reset_dashboards_data();
 			}
+
+			// Post submitted and verified with our nonce
+			$this->save_settings( $_POST );
 		}
 	}
 
