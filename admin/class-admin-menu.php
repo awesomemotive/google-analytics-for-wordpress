@@ -159,7 +159,6 @@ class Yoast_GA_Admin_Menu {
 	 * @param $submenu_page
 	 */
 	private function add_submenu_page( $submenu_page ) {
-		print_r( "I am adding a submenu_page" );
 		$page             = add_submenu_page( $submenu_page['parent_slug'], $submenu_page['page_title'], $submenu_page['menu_title'], $submenu_page['capability'], $submenu_page['menu_slug'], $submenu_page['submenu_function'] );
 		$is_not_dashboard = ( 'yst_ga_settings' === $submenu_page['menu_slug'] || 'yst_ga_extensions' === $submenu_page['menu_slug'] );
 
