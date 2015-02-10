@@ -231,7 +231,7 @@ class Yoast_GA_Admin_Menu {
 			unset( $submenu_types['dashboard'] );
 		}
 
-		foreach ( $submenu_types as $submenu_key => $submenu ) {
+		foreach ( $submenu_types as $submenu ) {
 			if ( isset( $submenu['color'] ) ) {
 				$submenu_page = $this->prepare_submenu_page( $submenu['label'], $submenu['slug'], $submenu['color'] );
 			} else {
