@@ -66,7 +66,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 			echo Yoast_GA_Admin_Form::input( 'text', null, 'google_auth_code', null, null );
 
 			echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle-submit">&nbsp;</label>';
-			echo '<div class="ga-form ga-form-input"><input type="submit" name="ga-form-settings" value="' . __('Save authentication code', 'google-analytics-for-wordpress') . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-settings"></div>';
+			echo '<div class="ga-form ga-form-input"><input type="submit" name="ga-form-settings" value="' . __('Save authentication code', 'google-analytics-for-wordpress') . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-settings" onclick="yst_closepopupwindow();"></div>';
 			echo '</div>';
 		} else {
 			echo '<h3>' . __( 'Cannot connect to Google', 'google-analytics-for-wordpress' ) . '</h3>';
@@ -101,6 +101,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		echo '<h2>' . __( 'Universal settings', 'google-analytics-for-wordpress' ) . '</h2>';
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Enable Universal tracking', 'google-analytics-for-wordpress' ), 'enable_universal', null, sprintf( __( 'First enable Universal tracking in your Google Analytics account. Please read %1$sthis guide%2$s to learn how to do that.', 'google-analytics-for-wordpress' ), '<a href="http://kb.yoast.com/article/125-universal-analytics#utm_medium=kb-link&utm_source=gawp-config&utm_campaign=wpgaplugin" target="_blank">', '</a>' ) );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Enable Demographics and Interest Reports', 'google-analytics-for-wordpress' ), 'demographics', null, sprintf( __( 'You have to enable the Demographics in Google Analytics before you can see the tracking data. We have a knowledge base article in our %1$sknowledge base%2$s about this feature.', 'google-analytics-for-wordpress' ), '<a href="http://kb.yoast.com/article/154-enable-demographics-and-interests-report-in-google-analytics/#utm_medium=kb-link&amp;utm_source=gawp-config&amp;utm_campaign=wpgaplugin" target="_blank">', '</a>' ) );
+		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Enhanced Link Attribution', 'google-analytics-for-wordpress' ), 'enhanced_link_attribution', null, sprintf( __( 'Add %1$sEnhanced Link Attribution%2$s to your tracking code.', 'google-analytics-for-wordpress' ), '<a href="https://support.google.com/analytics/answer/2558867" target="_blank">', ' </a>' ) );
 		?>
 	</div>
 	<div id="advanced" class="gatab">
@@ -142,7 +143,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 	</div>
 </div>
 <?php
-echo Yoast_GA_Admin_Form::end_form( 'Save changes', 'settings' );
+echo Yoast_GA_Admin_Form::end_form( 'Save changes', 'settings', 'yst_closepopupwindow();' );
 echo $yoast_ga_admin->content_footer();
 ?>
 <script type="text/javascript">
