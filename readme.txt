@@ -4,7 +4,7 @@ Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 5.3
+Stable tag: 5.3.1
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
@@ -48,6 +48,20 @@ This section describes how to install the plugin and get it working.
 1. Go to the options panel under the 'Settings' menu and add your Analytics account number and set the settings you want.
 
 == Changelog ==
+
+= 5.3.1 =
+
+Release Date: February 11th, 2015
+
+* Enhancements:
+	* Added a filter (`yst-ga-filter-api-end-date`) to enable our [premium plugin](https://yoast.com/wordpress/plugins/google-analytics/) to show more recent data in the dashboards.
+
+* Features:
+	* Added [Enhanced link attribution](https://support.google.com/analytics/answer/2558867) for Universal tracking.
+
+* Bugfixes
+	* [Fixes a bug](https://github.com/markoheijnen/grunt-glotpress/pull/14) in the grunt task we use for downloading translations from GlotPress, which caused the translations to no longer be loaded.
+	* Fixes a bug where the links to our submenu pages were broken in case of a locale other than `en_US` being set.
 
 = 5.3 =
 
