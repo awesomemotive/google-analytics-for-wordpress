@@ -1,7 +1,6 @@
 <?php
 
 // Load dependencies from API-Libs
-require( dirname( __FILE__ ) . '/../../vendor/autoload_52.php' );
 require( dirname( __FILE__ ) . '/../../vendor/yoast/api-libs/google/class-api-google.php' );
 
 class Yoast_GA_Dashboards_Test extends GA_UnitTestCase {
