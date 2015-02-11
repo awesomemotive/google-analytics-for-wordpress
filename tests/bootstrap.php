@@ -5,6 +5,8 @@ if ( function_exists( 'xdebug_disable' ) ) {
 	xdebug_disable();
 }
 
+require( dirname( __FILE__ ) . '/../vendor/autoload_52.php' );
+
 echo 'Welcome to the Google Analytics Test Suite' . PHP_EOL;
 echo 'Version: 1.0' . PHP_EOL . PHP_EOL;
 
