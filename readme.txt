@@ -60,7 +60,7 @@ Release Date: February 11th, 2015
 	* Added [Enhanced link attribution](https://support.google.com/analytics/answer/2558867) for Universal tracking.
 
 * Bugfixes
-	* [Fixes a bug](https://github.com/markoheijnen/grunt-glotpress/pull/14) in our grunt task for downloading translations from GlotPress, which caused the translations to no longer be loaded.
+	* [Fixes a bug](https://github.com/markoheijnen/grunt-glotpress/pull/14) in the grunt task we use for downloading translations from GlotPress, which caused the translations to no longer be loaded.
 	* Fixes a bug where the links to our submenu pages were broken in case of another locale being selected.
 
 = 5.3 =
