@@ -61,7 +61,7 @@ Release Date: February 11th, 2015
 
 * Bugfixes
 	* [Fixes a bug](https://github.com/markoheijnen/grunt-glotpress/pull/14) in the grunt task we use for downloading translations from GlotPress, which caused the translations to no longer be loaded.
-	* Fixes a bug where the links to our submenu pages were broken in case of another locale being selected.
+	* Fixes a bug where the links to our submenu pages were broken in case of another locale than `en_us` being set.
 
 = 5.3 =
 
