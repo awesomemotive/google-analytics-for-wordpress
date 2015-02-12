@@ -131,17 +131,17 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 * Handle a default setting in GA
 	 *
 	 * @param $data
-	 * @param $key
+	 * @param $option_name
 	 * @param $value
 	 */
-	private function handle_default_setting( $data, $key, $value ) {
-		if ( ! isset( $data[$key] ) ) {
+	private function handle_default_setting( $data, $option_name, $value ) {
+		if ( ! isset( $data[$option_name] ) ) {
 			// If no data was passed in, set it to the default.
 			if ( $value === 1 ) {
 				// Disable the checkbox for now, use value 0
-				$this->options[$key] = 0;
+				$this->options[$option_name] = 0;
 			} else {
-				$this->options[$key] = $value;
+				$this->options[$option_name] = $value;
 			}
 		}
 	}
