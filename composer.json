@@ -1,0 +1,48 @@
+{
+	"name": "yoast/google-analytics",
+	"description": "Add Google Analytics to WordPress and be able to use all the powerful functions Google Analytics offers.",
+	"keywords": [
+		"wordpress",
+		"google",
+		"analytics"
+	],
+	"homepage": "https://yoast.com/wordpress/plugins/google-analytics/",
+	"license": "GPL-3.0",
+	"authors": [
+		{
+			"name": "Team Yoast",
+			"email": "support@yoast.com",
+			"homepage": "https://yoast.com"
+		}
+	],
+	"type": "wordpress-plugin",
+	"support": {
+		"source": "https://github.com/Yoast/google-analytics-for-wordpress",
+		"issues": "https://github.com/Yoast/google-analytics-for-wordpress/issues"
+	},
+	"require": {
+		"composer/installers": "~1.0",
+		"yoast/license-manager": "dev-master",
+		"yoast/i18n-module": "dev-master",
+		"yoast/api-libs": "dev-master",
+		"xrstf/composer-php52": "^1.0.17"
+	},
+	"autoload": {
+		"classmap": [
+			"admin/",
+			"frontend/",
+			"includes/"
+		]
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"xrstf\\Composer52\\Generator::onPostInstallCmd"
+		],
+		"post-update-cmd": [
+			"xrstf\\Composer52\\Generator::onPostInstallCmd"
+		],
+		"post-autoload-dump": [
+			"xrstf\\Composer52\\Generator::onPostInstallCmd"
+		]
+	}
+}
