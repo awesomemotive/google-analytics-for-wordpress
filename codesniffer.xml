@@ -3,8 +3,7 @@
 	<description>Google Analytics by Yoast rules for PHP_CodeSniffer</description>
 
 	<exclude-pattern>tests/*</exclude-pattern>
-	<exclude-pattern>admin/license-manager/*</exclude-pattern>
-	<exclude-pattern>admin/api-libs/*</exclude-pattern>
+	<exclude-pattern>vendor/*</exclude-pattern>
 
 	<rule ref="WordPress-VIP">
 		<exclude name="Generic.Files.LineEndings.InvalidEOLChar" />
