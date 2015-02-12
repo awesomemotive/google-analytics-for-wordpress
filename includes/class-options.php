@@ -246,7 +246,7 @@ class Yoast_GA_Options {
 				'track_internal_as_label'    => null,
 				'track_outbound'             => 0,
 				'anonymous_data'             => 0,
-				'enable_universal'           => 0,
+				'enable_universal'           => 1,
 				'demographics'               => 0,
 				'ignore_users'               => array( 'editor' ),
 				'dashboards_disabled'        => 0,
