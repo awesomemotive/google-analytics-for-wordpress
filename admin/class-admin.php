@@ -85,8 +85,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 		// Check checkboxes, on a uncheck they won't be posted to this function
 		$defaults = $this->default_ga_values();
-		foreach ( $defaults[$this->option_prefix] as $key => $value ) {
-			$this->handle_default_setting( $data, $key, $value );
+		foreach ( $defaults[$this->option_prefix] as $option_name => $value ) {
+			$this->handle_default_setting( $data, $option_name, $value );
 		}
 
 		if ( ! empty( $this->options['analytics_profile'] ) ) {
