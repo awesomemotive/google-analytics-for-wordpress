@@ -361,10 +361,11 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		 * @api array $all_roles
 		 */
 		$editable_roles = apply_filters( 'editable_roles', $all_roles );
+
 		foreach ( $editable_roles as $id => $name ) {
 			$roles[] = array(
 				'id'   => $id,
-				'name' => $name['name'],
+				'name' => translate_user_role($name['name']),
 			);
 		}
 
