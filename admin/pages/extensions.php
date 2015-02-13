@@ -32,16 +32,16 @@ $extensions = $yoast_ga_admin->get_extensions();
 						<?php
 						if ( 'uninstalled' == $extension->status ) {
 							?>
-							<a target="_blank" href="<?php echo $extension->url; ?>#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary">Get this extension</a>
+							<a target="_blank" href="<?php echo $extension->url; ?>#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary"><?php echo __( 'Get this extension', 'google-analytics-for-wordpress'); ?></a>
 						<?php
 						} else {
 							if ( 'inactive' == $extension->status ) {
 								?>
-								<a href="#top#licenses" class="activate-link button-primary">Activate License</a>
+								<a href="#top#licenses" class="activate-link button-primary"><?php echo __( 'Activate License', 'google-analytics-for-wordpress'); ?></a>
 							<?php
 							} else {
 								?>
-								<button class="button-primary installed">Installed</button>
+								<button class="button-primary installed"><?php echo __( 'Installed', 'google-analytics-for-wordpress'); ?></button>
 							<?php
 							}
 						}
