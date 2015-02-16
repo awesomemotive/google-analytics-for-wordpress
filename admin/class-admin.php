@@ -361,10 +361,11 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		 * @api array $all_roles
 		 */
 		$editable_roles = apply_filters( 'editable_roles', $all_roles );
+
 		foreach ( $editable_roles as $id => $name ) {
 			$roles[] = array(
 				'id'   => $id,
-				'name' => $name['name'],
+				'name' => translate_user_role($name['name']),
 			);
 		}
 
@@ -378,8 +379,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 */
 	public function track_download_types() {
 		return array(
-			0 => array( 'id' => 'event', 'name' => 'Event' ),
-			1 => array( 'id' => 'pageview', 'name' => 'Pageview' ),
+			0 => array( 'id' => 'event', 'name' => __( 'Event', 'google-analytics-for-wordpress' ) ),
+			1 => array( 'id' => 'pageview', 'name' => __( 'Pageview', 'google-analytics-for-wordpress' ) ),
 		);
 	}
 
@@ -390,8 +391,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 */
 	public function get_track_full_url() {
 		return array(
-			0 => array( 'id' => 'domain', 'name' => 'Just the domain' ),
-			1 => array( 'id' => 'full_links', 'name' => 'Full links' ),
+			0 => array( 'id' => 'domain', 'name' => __( 'Just the domain', 'google-analytics-for-wordpress' )  ),
+			1 => array( 'id' => 'full_links', 'name' => __( 'Full links', 'google-analytics-for-wordpress' )  ),
 		);
 	}
 

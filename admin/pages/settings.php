@@ -92,7 +92,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Track outbound click and downloads', 'google-analytics-for-wordpress' ), 'track_outbound', null, __( 'Clicks and downloads will be tracked as events, you can find these under Content &#xBB; Event Tracking in your Google Analytics reports.', 'google-analytics-for-wordpress' ) );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Allow tracking of anonymous data', 'google-analytics-for-wordpress' ), 'anonymous_data', null, __( 'By allowing us to track anonymous data we can better help you, because we know with which WordPress configurations, themes and plugins we should test. No personal data will be submitted.', 'google-analytics-for-wordpress' ) );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Anonymize IPs', 'google-analytics-for-wordpress' ), 'anonymize_ips', null, sprintf( __( 'This adds %1$s, telling Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApi_gat?csw=1#_gat._anonymizeIp" target="_blank"><code>_anonymizeIp</code></a>' ) );
-		echo Yoast_GA_Admin_Form::select( 'Ignore users', 'ignore_users', $yoast_ga_admin->get_userroles(), __( 'Users of the role you select will be ignored, so if you select Editor, all Editors will be ignored.', 'google-analytics-for-wordpress' ), true );
+		echo Yoast_GA_Admin_Form::select( __( 'Ignore users', 'google-analytics-for-wordpress' ), 'ignore_users', $yoast_ga_admin->get_userroles(), __( 'Users of the role you select will be ignored, so if you select Editor, all Editors will be ignored.', 'google-analytics-for-wordpress' ), true );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Disable analytics dashboard', 'google-analytics-for-wordpress' ), 'dashboards_disabled', null, __( 'This will completely disable the dashboard and stop the plugin from fetching the latest analytics data.', 'google-analytics-for-wordpress' ) );
 		?>
 	</div>
@@ -118,7 +118,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Tag links in RSS feed with campaign variables', 'google-analytics-for-wordpress' ), 'tag_links_in_rss', null, __( 'Do not use this feature if you use FeedBurner, as FeedBurner can do this automatically and better than this plugin can. Check <a href="https://support.google.com/feedburner/answer/165769?hl=en&amp;ref_topic=13075" target="_blank">this help page</a> for info on how to enable this feature in FeedBurner.', 'google-analytics-for-wordpress' ) );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Allow anchor', 'google-analytics-for-wordpress' ), 'allow_anchor', null , sprintf(__( 'This adds a %1$s call to your tracking code, and makes RSS link tagging use a %2$s as well.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiCampaignTracking?csw=1#_gat.GA_Tracker_._setAllowAnchor" target="_blank"><code>_setAllowAnchor</code></a>', '<code>#</code>' ));
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Add <code>_setAllowLinker</code>', 'google-analytics-for-wordpress' ), 'add_allow_linker', null, sprintf( __( 'This adds a %1$s call to your tracking code, allowing you to use %2$s and related functions.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory?csw=1#_gat.GA_Tracker_._setAllowLinker" target="_blank"><code>_setAllowLinker</code></a>', ' <code>_link</code>' ) );
-		echo Yoast_GA_Admin_Form::textarea( 'Custom code', 'custom_code', sprintf( __( 'Not for the average user: this allows you to add a line of code, to be added before the %1$s call.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview" target="_blank"><code>_trackPageview</code></a>' ) );
+		echo Yoast_GA_Admin_Form::textarea(  __( 'Custom code', 'google-analytics-for-wordpress' ), 'custom_code', sprintf( __( 'Not for the average user: this allows you to add a line of code, to be added before the %1$s call.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview" target="_blank"><code>_trackPageview</code></a>' ) );
 
 		do_action( 'yst_ga_advanced-tab' );
 		?>
@@ -143,7 +143,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 	</div>
 </div>
 <?php
-echo Yoast_GA_Admin_Form::end_form( 'Save changes', 'settings', 'yst_closepopupwindow();' );
+echo Yoast_GA_Admin_Form::end_form( __( 'Save changes', 'google-analytics-for-wordpress' ), 'settings', 'yst_closepopupwindow();' );
 echo $yoast_ga_admin->content_footer();
 ?>
 <script type="text/javascript">
