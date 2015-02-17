@@ -15,6 +15,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	public function __construct() {
 		parent::__construct();
 
+		new Yoast_GA_Admin_Settings_API();
 		add_action( 'plugins_loaded', array( $this, 'init_ga' ) );
 		add_action( 'admin_init', array( $this, 'init_settings' ) );
 	}
@@ -23,11 +24,9 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 * Init function when the plugin is loaded
 	 */
 	public function init_ga() {
-
 		new Yoast_GA_Admin_Menu( $this );
 
 		add_filter( 'plugin_action_links_' . plugin_basename( GAWP_FILE ), array( $this, 'add_action_links' ) );
-
 	}
 
 	/**
@@ -287,6 +286,9 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			switch ( $_GET['page'] ) {
 				case 'yst_ga_settings':
 					require_once( $this->plugin_path . 'admin/pages/settings.php' );
+					break;
+				case 'yst_ga_settings_api':
+					require_once( $this->plugin_path . 'admin/pages/settings-api.php' );
 					break;
 				case 'yst_ga_extensions':
 					require_once( $this->plugin_path . 'admin/pages/extensions.php' );
