@@ -18,23 +18,18 @@ settings_errors( 'yoast_google_analytics' );
 		<a class="nav-tab" id="debugmode-tab" href="#top#debugmode"><?php _e( 'Debug mode', 'google-analytics-for-wordpress' ); ?></a>
 	</h2>
 
-<?php
-echo Yoast_GA_Admin_Form::create_form( 'settings' );
-?>
+<form method="post" action="<?php echo admin_url('options.php'); ?>">
 	<input type="hidden" name="return_tab" id="return_tab" value="general" />
 	<div class="tabwrapper">
 		<div id="general" class="gatab">
-			<h2><?php _e( 'General settings', 'google-analytics-for-wordpress' ); ?></h2>
-
-			<form method="post" action="<?php echo admin_url('options.php'); ?>">
 			<?php
 			settings_fields( 'yst_ga_settings_form' );
 			do_settings_sections( 'yst_ga_settings_form' );
 			submit_button();
 			?>
-			</form>
 		</div>
 	</div>
+</form>
 <?php
 echo $yoast_ga_admin->content_footer();
 ?>
