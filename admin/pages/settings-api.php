@@ -25,17 +25,18 @@ settings_errors( 'yoast_google_analytics' );
 			<?php
 			settings_fields( 'yst_ga_settings_form' );
 			do_settings_sections( 'yst_ga_settings_form_general' );
-			submit_button();
 			?>
 		</div>
 		<div id="universal" class="gatab">
 			<?php
 			settings_fields( 'yst_ga_settings_form' );
 			do_settings_sections( 'yst_ga_settings_form_universal' );
-			submit_button();
 			?>
 		</div>
 	</div>
+	<?php
+	submit_button();
+	?>
 </form>
 <?php
 echo $yoast_ga_admin->content_footer();
