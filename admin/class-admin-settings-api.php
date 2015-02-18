@@ -24,15 +24,36 @@ class Yoast_GA_Admin_Settings_API {
 		$this->add_field( array(
 			'name'        => 'track_outbound',
 			'title'       => __( 'Track outbound click and downloads', 'google-analytics-for-wordpress' ),
-			'description' => 'The help icon description',
-			'value'       => 123,
+			'description' => __( 'Clicks and downloads will be tracked as events, you can find these under Content &#xBB; Event Tracking in your Google Analytics reports.', 'google-analytics-for-wordpress' ),
+			'value'       => 1,
 			'type'        => 'checkbox',
 		) );
 		$this->add_field( array(
 			'name'        => 'anonymous_data',
 			'title'       => __( 'Allow tracking of anonymous data', 'google-analytics-for-wordpress' ),
-			'description' => 'The help icon description',
-			'value'       => 123,
+			'description' => __( 'By allowing us to track anonymous data we can better help you, because we know with which WordPress configurations, themes and plugins we should test. No personal data will be submitted.', 'google-analytics-for-wordpress' ),
+			'value'       => 1,
+			'type'        => 'checkbox',
+		) );
+		$this->add_field( array(
+			'name'        => 'anonymize_ips',
+			'title'       => __( 'Anonymize IPs', 'google-analytics-for-wordpress' ),
+			'description' => sprintf( __( 'This adds %1$s, telling Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApi_gat?csw=1#_gat._anonymizeIp" target="_blank"><code>_anonymizeIp</code></a>' ),
+			'value'       => 1,
+			'type'        => 'checkbox',
+		) );
+		$this->add_field( array(
+			'name'        => 'ignore_users',
+			'title'       => __( 'Ignore users', 'google-analytics-for-wordpress' ),
+			'description' => __( 'Users of the role you select will be ignored, so if you select Editor, all Editors will be ignored.', 'google-analytics-for-wordpress' ),
+			'value'       => 1,
+			'type'        => 'checkbox',
+		) );
+		$this->add_field( array(
+			'name'        => 'dashboards_disabled',
+			'title'       => __( 'Disable analytics dashboard', 'google-analytics-for-wordpress' ),
+			'description' => __( 'This will completely disable the dashboard and stop the plugin from fetching the latest analytics data.', 'google-analytics-for-wordpress' ),
+			'value'       => 1,
 			'type'        => 'checkbox',
 		) );
 
