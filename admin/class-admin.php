@@ -51,25 +51,9 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			Yoast_Google_Analytics::get_instance()->check_for_ga_issues();
 		}
 
+
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-			if ( ! function_exists( 'wp_verify_nonce' ) ) {
-				require_once( ABSPATH . 'wp-includes/pluggable.php' );
-			}
-
-			if ( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ) {
-				if ( ! isset ( $_POST['ignore_users'] ) ) {
-					$_POST['ignore_users'] = array();
-				}
-
-				$dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
-
-				if ( $dashboards_disabled == false && isset( $_POST['dashboards_disabled'] ) ) {
-					$dashboards->reset_dashboards_data();
-				}
-
-				// Post submitted and verified with our nonce
-				$this->save_settings( $_POST );
-			}
+			$this->handle_ga_post_request( $dashboards );
 		}
 
 		/**
@@ -101,11 +85,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 		// Check checkboxes, on a uncheck they won't be posted to this function
 		$defaults = $this->default_ga_values();
-		foreach ( $defaults[$this->option_prefix] as $key => $value ) {
-			if ( ! isset( $data[$key] ) ) {
-				// If no data was passed in, set it to the default.
-				$this->options[$key] = $value;
-			}
+		foreach ( $defaults[$this->option_prefix] as $option_name => $value ) {
+			$this->handle_default_setting( $data, $option_name, $value );
 		}
 
 		if ( ! empty( $this->options['analytics_profile'] ) ) {
@@ -144,6 +125,68 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		delete_option( 'yst_ga_accounts' );
 		delete_option( 'yst_ga_response' );
 
+	}
+
+	/**
+	 * Handle a default setting in GA
+	 *
+	 * @param $data
+	 * @param $option_name
+	 * @param $value
+	 */
+	private function handle_default_setting( $data, $option_name, $value ) {
+		if ( ! isset( $data[$option_name] ) ) {
+			// If no data was passed in, set it to the default.
+			if ( $value === 1 ) {
+				// Disable the checkbox for now, use value 0
+				$this->options[$option_name] = 0;
+			} else {
+				$this->options[$option_name] = $value;
+			}
+		}
+	}
+
+	/**
+	 * Handle the post requests in the admin form of the GA plugin
+	 *
+	 * @param $dashboards
+	 */
+	private function handle_ga_post_request( $dashboards ) {
+		if ( ! function_exists( 'wp_verify_nonce' ) ) {
+			require_once( ABSPATH . 'wp-includes/pluggable.php' );
+		}
+
+		if ( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ) {
+			if ( ! isset ( $_POST['ignore_users'] ) ) {
+				$_POST['ignore_users'] = array();
+			}
+
+			$dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
+
+			if ( ( $dashboards_disabled == false && isset( $_POST['dashboards_disabled'] ) ) || $this->ga_profile_changed( $_POST ) ) {
+				$dashboards->reset_dashboards_data();
+			}
+
+			// Post submitted and verified with our nonce
+			$this->save_settings( $_POST );
+		}
+	}
+
+	/**
+	 * Is there selected an other property in the settings post? Returns true or false.
+	 *
+	 * @param $post
+	 *
+	 * @return bool
+	 */
+	private function ga_profile_changed( $post ) {
+		if ( isset( $post['analytics_profile'] ) && isset( $this->options['analytics_profile'] ) ) {
+			if ( $post['analytics_profile'] != $this->options['analytics_profile'] ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -335,10 +378,11 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		 * @api array $all_roles
 		 */
 		$editable_roles = apply_filters( 'editable_roles', $all_roles );
+
 		foreach ( $editable_roles as $id => $name ) {
 			$roles[] = array(
 				'id'   => $id,
-				'name' => $name['name'],
+				'name' => translate_user_role($name['name']),
 			);
 		}
 
@@ -352,8 +396,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 */
 	public function track_download_types() {
 		return array(
-			0 => array( 'id' => 'event', 'name' => 'Event' ),
-			1 => array( 'id' => 'pageview', 'name' => 'Pageview' ),
+			0 => array( 'id' => 'event', 'name' => __( 'Event', 'google-analytics-for-wordpress' ) ),
+			1 => array( 'id' => 'pageview', 'name' => __( 'Pageview', 'google-analytics-for-wordpress' ) ),
 		);
 	}
 
@@ -364,8 +408,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 */
 	public function get_track_full_url() {
 		return array(
-			0 => array( 'id' => 'domain', 'name' => 'Just the domain' ),
-			1 => array( 'id' => 'full_links', 'name' => 'Full links' ),
+			0 => array( 'id' => 'domain', 'name' => __( 'Just the domain', 'google-analytics-for-wordpress' )  ),
+			1 => array( 'id' => 'full_links', 'name' => __( 'Full links', 'google-analytics-for-wordpress' )  ),
 		);
 	}
 

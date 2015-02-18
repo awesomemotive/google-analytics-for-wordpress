@@ -18,7 +18,7 @@
 	<testsuites>
 		<testsuite>
 			<directory prefix="test-" suffix=".php">./tests/</directory>
-			<directory prefix="test-" suffix=".php">./admin/api-libs/tests/</directory>
+			<directory prefix="test-" suffix=".php">./vendor/yoast/api-libs/tests/</directory>
 		</testsuite>
 	</testsuites>
 </phpunit>
