@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "116eda1066aed3a7eb6367cfb3cbd34a",
+    "hash": "c9716a504957f17af36fd2dd752558e4",
     "packages": [
         {
             "name": "composer/installers",
@@ -134,16 +134,16 @@
         },
         {
             "name": "yoast/api-libs",
-            "version": "dev-master",
+            "version": "dev-trunk",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast/api-libs.git",
-                "reference": "e6ddb98c0077b1f86ce2505736fb231dbbc1790d"
+                "reference": "0bbe785c5ef52459acc56730d74d01c0fb4d14ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast/api-libs/zipball/e6ddb98c0077b1f86ce2505736fb231dbbc1790d",
-                "reference": "e6ddb98c0077b1f86ce2505736fb231dbbc1790d",
+                "url": "https://api.github.com/repos/Yoast/api-libs/zipball/0bbe785c5ef52459acc56730d74d01c0fb4d14ac",
+                "reference": "0bbe785c5ef52459acc56730d74d01c0fb4d14ac",
                 "shasum": ""
             },
             "type": "library",
@@ -154,7 +154,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0+"
+                "GPL-3.0"
             ],
             "authors": [
                 {
@@ -168,7 +168,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2015-02-09 10:28:23"
+            "time": "2015-02-17 14:41:34"
         },
         {
             "name": "yoast/i18n-module",
