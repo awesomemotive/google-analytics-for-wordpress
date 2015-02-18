@@ -7,6 +7,8 @@ class Yoast_GA_Admin_Settings_API {
 
 	private $fields = array();
 
+	private $settings = array();
+
 	/**
 	 * Construct the new admin settings api forms
 	 */
@@ -15,6 +17,8 @@ class Yoast_GA_Admin_Settings_API {
 		add_action( 'admin_init', array( $this, 'init_yst_ga_settings_universal' ) );
 		add_action( 'admin_init', array( $this, 'init_yst_ga_settings_advanced' ) );
 		add_action( 'admin_init', array( $this, 'init_yst_ga_settings_debug' ) );
+
+		$this->settings = Yoast_GA_Options::instance()->get_options();
 	}
 
 	/**
@@ -27,35 +31,30 @@ class Yoast_GA_Admin_Settings_API {
 			'name'        => 'track_outbound',
 			'title'       => __( 'Track outbound click and downloads', 'google-analytics-for-wordpress' ),
 			'description' => __( 'Clicks and downloads will be tracked as events, you can find these under Content &#xBB; Event Tracking in your Google Analytics reports.', 'google-analytics-for-wordpress' ),
-			'value'       => 1,
 			'type'        => 'checkbox',
 		) );
 		$this->add_field( array(
 			'name'        => 'anonymous_data',
 			'title'       => __( 'Allow tracking of anonymous data', 'google-analytics-for-wordpress' ),
 			'description' => __( 'By allowing us to track anonymous data we can better help you, because we know with which WordPress configurations, themes and plugins we should test. No personal data will be submitted.', 'google-analytics-for-wordpress' ),
-			'value'       => 1,
 			'type'        => 'checkbox',
 		) );
 		$this->add_field( array(
 			'name'        => 'anonymize_ips',
 			'title'       => __( 'Anonymize IPs', 'google-analytics-for-wordpress' ),
 			'description' => sprintf( __( 'This adds %1$s, telling Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApi_gat?csw=1#_gat._anonymizeIp" target="_blank"><code>_anonymizeIp</code></a>' ),
-			'value'       => 1,
 			'type'        => 'checkbox',
 		) );
 		$this->add_field( array(
 			'name'        => 'ignore_users',
 			'title'       => __( 'Ignore users', 'google-analytics-for-wordpress' ),
 			'description' => __( 'Users of the role you select will be ignored, so if you select Editor, all Editors will be ignored.', 'google-analytics-for-wordpress' ),
-			'value'       => 1,
 			'type'        => 'checkbox',
 		) );
 		$this->add_field( array(
 			'name'        => 'dashboards_disabled',
 			'title'       => __( 'Disable analytics dashboard', 'google-analytics-for-wordpress' ),
 			'description' => __( 'This will completely disable the dashboard and stop the plugin from fetching the latest analytics data.', 'google-analytics-for-wordpress' ),
-			'value'       => 1,
 			'type'        => 'checkbox',
 		) );
 
@@ -117,9 +116,9 @@ class Yoast_GA_Admin_Settings_API {
 		$this->register_setting( 'yst_ga_settings_form_debug', 'yst_ga_settings' );
 
 		$this->add_field( array(
-			'name'        => 'enable_universal',
-			'title'       => __( 'Enable Universal tracking', 'google-analytics-for-wordpress' ),
-			'description' => sprintf( __( 'First enable Universal tracking in your Google Analytics account. Please read %1$sthis guide%2$s to learn how to do that.', 'google-analytics-for-wordpress' ), '<a href="http://kb.yoast.com/article/125-universal-analytics#utm_medium=kb-link&utm_source=gawp-config&utm_campaign=wpgaplugin" target="_blank">', '</a>' ),
+			'name'        => 'debug_mode',
+			'title'       => __( 'Enable debug mode', 'google-analytics-for-wordpress' ),
+			'description' => null,
 			'value'       => 1,
 			'type'        => 'checkbox',
 		) );
@@ -166,6 +165,10 @@ class Yoast_GA_Admin_Settings_API {
 	 * @return string
 	 */
 	private function show_help( $id, $description ) {
+		if( is_null( $description ) ){
+			return;
+		}
+
 		$help = '<img src="' . plugins_url( 'assets/img/question-mark.png', GAWP_FILE ) . '" class="alignleft yoast_help" id="' . esc_attr( $id . 'help' ) . '" alt="' . esc_attr( $description ) . '" />';
 
 		return $help;
@@ -195,6 +198,10 @@ class Yoast_GA_Admin_Settings_API {
 		);
 
 		foreach ( $this->fields as $field ) {
+			if ( isset( $this->settings[$field['name']] ) ) {
+				$field['value'] = $this->settings[$field['name']];
+			}
+
 			add_settings_field(
 				$field['name'],
 				$field['title'] . ':',

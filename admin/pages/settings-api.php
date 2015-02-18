@@ -46,6 +46,10 @@ settings_errors( 'yoast_google_analytics' );
 			?>
 		</div>
 		<div id="debugmode" class="gatab">
+			<div id="ga-promote">
+				<p class="ga-topdescription"><?php _e( 'If you want to confirm that tracking on your blog is working as it should, enable this option and check the console of your browser. Be absolutely sure to disable debugging afterwards, as it is slower than normal tracking.', 'google-analytics-for-wordpress' );?></p>
+				<p class="ga-topdescription"><?php _e( '<strong>Note:</strong> the debugging is only loaded for administrators.', 'google-analytics-for-wordpress' ); ?></p>
+			</div>
 			<?php
 			settings_fields( 'yst_ga_settings_form' );
 			do_settings_sections( 'yst_ga_settings_form_debug' );
