@@ -15,7 +15,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	public function __construct() {
 		parent::__construct();
 
-		new Yoast_GA_Admin_Settings_API();
 		add_action( 'plugins_loaded', array( $this, 'init_ga' ) );
 		add_action( 'admin_init', array( $this, 'init_settings' ) );
 	}
@@ -25,6 +24,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 */
 	public function init_ga() {
 		new Yoast_GA_Admin_Menu( $this );
+
+		new Yoast_GA_Admin_Settings_API();
 
 		add_filter( 'plugin_action_links_' . plugin_basename( GAWP_FILE ), array( $this, 'add_action_links' ) );
 	}
@@ -367,7 +368,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		foreach ( $editable_roles as $id => $name ) {
 			$roles[] = array(
 				'id'   => $id,
-				'name' => translate_user_role($name['name']),
+				'name' => translate_user_role( $name['name'] ),
 			);
 		}
 
@@ -393,8 +394,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 */
 	public function get_track_full_url() {
 		return array(
-			0 => array( 'id' => 'domain', 'name' => __( 'Just the domain', 'google-analytics-for-wordpress' )  ),
-			1 => array( 'id' => 'full_links', 'name' => __( 'Full links', 'google-analytics-for-wordpress' )  ),
+			0 => array( 'id' => 'domain', 'name' => __( 'Just the domain', 'google-analytics-for-wordpress' ) ),
+			1 => array( 'id' => 'full_links', 'name' => __( 'Full links', 'google-analytics-for-wordpress' ) ),
 		);
 	}
 
