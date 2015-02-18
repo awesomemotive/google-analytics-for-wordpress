@@ -13,6 +13,8 @@ class Yoast_GA_Admin_Settings_API {
 	public function __construct() {
 		add_action( 'admin_init', array( $this, 'init_yst_ga_settings_general' ) );
 		add_action( 'admin_init', array( $this, 'init_yst_ga_settings_universal' ) );
+		add_action( 'admin_init', array( $this, 'init_yst_ga_settings_advanced' ) );
+		add_action( 'admin_init', array( $this, 'init_yst_ga_settings_debug' ) );
 	}
 
 	/**
@@ -89,6 +91,40 @@ class Yoast_GA_Admin_Settings_API {
 		) );
 
 		$this->build_settings_section( 'universal', __( 'Universal settings', 'google-analytics-for-wordpress' ) );
+	}
+
+	/**
+	 * Build the advanced tab
+	 */
+	public function init_yst_ga_settings_advanced() {
+		$this->register_setting( 'yst_ga_settings_form_advanced', 'yst_ga_settings' );
+
+		$this->add_field( array(
+			'name'        => 'enable_universal',
+			'title'       => __( 'Enable Universal tracking', 'google-analytics-for-wordpress' ),
+			'description' => sprintf( __( 'First enable Universal tracking in your Google Analytics account. Please read %1$sthis guide%2$s to learn how to do that.', 'google-analytics-for-wordpress' ), '<a href="http://kb.yoast.com/article/125-universal-analytics#utm_medium=kb-link&utm_source=gawp-config&utm_campaign=wpgaplugin" target="_blank">', '</a>' ),
+			'value'       => 1,
+			'type'        => 'checkbox',
+		) );
+
+		$this->build_settings_section( 'advanced', __( 'Advanced settings', 'google-analytics-for-wordpress' ) );
+	}
+
+	/**
+	 * Build the debug tab
+	 */
+	public function init_yst_ga_settings_debug() {
+		$this->register_setting( 'yst_ga_settings_form_debug', 'yst_ga_settings' );
+
+		$this->add_field( array(
+			'name'        => 'enable_universal',
+			'title'       => __( 'Enable Universal tracking', 'google-analytics-for-wordpress' ),
+			'description' => sprintf( __( 'First enable Universal tracking in your Google Analytics account. Please read %1$sthis guide%2$s to learn how to do that.', 'google-analytics-for-wordpress' ), '<a href="http://kb.yoast.com/article/125-universal-analytics#utm_medium=kb-link&utm_source=gawp-config&utm_campaign=wpgaplugin" target="_blank">', '</a>' ),
+			'value'       => 1,
+			'type'        => 'checkbox',
+		) );
+
+		$this->build_settings_section( 'debug', __( 'Debug settings', 'google-analytics-for-wordpress' ) );
 	}
 
 	/**

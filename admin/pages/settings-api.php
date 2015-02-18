@@ -33,6 +33,24 @@ settings_errors( 'yoast_google_analytics' );
 			do_settings_sections( 'yst_ga_settings_form_universal' );
 			?>
 		</div>
+		<div id="advanced" class="gatab">
+			<?php
+			settings_fields( 'yst_ga_settings_form' );
+			do_settings_sections( 'yst_ga_settings_form_advanced' );
+			?>
+		</div>
+		<div id="customdimensions" class="gatab">
+			<?php
+			echo '<h3>' . __( 'Custom dimensions', 'google-analytics-for-wordpress' ) . '</h3>';
+			do_action( 'yst_ga_custom_dimensions_tab-content' );
+			?>
+		</div>
+		<div id="debugmode" class="gatab">
+			<?php
+			settings_fields( 'yst_ga_settings_form' );
+			do_settings_sections( 'yst_ga_settings_form_debug' );
+			?>
+		</div>
 	</div>
 	<?php
 	submit_button();
