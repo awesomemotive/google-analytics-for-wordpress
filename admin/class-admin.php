@@ -163,13 +163,30 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 			$dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
 
-			if ( $dashboards_disabled == false && isset( $_POST['dashboards_disabled'] ) ) {
+			if ( ( $dashboards_disabled == false && isset( $_POST['dashboards_disabled'] ) ) || $this->detected_other_ga_property( $_POST ) ) {
 				$dashboards->reset_dashboards_data();
 			}
 
 			// Post submitted and verified with our nonce
 			$this->save_settings( $_POST );
 		}
+	}
+
+	/**
+	 * Is there selected an other property in the settings post? Returns true or false.
+	 *
+	 * @param $post
+	 *
+	 * @return bool
+	 */
+	private function detected_other_ga_property( $post ) {
+		if ( isset( $post['analytics_profile'] ) && isset( $this->options['analytics_profile'] ) ) {
+			if ( $post['analytics_profile'] != $this->options['analytics_profile'] ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
