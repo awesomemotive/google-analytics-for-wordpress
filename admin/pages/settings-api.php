@@ -63,3 +63,16 @@ settings_errors( 'yoast_google_analytics' );
 <?php
 echo $yoast_ga_admin->content_footer();
 ?>
+<script type="text/javascript">
+	jQuery(document).ready(
+		function () {
+//			jQuery('.chosen').chosen({
+//				group_search: true
+//			});
+
+			jQuery('.chosen').chosen({
+				placeholder_text_multiple: '<?php echo __( 'Select the users to ignore', 'google-analytics-for-wordpress' ); ?>'
+			});
+		}
+	);
+</script>
