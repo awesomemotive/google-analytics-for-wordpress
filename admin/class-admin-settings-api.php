@@ -29,6 +29,7 @@ class Yoast_GA_Admin_Settings_API {
 	 */
 	public function __construct() {
 		add_action( 'admin_init', array( $this, 'init_default_options' ) );
+		add_action( 'admin_init', array( $this, 'init_yst_ga_settings_general_tracking' ) );
 		add_action( 'admin_init', array( $this, 'init_yst_ga_settings_general' ) );
 		add_action( 'admin_init', array( $this, 'init_yst_ga_settings_universal' ) );
 		add_action( 'admin_init', array( $this, 'init_yst_ga_settings_advanced' ) );
@@ -49,6 +50,20 @@ class Yoast_GA_Admin_Settings_API {
 			'track_download_types' => $yoast_ga_admin->track_download_types(),
 			'track_full_url'       => $yoast_ga_admin->get_track_full_url(),
 		);
+	}
+
+	/**
+	 * Init the general settings tab
+	 */
+	public function init_yst_ga_settings_general_tracking() {
+		$this->register_setting( 'yst_ga_settings_form_general_tracking', 'yst_ga_settings' );
+
+		$this->add_field( array(
+			'name'        => 'manual_ua',
+			'title'       => __( 'Track outbound click and downloads', 'google-analytics-for-wordpress' ),
+			'description' => __( 'Clicks and downloads will be tracked as events, you can find these under Content &#xBB; Event Tracking in your Google Analytics reports.', 'google-analytics-for-wordpress' ),
+			'type'        => 'checkbox',
+		) );
 	}
 
 	/**
