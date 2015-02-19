@@ -80,6 +80,8 @@ class Yoast_GA_Admin_Settings_API {
 			'title'       => __( 'Ignore users', 'google-analytics-for-wordpress' ),
 			'description' => __( 'Users of the role you select will be ignored, so if you select Editor, all Editors will be ignored.', 'google-analytics-for-wordpress' ),
 			'type'        => 'select',
+			'class'       => 'chosen',
+			'attributes'  => ' multiple="true"',
 			'options'     => $this->defualt_options['user_roles'],
 		) );
 		$this->add_field( array(
@@ -241,10 +243,21 @@ class Yoast_GA_Admin_Settings_API {
 	 * @param $args
 	 */
 	public function yst_ga_form_select_field( $args ) {
-		$options = null;
+		$options    = null;
+		$class      = null;
+		$attributes = null;
+
+		if ( isset( $args['class'] ) ) {
+			$class = ' class="' . $args['class'] . '"';
+		}
+
+		if ( isset( $args['attributes'] ) ) {
+			$attributes = $args['attributes'];
+		}
+
 		foreach ( $args['options'] as $option ) {
-			if( is_array( $args['value'] ) ){
-				if( in_array( $option['id'], $args['value'] ) ){
+			if ( is_array( $args['value'] ) ) {
+				if ( in_array( $option['id'], $args['value'] ) ) {
 					$options .= '<option value="' . $option['id'] . '" selected="selected">' . $option['name'] . '</option>';
 					continue;
 				}
@@ -256,7 +269,7 @@ class Yoast_GA_Admin_Settings_API {
 			$options .= '<option value="' . $option['id'] . '" ' . selected( $option['id'], $args['value'], false ) . '>' . $option['name'] . '</option>';
 		}
 
-		echo $this->show_help( 'id-' . $args['name'], $args['description'] ) . '<select name="yst_ga_settings[' . $args['name'] . ']">' . $options . '</select>';
+		echo $this->show_help( 'id-' . $args['name'], $args['description'] ) . '<select name="yst_ga_settings[' . $args['name'] . ']"' . $class . $attributes . '>' . $options . '</select>';
 	}
 
 	/**
