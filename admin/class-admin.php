@@ -68,7 +68,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	/**
 	 * This function saves the settings in the option field and returns a wp success message on success
 	 *
-	 * @param $data
+	 * @param array $data
 	 */
 	public function save_settings( $data ) {
 
@@ -79,13 +79,13 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 				if ( $key != 'custom_code' && is_string( $value ) ) {
 					$value = strip_tags( $value );
 				}
-				$this->options[$key] = $value;
+				$this->options[ $key ] = $value;
 			}
 		}
 
 		// Check checkboxes, on a uncheck they won't be posted to this function
 		$defaults = $this->default_ga_values();
-		foreach ( $defaults[$this->option_prefix] as $option_name => $value ) {
+		foreach ( $defaults[ $this->option_prefix ] as $option_name => $value ) {
 			$this->handle_default_setting( $data, $option_name, $value );
 		}
 
@@ -117,7 +117,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 				'description' => __( 'Settings saved.', 'google-analytics-for-wordpress' ),
 			) );
 
-		} else {
+		}
+		else {
 			// Fail, add a new notification
 			$this->add_notification( 'ga_notifications', array(
 				'type'        => 'error',
@@ -125,7 +126,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			) );
 		}
 
-		#redirect
+		// redirect
 		wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
 		exit;
 	}
