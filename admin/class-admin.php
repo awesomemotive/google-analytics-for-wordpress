@@ -98,7 +98,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			// en dash to minus, prevents issue with code copied from web with "fancy" dash
 			$this->options['manual_ua_code_field'] = str_replace( '–', '-', $this->options['manual_ua_code_field'] );
 
-			if ( ! ( preg_match( '|^UA-\d{4,}-\d+$|', $this->options['manual_ua_code_field'] ) ) ) {
+			if ( ! preg_match( '|^UA-\d{4,}-\d+$|', $this->options['manual_ua_code_field'] ) ) {
 
 				$this->add_notification( 'ga_notifications', array(
 					'type'        => 'error',
