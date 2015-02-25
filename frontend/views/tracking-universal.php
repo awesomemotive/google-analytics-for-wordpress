@@ -13,18 +13,18 @@
 	})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
 
 <?php
-	// List the GA elements from the class-ga-js.php
-	if ( count( $gaq_push ) >= 1 ) {
-		foreach ( $gaq_push as $item ) {
-			if ( ! is_array( $item ) ) {
-				echo '	__gaTracker('.$item.");\n";
-			}
-			elseif ( isset( $item['value'] ) ) {
-				echo '	'.$item['value'] . "\n";
-			}
+// List the GA elements from the class-ga-js.php
+if ( count( $gaq_push ) >= 1 ) {
+	foreach ( $gaq_push as $item ) {
+		if ( ! is_array( $item ) ) {
+			echo '	__gaTracker('.$item.");\n";
+		}
+		elseif ( isset( $item['value'] ) ) {
+			echo '	'.$item['value'] . "\n";
 		}
 	}
-	?>
+}
+?>
 
 </script>
 <!-- / Google Analytics by Yoast -->
