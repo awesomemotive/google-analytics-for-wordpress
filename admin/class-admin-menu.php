@@ -92,7 +92,9 @@ class Yoast_GA_Admin_Menu {
 
 		if ( $on_top ) {
 			$position = $this->get_menu_position_value( 'top' );
-		} else {
+
+		}
+		else {
 			$position = $this->get_menu_position_value( 'bottom' );
 		}
 
@@ -194,7 +196,8 @@ class Yoast_GA_Admin_Menu {
 		foreach ( $this->get_submenu_types() as $submenu ) {
 			if ( isset( $submenu['color'] ) ) {
 				$submenu_page = $this->prepare_submenu_page( $submenu['label'], $submenu['slug'], $submenu['color'] );
-			} else {
+			}
+			else {
 				$submenu_page = $this->prepare_submenu_page( $submenu['label'], $submenu['slug'] );
 			}
 			$this->add_submenu_page( $submenu_page );

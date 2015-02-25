@@ -90,7 +90,8 @@ class Yoast_GA_Admin_Form {
 			if ( $input_value == 1 ) {
 				$attributes['checked'] = 'checked';
 			}
-		} else {
+		}
+		else {
 			$attributes['value'] = stripslashes( $input_value );
 		}
 
@@ -134,7 +135,8 @@ class Yoast_GA_Admin_Form {
 
 		if ( $multiple ) {
 			$select .= '<select multiple name="' . $name . '[]" id="yoast-ga-form-select-' . self::$form_namespace . '-' . $id . '" class="ga-multiple">';
-		} else {
+		}
+		else {
 			$select .= '<select data-placeholder="' . $empty_text . '" name="' . $name . '" id="yoast-ga-form-select-' . self::$form_namespace . '-' . $id . '">';
 			if ( ! is_null( $empty_text ) ) {
 				$select .= '<option></option>';
@@ -146,7 +148,8 @@ class Yoast_GA_Admin_Form {
 			foreach ( $values as $optgroup => $value ) {
 				if ( ! empty( $value['items'] ) ) {
 					$select .= self::create_optgroup( $optgroup, $value, $select_value );
-				} else {
+				}
+				else {
 					$select .= self::option( $select_value, $value );
 				}
 
@@ -209,10 +212,12 @@ class Yoast_GA_Admin_Form {
 		if ( is_array( $select_value ) ) {
 			if ( in_array( $value['id'], $select_value ) ) {
 				return '<option value="' . $value['id'] . '" selected="selected">' . stripslashes( $value['name'] ) . '</option>';
-			} else {
+			}
+			else {
 				return '<option value="' . $value['id'] . '">' . stripslashes( $value['name'] ) . '</option>';
 			}
-		} else {
+		}
+		else {
 			return '<option value="' . $value['id'] . '" ' . selected( $select_value, $value['id'], false ) . '>' . stripslashes( $value['name'] ) . '</option>';
 		}
 	}
@@ -281,7 +286,8 @@ class Yoast_GA_Admin_Form {
 			if ( ! empty( $option['items'] ) ) {
 
 				$optgroup .= self::create_optgroup( $option['name'], $option, $select_value );
-			} else {
+			}
+			else {
 				$optgroup .= self::option( $select_value, $option );
 			}
 		}

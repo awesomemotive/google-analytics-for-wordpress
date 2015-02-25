@@ -37,7 +37,8 @@ class Yoast_GA_Tracking_Test extends GA_UnitTestCase {
 			$this->assertArrayHasKey( 'host', $domain );
 
 			$this->assertEquals( 'yoast.com', $domain['host'] );
-		} else {
+		}
+		else {
 			$this->assertTrue( $domain_result );
 		}
 
@@ -50,7 +51,8 @@ class Yoast_GA_Tracking_Test extends GA_UnitTestCase {
 			$this->assertArrayHasKey( 'host', $domain );
 
 			$this->assertEquals( 'yoast.com', $domain['host'] );
-		} else {
+		}
+		else {
 			$this->assertTrue( $domain_result );
 		}
 	}

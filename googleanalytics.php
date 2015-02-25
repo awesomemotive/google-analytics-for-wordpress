@@ -47,7 +47,8 @@ if ( is_admin() ) {
 	global $yoast_ga_admin;
 	$yoast_ga_admin = new Yoast_GA_Admin;
 
-} else {
+}
+else {
 	global $yoast_ga_frontend;
 	$yoast_ga_frontend = new Yoast_GA_Frontend;
 }
