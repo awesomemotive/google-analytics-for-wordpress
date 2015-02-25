@@ -44,7 +44,7 @@ class Yoast_GA_Admin_Form {
 		$output = null;
 		$output .= '<div class="ga-form ga-form-input">';
 		$output .= '<input type="submit" name="ga-form-' . $name . '" value="' . $button_label . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-' . self::$form_namespace . '"';
-		if( ! is_null( $onclick ) ){
+		if ( ! is_null( $onclick ) ) {
 			$output .= ' onclick="' . $onclick . '"';
 		}
 		$output .= ' />';
@@ -130,7 +130,7 @@ class Yoast_GA_Admin_Form {
 
 		$select .= '<div class="ga-form ga-form-input">';
 		if ( ! is_null( $title ) ) {
-			$select .= self::label( $id, $title, 'select' ); //'<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . self::$form_namespace . '-' . $id . '">' . $title . ':</label>';
+			$select .= self::label( $id, $title, 'select' ); // '<label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-' . self::$form_namespace . '-' . $id . '">' . $title . ':</label>';
 		}
 
 		if ( $multiple ) {
@@ -251,7 +251,6 @@ class Yoast_GA_Admin_Form {
 			foreach ( $value['items'] as $subitem ) {
 				$optgroups[ $subitem['name'] ]['items'] = $subitem['items'];
 			}
-
 		}
 
 		return $optgroups;
