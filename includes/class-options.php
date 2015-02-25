@@ -89,8 +89,8 @@ class Yoast_GA_Options {
 	 * @return bool
 	 */
 	public function update_option( $val ) {
-		$options                       = get_option( $this->option_name );
-		$options[$this->option_prefix] = $val;
+		$options                         = get_option( $this->option_name );
+		$options[ $this->option_prefix ] = $val;
 
 		return update_option( $this->option_name, $options );
 	}
@@ -103,7 +103,7 @@ class Yoast_GA_Options {
 	public function get_options() {
 		$options = get_option( $this->option_name );
 
-		return $options[$this->option_prefix];
+		return $options[ $this->option_prefix ];
 	}
 
 	/**
@@ -118,8 +118,8 @@ class Yoast_GA_Options {
 
 		$changes = 0;
 		foreach ( $this->default_ga_values() as $key => $value ) {
-			if ( ! isset( $options[$key] ) ) {
-				$options[$key] = $value;
+			if ( ! isset( $options[ $key ] ) ) {
+				$options[ $key ] = $value;
 				$changes ++;
 			}
 		}
@@ -165,7 +165,7 @@ class Yoast_GA_Options {
 	public function option_value_to_bool( $option_name ) {
 		$this->options = $this->get_options();
 
-		if ( isset( $this->options[$option_name] ) && $this->options[$option_name] == 1 ) {
+		if ( isset( $this->options[ $option_name ] ) && $this->options[ $option_name ] == 1 ) {
 			return true;
 		}
 
@@ -221,9 +221,9 @@ class Yoast_GA_Options {
 		// Fallback to make sure every default option has a value
 		$defaults = $this->default_ga_values();
 		if ( is_array( $defaults ) ) {
-			foreach ( $defaults[$this->option_prefix] as $key => $value ) {
-				if ( ! isset( $this->options[$key] ) ) {
-					$this->options[$key] = $value;
+			foreach ( $defaults[ $this->option_prefix ] as $key => $value ) {
+				if ( ! isset( $this->options[ $key ] ) ) {
+					$this->options[ $key ] = $value;
 				}
 			}
 		}

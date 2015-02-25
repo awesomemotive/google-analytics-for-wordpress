@@ -67,7 +67,7 @@ class Yoast_GA_Dashboards_Display {
 			$this->create_driver( $dashboard_type );
 		}
 
-		return $this->drivers[$dashboard_type];
+		return $this->drivers[ $dashboard_type ];
 	}
 
 	/**
@@ -120,7 +120,7 @@ class Yoast_GA_Dashboards_Display {
 	 * @return bool
 	 */
 	protected function driver_exists( $dashboard_type ) {
-		return array_key_exists( $dashboard_type, $this->drivers ) && is_object( $this->drivers[$dashboard_type] );
+		return array_key_exists( $dashboard_type, $this->drivers ) && is_object( $this->drivers[ $dashboard_type ] );
 	}
 
 	/**
@@ -130,7 +130,7 @@ class Yoast_GA_Dashboards_Display {
 	 */
 	protected function create_driver( $dashboard_type ) {
 		$driver_class                   = 'Yoast_GA_Dashboards_' . ucfirst( $dashboard_type );
-		$this->drivers[$dashboard_type] = new $driver_class();
+		$this->drivers[ $dashboard_type ] = new $driver_class();
 	}
 
 }

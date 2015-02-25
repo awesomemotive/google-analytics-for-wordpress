@@ -62,7 +62,7 @@ class Yoast_GA_Dashboards_Graph_Generate extends Yoast_GA_Dashboards_Driver_Gene
 
 		foreach ( $google_data['value'] AS $unix_timestamp => $value ) {
 			if ( $this->is_date_in_period( $unix_timestamp ) ) {
-				$return[$unix_timestamp] = $value;
+				$return[ $unix_timestamp ] = $value;
 			}
 		}
 

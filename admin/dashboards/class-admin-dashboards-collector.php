@@ -149,13 +149,13 @@ class Yoast_GA_Dashboards_Collector {
 		$filter_metrics = $this->get_filter_metrics();
 
 		foreach ( $metrics as $key => $metric_name ) {
-			if ( isset( $filter_metrics[$metric_name] ) ) {
+			if ( isset( $filter_metrics[ $metric_name ] ) ) {
 				// Add and set the dimension
-				$dimension        = array( $filter_metrics[$metric_name] );
+				$dimension        = array( $filter_metrics[ $metric_name ] );
 				$this->dimensions = array_merge( $this->dimensions, $dimension );
 
 				// Remove it from the metrics after we've added it into dimensions
-				unset( $metrics[$key] );
+				unset( $metrics[ $key ] );
 			}
 		}
 
@@ -346,7 +346,7 @@ class Yoast_GA_Dashboards_Collector {
 		if ( in_array( $metric, $this->valid_metrics ) ) {
 			$dimensions = 'ga:date,' . $dimensions;
 		}
-		elseif ( isset( $filter_metrics[str_replace( 'ga:', '', $dimensions )] ) ) {
+		elseif ( isset( $filter_metrics[ str_replace( 'ga:', '', $dimensions ) ] ) ) {
 			// Make sure we don't have a ga:date property here
 			$dimensions = str_replace( 'ga:date', '', $dimensions );
 		}
@@ -427,15 +427,14 @@ class Yoast_GA_Dashboards_Collector {
 			$filter_metrics = $this->get_filter_metrics();
 			$extracted      = str_replace( 'ga:', '', str_replace( 'ga:date,', '', $dimensions ) );
 
-			if ( isset( $filter_metrics[$extracted] ) ) {
+			if ( isset( $filter_metrics[ $extracted ] ) ) {
 				$name = $extracted;
-
 			}
 			else {
 				$name = $metric;
 			}
 
-			if ( $dimensions !== 'ga:date' && ! isset( $filter_metrics[$extracted] ) ) {
+			if ( $dimensions !== 'ga:date' && ! isset( $filter_metrics[ $extracted ] ) ) {
 				$name = str_replace( 'ga:date,', '', $dimensions );
 			}
 
