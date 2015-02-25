@@ -249,7 +249,7 @@ class Yoast_GA_Admin_Form {
 		$optgroups = array();
 		foreach ( $values as $key => $value ) {
 			foreach ( $value['items'] AS $subitem ) {
-				$optgroups[$subitem['name']]['items'] = $subitem['items'];
+				$optgroups[ $subitem['name'] ]['items'] = $subitem['items'];
 			}
 
 		}
@@ -313,7 +313,7 @@ class Yoast_GA_Admin_Form {
 		}
 
 		// Catch a notice if the option doesn't exist, yet
-		return ( isset( $options[$name] ) ) ? $options[$name] : '';
+		return ( isset( $options[ $name ] ) ) ? $options[ $name ] : '';
 	}
 
 	/**

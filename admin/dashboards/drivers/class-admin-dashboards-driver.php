@@ -57,7 +57,7 @@ abstract class Yoast_GA_Dashboards_Driver {
 	 * @param $dashboard
 	 */
 	public function display( $dashboard ) {
-		$settings = $this->dashboards[$dashboard];
+		$settings = $this->dashboards[ $dashboard ];
 		require dirname( GAWP_FILE ) . '/admin/dashboards/views/' . $this->dashboard_type . '.php';
 	}
 
