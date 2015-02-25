@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
 
+/**
+ * Dashboards display class.
+ */
 class Yoast_GA_Dashboards_Display {
 
 	/**
@@ -126,7 +133,7 @@ class Yoast_GA_Dashboards_Display {
 	/**
 	 * Creates a driver based on given $dashboard_type
 	 *
-	 * @param $dashboard_type
+	 * @param string $dashboard_type
 	 */
 	protected function create_driver( $dashboard_type ) {
 		$driver_class                   = 'Yoast_GA_Dashboards_' . ucfirst( $dashboard_type );

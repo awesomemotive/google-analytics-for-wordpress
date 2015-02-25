@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
+
 global $yoast_ga_admin;
 
 $options_class = Yoast_GA_Options::instance();

@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Includes
+ */
 
+/**
+ * Utilities class.
+ */
 class Yoast_GA_Utils {
 
 	/**
@@ -22,14 +29,14 @@ class Yoast_GA_Utils {
 	/**
 	 * Calculate the date difference, return the amount of hours between the two dates
 	 *
-	 * @param $last_run datetime
-	 * @param $now      datetime
+	 * @param integer $last_run datetime
+	 * @param integer $now      datetime
 	 *
 	 * @return int
 	 */
 	public static function hours_between( $last_run, $now ) {
 		$seconds = max( ( $now - $last_run ), 1 );
-		$hours   = $seconds / 3600;
+		$hours   = ( $seconds / 3600 );
 
 		return floor( $hours );
 	}

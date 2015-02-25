@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
 
+/**
+ * Dashboards API options.
+ */
 class Yoast_GA_Dashboards_Api_Options {
 
 	/**
@@ -10,16 +17,12 @@ class Yoast_GA_Dashboards_Api_Options {
 	private static $instance = null;
 
 	/**
-	 * Store the access token
-	 *
-	 * @var
+	 * @var string $access_token Store the access token
 	 */
 	private $access_token;
 
 	/**
-	 * Store the options
-	 *
-	 * @var
+	 * @var array $options Store the options
 	 */
 	private $options;
 

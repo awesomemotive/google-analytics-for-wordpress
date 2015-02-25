@@ -1,3 +1,10 @@
+<?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
+
+?>
 </div>
 <div class="yoast-ga-banners">
 	<?php foreach ( $banners as $item ) : ?>

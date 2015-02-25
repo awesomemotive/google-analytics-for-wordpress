@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Frontend
+ */
 
 /**
  * The frontend JS class
@@ -10,7 +14,7 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 	 *
 	 * @param bool $return_array
 	 *
-	 * @return array
+	 * @return null|array
 	 */
 	public function tracking( $return_array = false ) {
 		global $wp_query;
@@ -34,7 +38,7 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 
 			$ua_code = $this->get_tracking_code();
 			if ( is_null( $ua_code ) && $return_array == false ) {
-				return;
+				return null;
 			}
 
 			$gaq_push[] = "'_setAccount', '" . $ua_code . "'";

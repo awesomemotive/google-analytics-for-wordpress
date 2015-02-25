@@ -1,3 +1,10 @@
+<?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Frontend
+ */
+
+?>
 <!-- This site uses the Google Analytics by Yoast plugin v<?php echo GAWP_VERSION; ?> - Universal enabled - https://yoast.com/wordpress/plugins/google-analytics/ -->
 <script type="text/javascript">
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

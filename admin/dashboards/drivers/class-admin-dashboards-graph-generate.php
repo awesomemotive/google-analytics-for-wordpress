@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
 
+/**
+ * Graph inherited class.
+ */
 class Yoast_GA_Dashboards_Graph_Generate extends Yoast_GA_Dashboards_Driver_Generate {
 
 	/**

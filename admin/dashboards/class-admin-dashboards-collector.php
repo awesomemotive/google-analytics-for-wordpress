@@ -1,18 +1,21 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
 
+/**
+ * Dashboards collector.
+ */
 class Yoast_GA_Dashboards_Collector {
 
 	/**
-	 * API storage
-	 *
-	 * @package
+	 * @var boolean $api API storage
 	 */
 	public $api;
 
 	/**
-	 * Store the active metrics
-	 *
-	 * @var
+	 * @var array $active_metrics Store the active metrics
 	 */
 	public $active_metrics;
 
@@ -31,9 +34,7 @@ class Yoast_GA_Dashboards_Collector {
 	private $valid_metrics = array();
 
 	/**
-	 * Store the GA Profile ID
-	 *
-	 * @var int
+	 * @var integer $ga_profile_id Store the GA Profile ID
 	 */
 	public $ga_profile_id;
 
@@ -392,7 +393,9 @@ class Yoast_GA_Dashboards_Collector {
 	 * Add a sort direction if we need to (Especially on dimensions which are
 	 * listed in $this->get_filter_metrics())
 	 *
-	 * @param array $params
+	 * @param array  $params
+	 * @param string $dimensions
+	 * @param string $metric
 	 *
 	 * @return array
 	 */

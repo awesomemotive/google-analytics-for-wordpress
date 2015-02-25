@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
 
 /**
  * This class is for the backend, extendable for all child classes
@@ -6,16 +10,12 @@
 class Yoast_GA_Admin_Menu {
 
 	/**
-	 * The property used for storing target object (class admin)
-	 *
-	 * @var
+	 * @var object $target_object The property used for storing target object (class admin)
 	 */
 	private $target_object;
 
 	/**
-	 * The dashboards disabled bool
-	 *
-	 * @var
+	 * @var boolean $dashboard_disabled The dashboards disabled bool
 	 */
 	private $dashboards_disabled;
 
@@ -109,7 +109,7 @@ class Yoast_GA_Admin_Menu {
 	/**
 	 * Get the top or bottom menu location number
 	 *
-	 * @param $location
+	 * @param string $location
 	 *
 	 * @return string
 	 */
@@ -124,8 +124,9 @@ class Yoast_GA_Admin_Menu {
 	/**
 	 * Prepares an array that can be used to add a submenu page to the Google Analytics for Wordpress menu
 	 *
-	 * @param $submenu_name
-	 * @param $font_color
+	 * @param string $submenu_name
+	 * @param string $submenu_slug
+	 * @param string $font_color
 	 *
 	 * @return array
 	 */
@@ -159,7 +160,7 @@ class Yoast_GA_Admin_Menu {
 	/**
 	 * Adds a submenu page to the Google Analytics for WordPress menu
 	 *
-	 * @param $submenu_page
+	 * @param array $submenu_page
 	 */
 	private function add_submenu_page( $submenu_page ) {
 		$page             = add_submenu_page( $submenu_page['parent_slug'], $submenu_page['page_title'], $submenu_page['menu_title'], $submenu_page['capability'], $submenu_page['menu_slug'], $submenu_page['submenu_function'] );
@@ -190,7 +191,7 @@ class Yoast_GA_Admin_Menu {
 	 * - Settings
 	 * - Extensions
 	 *
-	 * @return array
+	 * @return void
 	 */
 	private function add_submenu_pages() {
 		foreach ( $this->get_submenu_types() as $submenu ) {

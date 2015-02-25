@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
+
 global $yoast_ga_admin;
 
 echo $yoast_ga_admin->content_head();

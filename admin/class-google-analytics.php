@@ -1,6 +1,12 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
 
-
+/**
+ * Google Analytics class.
+ */
 class Yoast_Google_Analytics {
 
 	/**
@@ -238,7 +244,7 @@ class Yoast_Google_Analytics {
 	/**
 	 * Format the accounts request
 	 *
-	 * @param $response
+	 * @param array $response
 	 *
 	 * @return mixed
 	 */
@@ -300,7 +306,9 @@ class Yoast_Google_Analytics {
 
 }
 
-
+/**
+ * Notice class.
+ */
 class Yoast_Google_Analytics_Notice {
 
 	/**
@@ -344,7 +352,7 @@ class Yoast_Google_Analytics_Notice {
 	/**
 	 * Showing the given error as an error div
 	 *
-	 * @param $error_message
+	 * @param string $error_message
 	 */
 	private static function show_error( $error_message ) {
 		echo '<div class="error"><p>' . $error_message . '</p></div>';
