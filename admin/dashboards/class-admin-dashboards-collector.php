@@ -265,10 +265,10 @@ class Yoast_GA_Dashboards_Collector {
 	 * Execute an API call to Google Analytics and store the data in the dashboards data class
 	 *
 	 * @param string $metric
-	 * @param string $start_date 2014-10-16
-	 * @param string $end_date   2014-11-20
-	 * @param string $dimensions ga:date
-	 * @param string $storage_name
+	 * @param string $start_date   2014-10-16
+	 * @param string $end_date     2014-11-20
+	 * @param string $dimensions   ga:date
+	 * @param string $storage_name auto
 	 *
 	 * @return bool
 	 */

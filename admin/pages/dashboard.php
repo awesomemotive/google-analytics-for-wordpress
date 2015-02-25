@@ -81,7 +81,7 @@ echo $yoast_ga_admin->content_head();
 					);
 					echo '</p></div>';
 				}
-				else if( ! Yoast_Google_Analytics::get_instance()->has_refresh_token() ) {
+				else if ( ! Yoast_Google_Analytics::get_instance()->has_refresh_token() ) {
 					echo '<div class="ga-promote"><p>';
 					echo sprintf(
 						__( 'Because we\'ve switched to a newer version of the Google Analytics API, you\'ll need to re-authenticate with Google Analytics. We\'re sorry for the inconvenience. You can %sre-authenticate your Google Analytics profile here%s.', 'google-analytics-for-wordpress' ),
