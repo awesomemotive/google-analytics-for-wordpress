@@ -16,7 +16,7 @@ $extensions = $yoast_ga_admin->get_extensions();
 	<div class="tabwrapper">
 		<div id="extensions" class="wpseotab gatab">
 		<?php
-		foreach ( $extensions as $name => $extension ) {
+		foreach ( $extensions as $name => $extension ) :
 			if ( 'uninstalled' !== $extension->status ) {
 				$has_extensions = true;
 			}
@@ -27,32 +27,19 @@ $extensions = $yoast_ga_admin->get_extensions();
 				</a>
 
 				<p><?php echo $extension->desc; ?></p>
-
 					<p>
-						<?php
-						if ( 'uninstalled' == $extension->status ) {
-							?>
-							<a target="_blank" href="<?php echo $extension->url; ?>#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary"><?php echo __( 'Get this extension', 'google-analytics-for-wordpress'); ?></a>
-						<?php
-						}
-						else {
-							if ( 'inactive' == $extension->status ) {
-								?>
-								<a href="#top#licenses" class="activate-link button-primary"><?php echo __( 'Activate License', 'google-analytics-for-wordpress'); ?></a>
-							<?php
-							}
-							else {
-								?>
-								<button class="button-primary installed"><?php echo __( 'Installed', 'google-analytics-for-wordpress'); ?></button>
-							<?php
-							}
-						}
-						?>
+						<?php if ( 'uninstalled' == $extension->status ) : ?>
+							<a target="_blank" href="<?php echo $extension->url; ?>#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary"><?php echo __( 'Get this extension', 'google-analytics-for-wordpress' ); ?></a>
+						<?php else : ?>
+							<?php if ( 'inactive' == $extension->status ) : ?>
+								<a href="#top#licenses" class="activate-link button-primary"><?php echo __( 'Activate License', 'google-analytics-for-wordpress' ); ?></a>
+							<?php else : ?>
+								<button class="button-primary installed"><?php echo __( 'Installed', 'google-analytics-for-wordpress' ); ?></button>
+							<?php endif; ?>
+						<?php endif; ?>
 					</p>
 				</div>
-			<?php
-			}
-			?>
+		<?php endforeach; ?>
 		</div>
 		<div id="licenses" class="wpseotab gatab">
 		<?php
