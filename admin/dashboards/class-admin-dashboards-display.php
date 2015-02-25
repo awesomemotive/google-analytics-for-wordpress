@@ -45,7 +45,7 @@ class Yoast_GA_Dashboards_Display {
 	 * *Singleton* via the `new` operator from outside of this class.
 	 */
 	protected function __construct() {
-		foreach ( $this->dashboard_types AS $dashboard_type ) {
+		foreach ( $this->dashboard_types as $dashboard_type ) {
 			if ( ! $this->driver_exists( $dashboard_type ) ) {
 				$this->create_driver( $dashboard_type );
 			}
@@ -88,7 +88,7 @@ class Yoast_GA_Dashboards_Display {
 	 * @param array $dashboards
 	 */
 	private function register( $dashboards ) {
-		foreach ( $dashboards AS $dashboard_name => $dashboard_settings ) {
+		foreach ( $dashboards as $dashboard_name => $dashboard_settings ) {
 			if ( ! empty( $dashboard_settings['type'] ) ) {
 				$this->driver( $dashboard_settings['type'] )->register( $dashboard_name, $dashboard_settings );
 			}
@@ -105,7 +105,7 @@ class Yoast_GA_Dashboards_Display {
 
 		$dashboards_to_show = $this->dashboards;
 
-		foreach ( $dashboards_to_show AS $dashboard_name => $dashboard_settings ) {
+		foreach ( $dashboards_to_show as $dashboard_name => $dashboard_settings ) {
 			if ( ! empty( $dashboard_settings['tab'] ) && $dashboard_settings['tab'] === $tab_to_show ) {
 				$this->driver( $dashboard_settings['type'] )->display( $dashboard_name );
 			}
