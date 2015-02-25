@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
 
 /**
  * This class is for the backend, extendable for all child classes
@@ -6,12 +10,13 @@
 class Yoast_GA_Admin extends Yoast_GA_Options {
 
 	/**
-	 * Store the API instance
-	 *
-	 * @var
+	 * @var boolean $api Store the API instance
 	 */
 	public $api;
 
+	/**
+	 * Constructor
+	 */
 	public function __construct() {
 		parent::__construct();
 
@@ -68,7 +73,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	/**
 	 * This function saves the settings in the option field and returns a wp success message on success
 	 *
-	 * @param $data
+	 * @param array $data
 	 */
 	public function save_settings( $data ) {
 
@@ -108,7 +113,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			) );
 		}
 
-		#redirect
+		// redirect
 		wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
 		exit;
 	}
@@ -130,9 +135,9 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	/**
 	 * Handle a default setting in GA
 	 *
-	 * @param $data
-	 * @param $option_name
-	 * @param $value
+	 * @param array  $data
+	 * @param string $option_name
+	 * @param mixed  $value
 	 */
 	private function handle_default_setting( $data, $option_name, $value ) {
 		if ( ! isset( $data[ $option_name ] ) ) {
@@ -150,7 +155,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	/**
 	 * Handle the post requests in the admin form of the GA plugin
 	 *
-	 * @param $dashboards
+	 * @param Yoast_GA_Dashboards $dashboards
 	 */
 	private function handle_ga_post_request( $dashboards ) {
 		if ( ! function_exists( 'wp_verify_nonce' ) ) {
@@ -176,7 +181,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	/**
 	 * Is there selected an other property in the settings post? Returns true or false.
 	 *
-	 * @param $post
+	 * @param array $post
 	 *
 	 * @return bool
 	 */
@@ -211,7 +216,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	/**
 	 * Transform the Profile ID into an helpful UA code
 	 *
-	 * @param $profile_id
+	 * @param integer $profile_id
 	 *
 	 * @return null
 	 */
@@ -500,8 +505,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	/**
 	 * Add a notification to the notification transient
 	 *
-	 * @param $transient_name
-	 * @param $settings
+	 * @param string $transient_name
+	 * @param array  $settings
 	 */
 	private function add_notification( $transient_name, $settings ) {
 		set_transient( $transient_name, $settings, MINUTE_IN_SECONDS );

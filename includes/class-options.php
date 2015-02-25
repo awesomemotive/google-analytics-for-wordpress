@@ -1,7 +1,15 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Includes
+ */
 
+/**
+ * Options class.
+ */
 class Yoast_GA_Options {
 
+	/** @var array  */
 	public $options;
 
 	/**
@@ -110,7 +118,7 @@ class Yoast_GA_Options {
 	 * Check if all the options are set, to prevent a notice if debugging is enabled
 	 * When we have new changes, the settings are saved to the options class
 	 *
-	 * @param $options
+	 * @param array $options
 	 *
 	 * @return mixed
 	 */
@@ -158,7 +166,7 @@ class Yoast_GA_Options {
 	/**
 	 * Convert a option value to a bool
 	 *
-	 * @param $option_name
+	 * @param string $option_name
 	 *
 	 * @return bool
 	 */

@@ -1,10 +1,15 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Frontend
+ */
 
 /**
  * The basic frontend class for the GA plugin, extendable for the children
  */
 class Yoast_GA_Frontend {
 
+	/** @var array $options */
 	protected $options;
 
 	/**

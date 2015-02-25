@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Frontend
+ */
 
 /**
  * The basic frontend tracking class for the GA plugin, extendable for the children
@@ -18,8 +22,7 @@ abstract class Yoast_GA_Tracking {
 	public $options;
 
 	/**
-	 * Should the tracking code be added
-	 * @var bool
+	 * @var boolean $do_tracking Should the tracking code be added
 	 */
 	protected $do_tracking = null;
 
@@ -35,8 +38,8 @@ abstract class Yoast_GA_Tracking {
 	/**
 	 * Output tracking link
 	 *
-	 * @param $label
-	 * @param $matches
+	 * @param string $label
+	 * @param array  $matches
 	 *
 	 * @return mixed
 	 */
@@ -86,7 +89,7 @@ abstract class Yoast_GA_Tracking {
 	/**
 	 * Parse article link
 	 *
-	 * @param $matches
+	 * @param array $matches
 	 *
 	 * @return mixed
 	 */
@@ -97,7 +100,7 @@ abstract class Yoast_GA_Tracking {
 	/**
 	 * Parse comment link
 	 *
-	 * @param $matches
+	 * @param array $matches
 	 *
 	 * @return mixed
 	 */
@@ -108,7 +111,7 @@ abstract class Yoast_GA_Tracking {
 	/**
 	 * Parse widget link
 	 *
-	 * @param $matches
+	 * @param array $matches
 	 *
 	 * @return mixed
 	 */
@@ -119,7 +122,7 @@ abstract class Yoast_GA_Tracking {
 	/**
 	 * Parse menu link
 	 *
-	 * @param $matches
+	 * @param array $matches
 	 *
 	 * @return mixed
 	 */
@@ -130,7 +133,7 @@ abstract class Yoast_GA_Tracking {
 	/**
 	 * Parse the_content or the_excerpt for links
 	 *
-	 * @param $text
+	 * @param string $text
 	 *
 	 * @return mixed
 	 */
@@ -149,7 +152,7 @@ abstract class Yoast_GA_Tracking {
 	/**
 	 * Parse the widget content for links
 	 *
-	 * @param $text
+	 * @param string $text
 	 *
 	 * @return mixed
 	 */
@@ -165,7 +168,7 @@ abstract class Yoast_GA_Tracking {
 	/**
 	 * Parse the nav menu for links
 	 *
-	 * @param $text
+	 * @param string $text
 	 *
 	 * @return mixed
 	 */
@@ -184,7 +187,7 @@ abstract class Yoast_GA_Tracking {
 	/**
 	 * Parse comment text for links
 	 *
-	 * @param $text
+	 * @param string $text
 	 *
 	 * @return mixed
 	 */
@@ -203,7 +206,7 @@ abstract class Yoast_GA_Tracking {
 	/**
 	 * Parse the domain
 	 *
-	 * @param $uri
+	 * @param string $uri
 	 *
 	 * @return array|bool
 	 */

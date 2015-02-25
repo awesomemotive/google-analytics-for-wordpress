@@ -1,3 +1,10 @@
+<?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
+
+?>
 <div id="graph-<?php echo $dashboard; ?>" class="yoast-dashboard yoast-graph" data-label="<?php echo $settings['title']; ?>" data-percent="<?php echo ! empty( $settings['data-percent'] ); ?>">
 	<h3>
 		<span class='alignleft'><?php echo $settings['title']; ?></span>

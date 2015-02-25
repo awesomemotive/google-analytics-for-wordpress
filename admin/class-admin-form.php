@@ -1,11 +1,17 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
 
 /**
  * This class is for the backend
  */
-
 class Yoast_GA_Admin_Form {
 
+	/**
+	 * @var string $form_namespace
+	 */
 	private static $form_namespace;
 
 	/**
@@ -152,7 +158,6 @@ class Yoast_GA_Admin_Form {
 				else {
 					$select .= self::option( $select_value, $value );
 				}
-
 			}
 		}
 		$select .= '</select>';
@@ -259,9 +264,9 @@ class Yoast_GA_Admin_Form {
 	/**
 	 * Creates a label
 	 *
-	 * @param $id
-	 * @param $title
-	 * @param $type
+	 * @param string $id
+	 * @param string $title
+	 * @param string $type
 	 *
 	 * @return string
 	 */

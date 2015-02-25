@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Frontend
+ */
 
 /**
  * This is the frontend class for the GA Universal code
@@ -14,6 +18,10 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 
 	/**
 	 * Function to output the GA Tracking code in the wp_head()
+	 *
+	 * @param boolean $return_array
+	 *
+	 * @return null|array
 	 */
 	public function tracking( $return_array = false ) {
 		global $wp_query;
@@ -37,7 +45,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 
 			$ua_code = $this->get_tracking_code();
 			if ( is_null( $ua_code ) && $return_array == false ) {
-				return;
+				return null;
 			}
 
 			// Set tracking code here

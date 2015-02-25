@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
 
+/**
+ * Base abstract class.
+ */
 abstract class Yoast_GA_Dashboards_Driver_Generate {
 
 	/**
