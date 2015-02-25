@@ -248,7 +248,7 @@ class Yoast_GA_Admin_Form {
 	public static function parse_optgroups( $values ) {
 		$optgroups = array();
 		foreach ( $values as $key => $value ) {
-			foreach ( $value['items'] AS $subitem ) {
+			foreach ( $value['items'] as $subitem ) {
 				$optgroups[ $subitem['name'] ]['items'] = $subitem['items'];
 			}
 

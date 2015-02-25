@@ -13,7 +13,7 @@
 		<table class="widefat fixed stripe">
 			<thead>
 				<th><?php echo $settings['title']; ?></th>
-				<?php foreach($settings['columns'] As $columns) { ?>
+				<?php foreach ( $settings['columns'] as $columns ) { ?>
 				<th><?php echo $columns; ?></th>
 				<?php } ?>
 			</thead>
