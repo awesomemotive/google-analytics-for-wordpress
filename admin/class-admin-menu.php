@@ -46,7 +46,7 @@ class Yoast_GA_Admin_Menu {
 		}
 
 		$this->dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
-		$this->parent_slug = ( $this->dashboards_disabled ? 'yst_ga_settings' : 'yst_ga_dashboard' );
+		$this->parent_slug         = ( ( $this->dashboards_disabled ) ? 'yst_ga_settings' : 'yst_ga_dashboard' );
 	}
 
 	/**

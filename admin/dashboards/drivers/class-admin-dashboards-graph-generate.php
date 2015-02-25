@@ -137,7 +137,7 @@ class Yoast_GA_Dashboards_Graph_Generate extends Yoast_GA_Dashboards_Driver_Gene
 	private function add_x_mapping( $timestamp ) {
 
 		$is_monday            = ( 'Mon' === date( 'D', $timestamp ) );
-		$this->mapping['x'][] = $is_monday ? date( $this->date_field . ' M', $timestamp ) : null;
+		$this->mapping['x'][] = ( $is_monday ) ? date( $this->date_field . ' M', $timestamp ) : null;
 	}
 
 	/**
