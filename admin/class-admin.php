@@ -99,8 +99,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 				'type'        => 'success',
 				'description' => __( 'Settings saved.', 'google-analytics-for-wordpress' ),
 			) );
-
-		} else {
+		}
+		else {
 			// Fail, add a new notification
 			$this->add_notification( 'ga_notifications', array(
 				'type'        => 'error',
@@ -140,7 +140,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			if ( $value === 1 ) {
 				// Disable the checkbox for now, use value 0
 				$this->options[$option_name] = 0;
-			} else {
+			}
+			else {
 				$this->options[$option_name] = $value;
 			}
 		}
@@ -356,7 +357,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	private function get_current_profile() {
 		if ( ! empty( $this->options['analytics_profile'] ) ) {
 			return $this->options['analytics_profile'];
-		} else {
+		}
+		else {
 			return null;
 		}
 	}
@@ -521,7 +523,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 					$transient['description'],
 					'updated'
 				);
-			} else {
+			}
+			else {
 				add_settings_error(
 					'yoast_google_analytics',
 					'yoast_google_analytics',

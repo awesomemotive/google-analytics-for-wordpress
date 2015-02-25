@@ -41,7 +41,8 @@ echo $yoast_ga_admin->content_head();
 							'</a>'
 						);
 						echo '</p></div>';
-					} else if( ! Yoast_Google_Analytics::get_instance()->has_refresh_token() ) {
+					}
+					else if ( ! Yoast_Google_Analytics::get_instance()->has_refresh_token() ) {
 						echo '<div class="ga-promote"><p>';
 						echo sprintf(
 							__( 'Because we\'ve switched to a newer version of the Google Analytics API, you\'ll need to re-authenticate with Google Analytics. We\'re sorry for the inconvenience. You can %sre-authenticate your Google Analytics profile here%s.', 'google-analytics-for-wordpress' ),
@@ -49,10 +50,12 @@ echo $yoast_ga_admin->content_head();
 							'</a>'
 						);
 						echo '</p></div>';
-					} else {
+					}
+					else {
 						Yoast_GA_Dashboards_Display::get_instance()->display( 'general' );
 					}
-				} else {
+				}
+				else {
 					echo '<div class="ga-promote"><p>';
 					echo sprintf(
 						__( 'You have not yet finished setting up Google Analytics for Wordpress by Yoast. Please %sadd your Analytics profile here%s to enable tracking.', 'google-analytics-for-wordpress' ),
@@ -77,7 +80,8 @@ echo $yoast_ga_admin->content_head();
 						'</a>'
 					);
 					echo '</p></div>';
-				} else if( ! Yoast_Google_Analytics::get_instance()->has_refresh_token() ) {
+				}
+				else if( ! Yoast_Google_Analytics::get_instance()->has_refresh_token() ) {
 					echo '<div class="ga-promote"><p>';
 					echo sprintf(
 						__( 'Because we\'ve switched to a newer version of the Google Analytics API, you\'ll need to re-authenticate with Google Analytics. We\'re sorry for the inconvenience. You can %sre-authenticate your Google Analytics profile here%s.', 'google-analytics-for-wordpress' ),
@@ -85,7 +89,8 @@ echo $yoast_ga_admin->content_head();
 						'</a>'
 					);
 					echo '</p></div>';
-				} else {
+				}
+				else {
 					?>
 					<div class="ga-form ga-form-input">
 						<label class="ga-form ga-form-checkbox-label ga-form-label-left"><?php echo __( 'Select a dimension', 'google-analytics-for-wordpress' ); ?></label>
@@ -95,7 +100,8 @@ echo $yoast_ga_admin->content_head();
 					<?php
 					Yoast_GA_Dashboards_Display::get_instance()->display( 'dimensions' );
 				}
-			} else {
+			}
+			else {
 				echo '<div class="ga-promote"><p>';
 				echo sprintf(
 					__( 'You have not yet finished setting up Google Analytics for Wordpress by Yoast. Please %sadd your Analytics profile here%s to enable tracking.', 'google-analytics-for-wordpress' ),

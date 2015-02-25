@@ -89,7 +89,8 @@ abstract class Yoast_GA_Dashboards_Driver_Generate {
 
 		if ( $response != array() && array_key_exists( 'body', $response['value'] ) ) {
 			$return = $response['value']['body'];
-		} else {
+		}
+		else {
 			$return = $response;
 		}
 

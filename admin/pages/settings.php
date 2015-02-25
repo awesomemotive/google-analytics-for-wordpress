@@ -51,7 +51,8 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 				echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle">' . __( 'Current UA-profile', 'google-analytics-for-wordpress' ) . '</label>';
 				echo $yoast_ga_admin->get_tracking_code();
 				echo '</div>';
-			} else {
+			}
+			else {
 				echo Yoast_GA_Admin_Form::select( __('Analytics profile', 'google-analytics-for-wordpress' ), 'analytics_profile', $profiles, null, false, __( 'Select a profile', 'google-analytics-for-wordpress' ) );
 
 				echo '<div class="ga-form ga-form-input">';
@@ -68,11 +69,13 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 			echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle-submit">&nbsp;</label>';
 			echo '<div class="ga-form ga-form-input"><input type="submit" name="ga-form-settings" value="' . __('Save authentication code', 'google-analytics-for-wordpress') . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-settings" onclick="yst_closepopupwindow();"></div>';
 			echo '</div>';
-		} else {
+		}
+		else {
 			echo '<h3>' . __( 'Cannot connect to Google', 'google-analytics-for-wordpress' ) . '</h3>';
 			if ( $wp_block_google == false && $check_google_access == false ) {
 				echo '<p>' . __( 'Your server is blocking requests to Google, to fix this, add <code>*.googleapis.com</code> to the <code>WP_ACCESSIBLE_HOSTS</code> constant in your <em>wp-config.php</em> or ask your webhost to do this.', 'google-analytics-for-wordpress' ) . '</p>';
-			} else {
+			}
+			else {
 				echo '<p>' . __( 'Your firewall or webhost is blocking requests to Google, please ask your webhost company to fix this.', 'google-analytics-for-wordpress' ) . '</p>';
 			}
 			echo '<p>' . __( 'Until this is fixed, you can only use the manual authentication method and cannot use the dashboards feature.', 'google-analytics-for-wordpress' ) . '</p>';

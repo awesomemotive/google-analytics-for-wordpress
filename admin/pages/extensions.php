@@ -34,12 +34,14 @@ $extensions = $yoast_ga_admin->get_extensions();
 							?>
 							<a target="_blank" href="<?php echo $extension->url; ?>#utm_medium=banner&utm_source=gawp-config&utm_campaign=extension-page-banners" class="button-primary"><?php echo __( 'Get this extension', 'google-analytics-for-wordpress'); ?></a>
 						<?php
-						} else {
+						}
+						else {
 							if ( 'inactive' == $extension->status ) {
 								?>
 								<a href="#top#licenses" class="activate-link button-primary"><?php echo __( 'Activate License', 'google-analytics-for-wordpress'); ?></a>
 							<?php
-							} else {
+							}
+							else {
 								?>
 								<button class="button-primary installed"><?php echo __( 'Installed', 'google-analytics-for-wordpress'); ?></button>
 							<?php
@@ -56,7 +58,8 @@ $extensions = $yoast_ga_admin->get_extensions();
 		<?php
 		if ( ! $has_extensions ) {
 			echo '<p>' . __( 'You have not installed any extensions for Google Analytics by Yoast, so there are no licenses to activate.', 'google-analytics-for-wordpress' ) . '</p>';
-		} else {
+		}
+		else {
 			do_action( 'yst_ga_show_license_form' );
 		}
 		?>

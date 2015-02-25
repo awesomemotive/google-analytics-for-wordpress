@@ -78,7 +78,8 @@ class Yoast_GA_Dashboards_Api_Options {
 	public function get_access_token() {
 		if ( ! empty( $this->access_token ) ) {
 			return $this->access_token;
-		} else {
+		}
+		else {
 			return false;
 		}
 	}

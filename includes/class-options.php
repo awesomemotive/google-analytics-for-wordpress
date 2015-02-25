@@ -142,7 +142,8 @@ class Yoast_GA_Options {
 
 		if ( ! empty( $this->options['analytics_profile'] ) && ! empty( $this->options['analytics_profile_code'] ) ) {
 			$tracking_code = $this->options['analytics_profile_code'];
-		} elseif ( ! empty( $this->options['analytics_profile'] ) && empty( $this->options['analytics_profile_code'] ) ) {
+		}
+		elseif ( ! empty( $this->options['analytics_profile'] ) && empty( $this->options['analytics_profile_code'] ) ) {
 			// Analytics profile is still holding the UA code
 			$tracking_code = $this->options['analytics_profile'];
 		}

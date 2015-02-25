@@ -23,7 +23,8 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 
 			if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != '' ) {
 				$domain = $this->options['subdomain_tracking'];
-			} else {
+			}
+			else {
 				$domain = null; // Default domain value
 			}
 
@@ -74,23 +75,28 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 
 			if ( is_404() ) {
 				$gaq_push[] = "'_trackPageview','/404.html?page=' + document.location.pathname + document.location.search + '&from=' + document.referrer";
-			} else {
+			}
+			else {
 				if ( $wp_query->is_search ) {
 					$pushstr = "'_trackPageview','/?s=";
 					if ( $wp_query->found_posts == 0 ) {
 						$gaq_push[] = $pushstr . 'no-results:' . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=no-results'";
-					} else {
+					}
+					else {
 						if ( $wp_query->found_posts == 1 ) {
 							$gaq_push[] = $pushstr . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=1-result'";
-						} else {
+						}
+						else {
 							if ( $wp_query->found_posts > 1 && $wp_query->found_posts < 6 ) {
 								$gaq_push[] = $pushstr . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=2-5-results'";
-							} else {
+							}
+							else {
 								$gaq_push[] = $pushstr . rawurlencode( $wp_query->query_vars['s'] ) . "&cat=plus-5-results'";
 							}
 						}
 					}
-				} else {
+				}
+				else {
 					$gaq_push[] = "'_trackPageview'";
 				}
 			}
@@ -112,10 +118,12 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 			// Include the tracking view
 			if ( $this->options['debug_mode'] == 1 ) {
 				require( 'views/tracking-debug.php' );
-			} else {
+			}
+			else {
 				require( 'views/tracking-ga-js.php' );
 			}
-		} else {
+		}
+		else {
 			require( 'views/tracking-usergroup.php' );
 		}
 	}
@@ -152,7 +160,8 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 			case 'download':
 				if ( $this->options['track_download_as'] == 'pageview' ) {
 					$onclick = "_gaq.push(['_trackPageview','download/" . esc_attr( $full_url ) . "']);";
-				} else {
+				}
+				else {
 					$onclick = "_gaq.push(['_trackEvent','download','" . esc_attr( $full_url ) . "']);";
 				}
 

@@ -217,7 +217,8 @@ abstract class Yoast_GA_Tracking {
 			$host = $matches[2];
 			if ( preg_match( '/.*\..*\..*\..*$/', $host ) ) {
 				preg_match( $domainPatternUK, $host, $matches );
-			} else {
+			}
+			else {
 				preg_match( $domainPatternUS, $host, $matches );
 			}
 
@@ -246,10 +247,12 @@ abstract class Yoast_GA_Tracking {
 			$link_attribute = str_replace( "onclick='" . $matches[1] . "'", $js_snippet_single, $link_attribute );
 
 			return $link_attribute;
-		} else {
+		}
+		else {
 			if ( ! is_null( $onclick ) ) {
 				return 'onclick="' . $onclick . '" ' . $link_attribute;
-			} else {
+			}
+			else {
 				return $link_attribute;
 			}
 		}
@@ -363,12 +366,15 @@ abstract class Yoast_GA_Tracking {
 		$type = null;
 		if ( $protocol !== 'http' && $protocol !== 'https' && $protocol !== 'mailto' ) {
 			$type = null;
-		} else {
+		}
+		else {
 			if ( ( $protocol == 'mailto' ) ) {
 				$type = 'email';
-			} elseif ( in_array( $extension, $download_extensions ) ) {
+			}
+			elseif ( in_array( $extension, $download_extensions ) ) {
 				$type = 'download';
-			} else {
+			}
+			else {
 				$type = $this->parse_outbound_type( $domain, $origin, $original_url );
 			}
 		}
@@ -403,7 +409,8 @@ abstract class Yoast_GA_Tracking {
 			if ( ! isset( $type ) ) {
 				$type = 'internal';
 			}
-		} elseif ( $domain['domain'] != $origin['domain'] ) {
+		}
+		elseif ( $domain['domain'] != $origin['domain'] ) {
 			$type = 'outbound';
 		}
 
