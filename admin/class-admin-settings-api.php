@@ -31,15 +31,17 @@ class Yoast_GA_Admin_Settings_API {
 
 	/**
 	 * Construct the new admin settings api forms
+	 *
+	 * @param $settings
 	 */
-	public function __construct() {
+	public function __construct( $settings ) {
 		add_action( 'plugins_loaded', array( $this, 'init_default_options' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_general' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_universal' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_advanced' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_debug' ) );
 
-		$this->settings = Yoast_GA_Options::instance()->get_options();
+		$this->settings = $settings;
 	}
 
 	/**
@@ -49,8 +51,7 @@ class Yoast_GA_Admin_Settings_API {
 		register_setting( $this->settings_api_page . '_general', 'yst_ga_settings' );
 
 		$this->create_section(
-			'general',
-			__( 'General tracking', 'google-analytics-for-wordpress' )
+			'general'
 		);
 
 		$this->add_field(
@@ -117,8 +118,7 @@ class Yoast_GA_Admin_Settings_API {
 		register_setting( $this->settings_api_page . '_universal', 'yst_ga_settings' );
 
 		$this->create_section(
-			'universal',
-			__( 'Universal tracking', 'google-analytics-for-wordpress' )
+			'universal'
 		);
 
 		$this->add_field(
@@ -163,8 +163,7 @@ class Yoast_GA_Admin_Settings_API {
 		register_setting( $this->settings_api_page . '_advanced', 'yst_ga_settings' );
 
 		$this->create_section(
-			'advanced',
-			__( 'Advanced settings', 'google-analytics-for-wordpress' )
+			'advanced'
 		);
 
 		$this->add_field(
@@ -288,8 +287,7 @@ class Yoast_GA_Admin_Settings_API {
 		register_setting( $this->settings_api_page . '_debug', 'yst_ga_settings' );
 
 		$this->create_section(
-			'debug',
-			__( 'Debug settings', 'google-analytics-for-wordpress' )
+			'debug'
 		);
 
 		$this->add_field(
@@ -348,7 +346,8 @@ class Yoast_GA_Admin_Settings_API {
 	 * @param $args
 	 */
 	public function yst_ga_checkbox_field( $args ) {
-		$options = get_option( 'yst_ga_settings' );
+		//$options = get_option( 'yst_ga_settings' );
+		$options = $this->settings;
 
 		if ( ! isset( $options[$args['key']] ) ) {
 			$options[$args['key']] = '';
@@ -442,12 +441,11 @@ class Yoast_GA_Admin_Settings_API {
 	 * Create a new settings section
 	 *
 	 * @param $tab
-	 * @param $label
 	 */
-	private function create_section( $tab, $label ) {
+	private function create_section( $tab ) {
 		add_settings_section(
 			'yst_ga_settings_api_' . $tab,
-			'', // $label -> not neccesary here?
+			'',
 			array( $this, 'yst_ga_settings_section_callback' ),
 			$this->settings_api_page . '_' . $tab
 		);
