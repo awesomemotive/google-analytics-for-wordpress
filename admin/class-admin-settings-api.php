@@ -15,7 +15,12 @@ class Yoast_GA_Admin_Settings_API {
 	/**
 	 * @var array
 	 */
-	private $default_options = array();
+	private $default_options = array(
+		'tracking_code'        => array(),
+		'user_roles'           => array(),
+		'track_download_types' => array(),
+		'track_full_url'       => array(),
+	);
 
 	/**
 	 * The slug of this settings page, used in the Settings API
@@ -32,6 +37,7 @@ class Yoast_GA_Admin_Settings_API {
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_general' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_universal' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_advanced' ) );
+		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_debug' ) );
 
 		$this->settings = Yoast_GA_Options::instance()->get_options();
 	}
@@ -40,7 +46,7 @@ class Yoast_GA_Admin_Settings_API {
 	 * Init the general tab
 	 */
 	public function yst_ga_settings_init_general() {
-		register_setting( $this->settings_api_page, 'yst_ga_settings' );
+		register_setting( $this->settings_api_page . '_general', 'yst_ga_settings' );
 
 		$this->create_section(
 			'general',
@@ -86,9 +92,9 @@ class Yoast_GA_Admin_Settings_API {
 			'select',
 			'general',
 			array(
-				'key'  => 'ignore_users',
-				'help' => __( 'Users of the role you select will be ignored, so if you select Editor, all Editors will be ignored.', 'google-analytics-for-wordpress' ),
-				'attributes'  => ' multiple="true"',
+				'key'        => 'ignore_users',
+				'help'       => __( 'Users of the role you select will be ignored, so if you select Editor, all Editors will be ignored.', 'google-analytics-for-wordpress' ),
+				'attributes' => ' multiple="true"',
 			)
 		);
 
@@ -108,6 +114,8 @@ class Yoast_GA_Admin_Settings_API {
 	 * Init the universal tab
 	 */
 	public function yst_ga_settings_init_universal() {
+		register_setting( $this->settings_api_page . '_universal', 'yst_ga_settings' );
+
 		$this->create_section(
 			'universal',
 			__( 'Universal tracking', 'google-analytics-for-wordpress' )
@@ -152,6 +160,8 @@ class Yoast_GA_Admin_Settings_API {
 	 * Init the advanced tab
 	 */
 	public function yst_ga_settings_init_advanced() {
+		register_setting( $this->settings_api_page . '_advanced', 'yst_ga_settings' );
+
 		$this->create_section(
 			'advanced',
 			__( 'Advanced settings', 'google-analytics-for-wordpress' )
@@ -163,9 +173,9 @@ class Yoast_GA_Admin_Settings_API {
 			'select',
 			'advanced',
 			array(
-				'key'  => 'track_download_as',
-				'help' => __( 'Not recommended, as this would skew your statistics, but it does make it possible to track downloads as goals.', 'google-analytics-for-wordpress' ),
-				'options'     => $this->default_options['track_download_types'],
+				'key'     => 'track_download_as',
+				'help'    => __( 'Not recommended, as this would skew your statistics, but it does make it possible to track downloads as goals.', 'google-analytics-for-wordpress' ),
+				'options' => $this->default_options['track_download_types'],
 			)
 		);
 
@@ -186,9 +196,9 @@ class Yoast_GA_Admin_Settings_API {
 			'select',
 			'advanced',
 			array(
-				'key'  => 'track_full_url',
-				'help' => __( 'How should we track your outbound clicks?', 'google-analytics-for-wordpress' ),
-				'options'     => $this->default_options['track_full_url'],
+				'key'     => 'track_full_url',
+				'help'    => __( 'How should we track your outbound clicks?', 'google-analytics-for-wordpress' ),
+				'options' => $this->default_options['track_full_url'],
 			)
 		);
 
@@ -269,6 +279,29 @@ class Yoast_GA_Admin_Settings_API {
 			)
 		);
 
+	}
+
+	/**
+	 * Init the debug tab
+	 */
+	public function yst_ga_settings_init_debug() {
+		register_setting( $this->settings_api_page . '_debug', 'yst_ga_settings' );
+
+		$this->create_section(
+			'debug',
+			__( 'Debug settings', 'google-analytics-for-wordpress' )
+		);
+
+		$this->add_field(
+			'enable_debug',
+			__( 'Enable debug mode', 'google-analytics-for-wordpress' ),
+			'checkbox',
+			'debug',
+			array(
+				'key'     => 'track_download_as',
+				'help'    => __( 'Not recommended, as this would skew your statistics, but it does make it possible to track downloads as goals.', 'google-analytics-for-wordpress' ),
+			)
+		);
 	}
 
 	/**
@@ -369,12 +402,9 @@ class Yoast_GA_Admin_Settings_API {
 	 * @param array $section
 	 */
 	public function yst_ga_settings_section_callback( $section ) {
+		// @TODO, here is some little work to do to get the tabs working again
 
-		//echo '</div>';
-
-		//echo '<h3>' . $section['title'] . '</h3>';
-		//echo __( 'This section descrirgergerption', 'google-analytics-for-wordpress' );
-		//echo '<div id="debugmode" class="gatab">';
+		//echo '<div id="' . $section['id'] . '" class="gatab">';
 	}
 
 	/**
@@ -414,12 +444,12 @@ class Yoast_GA_Admin_Settings_API {
 	 * @param $tab
 	 * @param $label
 	 */
-	private function create_section( $tab, $label ){
+	private function create_section( $tab, $label ) {
 		add_settings_section(
 			'yst_ga_settings_api_' . $tab,
-			$label,
+			'', // $label -> not neccesary here?
 			array( $this, 'yst_ga_settings_section_callback' ),
-			$this->settings_api_page
+			$this->settings_api_page . '_' . $tab
 		);
 	}
 
@@ -437,7 +467,7 @@ class Yoast_GA_Admin_Settings_API {
 			'yst_ga_' . $id,
 			$title,
 			array( $this, 'yst_ga_' . $type . '_field' ),
-			$this->settings_api_page,
+			$this->settings_api_page . '_' . $tab,
 			$this->settings_api_page . '_' . $tab,
 			$args
 		);
