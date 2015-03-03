@@ -394,7 +394,7 @@ class Yoast_GA_Admin_Settings_API {
 			$options .= '<option value="' . $option['id'] . '" ' . selected( $option['id'], $args['value'], false ) . '>' . $option['name'] . '</option>';
 		}
 
-		echo $this->show_help( 'id-' . $args['name'], $args['description'] ) . '<select name="' . $args['name'] . '"' . $class . $attributes . '>' . $options . '</select>';
+		echo $this->show_help( 'id-' . $args['key'], $args['help'] ) . '<select name="yst_ga_settings[' . $args['key'] . ']"' . $class . $attributes . '>' . $options . '</select>';
 	}
 
 	/**
