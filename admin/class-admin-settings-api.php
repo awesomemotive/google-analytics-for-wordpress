@@ -133,17 +133,6 @@ class Yoast_GA_Admin_Settings_API {
 		);
 
 		$this->add_field(
-			'enhanced_link_attribution',
-			__( 'Enhanced Link Attribution', 'google-analytics-for-wordpress' ),
-			'checkbox',
-			'universal',
-			array(
-				'key'  => 'enhanced_link_attribution',
-				'help' => sprintf( __( 'Add %1$sEnhanced Link Attribution%2$s to your tracking code.', 'google-analytics-for-wordpress' ), '<a href="https://support.google.com/analytics/answer/2558867" target="_blank">', ' </a>' )
-			)
-		);
-
-		$this->add_field(
 			'demographics',
 			__( 'Enable Demographics and Interest Reports', 'google-analytics-for-wordpress' ),
 			'checkbox',
@@ -151,6 +140,17 @@ class Yoast_GA_Admin_Settings_API {
 			array(
 				'key'  => 'demographics',
 				'help' => sprintf( __( 'You have to enable the Demographics in Google Analytics before you can see the tracking data. We have a knowledge base article in our %1$sknowledge base%2$s about this feature.', 'google-analytics-for-wordpress' ), '<a href="http://kb.yoast.com/article/154-enable-demographics-and-interests-report-in-google-analytics/#utm_medium=kb-link&amp;utm_source=gawp-config&amp;utm_campaign=wpgaplugin" target="_blank">', '</a>' ),
+			)
+		);
+
+		$this->add_field(
+			'enhanced_link_attribution',
+			__( 'Enhanced Link Attribution', 'google-analytics-for-wordpress' ),
+			'checkbox',
+			'universal',
+			array(
+				'key'  => 'enhanced_link_attribution',
+				'help' => sprintf( __( 'Add %1$sEnhanced Link Attribution%2$s to your tracking code.', 'google-analytics-for-wordpress' ), '<a href="https://support.google.com/analytics/answer/2558867" target="_blank">', ' </a>' )
 			)
 		);
 
@@ -309,6 +309,7 @@ class Yoast_GA_Admin_Settings_API {
 	 */
 	public function yst_ga_text_field( $args ) {
 		$options = get_option( 'yst_ga_settings' );
+		$options = $this->settings;
 
 		if ( ! isset( $options[$args['key']] ) ) {
 			$options[$args['key']] = '';
@@ -318,7 +319,7 @@ class Yoast_GA_Admin_Settings_API {
 			echo $this->show_help( $args['key'], $args['help'] );
 		}
 
-		echo '<input type="text" name="yst_ga_settings[' . $args['key'] . ']" value="' . $options[$args['key']] . '">';
+		echo '<input type="text" name="yst_ga_settings[' . $args['key'] . ']" value="' . $options[$args['key']] . '" class="ga-form-text">';
 	}
 
 	/**
@@ -328,6 +329,7 @@ class Yoast_GA_Admin_Settings_API {
 	 */
 	public function yst_ga_textarea_field( $args ) {
 		$options = get_option( 'yst_ga_settings' );
+		$options = $this->settings;
 
 		if ( ! isset( $options[$args['key']] ) ) {
 			$options[$args['key']] = '';
