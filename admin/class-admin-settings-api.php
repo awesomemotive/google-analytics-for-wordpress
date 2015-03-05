@@ -303,101 +303,6 @@ class Yoast_GA_Admin_Settings_API {
 	}
 
 	/**
-	 * Render a text field
-	 *
-	 * @param $args
-	 */
-	public function yst_ga_text_field( $args ) {
-		$options = get_option( 'yst_ga_settings' );
-		$options = $this->settings;
-
-		if ( ! isset( $options[$args['key']] ) ) {
-			$options[$args['key']] = '';
-		}
-
-		if ( isset( $args['help'] ) ) {
-			echo $this->show_help( $args['key'], $args['help'] );
-		}
-
-		echo '<input type="text" name="yst_ga_settings[' . $args['key'] . ']" value="' . $options[$args['key']] . '" class="ga-form-text">';
-	}
-
-	/**
-	 * Render a text field
-	 *
-	 * @param $args
-	 */
-	public function yst_ga_textarea_field( $args ) {
-		$options = get_option( 'yst_ga_settings' );
-		$options = $this->settings;
-
-		if ( ! isset( $options[$args['key']] ) ) {
-			$options[$args['key']] = '';
-		}
-
-		if ( isset( $args['help'] ) ) {
-			echo $this->show_help( $args['key'], $args['help'] );
-		}
-
-		echo '<textarea name="yst_ga_settings[' . $args['key'] . ']" rows="5" cols="60">' . $options[$args['key']] . '</textarea>';
-	}
-
-	/**
-	 * Render a text field
-	 *
-	 * @param $args
-	 */
-	public function yst_ga_checkbox_field( $args ) {
-		//$options = get_option( 'yst_ga_settings' );
-		$options = $this->settings;
-
-		if ( ! isset( $options[$args['key']] ) ) {
-			$options[$args['key']] = '';
-		}
-
-		if ( isset( $args['help'] ) ) {
-			echo $this->show_help( $args['key'], $args['help'] );
-		}
-
-		echo '<input type="checkbox" name="yst_ga_settings[' . $args['key'] . ']" value="1" ' . checked( $options[$args['key']], 1, false ) . '>';
-	}
-
-	/**
-	 * Render a select field
-	 *
-	 * @param $args
-	 */
-	public function yst_ga_select_field( $args ) {
-		$options    = null;
-		$class      = null;
-		$attributes = null;
-
-		if ( isset( $args['class'] ) ) {
-			$class = ' class="' . $args['class'] . '"';
-		}
-
-		if ( isset( $args['attributes'] ) ) {
-			$attributes = $args['attributes'];
-		}
-
-		foreach ( $args['options'] as $option ) {
-			if ( is_array( $args['value'] ) ) {
-				if ( in_array( $option['id'], $args['value'] ) ) {
-					$options .= '<option value="' . $option['id'] . '" selected="selected">' . $option['name'] . '</option>';
-					continue;
-				}
-
-				$options .= '<option value="' . $option['id'] . '">' . $option['name'] . '</option>';
-				continue;
-			}
-
-			$options .= '<option value="' . $option['id'] . '" ' . selected( $option['id'], $args['value'], false ) . '>' . $option['name'] . '</option>';
-		}
-
-		echo $this->show_help( 'id-' . $args['key'], $args['help'] ) . '<select name="yst_ga_settings[' . $args['key'] . ']"' . $class . $attributes . '>' . $options . '</select>';
-	}
-
-	/**
 	 * Settings callback function
 	 *
 	 * @param array $section
@@ -466,7 +371,7 @@ class Yoast_GA_Admin_Settings_API {
 		add_settings_field(
 			'yst_ga_' . $id,
 			$title,
-			array( $this, 'yst_ga_' . $type . '_field' ),
+			array( 'Yoast_GA_Admin_Settings_Fields', 'yst_ga_' . $type . '_field' ),
 			$this->settings_api_page . '_' . $tab,
 			$this->settings_api_page . '_' . $tab,
 			$args
