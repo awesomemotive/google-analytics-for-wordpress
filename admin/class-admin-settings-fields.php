@@ -20,7 +20,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			echo self::show_help( $args['key'], $args['help'] );
 		}
 
-		echo '<input type="text" name="yst_ga_settings[' . $args['key'] . ']" value="' . self::$options[$args['key']] . '" class="ga-form-text">';
+		echo '<input type="text" name="yst_ga[ga_general][' . $args['key'] . ']" value="' . self::$options[$args['key']] . '" class="ga-form-text">';
 	}
 
 	/**
@@ -39,7 +39,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			echo self::show_help( $args['key'], $args['help'] );
 		}
 
-		echo '<textarea name="yst_ga_settings[' . $args['key'] . ']" rows="5" cols="60">' . self::$options[$args['key']] . '</textarea>';
+		echo '<textarea name="yst_ga[ga_general][' . $args['key'] . ']" rows="5" cols="60">' . self::$options[$args['key']] . '</textarea>';
 	}
 
 	/**
@@ -58,7 +58,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			echo self::show_help( $args['key'], $args['help'] );
 		}
 
-		echo '<input type="checkbox" name="yst_ga_settings[' . $args['key'] . ']" value="1" ' . checked( self::$options[$args['key']], 1, false ) . '>';
+		echo '<input type="checkbox" name="yst_ga[ga_general][' . $args['key'] . ']" value="1" ' . checked( self::$options[$args['key']], 1, false ) . '>';
 	}
 
 	/**
@@ -67,6 +67,8 @@ class Yoast_GA_Admin_Settings_Fields {
 	 * @param $args
 	 */
 	public static function yst_ga_select_field( $args ) {
+		self::set_options();
+
 		$options    = null;
 		$class      = null;
 		$attributes = null;
@@ -80,8 +82,8 @@ class Yoast_GA_Admin_Settings_Fields {
 		}
 
 		foreach ( $args['options'] as $option ) {
-			if ( is_array( $args['value'] ) ) {
-				if ( in_array( $option['id'], $args['value'] ) ) {
+			if ( is_array( self::$options[$args['key']] ) ) {
+				if ( in_array( $option['id'], self::$options[$args['key']] ) ) {
 					$options .= '<option value="' . $option['id'] . '" selected="selected">' . $option['name'] . '</option>';
 					continue;
 				}
@@ -90,10 +92,10 @@ class Yoast_GA_Admin_Settings_Fields {
 				continue;
 			}
 
-			$options .= '<option value="' . $option['id'] . '" ' . selected( $option['id'], $args['value'], false ) . '>' . $option['name'] . '</option>';
+			$options .= '<option value="' . $option['id'] . '" ' . selected( $option['id'], self::$options[$args['key']], false ) . '>' . $option['name'] . '</option>';
 		}
 
-		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select name="yst_ga_settings[' . $args['key'] . ']"' . $class . $attributes . '>' . $options . '</select>';
+		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select name="yst_ga[ga_general][' . $args['key'] . ']"' . $class . $attributes . '>' . $options . '</select>';
 	}
 
 
@@ -102,7 +104,9 @@ class Yoast_GA_Admin_Settings_Fields {
 	 */
 	private static function set_options() {
 		if ( self::$options == array() ) {
-			self::$options = get_option( 'yst_ga_settings' );
+			$options       = get_option( 'yst_ga' );
+			self::$options = $options['ga_general'];
+			unset( self::$options['ga_general'] );
 		}
 	}
 

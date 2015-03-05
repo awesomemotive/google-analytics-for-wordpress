@@ -3,7 +3,7 @@
 /**
  * This class is for options/settings in the admin forms
  */
-class Yoast_GA_Admin_Settings_API {
+class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 
 	/**
 	 * The website GA settings
@@ -35,7 +35,7 @@ class Yoast_GA_Admin_Settings_API {
 	 * @param $settings
 	 */
 	public function __construct( $settings ) {
-		add_action( 'plugins_loaded', array( $this, 'init_default_options' ) );
+		add_action( 'admin_init', array( $this, 'init_default_options' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_general' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_universal' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_advanced' ) );
@@ -95,7 +95,8 @@ class Yoast_GA_Admin_Settings_API {
 			array(
 				'key'        => 'ignore_users',
 				'help'       => __( 'Users of the role you select will be ignored, so if you select Editor, all Editors will be ignored.', 'google-analytics-for-wordpress' ),
-				'attributes' => ' multiple="true"',
+				'attributes' => ' multiple="true" style="width: 365px;"',
+				'options' => $this->default_options['user_roles'],
 			)
 		);
 
@@ -314,16 +315,14 @@ class Yoast_GA_Admin_Settings_API {
 	}
 
 	/**
-	 * Set the default options, for now, it is in the admin class
+	 * Set the default options, for now, it is in the admin class (Needs to be hooked at admin_init)
 	 */
 	public function init_default_options() {
-		global $yoast_ga_admin;
-
 		$this->default_options = array(
-			'tracking_code'        => $yoast_ga_admin->get_tracking_code(),
-			'user_roles'           => $yoast_ga_admin->get_userroles(),
-			'track_download_types' => $yoast_ga_admin->track_download_types(),
-			'track_full_url'       => $yoast_ga_admin->get_track_full_url(),
+			'tracking_code'        => $this->get_tracking_code(),
+			'user_roles'           => $this->get_userroles(),
+			'track_download_types' => $this->track_download_types(),
+			'track_full_url'       => $this->get_track_full_url(),
 		);
 	}
 
@@ -376,24 +375,6 @@ class Yoast_GA_Admin_Settings_API {
 			$this->settings_api_page . '_' . $tab,
 			$args
 		);
-	}
-
-	/**
-	 * Show a question mark with help
-	 *
-	 * @param string $id
-	 * @param string $description
-	 *
-	 * @return string
-	 */
-	private function show_help( $id, $description ) {
-		if ( is_null( $description ) ) {
-			return;
-		}
-
-		$help = '<img src="' . plugins_url( 'assets/img/question-mark.png', GAWP_FILE ) . '" class="alignleft yoast_help" id="' . esc_attr( $id . 'help' ) . '" alt="' . esc_attr( $description ) . '" />';
-
-		return $help;
 	}
 
 }
