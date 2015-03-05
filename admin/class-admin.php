@@ -488,7 +488,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 * @param $transient_name
 	 * @param $settings
 	 */
-	private function add_notification( $transient_name, $settings ) {
+	protected function add_notification( $transient_name, $settings ) {
 		set_transient( $transient_name, $settings, MINUTE_IN_SECONDS );
 	}
 
