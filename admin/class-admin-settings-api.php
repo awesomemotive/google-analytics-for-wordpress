@@ -31,17 +31,13 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 
 	/**
 	 * Construct the new admin settings api forms
-	 *
-	 * @param $settings
 	 */
-	public function __construct( $settings ) {
+	public function __construct( ) {
 		add_action( 'admin_init', array( $this, 'init_default_options' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_general' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_universal' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_advanced' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_debug' ) );
-
-		$this->settings = $settings;
 
 		if( isset( $_GET['settings-updated'] ) ){
 			$this->add_notification( 'ga_notifications', array(
@@ -311,17 +307,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 	}
 
 	/**
-	 * Settings callback function
-	 *
-	 * @param array $section
-	 */
-	public function yst_ga_settings_section_callback( $section ) {
-		// @TODO, here is some little work to do to get the tabs working again
-
-		//echo '<div id="' . $section['id'] . '" class="gatab">';
-	}
-
-	/**
 	 * Set the default options, for now, it is in the admin class (Needs to be hooked at admin_init)
 	 */
 	public function init_default_options() {
@@ -334,23 +319,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 	}
 
 	/**
-	 * Init the general settings tab
-	 */
-	public function init_yst_ga_settings_general_tracking() {
-		$fields   = array();
-		$fields[] = array(
-			'name'        => 'manual_ua',
-			'title'       => __( 'Track outbound click and downloads', 'google-analytics-for-wordpress' ),
-			'description' => __( 'Clicks and downloads will be tracked as events, you can find these under Content &#xBB; Event Tracking in your Google Analytics reports.', 'google-analytics-for-wordpress' ),
-			'type'        => 'checkbox',
-		);
-
-		$this->register_settings( 'yst_ga_settings_form_general_tracking', $fields );
-
-		$this->build_settings_section( 'general', __( 'General', 'google-analytics-for-wordpress' ) );
-	}
-
-	/**
 	 * Create a new settings section
 	 *
 	 * @param $tab
@@ -359,7 +327,7 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 		add_settings_section(
 			'yst_ga_settings_api_' . $tab,
 			'',
-			array( $this, 'yst_ga_settings_section_callback' ),
+			'',
 			$this->settings_api_page . '_' . $tab
 		);
 	}
