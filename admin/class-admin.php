@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
 
 /**
  * This class is for the backend, extendable for all child classes
@@ -6,12 +10,13 @@
 class Yoast_GA_Admin extends Yoast_GA_Options {
 
 	/**
-	 * Store the API instance
-	 *
-	 * @var
+	 * @var boolean $api Store the API instance
 	 */
 	public $api;
 
+	/**
+	 * Constructor
+	 */
 	public function __construct() {
 		parent::__construct();
 
@@ -68,7 +73,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	/**
 	 * This function saves the settings in the option field and returns a wp success message on success
 	 *
-	 * @param $data
+	 * @param array $data
 	 */
 	public function save_settings( $data ) {
 
@@ -79,13 +84,13 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 				if ( $key != 'custom_code' && is_string( $value ) ) {
 					$value = strip_tags( $value );
 				}
-				$this->options[$key] = $value;
+				$this->options[ $key ] = $value;
 			}
 		}
 
 		// Check checkboxes, on a uncheck they won't be posted to this function
 		$defaults = $this->default_ga_values();
-		foreach ( $defaults[$this->option_prefix] as $option_name => $value ) {
+		foreach ( $defaults[ $this->option_prefix ] as $option_name => $value ) {
 			$this->handle_default_setting( $data, $option_name, $value );
 		}
 
@@ -99,8 +104,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 				'type'        => 'success',
 				'description' => __( 'Settings saved.', 'google-analytics-for-wordpress' ),
 			) );
-
-		} else {
+		}
+		else {
 			// Fail, add a new notification
 			$this->add_notification( 'ga_notifications', array(
 				'type'        => 'error',
@@ -108,7 +113,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			) );
 		}
 
-		#redirect
+		// redirect
 		wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
 		exit;
 	}
@@ -130,18 +135,19 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	/**
 	 * Handle a default setting in GA
 	 *
-	 * @param $data
-	 * @param $option_name
-	 * @param $value
+	 * @param array  $data
+	 * @param string $option_name
+	 * @param mixed  $value
 	 */
 	private function handle_default_setting( $data, $option_name, $value ) {
-		if ( ! isset( $data[$option_name] ) ) {
+		if ( ! isset( $data[ $option_name ] ) ) {
 			// If no data was passed in, set it to the default.
 			if ( $value === 1 ) {
 				// Disable the checkbox for now, use value 0
-				$this->options[$option_name] = 0;
-			} else {
-				$this->options[$option_name] = $value;
+				$this->options[ $option_name ] = 0;
+			}
+			else {
+				$this->options[ $option_name ] = $value;
 			}
 		}
 	}
@@ -149,7 +155,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	/**
 	 * Handle the post requests in the admin form of the GA plugin
 	 *
-	 * @param $dashboards
+	 * @param Yoast_GA_Dashboards $dashboards
 	 */
 	private function handle_ga_post_request( $dashboards ) {
 		if ( ! function_exists( 'wp_verify_nonce' ) ) {
@@ -175,7 +181,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	/**
 	 * Is there selected an other property in the settings post? Returns true or false.
 	 *
-	 * @param $post
+	 * @param array $post
 	 *
 	 * @return bool
 	 */
@@ -210,7 +216,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	/**
 	 * Transform the Profile ID into an helpful UA code
 	 *
-	 * @param $profile_id
+	 * @param integer $profile_id
 	 *
 	 * @return null
 	 */
@@ -356,7 +362,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	private function get_current_profile() {
 		if ( ! empty( $this->options['analytics_profile'] ) ) {
 			return $this->options['analytics_profile'];
-		} else {
+		}
+		else {
 			return null;
 		}
 	}
@@ -382,7 +389,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		foreach ( $editable_roles as $id => $name ) {
 			$roles[] = array(
 				'id'   => $id,
-				'name' => translate_user_role($name['name']),
+				'name' => translate_user_role( $name['name'] ),
 			);
 		}
 
@@ -498,8 +505,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	/**
 	 * Add a notification to the notification transient
 	 *
-	 * @param $transient_name
-	 * @param $settings
+	 * @param string $transient_name
+	 * @param array  $settings
 	 */
 	private function add_notification( $transient_name, $settings ) {
 		set_transient( $transient_name, $settings, MINUTE_IN_SECONDS );
@@ -521,7 +528,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 					$transient['description'],
 					'updated'
 				);
-			} else {
+			}
+			else {
 				add_settings_error(
 					'yoast_google_analytics',
 					'yoast_google_analytics',
