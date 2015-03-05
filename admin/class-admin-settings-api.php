@@ -42,6 +42,13 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_debug' ) );
 
 		$this->settings = $settings;
+
+		if( isset( $_GET['settings-updated'] ) ){
+			$this->add_notification( 'ga_notifications', array(
+				'type'        => 'success',
+				'description' => __( 'Settings saved.', 'google-analytics-for-wordpress' ),
+			) );
+		}
 	}
 
 	/**
