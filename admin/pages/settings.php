@@ -54,7 +54,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 				echo '</div>';
 				echo '<div class="ga-form ga-form-input">';
 				echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle">' . __( 'Current UA-profile', 'google-analytics-for-wordpress' ) . '</label>';
-				echo $yoast_ga_admin->get_tracking_code();
+				echo esc_html( $yoast_ga_admin->get_tracking_code() );
 				echo '</div>';
 			}
 			else {
