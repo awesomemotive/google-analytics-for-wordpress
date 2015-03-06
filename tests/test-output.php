@@ -25,7 +25,7 @@ class Output_Test extends GA_UnitTestCase {
 		$regex = '/(link|meta|script)/i';
 		$this->expectOutputRegex( $regex );
 		do_action( 'wp_head' );
-		do_action( 'admin_enqueue_scripts' );
+		//do_action( 'admin_enqueue_scripts' );
 	}
 
 }
