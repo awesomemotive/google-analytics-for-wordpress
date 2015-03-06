@@ -1,7 +1,15 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Includes
+ */
 
+/**
+ * Options class.
+ */
 class Yoast_GA_Options {
 
+	/** @var array  */
 	public $options;
 
 	/**
@@ -89,8 +97,8 @@ class Yoast_GA_Options {
 	 * @return bool
 	 */
 	public function update_option( $val ) {
-		$options                       = get_option( $this->option_name );
-		$options[$this->option_prefix] = $val;
+		$options                         = get_option( $this->option_name );
+		$options[ $this->option_prefix ] = $val;
 
 		return update_option( $this->option_name, $options );
 	}
@@ -103,14 +111,14 @@ class Yoast_GA_Options {
 	public function get_options() {
 		$options = get_option( $this->option_name );
 
-		return $options[$this->option_prefix];
+		return $options[ $this->option_prefix ];
 	}
 
 	/**
 	 * Check if all the options are set, to prevent a notice if debugging is enabled
 	 * When we have new changes, the settings are saved to the options class
 	 *
-	 * @param $options
+	 * @param array $options
 	 *
 	 * @return mixed
 	 */
@@ -118,8 +126,8 @@ class Yoast_GA_Options {
 
 		$changes = 0;
 		foreach ( $this->default_ga_values() as $key => $value ) {
-			if ( ! isset( $options[$key] ) ) {
-				$options[$key] = $value;
+			if ( ! isset( $options[ $key ] ) ) {
+				$options[ $key ] = $value;
 				$changes ++;
 			}
 		}
@@ -142,7 +150,8 @@ class Yoast_GA_Options {
 
 		if ( ! empty( $this->options['analytics_profile'] ) && ! empty( $this->options['analytics_profile_code'] ) ) {
 			$tracking_code = $this->options['analytics_profile_code'];
-		} elseif ( ! empty( $this->options['analytics_profile'] ) && empty( $this->options['analytics_profile_code'] ) ) {
+		}
+		elseif ( ! empty( $this->options['analytics_profile'] ) && empty( $this->options['analytics_profile_code'] ) ) {
 			// Analytics profile is still holding the UA code
 			$tracking_code = $this->options['analytics_profile'];
 		}
@@ -157,14 +166,14 @@ class Yoast_GA_Options {
 	/**
 	 * Convert a option value to a bool
 	 *
-	 * @param $option_name
+	 * @param string $option_name
 	 *
 	 * @return bool
 	 */
 	public function option_value_to_bool( $option_name ) {
 		$this->options = $this->get_options();
 
-		if ( isset( $this->options[$option_name] ) && $this->options[$option_name] == 1 ) {
+		if ( isset( $this->options[ $option_name ] ) && $this->options[ $option_name ] == 1 ) {
 			return true;
 		}
 
@@ -220,9 +229,9 @@ class Yoast_GA_Options {
 		// Fallback to make sure every default option has a value
 		$defaults = $this->default_ga_values();
 		if ( is_array( $defaults ) ) {
-			foreach ( $defaults[$this->option_prefix] as $key => $value ) {
-				if ( ! isset( $this->options[$key] ) ) {
-					$this->options[$key] = $value;
+			foreach ( $defaults[ $this->option_prefix ] as $key => $value ) {
+				if ( ! isset( $this->options[ $key ] ) ) {
+					$this->options[ $key ] = $value;
 				}
 			}
 		}

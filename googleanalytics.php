@@ -4,7 +4,7 @@ Plugin Name: Google Analytics by Yoast
 Plugin URI: https://yoast.com/wordpress/plugins/google-analytics/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wpgaplugin&utm_content=v504
 Description: This plugin makes it simple to add Google Analytics to your WordPress site, adding lots of features, e.g. error page, search result and automatic outgoing links and download tracking.
 Author: Team Yoast
-Version: 5.3.1
+Version: 5.3.2
 Requires at least: 3.8
 Author URI: https://yoast.com/
 License: GPL v3
@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // This plugin was originally based on Rich Boakes' Analytics plugin: http://boakes.org/analytics, but has since been rewritten and refactored multiple times.
 
-define( 'GAWP_VERSION', '5.3.1' );
+define( 'GAWP_VERSION', '5.3.2' );
 
 define( 'GAWP_FILE', __FILE__ );
 
@@ -47,7 +47,8 @@ if ( is_admin() ) {
 	global $yoast_ga_admin;
 	$yoast_ga_admin = new Yoast_GA_Admin;
 
-} else {
+}
+else {
 	global $yoast_ga_frontend;
 	$yoast_ga_frontend = new Yoast_GA_Frontend;
 }

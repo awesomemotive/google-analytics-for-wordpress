@@ -4,7 +4,7 @@ Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 5.3.1
+Stable tag: 5.3.2
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
@@ -48,6 +48,17 @@ This section describes how to install the plugin and get it working.
 1. Go to the options panel under the 'Settings' menu and add your Analytics account number and set the settings you want.
 
 == Changelog ==
+
+= 5.3.2 =
+
+Release Date: February 18th, 2015
+
+* Enhancements:
+	* Throws away the GA data when a user changes his GA profile.
+	* Makes a few strings translatable that were not translatable yet.
+
+* Bugfixes:
+	* Fixes the "Missing class information" Zend error that was caused by our api-libs package.
 
 = 5.3.1 =
 

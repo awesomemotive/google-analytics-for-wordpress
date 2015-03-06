@@ -48,7 +48,8 @@ class Yoast_GA_JS_Test extends GA_UnitTestCase {
 		if ( $tracking_data_type ) {
 			$this->assertTrue( in_array( "'_setAccount', 'UA-1234567-89'", $tracking_data ) );
 			$this->assertTrue( in_array( "'_trackPageview'", $tracking_data ) );
-		} else {
+		}
+		else {
 			$this->assertTrue( $tracking_data_type );
 		}
 	}
