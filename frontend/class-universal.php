@@ -59,6 +59,11 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 					$json_part['allowAnchor'] = 'true';
 				}
 
+				$user_id = $this->get_user_id();
+				if ( $this->options['track_user_id'] && $user_id !== null ) {
+					$json_part['userId'] = $user_id;
+				}
+
 				// Set the tracking code here
 				if ( $json_part === array() ) {
 					$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "'";
@@ -192,6 +197,22 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 		}
 
 		return '<a href="' . $full_url . '">' . $link['link_text'] . '</a>';
+	}
+
+	/**
+	 * Get the current User ID
+	 *
+	 * @return null
+	 */
+	private function get_user_id(){
+		global $current_user;
+		get_currentuserinfo();
+
+		if( isset( $current_user->data->ID ) ){
+			return $current_user->data->ID;
+		}
+
+		return null;
 	}
 
 }
