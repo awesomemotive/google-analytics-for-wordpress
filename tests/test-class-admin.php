@@ -60,7 +60,8 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 					$this->assertNotEmpty( $values['name'] );
 				}
 			}
-		} else {
+		}
+		else {
 			$this->assertTrue( $roles_result );
 		}
 
@@ -83,7 +84,8 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 					$this->assertNotEmpty( $values['name'] );
 				}
 			}
-		} else {
+		}
+		else {
 			$this->assertTrue( $download_types_result );
 		}
 
@@ -106,7 +108,8 @@ class Yoast_GA_Admin_Test extends GA_UnitTestCase {
 					$this->assertNotEmpty( $values['name'] );
 				}
 			}
-		} else {
+		}
+		else {
 			$this->assertTrue( $track_options_result );
 		}
 
