@@ -271,7 +271,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$tracking = $this->prepare_tracking();
 
 		if ( $tracking['is_array'] ) {
-			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor': true}", $tracking['data'] ) );
+			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor':'true'}", $tracking['data'] ) );
 			$this->assertTrue( in_array( "'send','pageview'", $tracking['data'] ) );
 		}
 		else {
@@ -292,7 +292,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$tracking = $this->prepare_tracking();
 
 		if ( $tracking['is_array'] ) {
-			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowLinker': true}", $tracking['data'] ) );
+			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowLinker':'true'}", $tracking['data'] ) );
 			$this->assertTrue( in_array( "'send','pageview'", $tracking['data'] ) );
 		}
 		else {
@@ -314,7 +314,8 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$tracking = $this->prepare_tracking();
 
 		if ( $tracking['is_array'] ) {
-			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor': true, 'allowLinker': true}", $tracking['data'] ) );
+			var_dump( $tracking );
+			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowLinker':'true','allowAnchor':'true'}", $tracking['data'] ) );
 			$this->assertTrue( in_array( "'send','pageview'", $tracking['data'] ) );
 		}
 		else {

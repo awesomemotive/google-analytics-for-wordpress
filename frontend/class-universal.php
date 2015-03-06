@@ -60,7 +60,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 				}
 
 				$user_id = $this->get_user_id();
-				if ( $this->options['track_user_id'] && $user_id !== null ) {
+				if ( isset( $this->options['track_user_id'] ) && $this->options['track_user_id'] == 1 && $user_id !== null ) {
 					$json_part['userId'] = $user_id;
 				}
 
@@ -68,7 +68,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 				if ( $json_part === array() ) {
 					$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "'";
 				} else {
-					$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', " . str_replace( '"', "'", json_encode( $json_part )); // Do a str replace for single quotes because of our support for PHP 5.2
+					$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', " . str_replace( '"', "'", json_encode( $json_part ) ); // Do a str replace for single quotes because of our support for PHP 5.2
 				}
 			}
 
@@ -204,11 +204,11 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 	 *
 	 * @return null
 	 */
-	private function get_user_id(){
+	private function get_user_id() {
 		global $current_user;
 		get_currentuserinfo();
 
-		if( isset( $current_user->data->ID ) ){
+		if ( isset( $current_user->data->ID ) ) {
 			return $current_user->data->ID;
 		}
 
