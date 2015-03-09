@@ -49,20 +49,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 
 			// Set tracking code here
 			if ( ! empty( $ua_code ) ) {
-				$json_part = array();
-
-				if ( $this->options['add_allow_linker'] ) {
-					$json_part['allowLinker'] = 'true';
-				}
-
-				if ( $this->options['allow_anchor'] ) {
-					$json_part['allowAnchor'] = 'true';
-				}
-
-				$user_id = $this->get_user_id();
-				if ( isset( $this->options['track_user_id'] ) && $this->options['track_user_id'] == 1 && $user_id !== null ) {
-					$json_part['userId'] = $user_id;
-				}
+				$json_part = $this->get_tracking_json_part();
 
 				// Set the tracking code here
 				if ( $json_part === array() ) {
@@ -197,6 +184,30 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 		}
 
 		return '<a href="' . $full_url . '">' . $link['link_text'] . '</a>';
+	}
+
+	/**
+	 * Get the JSON part of the tracking code
+	 *
+	 * @return array
+	 */
+	private function get_tracking_json_part() {
+		$json_part = array();
+
+		if ( $this->options['add_allow_linker'] ) {
+			$json_part['allowLinker'] = 'true';
+		}
+
+		if ( $this->options['allow_anchor'] ) {
+			$json_part['allowAnchor'] = 'true';
+		}
+
+		$user_id = $this->get_user_id();
+		if ( isset( $this->options['track_user_id'] ) && $this->options['track_user_id'] == 1 && $user_id !== null ) {
+			$json_part['userId'] = $user_id;
+		}
+
+		return $json_part;
 	}
 
 	/**
