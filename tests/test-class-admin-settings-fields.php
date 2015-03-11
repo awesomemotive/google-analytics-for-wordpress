@@ -9,7 +9,7 @@ class Yoast_GA_Admin_Form_Fields_Test extends GA_UnitTestCase {
 		$args     = array(
 			'key' => 'test-field',
 		);
-		$expected = '<input type="text" name="yst_ga_settings[ga_general][' . $args['key'] . ']" value="" class="ga-form-text">';
+		$expected = '<input type="text" name="yst_ga[ga_general][' . $args['key'] . ']" value="" class="ga-form-text">';
 
 		$this->assertEquals( $expected, $this->helper_field_output( 'yst_ga_text_field', $args ) );
 	}
@@ -21,7 +21,7 @@ class Yoast_GA_Admin_Form_Fields_Test extends GA_UnitTestCase {
 		$args     = array(
 			'key' => 'test-field',
 		);
-		$expected = '<textarea name="yst_ga_settings[ga_general][' . $args['key'] . ']" rows="5" cols="60"></textarea>';
+		$expected = '<textarea name="yst_ga[ga_general][' . $args['key'] . ']" rows="5" cols="60"></textarea>';
 
 		$this->assertEquals( $expected, $this->helper_field_output( 'yst_ga_textarea_field', $args ) );
 	}
@@ -33,7 +33,7 @@ class Yoast_GA_Admin_Form_Fields_Test extends GA_UnitTestCase {
 		$args     = array(
 			'key' => 'test-field',
 		);
-		$expected = '<input type="checkbox" name="yst_ga_settings[ga_general][' . $args['key'] . ']" value="1" >';
+		$expected = '<input type="checkbox" name="yst_ga[ga_general][' . $args['key'] . ']" value="1" >';
 
 		$this->assertEquals( $expected, $this->helper_field_output( 'yst_ga_checkbox_field', $args ) );
 	}
