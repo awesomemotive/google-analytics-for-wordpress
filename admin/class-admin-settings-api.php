@@ -20,6 +20,7 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 		'user_roles'           => array(),
 		'track_download_types' => array(),
 		'track_full_url'       => array(),
+		'analytics_profile'   => array(),
 	);
 
 	/**
@@ -32,19 +33,66 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 	/**
 	 * Construct the new admin settings api forms
 	 */
-	public function __construct( ) {
+	public function __construct() {
 		add_action( 'admin_init', array( $this, 'init_default_options' ) );
+		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_ua_code' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_general' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_universal' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_advanced' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_debug' ) );
 
-		if( isset( $_GET['settings-updated'] ) ){
+		if ( isset( $_GET['settings-updated'] ) ) {
 			$this->add_notification( 'ga_notifications', array(
 				'type'        => 'success',
 				'description' => __( 'Settings saved.', 'google-analytics-for-wordpress' ),
 			) );
 		}
+	}
+
+	/**
+	 * Init the UA code block
+	 */
+	public function yst_ga_settings_init_ua_code() {
+		register_setting( $this->settings_api_page . '_ua_code', 'yst_ga' );
+
+		$this->create_section(
+			'ua_code'
+		);
+
+		$this->add_field(
+			'analytics_profile',
+			__( 'Google Analytics profile', 'google-analytics-for-wordpress' ),
+			'select_profile',
+			'ua_code',
+			array(
+				'key'        => 'analytics_profile',
+				'help'       => __( 'Select an analytics profile from your Google account to use for the tracking on this website.', 'google-analytics-for-wordpress' ),
+				'attributes' => ' class="chosen"',
+				'options'    => $this->default_options['analytics_profile'],
+			)
+		);
+
+		$this->add_field(
+			'manual_ua_code',
+			__( 'Use a manual UA code', 'google-analytics-for-wordpress' ),
+			'checkbox',
+			'ua_code',
+			array(
+				'key'  => 'manual_ua_code',
+				'help' => __( 'You can use the manual UA code field to enter your UA code manually, instead of using the Google Authenticator.', 'google-analytics-for-wordpress' ),
+			)
+		);
+
+		$this->add_field(
+			'manual_ua_code_field',
+			__( 'Enter your UA code here', 'google-analytics-for-wordpress' ),
+			'text',
+			'ua_code',
+			array(
+				'key'  => 'manual_ua_code_field',
+				'help' => __( 'Enter the UA code (e.g.: UA-1234567-89) here, you can find the correct UA code in your Google Analaytics dashboard.', 'google-analytics-for-wordpress' ),
+			)
+		);
 	}
 
 	/**
@@ -98,8 +146,8 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			array(
 				'key'        => 'ignore_users',
 				'help'       => __( 'Users of the role you select will be ignored, so if you select Editor, all Editors will be ignored.', 'google-analytics-for-wordpress' ),
-				'attributes' => ' multiple="true" style="width: 365px;"',
-				'options' => $this->default_options['user_roles'],
+				'attributes' => ' multiple="true" style="width: 365px;" class="chosen"',
+				'options'    => $this->default_options['user_roles'],
 			)
 		);
 
@@ -179,6 +227,7 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 				'key'     => 'track_download_as',
 				'help'    => __( 'Not recommended, as this would skew your statistics, but it does make it possible to track downloads as goals.', 'google-analytics-for-wordpress' ),
 				'options' => $this->default_options['track_download_types'],
+				'attributes' => ' class="chosen"',
 			)
 		);
 
@@ -202,6 +251,7 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 				'key'     => 'track_full_url',
 				'help'    => __( 'How should we track your outbound clicks?', 'google-analytics-for-wordpress' ),
 				'options' => $this->default_options['track_full_url'],
+				'attributes' => ' class="chosen"',
 			)
 		);
 
@@ -300,8 +350,8 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'checkbox',
 			'debug',
 			array(
-				'key'     => 'track_download_as',
-				'help'    => __( 'Not recommended, as this would skew your statistics, but it does make it possible to track downloads as goals.', 'google-analytics-for-wordpress' ),
+				'key'  => 'track_download_as',
+				'help' => __( 'Not recommended, as this would skew your statistics, but it does make it possible to track downloads as goals.', 'google-analytics-for-wordpress' ),
 			)
 		);
 	}
@@ -315,6 +365,7 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'user_roles'           => $this->get_userroles(),
 			'track_download_types' => $this->track_download_types(),
 			'track_full_url'       => $this->get_track_full_url(),
+			'analytics_profile'   => $this->get_profiles(),
 		);
 	}
 
