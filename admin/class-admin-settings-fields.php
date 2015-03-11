@@ -98,17 +98,51 @@ class Yoast_GA_Admin_Settings_Fields {
 		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select name="yst_ga[ga_general][' . $args['key'] . ']"' . $class . $attributes . '>' . $options . '</select>';
 	}
 
+	/**
+	 * Render a select field
+	 *
+	 * @param $args
+	 */
+	public static function yst_ga_select_profile_field( $args ) {
+		self::set_options();
+
+		$options    = null;
+		$class      = null;
+		$attributes = null;
+
+		if ( isset( $args['class'] ) ) {
+			$class = ' class="' . $args['class'] . '"';
+		}
+
+		if ( isset( $args['attributes'] ) ) {
+			$attributes = $args['attributes'];
+		}
+
+		foreach ( $args['options'] as $option ) {
+			foreach ( $option['items'] as $optgroup ) {
+				$options .= '<optgroup label="' . $optgroup['name'] . '">';
+
+				foreach ( $optgroup['items'] as $item ) {
+					$options .= '<option value="' . $item['id'] . '">' . $item['name'] . '</option>';
+				}
+
+				$options .= '</optgroup>';
+			}
+		}
+
+		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select name="yst_ga[ga_general][' . $args['key'] . ']"' . $class . $attributes . ' data-placeholder="' . __('Select a profile', 'google-analytics-for-wordpress') . '" ><option></option>' . $options . '</select>';
+	}
+
 
 	/**
 	 * Cache the options in this class, so check if they're set
 	 */
 	private static function set_options() {
 		if ( self::$options == array() ) {
-			$options       = get_option( 'yst_ga' );
-			if( !isset($options['ga_general']) ){
+			$options = get_option( 'yst_ga' );
+			if ( ! isset( $options['ga_general'] ) ) {
 				self::$options = Yoast_GA_Options::instance()->default_ga_values();
-			}
-			else {
+			} else {
 				self::$options = $options['ga_general'];
 			}
 
