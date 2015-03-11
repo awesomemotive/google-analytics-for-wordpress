@@ -313,6 +313,16 @@ abstract class Yoast_GA_Tracking {
 					$this->do_tracking = false;
 				}
 			}
+
+			/**
+			 * Filter: 'yst_ga_track_super_admin' - Allows filtering if the Super admin should be tracked in a multi-site setup
+			 *
+			 * @api array $all_roles
+			 */
+			$track_super_admin = apply_filters( 'yst_ga_track_super_admin', true );
+			if( $track_super_admin === false && is_super_admin() ){
+				$this->do_tracking = false;
+			}
 		}
 
 		return $this->do_tracking;
