@@ -51,7 +51,7 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 	 * Init the general tab
 	 */
 	public function yst_ga_settings_init_general() {
-		register_setting( $this->settings_api_page . '_general', 'yst_ga_settings' );
+		register_setting( $this->settings_api_page . '_general', 'yst_ga' );
 
 		$this->create_section(
 			'general'
@@ -119,7 +119,7 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 	 * Init the universal tab
 	 */
 	public function yst_ga_settings_init_universal() {
-		register_setting( $this->settings_api_page . '_universal', 'yst_ga_settings' );
+		register_setting( $this->settings_api_page . '_universal', 'yst_ga' );
 
 		$this->create_section(
 			'universal'
@@ -164,7 +164,7 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 	 * Init the advanced tab
 	 */
 	public function yst_ga_settings_init_advanced() {
-		register_setting( $this->settings_api_page . '_advanced', 'yst_ga_settings' );
+		register_setting( $this->settings_api_page . '_advanced', 'yst_ga' );
 
 		$this->create_section(
 			'advanced'
@@ -288,7 +288,7 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 	 * Init the debug tab
 	 */
 	public function yst_ga_settings_init_debug() {
-		register_setting( $this->settings_api_page . '_debug', 'yst_ga_settings' );
+		register_setting( $this->settings_api_page . '_debug', 'yst_ga' );
 
 		$this->create_section(
 			'debug'

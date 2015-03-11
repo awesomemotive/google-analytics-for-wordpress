@@ -20,7 +20,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			echo self::show_help( $args['key'], $args['help'] );
 		}
 
-		echo '<input type="text" name="yst_ga_settings[ga_general][' . $args['key'] . ']" value="' . self::$options[$args['key']] . '" class="ga-form-text">';
+		echo '<input type="text" name="yst_ga[ga_general][' . $args['key'] . ']" value="' . self::$options[$args['key']] . '" class="ga-form-text">';
 	}
 
 	/**
@@ -39,7 +39,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			echo self::show_help( $args['key'], $args['help'] );
 		}
 
-		echo '<textarea name="yst_ga_settings[ga_general][' . $args['key'] . ']" rows="5" cols="60">' . self::$options[$args['key']] . '</textarea>';
+		echo '<textarea name="yst_ga[ga_general][' . $args['key'] . ']" rows="5" cols="60">' . self::$options[$args['key']] . '</textarea>';
 	}
 
 	/**
@@ -58,7 +58,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			echo self::show_help( $args['key'], $args['help'] );
 		}
 
-		echo '<input type="checkbox" name="yst_ga_settings[ga_general][' . $args['key'] . ']" value="1" ' . checked( self::$options[$args['key']], 1, false ) . '>';
+		echo '<input type="checkbox" name="yst_ga[ga_general][' . $args['key'] . ']" value="1" ' . checked( self::$options[$args['key']], 1, false ) . '>';
 	}
 
 	/**
@@ -95,7 +95,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			$options .= '<option value="' . $option['id'] . '" ' . selected( $option['id'], self::$options[$args['key']], false ) . '>' . $option['name'] . '</option>';
 		}
 
-		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select name="yst_ga_settings[ga_general][' . $args['key'] . ']"' . $class . $attributes . '>' . $options . '</select>';
+		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select name="yst_ga[ga_general][' . $args['key'] . ']"' . $class . $attributes . '>' . $options . '</select>';
 	}
 
 
@@ -104,7 +104,7 @@ class Yoast_GA_Admin_Settings_Fields {
 	 */
 	private static function set_options() {
 		if ( self::$options == array() ) {
-			$options       = get_option( 'yst_ga_settings' );
+			$options       = get_option( 'yst_ga' );
 			if( !isset($options['ga_general']) ){
 				self::$options = Yoast_GA_Options::instance()->default_ga_values();
 			}
