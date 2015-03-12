@@ -52,11 +52,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			Yoast_Google_Analytics::get_instance()->check_for_ga_issues();
 		}
 
-
-		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-			$this->handle_ga_post_request( $dashboards );
-		}
-
 		/**
 		 * Show the notifications if we have one
 		 */
@@ -64,54 +59,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 		// Load the Google Analytics Dashboards functionality
 		$dashboards->init_dashboards( $this->get_current_profile() );
-	}
-
-	/**
-	 * This function saves the settings in the option field and returns a wp success message on success
-	 *
-	 * @param $data
-	 */
-	public function save_settings( $data ) {
-
-		unset( $data['google_auth_code'] );
-
-		foreach ( $data as $key => $value ) {
-			if ( $key != 'return_tab' ) {
-				if ( $key != 'custom_code' && is_string( $value ) ) {
-					$value = strip_tags( $value );
-				}
-				$this->options[$key] = $value;
-			}
-		}
-
-		// Check checkboxes, on a uncheck they won't be posted to this function
-		$defaults = $this->default_ga_values();
-		foreach ( $defaults[$this->option_prefix] as $option_name => $value ) {
-			$this->handle_default_setting( $data, $option_name, $value );
-		}
-
-		if ( ! empty( $this->options['analytics_profile'] ) ) {
-			$this->options['analytics_profile_code'] = $this->get_ua_code_from_profile( $this->options['analytics_profile'] );
-		}
-
-		if ( $this->update_option( $this->options ) ) {
-			// Success, add a new notification
-			$this->add_notification( 'ga_notifications', array(
-				'type'        => 'success',
-				'description' => __( 'Settings saved.', 'google-analytics-for-wordpress' ),
-			) );
-
-		} else {
-			// Fail, add a new notification
-			$this->add_notification( 'ga_notifications', array(
-				'type'        => 'error',
-				'description' => __( 'There were no changes to save, please try again.', 'google-analytics-for-wordpress' ),
-			) );
-		}
-
-		#redirect
-		wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
-		exit;
 	}
 
 	/**
@@ -126,51 +73,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		delete_option( 'yst_ga_accounts' );
 		delete_option( 'yst_ga_response' );
 
-	}
-
-	/**
-	 * Handle a default setting in GA
-	 *
-	 * @param $data
-	 * @param $option_name
-	 * @param $value
-	 */
-	private function handle_default_setting( $data, $option_name, $value ) {
-		if ( ! isset( $data[$option_name] ) ) {
-			// If no data was passed in, set it to the default.
-			if ( $value === 1 ) {
-				// Disable the checkbox for now, use value 0
-				$this->options[$option_name] = 0;
-			} else {
-				$this->options[$option_name] = $value;
-			}
-		}
-	}
-
-	/**
-	 * Handle the post requests in the admin form of the GA plugin
-	 *
-	 * @param $dashboards
-	 */
-	private function handle_ga_post_request( $dashboards ) {
-		if ( ! function_exists( 'wp_verify_nonce' ) ) {
-			require_once( ABSPATH . 'wp-includes/pluggable.php' );
-		}
-
-		if ( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ) {
-			if ( ! isset ( $_POST['ignore_users'] ) ) {
-				$_POST['ignore_users'] = array();
-			}
-
-			$dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
-
-			if ( $dashboards_disabled == false && isset( $_POST['dashboards_disabled'] ) ) {
-				$dashboards->reset_dashboards_data();
-			}
-
-			// Post submitted and verified with our nonce
-			$this->save_settings( $_POST );
-		}
 	}
 
 	/**
