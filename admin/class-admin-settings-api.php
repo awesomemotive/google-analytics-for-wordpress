@@ -345,12 +345,12 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 		);
 
 		$this->add_field(
-			'enable_debug',
+			'debug_mode',
 			__( 'Enable debug mode', 'google-analytics-for-wordpress' ),
 			'checkbox',
 			'debug',
 			array(
-				'key'  => 'track_download_as',
+				'key'  => 'debug_mode',
 				'help' => __( 'Not recommended, as this would skew your statistics, but it does make it possible to track downloads as goals.', 'google-analytics-for-wordpress' ),
 			)
 		);
