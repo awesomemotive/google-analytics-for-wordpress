@@ -20,7 +20,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			echo self::show_help( $args['key'], $args['help'] );
 		}
 
-		echo '<input type="text" name="yst_ga[ga_general][' . $args['key'] . ']" value="' . self::$options[$args['key']] . '" class="ga-form-text">';
+		echo '<input type="text" name="yst_ga[ga_general][' . $args['key'] . ']" id="ga_form_' . $args['key'] . '" value="' . self::$options[$args['key']] . '" class="ga-form-text">';
 	}
 
 	/**
@@ -58,7 +58,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			echo self::show_help( $args['key'], $args['help'] );
 		}
 
-		echo '<input type="checkbox" name="yst_ga[ga_general][' . $args['key'] . ']" value="1" ' . checked( self::$options[$args['key']], 1, false ) . '>';
+		echo '<input type="checkbox" name="yst_ga[ga_general][' . $args['key'] . ']" id="ga_form_' . $args['key'] . '" value="1" ' . checked( self::$options[$args['key']], 1, false ) . '>';
 	}
 
 	/**
@@ -95,7 +95,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			$options .= '<option value="' . $option['id'] . '" ' . selected( $option['id'], self::$options[$args['key']], false ) . '>' . $option['name'] . '</option>';
 		}
 
-		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select name="yst_ga[ga_general][' . $args['key'] . ']"' . $class . $attributes . '>' . $options . '</select>';
+		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select id="ga_form_' . $args['key'] . '" name="yst_ga[ga_general][' . $args['key'] . ']"' . $class . $attributes . '>' . $options . '</select>';
 	}
 
 	/**
@@ -130,7 +130,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			}
 		}
 
-		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select name="yst_ga[ga_general][' . $args['key'] . ']"' . $class . $attributes . ' data-placeholder="' . __('Select a profile', 'google-analytics-for-wordpress') . '" ><option></option>' . $options . '</select>';
+		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select id="ga_form_' . $args['key'] . '" name="yst_ga[ga_general][' . $args['key'] . ']"' . $class . $attributes . ' data-placeholder="' . __('Select a profile', 'google-analytics-for-wordpress') . '" ><option></option>' . $options . '</select>';
 	}
 
 

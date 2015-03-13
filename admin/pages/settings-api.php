@@ -31,7 +31,7 @@ settings_errors( 'yoast_google_analytics' );
 				settings_fields( 'yst_ga_settings_api_ua_code' );
 				do_settings_sections( 'yst_ga_settings_api_ua_code' );
 				?>
-				<p><strong><?php _e( 'Warning: If you use a manual UA code, you won\'t be able to use the dashboards.', 'google-analytics-for-wordpress' ); ?></strong></p>
+				<p><strong style="color: red;"><?php _e( 'Warning: If you use a manual UA code, you won\'t be able to use the dashboards.', 'google-analytics-for-wordpress' ); ?></strong></p>
 			</div>
 			<?php
 			settings_fields( 'yst_ga_settings_api_general' );

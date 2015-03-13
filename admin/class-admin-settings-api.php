@@ -59,7 +59,7 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 		if ( $tracking_code['ga_general']['analytics_profile'] !== '' && $tracking_code['ga_general']['manual_ua_code'] == '0' ) {
 			$tracking_code['ga_general']['analytics_profile_code'] = $this->get_ua_code_from_profile( $tracking_code['ga_general']['analytics_profile'] );
 
-			unset( $tracking_code['ga_general']['ga_general'] );
+			unset( $tracking_code['ga_general']['ga_general'] ); // cleanup old keys
 			update_option( 'yst_ga', $tracking_code );
 		}
 	}
