@@ -20,7 +20,7 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 		'user_roles'           => array(),
 		'track_download_types' => array(),
 		'track_full_url'       => array(),
-		'analytics_profile'   => array(),
+		'analytics_profile'    => array(),
 	);
 
 	/**
@@ -42,10 +42,25 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_debug' ) );
 
 		if ( isset( $_GET['settings-updated'] ) ) {
+			add_action( 'admin_init', array( $this, 'update_ga_tracking_from_profile' ) );
+
 			$this->add_notification( 'ga_notifications', array(
 				'type'        => 'success',
 				'description' => __( 'Settings saved.', 'google-analytics-for-wordpress' ),
 			) );
+		}
+	}
+
+	/**
+	 * Update the UA tracking code if we have a profile selected in the dropdown in the settings field
+	 */
+	public function update_ga_tracking_from_profile() {
+		$tracking_code = get_option( 'yst_ga' );
+		if ( $tracking_code['ga_general']['analytics_profile'] !== '' && $tracking_code['ga_general']['manual_ua_code'] == '0' ) {
+			$tracking_code['ga_general']['analytics_profile_code'] = $this->get_ua_code_from_profile( $tracking_code['ga_general']['analytics_profile'] );
+
+			unset( $tracking_code['ga_general']['ga_general'] );
+			update_option( 'yst_ga', $tracking_code );
 		}
 	}
 
@@ -174,7 +189,7 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 		);
 
 		$this->add_field(
-			'universal_enable',
+			'enable_universal',
 			__( 'Enable universal', 'google-analytics-for-wordpress' ),
 			'checkbox',
 			'universal',
@@ -224,9 +239,9 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'select',
 			'advanced',
 			array(
-				'key'     => 'track_download_as',
-				'help'    => __( 'Not recommended, as this would skew your statistics, but it does make it possible to track downloads as goals.', 'google-analytics-for-wordpress' ),
-				'options' => $this->default_options['track_download_types'],
+				'key'        => 'track_download_as',
+				'help'       => __( 'Not recommended, as this would skew your statistics, but it does make it possible to track downloads as goals.', 'google-analytics-for-wordpress' ),
+				'options'    => $this->default_options['track_download_types'],
 				'attributes' => ' class="chosen"',
 			)
 		);
@@ -248,9 +263,9 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'select',
 			'advanced',
 			array(
-				'key'     => 'track_full_url',
-				'help'    => __( 'How should we track your outbound clicks?', 'google-analytics-for-wordpress' ),
-				'options' => $this->default_options['track_full_url'],
+				'key'        => 'track_full_url',
+				'help'       => __( 'How should we track your outbound clicks?', 'google-analytics-for-wordpress' ),
+				'options'    => $this->default_options['track_full_url'],
 				'attributes' => ' class="chosen"',
 			)
 		);
@@ -365,7 +380,7 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'user_roles'           => $this->get_userroles(),
 			'track_download_types' => $this->track_download_types(),
 			'track_full_url'       => $this->get_track_full_url(),
-			'analytics_profile'   => $this->get_profiles(),
+			'analytics_profile'    => $this->get_profiles(),
 		);
 	}
 
