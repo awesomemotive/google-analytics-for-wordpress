@@ -74,18 +74,20 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'ua_code'
 		);
 
-		$this->add_field(
-			'analytics_profile',
-			__( 'Google Analytics profile', 'google-analytics-for-wordpress' ),
-			'select_profile',
-			'ua_code',
-			array(
-				'key'        => 'analytics_profile',
-				'help'       => __( 'Select an analytics profile from your Google account to use for the tracking on this website.', 'google-analytics-for-wordpress' ),
-				'attributes' => ' class="chosen"',
-				'options'    => $this->default_options['analytics_profile'],
-			)
-		);
+		if ( ! empty( $this->default_options['analytics_profile'] ) && count( $this->default_options['analytics_profile'] ) >= 1 ) {
+			$this->add_field(
+				'analytics_profile',
+				__( 'Google Analytics profile', 'google-analytics-for-wordpress' ),
+				'select_profile',
+				'ua_code',
+				array(
+					'key'        => 'analytics_profile',
+					'help'       => __( 'Select an analytics profile from your Google account to use for the tracking on this website.', 'google-analytics-for-wordpress' ),
+					'attributes' => ' class="chosen"',
+					'options'    => $this->default_options['analytics_profile'],
+				)
+			);
+		}
 
 		$this->add_field(
 			'manual_ua_code',
