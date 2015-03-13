@@ -123,7 +123,7 @@ class Yoast_GA_Admin_Settings_Fields {
 				$options .= '<optgroup label="' . $optgroup['name'] . '">';
 
 				foreach ( $optgroup['items'] as $item ) {
-					$options .= '<option value="' . $item['id'] . '">' . $item['name'] . '</option>';
+					$options .= '<option value="' . $item['id'] . '" ' . selected( $item['id'], self::$options[$args['key']], false ) . '>' . $item['name'] . '</option>';
 				}
 
 				$options .= '</optgroup>';

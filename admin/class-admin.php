@@ -100,7 +100,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 *
 	 * @return null
 	 */
-	private function get_ua_code_from_profile( $profile_id ) {
+	protected function get_ua_code_from_profile( $profile_id ) {
 		$profiles = $this->get_profiles();
 		$ua_code  = null;
 
