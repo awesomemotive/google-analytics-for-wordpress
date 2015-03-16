@@ -32,11 +32,10 @@ settings_errors( 'yoast_google_analytics' );
 				$wp_block_google     = $ga_class->check_google_access_from_wp();
 				$check_google_access = $ga_class->check_google_access();
 				$profiles 			 = $ga_class->get_profiles();
-				$wp_block_google = true;
 
 				if ( $wp_block_google === false || $check_google_access === false ) {
 					echo '<h3>' . __( 'Cannot connect to Google', 'google-analytics-for-wordpress' ) . '</h3>';
-					if ( $wp_block_google == false && $check_google_access == false ) {
+					if ( $wp_block_google === false && $check_google_access === false ) {
 						echo '<p>' . __( 'Your server is blocking requests to Google, to fix this, add <code>*.googleapis.com</code> to the <code>WP_ACCESSIBLE_HOSTS</code> constant in your <em>wp-config.php</em> or ask your webhost to do this.', 'google-analytics-for-wordpress' ) . '</p>';
 					}
 					else {
