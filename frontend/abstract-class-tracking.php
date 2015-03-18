@@ -320,7 +320,7 @@ abstract class Yoast_GA_Tracking {
 			 * @api array $all_roles
 			 */
 			$track_super_admin = apply_filters( 'yst_ga_track_super_admin', true );
-			if( $track_super_admin === false && is_super_admin() ){
+			if ( $track_super_admin === false && is_super_admin() ) {
 				$this->do_tracking = false;
 			}
 		}
