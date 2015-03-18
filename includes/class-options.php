@@ -221,6 +221,10 @@ class Yoast_GA_Options {
 		if ( ! isset ( $this->options['dashboards_disabled'] ) || version_compare( $this->options['version'], '5.2.8', '>' ) ) {
 			$this->options['dashboards_disabled'] = 0;
 		}
+		// 5.3.2+ Add ga tracker object
+		if ( empty ( $this->options['js_object_name'] ) || version_compare( $this->options['version'], '5.3.2', '>' ) ) {
+			$this->options['js_object_name'] = '__gaTracker';
+		}
 		// Check is API option already exists - if not add it
 		$yst_ga_api = get_option( 'yst_ga_api' );
 		if ( $yst_ga_api === false ) {
@@ -263,6 +267,7 @@ class Yoast_GA_Options {
 				'track_download_as'          => 'event',
 				'extensions_of_files'        => 'doc,exe,js,pdf,ppt,tgz,zip,xls',
 				'track_full_url'             => 'domain',
+				'js_object_name'             => '__gaTracker',
 				'subdomain_tracking'         => null,
 				'tag_links_in_rss'           => 0,
 				'allow_anchor'               => 0,

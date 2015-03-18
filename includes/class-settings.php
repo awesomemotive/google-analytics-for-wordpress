@@ -1,6 +1,6 @@
 <?php
 /**
- * @package GoogleAnalytics
+ * @package    GoogleAnalytics
  * @subpackage Includes
  */
 
@@ -47,6 +47,17 @@ class Yoast_GA_Settings {
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * Get the name of the tracker object (for front-end purposes)
+	 *
+	 * @return mixed
+	 */
+	public function get_tracker_object_name() {
+		if ( ! empty( $this->options['js_object_name'] ) ) {
+			return $this->options[ 'js_object_name' ];
+		}
 	}
 
 	/**
