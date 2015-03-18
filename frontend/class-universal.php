@@ -11,6 +11,8 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 
 	/**
 	 * Hold the tracker object name, configured on the advanced tab
+	 *
+	 * @var string
 	 */
 	private $tracker_object_name;
 
