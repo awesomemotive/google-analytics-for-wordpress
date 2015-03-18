@@ -215,15 +215,15 @@ class Yoast_GA_Admin_Form {
 	private static function option( $select_value, $value ) {
 
 		if ( is_array( $select_value ) ) {
-			if ( in_array( $value['id'], $select_value ) ) {
-				return '<option value="' . $value['id'] . '" selected="selected">' . esc_attr( stripslashes( $value['name'] ) ) . '</option>';
+			if ( in_array( esc_attr( $value['id'] ), $select_value ) ) {
+				return '<option value="' . esc_attr( $value['id'] ) . '" selected="selected">' . esc_attr( stripslashes( $value['name'] ) ) . '</option>';
 			}
 			else {
-				return '<option value="' . $value['id'] . '">' . esc_attr( stripslashes( $value['name'] ) ) . '</option>';
+				return '<option value="' . esc_attr( $value['id'] ) . '">' . esc_attr( stripslashes( $value['name'] ) ) . '</option>';
 			}
 		}
 		else {
-			return '<option value="' . $value['id'] . '" ' . selected( $select_value, $value['id'], false ) . '>' . esc_attr( stripslashes( $value['name'] ) ) . '</option>';
+			return '<option value="' . esc_attr( $value['id'] ) . '" ' . selected( $select_value, $value['id'], false ) . '>' . esc_attr( stripslashes( $value['name'] ) ) . '</option>';
 		}
 	}
 
