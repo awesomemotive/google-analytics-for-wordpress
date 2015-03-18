@@ -11,8 +11,6 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 
 	/**
 	 * Hold the tracker object name, configured on the advanced tab
-	 *
-	 * @var
 	 */
 	private $tracker_object_name;
 
@@ -219,7 +217,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 	 * @return string
 	 */
 	private function get_tracker_object_name() {
-		if( empty( $this->tracker_object_name ) ){
+		if ( empty( $this->tracker_object_name ) ) {
 			$this->tracker_object_name = Yoast_GA_Settings::get_instance()->get_tracker_object_name();
 		}
 
