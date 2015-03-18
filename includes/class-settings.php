@@ -52,12 +52,14 @@ class Yoast_GA_Settings {
 	/**
 	 * Get the name of the tracker object (for front-end purposes)
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	public function get_tracker_object_name() {
 		if ( ! empty( $this->options['js_object_name'] ) ) {
 			return $this->options[ 'js_object_name' ];
 		}
+
+		return '__gaTracker';
 	}
 
 	/**
