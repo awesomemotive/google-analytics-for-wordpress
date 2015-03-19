@@ -1,25 +1,26 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
 
+/**
+ * Dashboards class.
+ */
 class Yoast_GA_Dashboards {
 
 	/**
-	 * Store the data aggregator
-	 *
-	 * @package
+	 * @var Yoast_GA_Dashboards_Collector $aggregator Store the data aggregator
 	 */
 	public $aggregator;
 
 	/**
-	 * Store the Data instance
-	 *
-	 * @package
+	 * @var array $data Store the Data instance
 	 */
 	public $data;
 
 	/**
-	 * Store the active metrics
-	 *
-	 * @var
+	 * @var array $active_metrics Store the active metrics
 	 */
 	public $active_metrics;
 
@@ -40,9 +41,7 @@ class Yoast_GA_Dashboards {
 	private static $instance = null;
 
 	/**
-	 * Store the Dashboards disabled bool
-	 *
-	 * @var bool
+	 * @var boolean $dashboards_disabled Store the Dashboards disabled bool
 	 */
 	private $dashboards_disabled;
 
@@ -80,7 +79,7 @@ class Yoast_GA_Dashboards {
 	 *
 	 * By hook as filter: $dashboards = apply_filters( 'ga_extend_dashboards', $dashboards);
 	 *
-	 * @param $dashboards
+	 * @param array $dashboards
 	 *
 	 * @return mixed
 	 */
@@ -107,7 +106,7 @@ class Yoast_GA_Dashboards {
 	/**
 	 * Register the dashboard types
 	 *
-	 * @param $types array or singular string
+	 * @param array|string $types
 	 *
 	 * @return bool
 	 */
@@ -235,7 +234,7 @@ class Yoast_GA_Dashboards {
 	/**
 	 * Validate the registered types of dashboards
 	 *
-	 * @param $types
+	 * @param array $types
 	 *
 	 * @return bool
 	 */

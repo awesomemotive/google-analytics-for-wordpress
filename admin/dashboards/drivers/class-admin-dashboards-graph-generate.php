@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
 
+/**
+ * Graph inherited class.
+ */
 class Yoast_GA_Dashboards_Graph_Generate extends Yoast_GA_Dashboards_Driver_Generate {
 
 	/**
@@ -60,9 +67,9 @@ class Yoast_GA_Dashboards_Graph_Generate extends Yoast_GA_Dashboards_Driver_Gene
 	 */
 	protected function filter_google_data( $google_data ) {
 
-		foreach ( $google_data['value'] AS $unix_timestamp => $value ) {
+		foreach ( $google_data['value'] as $unix_timestamp => $value ) {
 			if ( $this->is_date_in_period( $unix_timestamp ) ) {
-				$return[$unix_timestamp] = $value;
+				$return[ $unix_timestamp ] = $value;
 			}
 		}
 
@@ -91,7 +98,7 @@ class Yoast_GA_Dashboards_Graph_Generate extends Yoast_GA_Dashboards_Driver_Gene
 
 		$google_data = $this->get_google_data();
 
-		foreach ( $google_data AS $timestamp => $value ) {
+		foreach ( $google_data as $timestamp => $value ) {
 			$this->add_data( $value );
 			$this->add_x_mapping( $timestamp );
 			$this->add_hover_mapping( $timestamp, $value );
@@ -130,7 +137,7 @@ class Yoast_GA_Dashboards_Graph_Generate extends Yoast_GA_Dashboards_Driver_Gene
 	private function add_x_mapping( $timestamp ) {
 
 		$is_monday            = ( 'Mon' === date( 'D', $timestamp ) );
-		$this->mapping['x'][] = $is_monday ? date( $this->date_field . ' M', $timestamp ) : null;
+		$this->mapping['x'][] = ( $is_monday ) ? date( $this->date_field . ' M', $timestamp ) : null;
 	}
 
 	/**

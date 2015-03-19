@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
 
+/**
+ * Base abstract class.
+ */
 abstract class Yoast_GA_Dashboards_Driver {
 
 	/**
@@ -54,10 +61,10 @@ abstract class Yoast_GA_Dashboards_Driver {
 	/**
 	 * Giving the dashboardname to show
 	 *
-	 * @param $dashboard
+	 * @param string $dashboard
 	 */
 	public function display( $dashboard ) {
-		$settings = $this->dashboards[$dashboard];
+		$settings = $this->dashboards[ $dashboard ];
 		require dirname( GAWP_FILE ) . '/admin/dashboards/views/' . $this->dashboard_type . '.php';
 	}
 

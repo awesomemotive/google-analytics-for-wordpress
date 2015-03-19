@@ -31,6 +31,8 @@ Bugs
 ----
 If you find an issue, [let us know here](https://github.com/Yoast/google-analytics-for-wordpress/issues/new)!
 
+Please report security issues privately to **security@yoast.com**.
+
 Support
 -------
 This is a developer's portal for Google Analytics for WordPress by Yoast and should not be used for support. Please visit the

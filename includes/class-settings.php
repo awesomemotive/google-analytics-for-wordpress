@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Includes
+ */
 
+/**
+ * Settings class.
+ */
 class Yoast_GA_Settings {
 
 	/**
@@ -17,9 +24,7 @@ class Yoast_GA_Settings {
 	private $options_class;
 
 	/**
-	 * The main GA options
-	 *
-	 * @var
+	 * @var array $options The main GA options
 	 */
 	private $options;
 
