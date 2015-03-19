@@ -21,10 +21,6 @@ settings_errors( 'yoast_google_analytics' );
 
 <form method="post" action="<?php echo admin_url('options.php'); ?>" id="yoast-ga-form-settings">
 	<div class="tabwrapper">
-		<?php
-//		settings_fields( 'yst_ga_settings_api' );
-//		do_settings_sections( 'yst_ga_settings_api' );
-		?>
 		<div id="yst_ga_general" class="gatab">
 			<div id="google_ua_code_field" class="ga-promote">
 				<?php
@@ -44,7 +40,7 @@ settings_errors( 'yoast_google_analytics' );
 					echo '<p>' . __( 'Until this is fixed, you can only use the manual authentication method and cannot use the dashboards feature.', 'google-analytics-for-wordpress' ) . '</p>';
 				}
 				else{
-					$auth_url = Yoast_Google_Analytics::get_instance()->create_auth_url();
+					$auth_url = $ga_class->create_auth_url();
 					add_thickbox();
 
 					echo '<script>yst_thickbox_heading = "' . __( 'Paste your Google authentication code', 'google-analytics-for-wordpress' ) . '";</script>';
@@ -57,7 +53,7 @@ settings_errors( 'yoast_google_analytics' );
 					echo '</div>';
 
 					echo '<table class="form-table"><tbody><tr><th scope="row">' . __('Authenticate with Google') . '</th>';
-					if ( count( $profiles ) == 0 ) {
+					if ( empty($profiles) ) {
 						echo '<td><a id="yst_ga_authenticate" class="button" onclick="yst_popupwindow(\'' . $auth_url . '\',500,500);">' . __( 'Click here to authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a></td>';
 					}
 					else{
@@ -112,10 +108,6 @@ echo $yoast_ga_admin->content_footer();
 <script type="text/javascript">
 	jQuery(document).ready(
 		function () {
-//			jQuery('.chosen').chosen({
-//				group_search: true
-//			});
-
 			jQuery('.chosen').chosen({
 				placeholder_text_multiple: '<?php echo __( 'Select the users to ignore', 'google-analytics-for-wordpress' ); ?>'
 			});
