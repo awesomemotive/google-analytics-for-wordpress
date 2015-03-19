@@ -27,7 +27,7 @@ settings_errors( 'yoast_google_analytics' );
 				$ga_class            = Yoast_Google_Analytics::get_instance();
 				$wp_block_google     = $ga_class->check_google_access_from_wp();
 				$check_google_access = $ga_class->check_google_access();
-				$profiles 			 = $ga_class->get_profiles();
+				$profiles            = $ga_class->get_profiles();
 
 				if ( $wp_block_google === false || $check_google_access === false ) {
 					echo '<h3>' . __( 'Cannot connect to Google', 'google-analytics-for-wordpress' ) . '</h3>';
