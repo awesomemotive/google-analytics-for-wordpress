@@ -356,19 +356,12 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 */
 	private function google_analytics_listener() {
 
-		if ( ! empty( $_POST['google_auth_code'] ) ) {
-			Yoast_Google_Analytics::get_instance()->authenticate( trim( $_POST['google_auth_code'] ) );
-		}
-
-
-		if ( ! empty ( $_GET['reauth'] ) ) {
-
+		if ( current_user_can( 'manage_options' ) && ! empty( $_POST['google_auth_code'] ) ) {
 			delete_option( 'yst_ga_accounts' );
 			delete_option( 'yst_ga_response' );
 
-			Yoast_Google_Analytics::get_instance()->authenticate();
+			Yoast_Google_Analytics::get_instance()->authenticate( trim( $_POST['google_auth_code'] ) );
 		}
-
 	}
 
 	/**
