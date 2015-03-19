@@ -13,6 +13,13 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 	private $settings = array();
 
 	/**
+	 * Current section of the form fields
+	 *
+	 * @var string
+	 */
+	private $current_section;
+
+	/**
 	 * @var array
 	 */
 	private $default_options = array(
@@ -79,7 +86,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 				'analytics_profile',
 				__( 'Google Analytics profile', 'google-analytics-for-wordpress' ),
 				'select_profile',
-				'ua_code',
 				array(
 					'key'        => 'analytics_profile',
 					'help'       => __( 'Select an analytics profile from your Google account to use for the tracking on this website.', 'google-analytics-for-wordpress' ),
@@ -93,7 +99,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'manual_ua_code',
 			__( 'Use a manual UA code', 'google-analytics-for-wordpress' ),
 			'checkbox',
-			'ua_code',
 			array(
 				'key'  => 'manual_ua_code',
 				'help' => __( 'You can use the manual UA code field to enter your UA code manually, instead of using the Google Authenticator.', 'google-analytics-for-wordpress' ),
@@ -104,7 +109,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'manual_ua_code_field',
 			__( 'Enter your UA code here', 'google-analytics-for-wordpress' ),
 			'text',
-			'ua_code',
 			array(
 				'key'  => 'manual_ua_code_field',
 				'help' => __( 'Enter the UA code (e.g.: UA-1234567-89) here, you can find the correct UA code in your Google Analaytics dashboard.', 'google-analytics-for-wordpress' ),
@@ -126,7 +130,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'track_outbound',
 			__( 'Track outbound click and downloads', 'google-analytics-for-wordpress' ),
 			'checkbox',
-			'general',
 			array(
 				'key'  => 'track_outbound',
 				'help' => __( 'Clicks and downloads will be tracked as events, you can find these under Content &#xBB; Event Tracking in your Google Analytics reports.', 'google-analytics-for-wordpress' ),
@@ -137,7 +140,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'anonymous_data',
 			__( 'Allow tracking of anonymous data', 'google-analytics-for-wordpress' ),
 			'checkbox',
-			'general',
 			array(
 				'key'  => 'anonymous_data',
 				'help' => __( 'By allowing us to track anonymous data we can better help you, because we know with which WordPress configurations, themes and plugins we should test. No personal data will be submitted.', 'google-analytics-for-wordpress' ),
@@ -148,7 +150,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'anonymize_ips',
 			__( 'Anonymize IPs', 'google-analytics-for-wordpress' ),
 			'checkbox',
-			'general',
 			array(
 				'key'  => 'anonymize_ips',
 				'help' => sprintf( __( 'This adds %1$s, telling Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApi_gat?csw=1#_gat._anonymizeIp" target="_blank"><code>_anonymizeIp</code></a>' ),
@@ -159,7 +160,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'ignore_users',
 			__( 'Ignore users', 'google-analytics-for-wordpress' ),
 			'select',
-			'general',
 			array(
 				'key'        => 'ignore_users',
 				'help'       => __( 'Users of the role you select will be ignored, so if you select Editor, all Editors will be ignored.', 'google-analytics-for-wordpress' ),
@@ -172,7 +172,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'dashboards_disabled',
 			__( 'Disable analytics dashboard', 'google-analytics-for-wordpress' ),
 			'checkbox',
-			'general',
 			array(
 				'key'  => 'dashboards_disabled',
 				'help' => __( 'This will completely disable the dashboard and stop the plugin from fetching the latest analytics data.', 'google-analytics-for-wordpress' ),
@@ -194,7 +193,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'enable_universal',
 			__( 'Enable universal', 'google-analytics-for-wordpress' ),
 			'checkbox',
-			'universal',
 			array(
 				'key'  => 'enable_universal',
 				'help' => sprintf( __( 'First enable Universal tracking in your Google Analytics account. Please read %1$sthis guide%2$s to learn how to do that.', 'google-analytics-for-wordpress' ), '<a href="http://kb.yoast.com/article/125-universal-analytics#utm_medium=kb-link&utm_source=gawp-config&utm_campaign=wpgaplugin" target="_blank">', '</a>' ),
@@ -205,7 +203,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'demographics',
 			__( 'Enable Demographics and Interest Reports', 'google-analytics-for-wordpress' ),
 			'checkbox',
-			'universal',
 			array(
 				'key'  => 'demographics',
 				'help' => sprintf( __( 'You have to enable the Demographics in Google Analytics before you can see the tracking data. We have a knowledge base article in our %1$sknowledge base%2$s about this feature.', 'google-analytics-for-wordpress' ), '<a href="http://kb.yoast.com/article/154-enable-demographics-and-interests-report-in-google-analytics/#utm_medium=kb-link&amp;utm_source=gawp-config&amp;utm_campaign=wpgaplugin" target="_blank">', '</a>' ),
@@ -216,7 +213,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'enhanced_link_attribution',
 			__( 'Enhanced Link Attribution', 'google-analytics-for-wordpress' ),
 			'checkbox',
-			'universal',
 			array(
 				'key'  => 'enhanced_link_attribution',
 				'help' => sprintf( __( 'Add %1$sEnhanced Link Attribution%2$s to your tracking code.', 'google-analytics-for-wordpress' ), '<a href="https://support.google.com/analytics/answer/2558867" target="_blank">', ' </a>' )
@@ -239,7 +235,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'track_download_as',
 			__( 'Track downloads as', 'google-analytics-for-wordpress' ),
 			'select',
-			'advanced',
 			array(
 				'key'        => 'track_download_as',
 				'help'       => __( 'Not recommended, as this would skew your statistics, but it does make it possible to track downloads as goals.', 'google-analytics-for-wordpress' ),
@@ -252,7 +247,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'extensions_of_files',
 			__( 'Extensions of files to track as downloads', 'google-analytics-for-wordpress' ),
 			'text',
-			'advanced',
 			array(
 				'key'  => 'extensions_of_files',
 				'help' => __( 'Please separate extensions using commas', 'google-analytics-for-wordpress' ),
@@ -263,7 +257,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'track_full_url',
 			__( 'Track full URL of outbound clicks or just the domain', 'google-analytics-for-wordpress' ),
 			'select',
-			'advanced',
 			array(
 				'key'        => 'track_full_url',
 				'help'       => __( 'How should we track your outbound clicks?', 'google-analytics-for-wordpress' ),
@@ -276,7 +269,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'subdomain_tracking',
 			__( 'Subdomain tracking', 'google-analytics-for-wordpress' ),
 			'text',
-			'advanced',
 			array(
 				'key'  => 'subdomain_tracking',
 				'help' => sprintf( __( 'This allows you to set the domain that\'s set by %1$s for tracking subdomains.<br/>If empty, this will not be set.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory#_gat.GA_Tracker_._setDomainName" target="_blank"><code>_setDomainName</code></a>' ),
@@ -287,7 +279,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'track_internal_as_outbound',
 			__( 'Set path for internal links to track as outbound links', 'google-analytics-for-wordpress' ),
 			'text',
-			'advanced',
 			array(
 				'key'  => 'track_internal_as_outbound',
 				'help' => sprintf( __( 'If you want to track all internal links that begin with %1$s, enter %1$s in the box above. If you have multiple prefixes you can separate them with comma\'s: %2$s', 'google-analytics-for-wordpress' ), '<code>/out/</code>', '<code>/out/,/recommends/</code>' ),
@@ -298,7 +289,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'track_internal_as_label',
 			__( 'Label for those links', 'google-analytics-for-wordpress' ),
 			'text',
-			'advanced',
 			array(
 				'key'  => 'track_internal_as_outbound',
 				'help' => __( 'The label to use for these links, this will be added to where the click came from, so if the label is "aff", the label for a click from the content of an article becomes "outbound-article-aff".', 'google-analytics-for-wordpress' ),
@@ -309,7 +299,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'tag_links_in_rss',
 			__( 'Tag links in RSS feed with campaign variables', 'google-analytics-for-wordpress' ),
 			'checkbox',
-			'advanced',
 			array(
 				'key'  => 'tag_links_in_rss',
 				'help' => __( 'Do not use this feature if you use FeedBurner, as FeedBurner can do this automatically and better than this plugin can. Check <a href="https://support.google.com/feedburner/answer/165769?hl=en&amp;ref_topic=13075" target="_blank">this help page</a> for info on how to enable this feature in FeedBurner.', 'google-analytics-for-wordpress' ),
@@ -320,7 +309,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'allow_anchor',
 			__( 'Tag links in RSS feed with campaign variables', 'google-analytics-for-wordpress' ),
 			'checkbox',
-			'advanced',
 			array(
 				'key'  => 'allow_anchor',
 				'help' => sprintf( __( 'This adds a %1$s call to your tracking code, and makes RSS link tagging use a %2$s as well.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiCampaignTracking?csw=1#_gat.GA_Tracker_._setAllowAnchor" target="_blank"><code>_setAllowAnchor</code></a>', '<code>#</code>' ),
@@ -331,7 +319,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'add_allow_linker',
 			__( 'Add <code>_setAllowLinker</code>', 'google-analytics-for-wordpress' ),
 			'checkbox',
-			'advanced',
 			array(
 				'key'  => 'add_allow_linker',
 				'help' => sprintf( __( 'This adds a %1$s call to your tracking code, allowing you to use %2$s and related functions.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory?csw=1#_gat.GA_Tracker_._setAllowLinker" target="_blank"><code>_setAllowLinker</code></a>', ' <code>_link</code>' ),
@@ -342,7 +329,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'custom_code',
 			__( 'Custom code', 'google-analytics-for-wordpress' ),
 			'textarea',
-			'advanced',
 			array(
 				'key'  => 'custom_code',
 				'help' => sprintf( __( 'Not for the average user: this allows you to add a line of code, to be added before the %1$s call.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview" target="_blank"><code>_trackPageview</code></a>' ),
@@ -365,7 +351,6 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 			'debug_mode',
 			__( 'Enable debug mode', 'google-analytics-for-wordpress' ),
 			'checkbox',
-			'debug',
 			array(
 				'key'  => 'debug_mode',
 				'help' => __( 'Not recommended, as this would skew your statistics, but it does make it possible to track downloads as goals.', 'google-analytics-for-wordpress' ),
@@ -392,6 +377,8 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 	 * @param $tab
 	 */
 	private function create_section( $tab ) {
+		$this->current_section = $tab;
+
 		add_settings_section(
 			'yst_ga_settings_api_' . $tab,
 			'',
@@ -406,16 +393,15 @@ class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
 	 * @param $id
 	 * @param $title
 	 * @param $type
-	 * @param $tab
 	 * @param $args
 	 */
-	private function add_field( $id, $title, $type, $tab, $args ) {
+	private function add_field( $id, $title, $type, $args ) {
 		add_settings_field(
 			'yst_ga_' . $id,
 			$title,
 			array( 'Yoast_GA_Admin_Settings_Fields', 'yst_ga_' . $type . '_field' ),
-			$this->settings_api_page . '_' . $tab,
-			$this->settings_api_page . '_' . $tab,
+			$this->settings_api_page . '_' . $this->current_section,
+			$this->settings_api_page . '_' . $this->current_section,
 			$args
 		);
 	}
