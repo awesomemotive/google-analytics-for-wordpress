@@ -2,7 +2,7 @@
 
 class Yoast_GA_Admin_Settings_Fields {
 
-	public static $options = array();
+	private static $options = array();
 
 	/**
 	 * Render a text field
@@ -143,7 +143,7 @@ class Yoast_GA_Admin_Settings_Fields {
 	 * Cache the options in this class, so check if they're set
 	 */
 	private static function set_options() {
-		if ( self::$options == array() ) {
+		if ( self::$options === array() ) {
 			$options = get_option( 'yst_ga' );
 			if ( ! isset( $options['ga_general'] ) ) {
 				self::$options = Yoast_GA_Options::instance()->default_ga_values();
