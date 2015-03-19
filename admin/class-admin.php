@@ -140,12 +140,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 * remove the options for the profiles and the refresh token.
 	 */
 	public static function ga_deactivation_hook() {
-		// Remove the refresh token
-		delete_option( 'yoast-ga-refresh_token' );
-
-		// Remove the ga accounts and response
-		delete_option( 'yst_ga_accounts' );
-		delete_option( 'yst_ga_response' );
+		// Remove the refresh token and other API settings
+		self::analytics_api_clean_up();
 	}
 
 	/**
@@ -322,22 +318,17 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			add_action( 'yst_ga_custom_dimension_add-dashboards-tab', array( $this, 'premium_promo' ) );
 		}
 
-		/**
-		 * @todo this should use filter_input
-		 */
-		if ( isset( $_GET['page'] ) ) {
-			switch ( $_GET['page'] ) {
-				case 'yst_ga_settings':
-					require_once( $this->plugin_path . 'admin/pages/settings.php' );
-					break;
-				case 'yst_ga_extensions':
-					require_once( $this->plugin_path . 'admin/pages/extensions.php' );
-					break;
-				case 'yst_ga_dashboard':
-				default:
-					require_once( $this->plugin_path . 'admin/pages/dashboard.php' );
-					break;
-			}
+		switch ( filter_input( INPUT_GET, 'page' ) ) {
+			case 'yst_ga_settings':
+				require_once( $this->plugin_path . 'admin/pages/settings.php' );
+				break;
+			case 'yst_ga_extensions':
+				require_once( $this->plugin_path . 'admin/pages/extensions.php' );
+				break;
+			case 'yst_ga_dashboard':
+			default:
+				require_once( $this->plugin_path . 'admin/pages/dashboard.php' );
+				break;
 		}
 	}
 
@@ -355,16 +346,26 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 	/**
 	 * Checks if there is a callback to get token from Google Analytics API
-	 *
-	 * @todo this should use filter_input
 	 */
 	private function google_analytics_listener() {
-		if ( isset( $_POST['google_auth_code'] ) && wp_verify_nonce( 'yoast_ga_nonce', 'save_settings' ) && current_user_can( 'manage_options' ) ) {
-			delete_option( 'yst_ga_accounts' );
-			delete_option( 'yst_ga_response' );
+		$google_auth_code = filter_input( INPUT_POST, 'google_auth_code' );
+		if ( $google_auth_code && current_user_can( 'manage_options' ) ) {
+			wp_verify_nonce( 'yoast_ga_nonce', 'save_settings' );
 
-			Yoast_Google_Analytics::get_instance()->authenticate( trim( $_POST['google_auth_code'] ) );
+			self::analytics_api_clean_up();
+
+			Yoast_Google_Analytics::get_instance()->authenticate( trim( $google_auth_code ) );
 		}
+	}
+
+	/**
+	 * Clean up the Analytics API settings
+	 */
+	public static function analytics_api_clean_up() {
+		delete_option( 'yoast-ga-refresh_token' );
+		delete_option( 'yst_ga_api_call_fail' );
+		delete_option( 'yst_ga_last_wp_run' );
+		delete_option( 'yst_ga_api' );
 	}
 
 	/**
