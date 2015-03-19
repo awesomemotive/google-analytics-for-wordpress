@@ -58,4 +58,55 @@ else {
 	$yoast_ga_frontend = new Yoast_GA_Frontend;
 }
 
+/* ***************************** BOOTSTRAP / HOOK INTO WP *************************** */
+$spl_autoload_exists = function_exists( 'spl_autoload_register' ) ;
+$filter_input_exists = function_exists( 'filter_input' ) ;
+if ( ! $spl_autoload_exists ) {
+	add_action( 'admin_init', 'yoast_wpseo_self_deactivate_spl', 1 );
+}
+if ( ! $filter_input_exists ) {
+	add_action( 'admin_init', 'yoast_wpseo_self_deactivate_filter_input', 1 );
+}
+
+/**
+ * Throw an error if the PHP SPL extension is disabled (prevent white screens) and self-deactivate plugin
+ *
+ * @since 5.3.3
+ */
+function yoast_ga_self_deactivate_spl() {
+	if ( is_admin() ) {
+		yoast_ga_extenstion_notice (
+			esc_html__( 'The Standard PHP Library (SPL) extension seem to be unavailable. Please ask your web host to enable it.', 'google-analytics-for-wordpress' )
+		);
+	}
+}
+
+/**
+ * Throw an error if the filter extension is disabled (prevent white screens) and self-deactivate plugin
+ *
+ * @since 5.3.3
+ */
+function yoast_ga_self_deactivate_filter_input() {
+	if ( is_admin() ) {
+		yoast_ga_extenstion_notice (
+			esc_html__( 'The (standard) PHP filter extension seem to be unavailable. Please ask your web host to enable it.', 'google-analytics-for-wordpress' )
+		);
+	}
+}
+
+/**
+ * Show a notice in the admin
+ *
+ * @param string $message
+ *
+ * @since 5.3.3
+ */
+function yoast_ga_extenstion_notice( $message ) {
+	add_action( 'admin_notices', create_function( $message, 'echo \'<div class="error"><p>\' . __( \'Activation failed:\', \'google-analytics-for-wordpress\' ) . \' \' . $message . \'</p></div>\';' ) );
+	deactivate_plugins( plugin_basename( GAWP_FILE ) );
+	if ( isset( $_GET['activate'] ) ) {
+		unset( $_GET['activate'] );
+	}
+}
+
 register_deactivation_hook( __FILE__, array( 'Yoast_GA_Admin', 'ga_deactivation_hook' ) );
