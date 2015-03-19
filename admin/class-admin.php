@@ -323,6 +323,9 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			add_action( 'yst_ga_custom_dimension_add-dashboards-tab', array( $this, 'premium_promo' ) );
 		}
 
+		/**
+		 * @todo this should use filter_input
+		 */
 		if ( isset( $_GET['page'] ) ) {
 			switch ( $_GET['page'] ) {
 				case 'yst_ga_settings':
@@ -352,11 +355,12 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	}
 
 	/**
-	 * Checks if there is a callback or reauth to get token from Google Analytics api
+	 * Checks if there is a callback to get token from Google Analytics API
+	 *
+	 * @todo this should use filter_input
 	 */
 	private function google_analytics_listener() {
-
-		if ( current_user_can( 'manage_options' ) && ! empty( $_POST['google_auth_code'] ) ) {
+		if ( isset( $_POST['google_auth_code'] ) && wp_verify_nonce( 'yoast_ga_nonce', 'save_settings' ) && current_user_can( 'manage_options' ) ) {
 			delete_option( 'yst_ga_accounts' );
 			delete_option( 'yst_ga_response' );
 
