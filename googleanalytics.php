@@ -59,8 +59,8 @@ else {
 }
 
 /* ***************************** BOOTSTRAP / HOOK INTO WP *************************** */
-$spl_autoload_exists = function_exists( 'spl_autoload_register' ) ;
-$filter_input_exists = function_exists( 'filter_input' ) ;
+$spl_autoload_exists = function_exists( 'spl_autoload_register' );
+$filter_input_exists = function_exists( 'filter_input' );
 if ( ! $spl_autoload_exists ) {
 	add_action( 'admin_init', 'yoast_wpseo_self_deactivate_spl', 1 );
 }
@@ -75,7 +75,7 @@ if ( ! $filter_input_exists ) {
  */
 function yoast_ga_self_deactivate_spl() {
 	if ( is_admin() ) {
-		yoast_ga_extenstion_notice (
+		yoast_ga_extenstion_notice(
 			esc_html__( 'The Standard PHP Library (SPL) extension seem to be unavailable. Please ask your web host to enable it.', 'google-analytics-for-wordpress' )
 		);
 	}
@@ -88,7 +88,7 @@ function yoast_ga_self_deactivate_spl() {
  */
 function yoast_ga_self_deactivate_filter_input() {
 	if ( is_admin() ) {
-		yoast_ga_extenstion_notice (
+		yoast_ga_extenstion_notice(
 			esc_html__( 'The (standard) PHP filter extension seem to be unavailable. Please ask your web host to enable it.', 'google-analytics-for-wordpress' )
 		);
 	}
