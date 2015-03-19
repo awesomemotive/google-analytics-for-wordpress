@@ -5,6 +5,7 @@ Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
 Tested up to: 4.2
 Stable tag: 5.3.3
+License: GPL v3
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
@@ -12,7 +13,7 @@ Track your WordPress site easily with the latest tracking codes and lots added d
 
 The Google Analytics by Yoast plugin for WordPress allows you to track your blog easily and always stays up to date with the newest features in Google Analytics.
 
-> <strong>Upgrade to GA by Yoast Premium</strong><br/>
+> <strong>Upgrade to GA by Yoast Premium</strong><br>
 > If you need support or want to use custom dimensions, upgrade to [Google Analytics by Yoast Premium](https://yoast.com/wordpress/plugins/google-analytics/#utm_source=wporg&utm_medium=readme&utm_campaign=wpgaplugin) today!
 
 Full list of features:
