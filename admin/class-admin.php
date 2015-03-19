@@ -1,6 +1,6 @@
 <?php
 /**
- * @package GoogleAnalytics
+ * @package    GoogleAnalytics
  * @subpackage Admin
  */
 
@@ -146,7 +146,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		// Remove the ga accounts and response
 		delete_option( 'yst_ga_accounts' );
 		delete_option( 'yst_ga_response' );
-
 	}
 
 	/**
@@ -429,8 +428,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 */
 	public function get_track_full_url() {
 		return array(
-			0 => array( 'id' => 'domain', 'name' => __( 'Just the domain', 'google-analytics-for-wordpress' )  ),
-			1 => array( 'id' => 'full_links', 'name' => __( 'Full links', 'google-analytics-for-wordpress' )  ),
+			0 => array( 'id' => 'domain', 'name' => __( 'Just the domain', 'google-analytics-for-wordpress' ) ),
+			1 => array( 'id' => 'full_links', 'name' => __( 'Full links', 'google-analytics-for-wordpress' ) ),
 		);
 	}
 
