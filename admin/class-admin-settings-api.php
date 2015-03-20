@@ -4,7 +4,7 @@
  * This class is for options/settings in the admin forms
  */
 class Yoast_GA_Admin_Settings_Registrar {
-	
+
 	/**
 	 * Current section of the form fields
 	 *
@@ -365,24 +365,13 @@ class Yoast_GA_Admin_Settings_Registrar {
 
 		return $ua_code;
 	}
-
-	/**
-	 * Get the Google Analytics profiles which are in this google account
-	 *
-	 * @return array
-	 */
-	private function get_profiles() {
-		$return = Yoast_Google_Analytics::get_instance()->get_profiles();
-
-		return $return;
-	}
-
+	
 	/**
 	 * Get the user roles of this WordPress blog
 	 *
 	 * @return array
 	 */
-	private function get_userroles() {
+	protected function get_userroles() {
 		global $wp_roles;
 
 		$all_roles = $wp_roles->roles;
@@ -410,7 +399,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 	 *
 	 * @return array
 	 */
-	private function track_download_types() {
+	protected function track_download_types() {
 		return array(
 			0 => array( 'id' => 'event', 'name' => __( 'Event', 'google-analytics-for-wordpress' ) ),
 			1 => array( 'id' => 'pageview', 'name' => __( 'Pageview', 'google-analytics-for-wordpress' ) ),
@@ -422,11 +411,22 @@ class Yoast_GA_Admin_Settings_Registrar {
 	 *
 	 * @return array
 	 */
-	private function get_track_full_url() {
+	protected function get_track_full_url() {
 		return array(
 			0 => array( 'id' => 'domain', 'name' => __( 'Just the domain', 'google-analytics-for-wordpress' ) ),
 			1 => array( 'id' => 'full_links', 'name' => __( 'Full links', 'google-analytics-for-wordpress' ) ),
 		);
+	}
+
+	/**
+	 * Get the Google Analytics profiles which are in this google account
+	 *
+	 * @return array
+	 */
+	private function get_profiles() {
+		$return = Yoast_Google_Analytics::get_instance()->get_profiles();
+
+		return $return;
 	}
 
 	/**
