@@ -59,4 +59,13 @@ class Yoast_GA_Options_Utils {
 		return $this->options_class->option_value_to_bool( 'dashboards_disabled' );
 	}
 
+	/**
+	 * Add a notification to the notification transient
+	 *
+	 * @param $transient_name
+	 * @param $settings
+	 */
+	public function add_notification( $transient_name, $settings ) {
+		set_transient( $transient_name, $settings, MINUTE_IN_SECONDS );
+	}
 }

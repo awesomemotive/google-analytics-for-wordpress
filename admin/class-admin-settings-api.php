@@ -3,15 +3,8 @@
 /**
  * This class is for options/settings in the admin forms
  */
-class Yoast_GA_Admin_Settings_Registrar extends Yoast_GA_Admin {
-
-	/**
-	 * The website GA settings
-	 *
-	 * @var array
-	 */
-	private $settings = array();
-
+class Yoast_GA_Admin_Settings_Registrar {
+	
 	/**
 	 * Current section of the form fields
 	 *
@@ -51,7 +44,7 @@ class Yoast_GA_Admin_Settings_Registrar extends Yoast_GA_Admin {
 		if ( isset( $_GET['settings-updated'] ) ) {
 			add_action( 'admin_init', array( $this, 'update_ga_tracking_from_profile' ) );
 
-			$this->add_notification( 'ga_notifications', array(
+			Yoast_GA_Options_Utils::get_instance()->add_notification( 'ga_notifications', array(
 				'type'        => 'success',
 				'description' => __( 'Settings saved.', 'google-analytics-for-wordpress' ),
 			) );
@@ -341,11 +334,98 @@ class Yoast_GA_Admin_Settings_Registrar extends Yoast_GA_Admin {
 	 */
 	public function init_default_options() {
 		$this->default_options = array(
-			'tracking_code'        => $this->get_tracking_code(),
+			'tracking_code'        => Yoast_GA_Options::instance()->get_tracking_code(),
 			'user_roles'           => $this->get_userroles(),
 			'track_download_types' => $this->track_download_types(),
 			'track_full_url'       => $this->get_track_full_url(),
 			'analytics_profile'    => $this->get_profiles(),
+		);
+	}
+
+	/**
+	 * Transform the Profile ID into an helpful UA code
+	 *
+	 * @param $profile_id
+	 *
+	 * @return null
+	 */
+	protected function get_ua_code_from_profile( $profile_id ) {
+		$profiles = $this->get_profiles();
+		$ua_code  = null;
+
+		foreach ( $profiles as $account ) {
+			foreach ( $account['items'] as $profile ) {
+				foreach ( $profile['items'] as $subprofile ) {
+					if ( isset( $subprofile['id'] ) && $subprofile['id'] === $profile_id ) {
+						return $subprofile['ua_code'];
+					}
+				}
+			}
+		}
+
+		return $ua_code;
+	}
+
+	/**
+	 * Get the Google Analytics profiles which are in this google account
+	 *
+	 * @return array
+	 */
+	private function get_profiles() {
+		$return = Yoast_Google_Analytics::get_instance()->get_profiles();
+
+		return $return;
+	}
+
+	/**
+	 * Get the user roles of this WordPress blog
+	 *
+	 * @return array
+	 */
+	private function get_userroles() {
+		global $wp_roles;
+
+		$all_roles = $wp_roles->roles;
+		$roles     = array();
+
+		/**
+		 * Filter: 'editable_roles' - Allows filtering of the roles shown within the plugin (and elsewhere in WP as it's a WP filter)
+		 *
+		 * @api array $all_roles
+		 */
+		$editable_roles = apply_filters( 'editable_roles', $all_roles );
+
+		foreach ( $editable_roles as $id => $name ) {
+			$roles[] = array(
+				'id'   => $id,
+				'name' => translate_user_role( $name['name'] ),
+			);
+		}
+
+		return $roles;
+	}
+
+	/**
+	 * Get types of how we can track downloads
+	 *
+	 * @return array
+	 */
+	private function track_download_types() {
+		return array(
+			0 => array( 'id' => 'event', 'name' => __( 'Event', 'google-analytics-for-wordpress' ) ),
+			1 => array( 'id' => 'pageview', 'name' => __( 'Pageview', 'google-analytics-for-wordpress' ) ),
+		);
+	}
+
+	/**
+	 * Get options for the track full url or links setting
+	 *
+	 * @return array
+	 */
+	private function get_track_full_url() {
+		return array(
+			0 => array( 'id' => 'domain', 'name' => __( 'Just the domain', 'google-analytics-for-wordpress' ) ),
+			1 => array( 'id' => 'full_links', 'name' => __( 'Full links', 'google-analytics-for-wordpress' ) ),
 		);
 	}
 
