@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This class is for the backend, extendable for all child classes
+ * This class is for the backend
  */
-class Yoast_GA_Admin extends Yoast_GA_Options {
+class Yoast_GA_Admin {
 
 	/**
 	 * Store the API instance
@@ -12,8 +12,26 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 */
 	public $api;
 
+	/**
+	 * Store the options
+	 *
+	 * @var array
+	 */
+	private $options;
+
+	/**
+	 * @var string
+	 */
+	private $plugin_path;
+
+	/**
+	 * @var string
+	 */
+	private $plugin_url;
+
 	public function __construct() {
-		parent::__construct();
+		$this->plugin_path = GAWP_DIR . '/';
+		$this->plugin_url  = GAWP_URL;
 
 		add_action( 'plugins_loaded', array( $this, 'init_ga' ) );
 		add_action( 'admin_init', array( $this, 'init_settings' ) );
@@ -34,7 +52,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 * Init function for the settings of GA
 	 */
 	public function init_settings() {
-		$this->options = $this->get_options();
+		$options_instance = Yoast_GA_Options::instance();
+		$this->options = $options_instance->get_options();
 
 		$this->api     = Yoast_Api_Libs::load_api_libraries( array( 'google', 'googleanalytics' ) );
 		$dashboards    = Yoast_GA_Dashboards::get_instance();
@@ -42,12 +61,12 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		// Listener for reconnecting with google analytics
 		$this->google_analytics_listener();
 
-		if ( is_null( $this->get_tracking_code() ) && $this->show_admin_warning() ) {
+		if ( is_null( $options_instance->get_tracking_code() ) && $this->show_admin_warning() ) {
 			add_action( 'admin_notices', array( 'Yoast_Google_Analytics_Notice', 'config_warning' ) );
 		}
 
 		// Check if something has went wrong with GA-api calls
-		$has_tracking_code = ( ! is_null( $this->get_tracking_code() ) && empty( $this->options['manual_ua_code_field'] ) );
+		$has_tracking_code = ( ! is_null( $options_instance->get_tracking_code() ) && empty( $this->options['manual_ua_code_field'] ) );
 		if ( $has_tracking_code && $this->show_admin_dashboard_warning() ) {
 			Yoast_Google_Analytics::get_instance()->check_for_ga_issues();
 		}
@@ -81,7 +100,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 * @return bool
 	 */
 	private function show_admin_warning() {
-		return ( current_user_can( 'manage_options' ) && ( ! isset( $_GET['page'] ) || ( isset( $_GET['page'] ) && $_GET['page'] !== 'yst_ga_settings' ) ) );
+		return ( current_user_can( 'manage_options' ) && ( ! isset( $_GET['page'] ) || ( isset( $_GET['page'] ) && $_GET['page'] !== 'yst_ga_settings_api' ) ) );
 	}
 
 	/**
@@ -91,30 +110,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 */
 	private function show_admin_dashboard_warning() {
 		return ( current_user_can( 'manage_options' ) && isset( $_GET['page'] ) && $_GET['page'] === 'yst_ga_dashboard' );
-	}
-
-	/**
-	 * Transform the Profile ID into an helpful UA code
-	 *
-	 * @param $profile_id
-	 *
-	 * @return null
-	 */
-	protected function get_ua_code_from_profile( $profile_id ) {
-		$profiles = $this->get_profiles();
-		$ua_code  = null;
-
-		foreach ( $profiles as $account ) {
-			foreach ( $account['items'] as $profile ) {
-				foreach ( $profile['items'] as $subprofile ) {
-					if ( isset( $subprofile['id'] ) && $subprofile['id'] === $profile_id ) {
-						return $subprofile['ua_code'];
-					}
-				}
-			}
-		}
-
-		return $ua_code;
 	}
 
 	/**
@@ -205,18 +200,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		}
 	}
 
-
-	/**
-	 * Get the Google Analytics profiles which are in this google account
-	 *
-	 * @return array
-	 */
-	public function get_profiles() {
-		$return = Yoast_Google_Analytics::get_instance()->get_profiles();
-
-		return $return;
-	}
-
 	/**
 	 * Checks if there is a callback or reauth to get token from Google Analytics api
 	 */
@@ -247,58 +230,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		} else {
 			return null;
 		}
-	}
-
-	/**
-	 * Get the user roles of this WordPress blog
-	 *
-	 * @return array
-	 */
-	public function get_userroles() {
-		global $wp_roles;
-
-		$all_roles = $wp_roles->roles;
-		$roles     = array();
-
-		/**
-		 * Filter: 'editable_roles' - Allows filtering of the roles shown within the plugin (and elsewhere in WP as it's a WP filter)
-		 *
-		 * @api array $all_roles
-		 */
-		$editable_roles = apply_filters( 'editable_roles', $all_roles );
-
-		foreach ( $editable_roles as $id => $name ) {
-			$roles[] = array(
-				'id'   => $id,
-				'name' => translate_user_role( $name['name'] ),
-			);
-		}
-
-		return $roles;
-	}
-
-	/**
-	 * Get types of how we can track downloads
-	 *
-	 * @return array
-	 */
-	public function track_download_types() {
-		return array(
-			0 => array( 'id' => 'event', 'name' => __( 'Event', 'google-analytics-for-wordpress' ) ),
-			1 => array( 'id' => 'pageview', 'name' => __( 'Pageview', 'google-analytics-for-wordpress' ) ),
-		);
-	}
-
-	/**
-	 * Get options for the track full url or links setting
-	 *
-	 * @return array
-	 */
-	public function get_track_full_url() {
-		return array(
-			0 => array( 'id' => 'domain', 'name' => __( 'Just the domain', 'google-analytics-for-wordpress' ) ),
-			1 => array( 'id' => 'full_links', 'name' => __( 'Full links', 'google-analytics-for-wordpress' ) ),
-		);
 	}
 
 	/**
@@ -381,16 +312,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		$extensions = apply_filters( 'yst_ga_extension_status', $extensions );
 
 		return $extensions;
-	}
-
-	/**
-	 * Add a notification to the notification transient
-	 *
-	 * @param $transient_name
-	 * @param $settings
-	 */
-	protected function add_notification( $transient_name, $settings ) {
-		set_transient( $transient_name, $settings, MINUTE_IN_SECONDS );
 	}
 
 	/**
