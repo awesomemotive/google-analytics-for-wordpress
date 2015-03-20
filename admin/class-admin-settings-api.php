@@ -3,7 +3,7 @@
 /**
  * This class is for options/settings in the admin forms
  */
-class Yoast_GA_Admin_Settings_API extends Yoast_GA_Admin {
+class Yoast_GA_Admin_Settings_Registrar extends Yoast_GA_Admin {
 
 	/**
 	 * The website GA settings

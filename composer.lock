@@ -215,12 +215,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast/License-Manager.git",
-                "reference": "590ec054383c5e609c78cd4aee03bc8e9d9742cc"
+                "reference": "8caf52202bf51011686e31c9a43b18731047f1be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast/License-Manager/zipball/590ec054383c5e609c78cd4aee03bc8e9d9742cc",
-                "reference": "590ec054383c5e609c78cd4aee03bc8e9d9742cc",
+                "url": "https://api.github.com/repos/Yoast/License-Manager/zipball/8caf52202bf51011686e31c9a43b18731047f1be",
+                "reference": "8caf52202bf51011686e31c9a43b18731047f1be",
                 "shasum": ""
             },
             "type": "library",
@@ -252,7 +252,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2015-01-19 09:14:58"
+            "time": "2015-03-16 11:51:33"
         }
     ],
     "packages-dev": [],
