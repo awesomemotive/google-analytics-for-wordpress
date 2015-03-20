@@ -25,7 +25,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	public function init_ga() {
 		new Yoast_GA_Admin_Menu( $this );
 
-		new Yoast_GA_Admin_Settings_API();
+		new Yoast_GA_Admin_Settings_Registrar();
 
 		add_filter( 'plugin_action_links_' . plugin_basename( GAWP_FILE ), array( $this, 'add_action_links' ) );
 	}
