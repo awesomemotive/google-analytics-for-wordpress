@@ -1,6 +1,12 @@
 <?php
 
-class Yoast_GA_Settings {
+/**
+ * Class Yoast_GA_Options_Utils
+ *
+ * Old name: Class Yoast_GA_Settings
+ */
+
+class Yoast_GA_Options_Utils {
 
 	/**
 	 * Saving instance of it's own in this static var
@@ -34,11 +40,11 @@ class Yoast_GA_Settings {
 	/**
 	 * Getting instance of this object. If instance doesn't exists it will be created.
 	 *
-	 * @return object|Yoast_GA_Settings
+	 * @return object|Yoast_GA_Options_Utils
 	 */
 	public static function get_instance() {
 		if ( is_null( self::$instance ) ) {
-			self::$instance = new Yoast_GA_Settings();
+			self::$instance = new Yoast_GA_Options_Utils();
 		}
 
 		return self::$instance;
