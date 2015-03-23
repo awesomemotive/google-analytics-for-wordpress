@@ -26,7 +26,7 @@ class Yoast_GA_Admin_Menu_Test extends GA_UnitTestCase {
 
 		$expected = array(
 			'yst_ga_dashboard',
-			'yst_ga_settings_api',
+			'yst_ga_settings',
 			'yst_ga_extensions',
 		);
 
