@@ -99,7 +99,6 @@ class Yoast_GA_Dashboards_Graph_Generate extends Yoast_GA_Dashboards_Driver_Gene
 
 		foreach ( $google_data as $timestamp => $value ) {
 			$timestamp = esc_html( $timestamp );
-			$value =
 
 			$this->add_data( $value );
 			$this->add_x_mapping( $timestamp );
