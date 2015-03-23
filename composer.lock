@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c9716a504957f17af36fd2dd752558e4",
+    "hash": "6b43448b34d14294c5a3f7da4c6c9db0",
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v1.0.21",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45"
+                "reference": "4db8898759143c742a8661b626d23f1535a42c15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
-                "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
+                "url": "https://api.github.com/repos/composer/installers/zipball/4db8898759143c742a8661b626d23f1535a42c15",
+                "reference": "4db8898759143c742a8661b626d23f1535a42c15",
                 "shasum": ""
             },
             "replace": {
@@ -99,20 +99,20 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2015-02-18 17:17:01"
+            "time": "2015-03-18 21:44:04"
         },
         {
             "name": "xrstf/composer-php52",
-            "version": "v1.0.17",
+            "version": "dev-default",
             "source": {
                 "type": "hg",
                 "url": "https://bitbucket.org/xrstf/composer-php52",
-                "reference": "70b853668d6c3f97b63dafcfaeebb622bf08fd30"
+                "reference": "717c00a8bec1b40401384536d2ebaea57c7c35d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/xrstf/composer-php52/get/70b853668d6c3f97b63dafcfaeebb622bf08fd30.zip",
-                "reference": "70b853668d6c3f97b63dafcfaeebb622bf08fd30",
+                "url": "https://bitbucket.org/xrstf/composer-php52/get/717c00a8bec1b40401384536d2ebaea57c7c35d4.zip",
+                "reference": "717c00a8bec1b40401384536d2ebaea57c7c35d4",
                 "shasum": ""
             },
             "type": "library",
@@ -131,7 +131,7 @@
                 "MIT"
             ],
             "homepage": "http://www.xrstf.de/",
-            "time": "2015-02-01 14:28:15"
+            "time": "2015-02-01 14:29:12"
         },
         {
             "name": "yoast/api-libs",
@@ -336,12 +336,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git",
-                "reference": "69199303126823aa542d7d64ced8291d0698ad46"
+                "reference": "1abfa623a89ca1d0a8a10a4ee7d92bf2434a9d53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/69199303126823aa542d7d64ced8291d0698ad46",
-                "reference": "69199303126823aa542d7d64ced8291d0698ad46",
+                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/1abfa623a89ca1d0a8a10a4ee7d92bf2434a9d53",
+                "reference": "1abfa623a89ca1d0a8a10a4ee7d92bf2434a9d53",
                 "shasum": ""
             },
             "require": {
@@ -368,7 +368,7 @@
                 "standards",
                 "wordpress"
             ],
-            "time": "2015-03-08 22:21:29"
+            "time": "2015-03-22 21:13:39"
         },
         {
             "name": "yoast/yoastcs",
