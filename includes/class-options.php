@@ -67,7 +67,6 @@ class Yoast_GA_Options {
 	 */
 	public function __construct() {
 		$this->options = $this->get_options();
-		//$this->options = $this->check_options( $this->options );
 
 		$this->plugin_path = plugin_dir_path( GAWP_FILE );
 		$this->plugin_url  = trailingslashit( plugin_dir_url( GAWP_FILE ) );
@@ -112,33 +111,6 @@ class Yoast_GA_Options {
 		$options = get_option( $this->option_name );
 
 		return $options[ $this->option_prefix ];
-	}
-
-	/**
-	 * Check if all the options are set, to prevent a notice if debugging is enabled
-	 * When we have new changes, the settings are saved to the options class
-	 *
-	 * @param array $options
-	 *
-	 * @return mixed
-	 */
-	public function check_options( $options ) {
-		$changes         = 0;
-		$default_options = $this->default_ga_values();
-
-		foreach ( $default_options[$this->option_prefix] as $key => $value ) {
-			if ( ! isset( $options[$key] ) ) {
-				echo $key . '<br />';
-				$options[$key] = $value;
-				$changes ++;
-			}
-		}
-
-		if ( $changes >= 1 ) {
-			$this->update_option( $options );
-		}
-
-		return $options;
 	}
 
 	/**
