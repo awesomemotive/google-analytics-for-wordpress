@@ -317,7 +317,7 @@ class Yoast_Google_Analytics_Notice {
 	public static function config_warning() {
 		self::show_error(
 			sprintf( __( 'Please configure your %sGoogle Analytics settings%s!', 'google-analytics-for-wordpress' ),
-				'<a href="' . admin_url( 'admin.php?page=yst_ga_settings_api' ) . '">',
+				'<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">',
 				'</a>'
 			)
 		);
@@ -330,7 +330,7 @@ class Yoast_Google_Analytics_Notice {
 		self::show_error(
 			sprintf(
 				__( 'It seems the authentication for the plugin has expired, please %sre-authenticate%s with Google Analytics to allow the plugin to fetch data.', 'google-analytics-for-wordpress' ),
-				'<a href="' . admin_url( 'admin.php?page=yst_ga_settings_api' ) . '">',
+				'<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">',
 				'</a>'
 			)
 		);

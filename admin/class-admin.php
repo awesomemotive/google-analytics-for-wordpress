@@ -95,7 +95,7 @@ class Yoast_GA_Admin {
 	 * @return bool
 	 */
 	private function show_admin_warning() {
-		return ( current_user_can( 'manage_options' ) && ( ! isset( $_GET['page'] ) || ( isset( $_GET['page'] ) && $_GET['page'] !== 'yst_ga_settings_api' ) ) );
+		return ( current_user_can( 'manage_options' ) && ( ! isset( $_GET['page'] ) || ( isset( $_GET['page'] ) && $_GET['page'] !== 'yst_ga_settings' ) ) );
 	}
 
 	/**
@@ -177,7 +177,7 @@ class Yoast_GA_Admin {
 		}
 
 		switch ( filter_input( INPUT_GET, 'page' ) ) {
-			case 'yst_ga_settings_api':
+			case 'yst_ga_settings':
 				require_once( $this->plugin_path . 'admin/pages/settings-api.php' );
 				break;
 			case 'yst_ga_extensions':

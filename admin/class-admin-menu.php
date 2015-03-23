@@ -237,9 +237,9 @@ class Yoast_GA_Admin_Menu {
 				);
 			}
 
-			$submenu_types['settings_api'] = array(
+			$submenu_types['settings'] = array(
 				'label' => __( 'Settings', 'google-analytics-for-wordpress' ),
-				'slug'  => 'settings_api',
+				'slug'  => 'settings',
 			);
 		}
 
