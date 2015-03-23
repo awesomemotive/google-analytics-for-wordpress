@@ -113,7 +113,7 @@ class Yoast_GA_Admin {
 	private function show_admin_dashboard_warning() {
 		return ( current_user_can( 'manage_options' ) && isset( $_GET['page'] ) && $_GET['page'] === 'yst_ga_dashboard' );
 	}
-	
+
 	/**
 	 * Add a link to the settings page to the plugins list
 	 *
