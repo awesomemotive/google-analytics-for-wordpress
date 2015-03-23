@@ -27,7 +27,8 @@ class Yoast_GA_Options_Test extends GA_UnitTestCase {
 			$this->assertTrue( isset( $options['track_outbound'] ) );
 			$this->assertTrue( isset( $options['allow_anchor'] ) );
 			$this->assertTrue( isset( $options['version'] ) );
-		} else {
+		}
+		else {
 			$this->assertTrue( $options_type );
 		}
 	}

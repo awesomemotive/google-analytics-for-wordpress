@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Includes
+ */
 
 /**
  * Class Yoast_GA_Options_Utils
@@ -23,9 +27,7 @@ class Yoast_GA_Options_Utils {
 	private $options_class;
 
 	/**
-	 * The main GA options
-	 *
-	 * @var
+	 * @var array $options The main GA options
 	 */
 	private $options;
 

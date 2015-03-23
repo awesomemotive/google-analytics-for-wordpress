@@ -85,13 +85,8 @@ class Yoast_GA_Admin {
 	 * remove the options for the profiles and the refresh token.
 	 */
 	public static function ga_deactivation_hook() {
-		// Remove the refresh token
-		delete_option( 'yoast-ga-refresh_token' );
-
-		// Remove the ga accounts and response
-		delete_option( 'yst_ga_accounts' );
-		delete_option( 'yst_ga_response' );
-
+		// Remove the refresh token and other API settings
+		self::analytics_api_clean_up();
 	}
 
 	/**
@@ -111,7 +106,7 @@ class Yoast_GA_Admin {
 	private function show_admin_dashboard_warning() {
 		return ( current_user_can( 'manage_options' ) && isset( $_GET['page'] ) && $_GET['page'] === 'yst_ga_dashboard' );
 	}
-
+	
 	/**
 	 * Add a link to the settings page to the plugins list
 	 *
@@ -181,22 +176,17 @@ class Yoast_GA_Admin {
 			add_action( 'yst_ga_custom_dimension_add-dashboards-tab', array( $this, 'premium_promo' ) );
 		}
 
-		if ( isset( $_GET['page'] ) ) {
-			switch ( $_GET['page'] ) {
-				case 'yst_ga_settings':
-					require_once( $this->plugin_path . 'admin/pages/settings.php' );
-					break;
-				case 'yst_ga_settings_api':
-					require_once( $this->plugin_path . 'admin/pages/settings-api.php' );
-					break;
-				case 'yst_ga_extensions':
-					require_once( $this->plugin_path . 'admin/pages/extensions.php' );
-					break;
-				case 'yst_ga_dashboard':
-				default:
-					require_once( $this->plugin_path . 'admin/pages/dashboard.php' );
-					break;
-			}
+		switch ( filter_input( INPUT_GET, 'page' ) ) {
+			case 'yst_ga_settings_api':
+				require_once( $this->plugin_path . 'admin/pages/settings-api.php' );
+				break;
+			case 'yst_ga_extensions':
+				require_once( $this->plugin_path . 'admin/pages/extensions.php' );
+				break;
+			case 'yst_ga_dashboard':
+			default:
+				require_once( $this->plugin_path . 'admin/pages/dashboard.php' );
+				break;
 		}
 	}
 
@@ -207,16 +197,24 @@ class Yoast_GA_Admin {
 		if ( ! empty( $this->options['google_auth_code'] ) ) {
 			Yoast_Google_Analytics::get_instance()->authenticate( trim( $this->options['google_auth_code'] ) );
 		}
+		$google_auth_code = filter_input( INPUT_POST, 'google_auth_code' );
+		if ( $google_auth_code && current_user_can( 'manage_options' ) ) {
+			wp_verify_nonce( 'yoast_ga_nonce', 'save_settings' );
 
+			self::analytics_api_clean_up();
 
-		if ( ! empty ( $_GET['reauth'] ) ) {
-
-			delete_option( 'yst_ga_accounts' );
-			delete_option( 'yst_ga_response' );
-
-			Yoast_Google_Analytics::get_instance()->authenticate();
+			Yoast_Google_Analytics::get_instance()->authenticate( trim( $google_auth_code ) );
 		}
+	}
 
+	/**
+	 * Clean up the Analytics API settings
+	 */
+	public static function analytics_api_clean_up() {
+		delete_option( 'yoast-ga-refresh_token' );
+		delete_option( 'yst_ga_api_call_fail' );
+		delete_option( 'yst_ga_last_wp_run' );
+		delete_option( 'yst_ga_api' );
 	}
 
 	/**
@@ -227,7 +225,8 @@ class Yoast_GA_Admin {
 	private function get_current_profile() {
 		if ( ! empty( $this->options['analytics_profile'] ) ) {
 			return $this->options['analytics_profile'];
-		} else {
+		}
+		else {
 			return null;
 		}
 	}
@@ -330,7 +329,8 @@ class Yoast_GA_Admin {
 					$transient['description'],
 					'updated'
 				);
-			} else {
+			}
+			else {
 				add_settings_error(
 					'yoast_google_analytics',
 					'yoast_google_analytics',
