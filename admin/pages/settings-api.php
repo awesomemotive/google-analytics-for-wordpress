@@ -85,6 +85,7 @@ settings_errors( 'yoast_google_analytics' );
 		do_settings_sections( 'yst_ga_settings_api_advanced' );
 		?>
 		</div>
+		<?php do_action( 'yst_ga_custom_tabs-content' ); ?>
 		<div id="yst_ga_debugmode" class="gatab">
 		<?php
 		echo '<div id="ga-promote">';

@@ -145,6 +145,7 @@ class Yoast_GA_Admin_Settings_Fields {
 	private static function set_options() {
 		if ( self::$options === array() ) {
 			$options = get_option( 'yst_ga' );
+
 			if ( ! isset( $options['ga_general'] ) ) {
 				self::$options = Yoast_GA_Options::instance()->default_ga_values();
 			} else {
