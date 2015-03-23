@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage AdminMenu
+ */
 
 /**
  * This class is for the backend, extendable for all child classes

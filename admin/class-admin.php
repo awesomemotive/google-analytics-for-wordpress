@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
 
 /**
  * This class is for the backend
@@ -8,7 +12,7 @@ class Yoast_GA_Admin {
 	/**
 	 * Store the API instance
 	 *
-	 * @var
+	 * @var resource
 	 */
 	public $api;
 
@@ -29,6 +33,9 @@ class Yoast_GA_Admin {
 	 */
 	private $plugin_url;
 
+	/**
+	 * Construct the admin class
+	 */
 	public function __construct() {
 		$this->plugin_path = GAWP_DIR . '/';
 		$this->plugin_url  = GAWP_URL;
