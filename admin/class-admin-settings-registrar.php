@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage AdminSettingsFieldsRegistrar
+ */
 
 /**
  * This class is for options/settings in the admin forms
@@ -345,9 +349,9 @@ class Yoast_GA_Admin_Settings_Registrar {
 	/**
 	 * Transform the Profile ID into an helpful UA code
 	 *
-	 * @param $profile_id
+	 * @param $profile_id int The profile ID from Google Analytics
 	 *
-	 * @return null
+	 * @return null|string
 	 */
 	protected function get_ua_code_from_profile( $profile_id ) {
 		$profiles = $this->get_profiles();
@@ -432,7 +436,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 	/**
 	 * Create a new settings section
 	 *
-	 * @param $tab
+	 * @param $tab string The tabname that should be added
 	 */
 	private function create_section( $tab ) {
 		$this->current_section = $tab;
@@ -448,10 +452,10 @@ class Yoast_GA_Admin_Settings_Registrar {
 	/**
 	 * Add a settings field
 	 *
-	 * @param $id
-	 * @param $title
-	 * @param $type
-	 * @param $args
+	 * @param $id    string ID of the field and key name in the options
+	 * @param $title string Title of this field
+	 * @param $type  string Type of the field e.g. text, select etc.
+	 * @param $args  array  Extra arguments for the field that will be rendered
 	 */
 	private function add_field( $id, $title, $type, $args ) {
 		if ( ! isset( $args['key'] ) ) {
