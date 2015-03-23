@@ -369,7 +369,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 
 		return $ua_code;
 	}
-	
+
 	/**
 	 * Get the user roles of this WordPress blog
 	 *
