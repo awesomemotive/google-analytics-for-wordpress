@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Admin
+ */
 
+/**
+ * Dashboards table inherited class.
+ */
 class Yoast_GA_Dashboards_Table_Generate extends Yoast_GA_Dashboards_Driver_Generate {
 
 	/**
@@ -51,7 +58,8 @@ class Yoast_GA_Dashboards_Table_Generate extends Yoast_GA_Dashboards_Driver_Gene
 
 		if ( ! empty( $this->dimension_id ) ) {
 			$this->graph_type = 'ga:dimension' . $this->dimension_id;
-		} else {
+		}
+		else {
 			$this->graph_type = $this->graph_type;
 		}
 	}

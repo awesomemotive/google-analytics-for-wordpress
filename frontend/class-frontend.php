@@ -1,10 +1,15 @@
 <?php
+/**
+ * @package GoogleAnalytics
+ * @subpackage Frontend
+ */
 
 /**
  * The basic frontend class for the GA plugin, extendable for the children
  */
 class Yoast_GA_Frontend {
 
+	/** @var array $options */
 	protected $options;
 
 	/**
@@ -21,7 +26,8 @@ class Yoast_GA_Frontend {
 		// Check if the customer is running Universal or not (Enable in GA Settings -> Universal)
 		if ( isset( $this->options['enable_universal'] ) && $this->options['enable_universal'] == 1 ) {
 			new Yoast_GA_Universal;
-		} else {
+		}
+		else {
 			new Yoast_GA_JS;
 		}
 
@@ -39,7 +45,8 @@ class Yoast_GA_Frontend {
 		if ( is_feed() ) {
 			if ( $this->options['allow_anchor'] ) {
 				$delimiter = '#';
-			} else {
+			}
+			else {
 				$delimiter = '?';
 				if ( strpos( $guid, $delimiter ) > 0 ) {
 					$delimiter = '&amp;';
