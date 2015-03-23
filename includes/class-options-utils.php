@@ -64,8 +64,8 @@ class Yoast_GA_Options_Utils {
 	/**
 	 * Add a notification to the notification transient
 	 *
-	 * @param $transient_name string The transient name
-	 * @param $settings       array Set the values for this new transient
+	 * @param string $transient_name The transient name
+	 * @param array  $settings       Set the values for this new transient
 	 */
 	public function add_notification( $transient_name, $settings ) {
 		set_transient( $transient_name, $settings, MINUTE_IN_SECONDS );

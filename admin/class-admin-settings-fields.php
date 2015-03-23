@@ -4,6 +4,9 @@
  * @subpackage AdminSettingsFields
  */
 
+/**
+ * Class Yoast_GA_Admin_Settings_Fields
+ */
 class Yoast_GA_Admin_Settings_Fields {
 
 	/**
@@ -14,7 +17,7 @@ class Yoast_GA_Admin_Settings_Fields {
 	/**
 	 * Render a text field
 	 *
-	 * @param $args array Add arguments for the text field
+	 * @param array $args Add arguments for the text field
 	 */
 	public static function yst_ga_text_field( $args ) {
 		self::set_options();
@@ -33,7 +36,7 @@ class Yoast_GA_Admin_Settings_Fields {
 	/**
 	 * Render a text field
 	 *
-	 * @param $args array Add arguments for the text field
+	 * @param array $args Add arguments for the text field
 	 */
 	public static function yst_ga_textarea_field( $args ) {
 		self::set_options();
@@ -57,7 +60,7 @@ class Yoast_GA_Admin_Settings_Fields {
 	/**
 	 * Render a text field
 	 *
-	 * @param $args array Add arguments for the text field
+	 * @param array $args Add arguments for the text field
 	 */
 	public static function yst_ga_checkbox_field( $args ) {
 		self::set_options();
@@ -76,7 +79,7 @@ class Yoast_GA_Admin_Settings_Fields {
 	/**
 	 * Render a select field
 	 *
-	 * @param $args array Add arguments for the text field
+	 * @param array $args Add arguments for the text field
 	 */
 	public static function yst_ga_select_field( $args ) {
 		self::set_options();
@@ -113,7 +116,7 @@ class Yoast_GA_Admin_Settings_Fields {
 	/**
 	 * Render a select field
 	 *
-	 * @param $args array Add arguments for the text field
+	 * @param array $args Add arguments for the text field
 	 */
 	public static function yst_ga_select_profile_field( $args ) {
 		self::set_options();
@@ -142,7 +145,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			}
 		}
 
-		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select id="ga_form_' . $args['key'] . '" name="yst_ga[ga_general][' . $args['key'] . ']"' . $class . $attributes . ' data-placeholder="' . __('Select a profile', 'google-analytics-for-wordpress') . '" ><option></option>' . $options . '</select>';
+		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select id="ga_form_' . $args['key'] . '" name="yst_ga[ga_general][' . $args['key'] . ']"' . $class . $attributes . ' data-placeholder="' . __( 'Select a profile', 'google-analytics-for-wordpress' ) . '" ><option></option>' . $options . '</select>';
 	}
 
 
