@@ -32,7 +32,7 @@ class Yoast_GA_Dashboards_Table_Generate extends Yoast_GA_Dashboards_Driver_Gene
 	 */
 	public function get_json() {
 		$return = array(
-			'data' => $this->data,
+			'data' => $this->escape_strings( $this->data ),
 		);
 
 		return json_encode( $return );

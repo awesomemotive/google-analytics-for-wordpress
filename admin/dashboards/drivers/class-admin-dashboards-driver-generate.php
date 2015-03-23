@@ -116,6 +116,27 @@ abstract class Yoast_GA_Dashboards_Driver_Generate {
 	}
 
 	/**
+	 * Escape the data array before output
+	 *
+	 * @param $data
+	 *
+	 * @return array
+	 */
+	protected function escape_strings( $data ) {
+		if ( is_array( $data ) ) {
+			foreach ( $data as $key => $value ) {
+				if( is_array( $value ) ){
+					foreach( $value as $subkey => $subvar ) {
+						$data[$key][$subkey] = esc_html( $subvar );
+					}
+				}
+			}
+		}
+
+		return $data;
+	}
+
+	/**
 	 * Should always be available
 	 *
 	 * @return mixed
