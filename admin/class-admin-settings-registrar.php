@@ -10,6 +10,13 @@
 class Yoast_GA_Admin_Settings_Registrar {
 
 	/**
+	 * The slug of this settings page, used in the Settings API
+	 *
+	 * @var string
+	 */
+	protected $settings_api_page = 'yst_ga_settings_api';
+
+	/**
 	 * Current section of the form fields
 	 *
 	 * @var string
@@ -26,13 +33,6 @@ class Yoast_GA_Admin_Settings_Registrar {
 		'track_full_url'       => array(),
 		'analytics_profile'    => array(),
 	);
-
-	/**
-	 * The slug of this settings page, used in the Settings API
-	 *
-	 * @var string
-	 */
-	private $settings_api_page = 'yst_ga_settings_api';
 
 	/**
 	 * Construct the new admin settings api forms
@@ -422,23 +422,13 @@ class Yoast_GA_Admin_Settings_Registrar {
 		);
 	}
 
-	/**
-	 * Get the Google Analytics profiles which are in this google account
-	 *
-	 * @return array
-	 */
-	private function get_profiles() {
-		$return = Yoast_Google_Analytics::get_instance()->get_profiles();
-
-		return $return;
-	}
 
 	/**
 	 * Create a new settings section
 	 *
 	 * @param string $tab The tab name that should be added
 	 */
-	private function create_section( $tab ) {
+	protected function create_section( $tab ) {
 		$this->current_section = $tab;
 
 		add_settings_section(
@@ -457,7 +447,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 	 * @param string $type  Type of the field e.g. text, select etc.
 	 * @param array  $args  Extra arguments for the field that will be rendered
 	 */
-	private function add_field( $id, $title, $type, $args ) {
+	protected function add_field( $id, $title, $type, $args ) {
 		if ( ! isset( $args['key'] ) ) {
 			$args['key'] = $id;
 		}
@@ -470,6 +460,17 @@ class Yoast_GA_Admin_Settings_Registrar {
 			$this->settings_api_page . '_' . $this->current_section,
 			$args
 		);
+	}
+	
+	/**
+	 * Get the Google Analytics profiles which are in this google account
+	 *
+	 * @return array
+	 */
+	private function get_profiles() {
+		$return = Yoast_Google_Analytics::get_instance()->get_profiles();
+
+		return $return;
 	}
 
 }
