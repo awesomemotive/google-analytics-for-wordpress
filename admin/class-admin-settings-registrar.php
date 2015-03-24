@@ -72,11 +72,11 @@ class Yoast_GA_Admin_Settings_Registrar {
 	 * Init the UA code block
 	 */
 	public function yst_ga_settings_init_ua_code() {
-		register_setting( $this->settings_api_page . '_ua_code', 'yst_ga' );
+		$section_name = 'ua_code';
 
-		$this->create_section(
-			'ua_code'
-		);
+		register_setting( $this->settings_api_page . '_' . $section_name, 'yst_ga' );
+
+		$this->create_section( $section_name );
 
 		if ( ! empty( $this->default_options['analytics_profile'] ) && count( $this->default_options['analytics_profile'] ) >= 1 ) {
 			$this->add_field(
@@ -105,20 +105,22 @@ class Yoast_GA_Admin_Settings_Registrar {
 			__( 'Enter your UA code here', 'google-analytics-for-wordpress' ),
 			'text',
 			array(
-				'help' => __( 'Enter the UA code (e.g.: UA-1234567-89) here, you can find the correct UA code in your Google Analaytics dashboard.', 'google-analytics-for-wordpress' ),
+				'help' => __( 'Enter the UA code (e.g.: UA-1234567-89) here, you can find the correct UA code in your Google Analytics dashboard.', 'google-analytics-for-wordpress' ),
 			)
 		);
+
+		$this->close_section( $section_name );
 	}
 
 	/**
 	 * Init the general tab
 	 */
 	public function yst_ga_settings_init_general() {
-		register_setting( $this->settings_api_page . '_general', 'yst_ga' );
+		$section_name = 'general';
 
-		$this->create_section(
-			'general'
-		);
+		register_setting( $this->settings_api_page . '_' . $section_name, 'yst_ga' );
+
+		$this->create_section( $section_name );
 
 		$this->add_field(
 			'track_outbound',
@@ -166,17 +168,19 @@ class Yoast_GA_Admin_Settings_Registrar {
 				'help' => __( 'This will completely disable the dashboard and stop the plugin from fetching the latest analytics data.', 'google-analytics-for-wordpress' ),
 			)
 		);
+
+		$this->close_section( $section_name );
 	}
 
 	/**
 	 * Init the universal tab
 	 */
 	public function yst_ga_settings_init_universal() {
-		register_setting( $this->settings_api_page . '_universal', 'yst_ga' );
+		$section_name = 'universal';
 
-		$this->create_section(
-			'universal'
-		);
+		register_setting( $this->settings_api_page . '_' . $section_name, 'yst_ga' );
+
+		$this->create_section( $section_name );
 
 		$this->add_field(
 			'enable_universal',
@@ -205,17 +209,18 @@ class Yoast_GA_Admin_Settings_Registrar {
 			)
 		);
 
+		$this->close_section( $section_name );
 	}
 
 	/**
 	 * Init the advanced tab
 	 */
 	public function yst_ga_settings_init_advanced() {
-		register_setting( $this->settings_api_page . '_advanced', 'yst_ga' );
+		$section_name = 'advanced';
 
-		$this->create_section(
-			'advanced'
-		);
+		register_setting( $this->settings_api_page . '_' . $section_name, 'yst_ga' );
+
+		$this->create_section( $section_name );
 
 		$this->add_field(
 			'track_download_as',
@@ -311,17 +316,18 @@ class Yoast_GA_Admin_Settings_Registrar {
 			)
 		);
 
+		$this->close_section( $section_name );
 	}
 
 	/**
 	 * Init the debug tab
 	 */
 	public function yst_ga_settings_init_debug() {
-		register_setting( $this->settings_api_page . '_debug', 'yst_ga' );
+		$section_name = 'debug';
 
-		$this->create_section(
-			'debug'
-		);
+		register_setting( $this->settings_api_page . '_' . $section_name, 'yst_ga' );
+
+		$this->create_section( $section_name );
 
 		$this->add_field(
 			'debug_mode',
@@ -331,6 +337,8 @@ class Yoast_GA_Admin_Settings_Registrar {
 				'help' => __( 'Not recommended, as this would skew your statistics, but it does make it possible to track downloads as goals.', 'google-analytics-for-wordpress' ),
 			)
 		);
+
+		$this->close_section( $section_name );
 	}
 
 	/**
@@ -437,6 +445,26 @@ class Yoast_GA_Admin_Settings_Registrar {
 			'',
 			$this->settings_api_page . '_' . $tab
 		);
+	}
+
+	/**
+	 * Add a extra fields while closing the section
+	 *
+	 * @param string $tab
+	 */
+	protected function close_section( $tab ) {
+		/**
+		 * Filter: 'yst-ga-settings-fields-[TAB_NAME]' - Create an extra input field.
+		 *
+		 * @api array Array with extra fields for this tab
+		 */
+		$extra_fields = apply_filters( 'yst-ga-settings-fields-' . $tab, array() );
+
+		if ( ! empty( $extra_fields ) && is_array( $extra_fields ) ) {
+			foreach ( $extra_fields as $field ) {
+				$this->add_field( $field['id'], $field['title'], $field['type'], $field['args'] );
+			}
+		}
 	}
 
 	/**
