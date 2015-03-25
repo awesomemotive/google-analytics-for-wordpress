@@ -58,7 +58,7 @@ class Yoast_GA_Options_Utils {
 	 * @return bool
 	 */
 	public function dashboards_disabled() {
-		return $this->options_class->option_value_to_bool( 'dashboards_disabled' );
+		return $this->options_class->option_value_to_bool( 'dashboards_disable' );
 	}
 
 	/**

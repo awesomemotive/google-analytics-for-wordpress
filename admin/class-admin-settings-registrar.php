@@ -161,7 +161,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 		);
 
 		$this->add_field(
-			'dashboards_disabled',
+			'dashboards_disable',
 			__( 'Disable analytics dashboard', 'google-analytics-for-wordpress' ),
 			'checkbox',
 			array(
