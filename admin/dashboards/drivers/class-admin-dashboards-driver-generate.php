@@ -125,7 +125,7 @@ abstract class Yoast_GA_Dashboards_Driver_Generate {
 	protected function escape_strings( $data ) {
 		if ( is_array( $data ) ) {
 			foreach ( $data as $key => $value ) {
-				if( is_array( $value ) ){
+				if( is_array( $value ) ) {
 					foreach( $value as $subkey => $subvar ) {
 						$data[$key][$subkey] = esc_html( $subvar );
 					}
