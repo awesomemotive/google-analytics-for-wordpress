@@ -524,7 +524,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 	/**
 	 * Validate the manual UA code
 	 *
-	 * @param $ua_code
+	 * @param string $ua_code The UA code that we have to check
 	 */
 	private function validate_manual_ua_code( $ua_code ) {
 		if ( ! preg_match( '|^UA-\d{4,}-\d+$|', $ua_code ) ) {
@@ -542,7 +542,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 	/**
 	 * Validate the profile ID in the selectbox
 	 *
-	 * @param $profile_id
+	 * @param int $profile_id Check the profile id
 	 */
 	private function validate_profile_id( $profile_id ) {
 		if ( ! is_numeric( $profile_id ) ) {
@@ -556,7 +556,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 			exit;
 		}
 	}
-	
+
 	/**
 	 * Get the Google Analytics profiles which are in this google account
 	 *
