@@ -45,7 +45,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_advanced' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_debug' ) );
 
-		if ( isset( $_GET['settings-updated'] ) ) {
+		if ( filter_input( INPUT_GET, 'settings-updated' ) ) {
 			add_action( 'admin_init', array( $this, 'update_ga_tracking_from_profile' ) );
 
 			Yoast_GA_Options_Utils::get_instance()->add_notification( 'ga_notifications', array(
