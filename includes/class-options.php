@@ -192,17 +192,8 @@ class Yoast_GA_Options {
 			}
 		}
 		// 5.2.8+ Add disabled dashboards option
-		if ( ! isset( $this->options['version'] ) || ! isset ( $this->options['dashboards_disabled'] ) || version_compare( $this->options['version'], '5.2.8', '>' ) ) {
+		if ( ( ! isset( $this->options['version'] ) || ! isset ( $this->options['dashboards_disabled'] ) || version_compare( $this->options['version'], '5.2.8', '>' ) ) && ! empty( $_POST ) ) {
 			$this->options['dashboards_disabled'] = 0;
-		}
-		// 5.3.3+ Rename dashboards disable option name
-		if ( ! isset( $this->options['version'] ) || ! isset ( $this->options['dashboards_disable'] ) || version_compare( $this->options['version'], '5.3.3', '>' ) ) {
-			if( isset( $this->options['dashboards_disabled'] ) ){
-				$this->options['dashboards_disable'] = $this->options['dashboards_disabled'];
-			}
-			else {
-				$this->options['dashboards_disable'] = 0;
-			}
 		}
 		// Check is API option already exists - if not add it
 		$yst_ga_api = get_option( 'yst_ga_api' );
