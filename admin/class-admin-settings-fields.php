@@ -65,15 +65,14 @@ class Yoast_GA_Admin_Settings_Fields {
 
 		$options       = null;
 		$class         = null;
-		$attributes    = null;
 		$name_addition = null;
 
 		if ( isset( $args['class'] ) ) {
 			$class = ' class="' . $args['class'] . '"';
 		}
 
-		if ( isset( $args['attributes'] ) ) {
-			$attributes = $args['attributes'];
+		if ( ! isset( $args['attributes'] ) ) {
+			$args['attributes'] = null;
 		}
 
 		if ( $args['key'] === 'ignore_users' ) {
@@ -94,7 +93,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			$options .= '<option value="' . esc_attr( $option['id'] ) . '" ' . selected( $option['id'], self::$options[ $args['key'] ], false ) . '>' . esc_attr( $option['name'] ) . '</option>';
 		}
 
-		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select id="ga_form_' . $args['key'] . '" name="yst_ga[ga_general][' . $args['key'] . ']' . $name_addition . '"' . $class . $attributes . '>' . $options . '</select>';
+		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select id="ga_form_' . $args['key'] . '" name="yst_ga[ga_general][' . $args['key'] . ']' . $name_addition . '"' . $class . $args['attributes'] . '>' . $options . '</select>';
 	}
 
 	/**
@@ -107,14 +106,13 @@ class Yoast_GA_Admin_Settings_Fields {
 
 		$options    = null;
 		$class      = null;
-		$attributes = null;
 
 		if ( isset( $args['class'] ) ) {
 			$class = ' class="' . $args['class'] . '"';
 		}
 
-		if ( isset( $args['attributes'] ) ) {
-			$attributes = $args['attributes'];
+		if ( ! isset( $args['attributes'] ) ) {
+			$args['attributes'] = null;
 		}
 
 		foreach ( $args['options'] as $option ) {
@@ -129,7 +127,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			}
 		}
 
-		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select id="ga_form_' . $args['key'] . '" name="yst_ga[ga_general][' . $args['key'] . ']"' . $class . $attributes . ' data-placeholder="' . __( 'Select a profile', 'google-analytics-for-wordpress' ) . '" ><option></option>' . $options . '</select>';
+		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select id="ga_form_' . $args['key'] . '" name="yst_ga[ga_general][' . $args['key'] . ']"' . $class . $args['attributes'] . ' data-placeholder="' . __( 'Select a profile', 'google-analytics-for-wordpress' ) . '" ><option></option>' . $options . '</select>';
 	}
 
 
