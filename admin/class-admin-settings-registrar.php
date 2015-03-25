@@ -35,9 +35,17 @@ class Yoast_GA_Admin_Settings_Registrar {
 	);
 
 	/**
+	 * Amount of errors on validation
+	 *
+	 * @var int
+	 */
+	private $errors = 0;
+
+	/**
 	 * Construct the new admin settings api forms
 	 */
 	public function __construct() {
+		add_action( 'admin_notices', array( $this, 'yst_ga_settings_errors' ) );
 		add_action( 'admin_init', array( $this, 'init_default_options' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_ua_code' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_general' ) );
@@ -47,12 +55,14 @@ class Yoast_GA_Admin_Settings_Registrar {
 
 		if ( filter_input( INPUT_GET, 'settings-updated' ) ) {
 			add_action( 'admin_init', array( $this, 'update_ga_tracking_from_profile' ) );
-
-			Yoast_GA_Options_Utils::get_instance()->add_notification( 'ga_notifications', array(
-				'type'        => 'success',
-				'description' => __( 'Settings saved.', 'google-analytics-for-wordpress' ),
-			) );
 		}
+	}
+
+	/**
+	 * Show the settings errors
+	 */
+	public function yst_ga_settings_errors() {
+		settings_errors( 'yst_ga_settings' );
 	}
 
 	/**
@@ -74,7 +84,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 	public function yst_ga_settings_init_ua_code() {
 		$section_name = 'ua_code';
 
-		register_setting( $this->settings_api_page . '_' . $section_name, 'yst_ga', array( $this, 'validate_options_ua_code' ) );
+		register_setting( $this->settings_api_page . '_' . $section_name, 'yst_ga' );
 
 		$this->create_section( $section_name );
 
@@ -325,7 +335,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 	public function yst_ga_settings_init_debug() {
 		$section_name = 'debug';
 
-		register_setting( $this->settings_api_page . '_' . $section_name, 'yst_ga' );
+		register_setting( $this->settings_api_page . '_' . $section_name, 'yst_ga', array( $this, 'validate_options_ua_code' ) );
 
 		$this->create_section( $section_name );
 
@@ -356,17 +366,34 @@ class Yoast_GA_Admin_Settings_Registrar {
 						$new_settings['ga_general']['manual_ua_code_field'] = trim( $new_settings['ga_general']['manual_ua_code_field'] );
 						$new_settings['ga_general']['manual_ua_code_field'] = str_replace( '–', '-', $new_settings['ga_general']['manual_ua_code_field'] );
 
-						$this->validate_manual_ua_code( $new_settings['ga_general']['manual_ua_code_field'] );
+						if ( ! $this->validate_manual_ua_code( $new_settings['ga_general']['manual_ua_code_field'] ) ) {
+							unset( $new_settings['ga_general']['manual_ua_code_field'] );
+
+							$this->errors ++;
+						}
 					}
 					break;
 				case 'analytics_profile':
 					if ( ! empty( $new_settings['ga_general']['analytics_profile'] ) ) {
 						$new_settings['ga_general']['analytics_profile'] = trim( $new_settings['ga_general']['analytics_profile'] );
 
-						$this->validate_profile_id( $new_settings['ga_general']['analytics_profile'] );
+						if ( ! $this->validate_profile_id( $new_settings['ga_general']['analytics_profile'] ) ) {
+							unset( $new_settings['ga_general']['analytics_profile'] );
+
+							$this->errors ++;
+						}
 					}
 					break;
 			}
+		}
+
+		if ( $this->errors === 0 ) {
+			add_settings_error(
+				'yst_ga_settings',
+				'yst_ga_settings',
+				__( 'The Google Analytics settings are saved successfully.', 'google-analytics-for-wordpress' ),
+				'updated'
+			);
 		}
 
 		return $new_settings;
@@ -525,36 +552,44 @@ class Yoast_GA_Admin_Settings_Registrar {
 	 * Validate the manual UA code
 	 *
 	 * @param string $ua_code The UA code that we have to check
+	 *
+	 * @return bool
 	 */
 	private function validate_manual_ua_code( $ua_code ) {
 		if ( ! preg_match( '|^UA-\d{4,}-\d+$|', $ua_code ) ) {
+			add_settings_error(
+				'yst_ga_settings',
+				'yst_ga_settings',
+				__( 'The UA code needs to follow UA-XXXXXXXX-X format.', 'google-analytics-for-wordpress' ),
+				'error'
+			);
 
-			$this->add_notification( 'ga_notifications', array(
-				'type'        => 'error',
-				'description' => __( 'The UA code needs to follow UA-XXXXXXXX-X format.', 'google-analytics-for-wordpress' ),
-			) );
-
-			wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#yst_ga_general', 301 );
-			exit;
+			return false;
 		}
+
+		return true;
 	}
 
 	/**
 	 * Validate the profile ID in the selectbox
 	 *
 	 * @param int $profile_id Check the profile id
+	 *
+	 * @return bool
 	 */
 	private function validate_profile_id( $profile_id ) {
 		if ( ! is_numeric( $profile_id ) ) {
+			add_settings_error(
+				'yst_ga_settings',
+				'yst_ga_settings',
+				__( 'The profile ID needs to be numeric.', 'google-analytics-for-wordpress' ),
+				'error'
+			);
 
-			$this->add_notification( 'ga_notifications', array(
-				'type'        => 'error',
-				'description' => __( 'The profile ID needs to be numeric.', 'google-analytics-for-wordpress' ),
-			) );
-
-			wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#yst_ga_general', 301 );
-			exit;
+			return false;
 		}
+
+		return true;
 	}
 
 	/**
@@ -566,16 +601,6 @@ class Yoast_GA_Admin_Settings_Registrar {
 		$return = Yoast_Google_Analytics::get_instance()->get_profiles();
 
 		return $return;
-	}
-
-	/**
-	 * Add a notification to the notification transient
-	 *
-	 * @param string $transient_name
-	 * @param array  $settings
-	 */
-	private function add_notification( $transient_name, $settings ) {
-		set_transient( $transient_name, $settings, MINUTE_IN_SECONDS );
 	}
 
 }
