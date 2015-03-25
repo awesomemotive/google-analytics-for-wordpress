@@ -97,7 +97,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			$attributes = $args['attributes'];
 		}
 
-		if ( $args['key'] == 'ignore_users' ) {
+		if ( $args['key'] === 'ignore_users' ) {
 			$name_addition = '[]';
 		}
 
