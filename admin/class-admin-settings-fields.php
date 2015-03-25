@@ -84,9 +84,10 @@ class Yoast_GA_Admin_Settings_Fields {
 	public static function yst_ga_select_field( $args ) {
 		self::set_options();
 
-		$options    = null;
-		$class      = null;
-		$attributes = null;
+		$options       = null;
+		$class         = null;
+		$attributes    = null;
+		$name_addition = null;
 
 		if ( isset( $args['class'] ) ) {
 			$class = ' class="' . $args['class'] . '"';
@@ -94,6 +95,10 @@ class Yoast_GA_Admin_Settings_Fields {
 
 		if ( isset( $args['attributes'] ) ) {
 			$attributes = $args['attributes'];
+		}
+
+		if ( $args['key'] == 'ignore_users' ) {
+			$name_addition = '[]';
 		}
 
 		foreach ( $args['options'] as $option ) {
@@ -110,7 +115,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			$options .= '<option value="' . esc_attr( $option['id'] ) . '" ' . selected( $option['id'], self::$options[ $args['key'] ], false ) . '>' . esc_attr( $option['name'] ) . '</option>';
 		}
 
-		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select id="ga_form_' . $args['key'] . '" name="yst_ga[ga_general][' . $args['key'] . ']"' . $class . $attributes . '>' . $options . '</select>';
+		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select id="ga_form_' . $args['key'] . '" name="yst_ga[ga_general][' . $args['key'] . ']' . $name_addition . '"' . $class . $attributes . '>' . $options . '</select>';
 	}
 
 	/**
