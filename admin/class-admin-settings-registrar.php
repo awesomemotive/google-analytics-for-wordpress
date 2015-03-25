@@ -359,6 +359,13 @@ class Yoast_GA_Admin_Settings_Registrar {
 						$this->validate_manual_ua_code( $new_settings['ga_general']['manual_ua_code_field'] );
 					}
 					break;
+				case 'analytics_profile':
+					if ( ! empty( $new_settings['ga_general']['analytics_profile'] ) ) {
+						$new_settings['ga_general']['analytics_profile'] = trim( $new_settings['ga_general']['analytics_profile'] );
+
+						$this->validate_profile_id( $new_settings['ga_general']['analytics_profile'] );
+					}
+					break;
 			}
 		}
 
@@ -525,6 +532,24 @@ class Yoast_GA_Admin_Settings_Registrar {
 			$this->add_notification( 'ga_notifications', array(
 				'type'        => 'error',
 				'description' => __( 'The UA code needs to follow UA-XXXXXXXX-X format.', 'google-analytics-for-wordpress' ),
+			) );
+
+			wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#yst_ga_general', 301 );
+			exit;
+		}
+	}
+
+	/**
+	 * Validate the profile ID in the selectbox
+	 *
+	 * @param $profile_id
+	 */
+	private function validate_profile_id( $profile_id ) {
+		if ( ! is_numeric( $profile_id ) ) {
+
+			$this->add_notification( 'ga_notifications', array(
+				'type'        => 'error',
+				'description' => __( 'The profile ID needs to be numeric.', 'google-analytics-for-wordpress' ),
 			) );
 
 			wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#yst_ga_general', 301 );
