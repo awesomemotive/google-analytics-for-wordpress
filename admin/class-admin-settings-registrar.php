@@ -37,7 +37,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 	/**
 	 * Amount of errors on validation
 	 *
-	 * @var int
+	 * @var integer
 	 */
 	private $errors = 0;
 
