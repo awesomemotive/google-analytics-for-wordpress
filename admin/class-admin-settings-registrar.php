@@ -74,7 +74,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 	public function yst_ga_settings_init_ua_code() {
 		$section_name = 'ua_code';
 
-		register_setting( $this->settings_api_page . '_' . $section_name, 'yst_ga' );
+		register_setting( $this->settings_api_page . '_' . $section_name, 'yst_ga', array( $this, 'validate_options_ua_code' ) );
 
 		$this->create_section( $section_name );
 
@@ -342,6 +342,30 @@ class Yoast_GA_Admin_Settings_Registrar {
 	}
 
 	/**
+	 * Validate the UA code options
+	 *
+	 * @param array $new_settings
+	 *
+	 * @return array
+	 */
+	public function validate_options_ua_code( $new_settings ) {
+		foreach ( $new_settings['ga_general'] as $key => $value ) {
+			switch ( $key ) {
+				case 'manual_ua_code':
+					if ( $new_settings['ga_general']['manual_ua_code'] === '1' ) {
+						$new_settings['ga_general']['manual_ua_code_field'] = trim( $new_settings['ga_general']['manual_ua_code_field'] );
+						$new_settings['ga_general']['manual_ua_code_field'] = str_replace( '–', '-', $new_settings['ga_general']['manual_ua_code_field'] );
+
+						$this->validate_manual_ua_code( $new_settings['ga_general']['manual_ua_code_field'] );
+					}
+					break;
+			}
+		}
+
+		return $new_settings;
+	}
+
+	/**
 	 * Set the default options, for now, it is in the admin class (Needs to be hooked at admin_init)
 	 */
 	public function init_default_options() {
@@ -489,6 +513,24 @@ class Yoast_GA_Admin_Settings_Registrar {
 			$args
 		);
 	}
+
+	/**
+	 * Validate the manual UA code
+	 *
+	 * @param $ua_code
+	 */
+	private function validate_manual_ua_code( $ua_code ) {
+		if ( ! preg_match( '|^UA-\d{4,}-\d+$|', $ua_code ) ) {
+
+			$this->add_notification( 'ga_notifications', array(
+				'type'        => 'error',
+				'description' => __( 'The UA code needs to follow UA-XXXXXXXX-X format.', 'google-analytics-for-wordpress' ),
+			) );
+
+			wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#yst_ga_general', 301 );
+			exit;
+		}
+	}
 	
 	/**
 	 * Get the Google Analytics profiles which are in this google account
@@ -499,6 +541,16 @@ class Yoast_GA_Admin_Settings_Registrar {
 		$return = Yoast_Google_Analytics::get_instance()->get_profiles();
 
 		return $return;
+	}
+
+	/**
+	 * Add a notification to the notification transient
+	 *
+	 * @param string $transient_name
+	 * @param array  $settings
+	 */
+	private function add_notification( $transient_name, $settings ) {
+		set_transient( $transient_name, $settings, MINUTE_IN_SECONDS );
 	}
 
 }
