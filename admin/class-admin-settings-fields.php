@@ -21,14 +21,7 @@ class Yoast_GA_Admin_Settings_Fields {
 	 */
 	public static function yst_ga_text_field( $args ) {
 		self::set_options();
-
-		if ( ! isset( self::$options[ $args['key'] ] ) ) {
-			self::$options[ $args['key'] ] = '';
-		}
-
-		if ( isset( $args['help'] ) ) {
-			echo self::show_help( $args['key'], $args['help'] );
-		}
+		self::before_input( $args );
 
 		echo '<input type="text" name="yst_ga[ga_general][' . $args['key'] . ']" id="ga_form_' . $args['key'] . '" value="' . esc_attr( self::$options[ $args['key'] ] ) . '" class="ga-form-text">';
 	}
@@ -40,14 +33,7 @@ class Yoast_GA_Admin_Settings_Fields {
 	 */
 	public static function yst_ga_textarea_field( $args ) {
 		self::set_options();
-
-		if ( ! isset( self::$options[ $args['key'] ] ) ) {
-			self::$options[ $args['key'] ] = '';
-		}
-
-		if ( isset( $args['help'] ) ) {
-			echo self::show_help( $args['key'], $args['help'] );
-		}
+		self::before_input( $args );
 
 		$value = self::$options[ $args['key'] ];
 		if ( $args['key'] !== 'custom_code' ) {
@@ -64,14 +50,7 @@ class Yoast_GA_Admin_Settings_Fields {
 	 */
 	public static function yst_ga_checkbox_field( $args ) {
 		self::set_options();
-
-		if ( ! isset( self::$options[ $args['key'] ] ) ) {
-			self::$options[ $args['key'] ] = '';
-		}
-
-		if ( isset( $args['help'] ) ) {
-			echo self::show_help( $args['key'], $args['help'] );
-		}
+		self::before_input( $args );
 
 		echo '<input type="checkbox" name="yst_ga[ga_general][' . $args['key'] . ']" id="ga_form_' . $args['key'] . '" value="1" ' . checked( self::$options[ $args['key'] ], 1, false ) . '>';
 	}
@@ -188,6 +167,21 @@ class Yoast_GA_Admin_Settings_Fields {
 		$help = '<img src="' . plugins_url( 'assets/img/question-mark.png', GAWP_FILE ) . '" class="alignleft yoast_help" id="' . esc_attr( $id . 'help' ) . '" alt="' . esc_attr( $description ) . '" />';
 
 		return $help;
+	}
+
+	/**
+	 * Render the help button and set the option value
+	 *
+	 * @param array $args Arguments for the input
+	 */
+	private static function before_input( $args ) {
+		if ( ! isset( self::$options[ $args['key'] ] ) ) {
+			self::$options[ $args['key'] ] = '';
+		}
+
+		if ( isset( $args['help'] ) ) {
+			echo self::show_help( $args['key'], $args['help'] );
+		}
 	}
 
 }
