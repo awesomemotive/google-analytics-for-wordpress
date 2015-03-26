@@ -387,7 +387,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 			}
 		}
 
-		if ( $this->errors === 0 ) {
+		if ( $this->errors === 0 && get_settings_errors( 'yst_ga_settings' ) === array() ) {
 			add_settings_error(
 				'yst_ga_settings',
 				'yst_ga_settings',
