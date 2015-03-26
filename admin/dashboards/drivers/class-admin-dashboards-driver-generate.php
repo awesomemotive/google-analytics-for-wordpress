@@ -120,9 +120,9 @@ abstract class Yoast_GA_Dashboards_Driver_Generate {
 	 *
 	 * @param array $data The data array that we need to check
 	 *
-	 * @return array The data array which is escaped
+	 * @return array|boolean The data array which is escaped
 	 */
-	protected function escape_strings( $data ) {
+	protected function escape_strings_array( $data ) {
 		if ( is_array( $data ) ) {
 			foreach ( $data as $key => $value ) {
 				if( is_array( $value ) ) {
@@ -130,10 +130,15 @@ abstract class Yoast_GA_Dashboards_Driver_Generate {
 						$data[ $key ][ $subkey ] = esc_html( $subvar );
 					}
 				}
+				else {
+					$data[$key] = esc_html( (string) $value );
+				}
 			}
+
+			return $data;
 		}
 
-		return $data;
+		return false;
 	}
 
 	/**
