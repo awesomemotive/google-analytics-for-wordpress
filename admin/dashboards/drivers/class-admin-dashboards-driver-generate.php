@@ -131,7 +131,7 @@ abstract class Yoast_GA_Dashboards_Driver_Generate {
 					}
 				}
 				else {
-					$data[$key] = esc_html( (string) $value );
+					$data[ $key ] = esc_html( (string) $value );
 				}
 			}
 
