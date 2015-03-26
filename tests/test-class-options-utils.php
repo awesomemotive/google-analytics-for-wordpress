@@ -1,6 +1,6 @@
 <?php
 
-class Yoast_GA_Settings_Test extends GA_UnitTestCase {
+class Yoast_GA_Options_Utils_Test extends GA_UnitTestCase {
 
 	/**
 	 * @var Yoast_GA_Settings
@@ -8,7 +8,7 @@ class Yoast_GA_Settings_Test extends GA_UnitTestCase {
 	private $class_instance;
 
 	public function __construct() {
-		$this->class_instance = Yoast_GA_Settings::get_instance();
+		$this->class_instance = Yoast_GA_Options_Utils::get_instance();
 
 		$this->class_options = Yoast_GA_Options::instance();
 	}
@@ -33,7 +33,7 @@ class Yoast_GA_Settings_Test extends GA_UnitTestCase {
 		$this->class_options->update_option( $options );
 
 		// Get the new options by re-instantiate the settings class
-		$this->class_instance = Yoast_GA_Settings::get_instance();
+		$this->class_instance = Yoast_GA_Options_Utils::get_instance();
 
 		$this->assertTrue( $this->class_instance->dashboards_disabled() );
 	}
