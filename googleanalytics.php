@@ -41,6 +41,8 @@ define( 'GAWP_FILE', __FILE__ );
 
 define( 'GAWP_PATH', plugin_basename( __FILE__ ) );
 
+define( 'GAWP_DIR', dirname( __FILE__ ) );
+
 define( 'GAWP_URL', trailingslashit( plugin_dir_url( __FILE__ ) ) );
 
 if ( file_exists( dirname( GAWP_FILE ) . '/vendor/autoload_52.php' ) ) {

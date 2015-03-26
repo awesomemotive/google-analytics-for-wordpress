@@ -67,7 +67,6 @@ class Yoast_GA_Options {
 	 */
 	public function __construct() {
 		$this->options = $this->get_options();
-		$this->options = $this->check_options( $this->options );
 
 		$this->plugin_path = plugin_dir_path( GAWP_FILE );
 		$this->plugin_url  = trailingslashit( plugin_dir_url( GAWP_FILE ) );
@@ -112,31 +111,6 @@ class Yoast_GA_Options {
 		$options = get_option( $this->option_name );
 
 		return $options[ $this->option_prefix ];
-	}
-
-	/**
-	 * Check if all the options are set, to prevent a notice if debugging is enabled
-	 * When we have new changes, the settings are saved to the options class
-	 *
-	 * @param array $options
-	 *
-	 * @return mixed
-	 */
-	public function check_options( $options ) {
-
-		$changes = 0;
-		foreach ( $this->default_ga_values() as $key => $value ) {
-			if ( ! isset( $options[ $key ] ) ) {
-				$options[ $key ] = $value;
-				$changes ++;
-			}
-		}
-
-		if ( $changes >= 1 ) {
-			$this->update_option( $options );
-		}
-
-		return $options;
 	}
 
 	/**
@@ -218,7 +192,7 @@ class Yoast_GA_Options {
 			}
 		}
 		// 5.2.8+ Add disabled dashboards option
-		if ( ! isset ( $this->options['dashboards_disabled'] ) || version_compare( $this->options['version'], '5.2.8', '>' ) ) {
+		if ( ( ! isset( $this->options['version'] ) || ! isset ( $this->options['dashboards_disabled'] ) || version_compare( $this->options['version'], '5.2.8', '>' ) ) && ! empty( $_POST ) ) {
 			$this->options['dashboards_disabled'] = 0;
 		}
 		// Check is API option already exists - if not add it
@@ -255,7 +229,7 @@ class Yoast_GA_Options {
 				'track_internal_as_label'    => null,
 				'track_outbound'             => 0,
 				'anonymous_data'             => 0,
-				'enable_universal'           => 1,
+				'enable_universal'           => 0,
 				'demographics'               => 0,
 				'ignore_users'               => array( 'editor' ),
 				'dashboards_disabled'        => 0,
