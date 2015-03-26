@@ -387,6 +387,10 @@ class Yoast_GA_Admin_Settings_Registrar {
 			}
 		}
 
+		if( ! isset( $new_settings['ga_general']['ignore_users'] ) ){
+			$new_settings['ga_general']['ignore_users'] = array();
+		}
+
 		if ( $this->errors === 0 && get_settings_errors( 'yst_ga_settings' ) === array() ) {
 			add_settings_error(
 				'yst_ga_settings',
