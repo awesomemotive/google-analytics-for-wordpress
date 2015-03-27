@@ -1,7 +1,6 @@
 <?php
 /**
- * @package GoogleAnalytics
- * @subpackage AdminSettingsFieldsRegistrar
+ * @package GoogleAnalytics\AdminSettingsFieldsRegistrar
  */
 
 /**
