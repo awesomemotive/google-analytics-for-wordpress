@@ -1,7 +1,6 @@
 <?php
 /**
- * @package GoogleAnalytics
- * @subpackage AdminSettingsFieldsView
+ * @package GoogleAnalytics\AdminSettingsFieldsView
  */
 
 global $yoast_ga_admin;
