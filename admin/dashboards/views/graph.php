@@ -1,7 +1,6 @@
 <?php
 /**
- * @package GoogleAnalytics
- * @subpackage Admin
+ * @package GoogleAnalytics\Admin
  */
 
 ?>

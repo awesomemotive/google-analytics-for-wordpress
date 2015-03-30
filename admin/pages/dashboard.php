@@ -1,7 +1,6 @@
 <?php
 /**
- * @package GoogleAnalytics
- * @subpackage Admin
+ * @package GoogleAnalytics\Admin
  */
 
 global $yoast_ga_admin;
