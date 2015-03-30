@@ -218,6 +218,15 @@ class Yoast_GA_Admin_Settings_Registrar {
 			)
 		);
 
+		$this->add_field(
+			'js_object_name',
+			__( 'JS Tracker object name', 'google-analytics-for-wordpress' ),
+			'text',
+			array(
+				'help' => __( 'This name is used on the front-end of your website, which allows you to set the name of the Javascript object for Google Analytics.".', 'google-analytics-for-wordpress' ),
+			)
+		);
+
 		$this->close_section( $section_name );
 	}
 

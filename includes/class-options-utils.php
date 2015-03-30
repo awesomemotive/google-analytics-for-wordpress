@@ -54,7 +54,7 @@ class Yoast_GA_Options_Utils {
 	/**
 	 * Get the name of the tracker object (for front-end purposes)
 	 *
-	 * @return string
+	 * @return string The object name of the tracker object
 	 */
 	public function get_tracker_object_name() {
 		if ( ! empty( $this->options['js_object_name'] ) ) {
