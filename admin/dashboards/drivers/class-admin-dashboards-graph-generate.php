@@ -1,7 +1,6 @@
 <?php
 /**
- * @package GoogleAnalytics
- * @subpackage Admin
+ * @package GoogleAnalytics\Admin
  */
 
 /**
@@ -95,10 +94,11 @@ class Yoast_GA_Dashboards_Graph_Generate extends Yoast_GA_Dashboards_Driver_Gene
 	 * Generate the data for the frontend based on the $google_data
 	 */
 	private function generate() {
-
 		$google_data = $this->get_google_data();
 
 		foreach ( $google_data as $timestamp => $value ) {
+			$timestamp = esc_html( $timestamp );
+
 			$this->add_data( $value );
 			$this->add_x_mapping( $timestamp );
 			$this->add_hover_mapping( $timestamp, $value );
@@ -147,7 +147,7 @@ class Yoast_GA_Dashboards_Graph_Generate extends Yoast_GA_Dashboards_Driver_Gene
 	 * @param integer $value
 	 */
 	private function add_hover_mapping( $timestamp, $value ) {
-		$this->mapping['hover'][] = date_i18n( 'l ' . $this->date_field . ' M', $timestamp ) . ': ' . number_format_i18n( $value, 0 );
+		$this->mapping['hover'][] = esc_html( date_i18n( 'l ' . $this->date_field . ' M', $timestamp ) . ': ' . number_format_i18n( $value, 0 ) );
 	}
 
 }

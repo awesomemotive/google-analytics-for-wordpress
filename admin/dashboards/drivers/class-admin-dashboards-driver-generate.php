@@ -1,7 +1,6 @@
 <?php
 /**
- * @package GoogleAnalytics
- * @subpackage Admin
+ * @package GoogleAnalytics\Admin
  */
 
 /**
@@ -113,6 +112,32 @@ abstract class Yoast_GA_Dashboards_Driver_Generate {
 	 */
 	protected function is_date_in_period( $timestamp ) {
 		return ( $timestamp >= $this->start_date && $timestamp <= $this->end_date );
+	}
+
+	/**
+	 * Escape the data array before output
+	 *
+	 * @param array $data The data array that we need to check
+	 *
+	 * @return array|boolean The data array which is escaped
+	 */
+	protected function escape_strings_array( $data ) {
+		if ( is_array( $data ) ) {
+			foreach ( $data as $key => $value ) {
+				if ( is_array( $value ) ) {
+					foreach ( $value as $subkey => $subvar ) {
+						$data[ $key ][ $subkey ] = esc_html( $subvar );
+					}
+				}
+				else {
+					$data[ $key ] = esc_html( (string) $value );
+				}
+			}
+
+			return $data;
+		}
+
+		return false;
 	}
 
 	/**

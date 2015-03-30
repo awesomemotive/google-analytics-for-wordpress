@@ -3,8 +3,9 @@ Contributors: joostdevalk
 Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
-Tested up to: 4.1
-Stable tag: 5.3.2
+Tested up to: 4.2
+Stable tag: 5.3.3
+License: GPL v3
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
@@ -12,13 +13,14 @@ Track your WordPress site easily with the latest tracking codes and lots added d
 
 The Google Analytics by Yoast plugin for WordPress allows you to track your blog easily and always stays up to date with the newest features in Google Analytics.
 
-> <strong>Development on GitHub</strong><br>
-> The development of Google Analytics by Yoast [takes place on GitHub](https://github.com/Yoast/google-analytics-for-wordpress). Bugs and pull requests are welcomed there. For support, you have two options: either [buy the premium version of Google Analytics by Yoast on Yoast.com](https://yoast.com/wordpress/plugins/google-analytics/), this will give you access to our support team, or refer to the forums.
+> <strong>Upgrade to GA by Yoast Premium</strong><br>
+> If you need support or want to use custom dimensions, upgrade to [Google Analytics by Yoast Premium](https://yoast.com/wordpress/plugins/google-analytics/#utm_source=wporg&utm_medium=readme&utm_campaign=wpgaplugin) today!
 
 Full list of features:
 
 * Simple installation through integration with Google Analytics API: authenticate, select the site you want to track and you're done.
 * This plugin uses the universal or the asynchronous Google Analytics tracking code, the fastest and most reliable tracking code Google Analytics offers.
+* Gives you incredibly nice visitor metric dashboards right in your WordPress install.
 * Option to enable demographics and interest reports.
 * Outbound link & downloads tracking.
 	* Configurable options to track outbound links either as pageviews or as events.
@@ -29,8 +31,8 @@ Full list of features:
 * Tracking of your search result pages and 404 pages.
 * Full [debug mode](http://yoast.com/google-analytics-debug-mode/), including Firebug lite and ga_debug.js for debugging Google Analytics issues.
 
-> <strong>Coming soon: dashboards!</strong><br>
-> We're working hard on the next iteration of the plugin which will contain a Dashboard within your WordPress admin with the most important stats from Google Analytics.
+> <strong>Development on GitHub</strong><br>
+> The development of Google Analytics by Yoast [takes place on GitHub](https://github.com/Yoast/google-analytics-for-wordpress). Bugs and pull requests are welcomed there. For support, you have two options: either [buy the premium version of Google Analytics by Yoast on Yoast.com](https://yoast.com/wordpress/plugins/google-analytics/), this will give you access to our support team, or refer to the forums.
 
 Other interesting stuff:
 
@@ -48,6 +50,21 @@ This section describes how to install the plugin and get it working.
 1. Go to the options panel under the 'Settings' menu and add your Analytics account number and set the settings you want.
 
 == Changelog ==
+
+= 5.3.3 =
+
+Release Date: March 19th, 2015
+
+* Several security fixes:
+    1. Fix minor XSS issue where admins could XSS each other through an unescaped manual UA field.
+    1. Fix stored XSS issue where changing a property's name in Google Analytics to contain malicious JS would allow execution of that JS in the admin as the profile name was not escaped properly.
+    1. Fix un-authenticated change of the GA profile list, allowing the previous XSS to become a slightly bigger issue. Issues 2 and 3 combined lead to a [DREAD score](http://blog.sucuri.net/2015/03/understanding-wordpress-plugin-vulnerabilities.html) of 5.
+* Other fixes:
+    * Small code style improvements.
+    * Throw an error and deactivate if either the PHP SPL or PHP filter libraries aren't loaded.
+    * Introduced a filter `yst_ga_track_super_admin` to allow disabling of super admin tracking on multi-site, defaulting to true.
+
+Big thanks to [Jouko Pynnönen](http://klikki.fi) for responsibly disclosing security issues #2 and #3.
 
 = 5.3.2 =
 
@@ -633,13 +650,20 @@ Complete rewrite of the Google Analytics plugin.
 = 1.5 =
 * Added option to enable admin tracking, off by default.
 
+== Upgrade Notice ==
+
+= 5.3.3 =
+This version fixes several issues related to your site's security. Update immediately.
+
 == Frequently Asked Questions ==
 
 For all frequently asked questions, and their answers, check the [Yoast Knowledge base](http://kb.yoast.com/category/43-google-analytics-for-wordpress).
 
 == Screenshots ==
 
-1. Screenshot of the general settings panel for this plugin.
-2. Screenshot of the universal settings panel.
-3. Screenshot of the advanced settings panel.
-4. Screenshot of the account selection drop down.
+1. Screenshot of the dashboards this plugin generates. To get dashboards for custom dimensions, upgrade to [GA by Yoast Premium](https://yoast.com/wordpress/plugins/google-analytics/#utm_source=wporg&utm_medium=readme&utm_campaign=wpgaplugin&utm_content=screenshot).
+2. Screenshot of the general settings panel for this plugin.
+3. Screenshot of the universal settings panel.
+4. Screenshot of the advanced settings panel.
+5. Screenshot of the account selection drop down.
+

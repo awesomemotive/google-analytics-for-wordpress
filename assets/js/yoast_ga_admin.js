@@ -93,4 +93,25 @@ jQuery(document).ready(function() {
 			name: 'blue'
 		}
 	});
+
+	jQuery('#ga_form_manual_ua_code').click(function() {
+		handle_settings_form();
+	});
+
+	handle_settings_form();
+
+	function handle_settings_form() {
+		if ( jQuery('#ga_form_manual_ua_code').attr("checked") ) {
+			jQuery('#ga_form_manual_ua_code_field').closest('tr').show(); // Show parent tr
+			jQuery('#yst_ga_authenticate').closest('tr').hide(); // Show parent tr
+			jQuery('#manual_ua_code_warning').show();
+			jQuery('#ga_form_analytics_profile').prop('disabled', true).trigger("chosen:updated");
+		}
+		else{
+			jQuery('#ga_form_manual_ua_code_field').closest('tr').hide(); // Hide parent tr
+			jQuery('#yst_ga_authenticate').closest('tr').show(); // Hide parent tr
+			jQuery('#manual_ua_code_warning').hide();
+			jQuery('#ga_form_analytics_profile').prop('disabled', false).trigger("chosen:updated");
+		}
+	}
 });
