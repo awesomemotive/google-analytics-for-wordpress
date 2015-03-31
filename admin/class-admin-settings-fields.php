@@ -22,7 +22,7 @@ class Yoast_GA_Admin_Settings_Fields {
 		self::set_options();
 		self::before_input( $args );
 
-		echo '<input type="text" name="yst_ga[ga_general][' . $args['key'] . ']" id="ga_form_' . $args['key'] . '" value="' . esc_attr( self::$options[ $args['key'] ] ) . '" class="ga-form-text">';
+		echo '<input type="text" name="yst_ga[ga_general][' . $args['key'] . ']" id="' . $args['label_for'] . '" value="' . esc_attr( self::$options[ $args['key'] ] ) . '" class="ga-form-text">';
 	}
 
 	/**
@@ -51,7 +51,7 @@ class Yoast_GA_Admin_Settings_Fields {
 		self::set_options();
 		self::before_input( $args );
 
-		echo '<input type="checkbox" name="yst_ga[ga_general][' . $args['key'] . ']" id="ga_form_' . $args['key'] . '" value="1" ' . checked( self::$options[ $args['key'] ], 1, false ) . '>';
+		echo '<input type="checkbox" name="yst_ga[ga_general][' . $args['key'] . ']" id="' . $args['label_for'] . '" value="1" ' . checked( self::$options[ $args['key'] ], 1, false ) . '>';
 	}
 
 	/**
