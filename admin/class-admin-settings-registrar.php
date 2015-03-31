@@ -541,6 +541,10 @@ class Yoast_GA_Admin_Settings_Registrar {
 			$args['key'] = $id;
 		}
 
+		if ( ! isset( $args['label_for'] ) ) {
+			$args['label_for'] = 'ga_form_' . $args['key'];
+		}
+
 		add_settings_field(
 			'yst_ga_' . $id,
 			$title,
