@@ -39,7 +39,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			$value = esc_attr( $value );
 		}
 
-		echo '<textarea name="yst_ga[ga_general][' . $args['key'] . ']" rows="5" cols="60">' . $value . '</textarea>';
+		echo '<textarea name="yst_ga[ga_general][' . $args['key'] . ']" id="' . $args['label_for'] . '" rows="5" cols="60">' . $value . '</textarea>';
 	}
 
 	/**
