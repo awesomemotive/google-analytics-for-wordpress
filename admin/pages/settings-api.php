@@ -49,8 +49,8 @@ settings_errors( 'yoast_google_analytics' );
 
 					echo '<script>yst_thickbox_heading = "' . __( 'Paste your Google authentication code', 'google-analytics-for-wordpress' ) . '";</script>';
 					echo '<div id="oauth_code" class="ga-form ga-form-input">';
-						echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle">' . __( 'Paste your Google code here', 'google-analytics-for-wordpress' ) . ':</label>';
-						echo '<input type="text" name="yst_ga[ga_general][google_auth_code]">';
+						echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle">' . __( 'Paste your Google code here', 'google-analytics-for-wordpress' ) . ':';
+						echo '<input type="text" name="yst_ga[ga_general][google_auth_code]"></label>';
 
 						echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle-submit">&nbsp;</label>';
 						echo '<div class="ga-form ga-form-input"><input type="submit" name="ga-form-settings" value="' . __( 'Save authentication code', 'google-analytics-for-wordpress' ) . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-settings" onclick="yst_closepopupwindow();"></div>';
