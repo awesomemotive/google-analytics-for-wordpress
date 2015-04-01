@@ -20,9 +20,10 @@ class Yoast_GA_Admin_Form_Fields_Test extends GA_UnitTestCase {
 	 */
 	public function test_yst_ga_textarea_field_WITH_no_value() {
 		$args     = array(
-			'key' => 'test-field',
+			'key'       => 'test-field',
+			'label_for' => 'ga_form_test-field',
 		);
-		$expected = '<textarea name="yst_ga[ga_general][' . $args['key'] . ']" rows="5" cols="60"></textarea>';
+		$expected = '<textarea name="yst_ga[ga_general][' . $args['key'] . ']" id="' . $args['label_for'] . '" rows="5" cols="60"></textarea>';
 
 		$this->assertEquals( $expected, $this->helper_field_output( 'yst_ga_textarea_field', $args ) );
 	}
