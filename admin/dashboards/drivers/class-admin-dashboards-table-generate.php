@@ -68,7 +68,7 @@ class Yoast_GA_Dashboards_Table_Generate extends Yoast_GA_Dashboards_Driver_Gene
 	 */
 	private function generate() {
 		$google_data = $this->get_google_data();
-		$this->data  = array_values( $google_data );
+		$this->data  = is_array( $google_data ) ? array_values( $google_data ) : array();
 	}
 
 }
