@@ -133,15 +133,31 @@ class Yoast_GA_Admin {
 	}
 
 	/**
+	 * Register the custom dimensions tab
+	 */
+	public function register_custom_dimensions_tab() {
+		echo '<a class="nav-tab" id="yst_ga_custom_dimensions-tab" href="#top#yst_ga_custom_dimensions">' . __( 'Custom Dimensions', 'google-analytics-for-wordpress' ) . '</a>';
+	}
+
+	/**
+	 * Adds some promo text for the premium plugin on the custom dimensions tab.
+	 */
+	public function premium_promo_tab() {
+		echo '<div id="yst_ga_custom_dimensions" class="gatab">';
+			echo $this->premium_promo();
+		echo '</div>';
+	}
+
+	/**
 	 * Adds some promo text for the premium plugin on the custom dimensions tab.
 	 */
 	public function premium_promo() {
 		echo '<div class="ga-promote">';
-		echo '<p>';
-		printf( __( 'If you want to track custom dimensions like page views per author or post type, you should upgrade to the %1$spremium version of Google Analytics by Yoast%2$s.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=text-link&utm_source=gawp-config&utm_campaign=wpgaplugin&utm_content=custom_dimensions_tab">', '</a>' );
-		echo ' ';
-		_e( 'This will also give you email access to the support team at Yoast, who will provide support on the plugin 24/7.', 'google-analytics-for-wordpress' );
-		echo '</p>';
+			echo '<p>';
+			printf( __( 'If you want to track custom dimensions like page views per author or post type, you should upgrade to the %1$spremium version of Google Analytics by Yoast%2$s.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=text-link&utm_source=gawp-config&utm_campaign=wpgaplugin&utm_content=custom_dimensions_tab">', '</a>' );
+			echo ' ';
+			_e( 'This will also give you email access to the support team at Yoast, who will provide support on the plugin 24/7.', 'google-analytics-for-wordpress' );
+			echo '</p>';
 		echo '</div>';
 	}
 
@@ -175,7 +191,8 @@ class Yoast_GA_Admin {
 		$this->translate_promo();
 
 		if ( ! has_action( 'yst_ga_custom_dimensions_tab-content' ) ) {
-			add_action( 'yst_ga_custom_dimensions_tab-content', array( $this, 'premium_promo' ) );
+			add_action( 'yst_ga_custom_tabs-tab', array( $this, 'register_custom_dimensions_tab' ) );
+			add_action( 'yst_ga_custom_tabs-content', array( $this, 'premium_promo_tab' ) );
 		}
 
 		if ( ! has_action( 'yst_ga_custom_dimension_add-dashboards-tab' ) ) {
