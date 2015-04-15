@@ -390,6 +390,10 @@ class Yoast_GA_Admin_Settings_Registrar {
 			$new_settings['ga_general']['ignore_users'] = array();
 		}
 
+		if ( ! isset( $new_settings['ga_general']['enable_universal'] ) ) {
+			$new_settings['ga_general']['enable_universal'] = 0;
+		}
+
 		if ( $this->errors === 0 && get_settings_errors( 'yst_ga_settings' ) === array() ) {
 			add_settings_error(
 				'yst_ga_settings',
