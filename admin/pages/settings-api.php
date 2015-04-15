@@ -62,7 +62,11 @@ settings_errors( 'yoast_google_analytics' );
 					else {
 						echo '<td><a id="yst_ga_authenticate" class="button" onclick="yst_popupwindow(\'' . $auth_url . '\',500,500);">' . __( 'Re-authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a></td>';
 					}
-					echo'</tr></table>';
+					echo'</tr>';
+					if( ! empty ( $yoast_ga_admin->get_current_profile( true ) ) ){
+						echo '<tr><th scope="row">' . __( 'Current UA code', 'google-analytics-for-wordpress' ) . ':</th><td>' . $yoast_ga_admin->get_current_profile( true ) . '</td></tr>';
+					}
+					echo '</table>';
 				}
 
 

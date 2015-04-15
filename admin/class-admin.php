@@ -33,6 +33,11 @@ class Yoast_GA_Admin {
 	private $plugin_url;
 
 	/**
+	 * @var resource
+	 */
+	private $registrar;
+
+	/**
 	 * Construct the admin class
 	 */
 	public function __construct() {
@@ -49,7 +54,7 @@ class Yoast_GA_Admin {
 	public function init_ga() {
 		new Yoast_GA_Admin_Menu( $this );
 
-		new Yoast_GA_Admin_Settings_Registrar();
+		$this->registrar = new Yoast_GA_Admin_Settings_Registrar();
 
 		add_filter( 'plugin_action_links_' . plugin_basename( GAWP_FILE ), array( $this, 'add_action_links' ) );
 	}
@@ -234,12 +239,18 @@ class Yoast_GA_Admin {
 	}
 
 	/**
-	 * Get the current GA profile
+	 * Get the UA code from a profile
+	 *
+	 * @param bool $ua_code
 	 *
 	 * @return null
 	 */
-	private function get_current_profile() {
+	public function get_current_profile( $ua_code = false ) {
 		if ( ! empty( $this->options['analytics_profile'] ) ) {
+			if( $ua_code ){
+				return $this->options['analytics_profile_code'];
+			}
+
 			return $this->options['analytics_profile'];
 		}
 
