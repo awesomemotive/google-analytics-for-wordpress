@@ -22,7 +22,7 @@ class Yoast_GA_Admin_Settings_Fields {
 		self::set_options();
 		self::before_input( $args );
 
-		echo '<input type="text" name="yst_ga[ga_general][' . $args['key'] . ']" id="ga_form_' . $args['key'] . '" value="' . esc_attr( self::$options[ $args['key'] ] ) . '" class="ga-form-text">';
+		echo '<input type="text" name="yst_ga[ga_general][' . $args['key'] . ']" id="' . $args['label_for'] . '" value="' . esc_attr( self::$options[ $args['key'] ] ) . '" class="ga-form-text">';
 	}
 
 	/**
@@ -39,7 +39,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			$value = esc_attr( $value );
 		}
 
-		echo '<textarea name="yst_ga[ga_general][' . $args['key'] . ']" rows="5" cols="60">' . $value . '</textarea>';
+		echo '<textarea name="yst_ga[ga_general][' . $args['key'] . ']" id="' . $args['label_for'] . '" rows="5" cols="60">' . $value . '</textarea>';
 	}
 
 	/**
@@ -51,7 +51,7 @@ class Yoast_GA_Admin_Settings_Fields {
 		self::set_options();
 		self::before_input( $args );
 
-		echo '<input type="checkbox" name="yst_ga[ga_general][' . $args['key'] . ']" id="ga_form_' . $args['key'] . '" value="1" ' . checked( self::$options[ $args['key'] ], 1, false ) . '>';
+		echo '<input type="checkbox" name="yst_ga[ga_general][' . $args['key'] . ']" id="' . $args['label_for'] . '" value="1" ' . checked( self::$options[ $args['key'] ], 1, false ) . '>';
 	}
 
 	/**
@@ -92,7 +92,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			$options .= '<option value="' . esc_attr( $option['id'] ) . '" ' . selected( $option['id'], self::$options[ $args['key'] ], false ) . '>' . esc_attr( $option['name'] ) . '</option>';
 		}
 
-		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select id="ga_form_' . $args['key'] . '" name="yst_ga[ga_general][' . $args['key'] . ']' . $name_addition . '"' . $class . $args['attributes'] . '>' . $options . '</select>';
+		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select id="' . $args['label_for'] . '" name="yst_ga[ga_general][' . $args['key'] . ']' . $name_addition . '"' . $class . $args['attributes'] . '>' . $options . '</select>';
 	}
 
 	/**
@@ -126,7 +126,7 @@ class Yoast_GA_Admin_Settings_Fields {
 			}
 		}
 
-		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select id="ga_form_' . $args['key'] . '" name="yst_ga[ga_general][' . $args['key'] . ']"' . $class . $args['attributes'] . ' data-placeholder="' . __( 'Select a profile', 'google-analytics-for-wordpress' ) . '" ><option></option>' . $options . '</select>';
+		echo self::show_help( 'id-' . $args['key'], $args['help'] ) . '<select id="' . $args['label_for'] . '" name="yst_ga[ga_general][' . $args['key'] . ']"' . $class . $args['attributes'] . ' data-placeholder="' . __( 'Select a profile', 'google-analytics-for-wordpress' ) . '" ><option></option>' . $options . '</select>';
 	}
 
 
