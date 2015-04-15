@@ -54,6 +54,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 
 		if ( filter_input( INPUT_GET, 'settings-updated' ) ) {
 			add_action( 'admin_init', array( $this, 'update_ga_tracking_from_profile' ) );
+			add_action( 'in_admin_footer', array( $this, 'go_to_current_tab' ) );
 		}
 	}
 
@@ -74,6 +75,17 @@ class Yoast_GA_Admin_Settings_Registrar {
 
 			unset( $tracking_code['ga_general']['ga_general'] ); // cleanup old keys
 			update_option( 'yst_ga', $tracking_code );
+		}
+	}
+
+	/**
+	 * Go to the current tab after a save, if we have one
+	 */
+	public function go_to_current_tab() {
+		$tab_option = get_option( 'yst_ga' );
+
+		if ( isset ( $tab_option['ga_general']['return_tab'] ) ) {
+			echo '<script type="text/javascript">jQuery(document).ready(function(){jQuery("#' . esc_js( $tab_option['ga_general']['return_tab'] ) . '-tab").click();});</script>';
 		}
 	}
 
