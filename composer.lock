@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0452ae5a17d0df148aeef8732894183d",
+    "hash": "6b43448b34d14294c5a3f7da4c6c9db0",
     "packages": [
         {
             "name": "composer/installers",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "4db8898759143c742a8661b626d23f1535a42c15"
+                "reference": "f8c20b427de1cfe7a28a015c1640ce4e4eef1e33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/4db8898759143c742a8661b626d23f1535a42c15",
-                "reference": "4db8898759143c742a8661b626d23f1535a42c15",
+                "url": "https://api.github.com/repos/composer/installers/zipball/f8c20b427de1cfe7a28a015c1640ce4e4eef1e33",
+                "reference": "f8c20b427de1cfe7a28a015c1640ce4e4eef1e33",
                 "shasum": ""
             },
             "replace": {
@@ -99,7 +99,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2015-03-18 21:44:04"
+            "time": "2015-03-26 16:11:30"
         },
         {
             "name": "xrstf/composer-php52",
@@ -131,7 +131,7 @@
                 "MIT"
             ],
             "homepage": "http://www.xrstf.de/",
-            "time": "2015-02-01 14:29:12"
+            "time": "2015-02-01 13:29:12"
         },
         {
             "name": "yoast/api-libs",
@@ -177,12 +177,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast/i18n-module.git",
-                "reference": "b391683ca3e0a714c1c8bede8cf5e32c48274216"
+                "reference": "6d366c5b19d2068e3bb1c9bb4b9d17c0dd9566a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast/i18n-module/zipball/b391683ca3e0a714c1c8bede8cf5e32c48274216",
-                "reference": "b391683ca3e0a714c1c8bede8cf5e32c48274216",
+                "url": "https://api.github.com/repos/Yoast/i18n-module/zipball/6d366c5b19d2068e3bb1c9bb4b9d17c0dd9566a8",
+                "reference": "6d366c5b19d2068e3bb1c9bb4b9d17c0dd9566a8",
                 "shasum": ""
             },
             "type": "library",
@@ -207,7 +207,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2015-01-29 09:52:51"
+            "time": "2015-04-15 06:48:03"
         },
         {
             "name": "yoast/license-manager",
@@ -336,12 +336,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git",
-                "reference": "1abfa623a89ca1d0a8a10a4ee7d92bf2434a9d53"
+                "reference": "60e0d19f547e9076aff4a907e6cfb5e4982737f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/1abfa623a89ca1d0a8a10a4ee7d92bf2434a9d53",
-                "reference": "1abfa623a89ca1d0a8a10a4ee7d92bf2434a9d53",
+                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/60e0d19f547e9076aff4a907e6cfb5e4982737f7",
+                "reference": "60e0d19f547e9076aff4a907e6cfb5e4982737f7",
                 "shasum": ""
             },
             "require": {
@@ -368,7 +368,7 @@
                 "standards",
                 "wordpress"
             ],
-            "time": "2015-03-22 21:13:39"
+            "time": "2015-04-13 13:38:41"
         },
         {
             "name": "yoast/yoastcs",
