@@ -148,9 +148,11 @@ class Yoast_GA_Admin {
 
 	/**
 	 * Adds some promo text for the premium plugin on the custom dimensions tab.
+	 *
+	 * @param bool $add_tab_div Add the div wrapper to make it a tab
 	 */
 	public function premium_promo( $add_tab_div = false ) {
-		require_once( $this->plugin_path . 'admin/views/custom_dimensions_upsell.php' );
+		require_once( $this->plugin_path . 'admin/views/custom-dimensions-upsell.php' );
 	}
 
 	/**
