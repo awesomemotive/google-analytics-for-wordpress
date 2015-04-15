@@ -1,4 +1,10 @@
-<?php if( $add_tab_div === true ): ?>
+<?php
+/**
+ * @package GoogleAnalytics\AdminUpSellView
+ */
+
+?>
+<?php if ( $add_tab_div === true ) : ?>
 <div id="yst_ga_custom_dimensions" class="gatab">
 <?php endif; ?>
 <div class="ga-promote">
@@ -10,6 +16,6 @@
 	?>
 	</p>
 </div>
-<?php if( $add_tab_div === true ): ?>
+<?php if ( $add_tab_div === true ) : ?>
 </div>
 <?php endif; ?>
