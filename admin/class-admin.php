@@ -33,11 +33,6 @@ class Yoast_GA_Admin {
 	private $plugin_url;
 
 	/**
-	 * @var resource
-	 */
-	private $registrar;
-
-	/**
 	 * Construct the admin class
 	 */
 	public function __construct() {
@@ -54,7 +49,7 @@ class Yoast_GA_Admin {
 	public function init_ga() {
 		new Yoast_GA_Admin_Menu( $this );
 
-		$this->registrar = new Yoast_GA_Admin_Settings_Registrar();
+		new Yoast_GA_Admin_Settings_Registrar();
 
 		add_filter( 'plugin_action_links_' . plugin_basename( GAWP_FILE ), array( $this, 'add_action_links' ) );
 	}
