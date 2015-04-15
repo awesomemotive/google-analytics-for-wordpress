@@ -438,7 +438,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 	 *
 	 * @return null|string
 	 */
-	protected function get_ua_code_from_profile( $profile_id ) {
+	public function get_ua_code_from_profile( $profile_id ) {
 		$profiles = $this->get_profiles();
 		$ua_code  = null;
 
