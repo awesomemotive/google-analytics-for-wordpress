@@ -13,17 +13,16 @@ echo $yoast_ga_admin->content_head();
 settings_errors( 'yoast_google_analytics' );
 ?>
 
-	<h2 class="nav-tab-wrapper" id="ga-tabs">
-		<a class="nav-tab" id="yst_ga_general-tab" href="#top#yst_ga_general"><?php _e( 'General', 'google-analytics-for-wordpress' ); ?></a>
-		<a class="nav-tab" id="yst_ga_universal-tab" href="#top#yst_ga_universal"><?php _e( 'Universal', 'google-analytics-for-wordpress' ); ?></a>
-		<a class="nav-tab" id="yst_ga_advanced-tab" href="#top#yst_ga_advanced"><?php _e( 'Advanced', 'google-analytics-for-wordpress' ); ?></a>
-		<?php do_action( 'yst_ga_custom_tabs-tab' ); ?>
-		<a class="nav-tab" id="yst_ga_debugmode-tab" href="#top#yst_ga_debugmode"><?php _e( 'Debug mode', 'google-analytics-for-wordpress' ); ?></a>
-	</h2>
-
-<input type="hidden" name="return_tab" id="return_tab" value="general" />
+<h2 class="nav-tab-wrapper" id="ga-tabs">
+	<a class="nav-tab" id="yst_ga_general-tab" href="#top#yst_ga_general"><?php _e( 'General', 'google-analytics-for-wordpress' ); ?></a>
+	<a class="nav-tab" id="yst_ga_universal-tab" href="#top#yst_ga_universal"><?php _e( 'Universal', 'google-analytics-for-wordpress' ); ?></a>
+	<a class="nav-tab" id="yst_ga_advanced-tab" href="#top#yst_ga_advanced"><?php _e( 'Advanced', 'google-analytics-for-wordpress' ); ?></a>
+	<?php do_action( 'yst_ga_custom_tabs-tab' ); ?>
+	<a class="nav-tab" id="yst_ga_debugmode-tab" href="#top#yst_ga_debugmode"><?php _e( 'Debug mode', 'google-analytics-for-wordpress' ); ?></a>
+</h2>
 
 <form method="post" action="<?php echo admin_url( 'options.php' ); ?>" id="yoast-ga-form-settings">
+	<input type="hidden" name="yst_ga[ga_general][return_tab]" id="return_tab" value="general" />
 	<div class="tabwrapper">
 		<div id="yst_ga_general" class="gatab">
 			<div id="google_ua_code_field" class="ga-promote">
