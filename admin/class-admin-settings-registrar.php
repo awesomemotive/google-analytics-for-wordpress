@@ -52,7 +52,7 @@ class Yoast_GA_Admin_Settings_Registrar {
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_advanced' ) );
 		add_action( 'admin_init', array( $this, 'yst_ga_settings_init_debug' ) );
 
-		if ( filter_input( INPUT_GET, 'settings-updated' ) ) {
+		if ( filter_input( INPUT_GET, 'settings-updated' ) && filter_input( INPUT_GET, 'yst_ga_settings' )  ) {
 			add_action( 'admin_init', array( $this, 'update_ga_tracking_from_profile' ) );
 			add_action( 'in_admin_footer', array( $this, 'go_to_current_tab' ) );
 		}
