@@ -242,7 +242,7 @@ class Yoast_GA_Admin {
 	 */
 	public function get_current_profile( $ua_code = false ) {
 		if ( ! empty( $this->options['analytics_profile'] ) ) {
-			if( $ua_code ){
+			if ( $ua_code ) {
 				return $this->options['analytics_profile_code'];
 			}
 
