@@ -4,7 +4,7 @@ Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 5.3.3
+Stable tag: 5.4
 License: GPL v3
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
@@ -50,6 +50,24 @@ This section describes how to install the plugin and get it working.
 1. Go to the options panel under the 'Settings' menu and add your Analytics account number and set the settings you want.
 
 == Changelog ==
+
+= 5.4 =
+
+Release Date: April 20th, 2015
+
+Enhancements:
+    * Complete technical overhaul of the way settings are being stored. Switched to WP Settings API and added input validation and sanitation for several settings.
+    * Made the settings more accessible by adding `for` attributes to the labels, connecting them with the corresponding form fields. Props to [Steve Repsher](https://github.com/steverep) for the awesome contribution!
+    * Made Universal tracking the default for new installs.
+    * Adds administrators to the default user roles to ignore for tracking.
+
+Security:
+    * Fixes several security issues that were discovered during an elaborate security review performed by our friends from [Sucuri](https://sucuri.net/).
+    * Fixes two other XSS issues. Thanks to [Johannes Schmitt](https://github.com/schmittjoh) from [Scrutinizer CI](https://scrutinizer-ci.com/) and [Jouko Pynnönen](http://klikki.fi) for discovering and responsibly disclosing these issues.
+
+Bugfixes:
+    * Fixes an issue where some GA dashboard style sheets and scripts were also loaded outside of the Google Analytics by Yoast dashboard, thereby unnecessarily slowing down the WP admin.
+    * Fixes a bug where a PHP warning could be raised on the dashboard when no data is available.
 
 = 5.3.3 =
 
@@ -349,7 +367,7 @@ Complete rewrite of the Google Analytics plugin.
 
 = 4.3.4 =
 
-* Bugfix: 
+* Bugfix:
 	* Fixed error in a database query as reported by [mikeotgaar](http://wordpress.org/support/topic/wordpress-database-error-table-1) and applied some best practices for the database queries - props [Jrf](http://profiles.wordpress.org/jrf).
 	* Fixed error in a database query.
 	* Made check for customcode option more robust - props [Rarst](https://github.com/Rarst).
