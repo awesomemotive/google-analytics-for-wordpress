@@ -1,7 +1,6 @@
 <?php
 /**
- * @package GoogleAnalytics
- * @subpackage Frontend
+ * @package GoogleAnalytics\Frontend
  */
 
 /**
@@ -33,7 +32,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 			do_action( 'yst_tracking' );
 
 			if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != '' ) {
-				$domain = $this->options['subdomain_tracking'];
+				$domain = esc_attr( $this->options['subdomain_tracking'] );
 			}
 			else {
 				$domain = 'auto'; // Default domain value
@@ -169,26 +168,26 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 		switch ( $link['type'] ) {
 			case 'download':
 				if ( $this->options['track_download_as'] == 'pageview' ) {
-					$onclick = "__gaTracker('send', 'pageview', '" . esc_attr( $full_url ) . "');";
+					$onclick = "__gaTracker('send', 'pageview', '" . esc_js( $full_url ) . "');";
 				}
 				else {
-					$onclick = "__gaTracker('send', 'event', 'download', '" . esc_attr( $full_url ) . "');";
+					$onclick = "__gaTracker('send', 'event', 'download', '" . esc_js( $full_url ) . "');";
 				}
 
 				break;
 			case 'email':
-				$onclick = "__gaTracker('send', 'event', 'mailto', '" . esc_attr( $link['original_url'] ) . "');";
+				$onclick = "__gaTracker('send', 'event', 'mailto', '" . esc_js( $link['original_url'] ) . "');";
 
 				break;
 			case 'internal-as-outbound':
 				$label = $this->sanitize_internal_label();
 
-				$onclick = "__gaTracker('send', '" . $this->options['track_download_as'] . "', '" . esc_attr( $link['category'] ) . '-' . esc_attr( $label ) . "', '" . esc_attr( $full_url ) . "', '" . esc_attr( strip_tags( $link['link_text'] ) ) . "');";
+				$onclick = "__gaTracker('send', '" . $this->options['track_download_as'] . "', '" . esc_js( $link['category'] ) . '-' . esc_js( $label ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "');";
 
 				break;
 			case 'outbound':
 				if ( $this->options['track_outbound'] == 1 ) {
-					$onclick = "__gaTracker('send', 'event', '" . esc_attr( $link['category'] ) . "', '" . esc_attr( $full_url ) . "', '" . esc_attr( strip_tags( $link['link_text'] ) ) . "');";
+					$onclick = "__gaTracker('send', 'event', '" . esc_js( $link['category'] ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "');";
 				}
 
 				break;

@@ -1,7 +1,6 @@
 <?php
 /**
- * @package GoogleAnalytics
- * @subpackage Admin
+ * @package GoogleAnalytics\AdminMenu
  */
 
 /**
@@ -45,7 +44,7 @@ class Yoast_GA_Admin_Menu {
 			add_action( 'network_admin_menu', array( $this, 'create_admin_menu' ), 5 );
 		}
 
-		$this->dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
+		$this->dashboards_disabled = Yoast_GA_Options_Utils::get_instance()->dashboards_disabled();
 		$this->parent_slug         = ( ( $this->dashboards_disabled ) ? 'yst_ga_settings' : 'yst_ga_dashboard' );
 	}
 
@@ -163,24 +162,24 @@ class Yoast_GA_Admin_Menu {
 	 * @param array $submenu_page
 	 */
 	private function add_submenu_page( $submenu_page ) {
-		$page             = add_submenu_page( $submenu_page['parent_slug'], $submenu_page['page_title'], $submenu_page['menu_title'], $submenu_page['capability'], $submenu_page['menu_slug'], $submenu_page['submenu_function'] );
-		$is_not_dashboard = ( 'yst_ga_settings' === $submenu_page['menu_slug'] || 'yst_ga_extensions' === $submenu_page['menu_slug'] );
+		$page         = add_submenu_page( $submenu_page['parent_slug'], $submenu_page['page_title'], $submenu_page['menu_title'], $submenu_page['capability'], $submenu_page['menu_slug'], $submenu_page['submenu_function'] );
+		$is_dashboard = ( 'yst_ga_dashboard' === $submenu_page['menu_slug'] );
 
-		$this->add_assets( $page, $is_not_dashboard );
+		$this->add_assets( $page, $is_dashboard );
 	}
 
 	/**
 	 * Adding stylesheets and based on $is_not_dashboard maybe some more styles and scripts.
 	 *
 	 * @param string  $page
-	 * @param boolean $is_not_dashboard
+	 * @param boolean $is_dashboard
 	 */
-	private function add_assets( $page, $is_not_dashboard ) {
+	private function add_assets( $page, $is_dashboard ) {
 		add_action( 'admin_print_styles-' . $page, array( 'Yoast_GA_Admin_Assets', 'enqueue_styles' ) );
 
 		add_action( 'admin_print_styles-' . $page, array( 'Yoast_GA_Admin_Assets', 'enqueue_settings_styles' ) );
 		add_action( 'admin_print_scripts-' . $page, array( 'Yoast_GA_Admin_Assets', 'enqueue_scripts' ) );
-		if ( ! $is_not_dashboard ) {
+		if ( ! $is_dashboard && filter_input( INPUT_GET, 'page' ) === 'yst_ga_dashboard' ) {
 			Yoast_GA_Admin_Assets::enqueue_dashboard_assets();
 		}
 	}

@@ -118,6 +118,10 @@ p.ga-topdescription {
 	width: 325px;
 }
 
+.chosen-search input[type="text"] {
+	width: 100% !important;
+}
+
 #yoast-ga-form-settings #oauth_code {
 	padding: 20px;
 }

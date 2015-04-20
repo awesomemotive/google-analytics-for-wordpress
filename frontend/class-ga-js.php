@@ -1,7 +1,6 @@
 <?php
 /**
- * @package GoogleAnalytics
- * @subpackage Frontend
+ * @package GoogleAnalytics\Frontend
  */
 
 /**
@@ -26,7 +25,7 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 			do_action( 'yst_tracking' );
 
 			if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != '' ) {
-				$domain = $this->options['subdomain_tracking'];
+				$domain = esc_attr( $this->options['subdomain_tracking'] );
 			}
 			else {
 				$domain = null; // Default domain value
@@ -163,25 +162,25 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 		switch ( $link['type'] ) {
 			case 'download':
 				if ( $this->options['track_download_as'] == 'pageview' ) {
-					$onclick = "_gaq.push(['_trackPageview','download/" . esc_attr( $full_url ) . "']);";
+					$onclick = "_gaq.push(['_trackPageview','download/" . esc_js( $full_url ) . "']);";
 				}
 				else {
-					$onclick = "_gaq.push(['_trackEvent','download','" . esc_attr( $full_url ) . "']);";
+					$onclick = "_gaq.push(['_trackEvent','download','" . esc_js( $full_url ) . "']);";
 				}
 
 				break;
 			case 'email':
-				$onclick = "_gaq.push(['_trackEvent','mailto','" . esc_attr( $link['original_url'] ) . "']);";
+				$onclick = "_gaq.push(['_trackEvent','mailto','" . esc_js( $link['original_url'] ) . "']);";
 
 				break;
 			case 'internal-as-outbound':
 				$label = $this->sanitize_internal_label();
 
-				$onclick = "_gaq.push(['_trackEvent', '" . esc_attr( $link['category'] ) . '-' . esc_attr( $label ) . "', '" . esc_attr( $full_url ) . "', '" . esc_attr( strip_tags( $link['link_text'] ) ) . "']);";
+				$onclick = "_gaq.push(['_trackEvent', '" . esc_js( $link['category'] ) . '-' . esc_js( $label ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "']);";
 
 				break;
 			case 'outbound':
-				$onclick = "_gaq.push(['_trackEvent', '" . esc_attr( $link['category'] ) . "', '" . esc_attr( $full_url ) . "', '" . esc_attr( strip_tags( $link['link_text'] ) ) . "']);";
+				$onclick = "_gaq.push(['_trackEvent', '" . esc_js( $link['category'] ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "']);";
 
 				break;
 		}

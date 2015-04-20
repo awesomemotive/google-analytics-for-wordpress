@@ -1,7 +1,6 @@
 <?php
 /**
- * @package GoogleAnalytics
- * @subpackage Admin
+ * @package GoogleAnalytics\Admin
  */
 
 /**
@@ -51,7 +50,7 @@ class Yoast_GA_Dashboards {
 	protected function __construct() {
 		add_filter( 'ga_extend_dashboards', array( $this, 'extend_dashboards' ), 10, 1 );
 
-		$this->dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
+		$this->dashboards_disabled = Yoast_GA_Options_Utils::get_instance()->dashboards_disabled();
 	}
 
 	/**

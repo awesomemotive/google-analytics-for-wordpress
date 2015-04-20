@@ -1,24 +1,43 @@
 <?php
 /**
- * @package    GoogleAnalytics
- * @subpackage Admin
+ * @package GoogleAnalytics\Admin
  */
 
 /**
- * This class is for the backend, extendable for all child classes
+ * This class is for the backend
  */
-class Yoast_GA_Admin extends Yoast_GA_Options {
+class Yoast_GA_Admin {
 
 	/**
-	 * @var boolean $api Store the API instance
+	 * Store the API instance
+	 *
+	 * @var resource
 	 */
 	public $api;
 
 	/**
-	 * Constructor
+	 * Store the options
+	 *
+	 * @var array
+	 */
+	private $options;
+
+	/**
+	 * @var string
+	 */
+	private $plugin_path;
+
+	/**
+	 * @var string
+	 */
+	private $plugin_url;
+
+	/**
+	 * Construct the admin class
 	 */
 	public function __construct() {
-		parent::__construct();
+		$this->plugin_path = GAWP_DIR . '/';
+		$this->plugin_url  = GAWP_URL;
 
 		add_action( 'plugins_loaded', array( $this, 'init_ga' ) );
 		add_action( 'admin_init', array( $this, 'init_settings' ) );
@@ -28,37 +47,34 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 * Init function when the plugin is loaded
 	 */
 	public function init_ga() {
-
 		new Yoast_GA_Admin_Menu( $this );
 
-		add_filter( 'plugin_action_links_' . plugin_basename( GAWP_FILE ), array( $this, 'add_action_links' ) );
+		new Yoast_GA_Admin_Settings_Registrar();
 
+		add_filter( 'plugin_action_links_' . plugin_basename( GAWP_FILE ), array( $this, 'add_action_links' ) );
 	}
 
 	/**
 	 * Init function for the settings of GA
 	 */
 	public function init_settings() {
-		$this->options = $this->get_options();
+		$options_instance = Yoast_GA_Options::instance();
+		$this->options = $options_instance->get_options();
+
 		$this->api     = Yoast_Api_Libs::load_api_libraries( array( 'google', 'googleanalytics' ) );
 		$dashboards    = Yoast_GA_Dashboards::get_instance();
 
 		// Listener for reconnecting with google analytics
 		$this->google_analytics_listener();
 
-		if ( is_null( $this->get_tracking_code() ) && $this->show_admin_warning() ) {
+		if ( is_null( $options_instance->get_tracking_code() ) && $this->show_admin_warning() ) {
 			add_action( 'admin_notices', array( 'Yoast_Google_Analytics_Notice', 'config_warning' ) );
 		}
 
 		// Check if something has went wrong with GA-api calls
-		$has_tracking_code = ( ! is_null( $this->get_tracking_code() ) && empty( $this->options['manual_ua_code_field'] ) );
+		$has_tracking_code = ( ! is_null( $options_instance->get_tracking_code() ) && empty( $this->options['manual_ua_code_field'] ) );
 		if ( $has_tracking_code && $this->show_admin_dashboard_warning() ) {
 			Yoast_Google_Analytics::get_instance()->check_for_ga_issues();
-		}
-
-
-		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-			$this->handle_ga_post_request( $dashboards );
 		}
 
 		/**
@@ -71,140 +87,12 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	}
 
 	/**
-	 * This function saves the settings in the option field and returns a wp success message on success
-	 *
-	 * @param array $data
-	 */
-	public function save_settings( $data ) {
-
-		unset( $data['google_auth_code'] );
-
-		foreach ( $data as $key => $value ) {
-			if ( $key != 'return_tab' ) {
-				if ( $key != 'custom_code' && is_string( $value ) ) {
-					$value = strip_tags( $value );
-				}
-				$this->options[ $key ] = $value;
-			}
-		}
-
-		// Check checkboxes, on a uncheck they won't be posted to this function
-		$defaults = $this->default_ga_values();
-		foreach ( $defaults[ $this->option_prefix ] as $option_name => $value ) {
-			$this->handle_default_setting( $data, $option_name, $value );
-		}
-
-		if ( ! empty( $this->options['analytics_profile'] ) ) {
-			$this->options['analytics_profile_code'] = $this->get_ua_code_from_profile( $this->options['analytics_profile'] );
-		}
-
-		if ( ! empty( $this->options['manual_ua_code_field'] ) ) {
-			$this->options['manual_ua_code_field'] = trim( $this->options['manual_ua_code_field'] );
-			// en dash to minus, prevents issue with code copied from web with "fancy" dash
-			$this->options['manual_ua_code_field'] = str_replace( '–', '-', $this->options['manual_ua_code_field'] );
-
-			if ( ! preg_match( '|^UA-\d{4,}-\d+$|', $this->options['manual_ua_code_field'] ) ) {
-
-				$this->add_notification( 'ga_notifications', array(
-					'type'        => 'error',
-					'description' => __( 'The UA code needs to follow UA-XXXXXXXX-X format.', 'google-analytics-for-wordpress' ),
-				) );
-
-				wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
-				exit;
-			}
-		}
-
-		if ( $this->update_option( $this->options ) ) {
-			// Success, add a new notification
-			$this->add_notification( 'ga_notifications', array(
-				'type'        => 'success',
-				'description' => __( 'Settings saved.', 'google-analytics-for-wordpress' ),
-			) );
-		}
-		else {
-			// Fail, add a new notification
-			$this->add_notification( 'ga_notifications', array(
-				'type'        => 'error',
-				'description' => __( 'There were no changes to save, please try again.', 'google-analytics-for-wordpress' ),
-			) );
-		}
-
-		// redirect
-		wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
-		exit;
-	}
-
-	/**
 	 * Run a this deactivation hook on deactivation of GA. When this happens we'll
 	 * remove the options for the profiles and the refresh token.
 	 */
 	public static function ga_deactivation_hook() {
 		// Remove the refresh token and other API settings
 		self::analytics_api_clean_up();
-	}
-
-	/**
-	 * Handle a default setting in GA
-	 *
-	 * @param array  $data
-	 * @param string $option_name
-	 * @param mixed  $value
-	 */
-	private function handle_default_setting( $data, $option_name, $value ) {
-		if ( ! isset( $data[ $option_name ] ) ) {
-			// If no data was passed in, set it to the default.
-			if ( $value === 1 ) {
-				// Disable the checkbox for now, use value 0
-				$this->options[ $option_name ] = 0;
-			}
-			else {
-				$this->options[ $option_name ] = $value;
-			}
-		}
-	}
-
-	/**
-	 * Handle the post requests in the admin form of the GA plugin
-	 *
-	 * @param Yoast_GA_Dashboards $dashboards
-	 */
-	private function handle_ga_post_request( $dashboards ) {
-		if ( ! function_exists( 'wp_verify_nonce' ) ) {
-			require_once( ABSPATH . 'wp-includes/pluggable.php' );
-		}
-
-		if ( isset( $_POST['ga-form-settings'] ) && wp_verify_nonce( $_POST['yoast_ga_nonce'], 'save_settings' ) ) {
-			if ( ! isset ( $_POST['ignore_users'] ) ) {
-				$_POST['ignore_users'] = array();
-			}
-
-			$dashboards_disabled = Yoast_GA_Settings::get_instance()->dashboards_disabled();
-
-			if ( ( $dashboards_disabled == false && isset( $_POST['dashboards_disabled'] ) ) || $this->ga_profile_changed( $_POST ) ) {
-				$dashboards->reset_dashboards_data();
-			}
-
-			// Post submitted and verified with our nonce
-			$this->save_settings( $_POST );
-		}
-	}
-
-	/**
-	 * Is there selected an other property in the settings post? Returns true or false.
-	 *
-	 * @param array $post
-	 *
-	 * @return bool
-	 */
-	private function ga_profile_changed( $post ) {
-		if ( isset( $post['analytics_profile'] ) && isset( $this->options['analytics_profile'] ) ) {
-			if ( $post['analytics_profile'] != $this->options['analytics_profile'] ) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	/**
@@ -223,30 +111,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 */
 	private function show_admin_dashboard_warning() {
 		return ( current_user_can( 'manage_options' ) && isset( $_GET['page'] ) && $_GET['page'] === 'yst_ga_dashboard' );
-	}
-
-	/**
-	 * Transform the Profile ID into an helpful UA code
-	 *
-	 * @param integer $profile_id
-	 *
-	 * @return null
-	 */
-	private function get_ua_code_from_profile( $profile_id ) {
-		$profiles = $this->get_profiles();
-		$ua_code  = null;
-
-		foreach ( $profiles as $account ) {
-			foreach ( $account['items'] as $profile ) {
-				foreach ( $profile['items'] as $subprofile ) {
-					if ( isset( $subprofile['id'] ) && $subprofile['id'] === $profile_id ) {
-						return $subprofile['ua_code'];
-					}
-				}
-			}
-		}
-
-		return $ua_code;
 	}
 
 	/**
@@ -269,16 +133,26 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	}
 
 	/**
+	 * Register the custom dimensions tab
+	 */
+	public function register_custom_dimensions_tab() {
+		echo '<a class="nav-tab" id="yst_ga_custom_dimensions-tab" href="#top#yst_ga_custom_dimensions">' . __( 'Custom Dimensions', 'google-analytics-for-wordpress' ) . '</a>';
+	}
+
+	/**
 	 * Adds some promo text for the premium plugin on the custom dimensions tab.
 	 */
-	public function premium_promo() {
-		echo '<div class="ga-promote">';
-		echo '<p>';
-		printf( __( 'If you want to track custom dimensions like page views per author or post type, you should upgrade to the %1$spremium version of Google Analytics by Yoast%2$s.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=text-link&utm_source=gawp-config&utm_campaign=wpgaplugin&utm_content=custom_dimensions_tab">', '</a>' );
-		echo ' ';
-		_e( 'This will also give you email access to the support team at Yoast, who will provide support on the plugin 24/7.', 'google-analytics-for-wordpress' );
-		echo '</p>';
-		echo '</div>';
+	public function premium_promo_tab() {
+		echo $this->premium_promo( true );
+	}
+
+	/**
+	 * Adds some promo text for the premium plugin on the custom dimensions tab.
+	 *
+	 * @param bool $add_tab_div Add the div wrapper to make it a tab
+	 */
+	public function premium_promo( $add_tab_div = false ) {
+		require_once( $this->plugin_path . 'admin/views/custom-dimensions-upsell.php' );
 	}
 
 	/**
@@ -311,7 +185,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		$this->translate_promo();
 
 		if ( ! has_action( 'yst_ga_custom_dimensions_tab-content' ) ) {
-			add_action( 'yst_ga_custom_dimensions_tab-content', array( $this, 'premium_promo' ) );
+			add_action( 'yst_ga_custom_tabs-tab', array( $this, 'register_custom_dimensions_tab' ) );
+			add_action( 'yst_ga_custom_tabs-content', array( $this, 'premium_promo_tab' ) );
 		}
 
 		if ( ! has_action( 'yst_ga_custom_dimension_add-dashboards-tab' ) ) {
@@ -320,7 +195,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 		switch ( filter_input( INPUT_GET, 'page' ) ) {
 			case 'yst_ga_settings':
-				require_once( $this->plugin_path . 'admin/pages/settings.php' );
+				require_once( $this->plugin_path . 'admin/pages/settings-api.php' );
 				break;
 			case 'yst_ga_extensions':
 				require_once( $this->plugin_path . 'admin/pages/extensions.php' );
@@ -332,25 +207,15 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		}
 	}
 
-
 	/**
-	 * Get the Google Analytics profiles which are in this google account
-	 *
-	 * @return array
-	 */
-	public function get_profiles() {
-		$return = Yoast_Google_Analytics::get_instance()->get_profiles();
-
-		return $return;
-	}
-
-	/**
-	 * Checks if there is a callback to get token from Google Analytics API
+	 * Checks if there is a callback or reauth to get token from Google Analytics api
 	 */
 	private function google_analytics_listener() {
+		if ( ! empty( $this->options['google_auth_code'] ) ) {
+			Yoast_Google_Analytics::get_instance()->authenticate( trim( $this->options['google_auth_code'] ) );
+		}
 		$google_auth_code = filter_input( INPUT_POST, 'google_auth_code' );
-		if ( $google_auth_code && current_user_can( 'manage_options' ) ) {
-			wp_verify_nonce( 'yoast_ga_nonce', 'save_settings' );
+		if ( $google_auth_code && current_user_can( 'manage_options' ) && wp_verify_nonce( 'yoast_ga_nonce', 'save_settings' ) ) {
 
 			self::analytics_api_clean_up();
 
@@ -369,69 +234,22 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	}
 
 	/**
-	 * Get the current GA profile
+	 * Get the UA code from a profile
+	 *
+	 * @param bool $ua_code
 	 *
 	 * @return null
 	 */
-	private function get_current_profile() {
+	public function get_current_profile( $ua_code = false ) {
 		if ( ! empty( $this->options['analytics_profile'] ) ) {
+			if ( $ua_code ) {
+				return $this->options['analytics_profile_code'];
+			}
+
 			return $this->options['analytics_profile'];
 		}
-		else {
-			return null;
-		}
-	}
 
-	/**
-	 * Get the user roles of this WordPress blog
-	 *
-	 * @return array
-	 */
-	public function get_userroles() {
-		global $wp_roles;
-
-		$all_roles = $wp_roles->roles;
-		$roles     = array();
-
-		/**
-		 * Filter: 'editable_roles' - Allows filtering of the roles shown within the plugin (and elsewhere in WP as it's a WP filter)
-		 *
-		 * @api array $all_roles
-		 */
-		$editable_roles = apply_filters( 'editable_roles', $all_roles );
-
-		foreach ( $editable_roles as $id => $name ) {
-			$roles[] = array(
-				'id'   => $id,
-				'name' => translate_user_role( $name['name'] ),
-			);
-		}
-
-		return $roles;
-	}
-
-	/**
-	 * Get types of how we can track downloads
-	 *
-	 * @return array
-	 */
-	public function track_download_types() {
-		return array(
-			0 => array( 'id' => 'event', 'name' => __( 'Event', 'google-analytics-for-wordpress' ) ),
-			1 => array( 'id' => 'pageview', 'name' => __( 'Pageview', 'google-analytics-for-wordpress' ) ),
-		);
-	}
-
-	/**
-	 * Get options for the track full url or links setting
-	 *
-	 * @return array
-	 */
-	public function get_track_full_url() {
-		return array(
-			0 => array( 'id' => 'domain', 'name' => __( 'Just the domain', 'google-analytics-for-wordpress' ) ),
-			1 => array( 'id' => 'full_links', 'name' => __( 'Full links', 'google-analytics-for-wordpress' ) ),
-		);
+		return null;
 	}
 
 	/**
@@ -514,16 +332,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		$extensions = apply_filters( 'yst_ga_extension_status', $extensions );
 
 		return $extensions;
-	}
-
-	/**
-	 * Add a notification to the notification transient
-	 *
-	 * @param string $transient_name
-	 * @param array  $settings
-	 */
-	private function add_notification( $transient_name, $settings ) {
-		set_transient( $transient_name, $settings, MINUTE_IN_SECONDS );
 	}
 
 	/**

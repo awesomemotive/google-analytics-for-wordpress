@@ -1,7 +1,6 @@
 <?php
 /**
- * @package GoogleAnalytics
- * @subpackage Admin
+ * @package GoogleAnalytics\Admin
  */
 
 global $yoast_ga_admin;
@@ -98,7 +97,7 @@ echo $yoast_ga_admin->content_head();
 				else {
 					?>
 					<div class="ga-form ga-form-input">
-						<label class="ga-form ga-form-checkbox-label ga-form-label-left"><?php echo __( 'Select a dimension', 'google-analytics-for-wordpress' ); ?></label>
+						<label for="toggle_dimensions" class="ga-form ga-form-checkbox-label ga-form-label-left"><?php echo __( 'Select a dimension', 'google-analytics-for-wordpress' ); ?></label>
 					</div>
 					<select data-rel='toggle_dimensions' id="toggle_dimensions" style="width: 350px"></select>
 
