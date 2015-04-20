@@ -53,7 +53,7 @@ settings_errors( 'yoast_google_analytics' );
 						echo '<div class="ga-form ga-form-input"><input type="submit" name="ga-form-settings" value="' . __( 'Save authentication code', 'google-analytics-for-wordpress' ) . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-settings" onclick="yst_closepopupwindow();"></div>';
 					echo '</div>';
 
-					echo '<table class="form-table"><tbody><tr><th scope="row">' . __( 'Authenticate with Google' ) . '</th>';
+					echo '<table class="form-table"><tbody><tr><th scope="row">' . __( 'Authenticate with Google', 'google-analytics-for-wordpress' ) . '</th>';
 					if ( empty( $profiles ) ) {
 						echo '<td><a id="yst_ga_authenticate" class="button" onclick="yst_popupwindow(\'' . $auth_url . '\',500,500);">' . __( 'Click here to authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a></td>';
 					}
