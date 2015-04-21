@@ -377,9 +377,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		if ( ! empty( $this->options['analytics_profile'] ) ) {
 			return $this->options['analytics_profile'];
 		}
-		else {
-			return null;
-		}
+
+		return null;
 	}
 
 	/**
