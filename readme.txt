@@ -55,7 +55,7 @@ This section describes how to install the plugin and get it working.
 
 Release Date: April 21th, 2015
 
-Bugfixes:
+* Bugfixes:
     * Fixes a bug where GA API was being pinged too often.
     * Fixes a bug where users were unable to authenticate with Google Analytics. It might take a while for authentication to work again, as the API key within the plugin has to be within its quota limits again. We’re very sorry for the inconvenience. Note that for Premium users everything still works.
 
@@ -63,17 +63,17 @@ Bugfixes:
 
 Release Date: April 20th, 2015
 
-Enhancements:
+* Enhancements:
     * Complete technical overhaul of the way settings are being stored. Switched to WP Settings API and added input validation and sanitation for several settings.
     * Made the settings more accessible by adding `for` attributes to the labels, connecting them with the corresponding form fields. Props to [Steve Repsher](https://github.com/steverep) for the awesome contribution!
     * Made Universal tracking the default for new installs.
     * Adds administrators to the default user roles to ignore for tracking.
 
-Security:
+* Security:
     * Fixes several security issues that were discovered during an elaborate security review performed by our friends from [Sucuri](https://sucuri.net/).
     * Fixes two other XSS issues. Thanks to [Johannes Schmitt](https://github.com/schmittjoh) from [Scrutinizer CI](https://scrutinizer-ci.com/) and [Jouko Pynnönen](http://klikki.fi) for discovering and responsibly disclosing these issues.
 
-Bugfixes:
+* Bugfixes:
     * Fixes an issue where some GA dashboard style sheets and scripts were also loaded outside of the Google Analytics by Yoast dashboard, thereby unnecessarily slowing down the WP admin.
     * Fixes a bug where a PHP warning could be raised on the dashboard when no data is available.
 
