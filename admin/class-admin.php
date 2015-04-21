@@ -184,7 +184,7 @@ class Yoast_GA_Admin {
 
 		$this->translate_promo();
 
-		if ( ! has_action( 'yst_ga_custom_dimensions_tab-content' ) && ! defined( 'GA_YOAST_PREMIUM_VERSION' ) ) {
+		if ( ! has_action( 'yst_ga_custom_dimensions_tab-content' ) ) {
 			add_action( 'yst_ga_custom_tabs-tab', array( $this, 'register_custom_dimensions_tab' ) );
 			add_action( 'yst_ga_custom_tabs-content', array( $this, 'premium_promo_tab' ) );
 		}
