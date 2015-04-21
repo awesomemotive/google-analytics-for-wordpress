@@ -1,7 +1,6 @@
 <?php
 /**
- * @package GoogleAnalytics
- * @subpackage Includes
+ * @package GoogleAnalytics\Includes
  */
 
 /**
