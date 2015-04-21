@@ -33,7 +33,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 			do_action( 'yst_tracking' );
 
 			if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != '' ) {
-				$domain = $this->options['subdomain_tracking'];
+				$domain = esc_attr( $this->options['subdomain_tracking'] );
 			}
 			else {
 				$domain = 'auto'; // Default domain value
