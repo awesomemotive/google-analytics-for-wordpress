@@ -270,7 +270,7 @@ class Yoast_GA_Admin_Form {
 	 * @return string
 	 */
 	private static function label( $id, $title, $type ) {
-		return '<label class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . self::$form_namespace . '-' . $id . '">' . $title . ':</label>';
+		return '<label for="' . 'yoast-ga-form-' . $type . '-' . self::$form_namespace . '-' . $id . '" class="ga-form ga-form-' . $type . '-label ga-form-label-left" id="yoast-ga-form-label-' . $type . '-' . self::$form_namespace . '-' . $id . '">' . $title . ':</label>';
 	}
 
 	/**
