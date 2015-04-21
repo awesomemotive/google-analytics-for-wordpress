@@ -87,12 +87,14 @@ class Yoast_Google_Analytics {
 	 * Wrapper for authenticate the client. If authentication code is send it will get and check an access token.
 	 *
 	 * @param mixed $authentication_code
+	 *
+	 * @return boolean
 	 */
 	public function authenticate( $authentication_code = null ) {
 		// When authentication again we should clean up some stuff
 		$this->api_cleanup();
 
-		$this->client->authenticate_client( $authentication_code );
+		return $this->client->authenticate_client( $authentication_code );
 	}
 
 	/**
