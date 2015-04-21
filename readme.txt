@@ -56,8 +56,8 @@ This section describes how to install the plugin and get it working.
 Release Date: April 21th, 2015
 
 Bugfixes:
-    * Fixes a bug where GA API was being pinged on every request in the Admin.
-    * Fixes a bug where users were unable to authenticate with Google Analytics.
+    * Fixes a bug where GA API was being pinged too often.
+    * Fixes a bug where users were unable to authenticate with Google Analytics. It might take a while for authentication to work again, as the API key within the plugin has to be within its quota limits again. We’re very sorry for the inconvenience. Note that for Premium users everything still works.
 
 = 5.4 =
 
