@@ -256,7 +256,7 @@ class Yoast_GA_Options {
 				'anonymous_data'             => 0,
 				'enable_universal'           => 1,
 				'demographics'               => 0,
-				'ignore_users'               => array( 'editor' ),
+				'ignore_users'               => array( 'administrator', 'editor' ),
 				'dashboards_disabled'        => 0,
 				'anonymize_ips'              => 0,
 				'track_download_as'          => 'event',
