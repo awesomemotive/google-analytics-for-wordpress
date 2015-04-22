@@ -440,7 +440,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	public function test_the_content_WITH_outbound_link_WITH_link_attributes() {
 		$this->track_outbound = 1;
 
-		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-article', 'http://examples.org/test', 'Linking text');\"  title=\"test\" style=\"color: #fff;\">Linking text</a>", 'the_content', 'title="test" style="color: #fff;"' );
+		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-article', 'http://examples.org/test', 'Linking text');\" title=\"test\" style=\"color: #fff;\">Linking text</a>", 'the_content', 'title="test" style="color: #fff;"' );
 	}
 
 	/**
@@ -498,7 +498,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	public function test_widget_content_WITH_outbound_link_WITH_link_attributes() {
 		$this->track_outbound = 1;
 
-		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-widget', 'http://examples.org/test', 'Linking text');\"  title=\"test\" style=\"color: #fff;\">Linking text</a>", 'widget_content', 'title="test" style="color: #fff;"' );
+		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-widget', 'http://examples.org/test', 'Linking text');\" title=\"test\" style=\"color: #fff;\">Linking text</a>", 'widget_content', 'title="test" style="color: #fff;"' );
 	}
 
 	/**
@@ -556,7 +556,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	public function test_nav_menu_WITH_outbound_link_WITH_link_attributes() {
 		$this->track_outbound = 1;
 
-		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-menu', 'http://examples.org/test', 'Linking text');\"  title=\"test\" style=\"color: #fff;\">Linking text</a>", 'nav_menu', 'title="test" style="color: #fff;"' );
+		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-menu', 'http://examples.org/test', 'Linking text');\" title=\"test\" style=\"color: #fff;\">Linking text</a>", 'nav_menu', 'title="test" style="color: #fff;"' );
 	}
 
 	/**
@@ -614,7 +614,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	public function test_comment_text_WITH_outbound_link_WITH_link_attributes() {
 		$this->track_outbound = 1;
 
-		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-comment', 'http://examples.org/test', 'Linking text');\"  title=\"test\" style=\"color: #fff;\">Linking text</a>", 'comment_text', 'title="test" style="color: #fff;"' );
+		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-comment', 'http://examples.org/test', 'Linking text');\" title=\"test\" style=\"color: #fff;\">Linking text</a>", 'comment_text', 'title="test" style="color: #fff;"' );
 	}
 
 }

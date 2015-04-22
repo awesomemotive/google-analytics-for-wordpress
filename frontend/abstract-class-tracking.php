@@ -12,7 +12,7 @@ abstract class Yoast_GA_Tracking {
 	 * Regular expression for Ga.js and universal tracking to detect links
 	 * @var string
 	 */
-	protected $link_regex = '/<a([^>]*?)\shref=([\'\"])([a-zA-Z]+?):(\/\/)?([^\2]+?)\2\s?(.*?)>(.*?)<\/a>/i';
+	protected $link_regex = '/<a([^>]*)\shref=([\'\"])([a-zA-Z]+):(?:\/){2}?(.*)\2([^>]*)>(.*)<\/a>/isU';
 
 	/**
 	 * Storage for the currently set options
@@ -337,8 +337,8 @@ abstract class Yoast_GA_Tracking {
 	 */
 	protected function get_target( $category, $matches ) {
 		$protocol     = $matches[3];
-		$original_url = $matches[5];
-		$domain       = $this->yoast_ga_get_domain( $matches[5] );
+		$original_url = $matches[4];
+		$domain       = $this->yoast_ga_get_domain( $matches[4] );
 		$origin       = $this->yoast_ga_get_domain( $_SERVER['HTTP_HOST'] );
 		$extension    = substr( strrchr( $original_url, '.' ), 1 );
 		$type         = $this->get_target_type( $extension, $domain, $origin, $matches );
@@ -352,8 +352,8 @@ abstract class Yoast_GA_Tracking {
 			'origin_domain'   => $origin['domain'],
 			'origin_host'     => $origin['host'],
 			'extension'       => $extension,
-			'link_attributes' => rtrim( $matches[1] . ' ' . $matches[6] ),
-			'link_text'       => $matches[7],
+			'link_attributes' => trim( $matches[1] . ' ' . $matches[5] ),
+			'link_text'       => $matches[6],
 			'original_url'    => $original_url,
 		);
 	}
@@ -372,7 +372,7 @@ abstract class Yoast_GA_Tracking {
 		$download_extensions = explode( ',', str_replace( '.', '', $this->options['extensions_of_files'] ) );
 		$download_extensions = array_map( 'trim', $download_extensions );
 		$protocol            = $matches[3];
-		$original_url        = $matches[5];
+		$original_url        = $matches[4];
 
 		// Break out immediately if the link is not an http or https link.
 		$type = null;
