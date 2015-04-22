@@ -2,10 +2,10 @@
 # This file is distributed under the GPL v3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Google Analytics by Yoast 5.4.1\n"
+"Project-Id-Version: Google Analytics by Yoast 5.4.2\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/yoast/google-analytics-for-wordpress/issues\n"
-"POT-Creation-Date: 2015-04-21 14:26:35+00:00\n"
+"POT-Creation-Date: 2015-04-22 13:25:30+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -84,31 +84,31 @@ msgid ""
 "provide support on the plugin 24/7."
 msgstr ""
 
-#: admin/class-admin.php:417
+#: admin/class-admin.php:416
 msgid "Event"
 msgstr ""
 
-#: admin/class-admin.php:418
+#: admin/class-admin.php:417
 msgid "Pageview"
 msgstr ""
 
-#: admin/class-admin.php:429
+#: admin/class-admin.php:428
 msgid "Just the domain"
 msgstr ""
 
-#: admin/class-admin.php:430
+#: admin/class-admin.php:429
 msgid "Full links"
 msgstr ""
 
-#: admin/class-admin.php:450
+#: admin/class-admin.php:449
 msgid "Debug information"
 msgstr ""
 
-#: admin/class-admin.php:499
+#: admin/class-admin.php:498
 msgid "Google Analytics by Yoast Premium"
 msgstr ""
 
-#: admin/class-admin.php:500
+#: admin/class-admin.php:499
 msgid ""
 "The premium version of Google Analytics by Yoast with more features and "
 "support."
@@ -118,27 +118,27 @@ msgstr ""
 msgid "Google Analytics by Yoast"
 msgstr ""
 
-#: admin/class-admin.php:505
+#: admin/class-admin.php:504
 msgid "eCommerce tracking"
 msgstr ""
 
-#: admin/class-admin.php:506
+#: admin/class-admin.php:505
 msgid ""
 "Track your eCommerce data and transactions with this eCommerce extension "
 "for Google Analytics."
 msgstr ""
 
-#: admin/class-google-analytics.php:318
+#: admin/class-google-analytics.php:320
 msgid "Please configure your %sGoogle Analytics settings%s!"
 msgstr ""
 
-#: admin/class-google-analytics.php:331
+#: admin/class-google-analytics.php:333
 msgid ""
 "It seems the authentication for the plugin has expired, please "
 "%sre-authenticate%s with Google Analytics to allow the plugin to fetch data."
 msgstr ""
 
-#: admin/class-google-analytics.php:344
+#: admin/class-google-analytics.php:346
 msgid ""
 "Data is not up-to-date, there was an error in retrieving the data from "
 "Google Analytics. This error could be caused by several issues. If the "
