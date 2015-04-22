@@ -352,7 +352,7 @@ abstract class Yoast_GA_Tracking {
 			'origin_domain'   => $origin['domain'],
 			'origin_host'     => $origin['host'],
 			'extension'       => $extension,
-			'link_attributes' => rtrim( $matches[1] . ' ' . $matches[5] ),
+			'link_attributes' => trim( $matches[1] . ' ' . $matches[5] ),
 			'link_text'       => $matches[6],
 			'original_url'    => $original_url,
 		);
