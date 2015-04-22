@@ -74,7 +74,7 @@ class Yoast_GA_Admin_Form_Test extends GA_UnitTestCase {
 		$values[] = array( 'id' => 2, 'name' => 'Tests' );
 
 		$output = null;
-		$output .= '<div class="ga-form ga-form-input"><label class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-phpunit-' . $name . '">';
+		$output .= '<div class="ga-form ga-form-input"><label for="yoast-ga-form-select-phpunit-test_select" class="ga-form ga-form-select-label ga-form-label-left" id="yoast-ga-form-label-select-phpunit-' . $name . '">';
 		$output .= $title . ':</label><select data-placeholder="" name="' . $name . '" id="yoast-ga-form-select-phpunit-' . $name . '">';
 		$output .= '<option value="1" >PHP Unit</option><option value="2" >Tests</option></select></div>';
 
