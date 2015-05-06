@@ -142,7 +142,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 			}
 		}
 		else {
-			require( 'views/tracking-usergroup.php' );
+			$this->disabled_usergroup();
 		}
 	}
 
