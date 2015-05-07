@@ -476,7 +476,21 @@ abstract class Yoast_GA_Tracking {
 	 */
 	protected function debug_mode() {
 		if ( $this->options['debug_mode'] == 1 ) {
-			require( 'views/tracking-debug.php' );
+			/* translators %1$s and %4$s places an HTML comment tag around the message, %2$s is the product name 'Google Analytics by Yoast'. %3$s displays the plugin version the website uses and a link to the plugin on Yoast.com */
+			echo sprintf( __( '%1$s This site uses the %2$s plugin version %3$s %4$s', 'google-analytics-for-wordpress' ), '<!--', 'Google Analytics by Yoast', GAWP_VERSION . ' - https://yoast.com/wordpress/plugins/google-analytics/', "-->\n" );
+
+			if ( is_super_admin() ) {
+				/* translators: %1$s and %2$s places an HTML comment tag around the message. */
+				echo sprintf( __( '%1$s @Webmaster, normally you will find the Google Analytics tracking code here, but the Debug Mode is enabled. To change this, navigate to Analytics -> Settings -> (Tab) Debug Mode and disable Debug Mode to enable tracking of your site.  %2$s', 'google-analytics-for-wordpress' ), '<!--', "-->\n" );
+			}
+			else {
+				/* translators: %1$s and %2$s places an HTML comment tag around the message. */
+				echo sprintf( __( '%1$s Normally you will find the Google Analytics tracking code here, but the webmaster has enabled the Debug Mode. %2$s', 'google-analytics-for-wordpress' ), '<!--', "-->\n" );
+			}
+
+			// Do not make this translatable, as this is the product name.
+			echo '<!-- / Google Analytics by Yoast -->';
+
 			return true;
 		}
 		return false;
