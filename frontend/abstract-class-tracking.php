@@ -469,4 +469,17 @@ abstract class Yoast_GA_Tracking {
 		echo '<!-- / Google Analytics by Yoast -->';
 	}
 
+	/**
+	 * When the debug mode is enabled, display a message in the source.
+	 *
+	 * @return bool
+	 */
+	protected function debug_mode() {
+		if ( $this->options['debug_mode'] == 1 ) {
+			require( 'views/tracking-debug.php' );
+			return true;
+		}
+		return false;
+	}
+
 }

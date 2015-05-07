@@ -8,6 +8,12 @@
  */
 class Yoast_GA_Universal extends Yoast_GA_Tracking {
 
+	protected $gaq_push;
+
+	protected function get_tracking_view() {
+		require( 'views/tracking-universal.php' );
+	}
+
 	/**
 	 * Test helper function
 	 */
@@ -26,46 +32,21 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 		global $wp_query;
 
 		if ( $this->do_tracking() && ! is_preview() ) {
-			$gaq_push = array();
+			$this->gaq_push = array();
 
 			// Running action for adding possible code
 			do_action( 'yst_tracking' );
 
-			if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != '' ) {
-				$domain = esc_attr( $this->options['subdomain_tracking'] );
-			}
-			else {
-				$domain = 'auto'; // Default domain value
-			}
+			$domain = $this->get_domain();
 
-			if ( ! isset( $this->options['allowanchor'] ) ) {
-				$this->options['allowanchor'] = false;
-			}
+			$this->set_allow_anchor();
 
 			$ua_code = $this->get_tracking_code();
 			if ( is_null( $ua_code ) && $return_array == false ) {
 				return null;
 			}
 
-			// Set tracking code here
-			if ( ! empty( $ua_code ) ) {
-				if ( $this->options['add_allow_linker'] && ! $this->options['allow_anchor'] ) {
-					$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowLinker': true}";
-				}
-				else {
-					if ( $this->options['allow_anchor'] && ! $this->options['add_allow_linker'] ) {
-						$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowAnchor': true}";
-					}
-					else {
-						if ( $this->options['allow_anchor'] && $this->options['add_allow_linker'] ) {
-							$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowAnchor': true, 'allowLinker': true}";
-						}
-						else {
-							$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "'";
-						}
-					}
-				}
-			}
+			$this->set_tracking_code( $domain, $ua_code );
 
 			$gaq_push[] = "'set', 'forceSSL', true";
 
@@ -133,16 +114,48 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 
 			$ga_settings = $this->options; // Assign the settings to the javascript include view
 
-			// Include the tracking view
-			if ( $this->options['debug_mode'] == 1 ) {
-				require( 'views/tracking-debug.php' );
+		}
+	}
+
+	/**
+	 * Get the domain
+	 *
+	 * @return string
+	 */
+	protected function get_subdomain_tracking_domain() {
+		if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != '' ) {
+			return esc_attr( $this->options['subdomain_tracking'] );
+		}
+		return 'auto'; // Default domain value
+	}
+
+	/**
+	 * If allowanchor is not set, set the option to false.
+	 */
+	protected function set_allow_anchor() {
+		if ( ! isset( $this->options['allowanchor'] ) ) {
+			$this->options['allowanchor'] = false;
+		}
+	}
+
+	protected function set_tracking_code( $domain, $ua_code ) {
+		if ( ! empty( $ua_code ) ) {
+			if ( $this->options['add_allow_linker'] && ! $this->options['allow_anchor'] ) {
+				$this->gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowLinker': true}";
 			}
 			else {
-				require( 'views/tracking-universal.php' );
+				if ( $this->options['allow_anchor'] && ! $this->options['add_allow_linker'] ) {
+					$this->gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowAnchor': true}";
+				}
+				else {
+					if ( $this->options['allow_anchor'] && $this->options['add_allow_linker'] ) {
+						$this->gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowAnchor': true, 'allowLinker': true}";
+					}
+					else {
+						$this->gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "'";
+					}
+				}
 			}
-		}
-		else {
-			$this->disabled_usergroup();
 		}
 	}
 
