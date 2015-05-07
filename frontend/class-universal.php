@@ -37,7 +37,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 			// Running action for adding possible code
 			do_action( 'yst_tracking' );
 
-			$domain = $this->get_domain();
+			$domain = $this->get_subdomain_tracking_domain();
 
 			$this->set_allow_anchor();
 
