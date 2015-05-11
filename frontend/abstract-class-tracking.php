@@ -456,7 +456,7 @@ abstract class Yoast_GA_Tracking {
 		/* translators %1$s and %4$s places an HTML comment tag around the message, %2$s is the product name 'Google Analytics by Yoast'. %3$s displays the plugin version the website uses and a link to the plugin on Yoast.com */
 		echo sprintf( __( '%1$s This site uses the %2$s plugin version %3$s %4$s', 'google-analytics-for-wordpress' ), '<!--', 'Google Analytics by Yoast', GAWP_VERSION . ' - https://yoast.com/wordpress/plugins/google-analytics/', "-->\n" );
 
-		if ( is_super_admin() ) {
+		if ( current_user_can( 'manage_options' ) ) {
 			/* translators: %1$s and %2$s places an HTML comment tag around the message. */
 			echo sprintf( __( '%1$s @Webmaster, normally you will find the Google Analytics tracking code here, but you are in the disabled user groups. To change this, navigate to Analytics -> Settings (Ignore usergroups) %2$s', 'google-analytics-for-wordpress' ), '<!--', "-->\n" );
 		}
@@ -479,7 +479,7 @@ abstract class Yoast_GA_Tracking {
 			/* translators %1$s and %4$s places an HTML comment tag around the message, %2$s is the product name 'Google Analytics by Yoast'. %3$s displays the plugin version the website uses and a link to the plugin on Yoast.com */
 			echo sprintf( __( '%1$s This site uses the %2$s plugin version %3$s %4$s', 'google-analytics-for-wordpress' ), '<!--', 'Google Analytics by Yoast', GAWP_VERSION . ' - https://yoast.com/wordpress/plugins/google-analytics/', "-->\n" );
 
-			if ( is_super_admin() ) {
+			if ( current_user_can( 'manage_options' ) ) {
 				/* translators: %1$s and %2$s places an HTML comment tag around the message. */
 				echo sprintf( __( '%1$s @Webmaster, normally you will find the Google Analytics tracking code here, but the Debug Mode is enabled. To change this, navigate to Analytics -> Settings -> (Tab) Debug Mode and disable Debug Mode to enable tracking of your site.  %2$s', 'google-analytics-for-wordpress' ), '<!--', "-->\n" );
 			}
