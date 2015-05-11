@@ -158,6 +158,8 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	 */
 	private $allow_anchor = 0;
 
+	private $ignore_users = array();
+
 	/**
 	 * Set the options
 	 *
@@ -174,7 +176,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 			'track_outbound'             => $this->track_outbound,
 			'anonymous_data'             => $this->anonymous_data,
 			'demographics'               => $this->demographics,
-			'ignore_users'               => array( 'editor' ),
+			'ignore_users'               => $this->ignore_users,
 			'dashboards_disabled'        => 0,
 			'anonymize_ips'              => $this->anonymize_ips,
 			'track_download_as'          => $this->track_download_as,
@@ -673,4 +675,31 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->assertContains( $expected_output, $output );
 	}
 	
+	/**
+	 * When tracking is off for admin, the tracking code should still be displayed for other users that are not administrator
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
+	 */
+	public function test_tracking_IS_OFF_FOR_ADMIN_and_user_IS_NOT_ADMIN() {
+		$post_id = $this->factory->post->create();
+
+		$user_id = $this->factory->user->create( array( 'role' => 'editor' ) );
+
+		wp_set_current_user ($user_id);
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->ignore_users = array( 'administrator' );
+
+		$class_instance = new Universal_Double( $this->options() );
+
+		ob_start();
+		$class_instance->tracking();
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		$expected_output  = "_gaTracker('create', '" . $this->manual_ua_code_field . "', 'auto');";
+
+		$this->assertContains( $expected_output, $output );
+	}
 }
