@@ -642,4 +642,35 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->assertContains( $expected_output, $output );
 	}
 
+	/**
+	 * Test if source outputs message when debug mode is on and user is admin.
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
+	 */
+	public function test_debug_mode_IS_ON_and_user_IS_admin() {
+		$post_id = $this->factory->post->create();
+
+		$user_id = $this->factory->user->create( array( 'role' => 'administrator' ) );
+
+		wp_set_current_user ($user_id);
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->debug_mode = 1;
+
+		$class_instance = new Universal_Double( $this->options() );
+
+		ob_start();
+		$class_instance->tracking();
+		$output = ob_get_contents();
+		ob_end_clean();
+
+
+		$expected_output  = "<!-- This site uses the Google Analytics by Yoast plugin version " . GAWP_VERSION . " - https://yoast.com/wordpress/plugins/google-analytics/ -->\n";
+		$expected_output .= "<!-- @Webmaster, normally you will find the Google Analytics tracking code here, but the Debug Mode is enabled. To change this, navigate to Analytics -> Settings -> (Tab) Debug Mode and disable Debug Mode to enable tracking of your site.  -->\n";
+		$expected_output .= '<!-- / Google Analytics by Yoast -->';
+
+		$this->assertContains( $expected_output, $output );
+	}
+	
 }
