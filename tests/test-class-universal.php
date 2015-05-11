@@ -617,4 +617,29 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-comment', 'http://examples.org/test', 'Linking text');\" title=\"test\" style=\"color: #fff;\">Linking text</a>", 'comment_text', 'title="test" style="color: #fff;"' );
 	}
 
+	/**
+	 * Test if source outputs message when debug mode is on and user is not admin.
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
+	 */
+	public function test_debug_mode_IS_ON_and_user_IS_NOT_admin() {
+		$post_id = $this->factory->post->create();
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->debug_mode = 1;
+
+		$class_instance = new Universal_Double( $this->options() );
+
+		ob_start();
+		$class_instance->tracking();
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		$expected_output  = "<!-- This site uses the Google Analytics by Yoast plugin version " . GAWP_VERSION . " - https://yoast.com/wordpress/plugins/google-analytics/ -->\n";
+		$expected_output .= "<!-- Normally you will find the Google Analytics tracking code here, but the webmaster has enabled the Debug Mode. -->\n";
+		$expected_output .= '<!-- / Google Analytics by Yoast -->';
+
+		$this->assertContains( $expected_output, $output );
+	}
+
 }
