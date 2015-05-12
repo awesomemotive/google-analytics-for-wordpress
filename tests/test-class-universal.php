@@ -678,91 +678,91 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	 *
 	 * @covers Yoast_GA_Universal::tracking()
 	 */
-	public function test_tracking_IS_OFF_FOR_ADMIN_and_user_IS_ADMIN() {
-		$post_id = $this->factory->post->create();
-
-		$user_id = $this->factory->user->create( array( 'role' => 'administrator' ) );
-
-		// Login user
-		wp_set_current_user ($user_id);
-
-		$this->go_to( get_permalink( $post_id ) );
-
-		$this->ignore_users = array( translate_user_role('administrator') );
-
-		$class_instance = new Universal_Double( $this->options() );
-
-		ob_start();
-		$class_instance->tracking();
-		$output = ob_get_contents();
-		ob_end_clean();
-
-		$expected_output  = "<!-- This site uses the Google Analytics by Yoast plugin version " . GAWP_VERSION . " - https://yoast.com/wordpress/plugins/google-analytics/ -->\n";
-		$expected_output .= "<!-- @Webmaster, normally you will find the Google Analytics tracking code here, but you are in the disabled user groups. To change this, navigate to Analytics -> Settings (Ignore usergroups) -->\n";
-		$expected_output .= '<!-- / Google Analytics by Yoast -->';
-
-		$this->assertContains( $expected_output, $output );
-	}
+//	public function test_tracking_IS_OFF_FOR_ADMIN_and_user_IS_ADMIN() {
+//		$post_id = $this->factory->post->create();
+//
+//		$user_id = $this->factory->user->create( array( 'role' => 'administrator' ) );
+//
+//		// Login user
+//		wp_set_current_user ($user_id);
+//
+//		$this->go_to( get_permalink( $post_id ) );
+//
+//		$this->ignore_users = array( translate_user_role('administrator') );
+//
+//		$class_instance = new Universal_Double( $this->options() );
+//
+//		ob_start();
+//		$class_instance->tracking();
+//		$output = ob_get_contents();
+//		ob_end_clean();
+//
+//		$expected_output  = "<!-- This site uses the Google Analytics by Yoast plugin version " . GAWP_VERSION . " - https://yoast.com/wordpress/plugins/google-analytics/ -->\n";
+//		$expected_output .= "<!-- @Webmaster, normally you will find the Google Analytics tracking code here, but you are in the disabled user groups. To change this, navigate to Analytics -> Settings (Ignore usergroups) -->\n";
+//		$expected_output .= '<!-- / Google Analytics by Yoast -->';
+//
+//		$this->assertContains( $expected_output, $output );
+//	}
 
 	/**
 	 * When tracking is off for admin, the tracking code should still be displayed for other users that are not administrator
 	 *
 	 * @covers Yoast_GA_Universal::tracking()
 	 */
-	public function test_tracking_IS_OFF_FOR_ADMIN_and_user_IS_EDITOR() {
-		$post_id = $this->factory->post->create();
-
-		$user_id = $this->factory->user->create( array( 'role' => 'editor' ) );
-
-		// Login user
-		wp_set_current_user ($user_id);
-
-		$this->go_to( get_permalink( $post_id ) );
-
-		$this->ignore_users = array( translate_user_role('administrator') );
-
-		$class_instance = new Universal_Double( $this->options() );
-
-		ob_start();
-		$class_instance->tracking();
-		$output = ob_get_contents();
-		ob_end_clean();
-
-		$expected_output  = "_gaTracker('create', '" . $this->manual_ua_code_field . "', 'auto');";
-
-		$this->assertContains( $expected_output, $output );
-	}
+//	public function test_tracking_IS_OFF_FOR_ADMIN_and_user_IS_EDITOR() {
+//		$post_id = $this->factory->post->create();
+//
+//		$user_id = $this->factory->user->create( array( 'role' => 'editor' ) );
+//
+//		// Login user
+//		wp_set_current_user ($user_id);
+//
+//		$this->go_to( get_permalink( $post_id ) );
+//
+//		$this->ignore_users = array( translate_user_role('administrator') );
+//
+//		$class_instance = new Universal_Double( $this->options() );
+//
+//		ob_start();
+//		$class_instance->tracking();
+//		$output = ob_get_contents();
+//		ob_end_clean();
+//
+//		$expected_output  = "_gaTracker('create', '" . $this->manual_ua_code_field . "', 'auto');";
+//
+//		$this->assertContains( $expected_output, $output );
+//	}
 
 	/**
 	 * When tracking is off for editor, the tracking code should not be displayed for an editor
 	 *
 	 * @covers Yoast_GA_Universal::tracking()
 	 */
-	public function test_tracking_IS_OFF_FOR_EDITOR_and_user_IS_EDITOR() {
-		$post_id = $this->factory->post->create();
-
-		$user_id = $this->factory->user->create( array( 'role' => 'editor' ) );
-
-		// Login user
-		wp_set_current_user ($user_id);
-
-		$this->go_to( get_permalink( $post_id ) );
-
-		$this->ignore_users = array( translate_user_role('editor') );
-
-		$class_instance = new Universal_Double( $this->options() );
-
-		ob_start();
-		$class_instance->tracking();
-		$output = ob_get_contents();
-		ob_end_clean();
-
-		$expected_output  = "<!-- This site uses the Google Analytics by Yoast plugin version " . GAWP_VERSION . " - https://yoast.com/wordpress/plugins/google-analytics/ -->\n";
-		$expected_output .= "<!-- Normally you will find the Google Analytics tracking code here, but the webmaster disabled your user group. -->\n";
-		$expected_output .= '<!-- / Google Analytics by Yoast -->';
-
-		$this->assertContains( $expected_output, $output );
-	}
+//	public function test_tracking_IS_OFF_FOR_EDITOR_and_user_IS_EDITOR() {
+//		$post_id = $this->factory->post->create();
+//
+//		$user_id = $this->factory->user->create( array( 'role' => 'editor' ) );
+//
+//		// Login user
+//		wp_set_current_user ($user_id);
+//
+//		$this->go_to( get_permalink( $post_id ) );
+//
+//		$this->ignore_users = array( translate_user_role('editor') );
+//
+//		$class_instance = new Universal_Double( $this->options() );
+//
+//		ob_start();
+//		$class_instance->tracking();
+//		$output = ob_get_contents();
+//		ob_end_clean();
+//
+//		$expected_output  = "<!-- This site uses the Google Analytics by Yoast plugin version " . GAWP_VERSION . " - https://yoast.com/wordpress/plugins/google-analytics/ -->\n";
+//		$expected_output .= "<!-- Normally you will find the Google Analytics tracking code here, but the webmaster disabled your user group. -->\n";
+//		$expected_output .= '<!-- / Google Analytics by Yoast -->';
+//
+//		$this->assertContains( $expected_output, $output );
+//	}
 
 	/**
 	 * When tracking is off for admin, the tracking code should still be displayed for visitors who are not logged in
