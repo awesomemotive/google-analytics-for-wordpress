@@ -681,7 +681,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	public function test_tracking_IS_OFF_FOR_ADMIN_and_user_IS_ADMIN() {
 		$post_id = $this->factory->post->create();
 
-		$user_id = $this->factory->user->create( array( 'ID' => 1, 'role' => 'administrator' ) );
+		$user_id = $this->factory->user->create( array( 'role' => 'administrator' ) );
 
 		// Login user
 		wp_set_current_user ($user_id);
@@ -712,7 +712,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	public function test_tracking_IS_OFF_FOR_ADMIN_and_user_IS_EDITOR() {
 		$post_id = $this->factory->post->create();
 
-		$user_id = $this->factory->user->create( array( 'ID' => 1, 'role' => 'editor' ) );
+		$user_id = $this->factory->user->create( array( 'role' => 'editor' ) );
 
 		// Login user
 		wp_set_current_user ($user_id);
@@ -741,7 +741,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	public function test_tracking_IS_OFF_FOR_EDITOR_and_user_IS_EDITOR() {
 		$post_id = $this->factory->post->create();
 
-		$user_id = $this->factory->user->create( array( 'ID' => 1, 'role' => 'editor' ) );
+		$user_id = $this->factory->user->create( array( 'role' => 'editor' ) );
 
 		// Login user
 		wp_set_current_user ($user_id);
