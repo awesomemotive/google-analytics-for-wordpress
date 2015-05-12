@@ -655,6 +655,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		// Login user
 		wp_set_current_user ($user_id);
 
+		// Get old user id
 		$old_user_id = get_current_user_id();
 
 		$this->go_to( get_permalink( $post_id ) );
@@ -674,6 +675,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 
 		$this->assertContains( $expected_output, $output );
 
+		// Set current user back to old user id so the tests won't fail in test-output.php
 		wp_set_current_user( $old_user_id );
 	}
 
@@ -687,6 +689,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 
 		$user_id = $this->factory->user->create( array( 'role' => 'administrator' ) );
 
+		// Get old user id
 		$old_user_id = get_current_user_id();
 
 		// Login user
@@ -709,6 +712,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 
 		$this->assertContains( $expected_output, $output );
 
+		// Set current user back to old user id so the tests won't fail in test-output.php
 		wp_set_current_user( $old_user_id );
 	}
 
@@ -722,6 +726,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 
 		$user_id = $this->factory->user->create( array( 'role' => 'editor' ) );
 
+		// Get old user id
 		$old_user_id = get_current_user_id();
 
 		// Login user
@@ -742,6 +747,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 
 		$this->assertContains( $expected_output, $output );
 
+		// Set current user back to old user id so the tests won't fail in test-output.php
 		wp_set_current_user( $old_user_id );
 	}
 
@@ -755,6 +761,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 
 		$user_id = $this->factory->user->create( array( 'role' => 'editor' ) );
 
+		// Get old user id
 		$old_user_id = get_current_user_id();
 
 		// Login user
@@ -777,6 +784,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 
 		$this->assertContains( $expected_output, $output );
 
+		// Set current user back to old user id so the tests won't fail in test-output.php
 		wp_set_current_user( $old_user_id );
 	}
 
