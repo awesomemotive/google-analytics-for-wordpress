@@ -635,9 +635,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$output = ob_get_contents();
 		ob_end_clean();
 
-		$expected_output  = "<!-- This site uses the Google Analytics by Yoast plugin version " . GAWP_VERSION . " - https://yoast.com/wordpress/plugins/google-analytics/ -->\n";
-		$expected_output .= "<!-- Normally you will find the Google Analytics tracking code here, but the webmaster has enabled the Debug Mode. -->\n";
-		$expected_output .= '<!-- / Google Analytics by Yoast -->';
+		$expected_output = '<!-- This site uses the Google Analytics by Yoast plugin version ' . GAWP_VERSION .  ' - https://yoast.com/wordpress/plugins/google-analytics/ --><!-- Normally you will find the Google Analytics tracking code here, but the webmaster has enabled the Debug Mode. --><!-- / Google Analytics by Yoast -->';
 
 		$this->assertContains( $expected_output, $output );
 	}
@@ -669,9 +667,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$output = ob_get_contents();
 		ob_end_clean();
 
-		$expected_output  = "<!-- This site uses the Google Analytics by Yoast plugin version " . GAWP_VERSION . " - https://yoast.com/wordpress/plugins/google-analytics/ -->\n";
-		$expected_output .= "<!-- @Webmaster, normally you will find the Google Analytics tracking code here, but the Debug Mode is enabled. To change this, navigate to Analytics -> Settings -> (Tab) Debug Mode and disable Debug Mode to enable tracking of your site.  -->\n";
-		$expected_output .= '<!-- / Google Analytics by Yoast -->';
+		$expected_output  = '<!-- This site uses the Google Analytics by Yoast plugin version ' . GAWP_VERSION . ' - https://yoast.com/wordpress/plugins/google-analytics/ --><!-- @Webmaster, normally you will find the Google Analytics tracking code here, but the Debug Mode is enabled. To change this, navigate to Analytics -> Settings -> (Tab) Debug Mode and disable Debug Mode to enable tracking of your site. --><!-- / Google Analytics by Yoast -->';
 
 		$this->assertContains( $expected_output, $output );
 
@@ -706,9 +702,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$output = ob_get_contents();
 		ob_end_clean();
 
-		$expected_output  = "<!-- This site uses the Google Analytics by Yoast plugin version " . GAWP_VERSION . " - https://yoast.com/wordpress/plugins/google-analytics/ -->\n";
-		$expected_output .= "<!-- @Webmaster, normally you will find the Google Analytics tracking code here, but you are in the disabled user groups. To change this, navigate to Analytics -> Settings (Ignore usergroups) -->\n";
-		$expected_output .= '<!-- / Google Analytics by Yoast -->';
+		$expected_output  = '<!-- This site uses the Google Analytics by Yoast plugin version ' . GAWP_VERSION . ' - https://yoast.com/wordpress/plugins/google-analytics/ --><!-- @Webmaster, normally you will find the Google Analytics tracking code here, but you are in the disabled user groups. To change this, navigate to Analytics -> Settings (Ignore usergroups) --><!-- / Google Analytics by Yoast -->';
 
 		$this->assertContains( $expected_output, $output );
 
@@ -778,10 +772,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$output = ob_get_contents();
 		ob_end_clean();
 
-		$expected_output  = "<!-- This site uses the Google Analytics by Yoast plugin version " . GAWP_VERSION . " - https://yoast.com/wordpress/plugins/google-analytics/ -->\n";
-		$expected_output .= "<!-- Normally you will find the Google Analytics tracking code here, but the webmaster disabled your user group. -->\n";
-		$expected_output .= '<!-- / Google Analytics by Yoast -->';
-
+		$expected_output  = '<!-- This site uses the Google Analytics by Yoast plugin version ' . GAWP_VERSION . ' - https://yoast.com/wordpress/plugins/google-analytics/ --><!-- Normally you will find the Google Analytics tracking code here, but the webmaster disabled your user group. --><!-- / Google Analytics by Yoast -->';
 		$this->assertContains( $expected_output, $output );
 
 		// Set current user back to old user id so the tests won't fail in test-output.php
