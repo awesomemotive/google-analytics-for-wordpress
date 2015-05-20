@@ -473,7 +473,7 @@ abstract class Yoast_GA_Tracking {
 	 * @return bool
 	 */
 	protected function debug_mode() {
-		if ( $this->options['debug_mode'] == 1 ) {
+		if ( $this->options['debug_mode'] === 1 ) {
 			/* translators %1$s is the product name 'Google Analytics by Yoast'. %2$s displays the plugin version the website uses and a link to the plugin on Yoast.com */
 			echo '<!-- ' . sprintf( __( 'This site uses the %1$s plugin version %2$s', 'google-analytics-for-wordpress' ), 'Google Analytics by Yoast', GAWP_VERSION . ' - https://yoast.com/wordpress/plugins/google-analytics/' ) . ' -->';
 
