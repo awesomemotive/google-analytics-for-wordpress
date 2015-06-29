@@ -101,6 +101,8 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Anonymize IPs', 'google-analytics-for-wordpress' ), 'anonymize_ips', null, sprintf( __( 'This adds %1$s, telling Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApi_gat?csw=1#_gat._anonymizeIp" target="_blank"><code>_anonymizeIp</code></a>' ) );
 		echo Yoast_GA_Admin_Form::select( __( 'Ignore users', 'google-analytics-for-wordpress' ), 'ignore_users', $yoast_ga_admin->get_userroles(), __( 'Users of the role you select will be ignored, so if you select Editor, all Editors will be ignored.', 'google-analytics-for-wordpress' ), true );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Disable analytics dashboard', 'google-analytics-for-wordpress' ), 'dashboards_disabled', null, __( 'This will completely disable the dashboard and stop the plugin from fetching the latest analytics data.', 'google-analytics-for-wordpress' ) );
+
+		do_action( 'yst_ga-universal-tab' );
 		?>
 	</div>
 	<div id="universal" class="gatab">

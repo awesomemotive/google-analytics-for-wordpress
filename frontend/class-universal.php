@@ -82,6 +82,15 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 				$gaq_push[] = "'set', 'anonymizeIp', true";
 			}
 
+			/**
+			* Filter: 'yst_ga_filter_push_vars' - Allow changing the $gaq_push variables before scripts are required.
+			*
+			* @api array
+			*/
+			if ( $value_to_push = apply_filters( 'yst_ga_filter_push_vars', $gaq_push ) ) {
+				$gaq_push[] = $value_to_push;
+			}
+
 			// add demographics
 			if ( $this->options['demographics'] ) {
 				$gaq_push[] = "'require', 'displayfeatures'";
