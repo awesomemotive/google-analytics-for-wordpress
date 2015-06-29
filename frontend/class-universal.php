@@ -87,7 +87,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 			*
 			* @api array
 			*/
-			if ( has_filter('yst_ga_filter_push_vars') && $value_to_push = apply_filters( 'yst_ga_filter_push_vars', $gaq_push ) ) {
+			if ( has_filter( 'yst_ga_filter_push_vars' ) && $value_to_push = apply_filters( 'yst_ga_filter_push_vars', $gaq_push ) ) {
 					$gaq_push[] = $value_to_push;
 			}
 
