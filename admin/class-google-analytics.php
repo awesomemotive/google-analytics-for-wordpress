@@ -147,7 +147,7 @@ class Yoast_Google_Analytics {
 	 * @return bool
 	 */
 	public function has_refresh_token() {
-		return ( $this->client->get_refresh_token() != '' );
+		return $this->client->is_authenticated();
 	}
 
 	/**
