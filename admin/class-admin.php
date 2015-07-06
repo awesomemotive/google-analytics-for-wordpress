@@ -97,21 +97,16 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			$this->options['analytics_profile_code'] = $this->get_ua_code_from_profile( $this->options['analytics_profile'] );
 		}
 
-		if ( ! empty( $this->options['manual_ua_code_field'] ) ) {
-			$this->options['manual_ua_code_field'] = trim( $this->options['manual_ua_code_field'] );
-			// en dash to minus, prevents issue with code copied from web with "fancy" dash
-			$this->options['manual_ua_code_field'] = str_replace( '–', '-', $this->options['manual_ua_code_field'] );
 
-			if ( ! preg_match( '|^UA-\d{4,}-\d+$|', $this->options['manual_ua_code_field'] ) ) {
+		$validation = $this->validate_settings();
+		if ( is_wp_error( $validation ) ) {
+			$this->add_notification( 'ga_notifications', array(
+				'type' => 'error',
+				'description' => $validation->get_error_message(),
+			) );
 
-				$this->add_notification( 'ga_notifications', array(
-					'type'        => 'error',
-					'description' => __( 'The UA code needs to follow UA-XXXXXXXX-X format.', 'google-analytics-for-wordpress' ),
-				) );
-
-				wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
-				exit;
-			}
+			wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
+			exit;
 		}
 
 		if ( $this->update_option( $this->options ) ) {
@@ -132,6 +127,30 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		// redirect
 		wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
 		exit;
+	}
+
+	/**
+	 * Validates the settings in the `options` attribute, returns an WP_Error object on error
+	 *
+	 * @return true|WP_Error true or an error object.
+	 */
+	public function validate_settings() {
+
+		if ( ! empty( $this->options['manual_ua_code_field'] ) ) {
+			$this->options['manual_ua_code_field'] = trim( $this->options['manual_ua_code_field'] );
+			// en dash to minus, prevents issue with code copied from web with "fancy" dash
+			$this->options['manual_ua_code_field'] = str_replace( '–', '-', $this->options['manual_ua_code_field'] );
+
+			if ( ! preg_match( '|^UA-\d{4,}-\d+$|', $this->options['manual_ua_code_field'] ) ) {
+
+				return new WP_Error(
+					'ua-code-format',
+					__( 'The UA code needs to follow UA-XXXXXXXX-X format.', 'google-analytics-for-wordpress' )
+				);
+			}
+		}
+
+		return true;
 	}
 
 	/**
