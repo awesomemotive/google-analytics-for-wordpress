@@ -153,7 +153,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		/**
 		 * Filters the validation for the admin options
 		 *
-		 * @param true|WP_Error true if the validation is successfull, WP_Error on error.
+		 * @param true|WP_Error true if the validation is successful, WP_Error on error.
 		 * @param array $this->options The options that are being saved.
 		 */
 		return apply_filters( 'yst_ga_admin_validate_settings', true, $this->options );
