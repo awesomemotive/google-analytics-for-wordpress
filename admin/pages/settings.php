@@ -103,7 +103,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Disable analytics dashboard', 'google-analytics-for-wordpress' ), 'dashboards_disabled', null, __( 'This will completely disable the dashboard and stop the plugin from fetching the latest analytics data.', 'google-analytics-for-wordpress' ) );
 
 		/**
-		 * Action: 'yst_ga_universal_tab' - Allow changing the universal tab of the settings
+		 * Action: 'yst_ga_universal_tab' - Allow adding to the universal tab of the settings
 		 */
 		do_action( 'yst_ga_universal_tab' );
 		?>
@@ -133,7 +133,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		echo Yoast_GA_Admin_Form::textarea( __( 'Custom code', 'google-analytics-for-wordpress' ), 'custom_code', sprintf( __( 'Not for the average user: this allows you to add a line of code, to be added before the %1$s call.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview" target="_blank"><code>_trackPageview</code></a>' ) );
 
 		/**
-		 * Action: 'yst_ga_advanced-tab' - Allow changing the advanced tab of the settings
+		 * Action: 'yst_ga_advanced-tab' - Allow adding to the advanced tab of the settings
 		 */
 		do_action( 'yst_ga_advanced-tab' );
 		?>
