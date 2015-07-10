@@ -197,6 +197,7 @@ class Yoast_Google_Analytics {
 	 * The filter is a hook to override the configuration/
 	 */
 	protected function set_client() {
+		// See https://developers.google.com/identity/protocols/OAuth2InstalledApp#formingtheurl for more details about these fields.
 		$config = array(
 			'application_name' => 'Google Analytics by Yoast',
 			'client_id'        => '346753076522-21smrc6aq0hq8oij8001s57dfoo8igf5.apps.googleusercontent.com',
