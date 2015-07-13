@@ -10,6 +10,10 @@ require( dirname( __FILE__ ) . '/../vendor/autoload_52.php' );
 echo 'Welcome to the Google Analytics Test Suite' . PHP_EOL;
 echo 'Version: 1.0' . PHP_EOL . PHP_EOL;
 
+if ( false !== getenv( 'WP_PLUGIN_DIR' ) ) {
+	define( 'WP_PLUGIN_DIR', getenv( 'WP_PLUGIN_DIR' ) );
+}
+
 $GLOBALS['wp_tests_options'] = array(
 	'active_plugins' => array( 'google-analytics-for-wordpress/googleanalytics.php' ),
 );
