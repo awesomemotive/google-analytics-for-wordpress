@@ -47,24 +47,23 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 			<script>yst_thickbox_heading = "<?php _e( 'Paste your Google authentication code', 'google-analytics-for-wordpress' )?>";</script>
 
 			<div id='google_ua_code_field'>
-			<?php if ( count( $profiles ) == 0 ) { ?>
-				<div class="ga-form ga-form-input">
-					<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle"><?php _e( 'Google profile', 'google-analytics-for-wordpress' ); ?>:</label>
-					<a id="yst_ga_authenticate" class="button" onclick="yst_popupwindow(\'' <?php echo $auth_url; ?> '\',500,500);"><?php _e( 'Authenticate with your Google account', 'google-analytics-for-wordpress' ); ?></a>
-				</div>
-				<div class="ga-form ga-form-input">
-					<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle"><?php _e( 'Current UA-profile', 'google-analytics-for-wordpress' ); ?></label>
+				<?php if ( count( $profiles ) == 0 ) { ?>
+					<div class="ga-form ga-form-input">
+						<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle"><?php _e( 'Google profile', 'google-analytics-for-wordpress' ); ?>:</label>
+						<a id="yst_ga_authenticate" class="button" onclick="yst_popupwindow(\'' <?php echo $auth_url; ?> '\',500,500);"><?php _e( 'Authenticate with your Google account', 'google-analytics-for-wordpress' ); ?></a>
+					</div>
+					<div class="ga-form ga-form-input">
+						<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle"><?php _e( 'Current UA-profile', 'google-analytics-for-wordpress' ); ?></label>
 						<?php echo esc_html( $yoast_ga_admin->get_tracking_code() ); ?>
 				</div>
-<?php
-}
-else {
-				echo Yoast_GA_Admin_Form::select( __( 'Analytics profile', 'google-analytics-for-wordpress' ), 'analytics_profile', $profiles, null, false, __( 'Select a profile', 'google-analytics-for-wordpress' ) );
+			<?php }
+				else {
+					echo Yoast_GA_Admin_Form::select( __( 'Analytics profile', 'google-analytics-for-wordpress' ), 'analytics_profile', $profiles, null, false, __( 'Select a profile', 'google-analytics-for-wordpress' ) );
 			?>
-				<div class="ga-form ga-form-input">
-					<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle">&nbsp;</label>
-					<a id="yst_ga_authenticate" class="button" onclick="yst_popupwindow('<?php echo $auth_url ?>',500,500);"><?php _e( 'Re-authenticate with your Google account', 'google-analytics-for-wordpress' )?></a>
-				</div>
+					<div class="ga-form ga-form-input">
+						<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle">&nbsp;</label>
+						<a id="yst_ga_authenticate" class="button" onclick="yst_popupwindow('<?php echo $auth_url ?>',500,500);"><?php _e( 'Re-authenticate with your Google account', 'google-analytics-for-wordpress' )?></a>
+					</div>
 			<?php } ?>
 			</div>
 
@@ -82,9 +81,9 @@ else {
 				<?php
 				if ( $wp_block_google == false && $check_google_access == false ) { ?>
 					<p> <?php _e( 'Your server is blocking requests to Google, to fix this, add <code>*.googleapis.com</code> to the <code>WP_ACCESSIBLE_HOSTS</code> constant in your <em>wp-config.php</em> or ask your webhost to do this.', 'google-analytics-for-wordpress' ); ?></p>
-				<?php }
+		<?php   }
 				else { ?>
-				<p><?php _e( 'Your firewall or webhost is blocking requests to Google, please ask your webhost company to fix this.', 'google-analytics-for-wordpress' ); ?> </p>
+					<p><?php _e( 'Your firewall or webhost is blocking requests to Google, please ask your webhost company to fix this.', 'google-analytics-for-wordpress' ); ?> </p>
 			<?php } ?>
 			<p><?php _e( 'Until this is fixed, you can only use the manual authentication method and cannot use the dashboards feature.', 'google-analytics-for-wordpress' ); ?></p>
 		<?php } ?>
