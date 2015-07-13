@@ -134,15 +134,12 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 			$ga_settings = $this->options; // Assign the settings to the javascript include view
 
 			// Include the tracking view
-			if ( $this->options['debug_mode'] == 1 ) {
-				require( 'views/tracking-debug.php' );
-			}
-			else {
+			if ( ! $this->debug_mode() ) {
 				require( 'views/tracking-universal.php' );
 			}
 		}
 		else {
-			require( 'views/tracking-usergroup.php' );
+			$this->disabled_usergroup();
 		}
 	}
 
