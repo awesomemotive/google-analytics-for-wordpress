@@ -52,7 +52,7 @@ class Yoast_Googleanalytics_Reporting {
 		if ( isset( $raw_data['body']['rows'] ) && is_array( $raw_data['body']['rows'] ) ) {
 			foreach ( $raw_data['body']['rows'] as $key => $item ) {
 				if ( $store_as == 'datelist' ) {
-					$data[(int) $this->format_ga_date( $item[0] )] = $this->parse_row( $item );
+					$data[ (int) $this->format_ga_date( $item[0] ) ] = $this->parse_row( $item );
 				}
 				else {
 					$data[] = $this->parse_data_row( $item );
@@ -77,7 +77,7 @@ class Yoast_Googleanalytics_Reporting {
 	private function check_validity_data( $data = array() ) {
 		foreach ( $data as $key => $value ) {
 			if ( strlen( $key ) <= 5 ) {
-				unset( $data[$key] );
+				unset( $data[ $key ] );
 			}
 		}
 
