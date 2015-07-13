@@ -142,7 +142,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 *
 	 * @return true|WP_Error true or an error object.
 	 */
-	public function validate_settings() {
+	protected function validate_settings() {
 
 		if ( ! empty( $this->options['manual_ua_code_field'] ) ) {
 			$this->options['manual_ua_code_field'] = trim( $this->options['manual_ua_code_field'] );
