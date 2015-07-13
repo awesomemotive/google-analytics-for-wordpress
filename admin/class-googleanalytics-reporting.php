@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package GoogleAnalytics\Admin
+ */
 
+/**
+ * Class Yoast_Googleanalytics_Reporting
+ */
 class Yoast_Googleanalytics_Reporting {
 
 	/**
@@ -28,10 +34,10 @@ class Yoast_Googleanalytics_Reporting {
 	/**
 	 * Format a response
 	 *
-	 * @param $raw_data
-	 * @param $store_as
-	 * @param $start_date
-	 * @param $end_date
+	 * @param array  $raw_data
+	 * @param string $store_as
+	 * @param string $start_date
+	 * @param string $end_date
 	 *
 	 * @return array
 	 */
@@ -47,7 +53,8 @@ class Yoast_Googleanalytics_Reporting {
 			foreach ( $raw_data['body']['rows'] as $key => $item ) {
 				if ( $store_as == 'datelist' ) {
 					$data[(int) $this->format_ga_date( $item[0] )] = $this->parse_row( $item );
-				} else {
+				}
+				else {
 					$data[] = $this->parse_data_row( $item );
 				}
 			}
@@ -80,7 +87,7 @@ class Yoast_Googleanalytics_Reporting {
 	/**
 	 * Format the GA date value
 	 *
-	 * @param $date
+	 * @param string $date
 	 *
 	 * @return int
 	 */
@@ -95,7 +102,7 @@ class Yoast_Googleanalytics_Reporting {
 	/**
 	 * Parse a row and return an array with the correct data rows
 	 *
-	 * @param $item
+	 * @param array $item
 	 *
 	 * @return array
 	 */
@@ -106,15 +113,15 @@ class Yoast_Googleanalytics_Reporting {
 				'value' => (string) $item[1],
 				'total' => (int) $item[2],
 			);
-		} else {
-			return (int) $item[1];
 		}
+
+		return (int) $item[1];
 	}
 
 	/**
 	 * Parse a row for the list storage type
 	 *
-	 * @param $item
+	 * @param array $item
 	 *
 	 * @return array
 	 */
@@ -128,17 +135,15 @@ class Yoast_Googleanalytics_Reporting {
 	/**
 	 * Calculate the date range between 2 dates
 	 *
-	 * @param        $first
-	 * @param        $last
+	 * @param string $current
+	 * @param string $last
 	 * @param string $step
 	 * @param string $format
 	 *
 	 * @return array
 	 */
-	private function date_range( $first, $last, $step = '+1 day', $format = 'Y-m-d' ) {
+	private function date_range( $current, $last, $step = '+1 day', $format = 'Y-m-d' ) {
 		$dates   = array();
-		$current = $first;
-		$last    = $last;
 
 		while ( $current <= $last ) {
 			$dates[] = date( $format, $current );
