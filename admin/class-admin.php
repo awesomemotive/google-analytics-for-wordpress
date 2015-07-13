@@ -9,11 +9,6 @@
 class Yoast_GA_Admin extends Yoast_GA_Options {
 
 	/**
-	 * @var boolean $api Store the API instance
-	 */
-	public $api;
-
-	/**
 	 * Constructor
 	 */
 	public function __construct() {
@@ -39,7 +34,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 */
 	public function init_settings() {
 		$this->options = $this->get_options();
-		$this->api     = Yoast_Api_Libs::load_api_libraries( array( 'google', 'googleanalytics' ) );
+		Yoast_Api_Libs::load_api_libraries( array( 'google' ) );
 		$dashboards    = Yoast_GA_Dashboards::get_instance();
 
 		// Listener for reconnecting with google analytics
