@@ -149,6 +149,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			// en dash to minus, prevents issue with code copied from web with "fancy" dash
 			$this->options['manual_ua_code_field'] = str_replace( '–', '-', $this->options['manual_ua_code_field'] );
 
+			// Regex to tests if a valid UA code has been set. Valid codes follow: "UA-[4 digits]-[at least 1 digit]".
 			if ( ! preg_match( '|^UA-\d{4,}-\d+$|', $this->options['manual_ua_code_field'] ) ) {
 
 				return new WP_Error(
