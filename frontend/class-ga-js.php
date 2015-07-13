@@ -119,15 +119,12 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 
 
 			// Include the tracking view
-			if ( $this->options['debug_mode'] == 1 ) {
-				require( 'views/tracking-debug.php' );
-			}
-			else {
+			if ( ! $this->debug_mode() ) {
 				require( 'views/tracking-ga-js.php' );
 			}
 		}
 		else {
-			require( 'views/tracking-usergroup.php' );
+			$this->disabled_usergroup();
 		}
 	}
 
