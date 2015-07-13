@@ -97,17 +97,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			$this->options['analytics_profile_code'] = $this->get_ua_code_from_profile( $this->options['analytics_profile'] );
 		}
 
-
-		$validation = $this->validate_settings();
-		if ( is_wp_error( $validation ) ) {
-			$this->add_notification( 'ga_notifications', array(
-				'type' => 'error',
-				'description' => $validation->get_error_message(),
-			) );
-
-			wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
-			exit;
-		}
+		$this->do_validation( $data['return_tab'] );
 
 		if ( $this->update_option( $this->options ) ) {
 			// Success, add a new notification
@@ -127,6 +117,24 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		// redirect
 		wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
 		exit;
+	}
+
+	/**
+	 * Redirect to settings with a validation error if there are validation errors
+	 *
+	 * @param string $return_tab The tab to return to when there is a validation error.
+	 */
+	protected function do_validation( $return_tab ) {
+		$validation = $this->validate_settings();
+		if ( is_wp_error( $validation ) ) {
+			$this->add_notification( 'ga_notifications', array(
+				'type' => 'error',
+				'description' => $validation->get_error_message(),
+			) );
+
+			wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $return_tab, 301 );
+			exit;
+		}
 	}
 
 	/**
