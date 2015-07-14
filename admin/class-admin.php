@@ -9,11 +9,6 @@
 class Yoast_GA_Admin extends Yoast_GA_Options {
 
 	/**
-	 * @var boolean $api Store the API instance
-	 */
-	public $api;
-
-	/**
 	 * Constructor
 	 */
 	public function __construct() {
@@ -39,8 +34,18 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 */
 	public function init_settings() {
 		$this->options = $this->get_options();
-		$this->api     = Yoast_Api_Libs::load_api_libraries( array( 'google', 'googleanalytics' ) );
-		$dashboards    = Yoast_GA_Dashboards::get_instance();
+
+		try {
+			// Loading Google Api Libs with minimal version 2.0.
+			new Yoast_Api_Libs( '2.0' );
+		}
+		catch( Exception $exception ) {
+			if ( $exception->getMessage() === 'required_version' ) {
+				add_action( 'admin_notices', array( $this, 'set_api_libs_error' ) );
+			}
+		}
+
+		$dashboards = Yoast_GA_Dashboards::get_instance();
 
 		// Listener for reconnecting with google analytics
 		$this->google_analytics_listener();
@@ -67,6 +72,13 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 		// Load the Google Analytics Dashboards functionality
 		$dashboards->init_dashboards( $this->get_current_profile() );
+	}
+
+	/**
+	 * There is an error with the API libs. So show a notice.
+	 */
+	public function set_api_libs_error() {
+		echo '<div class="error"><p>' . __( 'We\'ve detected some possible incompatibility issues. Be sure all our plugins are up to date.', 'google-analytics-for-wordpress' ) . '</p></div>';
 	}
 
 	/**

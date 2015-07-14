@@ -9,11 +9,6 @@
 class Yoast_GA_Dashboards_Collector {
 
 	/**
-	 * @var boolean $api API storage
-	 */
-	public $api;
-
-	/**
 	 * @var array $active_metrics Store the active metrics
 	 */
 	public $active_metrics;
@@ -87,8 +82,6 @@ class Yoast_GA_Dashboards_Collector {
 	 * This hook runs on the shutdown to fetch data from GA
 	 */
 	private function init_shutdown_hook() {
-		$this->api = Yoast_Api_Libs::load_api_libraries( array( 'oauth', 'googleanalytics' ) );
-
 		// Hook the WP cron event
 		add_action( 'wp', array( $this, 'setup_wp_cron_aggregate' ) );
 

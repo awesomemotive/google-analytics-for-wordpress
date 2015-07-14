@@ -147,7 +147,7 @@ class Yoast_Google_Analytics {
 	 * @return bool
 	 */
 	public function has_refresh_token() {
-		return ( $this->client->get_refresh_token() != '' );
+		return $this->client->is_authenticated();
 	}
 
 	/**
@@ -197,15 +197,18 @@ class Yoast_Google_Analytics {
 	 * The filter is a hook to override the configuration/
 	 */
 	protected function set_client() {
+		// See https://developers.google.com/identity/protocols/OAuth2InstalledApp#formingtheurl for more details about these fields.
 		$config = array(
 			'application_name' => 'Google Analytics by Yoast',
 			'client_id'        => '346753076522-21smrc6aq0hq8oij8001s57dfoo8igf5.apps.googleusercontent.com',
 			'client_secret'    => '5oWaEGFgp-bSrY6vWBmdPfIF',
+			'redirect_uri'     => 'urn:ietf:wg:oauth:2.0:oob',
+			'scopes'           => array( 'https://www.googleapis.com/auth/analytics.readonly' ),
 		);
 
 		$config = apply_filters( 'yst-ga-filter-ga-config', $config );
 
-		$this->client = new Yoast_Google_Analytics_Client( $config );
+		$this->client = new Yoast_Api_Google_Client( $config, 'yoast-ga', '' );
 	}
 
 	/**
