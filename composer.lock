@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d43119e98fed15af2e07d680eabf7635",
+    "hash": "474936c1d0ab0fcbb6a1e6ebf433f80c",
     "packages": [
         {
             "name": "composer/installers",
@@ -135,16 +135,16 @@
         },
         {
             "name": "yoast/api-libs",
-            "version": "1.0",
+            "version": "dev-trunk",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast/api-libs.git",
-                "reference": "0bbe785c5ef52459acc56730d74d01c0fb4d14ac"
+                "reference": "8de0238be18fe10bc4eb035ed2bb5346504bb7ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast/api-libs/zipball/0bbe785c5ef52459acc56730d74d01c0fb4d14ac",
-                "reference": "0bbe785c5ef52459acc56730d74d01c0fb4d14ac",
+                "url": "https://api.github.com/repos/Yoast/api-libs/zipball/8de0238be18fe10bc4eb035ed2bb5346504bb7ce",
+                "reference": "8de0238be18fe10bc4eb035ed2bb5346504bb7ce",
                 "shasum": ""
             },
             "type": "library",
@@ -169,7 +169,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2015-02-17 14:41:34"
+            "time": "2015-07-13 09:42:25"
         },
         {
             "name": "yoast/i18n-module",
@@ -340,7 +340,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/18820b0cfe58ad6606c16f3fc786a7d87aa05d6d",
+                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/a9a032ef2ce775bd5c45b52db98fda45efa87148",
                 "reference": "18820b0cfe58ad6606c16f3fc786a7d87aa05d6d",
                 "shasum": ""
             },
@@ -380,7 +380,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast/yoastcs/zipball/4d1b1dde64ba56b47dedcc6696384174e29e4cd1",
+                "url": "https://api.github.com/repos/Yoast/yoastcs/zipball/aad75dc7d0a297dd4b8bc094529caea40d555e61",
                 "reference": "4d1b1dde64ba56b47dedcc6696384174e29e4cd1",
                 "shasum": ""
             },
@@ -415,6 +415,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "yoast/api-libs": 20,
         "yoast/yoastcs": 20
     },
     "prefer-stable": true,
