@@ -111,6 +111,11 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		echo Yoast_GA_Admin_Form::select( __( 'Ignore users', 'google-analytics-for-wordpress' ), 'ignore_users', $yoast_ga_admin->get_userroles(), __( 'Users of the role you select will be ignored, so if you select Editor, all Editors will be ignored.', 'google-analytics-for-wordpress' ), true );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Disable analytics dashboard', 'google-analytics-for-wordpress' ), 'dashboards_disabled', null, __( 'This will completely disable the dashboard and stop the plugin from fetching the latest analytics data.', 'google-analytics-for-wordpress' ) );
 		?>
+
+		<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-starttour">Introduction Tour</label>
+		<a id="yst_ga_authenticate" class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=yst_ga_settings&ga_restart_tour=1' ) ); ?>"><?php _e( 'Start Tour', 'google-analytics-for-wordpress' )?></a>
+		<img src="<?php echo plugins_url( 'assets/img/question-mark.png', GAWP_FILE ); ?>" class="alignleft yoast_help" id="introduction_tourhelp" alt="<?php _e( 'Take this tour to quickly learn about the use of this plugin.', 'google-analytics-for-wordpress' ); ?>" />
+		
 	</div>
 	<!-- end general tab -->
 
