@@ -101,6 +101,11 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Anonymize IPs', 'google-analytics-for-wordpress' ), 'anonymize_ips', null, sprintf( __( 'This adds %1$s, telling Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApi_gat?csw=1#_gat._anonymizeIp" target="_blank"><code>_anonymizeIp</code></a>' ) );
 		echo Yoast_GA_Admin_Form::select( __( 'Ignore users', 'google-analytics-for-wordpress' ), 'ignore_users', $yoast_ga_admin->get_userroles(), __( 'Users of the role you select will be ignored, so if you select Editor, all Editors will be ignored.', 'google-analytics-for-wordpress' ), true );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Disable analytics dashboard', 'google-analytics-for-wordpress' ), 'dashboards_disabled', null, __( 'This will completely disable the dashboard and stop the plugin from fetching the latest analytics data.', 'google-analytics-for-wordpress' ) );
+
+		/**
+		 * Action: 'yst_ga_universal_tab' - Allow adding to the universal tab of the settings
+		 */
+		do_action( 'yst_ga_universal_tab' );
 		?>
 	</div>
 	<div id="universal" class="gatab">
@@ -127,6 +132,9 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Add <code>_setAllowLinker</code>', 'google-analytics-for-wordpress' ), 'add_allow_linker', null, sprintf( __( 'This adds a %1$s call to your tracking code, allowing you to use %2$s and related functions.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory?csw=1#_gat.GA_Tracker_._setAllowLinker" target="_blank"><code>_setAllowLinker</code></a>', ' <code>_link</code>' ) );
 		echo Yoast_GA_Admin_Form::textarea( __( 'Custom code', 'google-analytics-for-wordpress' ), 'custom_code', sprintf( __( 'Not for the average user: this allows you to add a line of code, to be added before the %1$s call.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview" target="_blank"><code>_trackPageview</code></a>' ) );
 
+		/**
+		 * Action: 'yst_ga_advanced-tab' - Allow adding to the advanced tab of the settings
+		 */
 		do_action( 'yst_ga_advanced-tab' );
 		?>
 	</div>
