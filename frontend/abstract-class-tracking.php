@@ -339,7 +339,8 @@ abstract class Yoast_GA_Tracking {
 		$protocol     = $matches[3];
 		$original_url = $matches[4];
 		$domain       = $this->yoast_ga_get_domain( $matches[4] );
-		$origin       = $this->yoast_ga_get_domain( $_SERVER['HTTP_HOST'] );
+		$http_host    = empty( $_SERVER['HTTP_HOST'] ) ? '' : $_SERVER['HTTP_HOST'];
+		$origin       = $this->yoast_ga_get_domain( $http_host );
 		$extension    = substr( strrchr( $original_url, '.' ), 1 );
 		$type         = $this->get_target_type( $extension, $domain, $origin, $matches );
 
