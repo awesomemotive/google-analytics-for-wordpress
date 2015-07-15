@@ -102,13 +102,13 @@ class Yoast_GA_Admin_Form {
 
 		$input .= '<input ' . self::parse_attributes( $attributes ) . ' />';
 
-		if ( ! is_null( $text_label ) ) {
-			$input .= '<label class="ga-form ga-form-' . $type . '-label" id="yoast-ga-form-label-' . $type . '-textlabel-' . self::$form_namespace . '-' . $id . '" for="yoast-ga-form-' . $type . '-' . self::$form_namespace . '-' . $id . '">' . $text_label . '</label>';
-		}
-
 		// If we get a description, append it to this select field in a new row
 		if ( ! is_null( $description ) ) {
 			$input .= self::show_help( $id, $description );
+		}
+
+		if ( ! is_null( $text_label ) ) {
+			$input .= '<label class="ga-form ga-form-' . $type . '-label" id="yoast-ga-form-label-' . $type . '-textlabel-' . self::$form_namespace . '-' . $id . '" for="yoast-ga-form-' . $type . '-' . self::$form_namespace . '-' . $id . '">' . $text_label . '</label>';
 		}
 
 		$input .= '</div>';
