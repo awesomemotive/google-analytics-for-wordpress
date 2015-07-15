@@ -43,7 +43,12 @@ h2#yoast_ga_title {
 	margin: 0 0 0 5px;
 	font-size: 14px;
 	font-weight: bold;
-	cursor: default;
+}
+
+#yoast-ga-displayfeatures-warning {
+	float: right;
+	width: 63%;
+	color: red;
 }
 
 .ga-form-input {
