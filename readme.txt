@@ -4,7 +4,7 @@ Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 5.4.2
+Stable tag: 5.4.3
 License: GPL v3
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
@@ -50,6 +50,19 @@ This section describes how to install the plugin and get it working.
 1. Go to the options panel under the 'Settings' menu and add your Analytics account number and set the settings you want.
 
 == Changelog ==
+
+= 5.4.3 =
+
+Release Date: July 15th, 2015
+
+* Enhancements:
+    * Improved form labels for remarketing / demographics and interests reports.
+    * Improved the notice that is shown in the head to non-admin users when their usergroup has been excluded from tracking or debug mode is enabled.
+    * Adds 4 translations: ca, en_AU, ja, pt_PT
+
+* Bugfixes:
+    * Fixes a bug where the plugin would fetch a refresh token from Google on every page request.
+    * Fixes an undefined index notice which was triggered when running WordPress using WP CLI.
 
 = 5.4.2 =
 
