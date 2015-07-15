@@ -78,7 +78,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 * There is an error with the API libs. So show a notice.
 	 */
 	public function set_api_libs_error() {
-		echo '<div class="error notice"><p>' . __( 'Yoast plugins share some code between them to make your site faster. As a result of that, we need all Yoast plugins to be up to date. We\'ve deteced this isn\'t the case, so please update the Yoast plugins that aren\'t up to date yet.', 'google-analytics-for-wordpress' ) . '</p></div>';
+		echo '<div class="error notice"><p>' . __( 'Yoast plugins share some code between them to make your site faster. As a result of that, we need all Yoast plugins to be up to date. We\'ve detected this isn\'t the case, so please update the Yoast plugins that aren\'t up to date yet.', 'google-analytics-for-wordpress' ) . '</p></div>';
 	}
 
 	/**
