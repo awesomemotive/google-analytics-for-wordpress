@@ -112,7 +112,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 			'checkbox',
 			__( 'Enable Demographics and Interests Reports for Remarketing and Advertising', 'google-analytics-for-wordpress' ),
 			'demographics',
-			'<span id="yoast-ga-displayfeatures-warning">' . __( 'Note that usage of this function is affected by privacy and cookie laws around the world. Be sure to follow the laws that affect your target audience.', 'google-analytics-for-wordpress') . '</span>',
+			'<span id="yoast-ga-displayfeatures-warning">' . __( 'Note that usage of this function is affected by privacy and cookie laws around the world. Be sure to follow the laws that affect your target audience.', 'google-analytics-for-wordpress' ) . '</span>',
 			/* Transators: %1$s contains the link to a knowledge base article, %2$s contains the the closing tag for both links, %3$s contains a link to Google documentation about remarketing. */
 			sprintf(
 				__( 'Check this setting to add the Demographics and Remarketing features to your Google Analytics tracking code. We\'ve written an article in our %1$sknowledge base%2$s about Demographics and Interest reports. For more information about Remarketing, we refer you to %3$sGoogle\'s documentation%2$s.', 'google-analytics-for-wordpress' ),
