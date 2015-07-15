@@ -58,6 +58,7 @@ Release Date: July 15th, 2015
 * Enhancements:
     * Improved form labels for remarketing / demographics and interests reports.
     * Improved the notice that is shown in the head to non-admin users when their usergroup has been excluded from tracking or debug mode is enabled.
+    * Adds 4 translations: ca, en_AU, ja, pt_PT
 
 * Bugfixes:
     * Fixes a bug where the plugin would fetch a refresh token from Google on every page request.
