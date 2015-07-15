@@ -45,12 +45,9 @@ h2#yoast_ga_title {
 	font-weight: bold;
 }
 
-.ga-form-label-right {
+#yoast-ga-displayfeatures-warning {
 	float: right;
 	width: 63%;
-}
-
-#yoast-ga-displayfeatures-warning {
 	color: red;
 }
 

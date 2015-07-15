@@ -108,7 +108,7 @@ class Yoast_GA_Admin_Form {
 		}
 
 		if ( ! is_null( $text_label ) ) {
-			$input .= '<label class="ga-form ga-form-' . $type . '-label ga-form-label-right" id="yoast-ga-form-label-' . $type . '-textlabel-' . self::$form_namespace . '-' . $id . '" for="yoast-ga-form-' . $type . '-' . self::$form_namespace . '-' . $id . '">' . $text_label . '</label>';
+			$input .= '<label class="ga-form ga-form-' . $type . '-label" id="yoast-ga-form-label-' . $type . '-textlabel-' . self::$form_namespace . '-' . $id . '" for="yoast-ga-form-' . $type . '-' . self::$form_namespace . '-' . $id . '">' . $text_label . '</label>';
 		}
 
 		$input .= '</div>';
