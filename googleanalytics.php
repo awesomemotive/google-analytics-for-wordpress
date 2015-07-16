@@ -51,6 +51,7 @@ if ( file_exists( dirname( GAWP_FILE ) . '/vendor/autoload_52.php' ) ) {
 if ( is_admin() ) {
 	global $yoast_ga_admin;
 	$yoast_ga_admin = new Yoast_GA_Admin;
+	add_action( 'admin_enqueue_scripts', array( 'Yoast_GA_Pointers', 'get_instance' ) );
 
 }
 else {
