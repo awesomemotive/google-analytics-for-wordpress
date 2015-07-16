@@ -613,7 +613,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 * @return bool
 	 */
 	private function is_running_cron() {
-		return doing_action( 'yst_ga_aggregate_data' ) && defined( 'DOING_CRON') && DOING_CRON;
+		return doing_action( 'yst_ga_aggregate_data' ) && defined( 'DOING_CRON' ) && DOING_CRON;
 	}
 
 	/**
@@ -621,7 +621,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 * @return bool
 	 */
 	private function is_running_ajax() {
-		return defined( 'DOING_AJAX') && DOING_AJAX && strpos( filter_input( INPUT_GET, 'action' ), 'yoast_dashboard' ) === 0;
+		return defined( 'DOING_AJAX' ) && DOING_AJAX && strpos( filter_input( INPUT_GET, 'action' ), 'yoast_dashboard' ) === 0;
 	}
 
 }
