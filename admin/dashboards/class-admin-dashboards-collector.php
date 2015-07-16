@@ -89,7 +89,7 @@ class Yoast_GA_Dashboards_Collector {
 		add_action( 'yst_ga_aggregate_data', array( $this, 'aggregate_data' ) );
 
 		// Check if the WP cron did run on time
-		if ( isset( $_GET['page'] ) && ( $_GET['page'] === 'yst_ga_dashboard' || $_GET['page'] === 'yst_ga_settings' ) ) {
+		if ( filter_input( INPUT_GET, 'page' ) === 'yst_ga_dashboard' ) {
 			add_action( 'shutdown', array( $this, 'check_api_call_hook' ) );
 		}
 	}
