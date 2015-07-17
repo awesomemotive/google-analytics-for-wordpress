@@ -32,6 +32,9 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 		add_filter( 'plugin_action_links_' . plugin_basename( GAWP_FILE ), array( $this, 'add_action_links' ) );
 
+		$this->ignore_tour();
+		$this->load_tour();
+
 	}
 
 	/**
@@ -550,6 +553,30 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 			delete_transient( $transient_name );
 		}
+	}
+
+	/**
+	 * See if we should start our tour.
+	 */
+	private function load_tour() {
+		$restart_tour = filter_input( INPUT_GET, 'ga_restart_tour' );
+		if ( $restart_tour ) {
+			delete_user_meta( get_current_user_id(), 'ga_ignore_tour' );
+		}
+
+		if ( ! get_user_meta( get_current_user_id(), 'ga_ignore_tour' ) ) {
+			add_action( 'admin_enqueue_scripts', array( 'Yoast_GA_Pointers', 'get_instance' ) );
+		}
+	}
+
+	/**
+	 * Listener for the ignore tour GET value. If this one is set, just set the user meta to true.
+	 */
+	private function ignore_tour() {
+		if ( filter_input( INPUT_GET, 'ga_ignore_tour' ) && wp_verify_nonce( filter_input( INPUT_GET, 'nonce' ), 'ga-ignore-tour' ) ) {
+			update_user_meta( get_current_user_id(), 'ga_ignore_tour', true );
+		}
+
 	}
 
 }

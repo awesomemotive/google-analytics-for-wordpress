@@ -25,10 +25,8 @@ class Yoast_GA_Pointers {
      */
     private $admin_pages = array(
         'dashboard' => 'dashboard_pointer',
-        'titles'    => 'titles_pointer',
-        'social'    => 'social_pointer',
-        'xml'       => 'xml_sitemaps_pointer',
-        'advanced'  => 'advanced_pointer',
+        'settings'    => 'settings_pointer',
+        'extensions'    => 'extensions_pointer',
         'licenses'  => 'licenses_pointer',
     );
 
@@ -36,10 +34,12 @@ class Yoast_GA_Pointers {
      * Class constructor.
      */
     public function __construct() {
-        wp_enqueue_style( 'wp-pointer' );
-        wp_enqueue_script( 'jquery-ui' );
-        wp_enqueue_script( 'wp-pointer' );
-        add_action( 'admin_print_footer_scripts', array( $this, 'intro_tour' ) );
+        if ( ! get_user_meta( get_current_user_id(), 'ga_ignore_tour' ) ) {
+            wp_enqueue_style( 'wp-pointer' );
+            wp_enqueue_script( 'jquery-ui' );
+            wp_enqueue_script( 'wp-pointer' );
+            add_action( 'admin_print_footer_scripts', array( $this, 'intro_tour' ) );
+        }
     }
 
     /**
@@ -342,9 +342,9 @@ class Yoast_GA_Pointers {
      */
     private function get_ignore_url() {
         $arr_params = array(
-            'wpseo_restart_tour' => false,
-            'wpseo_ignore_tour'  => '1',
-            'nonce'              => wp_create_nonce( 'wpseo-ignore-tour' ),
+            'ga_restart_tour' => false,
+            'ga_ignore_tour'  => '1',
+            'nonce'              => wp_create_nonce( 'ga-ignore-tour' ),
         );
 
         return esc_url( add_query_arg( $arr_params ) );
