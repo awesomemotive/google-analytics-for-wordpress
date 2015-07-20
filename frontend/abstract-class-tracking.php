@@ -310,6 +310,20 @@ abstract class Yoast_GA_Tracking {
 			if ( 0 != $current_user->ID && isset( $this->options['ignore_users'] ) ) {
 				if ( ! empty( $current_user->roles ) && in_array( $current_user->roles[0], $this->options['ignore_users'] ) ) {
 					$this->do_tracking = false;
+
+					if ( ! empty( $this->options['ignore_loggedout_users'] ) ) {
+
+						setcookie(
+							'yst_ignore_user',    // cookie name
+							"1",                  // cookie value
+							time() + YEAR_IN_SECONDS,              // cookie expire after N hours
+							"/",                  // cookie path - root
+							$_SERVER['HTTP_HOST'] // cookie domain
+						);
+
+					} else if ( isset($_COOKIE['yst_ignore_user']) ) {
+						unset( $_COOKIE['yst_ignore_user'] );
+					}
 				}
 			}
 

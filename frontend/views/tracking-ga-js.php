@@ -6,7 +6,7 @@
 ?>
 <!-- This site uses the Google Analytics by Yoast plugin v<?php echo GAWP_VERSION; ?> - Universal disabled - https://yoast.com/wordpress/plugins/google-analytics/ -->
 <script type="text/javascript">
-
+if ( document.cookie.indexOf('yst_ignore_user') == -1 ) {
 	var _gaq = _gaq || [];
 <?php
 // List the GA elements from the class-ga-js.php
@@ -31,5 +31,6 @@ if ( count( $gaq_push ) >= 1 ) {
 		s.parentNode.insertBefore(ga, s);
 	})();
 
+}
 </script>
 <!-- / Google Analytics by Yoast -->
