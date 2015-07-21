@@ -15,7 +15,17 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		parent::__construct();
 
 		add_action( 'plugins_loaded', array( $this, 'init_ga' ) );
-		add_action( 'admin_init', array( $this, 'init_settings' ) );
+
+		// Only run admin_init when there is a cron jon executed.
+		$current_page = filter_input( INPUT_GET, 'page' );
+
+		// Only when current page is not 'wpseo'.
+		if ( strpos( $current_page, 'wpseo' ) !== 0 ) {
+			if ( ( $this->is_running_cron() || $this->is_running_ajax() ) || strpos( $current_page, 'yst_ga' ) === 0 ) {
+				add_action( 'admin_init', array( $this, 'init_settings' ) );
+			}
+		}
+
 	}
 
 	/**
@@ -596,6 +606,22 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 			delete_transient( $transient_name );
 		}
+	}
+
+	/**
+	 * Check if there the aggregate data cron is executed
+	 * @return bool
+	 */
+	private function is_running_cron() {
+		return doing_action( 'yst_ga_aggregate_data' ) && defined( 'DOING_CRON' ) && DOING_CRON;
+	}
+
+	/**
+	 * Check if there the aggregate data cron is executed
+	 * @return bool
+	 */
+	private function is_running_ajax() {
+		return defined( 'DOING_AJAX' ) && DOING_AJAX && strpos( filter_input( INPUT_GET, 'action' ), 'yoast_dashboard' ) === 0;
 	}
 
 }
