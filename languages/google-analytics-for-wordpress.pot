@@ -2,10 +2,10 @@
 # This file is distributed under the GPL v3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Google Analytics by Yoast 5.4.3\n"
+"Project-Id-Version: Google Analytics by Yoast 5.4.4\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/yoast/google-analytics-for-wordpress/issues\n"
-"POT-Creation-Date: 2015-07-15 13:53:50+00:00\n"
+"POT-Creation-Date: 2015-07-21 07:53:25+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -45,7 +45,7 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: admin/class-admin-menu.php:242 admin/class-admin.php:310
+#: admin/class-admin-menu.php:242 admin/class-admin.php:320
 #: admin/pages/settings.php:10
 msgid "Settings"
 msgstr ""
@@ -55,7 +55,7 @@ msgstr ""
 msgid "Extensions"
 msgstr ""
 
-#: admin/class-admin.php:81
+#: admin/class-admin.php:91
 msgid ""
 "Yoast plugins share some code between them to make your site faster. As a "
 "result of that, we need all Yoast plugins to be up to date. We've detected "
@@ -63,60 +63,60 @@ msgid ""
 "date yet."
 msgstr ""
 
-#: admin/class-admin.php:118
+#: admin/class-admin.php:128
 msgid "Settings saved."
 msgstr ""
 
-#: admin/class-admin.php:125
+#: admin/class-admin.php:135
 msgid "There were no changes to save, please try again."
 msgstr ""
 
-#: admin/class-admin.php:169
+#: admin/class-admin.php:179
 msgid "The UA code needs to follow UA-XXXXXXXX-X format."
 msgstr ""
 
-#: admin/class-admin.php:307
+#: admin/class-admin.php:317
 msgid "FAQ"
 msgstr ""
 
-#: admin/class-admin.php:322
+#: admin/class-admin.php:332
 msgid ""
 "If you want to track custom dimensions like page views per author or post "
 "type, you should upgrade to the %1$spremium version of Google Analytics by "
 "Yoast%2$s."
 msgstr ""
 
-#: admin/class-admin.php:324
+#: admin/class-admin.php:334
 msgid ""
 "This will also give you email access to the support team at Yoast, who will "
 "provide support on the plugin 24/7."
 msgstr ""
 
-#: admin/class-admin.php:462
+#: admin/class-admin.php:472
 msgid "Event"
 msgstr ""
 
-#: admin/class-admin.php:463
+#: admin/class-admin.php:473
 msgid "Pageview"
 msgstr ""
 
-#: admin/class-admin.php:474
+#: admin/class-admin.php:484
 msgid "Just the domain"
 msgstr ""
 
-#: admin/class-admin.php:475
+#: admin/class-admin.php:485
 msgid "Full links"
 msgstr ""
 
-#: admin/class-admin.php:495
+#: admin/class-admin.php:505
 msgid "Debug information"
 msgstr ""
 
-#: admin/class-admin.php:544
+#: admin/class-admin.php:554
 msgid "Google Analytics by Yoast Premium"
 msgstr ""
 
-#: admin/class-admin.php:545
+#: admin/class-admin.php:555
 msgid ""
 "The premium version of Google Analytics by Yoast with more features and "
 "support."
@@ -126,11 +126,11 @@ msgstr ""
 msgid "Google Analytics by Yoast"
 msgstr ""
 
-#: admin/class-admin.php:550
+#: admin/class-admin.php:560
 msgid "eCommerce tracking"
 msgstr ""
 
-#: admin/class-admin.php:551
+#: admin/class-admin.php:561
 msgid ""
 "Track your eCommerce data and transactions with this eCommerce extension "
 "for Google Analytics."
