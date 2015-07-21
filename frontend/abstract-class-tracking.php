@@ -339,7 +339,8 @@ abstract class Yoast_GA_Tracking {
 		$protocol     = $matches[3];
 		$original_url = $matches[4];
 		$domain       = $this->yoast_ga_get_domain( $matches[4] );
-		$origin       = $this->yoast_ga_get_domain( $_SERVER['HTTP_HOST'] );
+		$http_host    = empty( $_SERVER['HTTP_HOST'] ) ? '' : $_SERVER['HTTP_HOST'];
+		$origin       = $this->yoast_ga_get_domain( $http_host );
 		$extension    = substr( strrchr( $original_url, '.' ), 1 );
 		$type         = $this->get_target_type( $extension, $domain, $origin, $matches );
 
@@ -447,6 +448,49 @@ abstract class Yoast_GA_Tracking {
 		}
 
 		return $label;
+	}
+
+	/**
+	 * When a usergroup is disabled, show a message in the source to notify the user they are in a disabled user group.
+	 */
+	protected function disabled_usergroup() {
+		/* translators %1$s is the product name 'Google Analytics by Yoast'. %2$s displays the plugin version the website uses and a link to the plugin on Yoast.com */
+		echo '<!-- ' . sprintf( __( 'This site uses the %1$s plugin version %2$s', 'google-analytics-for-wordpress' ), 'Google Analytics by Yoast', GAWP_VERSION . ' - https://yoast.com/wordpress/plugins/google-analytics/' ) . ' -->';
+
+		if ( current_user_can( 'manage_options' ) ) {
+			echo '<!-- ' . __( '@Webmaster, normally you will find the Google Analytics tracking code here, but you are in the disabled user groups. To change this, navigate to Analytics -> Settings (Ignore usergroups)', 'google-analytics-for-wordpress' ) . ' -->';
+		}
+		else {
+			echo '<!-- ' . __( 'Normally you will find the Google Analytics tracking code here, but the webmaster disabled your user group.', 'google-analytics-for-wordpress' ) . ' -->';
+		}
+
+		// Do not make this translatable, as this is the product name.
+		echo '<!-- / Google Analytics by Yoast -->';
+	}
+
+	/**
+	 * When the debug mode is enabled, display a message in the source.
+	 *
+	 * @return bool
+	 */
+	protected function debug_mode() {
+		if ( $this->options['debug_mode'] === 1 ) {
+			/* translators %1$s is the product name 'Google Analytics by Yoast'. %2$s displays the plugin version the website uses and a link to the plugin on Yoast.com */
+			echo '<!-- ' . sprintf( __( 'This site uses the %1$s plugin version %2$s', 'google-analytics-for-wordpress' ), 'Google Analytics by Yoast', GAWP_VERSION . ' - https://yoast.com/wordpress/plugins/google-analytics/' ) . ' -->';
+
+			if ( current_user_can( 'manage_options' ) ) {
+				echo '<!-- ' . __( '@Webmaster, normally you will find the Google Analytics tracking code here, but the Debug Mode is enabled. To change this, navigate to Analytics -> Settings -> (Tab) Debug Mode and disable Debug Mode to enable tracking of your site.', 'google-analytics-for-wordpress' ) . ' -->';
+			}
+			else {
+				echo '<!-- ' . __( 'Normally you will find the Google Analytics tracking code here, but the webmaster has enabled the Debug Mode.', 'google-analytics-for-wordpress' ) . ' -->';
+			}
+
+			// Do not make this translatable, as this is the product name.
+			echo '<!-- / Google Analytics by Yoast -->';
+
+			return true;
+		}
+		return false;
 	}
 
 }

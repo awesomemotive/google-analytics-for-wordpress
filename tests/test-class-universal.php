@@ -69,11 +69,6 @@ class Universal_Double extends Yoast_GA_Universal {
 	public function get_options_class() {
 		return new Options_Double( $this->test_options );
 	}
-
-	public function do_tracking() {
-		return true;
-	}
-
 }
 
 class Yoast_GA_Universal_Test extends GA_UnitTestCase {
@@ -159,6 +154,11 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	private $allow_anchor = 0;
 
 	/**
+	 * @var array
+	 */
+	private $ignore_users = array();
+
+	/**
 	 * Set the options
 	 *
 	 * @return array
@@ -174,7 +174,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 			'track_outbound'             => $this->track_outbound,
 			'anonymous_data'             => $this->anonymous_data,
 			'demographics'               => $this->demographics,
-			'ignore_users'               => array( 'editor' ),
+			'ignore_users'               => $this->ignore_users,
 			'dashboards_disabled'        => 0,
 			'anonymize_ips'              => $this->anonymize_ips,
 			'track_download_as'          => $this->track_download_as,
@@ -617,4 +617,189 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-comment', 'http://examples.org/test', 'Linking text');\" title=\"test\" style=\"color: #fff;\">Linking text</a>", 'comment_text', 'title="test" style="color: #fff;"' );
 	}
 
+	/**
+	 * Test if source outputs message when debug mode is on and user is not admin.
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
+	 */
+	public function test_debug_mode_IS_ON_and_user_IS_NOT_admin() {
+		$post_id = $this->factory->post->create();
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->debug_mode = 1;
+
+		$class_instance = new Universal_Double( $this->options() );
+
+		ob_start();
+		$class_instance->tracking();
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		$expected_output = '<!-- This site uses the Google Analytics by Yoast plugin version ' . GAWP_VERSION .  ' - https://yoast.com/wordpress/plugins/google-analytics/ --><!-- Normally you will find the Google Analytics tracking code here, but the webmaster has enabled the Debug Mode. --><!-- / Google Analytics by Yoast -->';
+
+		$this->assertContains( $expected_output, $output );
+	}
+
+	/**
+	 * Test if source outputs message when debug mode is on and user is admin.
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
+	 */
+	public function test_debug_mode_IS_ON_and_user_IS_admin() {
+		$post_id = $this->factory->post->create();
+
+		$user_id = $this->factory->user->create( array( 'role' => 'administrator' ) );
+
+		// Login user
+		wp_set_current_user ($user_id);
+
+		// Get old user id
+		$old_user_id = get_current_user_id();
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->debug_mode = 1;
+
+		$class_instance = new Universal_Double( $this->options() );
+
+		ob_start();
+		$class_instance->tracking();
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		$expected_output  = '<!-- This site uses the Google Analytics by Yoast plugin version ' . GAWP_VERSION . ' - https://yoast.com/wordpress/plugins/google-analytics/ --><!-- @Webmaster, normally you will find the Google Analytics tracking code here, but the Debug Mode is enabled. To change this, navigate to Analytics -> Settings -> (Tab) Debug Mode and disable Debug Mode to enable tracking of your site. --><!-- / Google Analytics by Yoast -->';
+
+		$this->assertContains( $expected_output, $output );
+
+		// Set current user back to old user id so the tests won't fail in test-output.php
+		wp_set_current_user( $old_user_id );
+	}
+
+	/**
+	 * When tracking is off for the admin, the tracking code should not be displayed for an admin
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
+	 */
+	public function test_tracking_IS_OFF_FOR_ADMIN_and_user_IS_ADMIN() {
+		$post_id = $this->factory->post->create();
+
+		$user_id = $this->factory->user->create( array( 'role' => 'administrator' ) );
+
+		// Get old user id
+		$old_user_id = get_current_user_id();
+
+		// Login user
+		wp_set_current_user ($user_id);
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->ignore_users = array( translate_user_role('administrator') );
+
+		$class_instance = new Universal_Double( $this->options() );
+
+		ob_start();
+		$class_instance->tracking();
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		$expected_output  = '<!-- This site uses the Google Analytics by Yoast plugin version ' . GAWP_VERSION . ' - https://yoast.com/wordpress/plugins/google-analytics/ --><!-- @Webmaster, normally you will find the Google Analytics tracking code here, but you are in the disabled user groups. To change this, navigate to Analytics -> Settings (Ignore usergroups) --><!-- / Google Analytics by Yoast -->';
+
+		$this->assertContains( $expected_output, $output );
+
+		// Set current user back to old user id so the tests won't fail in test-output.php
+		wp_set_current_user( $old_user_id );
+	}
+
+	/**
+	 * When tracking is off for admin, the tracking code should still be displayed for other users that are not administrator
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
+	 */
+	public function test_tracking_IS_OFF_FOR_ADMIN_and_user_IS_EDITOR() {
+		$post_id = $this->factory->post->create();
+
+		$user_id = $this->factory->user->create( array( 'role' => 'editor' ) );
+
+		// Get old user id
+		$old_user_id = get_current_user_id();
+
+		// Login user
+		wp_set_current_user ($user_id);
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->ignore_users = array( translate_user_role('administrator') );
+
+		$class_instance = new Universal_Double( $this->options() );
+
+		ob_start();
+		$class_instance->tracking();
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		$expected_output  = "_gaTracker('create', '" . $this->manual_ua_code_field . "', 'auto');";
+
+		$this->assertContains( $expected_output, $output );
+
+		// Set current user back to old user id so the tests won't fail in test-output.php
+		wp_set_current_user( $old_user_id );
+	}
+
+	/**
+	 * When tracking is off for editor, the tracking code should not be displayed for an editor
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
+	 */
+	public function test_tracking_IS_OFF_FOR_EDITOR_and_user_IS_EDITOR() {
+		$post_id = $this->factory->post->create();
+
+		$user_id = $this->factory->user->create( array( 'role' => 'editor' ) );
+
+		// Get old user id
+		$old_user_id = get_current_user_id();
+
+		// Login user
+		wp_set_current_user ($user_id);
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->ignore_users = array( translate_user_role('editor') );
+
+		$class_instance = new Universal_Double( $this->options() );
+
+		ob_start();
+		$class_instance->tracking();
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		$expected_output  = '<!-- This site uses the Google Analytics by Yoast plugin version ' . GAWP_VERSION . ' - https://yoast.com/wordpress/plugins/google-analytics/ --><!-- Normally you will find the Google Analytics tracking code here, but the webmaster disabled your user group. --><!-- / Google Analytics by Yoast -->';
+		$this->assertContains( $expected_output, $output );
+
+		// Set current user back to old user id so the tests won't fail in test-output.php
+		wp_set_current_user( $old_user_id );
+	}
+
+	/**
+	 * When tracking is off for admin, the tracking code should still be displayed for visitors who are not logged in
+	 *
+	 * @covers Yoast_GA_Universal::tracking()
+	 */
+	public function test_tracking_IS_OFF_FOR_ADMIN_and_user_IS_NOT_LOGGED_IN() {
+		$post_id = $this->factory->post->create();
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->ignore_users = array( translate_user_role('administrator') );
+
+		$class_instance = new Universal_Double( $this->options() );
+
+		ob_start();
+		$class_instance->tracking();
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		$expected_output  = "_gaTracker('create', '" . $this->manual_ua_code_field . "', 'auto');";
+
+		$this->assertContains( $expected_output, $output );
+	}
 }
