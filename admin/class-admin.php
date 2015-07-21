@@ -632,6 +632,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		if ( filter_input( INPUT_GET, 'ga_ignore_tour' ) && wp_verify_nonce( filter_input( INPUT_GET, 'nonce' ), 'ga-ignore-tour' ) ) {
 			update_user_meta( get_current_user_id(), 'ga_ignore_tour', true );
 		}
+	}
 
 	/**
 	 * Check if there the aggregate data cron is executed
