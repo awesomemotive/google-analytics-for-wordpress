@@ -314,14 +314,15 @@ abstract class Yoast_GA_Tracking {
 					if ( ! empty( $this->options['ignore_loggedout_users'] ) ) {
 
 						setcookie(
-							'yst_ignore_user',    // cookie name
-							"1",                  // cookie value
-							time() + YEAR_IN_SECONDS,              // cookie expire after N hours
-							"/",                  // cookie path - root
+							'yst_ignore_user', // cookie name
+							'1', // cookie value
+							(time() + YEAR_IN_SECONDS), // cookie expire after N hours
+							'/', // cookie path - root
 							$_SERVER['HTTP_HOST'] // cookie domain
 						);
 
-					} else if ( isset($_COOKIE['yst_ignore_user']) ) {
+					}
+					elseif ( isset($_COOKIE['yst_ignore_user']) ) {
 						unset( $_COOKIE['yst_ignore_user'] );
 					}
 				}
