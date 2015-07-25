@@ -176,7 +176,7 @@ class Yoast_GA_Pointers {
 	private function start_tour_pointer() {
 		$selector = 'li#toplevel_page_yst_ga_dashboard';
 		$content  = '<h3>' . __( 'Congratulations!', 'google-analytics-for-wordpress' ) . '</h3>'
-		            . '<p>' . __( 'You&#8217;ve just installed Google Analytics by Yoast! Click &#8220;Start Tour&#8221; to view a quick introduction of this plugin&#8217;s core functionality.', 'google-analytics-for-wordpress' ) . '</p>';
+		            . '<p>' . __( 'You\'ve just installed Google Analytics by Yoast! Click "Start Tour" to view a quick introduction of this plugin\'s core functionality.', 'google-analytics-for-wordpress' ) . '</p>';
 		$opt_arr  = array(
 			'content'  => $content,
 			'position' => array( 'edge' => 'top', 'align' => 'center' ),
@@ -230,22 +230,17 @@ class Yoast_GA_Pointers {
 		global $current_user;
 
 		return array(
-			'content'   => '<h3>' . __( 'General settings', 'google-analytics-for-wordpress' ) . '</h3>'
-			               . '<p>' . __( 'These are the General settings for	WordPress SEO, here you can restart this tour or revert the WP SEO settings to default.', 'wordpress-seo' ) . '</p>'
-			               . '<p><strong>' . __( 'Tab: Your Info / Company Info', 'wordpress-seo' ) . '</strong><br/>' . __( 'Add some info here needed for Google\'s Knowledge Graph.', 'wordpress-seo' ) . '</p>'
-			               . '<p><strong>' . __( 'Tab: Webmaster Tools', 'wordpress-seo' ) . '</strong><br/>' . __( 'You can add the verification codes for the different Webmaster Tools programs here, we highly encourage you to check out both Google and Bing&#8217;s
-	Webmaster Tools.', 'wordpress-seo' ) . '</p>'
-			               . '<p><strong>' . __( 'Tab: Security', 'wordpress-seo' ) . '</strong><br/>' . __( 'Determine who has access to the plugins advanced settings on the post edit screen.', 'wordpress-seo' ) . '</p>'
-			               . '<p><strong>' . __( 'More WordPress SEO', 'wordpress-seo' ) . '</strong><br/>' . sprintf( __( 'There&#8217;s more to learn about WordPress &amp; SEO than just using this plugin. A great start is our article %1$sthe definitive guide
-	to WordPress SEO%2$s.', 'wordpress-seo' ), '<a target="_blank" href="' . esc_url( 'https://yoast.com/articles/wordpress-seo/#utm_source=wpseo_dashboard&utm_medium=wpseo_tour&utm_campaign=tour' ) . '">',
-					'</a>' ) . '</p>'
-			               . '<p><strong style="font-size:150%;">' . __( 'Subscribe to our Newsletter', 'wordpress-seo' ) . '</strong><br/>'
-			               . __( 'If you would like us to keep you up-to-date regarding WordPress SEO and other plugins by Yoast, subscribe to our newsletter:', 'wordpress-seo' ) . '</p>'
+			'content'   => '<h3>' . __( 'Dashboard', 'google-analytics-for-wordpress' ) . '</h3>'
+			               . '<p><strong>' . __( 'Tab: Overview', 'google-analytics-for-wordpress' ) . '</strong><br/>' . __( 'Info overview', 'google-analytics-for-wordpress' ) . '</p>'
+			               . '<p><strong>' . __( 'Tab: Reports', 'google-analytics-for-wordpress' ) . '</strong><br/>' . __( 'Info reports', 'google-analytics-for-wordpress' ) . '</p>'
+			               . '<p><strong>' . __( 'Tab: Custom dimension reports', 'google-analytics-for-wordpress' ) . '</strong><br/>' . __( 'Info custom dimensions reports', 'google-analytics-for-wordpress' ) . '</p>'
+			               . '<p><strong style="font-size:150%;">' . __( 'Subscribe to our Newsletter', 'google-analytics-for-wordpress' ) . '</strong><br/>'
+			               . __( 'If you would like us to keep you up-to-date regarding Google Analytics and other plugins by Yoast, subscribe to our newsletter:', 'google-analytics-for-wordpress' ) . '</p>'
 			               . '<form target="_blank" action="http://yoast.us1.list-manage1.com/subscribe/post?u=ffa93edfe21752c921f860358&amp;id=972f1c9122" method="post" selector="newsletter-form" accept-charset="' . esc_attr( get_bloginfo( 'charset' ) ) . '">'
 			               . '<p>'
-			               . '<input style="margin: 5px; color:#666" name="EMAIL" value="' . esc_attr( $current_user->user_email ) . '" selector="newsletter-email" placeholder="' . __( 'Email', 'wordpress-seo' ) . '"/>'
+			               . '<input style="margin: 5px; color:#666" name="EMAIL" value="' . esc_attr( $current_user->user_email ) . '" selector="newsletter-email" placeholder="' . __( 'Email', 'google-analytics-for-wordpress' ) . '"/>'
 			               . '<input type="hidden" name="group" value="2"/>'
-			               . '<button type="submit" class="button-primary">' . __( 'Subscribe', 'wordpress-seo' ) . '</button>'
+			               . '<button type="submit" class="button-primary">' . __( 'Subscribe', 'google-analytics-for-wordpress' ) . '</button>'
 			               . '</p>'
 			               . '</form>',
 			'next_page' => 'settings',
