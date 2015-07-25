@@ -5,8 +5,6 @@
 
 /**
  * This class handles the pointers used in the introduction tour.
- *
- * @todo Add an introductory pointer on the edit post page too.
  */
 class Yoast_GA_Pointers {
 
@@ -247,6 +245,11 @@ class Yoast_GA_Pointers {
 		);
 	}
 
+	/**
+	 * Returns the content of the settings pointer
+	 *
+	 * @return array
+	 */
 	private function settings_pointer() {
 		return array(
 			'content'   => '<h3>' . __( 'Settings' ) . '</h3>',
