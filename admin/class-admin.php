@@ -103,7 +103,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		foreach ( $data as $key => $value ) {
 			if ( $key != 'return_tab' ) {
 				if ( $key != 'custom_code' && is_string( $value ) ) {
-					$value = strip_tags( $value );
+					$value = esc_attr( strip_tags( $value ) );
 				}
 				$this->options[ $key ] = $value;
 			}

@@ -96,6 +96,9 @@ class Yoast_GA_Admin_Form {
 				$attributes['checked'] = 'checked';
 			}
 		}
+		elseif ( $type === 'text' ) {
+			$attributes['value'] = esc_attr( $input_value );
+		}
 		else {
 			$attributes['value'] = stripslashes( $input_value );
 		}
