@@ -246,8 +246,8 @@ class Yoast_GA_Pointers {
 		global $current_user;
 		return array(
 			'content'   => '<h3>' . __( 'Settings' ) . '</h3>'
-			               . '<p><strong>' . __( 'Tab: General', 'google-analytics-for-wordpress') . '</strong></p>'
-			               . '<p>' . __( 'These are the general settings for Google Analytics by Yoast. Here you can connect to your Analytics profile, set settings and restart this tour.', 'google-analytics-for-wordpress') . '</p>'
+			               . '<p><strong>' . __( 'Tab: General', 'google-analytics-for-wordpress' ) . '</strong></p>'
+			               . '<p>' . __( 'These are the general settings for Google Analytics by Yoast. Here you can connect to your Analytics profile, set settings and restart this tour.', 'google-analytics-for-wordpress' ) . '</p>'
 			               . '<p><strong>' . __( 'Tab: Universal', 'google-analytics-for-wordpress' ) . '</strong></p>'
 			               . '<p>' . __( 'Explanation here', 'google-analytics-for-wordpress' ) . '</p>'
 			               . '<p><strong>' . __( 'Tab: Advanced', 'google-analytics-for-wordpress' ) . '</strong></p>'
