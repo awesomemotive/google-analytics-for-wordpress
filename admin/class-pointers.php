@@ -31,11 +31,13 @@ class Yoast_GA_Pointers {
 	 * Class constructor.
 	 */
 	public function __construct() {
-		if ( ! get_user_meta( get_current_user_id(), 'ga_ignore_tour' ) ) {
-			wp_enqueue_style( 'wp-pointer' );
-			wp_enqueue_script( 'jquery-ui' );
-			wp_enqueue_script( 'wp-pointer' );
-			add_action( 'admin_print_footer_scripts', array( $this, 'intro_tour' ) );
+		if ( current_user_can( 'manage_options' ) ) {
+			if ( ! get_user_meta( get_current_user_id(), 'ga_ignore_tour' ) ) {
+				wp_enqueue_style( 'wp-pointer' );
+				wp_enqueue_script( 'jquery-ui' );
+				wp_enqueue_script( 'wp-pointer' );
+				add_action( 'admin_print_footer_scripts', array( $this, 'intro_tour' ) );
+			}
 		}
 	}
 
@@ -174,13 +176,13 @@ class Yoast_GA_Pointers {
 	private function start_tour_pointer() {
 		$selector = 'li#toplevel_page_yst_ga_dashboard';
 		$content  = '<h3>' . __( 'Congratulations!', 'google-analytics-for-wordpress' ) . '</h3>'
-		            . '<p>' . __( 'You\'ve just installed Google Analytics by Yoast! Click "Start Tour" to view a quick introduction of this plugin\'s core functionality.', 'google-analytics-for-wordpress' ) . '</p>';
+		            . '<p>' . __( 'You\'ve just installed Google Analytics by Yoast! Click "Start tour" to view a quick introduction of this plugin\'s core functionality.', 'google-analytics-for-wordpress' ) . '</p>';
 		$opt_arr  = array(
 			'content'  => $content,
 			'position' => array( 'edge' => 'top', 'align' => 'center' ),
 		);
 
-		$this->button_array['button2']['text']     = __( 'Start Tour', 'google-analytics-for-wordpress' );
+		$this->button_array['button2']['text']     = __( 'Start tour', 'google-analytics-for-wordpress' );
 		$this->button_array['button2']['function'] = sprintf( 'document.location="%s";', admin_url( 'admin.php?page=yst_ga_settings' ) );
 
 		$this->print_scripts( $selector, $opt_arr );
@@ -231,6 +233,7 @@ class Yoast_GA_Pointers {
 			               . '<p><strong>' . __( 'Tab: Reports', 'google-analytics-for-wordpress' ) . '</strong><br/>' . __( 'Info reports', 'google-analytics-for-wordpress' ) . '</p>'
 			               . '<p><strong>' . __( 'Tab: Custom dimension reports', 'google-analytics-for-wordpress' ) . '</strong><br/>' . __( 'Info custom dimensions reports', 'google-analytics-for-wordpress' ) . '</p>',
 			'next_page' => 'extensions',
+			'prev_page' => 'settings',
 		);
 	}
 
@@ -278,7 +281,7 @@ class Yoast_GA_Pointers {
 			               . '<p><strong>' . __( 'Licenses', 'google-analytics-for-wordpress' ) . '</strong><br/>' . __( 'Once you&#8217;ve purchased Google Analytics Premium or any other premium Yoast plugin, you&#8217;ll have to enter a license key. You can do so on the Licenses-tab. Once you&#8217;ve activated your premium plugin, you can use all its powerful features.', 'google-analytics-for-wordpress' ) . '</p>'
 			               . '<p><strong>' . __( 'Like this plugin?', 'google-analytics-for-wordpress' ) . '</strong><br/>' . sprintf( __( 'So, we&#8217;ve come to the end of the tour. If you like the plugin, please %srate it 5 stars on WordPress.org%s!', 'google-analytics-for-wordpress' ), '<a target="_blank" href="https://wordpress.org/plugins/google-analytics-for-wordpress/">', '</a>' ) . '</p>'
 			               . '<p>' . sprintf( __( 'Thank you for using our plugin and good luck with your Analytics!<br/><br/>Best,<br/>Team Yoast - %1$sYoast.com%2$s', 'google-analytics-for-wordpress' ), '<a target="_blank" href="' . esc_url( 'https://yoast.com/#utm_source=wpseo_licenses&utm_medium=wpseo_tour&utm_campaign=tour' ) . '">', '</a>' ) . '</p>',
-			'prev_page' => 'settings',
+			'prev_page' => 'dashboard',
 		);
 	}
 
