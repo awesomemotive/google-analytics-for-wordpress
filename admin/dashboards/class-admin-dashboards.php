@@ -193,6 +193,12 @@ class Yoast_GA_Dashboards {
 				'type'  => 'graph',
 				'tab'   => 'general',
 			),
+			'pageviews'      => array(
+				'title' => __( 'Pageviews', 'google-analytics-for-wordpress' ),
+				'help'  => __( 'The total number of pageviews per day.', 'google-analytics-for-wordpress' ),
+				'type'  => 'graph',
+				'tab'   => 'general',
+			),
 			'bounceRate'    => array(
 				'title'        => __( 'Bounce rate', 'google-analytics-for-wordpress' ),
 				'help'         => __( 'Bounce Rate is the percentage of single-page sessions (i.e. sessions in which the person left your site from the entrance page without interacting with the page). <a href="http://yoa.st/gabounce" target="_blank">[Learn more]</a>', 'google-analytics-for-wordpress' ),
