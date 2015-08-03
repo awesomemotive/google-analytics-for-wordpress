@@ -319,6 +319,7 @@ class Yoast_Google_Analytics_Notice {
 	 * Throw a warning if no UA code is set.
 	 */
 	public static function config_warning() {
+		/* translators: %s is a link to the Google Analytics admin settings page */
 		self::show_error(
 			sprintf( __( 'Please configure your %sGoogle Analytics settings%s!', 'google-analytics-for-wordpress' ),
 				'<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">',
@@ -331,6 +332,7 @@ class Yoast_Google_Analytics_Notice {
 	 * Throw a warning when the fetching failed
 	 */
 	public static function warning_fetching_data_authenticate() {
+		/* translators: %s is a link to the Google Analytics admin settings page */
 		self::show_error(
 			sprintf(
 				__( 'It seems the authentication for the plugin has expired, please %sre-authenticate%s with Google Analytics to allow the plugin to fetch data.', 'google-analytics-for-wordpress' ),
@@ -344,6 +346,7 @@ class Yoast_Google_Analytics_Notice {
 	 * Throw a warning when the fetching failed
 	 */
 	public static function warning_fetching_data() {
+		/* translators: %s is a link to an article on our KB */
 		self::show_error(
 			sprintf(
 				__( 'Data is not up-to-date, there was an error in retrieving the data from Google Analytics. This error could be caused by several issues. If the error persists, please see %sthis page%s.', 'google-analytics-for-wordpress' ),
