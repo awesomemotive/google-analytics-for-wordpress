@@ -97,7 +97,7 @@ class Yoast_GA_Admin_Form {
 			}
 		}
 		else {
-			$attributes['value'] = stripslashes( $input_value );
+			$attributes['value'] = esc_attr( stripslashes( $input_value ) );
 		}
 
 		$input .= '<input ' . self::parse_attributes( $attributes ) . ' />';
