@@ -218,7 +218,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 	 * @return string
 	 */
 	private function get_object_name() {
-		if( empty( $this->object_name ) ){
+		if ( empty( $this->object_name ) ) {
 			/**
 			 * Filter: 'yoast-ga-universal-object-name' - Allows filtering of the commands to push
 			 *
