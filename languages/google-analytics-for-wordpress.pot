@@ -2,10 +2,10 @@
 # This file is distributed under the GPL v3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Google Analytics by Yoast 5.4.4\n"
+"Project-Id-Version: Google Analytics by Yoast 5.4.5\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/yoast/google-analytics-for-wordpress/issues\n"
-"POT-Creation-Date: 2015-07-21 07:53:25+00:00\n"
+"POT-Creation-Date: 2015-08-05 11:08:55+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,7 +25,7 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: admin/class-admin-form.php:46 admin/pages/settings.php:174
+#: admin/class-admin-form.php:46 admin/pages/settings.php:176
 msgid "Save changes"
 msgstr ""
 
@@ -45,7 +45,7 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: admin/class-admin-menu.php:242 admin/class-admin.php:320
+#: admin/class-admin-menu.php:242 admin/class-admin.php:326
 #: admin/pages/settings.php:10
 msgid "Settings"
 msgstr ""
@@ -63,60 +63,60 @@ msgid ""
 "date yet."
 msgstr ""
 
-#: admin/class-admin.php:128
+#: admin/class-admin.php:134
 msgid "Settings saved."
 msgstr ""
 
-#: admin/class-admin.php:135
+#: admin/class-admin.php:141
 msgid "There were no changes to save, please try again."
 msgstr ""
 
-#: admin/class-admin.php:179
+#: admin/class-admin.php:185
 msgid "The UA code needs to follow UA-XXXXXXXX-X format."
 msgstr ""
 
-#: admin/class-admin.php:317
+#: admin/class-admin.php:323
 msgid "FAQ"
 msgstr ""
 
-#: admin/class-admin.php:332
+#: admin/class-admin.php:338
 msgid ""
 "If you want to track custom dimensions like page views per author or post "
 "type, you should upgrade to the %1$spremium version of Google Analytics by "
 "Yoast%2$s."
 msgstr ""
 
-#: admin/class-admin.php:334
+#: admin/class-admin.php:340
 msgid ""
 "This will also give you email access to the support team at Yoast, who will "
 "provide support on the plugin 24/7."
 msgstr ""
 
-#: admin/class-admin.php:472
+#: admin/class-admin.php:478
 msgid "Event"
 msgstr ""
 
-#: admin/class-admin.php:473
+#: admin/class-admin.php:479
 msgid "Pageview"
 msgstr ""
 
-#: admin/class-admin.php:484
+#: admin/class-admin.php:490
 msgid "Just the domain"
 msgstr ""
 
-#: admin/class-admin.php:485
+#: admin/class-admin.php:491
 msgid "Full links"
 msgstr ""
 
-#: admin/class-admin.php:505
+#: admin/class-admin.php:511
 msgid "Debug information"
 msgstr ""
 
-#: admin/class-admin.php:554
+#: admin/class-admin.php:560
 msgid "Google Analytics by Yoast Premium"
 msgstr ""
 
-#: admin/class-admin.php:555
+#: admin/class-admin.php:561
 msgid ""
 "The premium version of Google Analytics by Yoast with more features and "
 "support."
@@ -126,11 +126,11 @@ msgstr ""
 msgid "Google Analytics by Yoast"
 msgstr ""
 
-#: admin/class-admin.php:560
+#: admin/class-admin.php:566
 msgid "eCommerce tracking"
 msgstr ""
 
-#: admin/class-admin.php:561
+#: admin/class-admin.php:567
 msgid ""
 "Track your eCommerce data and transactions with this eCommerce extension "
 "for Google Analytics."
@@ -592,40 +592,40 @@ msgid ""
 "related functions."
 msgstr ""
 
-#: admin/pages/settings.php:146
+#: admin/pages/settings.php:147
 msgid "Custom code"
 msgstr ""
 
-#: admin/pages/settings.php:146
+#: admin/pages/settings.php:147
 msgid ""
 "Not for the average user: this allows you to add a line of code, to be "
 "added before the %1$s call."
 msgstr ""
 
-#: admin/pages/settings.php:156
+#: admin/pages/settings.php:158
 msgid "Custom dimensions"
 msgstr ""
 
-#: admin/pages/settings.php:163
+#: admin/pages/settings.php:165
 msgid "Debug"
 msgstr ""
 
-#: admin/pages/settings.php:166
+#: admin/pages/settings.php:168
 msgid ""
 "If you want to confirm that tracking on your blog is working as it should, "
 "enable this option and check the console of your browser. Be absolutely "
 "sure to disable debugging afterwards, as it is slower than normal tracking."
 msgstr ""
 
-#: admin/pages/settings.php:167
+#: admin/pages/settings.php:169
 msgid "<strong>Note</strong> the debugging is only loaded for administrators."
 msgstr ""
 
-#: admin/pages/settings.php:169
+#: admin/pages/settings.php:171
 msgid "Enable debug mode"
 msgstr ""
 
-#: admin/pages/settings.php:183
+#: admin/pages/settings.php:185
 msgid "Select the users to ignore"
 msgstr ""
 
