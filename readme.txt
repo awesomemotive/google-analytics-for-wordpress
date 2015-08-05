@@ -2,7 +2,7 @@
 Contributors: joostdevalk
 Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
-Requires at least: 3.8
+Requires at least: 3.9
 Tested up to: 4.2
 Stable tag: 5.4.5
 License: GPL v3
