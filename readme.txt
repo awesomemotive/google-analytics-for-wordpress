@@ -60,7 +60,7 @@ Release Date: August 5th, 2015
 
 * Enhancements:
     * Only allows showing and saving the custom code field for users with the `unfiltered_html` capability.
-    * Also escapes select input data for JavaScript output on the frontend.
+    * Improves JavaScript output escaping on the frontend.
 
 = 5.4.4 =
 
