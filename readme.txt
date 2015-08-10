@@ -56,7 +56,7 @@ This section describes how to install the plugin and get it working.
 Release Date: August 5th, 2015
 
 * Security:
-    * Fixes a small stored XSS issue (only exploitable by admins), thanks [Duncan Stuart](https://twitter.com/DGMStuart) from [DXW security](https://security.dxw.com/) for responsibly disclosing the issue.
+    * Fixes a small stored XSS issue (only exploitable by admins), thanks [Tom Adams](https://twitter.com/tom_dxw) from [dxw security](https://security.dxw.com/) for responsibly disclosing the issue.
 
 * Enhancements:
     * Only allows showing and saving the custom code field for users with the `unfiltered_html` capability.
