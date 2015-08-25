@@ -56,7 +56,7 @@ This section describes how to install the plugin and get it working.
 Release Date: August 25th, 2015
 
 * Bugfixes:
-    * Fixes the dashboard tables which were broken in WordPress 4.3 because of a new version of JQuery that was introduced.
+    * Fixes the dashboard tables which were broken in WordPress 4.3 because of a new version of jQuery that was introduced.
 
 = 5.4.5 =
 
