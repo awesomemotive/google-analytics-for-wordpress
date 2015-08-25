@@ -10,7 +10,7 @@
  * Description: This plugin makes it simple to add Google Analytics to your WordPress site, adding lots of features, e.g. error page, search result and automatic outgoing links and download tracking.
  * Author: Team Yoast
  * Version: 5.4.5
- * Requires at least: 3.8
+ * Requires at least: 3.9
  * Author URI: https://yoast.com/
  * License: GPL v3
  * Text Domain: google-analytics-for-wordpress
