@@ -256,7 +256,8 @@ class Yoast_GA_Pointers {
 			               . '<p><strong>' . __( 'Advanced:', 'google-analytics-for-wordpress' ) . '</strong></p>'
 			               . '<p>' . __( 'The section where you can find the advanced settings of this plugin. Here you can alter how you track certain things and add custom code if necessary. Only use this if you know what you’re doing.', 'google-analytics-for-wordpress' ) . '</p>'
 			               . '<p><strong>' . __( 'Custom dimensions:', 'google-analytics-for-wordpress' ) . '</strong></p>'
-			               . '<p>' . __( 'You can only use this functionality if you have <a href=“https://yoast.com/wordpress/plugins/google-analytics/#utm_source=ga_settings&utm_medium=ga_tour&utm_campaign=tour“>Google Analytics by Yoast Premium</a>. Custom dimensions allow for much more powerful and specific tracking.', 'google-analytics-for-wordpress' ) . '</p>'
+			               /* translators: %s links to `https://yoast.com/wordpress/plugins/google-analytics/` */
+			               . '<p>' . sprintf( __( 'You can only use this functionality if you have %s. Custom dimensions allow for much more powerful and specific tracking.', 'google-analytics-for-wordpress'), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_source=ga_settings&utm_medium=ga_tour&utm_campaign=tour">Google Analytics by Yoast Premium</a>' ) . '</p>'
 			               . '<p><strong>' . __( 'Debug mode:', 'google-analytics-for-wordpress' ) . '</strong></p>'
 			               . '<p>' . __( 'Only use this if you know what you’re doing. Here you can check what could be hindering your tracking.', 'google-analytics-for-wordpress' ) . '</p>'
 		       . '<p><strong style="font-size:150%;">' . __( 'Subscribe to our Newsletter', 'google-analytics-for-wordpress' ) . '</strong><br/>'
@@ -281,12 +282,15 @@ class Yoast_GA_Pointers {
 		return array(
 			'content'   => '<h3>' . __( 'Extensions and Licenses', 'google-analytics-for-wordpress' ) . '</h3>'
 			               . '<p><strong>' . __( 'Extensions:', 'google-analytics-for-wordpress' ) . '</strong><br/>'
-			               . __( 'See which extensions you have installed and which you haven’t installed yet. You can find extensions to our Google Analytics plugin <a href="https://yoast.com/wordpress/plugins/#utm_source=ga_licenses&utm_medium=ga_tour&utm_campaign=tour>here</a>.', 'google-analytics-for-wordpress' ) . '</p>'
+			               /* translators: %s links to `https://yoast.com/wordpress/plugins/`. */
+			               . sprintf( __( 'See which extensions you have installed and which you haven’t installed yet. You can find extensions to our Google Analytics plugin %shere%s.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/#utm_source=ga_licenses&utm_medium=ga_tour&utm_campaign=tour">', '</a>' ) . '</p>'
 			               . '<p><strong>' . __( 'Licenses:', 'google-analytics-for-wordpress' ) . '</strong><br/>'
 			               . __( 'Here you can activate, deactivate and renew your licenses.', 'google-analytics-for-wordpress' ) . '</p>'
 			               . '<p><strong>' . __( 'Like this plugin?', 'google-analytics-for-wordpress' ) . '</strong><br/>'
+			               /* translators: %s links to `https://wordpress.org/plugins/google-analytics-for-wordpress/` */
 			               . sprintf( __( 'So, we&#8217;ve come to the end of the tour. If you like the plugin, please %srate it 5 stars on WordPress.org%s!', 'google-analytics-for-wordpress' ), '<a target="_blank" href="https://wordpress.org/plugins/google-analytics-for-wordpress/">', '</a>' ) . '</p>'
-			               . '<p>' . sprintf( __( 'Thank you for using our plugin and good luck with your Analytics!<br/><br/>Best,<br/>Team Yoast - %1$sYoast.com%2$s', 'google-analytics-for-wordpress' ), '<a target="_blank" href="' . esc_url( 'https://yoast.com/#utm_source=wpseo_licenses&utm_medium=wpseo_tour&utm_campaign=tour' ) . '">', '</a>' ) . '</p>',
+			               /* translators: %s links to `https://yoast.com` */
+			               . '<p>' . sprintf( __( 'Thank you for using our plugin and good luck with your Analytics!<br/><br/>Best,<br/>Team Yoast - %sYoast.com%s', 'google-analytics-for-wordpress' ), '<a target="_blank" href="' . esc_url( 'https://yoast.com/#utm_source=wpseo_licenses&utm_medium=wpseo_tour&utm_campaign=tour' ) . '">', '</a>' ) . '</p>',
 			'prev_page' => 'dashboard',
 		);
 	}
