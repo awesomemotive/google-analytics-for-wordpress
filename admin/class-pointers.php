@@ -71,15 +71,6 @@ class Yoast_GA_Pointers {
 	}
 
 	/**
-	 * Get the current page the user is on.
-	 *
-	 * @return string
-	 */
-	protected function get_current_page() {
-		return preg_replace( '/^(yst_ga_)/', '', filter_input( INPUT_GET, 'page' ) );
-	}
-
-	/**
 	 * Prints the pointer script
 	 *
 	 * @param string $selector The CSS selector the pointer is attached to.
@@ -180,21 +171,12 @@ class Yoast_GA_Pointers {
 	}
 
 	/**
-	 * Show a pointer that starts the tour for WordPress SEO
+	 * Get the current page the user is on.
+	 *
+	 * @return string
 	 */
-	private function start_tour_pointer() {
-		$selector = 'li#toplevel_page_yst_ga_dashboard';
-		$content  = '<h3>' . __( 'Congratulations!', 'google-analytics-for-wordpress' ) . '</h3>'
-		            . '<p>' . __( 'You\'ve just installed Google Analytics by Yoast! Click "Start tour" to view a quick introduction of this plugin\'s core functionality.', 'google-analytics-for-wordpress' ) . '</p>';
-		$opt_arr  = array(
-			'content'  => $content,
-			'position' => array( 'edge' => 'top', 'align' => 'center' ),
-		);
-
-		$this->button_array['primary_button']['text']     = __( 'Start tour', 'google-analytics-for-wordpress' );
-		$this->button_array['primary_button']['function'] = sprintf( 'document.location="%s";', admin_url( 'admin.php?page=yst_ga_settings' ) );
-
-		$this->print_scripts( $selector, $opt_arr );
+	protected function get_current_page() {
+		return preg_replace( '/^(yst_ga_)/', '', filter_input( INPUT_GET, 'page' ) );
 	}
 
 	/**
@@ -227,6 +209,24 @@ class Yoast_GA_Pointers {
 				'function' => 'window.location="' . admin_url( 'admin.php?page=yst_ga_' . $pointer['prev_page'] ) . '";',
 			);
 		}
+		$this->print_scripts( $selector, $opt_arr );
+	}
+
+	/**
+	 * Show a pointer that starts the tour for WordPress SEO
+	 */
+	protected function start_tour_pointer() {
+		$selector = 'li#toplevel_page_yst_ga_dashboard';
+		$content  = '<h3>' . __( 'Congratulations!', 'google-analytics-for-wordpress' ) . '</h3>'
+		            . '<p>' . __( 'You\'ve just installed Google Analytics by Yoast! Click "Start tour" to view a quick introduction of this plugin\'s core functionality.', 'google-analytics-for-wordpress' ) . '</p>';
+		$opt_arr  = array(
+			'content'  => $content,
+			'position' => array( 'edge' => 'top', 'align' => 'center' ),
+		);
+
+		$this->button_array['primary_button']['text']     = __( 'Start tour', 'google-analytics-for-wordpress' );
+		$this->button_array['primary_button']['function'] = sprintf( 'document.location="%s";', admin_url( 'admin.php?page=yst_ga_settings' ) );
+
 		$this->print_scripts( $selector, $opt_arr );
 	}
 

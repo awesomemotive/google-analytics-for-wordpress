@@ -61,11 +61,21 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Check that tour pointer is called when the user is not on one of the google analytics pages.
 	 *
 	 * @covers Yoast_GA_Pointers::intro_tour
 	 */
 	public function test_tour_start_pointer() {
+		$this->class_instance
+			->expects( $this->once() )
+			->method( 'get_current_page' )
+			->willReturn( '' );
 
+		$this->class_instance
+			->expects( $this->once() )
+			->method( 'start_tour_pointer' );
+
+		$this->class_instance->intro_tour();
 	}
 
 	/**
