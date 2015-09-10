@@ -60,14 +60,23 @@ class Yoast_GA_Pointers {
 	public function intro_tour() {
 		global $pagenow;
 
-		$page = preg_replace( '/^(yst_ga_)/', '', filter_input( INPUT_GET, 'page' ) );
+		$page = $this->get_current_page();
 
-		if ( 'admin.php' === $pagenow && array_key_exists( $page, $this->admin_pages ) ) {
+		if ( $pagenow === 'admin.php' && array_key_exists( $page, $this->admin_pages ) ) {
 			$this->do_page_pointer( $page );
 		}
 		else {
 			$this->start_tour_pointer();
 		}
+	}
+
+	/**
+	 * Get the current page the user is on.
+	 *
+	 * @return string
+	 */
+	protected function get_current_page() {
+		return preg_replace( '/^(yst_ga_)/', '', filter_input( INPUT_GET, 'page' ) );
 	}
 
 	/**
@@ -77,13 +86,13 @@ class Yoast_GA_Pointers {
 	 * @param array  $options  The options for the pointer.
 	 */
 	public function print_scripts( $selector, $options ) {
-		// Button1 is the close button, which always exists.
+		// The close button always exists. Primary button renders for 'Next' and 'Start tour'. Previous button renders for 'Previous'.
 		$button_array_defaults = array(
-			'button2' => array(
+			'primary_button' => array(
 				'text'     => false,
 				'function' => '',
 			),
-			'button3' => array(
+			'previous_button' => array(
 				'text'     => false,
 				'function' => '',
 			),
@@ -125,8 +134,8 @@ class Yoast_GA_Pointers {
 				setup = function () {
 					$('<?php echo $selector; ?>').pointer(wpseo_pointer_options).pointer('open');
 					<?php
-					$this->button2();
-					$this->button3();
+					$this->primary_button();
+					$this->previous_button();
 					?>
 				};
 
@@ -141,15 +150,15 @@ class Yoast_GA_Pointers {
 	}
 
 	/**
-	 * Render button 2, if needed
+	 * Render primary_button. This button renders for 'Start tour' and 'Next'
 	 */
-	private function button2() {
-		if ( $this->button_array['button2']['text'] ) {
+	private function primary_button() {
+		if ( $this->button_array['primary_button']['text'] ) {
 			?>
 			jQuery('#pointer-close').after('<a id="pointer-primary" class="button-primary">' +
-				'<?php echo $this->button_array['button2']['text']; ?>' + '</a>');
+				'<?php echo $this->button_array['primary_button']['text']; ?>' + '</a>');
 			jQuery('#pointer-primary').click(function () {
-			<?php echo $this->button_array['button2']['function']; ?>
+			<?php echo $this->button_array['primary_button']['function']; ?>
 			});
 		<?php
 		}
@@ -158,13 +167,13 @@ class Yoast_GA_Pointers {
 	/**
 	 * Render button 3, if needed. This is the previous button in most cases
 	 */
-	private function button3() {
-		if ( $this->button_array['button3']['text'] ) {
+	private function previous_button() {
+		if ( $this->button_array['previous_button']['text'] ) {
 			?>
 			jQuery('#pointer-primary').after('<a id="pointer-ternary" style="float: left;" class="button-secondary">' +
-				'<?php echo $this->button_array['button3']['text']; ?>' + '</a>');
+				'<?php echo $this->button_array['previous_button']['text']; ?>' + '</a>');
 			jQuery('#pointer-ternary').click(function () {
-			<?php echo $this->button_array['button3']['function']; ?>
+			<?php echo $this->button_array['previous_button']['function']; ?>
 			});
 		<?php
 		}
@@ -182,8 +191,8 @@ class Yoast_GA_Pointers {
 			'position' => array( 'edge' => 'top', 'align' => 'center' ),
 		);
 
-		$this->button_array['button2']['text']     = __( 'Start tour', 'google-analytics-for-wordpress' );
-		$this->button_array['button2']['function'] = sprintf( 'document.location="%s";', admin_url( 'admin.php?page=yst_ga_settings' ) );
+		$this->button_array['primary_button']['text']     = __( 'Start tour', 'google-analytics-for-wordpress' );
+		$this->button_array['primary_button']['function'] = sprintf( 'document.location="%s";', admin_url( 'admin.php?page=yst_ga_settings' ) );
 
 		$this->print_scripts( $selector, $opt_arr );
 	}
@@ -193,7 +202,7 @@ class Yoast_GA_Pointers {
 	 *
 	 * @param string $page
 	 */
-	private function do_page_pointer( $page ) {
+	protected function do_page_pointer( $page ) {
 		$selector = '#yoast_ga_title';
 
 		$pointer = call_user_func( array( $this, $this->admin_pages[ $page ] ) );
@@ -207,37 +216,18 @@ class Yoast_GA_Pointers {
 			'pointerWidth' => 450,
 		);
 		if ( isset( $pointer['next_page'] ) ) {
-			$this->button_array['button2'] = array(
+			$this->button_array['primary_button'] = array(
 				'text'     => __( 'Next', 'google-analytics-for-wordpress' ),
 				'function' => 'window.location="' . admin_url( 'admin.php?page=yst_ga_' . $pointer['next_page'] ) . '";',
 			);
 		}
 		if ( isset( $pointer['prev_page'] ) ) {
-			$this->button_array['button3'] = array(
+			$this->button_array['previous_button'] = array(
 				'text'     => __( 'Previous', 'google-analytics-for-wordpress' ),
 				'function' => 'window.location="' . admin_url( 'admin.php?page=yst_ga_' . $pointer['prev_page'] ) . '";',
 			);
 		}
 		$this->print_scripts( $selector, $opt_arr );
-	}
-
-	/**
-	 * Returns the content of the General Settings page pointer
-	 *
-	 * @return array
-	 */
-	private function dashboard_pointer() {
-		return array(
-			'content'   => '<h3>' . __( 'Dashboard', 'google-analytics-for-wordpress' ) . '</h3>'
-			               . '<p><strong>' . __( 'Overview:', 'google-analytics-for-wordpress' ) . '</strong><br/>'
-			               . __( 'View your website’s last month’s analytics, such as Sessions and bounce rate.', 'google-analytics-for-wordpress' ) . '</p>'
-			               . '<p><strong>' . __( 'Reports:', 'google-analytics-for-wordpress' ) . '</strong><br/>'
-			               . __( 'View specific reports of your site’s analytics, such as traffic sources, your site’s popular pages and countries where your visitors come from.', 'google-analytics-for-wordpress' ) . '</p>'
-			               . '<p><strong>' . __( 'Custom dimension reports:', 'google-analytics-for-wordpress' )
-			               . '</strong><br/>' . __( 'View basic reports of your custom dimensions, such as traffic per author, per category, etc.', 'google-analytics-for-wordpress' ) . '</p>',
-			'next_page' => 'extensions',
-			'prev_page' => 'settings',
-		);
 	}
 
 	/**
@@ -249,16 +239,16 @@ class Yoast_GA_Pointers {
 		global $current_user;
 		return array(
 			'content'   => '<h3>' . __( 'Settings' ) . '</h3>'
-			               . '<p><strong>' . __( 'General:', 'google-analytics-for-wordpress' ) . '</strong></p>'
+			               . '<p><strong>' . __( 'Tab: General', 'google-analytics-for-wordpress' ) . '</strong></p>'
 			               . '<p>' . __( 'These are the general settings for Google Analytics by Yoast. Here you can authenticate and connect your Google Analytics profile, enable general tracking features and restart this tour.', 'google-analytics-for-wordpress' ) . '</p>'
-			               . '<p><strong>' . __( 'Universal:', 'google-analytics-for-wordpress' ) . '</strong></p>'
+			               . '<p><strong>' . __( 'Tab: Universal', 'google-analytics-for-wordpress' ) . '</strong></p>'
 			               . '<p>' . __( 'Enable Universal tracking and tracking features related to Universal tracking.', 'google-analytics-for-wordpress' ) . '</p>'
-			               . '<p><strong>' . __( 'Advanced:', 'google-analytics-for-wordpress' ) . '</strong></p>'
+			               . '<p><strong>' . __( 'Tab: Advanced', 'google-analytics-for-wordpress' ) . '</strong></p>'
 			               . '<p>' . __( 'The section where you can find the advanced settings of this plugin. Here you can alter how you track certain things and add custom code if necessary. Only use this if you know what you’re doing.', 'google-analytics-for-wordpress' ) . '</p>'
-			               . '<p><strong>' . __( 'Custom dimensions:', 'google-analytics-for-wordpress' ) . '</strong></p>'
+			               . '<p><strong>' . __( 'Tab: Custom dimensions', 'google-analytics-for-wordpress' ) . '</strong></p>'
 			               /* translators: %s links to `https://yoast.com/wordpress/plugins/google-analytics/` */
 			               . '<p>' . sprintf( __( 'You can only use this functionality if you have %s. Custom dimensions allow for much more powerful and specific tracking.', 'google-analytics-for-wordpress'), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_source=ga_settings&utm_medium=ga_tour&utm_campaign=tour">Google Analytics by Yoast Premium</a>' ) . '</p>'
-			               . '<p><strong>' . __( 'Debug mode:', 'google-analytics-for-wordpress' ) . '</strong></p>'
+			               . '<p><strong>' . __( 'Tab: Debug mode', 'google-analytics-for-wordpress' ) . '</strong></p>'
 			               . '<p>' . __( 'Only use this if you know what you’re doing. Here you can check what could be hindering your tracking.', 'google-analytics-for-wordpress' ) . '</p>'
 		       . '<p><strong style="font-size:150%;">' . __( 'Subscribe to our Newsletter', 'google-analytics-for-wordpress' ) . '</strong><br/>'
 		       . __( 'If you would like us to keep you up-to-date regarding Google Analytics and other plugins by Yoast, subscribe to our newsletter:', 'google-analytics-for-wordpress' ) . '</p>'
@@ -274,6 +264,25 @@ class Yoast_GA_Pointers {
 	}
 
 	/**
+	 * Returns the content of the General Settings page pointer
+	 *
+	 * @return array
+	 */
+	private function dashboard_pointer() {
+		return array(
+			'content'   => '<h3>' . __( 'Dashboard', 'google-analytics-for-wordpress' ) . '</h3>'
+			               . '<p><strong>' . __( 'Tab: Overview', 'google-analytics-for-wordpress' ) . '</strong><br/>'
+			               . __( 'View your website’s last month’s analytics, such as Sessions and bounce rate.', 'google-analytics-for-wordpress' ) . '</p>'
+			               . '<p><strong>' . __( 'Tab: Reports', 'google-analytics-for-wordpress' ) . '</strong><br/>'
+			               . __( 'View specific reports of your site’s analytics, such as traffic sources, your site’s popular pages and countries where your visitors come from.', 'google-analytics-for-wordpress' ) . '</p>'
+			               . '<p><strong>' . __( 'Tab: Custom dimension reports', 'google-analytics-for-wordpress' )
+			               . '</strong><br/>' . __( 'View basic reports of your custom dimensions, such as traffic per author, per category, etc.', 'google-analytics-for-wordpress' ) . '</p>',
+			'next_page' => 'extensions',
+			'prev_page' => 'settings',
+		);
+	}
+
+	/**
 	 * Returns the content of the extensions and licenses page pointer
 	 *
 	 * @return array
@@ -281,10 +290,10 @@ class Yoast_GA_Pointers {
 	private function extensions_pointer() {
 		return array(
 			'content'   => '<h3>' . __( 'Extensions and Licenses', 'google-analytics-for-wordpress' ) . '</h3>'
-			               . '<p><strong>' . __( 'Extensions:', 'google-analytics-for-wordpress' ) . '</strong><br/>'
+			               . '<p><strong>' . __( 'Tab: Extensions', 'google-analytics-for-wordpress' ) . '</strong><br/>'
 			               /* translators: %s links to `https://yoast.com/wordpress/plugins/`. */
 			               . sprintf( __( 'See which extensions you have installed and which you haven’t installed yet. You can find extensions to our Google Analytics plugin %shere%s.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/#utm_source=ga_licenses&utm_medium=ga_tour&utm_campaign=tour">', '</a>' ) . '</p>'
-			               . '<p><strong>' . __( 'Licenses:', 'google-analytics-for-wordpress' ) . '</strong><br/>'
+			               . '<p><strong>' . __( 'Tab: Licenses', 'google-analytics-for-wordpress' ) . '</strong><br/>'
 			               . __( 'Here you can activate, deactivate and renew your licenses.', 'google-analytics-for-wordpress' ) . '</p>'
 			               . '<p><strong>' . __( 'Like this plugin?', 'google-analytics-for-wordpress' ) . '</strong><br/>'
 			               /* translators: %s links to `https://wordpress.org/plugins/google-analytics-for-wordpress/` */
