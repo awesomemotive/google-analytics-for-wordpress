@@ -79,11 +79,42 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Tests if print_scripts prints the correct message on the admin page.
 	 *
 	 * @covers Yoast_GA_Pointers::print_scripts
 	 */
 	public function test_print_scripts() {
+		$user_id = $this->factory->user->create( array( 'role' => 'administrator' ) );
 
+		$old_user_id = get_current_user_id();
+
+		// Login user
+		wp_set_current_user ($user_id);
+
+		$this->go_to( admin_url() );
+
+		$class_instance = new Yoast_GA_Pointers();
+
+		$selector = 'li#toplevel_page_yst_ga_dashboard';
+		$content  = '<h3>' . __( 'Congratulations!', 'google-analytics-for-wordpress' ) . '</h3>'
+		            . '<p>' . __( 'You\'ve just installed Google Analytics by Yoast! Click "Start tour" to view a quick introduction of this plugin\'s core functionality.', 'google-analytics-for-wordpress' ) . '</p>';
+		$opt_arr  = array(
+			'content'  => $content,
+			'position' => array( 'edge' => 'top', 'align' => 'center' ),
+		);
+
+		ob_start();
+		$class_instance->print_scripts( $selector, $opt_arr );
+
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		$expected_output  = 'You\'ve just installed Google Analytics by Yoast!';
+
+		$this->assertContains( $expected_output, $output );
+
+		// Set current user back to old user id
+		wp_set_current_user( $old_user_id );
 	}
 
 }
