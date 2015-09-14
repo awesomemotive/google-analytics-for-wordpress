@@ -26,7 +26,18 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 	 * @covers Yoast_GA_Pointers::__construct
 	 */
 	public function test_ga_ignore_tour_IS_FALSE() {
+		$user_id = $this->factory->user->create( array( 'role' => 'administrator' ) );
+		wp_set_current_user ($user_id);
 
+		$class_instance = new Yoast_GA_Pointers();
+
+		// Login user
+		wp_set_current_user ($user_id);
+
+		$has_tracking_actions = has_action( 'admin_print_footer_scripts', array( $class_instance, 'intro_tour' ) );
+		$has_tracking_actions = is_int( $has_tracking_actions );
+
+		$this->assertTrue( $has_tracking_actions );
 	}
 
 	/**
@@ -35,7 +46,20 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 	 * @covers Yoast_GA_Pointers::__construct
 	 */
 	public function test_ga_ignore_tour_IS_TRUE() {
+		$user_id = $this->factory->user->create( array( 'role' => 'administrator' ) );
 
+		wp_set_current_user ($user_id);
+		update_user_meta( $user_id, 'ga_ignore_tour', '1' );
+
+		$class_instance = new Yoast_GA_Pointers();
+
+		// Login user
+		wp_set_current_user ($user_id);
+
+		$has_tracking_actions = has_action( 'admin_print_footer_scripts', array( $class_instance, 'intro_tour' ) );
+		$has_tracking_actions = is_int( $has_tracking_actions );
+
+		$this->assertFalse( $has_tracking_actions );
 	}
 
 	/**

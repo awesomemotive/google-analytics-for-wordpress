@@ -247,7 +247,7 @@ class Yoast_GA_Pointers {
 			               . '<p>' . __( 'The section where you can find the advanced settings of this plugin. Here you can alter how you track certain things and add custom code if necessary. Only use this if you know what you’re doing.', 'google-analytics-for-wordpress' ) . '</p>'
 			               . '<p><strong>' . __( 'Tab: Custom dimensions', 'google-analytics-for-wordpress' ) . '</strong></p>'
 			               /* translators: %s links to `https://yoast.com/wordpress/plugins/google-analytics/` */
-			               . '<p>' . sprintf( __( 'You can only use this functionality if you have %s. Custom dimensions allow for much more powerful and specific tracking.', 'google-analytics-for-wordpress'), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_source=ga_settings&utm_medium=ga_tour&utm_campaign=tour">Google Analytics by Yoast Premium</a>' ) . '</p>'
+			               . '<p>' . sprintf( __( 'You can only use this functionality if you have %s. Custom dimensions allow for much more powerful and specific tracking.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_source=ga_settings&utm_medium=ga_tour&utm_campaign=tour">Google Analytics by Yoast Premium</a>' ) . '</p>'
 			               . '<p><strong>' . __( 'Tab: Debug mode', 'google-analytics-for-wordpress' ) . '</strong></p>'
 			               . '<p>' . __( 'Only use this if you know what you’re doing. Here you can check what could be hindering your tracking.', 'google-analytics-for-wordpress' ) . '</p>'
 		       . '<p><strong style="font-size:150%;">' . __( 'Subscribe to our Newsletter', 'google-analytics-for-wordpress' ) . '</strong><br/>'
