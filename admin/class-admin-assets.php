@@ -90,7 +90,7 @@ class Yoast_GA_Admin_Assets {
 	 *
 	 * @return string
 	 */
-	private static function file_ext( $ext ) {
+	public static function file_ext( $ext ) {
 		if ( ! defined( 'SCRIPT_DEBUG' ) || ! SCRIPT_DEBUG ) {
 			$ext = '.min' . $ext;
 		}
