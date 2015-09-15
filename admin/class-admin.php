@@ -39,7 +39,6 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 		$this->ignore_tour();
 		$this->load_tour();
-
 	}
 
 	/**
