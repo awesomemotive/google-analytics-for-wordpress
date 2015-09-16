@@ -265,7 +265,7 @@ jQuery.fn.extend(
 						 */
 						create_graph: function () {
 							var margin_top = 0.10;
-							var max_y = graphName === 'graph-bounceRate' ? 100 + margin_top * 100 : undefined; // Set the max y value to 100 (plus the margin to match the other graphs) for only the bounce rate graph. Remains the default value for any other graph.
+							var max_y = graph_name === 'graph-bounceRate' ? 100 + margin_top * 100 : undefined; // Set the max y value to 100 (plus the margin to match the other graphs) for only the bounce rate graph. Remains the default value for any other graph.
 							this.graph = new Rickshaw.Graph(
 								{
 									element : target.querySelector('.yoast-graph-holder'),
