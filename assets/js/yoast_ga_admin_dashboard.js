@@ -99,7 +99,7 @@ jQuery.fn.extend(
 			 */
 			return this.each(
 				function () {
-					var graphName = this.id;
+					var graph_name = this.id;
 					var element = jQuery(this);
 					var graph_id = jQuery(element).attr('id');			// Getting ID-attribute from element
 					var target = document.getElementById(graph_id);	// Element obtaining doing the W3c way
