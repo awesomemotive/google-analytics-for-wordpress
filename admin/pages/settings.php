@@ -114,7 +114,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		?>
 		<div class="clear"><br /></div>
 
-		<?php if ( get_user_meta( get_current_user_id(), 'wpseo_ignore_tour' ) ) { ?>
+		<?php if ( get_user_meta( get_current_user_id(), 'ga_ignore_tour' ) ) { ?>
 		<h2><?php _e( 'Introduction Tour', 'google-analytics-for-wordpress' ) ?></h2>
 		<div id="ga_form_introduction_tour">
 			<p>
@@ -125,7 +125,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 			</p>
 		</div>
 		<br/>
-			<?php } ?>
+		<?php } ?>
 
 	</div>
 	<!-- end general tab -->
