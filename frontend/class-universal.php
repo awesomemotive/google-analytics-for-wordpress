@@ -188,7 +188,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 			case 'internal-as-outbound':
 				$label = $this->sanitize_internal_label();
 
-				$onclick = "__gaTracker('send', '" . $this->options['track_download_as'] . "', '" . esc_js( $link['category'] ) . '-' . esc_js( $label ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "');";
+				$onclick = "__gaTracker('send', '" . esc_js( $this->options['track_download_as'] ) . "', '" . esc_js( $link['category'] ) . '-' . esc_js( $label ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "');";
 
 				break;
 			case 'outbound':
