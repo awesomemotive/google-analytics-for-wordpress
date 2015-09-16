@@ -9,11 +9,6 @@
 class Yoast_GA_Universal extends Yoast_GA_Tracking {
 
 	/**
-	 * @var string
-	 */
-	private $object_name = '';
-
-	/**
 	 * Test helper function
 	 */
 	public function get_options(){
@@ -144,11 +139,11 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 			}
 
 			$gaq_push    = apply_filters( 'yoast-ga-push-array-universal', $gaq_push );
-			$object_name = $this->get_object_name();
 			$ga_settings = $this->options; // Assign the settings to the javascript include view
 
 			// Include the tracking view
 			if ( ! $this->debug_mode() ) {
+				$object_name = $this->get_js_object_name();
 				require( 'views/tracking-universal.php' );
 			}
 		}
@@ -167,7 +162,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 	 */
 	protected function output_parse_link( $label, $matches ) {
 		$link        = $this->get_target( $label, $matches );
-		$object_name = $this->get_object_name();
+		$object_name = $this->get_js_object_name();
 		// bail early for links that we can't handle
 		if ( is_null( $link['type'] ) || 'internal' === $link['type'] ) {
 			return $matches[0];
@@ -217,17 +212,22 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 	 *
 	 * @return string
 	 */
-	private function get_object_name() {
-		if ( empty( $this->object_name ) ) {
+	public static function get_js_object_name() {
+		/**
+		 * @static string
+		 */
+		static $object_name;
+
+		if ( empty( $object_name ) ) {
 			/**
 			 * Filter: 'yoast-ga-universal-object-name' - Allows filtering of the commands to push
 			 *
 			 * @api array $gaq_push
 			 */
-			$this->object_name = apply_filters( 'yoast-ga-universal-object-name', '__gaTracker' );
+			$object_name = apply_filters( 'yoast-ga-universal-object-name', '__gaTracker' );
 		}
 
-		return $this->object_name;
+		return $object_name;
 	}
 
 }
