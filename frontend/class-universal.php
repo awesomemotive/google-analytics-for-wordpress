@@ -138,12 +138,12 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 				return $gaq_push;
 			}
 
-			$gaq_push    = apply_filters( 'yoast-ga-push-array-universal', $gaq_push );
-			$ga_settings = $this->options; // Assign the settings to the javascript include view
 
 			// Include the tracking view
 			if ( ! $this->debug_mode() ) {
+				$gaq_push    = apply_filters( 'yoast-ga-push-array-universal', $gaq_push );
 				$object_name = $this->get_js_object_name();
+				$ga_settings = $this->options; // Assign the settings to the javascript include view
 				require( 'views/tracking-universal.php' );
 			}
 		}
