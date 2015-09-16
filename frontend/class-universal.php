@@ -138,12 +138,12 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 				return $gaq_push;
 			}
 
-			$gaq_push = apply_filters( 'yoast-ga-push-array-universal', $gaq_push );
-
-			$ga_settings = $this->options; // Assign the settings to the javascript include view
 
 			// Include the tracking view
 			if ( ! $this->debug_mode() ) {
+				$gaq_push    = apply_filters( 'yoast-ga-push-array-universal', $gaq_push );
+				$object_name = $this->get_js_object_name();
+				$ga_settings = $this->options; // Assign the settings to the javascript include view
 				require( 'views/tracking-universal.php' );
 			}
 		}
@@ -161,8 +161,8 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 	 * @return mixed
 	 */
 	protected function output_parse_link( $label, $matches ) {
-		$link = $this->get_target( $label, $matches );
-
+		$link        = $this->get_target( $label, $matches );
+		$object_name = $this->get_js_object_name();
 		// bail early for links that we can't handle
 		if ( is_null( $link['type'] ) || 'internal' === $link['type'] ) {
 			return $matches[0];
@@ -174,38 +174,60 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 		switch ( $link['type'] ) {
 			case 'download':
 				if ( $this->options['track_download_as'] == 'pageview' ) {
-					$onclick = "__gaTracker('send', 'pageview', '" . esc_js( $full_url ) . "');";
+					$onclick = $object_name . "('send', 'pageview', '" . esc_js( $full_url ) . "');";
 				}
 				else {
-					$onclick = "__gaTracker('send', 'event', 'download', '" . esc_js( $full_url ) . "');";
+					$onclick = $object_name . "('send', 'event', 'download', '" . esc_js( $full_url ) . "');";
 				}
 
 				break;
 			case 'email':
-				$onclick = "__gaTracker('send', 'event', 'mailto', '" . esc_js( $link['original_url'] ) . "');";
+				$onclick = $object_name . "('send', 'event', 'mailto', '" . esc_js( $link['original_url'] ) . "');";
 
 				break;
 			case 'internal-as-outbound':
 				$label = $this->sanitize_internal_label();
 
-				$onclick = "__gaTracker('send', '" . esc_js( $this->options['track_download_as'] ) . "', '" . esc_js( $link['category'] ) . '-' . esc_js( $label ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "');";
+				$onclick = $object_name . "('send', '" . esc_js( $this->options['track_download_as'] ) . "', '" . esc_js( $link['category'] ) . '-' . esc_js( $label ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "');";
 
 				break;
 			case 'outbound':
 				if ( $this->options['track_outbound'] == 1 ) {
-					$onclick = "__gaTracker('send', 'event', '" . esc_js( $link['category'] ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "');";
+					$onclick = $object_name . "('send', 'event', '" . esc_js( $link['category'] ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "');";
 				}
 
 				break;
 		}
 
 		$link['link_attributes'] = $this->output_add_onclick( $link['link_attributes'], $onclick );
-
 		if ( ! empty( $link['link_attributes'] ) ) {
 			return '<a href="' . $full_url . '" ' . trim( $link['link_attributes'] ) . '>' . $link['link_text'] . '</a>';
 		}
 
 		return '<a href="' . $full_url . '">' . $link['link_text'] . '</a>';
+	}
+
+	/**
+	 * Get the universal object name
+	 *
+	 * @return string
+	 */
+	public static function get_js_object_name() {
+		/**
+		 * @static string
+		 */
+		static $object_name;
+
+		if ( empty( $object_name ) ) {
+			/**
+			 * Filter: 'yoast-ga-universal-object-name' - Allows filtering of the commands to push
+			 *
+			 * @api array $gaq_push
+			 */
+			$object_name = apply_filters( 'yoast-ga-universal-object-name', '__gaTracker' );
+		}
+
+		return $object_name;
 	}
 
 }
