@@ -38,22 +38,28 @@ YoastGAPointers.prototype.preparePointerOptions = function() {
 };
 
 /**
- * Inserts the primary button.
+ * Inserts the primary button in a specific pointer.
+ *
+ * @param {jQuery.Element} The pointer we insert the button in.
  */
-YoastGAPointers.prototype.insertPrimaryButton = function() {
+YoastGAPointers.prototype.insertPrimaryButton = function( pointer ) {
 	if ( YoastGAPointerL10n.buttons.primary_button.text ) {
-		jQuery( '#pointer-close' ).after( '<a id="pointer-primary" class="button-primary">' + YoastGAPointerL10n.buttons.primary_button.text + '</a>' );
-		jQuery( '#pointer-primary' ).click( function() { window.location = YoastGAPointerL10n.buttons.primary_button.location; } );
+		pointer.find( '#pointer-close' ).after( '<a id="pointer-primary" class="button-primary">' + YoastGAPointerL10n.buttons.primary_button.text + '</a>' );
+		//jQuery( '#pointer-close' ).after( '<a id="pointer-primary" class="button-primary">' + YoastGAPointerL10n.buttons.primary_button.text + '</a>' );
+
+		pointer.find('#pointer-primary').click( function() { window.location = YoastGAPointerL10n.buttons.primary_button.location; });
 	}
 };
 
 /**
- * Inserts the previous button.
+ * Inserts the previous button in a specific pointer.
+ *
+ *	@param {jQuery.Element} The pointer we insert the button in.
  */
-YoastGAPointers.prototype.insertPreviousButton = function() {
+YoastGAPointers.prototype.insertPreviousButton = function( pointer ) {
 	if ( YoastGAPointerL10n.buttons.previous_button.text ) {
-		jQuery( '#pointer-primary' ).after( '<a id="pointer-ternary" style="float: left;" class="button-secondary">' + YoastGAPointerL10n.buttons.previous_button.text + '</a>' );
-		jQuery( '#pointer-ternary' ).click( function() { window.location = YoastGAPointerL10n.buttons.previous_button.location; } );
+		pointer.find( '#pointer-primary').after( '<a id="pointer-ternary" style="float: left;" class="button-secondary">' + YoastGAPointerL10n.buttons.previous_button.text + '</a>' );
+		pointer.find( '#pointer-ternary' ).click( function() { window.location = YoastGAPointerL10n.buttons.previous_button.location; } );
 	}
 };
 
@@ -63,8 +69,10 @@ YoastGAPointers.prototype.insertPreviousButton = function() {
 YoastGAPointers.prototype.setup = function() {
 	jQuery( YoastGAPointerL10n.selector ).pointer( yoastGAPointers.pointerOptions ).pointer( 'open' );
 
-	yoastGAPointers.insertPrimaryButton();
-	yoastGAPointers.insertPreviousButton();
+	var lastOpenedPointer = jQuery( '.wp-pointer').slice( -1 );
+
+	yoastGAPointers.insertPrimaryButton( lastOpenedPointer );
+	yoastGAPointers.insertPreviousButton( lastOpenedPointer );
 };
 
 /**
