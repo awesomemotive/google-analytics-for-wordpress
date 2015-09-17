@@ -2,7 +2,21 @@
 
 class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 
+	/**
+	 * This variable is instantiated in setUp() and is a mock object. This is used for future use in the tests.
+	 *
+	 * @var class
+	 */
+	private $class_instance;
 
+	/**
+	 * Mocks Yoast_GA_Pointers class for future use.
+	 */
+	public function setUp() {
+		parent::setUp();
+
+		$this->class_instance = $this->getMock( 'Yoast_GA_Pointers', array( 'prepare_page_pointer', 'prepare_tour_pointer', 'get_current_page' ) );
+	}
 
 	/**
 	 * Checks if function intro_tour is not called when the tour is ignored.
@@ -51,4 +65,45 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 		wp_set_current_user( $old_user_id );
 	}
 
+	/**
+	 * Check that prepare_page_pointer is called when the user is on one of the admin pages and the tour is active.
+	 *
+	 * @covers Yoast_GA_Pointers::localize_script
+	 */
+	public function test_localize_script_CALLS_prepare_page_pointer() {
+		// Overwrite global $pagenow with 'admin.php' to fake we're on 'admin.php' page.
+		global $pagenow;
+
+		$pagenow = 'admin.php';
+
+		$this->class_instance
+			->expects( $this->once() )
+			->method( 'get_current_page' )
+			->willReturn( 'settings' );
+
+		$this->class_instance
+			->expects( $this->once() )
+			->method( 'prepare_page_pointer' );
+
+		$this->class_instance->localize_script();
+	}
+
+	/**
+	 * Check that preapre_tour_pointer is called when the user is not on one of the google analytics pages.
+	 *
+	 * @covers Yoast_GA_Pointers::localize_script
+	 */
+	public function test_localize_script_CALLS_prepare_tour_pointer() {
+		$this->class_instance
+			->expects( $this->once() )
+			->method( 'get_current_page' )
+			->willReturn( '' );
+
+		$this->class_instance
+			->expects( $this->once() )
+			->method( 'prepare_tour_pointer' );
+
+		$this->class_instance->localize_script();
+	}
+	
 }
