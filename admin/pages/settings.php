@@ -50,7 +50,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 				<script>yst_thickbox_heading = "<?php _e( 'Paste your Google authentication code', 'google-analytics-for-wordpress' )?>";</script>
 
 				<div id='google_ua_code_field'>
-					<?php if ( count( $profiles ) == 0 ) { ?>
+					<?php if ( count( $profiles ) == 0 ): ?>
 						<div class="ga-form ga-form-input">
 							<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle"><?php _e( 'Google profile', 'google-analytics-for-wordpress' ); ?>:</label>
 							<a id="yst_ga_authenticate" class="button" onclick="yst_popupwindow('<?php echo $auth_url; ?>',500,500);"><?php _e( 'Authenticate with your Google account', 'google-analytics-for-wordpress' ); ?></a>
@@ -60,15 +60,14 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 							<?php echo esc_html( $yoast_ga_admin->get_tracking_code() ); ?>
 						</div>
 					<?php
-					}
-					else {
+					else:
 						echo Yoast_GA_Admin_Form::select( __( 'Analytics profile', 'google-analytics-for-wordpress' ), 'analytics_profile', $profiles, null, false, __( 'Select a profile', 'google-analytics-for-wordpress' ) ); ?>
 
 						<div class="ga-form ga-form-input">
 							<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle">&nbsp;</label>
 							<a id="yst_ga_authenticate" class="button" onclick="yst_popupwindow('<?php echo $auth_url ?>',500,500);"><?php _e( 'Re-authenticate with your Google account', 'google-analytics-for-wordpress' )?></a>
 						</div>
-					<?php } ?>
+					<?php endif; ?>
 				</div>
 
 				<div id="oauth_code" class="ga-form ga-form-input">
