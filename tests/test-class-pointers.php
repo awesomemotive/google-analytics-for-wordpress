@@ -10,12 +10,36 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 	private $class_instance;
 
 	/**
+	 * @var array Holds the buttons to be put out
+	 */
+	private $button_array;
+
+	/**
+	 * @var array Holds the default buttons
+	 */
+	private $button_array_defaults = array(
+		'primary_button' => array(
+			'text'     => false,
+			'function' => '',
+		),
+		'previous_button' => array(
+			'text'     => false,
+			'function' => '',
+		),
+	);
+
+	/**
+	 * @var array Holds the options such as content and position.
+	 */
+	private $options_array;
+
+	/**
 	 * Mocks Yoast_GA_Pointers class for future use.
 	 */
 	public function setUp() {
 		parent::setUp();
 
-		$this->class_instance = $this->getMock( 'Yoast_GA_Pointers', array( 'prepare_page_pointer', 'prepare_tour_pointer', 'get_current_page' ) );
+		$this->class_instance = $this->getMock( 'Yoast_GA_Pointers', array( 'prepare_page_pointer', 'prepare_tour_pointer', 'get_current_page', 'get_ignore_url' ) );
 	}
 
 	/**
@@ -89,7 +113,7 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Check that preapre_tour_pointer is called when the user is not on one of the google analytics pages.
+	 * Check that prepare_tour_pointer is called when the user is not on one of the google analytics pages.
 	 *
 	 * @covers Yoast_GA_Pointers::localize_script
 	 */
@@ -105,5 +129,54 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 
 		$this->class_instance->localize_script();
 	}
-	
+
+	/**
+	 * Make sure localize_script returns the right information in its array
+	 *
+	 * @covers Yoast_GA_Pointers::localize_script
+	 */
+	public function test_localize_script_PREPARES_TOUR_POINTER() {
+		$content  = '<h3>' . __( 'Congratulations!', 'google-analytics-for-wordpress' ) . '</h3>'
+		            . '<p>' . __( 'You\'ve just installed Google Analytics by Yoast! Click "Start tour" to view a quick introduction of this plugin\'s core functionality.', 'google-analytics-for-wordpress' ) . '</p>';
+
+		$this->selector = 'li#toplevel_page_yst_ga_dashboard';
+
+		$this->options_array  = array(
+			'content'  => $content,
+			'position' => array( 'edge' => 'top', 'align' => 'center' ),
+		);
+
+		$this->button_array['primary_button'] = array(
+			'text'     => __( 'Start tour', 'google-analytics-for-wordpress' ),
+			'location' => admin_url( 'admin.php?page=yst_ga_settings' ),
+		);
+
+		$this->button_array = wp_parse_args( $this->button_array, $this->button_array_defaults );
+
+		$yoast_ga_pointers = new Yoast_GA_Pointers();
+
+		$actual = $yoast_ga_pointers->localize_script();
+
+		$this->assertContains( $this->selector, $actual );
+		$this->assertContains( $this->options_array, $actual );
+		$this->assertContains( $this->button_array, $actual );
+		$this->assertContains( __( 'Close', 'google-analytics-for-wordpress' ), $actual );
+	}
+
+	/**
+	 * Check if get_ignore_url is called by localize_script.
+	 *
+	 * @covers Yoast_GA_Pointers::localize_script
+	 */
+	public function test_localize_script_CALLS_get_ignore_url() {
+		$this->class_instance
+			->expects( $this->once() )
+			->method( 'get_ignore_url' );
+
+		$this->class_instance->localize_script();
+
+	}
+
+
+
 }

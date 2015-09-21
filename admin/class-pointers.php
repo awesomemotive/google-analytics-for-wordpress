@@ -18,6 +18,9 @@ class Yoast_GA_Pointers {
 	 */
 	private $button_array;
 
+	/**
+	 * @var array Holds the default buttons.
+	 */
 	private $button_array_defaults = array(
 		'primary_button' => array(
 			'text'     => false,
@@ -29,8 +32,14 @@ class Yoast_GA_Pointers {
 		),
 	);
 
+	/**
+	 * @var array Holds the options such as content and position.
+	 */
 	private $options_array;
 
+	/**
+	 * @var string Holds the current selector.
+	 */
 	private $selector;
 
 	/**
@@ -68,7 +77,7 @@ class Yoast_GA_Pointers {
 			$this->prepare_tour_pointer();
 		}
 
-		$this->button_array    = wp_parse_args( $this->button_array, $this->button_array_defaults );
+		$this->button_array = wp_parse_args( $this->button_array, $this->button_array_defaults );
 
 		return array(
 			'selector' => $this->selector,
@@ -155,6 +164,21 @@ class Yoast_GA_Pointers {
 	}
 
 	/**
+	 * Extending the current page URL with two params to be able to ignore the tour.
+	 *
+	 * @return mixed
+	 */
+	protected function get_ignore_url() {
+		$arr_params = array(
+			'ga_restart_tour' => false,
+			'ga_ignore_tour'  => '1',
+			'nonce'           => wp_create_nonce( 'ga-ignore-tour' ),
+		);
+
+		return esc_url( add_query_arg( $arr_params ) );
+	}
+
+	/**
 	 * Returns the content of the settings pointer
 	 *
 	 * @return array
@@ -228,18 +252,4 @@ class Yoast_GA_Pointers {
 		);
 	}
 
-	/**
-	 * Extending the current page URL with two params to be able to ignore the tour.
-	 *
-	 * @return mixed
-	 */
-	private function get_ignore_url() {
-		$arr_params = array(
-			'ga_restart_tour' => false,
-			'ga_ignore_tour'  => '1',
-			'nonce'           => wp_create_nonce( 'ga-ignore-tour' ),
-		);
-
-		return esc_url( add_query_arg( $arr_params ) );
-	}
 } /* End of class */
