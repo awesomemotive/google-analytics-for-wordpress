@@ -66,6 +66,11 @@ class Yoast_GA_Pointers {
 		}
 	}
 
+	/**
+	 * Determine whether to call prepare_page_pointer or prepare_tour_pointer and return all needed information in an array.
+	 *
+	 * @return array
+	 */
 	public function localize_script() {
 		global $pagenow;
 
@@ -73,7 +78,8 @@ class Yoast_GA_Pointers {
 
 		if ( $pagenow === 'admin.php' && array_key_exists( $page, $this->admin_pages ) ) {
 			$this->prepare_page_pointer( $page );
-		} else {
+		}
+		else {
 			$this->prepare_tour_pointer();
 		}
 
