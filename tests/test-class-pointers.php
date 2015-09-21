@@ -103,7 +103,7 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 		$this->class_instance
 			->expects( $this->once() )
 			->method( 'get_current_page' )
-			->willReturn( 'settings' );
+			->will( $this->returnValue( 'settings' ) );
 
 		$this->class_instance
 			->expects( $this->once() )
@@ -121,7 +121,7 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 		$this->class_instance
 			->expects( $this->once() )
 			->method( 'get_current_page' )
-			->willReturn( '' );
+			->will( $this->returnValue( '' ) );
 
 		$this->class_instance
 			->expects( $this->once() )
@@ -176,7 +176,5 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 		$this->class_instance->localize_script();
 
 	}
-
-
 
 }
