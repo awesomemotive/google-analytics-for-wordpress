@@ -554,12 +554,13 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			'ga_premium' => (object) array(
 				'url'    => 'https://yoast.com/wordpress/plugins/google-analytics/',
 				'title'  => __( 'Google Analytics by Yoast Premium', 'google-analytics-for-wordpress' ),
-				'desc'   => __( 'The premium version of Google Analytics by Yoast with more features and support.', 'google-analytics-for-wordpress' ),
+				/* translators: %s stands for 'Google Analytics by Yoast'. */
+				'desc'   => sprintf( __( 'The premium version of %s with more features and support.', 'google-analytics-for-wordpress' ), 'Google Analytics by Yoast'),
 				'status' => 'uninstalled',
 			),
 			'ecommerce'  => (object) array(
 				'url'    => 'https://yoast.com/wordpress/plugins/ga-ecommerce/',
-				'title'  => __( 'Google Analytics by Yoast', 'google-analytics-for-wordpress' ) . '<br />' . __( 'eCommerce tracking', 'google-analytics-for-wordpress' ),
+				'title'  => 'Google Analytics by Yoast<br />' . __( 'eCommerce tracking', 'google-analytics-for-wordpress' ),
 				'desc'   => __( 'Track your eCommerce data and transactions with this eCommerce extension for Google Analytics.', 'google-analytics-for-wordpress' ),
 				'status' => 'uninstalled',
 			),
