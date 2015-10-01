@@ -39,9 +39,9 @@ echo $yoast_ga_admin->content_head();
 				if ( $tracking_code !== '' ) {
 					if ( empty( $options['analytics_profile'] ) ) {
 						echo '<div class="ga-promote"><p>';
-						/* translators: %s is a link to the Google Analytics admin settings page */
+						/* translators: 1: links to the Google Analytics by Yoast admin settings page. 2: closing of the link. */
 						echo sprintf(
-							__( 'We need you to authenticate with Google Analytics to use this functionality. If you set your UA-code manually, this won\'t work. You can %sauthenticate your Google Analytics profile here%s to enable dashboards.', 'google-analytics-for-wordpress' ),
+							__( 'We need you to authenticate with Google Analytics to use this functionality. If you set your UA-code manually, this won\'t work. You can %1$sauthenticate your Google Analytics profile here%2$s to enable dashboards.', 'google-analytics-for-wordpress' ),
 							'<a href=" ' . admin_url( 'admin.php?page=yst_ga_settings#top#general' ) . '">',
 							'</a>'
 						);
@@ -49,9 +49,9 @@ echo $yoast_ga_admin->content_head();
 					}
 					else if ( ! Yoast_Google_Analytics::get_instance()->has_refresh_token() ) {
 						echo '<div class="ga-promote"><p>';
-						/* translators: %s is a link to the Google Analytics admin settings page */
+						/* translators: 1: links to the Google Analytics by Yoast admin settings page. 2: closing of the link. */
 						echo sprintf(
-							__( 'Because we\'ve switched to a newer version of the Google Analytics API, you\'ll need to re-authenticate with Google Analytics. We\'re sorry for the inconvenience. You can %sre-authenticate your Google Analytics profile here%s.', 'google-analytics-for-wordpress' ),
+							__( 'Because we\'ve switched to a newer version of the Google Analytics API, you\'ll need to re-authenticate with Google Analytics. We\'re sorry for the inconvenience. You can %1$sre-authenticate your Google Analytics profile here%2$s.', 'google-analytics-for-wordpress' ),
 							'<a href=" ' . admin_url( 'admin.php?page=yst_ga_settings#top#general' ) . '">',
 							'</a>'
 						);
@@ -63,9 +63,9 @@ echo $yoast_ga_admin->content_head();
 				}
 				else {
 					echo '<div class="ga-promote"><p>';
-					/* translators: %s is a link to the Google Analytics admin settings page */
+					/* translators: 1: links to the Google Analytics by Yoast admin settings page. 2: closing of the link. */
 					echo sprintf(
-						__( 'You have not yet finished setting up Google Analytics for Wordpress by Yoast. Please %sadd your Analytics profile here%s to enable tracking.', 'google-analytics-for-wordpress' ),
+						__( 'You have not yet finished setting up Google Analytics for Wordpress by Yoast. Please %1$sadd your Analytics profile here%2$s to enable tracking.', 'google-analytics-for-wordpress' ),
 						'<a href=" ' . admin_url( 'admin.php?page=yst_ga_settings#top#general' ) . '">',
 						'</a>'
 					);
@@ -81,9 +81,9 @@ echo $yoast_ga_admin->content_head();
 			if ( $tracking_code !== '' ) {
 				if ( empty( $options['analytics_profile'] ) ) {
 					echo '<div class="ga-promote"><p>';
-					/* translators: %s is a link to the Google Analytics admin settings page */
+					/* translators: 1: link to the Google Analytics by Yoast admin settings page. 2: closing of the link. */
 					echo sprintf(
-						__( 'We need you to authenticate with Google Analytics to use this functionality. If you set your UA-code manually, this won\'t work. You can %sauthenticate your Google Analytics profile here%s to enable dashboards.', 'google-analytics-for-wordpress' ),
+						__( 'We need you to authenticate with Google Analytics to use this functionality. If you set your UA-code manually, this won\'t work. You can %$1sauthenticate your Google Analytics profile here%$2s to enable dashboards.', 'google-analytics-for-wordpress' ),
 						'<a href=" ' . admin_url( 'admin.php?page=yst_ga_settings#top#general' ) . '">',
 						'</a>'
 					);
@@ -91,9 +91,9 @@ echo $yoast_ga_admin->content_head();
 				}
 				else if ( ! Yoast_Google_Analytics::get_instance()->has_refresh_token() ) {
 					echo '<div class="ga-promote"><p>';
-					/* translators: %s is a link to the Google Analytics admin settings page */
+					/* translators: 1: link to the Google Analytics by Yoast admin settings page. 2: closing of the link. */
 					echo sprintf(
-						__( 'Because we\'ve switched to a newer version of the Google Analytics API, you\'ll need to re-authenticate with Google Analytics. We\'re sorry for the inconvenience. You can %sre-authenticate your Google Analytics profile here%s.', 'google-analytics-for-wordpress' ),
+						__( 'Because we\'ve switched to a newer version of the Google Analytics API, you\'ll need to re-authenticate with Google Analytics. We\'re sorry for the inconvenience. You can %1$sre-authenticate your Google Analytics profile here%2$s.', 'google-analytics-for-wordpress' ),
 						'<a href=" ' . admin_url( 'admin.php?page=yst_ga_settings#top#general' ) . '">',
 						'</a>'
 					);
@@ -112,9 +112,9 @@ echo $yoast_ga_admin->content_head();
 			}
 			else {
 				echo '<div class="ga-promote"><p>';
-				/* translators: %s is a link to the Google Analytics admin settings page */
+				/* translators: 1: link to the Google Analytics by Yoast admin settings page. 2: closing of the link. */
 				echo sprintf(
-					__( 'You have not yet finished setting up Google Analytics for Wordpress by Yoast. Please %sadd your Analytics profile here%s to enable tracking.', 'google-analytics-for-wordpress' ),
+					__( 'You have not yet finished setting up Google Analytics for Wordpress by Yoast. Please %1$sadd your Analytics profile here%2$s to enable tracking.', 'google-analytics-for-wordpress' ),
 					'<a href=" ' . admin_url( 'admin.php?page=yst_ga_settings#top#general' ) . '">',
 					'</a>'
 				);
