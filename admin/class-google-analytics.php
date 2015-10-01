@@ -346,7 +346,7 @@ class Yoast_Google_Analytics_Notice {
 	 * Throw a warning when the fetching failed
 	 */
 	public static function warning_fetching_data() {
-		/* translators: 1: link to http://yoa.st/2p, 2: closing of the link. */
+		/* translators: 1: link to knowledge base article about authentication issues. 2: closing of the link. */
 		self::show_error(
 			sprintf(
 				__( 'Data is not up-to-date, there was an error in retrieving the data from Google Analytics. This error could be caused by several issues. If the error persists, please %1$sread this article about authentication issues%2$s.', 'google-analytics-for-wordpress' ),
