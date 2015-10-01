@@ -149,8 +149,11 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Allow anchor', 'google-analytics-for-wordpress' ), 'allow_anchor', null, sprintf( __( 'This adds a %1$s call to your tracking code, and makes RSS link tagging use a %2$s as well.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiCampaignTracking?csw=1#_gat.GA_Tracker_._setAllowAnchor" target="_blank"><code>_setAllowAnchor</code></a>', '<code>#</code>' ) );
 		/* translators: 1: link to the Google Analytics help page on Google.com add the allow linker tag. 2: link closing tag */
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Add <code>_setAllowLinker</code>', 'google-analytics-for-wordpress' ), 'add_allow_linker', null, sprintf( __( 'This adds a %1$s call to your tracking code, allowing you to use %2$s and related functions.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory?csw=1#_gat.GA_Tracker_._setAllowLinker" target="_blank"><code>_setAllowLinker</code></a>', ' <code>_link</code>' ) );
-		/* translators: 1: is a link to the Google Analytics help page on Google.com to add custom code for the tracking, 2: link closing tag */
-		echo Yoast_GA_Admin_Form::textarea( __( 'Custom code', 'google-analytics-for-wordpress' ), 'custom_code', sprintf( __( 'Not for the average user: this allows you to add a line of code, to be added before the %1$s call.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview" target="_blank"><code>_trackPageview</code></a>' ) );
+
+		if ( current_user_can( 'unfiltered_html' ) ) {
+			/* translators: 1: is a link to the Google Analytics help page on Google.com to add custom code for the tracking, 2: link closing tag */
+			echo Yoast_GA_Admin_Form::textarea( __( 'Custom code', 'google-analytics-for-wordpress' ), 'custom_code', sprintf( __( 'Not for the average user: this allows you to add a line of code, to be added before the %1$s call.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview" target="_blank"><code>_trackPageview</code></a>' ) );
+		}
 
 		/**
 		 * Action: 'yst_ga_advanced-tab' - Allow adding to the advanced tab of the settings
