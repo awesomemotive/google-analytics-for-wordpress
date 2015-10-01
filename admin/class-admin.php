@@ -553,7 +553,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		$extensions = array(
 			'ga_premium' => (object) array(
 				'url'    => 'https://yoast.com/wordpress/plugins/google-analytics/',
-				'title'  => __( 'Google Analytics by Yoast Premium', 'google-analytics-for-wordpress' ),
+				'title'  => 'Google Analytics by Yoast Premium',
 				/* translators: %s stands for 'Google Analytics by Yoast'. */
 				'desc'   => sprintf( __( 'The premium version of %s with more features and support.', 'google-analytics-for-wordpress' ), 'Google Analytics by Yoast'),
 				'status' => 'uninstalled',
