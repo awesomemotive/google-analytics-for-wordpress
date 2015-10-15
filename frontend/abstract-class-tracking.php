@@ -9,16 +9,36 @@
 abstract class Yoast_GA_Tracking {
 
 	/**
-	 * Regular expression for Ga.js and universal tracking to detect links
-	 * @var string
-	 */
-	protected $link_regex = '/<a([^>]*)\shref=([\'\"])([a-zA-Z]+):(?:\/){2}?(.*)\2([^>]*)>(.*)<\/a>/isU';
-
-	/**
 	 * Storage for the currently set options
 	 * @var mixed|void
 	 */
 	public $options;
+
+	/**
+	 * Get the regular expression used in Ga.js and universal tracking to detect links
+	 *
+	 * @return string
+	 */
+	protected function get_link_regex() {
+		return '/'
+		       . '<a'               // matches the characters <a literally
+		       . '([^>]*)'          // 1. match a single character not present in the list (Between 0 and * times)
+		       . '\s'               // match any white space character
+		       . 'href='            // matches the characters href= literally
+		       . '([\'\"])'         // 2. match a single or a double quote
+		       . '('                // 3. matches the link protocol (between 0 and 1 times)
+		       .   '([a-zA-Z]+)'    // 4. matches the link protocol name
+		       .   ':'              // matches the character : literally
+		       .   '(?:\/\/)??'      // matches the characters // literally (between 0 and 1 times)
+		       .  ')??'
+		       .  '(.*)'            // 5. matches any character (except newline) (Between 0 and * times)
+		       .  '\2'              // matches the same quote (2nd capturing group) as was used to open the href value
+		       .  '([^>]*)'         // 6. match a single character not present in the list below
+		       . '>'                // matches the characters > literally
+		       . '(.*)'             // 7. matches any character (except newline) (Between 0 and * times)
+		       . '<\/a>'            // matches the characters </a> literally
+		       . '/isU';            // case insensitive, single line, ungreedy
+	}
 
 	/**
 	 * @var boolean $do_tracking Should the tracking code be added
@@ -37,12 +57,12 @@ abstract class Yoast_GA_Tracking {
 	/**
 	 * Output tracking link
 	 *
-	 * @param string $label
-	 * @param array  $matches
+	 * @param string $category
+	 * @param Yoast_GA_Link_Target $link_target
 	 *
 	 * @return mixed
 	 */
-	abstract protected function output_parse_link( $label, $matches );
+	abstract protected function output_parse_link( $category, $link_target );
 
 	/**
 	 * Class constructor
@@ -56,6 +76,18 @@ abstract class Yoast_GA_Tracking {
 		if ( $this->options['track_outbound'] == 1 ) {
 			$this->track_outbound_filters();
 		}
+	}
+
+	/**
+	 * Get the output tracking link
+	 *
+	 * @param $category
+	 * @param $matches
+	 *
+	 * @return mixed
+	 */
+	protected function parse_link( $category, $matches ) {
+		return $this->output_parse_link( $category, new Yoast_GA_Link_Target( $category, $matches, $this->options ) );
 	}
 
 	/**
@@ -93,7 +125,7 @@ abstract class Yoast_GA_Tracking {
 	 * @return mixed
 	 */
 	public function parse_article_link( $matches ) {
-		return $this->output_parse_link( 'outbound-article', $matches );
+		return $this->parse_link( 'outbound-article', $matches );
 	}
 
 	/**
@@ -104,7 +136,7 @@ abstract class Yoast_GA_Tracking {
 	 * @return mixed
 	 */
 	public function parse_comment_link( $matches ) {
-		return $this->output_parse_link( 'outbound-comment', $matches );
+		return $this->parse_link( 'outbound-comment', $matches );
 	}
 
 	/**
@@ -115,7 +147,7 @@ abstract class Yoast_GA_Tracking {
 	 * @return mixed
 	 */
 	public function parse_widget_link( $matches ) {
-		return $this->output_parse_link( 'outbound-widget', $matches );
+		return $this->parse_link( 'outbound-widget', $matches );
 	}
 
 	/**
@@ -126,7 +158,7 @@ abstract class Yoast_GA_Tracking {
 	 * @return mixed
 	 */
 	public function parse_nav_menu( $matches ) {
-		return $this->output_parse_link( 'outbound-menu', $matches );
+		return $this->parse_link( 'outbound-menu', $matches );
 	}
 
 	/**
@@ -142,7 +174,7 @@ abstract class Yoast_GA_Tracking {
 		}
 
 		if ( ! is_feed() ) {
-			$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_article_link' ), $text );
+			$text = preg_replace_callback( $this->get_link_regex(), array( $this, 'parse_article_link' ), $text );
 		}
 
 		return $text;
@@ -159,7 +191,7 @@ abstract class Yoast_GA_Tracking {
 		if ( ! $this->do_tracking() ) {
 			return $text;
 		}
-		$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_widget_link' ), $text );
+		$text = preg_replace_callback( $this->get_link_regex(), array( $this, 'parse_widget_link' ), $text );
 
 		return $text;
 	}
@@ -177,7 +209,7 @@ abstract class Yoast_GA_Tracking {
 		}
 
 		if ( ! is_feed() ) {
-			$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_nav_menu' ), $text );
+			$text = preg_replace_callback( $this->get_link_regex(), array( $this, 'parse_nav_menu' ), $text );
 		}
 
 		return $text;
@@ -196,41 +228,13 @@ abstract class Yoast_GA_Tracking {
 		}
 
 		if ( ! is_feed() ) {
-			$text = preg_replace_callback( $this->link_regex, array( $this, 'parse_comment_link' ), $text );
+			$text = preg_replace_callback( $this->get_link_regex(), array( $this, 'parse_comment_link' ), $text );
 		}
 
 		return $text;
 	}
 
-	/**
-	 * Parse the domain
-	 *
-	 * @param string $uri
-	 *
-	 * @return array|bool
-	 */
-	public function yoast_ga_get_domain( $uri ) {
-		$hostPattern     = '/^(https?:\/\/)?([^\/]+)/i';
-		$domainPatternUS = '/[^\.\/]+\.[^\.\/]+$/';
-		$domainPatternUK = '/[^\.\/]+\.[^\.\/]+\.[^\.\/]+$/';
 
-		$matching = preg_match( $hostPattern, $uri, $matches );
-		if ( $matching ) {
-			$host = $matches[2];
-			if ( preg_match( '/.*\..*\..*\..*$/', $host ) ) {
-				preg_match( $domainPatternUK, $host, $matches );
-			}
-			else {
-				preg_match( $domainPatternUS, $host, $matches );
-			}
-
-			if ( isset( $matches[0] ) ) {
-				return array( 'domain' => $matches[0], 'host' => $host );
-			}
-		}
-
-		return false;
-	}
 
 	/**
 	 * Merge the existing onclick with a new one and append it
@@ -263,22 +267,24 @@ abstract class Yoast_GA_Tracking {
 	/**
 	 * Generate the full URL
 	 *
-	 * @param string $link
+	 * @param Yoast_GA_Link_Target $link
 	 *
 	 * @return string
 	 */
 	public function make_full_url( $link ) {
-		switch ( $link['type'] ) {
+		switch ( $link->type ) {
 			case 'download':
 			case 'internal':
 			case 'internal-as-outbound':
 			case 'outbound':
-				return $link['protocol'] . '://' . $link['original_url'];
+				$protocol = ! empty( $link->protocol ) ? $link->protocol . '://' : '';
 				break;
 			case 'email':
-				return 'mailto:' . $link['original_url'];
+				$protocol = 'mailto:';
 				break;
 		}
+
+		return $protocol . $link->original_url;
 	}
 
 	/**
@@ -325,109 +331,6 @@ abstract class Yoast_GA_Tracking {
 		}
 
 		return $this->do_tracking;
-	}
-
-	/**
-	 * Return the target with a lot of parameters
-	 *
-	 * @param string $category
-	 * @param array  $matches
-	 *
-	 * @return array
-	 */
-	protected function get_target( $category, $matches ) {
-		$protocol     = $matches[3];
-		$original_url = $matches[4];
-		$domain       = $this->yoast_ga_get_domain( $matches[4] );
-		$http_host    = empty( $_SERVER['HTTP_HOST'] ) ? '' : $_SERVER['HTTP_HOST'];
-		$origin       = $this->yoast_ga_get_domain( $http_host );
-		$extension    = substr( strrchr( $original_url, '.' ), 1 );
-		$type         = $this->get_target_type( $extension, $domain, $origin, $matches );
-
-		return array(
-			'category'        => $category,
-			'type'            => $type,
-			'protocol'        => $protocol,
-			'domain'          => $domain['domain'],
-			'host'            => $domain['host'],
-			'origin_domain'   => $origin['domain'],
-			'origin_host'     => $origin['host'],
-			'extension'       => $extension,
-			'link_attributes' => trim( $matches[1] . ' ' . $matches[5] ),
-			'link_text'       => $matches[6],
-			'original_url'    => $original_url,
-		);
-	}
-
-	/**
-	 * Getting the type for current target
-	 *
-	 * @param string $extension
-	 * @param array  $domain
-	 * @param array  $origin
-	 * @param array  $matches
-	 *
-	 * @return null|string
-	 */
-	protected function get_target_type( $extension, $domain, $origin, $matches ) {
-		$download_extensions = explode( ',', str_replace( '.', '', $this->options['extensions_of_files'] ) );
-		$download_extensions = array_map( 'trim', $download_extensions );
-		$protocol            = $matches[3];
-		$original_url        = $matches[4];
-
-		// Break out immediately if the link is not an http or https link.
-		$type = null;
-		if ( $protocol !== 'http' && $protocol !== 'https' && $protocol !== 'mailto' ) {
-			$type = null;
-		}
-		else {
-			if ( ( $protocol == 'mailto' ) ) {
-				$type = 'email';
-			}
-			elseif ( in_array( $extension, $download_extensions ) ) {
-				$type = 'download';
-			}
-			else {
-				$type = $this->parse_outbound_type( $domain, $origin, $original_url );
-			}
-		}
-
-		return $type;
-	}
-
-	/**
-	 * Parse the type for outbound links
-	 *
-	 * @param array  $domain
-	 * @param array  $origin
-	 * @param string $original_url
-	 *
-	 * @return string
-	 */
-	protected function parse_outbound_type( $domain, $origin, $original_url ) {
-		$type = null;
-
-		if ( $domain['domain'] == $origin['domain'] ) {
-			$out_links = explode( ',', $this->options['track_internal_as_outbound'] );
-			$out_links = array_unique( array_map( 'trim', $out_links ) );
-
-			if ( ! empty( $original_url ) && ! empty( $domain['domain'] ) && count( $out_links ) >= 1 ) {
-				foreach ( $out_links as $out ) {
-					if ( ! empty( $out ) && strpos( $original_url, $domain['domain'] . $out ) !== false ) {
-						$type = 'internal-as-outbound';
-					}
-				}
-			}
-
-			if ( ! isset( $type ) ) {
-				$type = 'internal';
-			}
-		}
-		elseif ( $domain['domain'] != $origin['domain'] ) {
-			$type = 'outbound';
-		}
-
-		return $type;
 	}
 
 	/**

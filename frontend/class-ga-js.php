@@ -140,13 +140,13 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 	/**
 	 * Ouput tracking link
 	 *
-	 * @param string $label
+	 * @param string $category
 	 * @param array  $matches
 	 *
 	 * @return mixed
 	 */
-	protected function output_parse_link( $label, $matches ) {
-		$link = $this->get_target( $label, $matches );
+	protected function output_parse_link( $category, $matches ) {
+		$link = $this->get_target( $category, $matches );
 
 		// bail early for links that we can't handle
 		if ( is_null( $link['type'] ) || 'internal' === $link['type'] ) {
@@ -171,9 +171,9 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 
 				break;
 			case 'internal-as-outbound':
-				$label = $this->sanitize_internal_label();
+				$category = $this->sanitize_internal_label();
 
-				$onclick = "_gaq.push(['_trackEvent', '" . esc_js( $link['category'] ) . '-' . esc_js( $label ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "']);";
+				$onclick = "_gaq.push(['_trackEvent', '" . esc_js( $link['category'] ) . '-' . esc_js( $category ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "']);";
 
 				break;
 			case 'outbound':
