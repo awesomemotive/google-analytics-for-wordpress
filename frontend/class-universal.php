@@ -155,10 +155,10 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 	/**
 	 * Output tracking link
 	 *
-	 * @param string $category
+	 * @param string               $category
 	 * @param Yoast_GA_Link_Target $link_target
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	protected function output_parse_link( $category, $link_target ) {
 		$object_name = $this->get_js_object_name();

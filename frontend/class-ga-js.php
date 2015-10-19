@@ -145,18 +145,23 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 	 *
 	 * @return mixed
 	 */
-	protected function output_parse_link( $category, $matches ) {
-		$link = $this->get_target( $category, $matches );
 
+	/**
+	 * @param string               $category
+	 * @param Yoast_GA_Link_Target $link_target
+	 *
+	 * @return string
+	 */
+	protected function output_parse_link( $category, $link_target ) {
 		// bail early for links that we can't handle
-		if ( is_null( $link['type'] ) || 'internal' === $link['type'] ) {
-			return $matches[0];
+		if ( $link_target->type === 'internal' ) {
+			return $link_target->hyperlink;
 		}
 
 		$onclick  = null;
-		$full_url = $this->make_full_url( $link );
+		$full_url = $this->make_full_url( $link_target );
 
-		switch ( $link['type'] ) {
+		switch ( $link_target->type ) {
 			case 'download':
 				if ( $this->options['track_download_as'] == 'pageview' ) {
 					$onclick = "_gaq.push(['_trackPageview','download/" . esc_js( $full_url ) . "']);";
@@ -167,24 +172,24 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 
 				break;
 			case 'email':
-				$onclick = "_gaq.push(['_trackEvent','mailto','" . esc_js( $link['original_url'] ) . "']);";
+				$onclick = "_gaq.push(['_trackEvent','mailto','" . esc_js( $link_target->original_url ) . "']);";
 
 				break;
 			case 'internal-as-outbound':
 				$category = $this->sanitize_internal_label();
 
-				$onclick = "_gaq.push(['_trackEvent', '" . esc_js( $link['category'] ) . '-' . esc_js( $category ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "']);";
+				$onclick = "_gaq.push(['_trackEvent', '" . esc_js( $link_target->category ) . '-' . esc_js( $category ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link_target->link_text ) ) . "']);";
 
 				break;
 			case 'outbound':
-				$onclick = "_gaq.push(['_trackEvent', '" . esc_js( $link['category'] ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "']);";
+				$onclick = "_gaq.push(['_trackEvent', '" . esc_js( $link_target->category ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link_target->link_text ) ) . "']);";
 
 				break;
 		}
 
-		$link['link_attributes'] = $this->output_add_onclick( $link['link_attributes'], $onclick );
+		$link['link_attributes'] = $this->output_add_onclick( $link_target->link_attributes, $onclick );
 
-		return '<a href="' . $full_url . '" ' . $link['link_attributes'] . '>' . $link['link_text'] . '</a>';
+		return '<a href="' . $full_url . '" ' . $link_target->link_attributes . '>' . $link_target->link_text . '</a>';
 	}
 
 }
