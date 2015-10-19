@@ -187,7 +187,7 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 				break;
 		}
 
-		$link['link_attributes'] = $this->output_add_onclick( $link_target->link_attributes, $onclick );
+		$link_target->link_attributes = $this->output_add_onclick( $link_target->link_attributes, $onclick );
 
 		return '<a href="' . $full_url . '" ' . $link_target->link_attributes . '>' . $link_target->link_text . '</a>';
 	}
