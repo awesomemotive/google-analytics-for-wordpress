@@ -57,7 +57,7 @@ abstract class Yoast_GA_Tracking {
 	/**
 	 * Output tracking link
 	 *
-	 * @param string $category
+	 * @param string               $category
 	 * @param Yoast_GA_Link_Target $link_target
 	 *
 	 * @return mixed
@@ -315,8 +315,8 @@ abstract class Yoast_GA_Tracking {
 	/**
 	 * Get the output tracking link
 	 *
-	 * @param $category
-	 * @param $matches
+	 * @param string $category
+	 * @param array  $matches
 	 *
 	 * @return mixed
 	 */
