@@ -79,27 +79,6 @@ abstract class Yoast_GA_Tracking {
 	}
 
 	/**
-	 * Get the output tracking link
-	 *
-	 * @param $category
-	 * @param $matches
-	 *
-	 * @return mixed
-	 */
-	protected function parse_link( $category, $matches ) {
-		return $this->output_parse_link( $category, new Yoast_GA_Link_Target( $category, $matches, $this->options ) );
-	}
-
-	/**
-	 * Get the options class
-	 *
-	 * @return object|Yoast_GA_Options
-	 */
-	protected function get_options_class() {
-		return Yoast_GA_Options::instance();
-	}
-
-	/**
 	 * Delegates `get_tracking_code` to the options class
 	 *
 	 * @return null
@@ -288,19 +267,6 @@ abstract class Yoast_GA_Tracking {
 	}
 
 	/**
-	 * Setting the filters for tracking outbound links
-	 *
-	 */
-	protected function track_outbound_filters() {
-		add_filter( 'the_content', array( $this, 'the_content' ), 99 );
-		add_filter( 'widget_text', array( $this, 'widget_content' ), 99 );
-		add_filter( 'wp_list_bookmarks', array( $this, 'widget_content' ), 99 );
-		add_filter( 'wp_nav_menu', array( $this, 'widget_content' ), 99 );
-		add_filter( 'the_excerpt', array( $this, 'the_content' ), 99 );
-		add_filter( 'comment_text', array( $this, 'comment_text' ), 99 );
-	}
-
-	/**
 	 * Check if we need to show an actual tracking code
 	 *
 	 * @return bool
@@ -331,6 +297,40 @@ abstract class Yoast_GA_Tracking {
 		}
 
 		return $this->do_tracking;
+	}
+
+	/**
+	 * Setting the filters for tracking outbound links
+	 *
+	 */
+	protected function track_outbound_filters() {
+		add_filter( 'the_content', array( $this, 'the_content' ), 99 );
+		add_filter( 'widget_text', array( $this, 'widget_content' ), 99 );
+		add_filter( 'wp_list_bookmarks', array( $this, 'widget_content' ), 99 );
+		add_filter( 'wp_nav_menu', array( $this, 'widget_content' ), 99 );
+		add_filter( 'the_excerpt', array( $this, 'the_content' ), 99 );
+		add_filter( 'comment_text', array( $this, 'comment_text' ), 99 );
+	}
+
+	/**
+	 * Get the output tracking link
+	 *
+	 * @param $category
+	 * @param $matches
+	 *
+	 * @return mixed
+	 */
+	protected function parse_link( $category, $matches ) {
+		return $this->output_parse_link( $category, new Yoast_GA_Link_Target( $category, $matches, $this->options ) );
+	}
+
+	/**
+	 * Get the options class
+	 *
+	 * @return object|Yoast_GA_Options
+	 */
+	protected function get_options_class() {
+		return Yoast_GA_Options::instance();
 	}
 
 	/**
