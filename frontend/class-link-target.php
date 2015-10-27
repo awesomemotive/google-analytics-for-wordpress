@@ -11,7 +11,7 @@ class Yoast_GA_Link_Target {
 	/**
 	 * The category of the link
 	 *
-	 * @var string
+	 * @var string category of the link
 	 */
 	public $category;
 
@@ -85,11 +85,11 @@ class Yoast_GA_Link_Target {
 	private $options;
 
 	/**
-	 * 
+	 * Constructor of the class
 	 *
-	 * @param $category string
-	 * @param $matches array
-	 * @param $options array
+	 * @param string $category
+	 * @param array  $matches
+	 * @param array  $options
 	 */
 	public function __construct( $category, $matches, $options ) {
 		$this->options = $options;
@@ -110,8 +110,6 @@ class Yoast_GA_Link_Target {
 
 	/**
 	 * Parse the domain
-	 *
-	 * @param string $uri
 	 *
 	 * @return array|bool
 	 */
@@ -141,11 +139,6 @@ class Yoast_GA_Link_Target {
 	/**
 	 * Getting the type for current target
 	 *
-	 * @param string $extension
-	 * @param array  $domain
-	 * @param array  $origin
-	 * @param array  $matches
-	 *
 	 * @return null|string
 	 */
 	protected function get_target_type() {
@@ -160,7 +153,7 @@ class Yoast_GA_Link_Target {
 		elseif ( in_array( $this->extension, $download_extensions ) ) {
 			$type = 'download';
 		}
-		elseif ( in_array( $this->protocol, array( 'http', 'https') ) && $full_url !== rtrim(home_url(), '\/') ) {
+		elseif ( in_array( $this->protocol, array( 'http', 'https') ) && $full_url !== rtrim( home_url(), '\/' ) ) {
 			$type = 'outbound';
 		}
 		else {
@@ -172,8 +165,6 @@ class Yoast_GA_Link_Target {
 
 	/**
 	 * Parse the type for outbound links
-	 *
-	 * @param string $original_url
 	 *
 	 * @return string
 	 */
