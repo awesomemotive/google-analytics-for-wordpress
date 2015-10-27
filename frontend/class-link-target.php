@@ -152,13 +152,15 @@ class Yoast_GA_Link_Target {
 		$download_extensions = explode( ',', str_replace( '.', '', $this->options['extensions_of_files'] ) );
 		$download_extensions = array_map( 'trim', $download_extensions );
 
+		$full_url = $this->protocol . '://' . $this->domain['domain'];
+
 		if ( ( $this->protocol == 'mailto' ) ) {
 			$type = 'email';
 		}
 		elseif ( in_array( $this->extension, $download_extensions ) ) {
 			$type = 'download';
 		}
-		elseif ( in_array( $this->protocol, array( 'http', 'https') ) && $this->domain['host'] !== rtrim(home_url(), '\/') ) {
+		elseif ( in_array( $this->protocol, array( 'http', 'https') ) && $full_url !== rtrim(home_url(), '\/') ) {
 			$type = 'outbound';
 		}
 		else {
