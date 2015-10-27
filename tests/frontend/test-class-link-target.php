@@ -22,6 +22,7 @@ class Yoast_GA_Link_Target_Test extends GA_UnitTestCase {
 
 		$options = array(
 			'track_internal_as_outbound' => '/out',
+            'extensions_of_files'        => 'doc,exe,js,pdf,ppt,tgz,zip,xls',
 		);
 
 		$link_target = new Yoast_GA_Link_Target( $category, $matches, $options );
@@ -49,6 +50,7 @@ class Yoast_GA_Link_Target_Test extends GA_UnitTestCase {
 
         $options = array(
             'track_internal_as_outbound' => '/out',
+            'extensions_of_files'        => 'doc,exe,js,pdf,ppt,tgz,zip,xls',
         );
 
         $link_target = new Yoast_GA_Link_Target( $category, $matches, $options );
@@ -86,6 +88,7 @@ class Yoast_GA_Link_Target_Test extends GA_UnitTestCase {
 
          $options = array(
              'track_internal_as_outbound' => '/out',
+             'extensions_of_files'        => 'doc,exe,js,pdf,ppt,tgz,zip,xls',
          );
          $link_target = new Yoast_GA_Link_Target( $category, $matches, $options );
 
