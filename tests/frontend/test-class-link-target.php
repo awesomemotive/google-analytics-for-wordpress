@@ -10,7 +10,14 @@ class Yoast_GA_Link_Target_Test extends GA_UnitTestCase {
 	public function test_get_domain_RETURNS_false_NO_domain() {
 		$category = 'outbound-article';
 		$matches = array(
+            0 => '<a href="/out/internal-as-outbound">Link</a>',
+            1 => '',
+            2 => '',
+            3 => '',
+            4 => '',
 			5 => '/out/internal-as-outbound',
+            6 => '',
+            7 => 'Link',
 		);
 
 		$options = array(
@@ -30,10 +37,19 @@ class Yoast_GA_Link_Target_Test extends GA_UnitTestCase {
     public function test_get_domain_RETURNS_domain_AND_host_HTTP() {
         $category = 'outbound-article';
         $matches  = array(
-            5 => 'http://yoast.com',
+            0 => '<a href="http://example.org/out/internal-as-outbound" target="_blank">Link</a>',
+            1 => '',
+            2 => '"',
+            3 => '',
+            4 => '',
+            5 => 'http://example.org',
+            6 => 'target="_blank"',
+            7 => 'Link',
         );
 
-        $options = array();
+        $options = array(
+            'track_internal_as_outbound' => '/out',
+        );
 
         $link_target = new Yoast_GA_Link_Target( $category, $matches, $options );
 
@@ -44,7 +60,7 @@ class Yoast_GA_Link_Target_Test extends GA_UnitTestCase {
             $this->assertArrayHasKey( 'domain', $domain );
             $this->assertArrayHasKey( 'host', $domain );
 
-            $this->assertEquals( 'yoast.com', $domain['host'] );
+            $this->assertEquals( 'example.org', $domain['host'] );
         } else {
             $this->assertTrue( $domain_result );
         }
@@ -58,10 +74,19 @@ class Yoast_GA_Link_Target_Test extends GA_UnitTestCase {
      public function test_get_domain_RETURNS_domain_AND_host_HTTPS() {
          $category = 'outbound-article';
          $matches  = array(
-             5 => 'https://yoast.com',
+             0 => '<a href="http://example.org/out/internal-as-outbound">Link</a>',
+             1 => '',
+             2 => '',
+             3 => '',
+             4 => '',
+             5 => 'https://example.org',
+             6 => '',
+             7 => 'Link',
          );
 
-         $options = array();
+         $options = array(
+             'track_internal_as_outbound' => '/out',
+         );
          $link_target = new Yoast_GA_Link_Target( $category, $matches, $options );
 
          $domain        = $link_target->yoast_ga_get_domain( );
@@ -71,7 +96,7 @@ class Yoast_GA_Link_Target_Test extends GA_UnitTestCase {
 			$this->assertArrayHasKey( 'domain', $domain );
 			$this->assertArrayHasKey( 'host', $domain );
 
-			$this->assertEquals( 'yoast.com', $domain['host'] );
+			$this->assertEquals( 'example.org', $domain['host'] );
 		}
 		else {
 			$this->assertTrue( $domain_result );
