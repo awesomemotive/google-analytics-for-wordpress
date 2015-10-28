@@ -56,11 +56,8 @@ class Yoast_GA_Pointers {
 	 */
 	public function __construct() {
 		if ( current_user_can( 'manage_options' ) && ! get_user_meta( get_current_user_id(), 'ga_ignore_tour' ) ) {
-			wp_enqueue_style( 'wp-pointer' );
-			wp_enqueue_script( 'jquery-ui' );
-			wp_enqueue_script( 'wp-pointer' );
-			wp_enqueue_script( 'yoast_ga_pointer', Yoast_GA_Admin_Assets::get_asset_path( 'assets/js/yoast_ga_pointers' ) . Yoast_GA_Admin_Assets::file_ext( '.js' ), array( 'jquery' ), GAWP_VERSION );
-			wp_localize_script( 'yoast_ga_pointer', 'YoastGAPointerL10n', $this->localize_script() );
+
+			Yoast_GA_Admin_Assets::load_tour_assets( $this );
 		}
 	}
 
