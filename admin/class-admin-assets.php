@@ -99,9 +99,9 @@ class Yoast_GA_Admin_Assets {
 	}
 
 	/**
+	 * Load assets that are only needed for the tour
 	 *
-	 *
-	 * @param $instance
+	 * @param Yoast_GA_Pointers $instance
 	 */
 	public static function load_tour_assets( $instance ) {
 		wp_enqueue_style( 'wp-pointer' );
