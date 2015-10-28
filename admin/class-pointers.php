@@ -53,25 +53,16 @@ class Yoast_GA_Pointers {
 	 * @return array
 	 */
 	public function localize_script() {
-		global $pagenow;
-
-		$page = $this->get_current_page();
-
-		if ( $pagenow === 'admin.php' && array_key_exists( $page, $this->admin_pages ) ) {
-			$this->prepare_page_pointer( $page );
-		}
-		else {
-			$this->prepare_tour_pointer();
-		}
+		$this->prepare_pointer();
 
 		$button_array_defaults = array(
-			'primary_button' => array(
-				'text'     => false,
-				'function' => '',
+			'primary_button'    => array(
+				'text'          => false,
+				'function'      => '',
 			),
-			'previous_button' => array(
-				'text'     => false,
-				'function' => '',
+			'previous_button'   => array(
+				'text'          => false,
+				'function'      => '',
 			),
 		);
 
@@ -84,6 +75,19 @@ class Yoast_GA_Pointers {
 			'buttons'           => $this->button_array,
 			'close_button_text' => __( 'Close', 'google-analytics-for-wordpress' ),
 		);
+	}
+
+	protected function prepare_pointer() {
+		global $pagenow;
+
+		$page = $this->get_current_page();
+
+		if ( $pagenow === 'admin.php' && array_key_exists( $page, $this->admin_pages ) ) {
+			$this->prepare_page_pointer( $page );
+		}
+		else {
+			$this->prepare_tour_pointer();
+		}
 	}
 
 	/**
