@@ -45,9 +45,9 @@ YoastGAPointers.prototype.preparePointerOptions = function() {
 YoastGAPointers.prototype.insertPrimaryButton = function( pointer ) {
 	if ( YoastGAPointerL10n.buttons.primary_button.text ) {
 		pointer.find( '#pointer-close' ).after( '<a id="pointer-primary" class="button-primary">' + YoastGAPointerL10n.buttons.primary_button.text + '</a>' );
-		//jQuery( '#pointer-close' ).after( '<a id="pointer-primary" class="button-primary">' + YoastGAPointerL10n.buttons.primary_button.text + '</a>' );
-
-		pointer.find('#pointer-primary').click( function() { window.location = YoastGAPointerL10n.buttons.primary_button.location; });
+		pointer.find('#pointer-primary').click( function() {
+			window.location = YoastGAPointerL10n.buttons.primary_button.location;
+		});
 	}
 };
 
@@ -59,7 +59,9 @@ YoastGAPointers.prototype.insertPrimaryButton = function( pointer ) {
 YoastGAPointers.prototype.insertPreviousButton = function( pointer ) {
 	if ( YoastGAPointerL10n.buttons.previous_button.text ) {
 		pointer.find( '#pointer-primary').after( '<a id="pointer-ternary" style="float: left;" class="button-secondary">' + YoastGAPointerL10n.buttons.previous_button.text + '</a>' );
-		pointer.find( '#pointer-ternary' ).click( function() { window.location = YoastGAPointerL10n.buttons.previous_button.location; } );
+		pointer.find( '#pointer-ternary' ).click( function() {
+			window.location = YoastGAPointerL10n.buttons.previous_button.location;
+		} );
 	}
 };
 

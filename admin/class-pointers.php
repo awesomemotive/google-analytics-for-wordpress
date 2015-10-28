@@ -16,29 +16,15 @@ class Yoast_GA_Pointers {
 	/**
 	 * @var array Holds the buttons to be put out
 	 */
-	private $button_array;
-
-	/**
-	 * @var array Holds the default buttons.
-	 */
-	private $button_array_defaults = array(
-		'primary_button' => array(
-			'text'     => false,
-			'function' => '',
-		),
-		'previous_button' => array(
-			'text'     => false,
-			'function' => '',
-		),
-	);
+	private $button_array = array();
 
 	/**
 	 * @var array Holds the options such as content and position.
 	 */
-	private $options_array;
+	private $options_array = array();
 
 	/**
-	 * @var string Holds the current selector.
+	 * @var string Holds the current styling selector.
 	 */
 	private $selector;
 
@@ -78,7 +64,18 @@ class Yoast_GA_Pointers {
 			$this->prepare_tour_pointer();
 		}
 
-		$this->button_array = wp_parse_args( $this->button_array, $this->button_array_defaults );
+		$button_array_defaults = array(
+			'primary_button' => array(
+				'text'     => false,
+				'function' => '',
+			),
+			'previous_button' => array(
+				'text'     => false,
+				'function' => '',
+			),
+		);
+
+		$this->button_array = wp_parse_args( $this->button_array, $button_array_defaults );
 
 		return array(
 			'selector'          => $this->selector,
@@ -149,7 +146,7 @@ class Yoast_GA_Pointers {
 	 * @return array
 	 */
 	protected function add_button( $key, $text, $location ) {
-		return $this->button_array[$key] = array(
+		return $this->button_array[ $key ] = array(
 			'text' => $text,
 			'location' => $location,
 		);
@@ -166,7 +163,10 @@ class Yoast_GA_Pointers {
 
 		$this->options_array  = array(
 			'content'  => $content,
-			'position' => array( 'edge' => 'top', 'align' => 'center' ),
+			'position' => array(
+				'edge' => 'top',
+				'align' => 'center'
+			),
 		);
 
 		$this->add_button( 'primary_button', __( 'Start tour', 'google-analytics-for-wordpress' ), admin_url( 'admin.php?page=yst_ga_settings' ) );
