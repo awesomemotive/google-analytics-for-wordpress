@@ -620,8 +620,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 * See if we should start our tour.
 	 */
 	private function load_tour() {
-		$restart_tour = filter_input( INPUT_GET, 'ga_restart_tour' );
-		if ( $restart_tour ) {
+		if ( filter_input( INPUT_GET, 'ga_restart_tour' ) ) {
 			delete_user_meta( get_current_user_id(), 'ga_ignore_tour' );
 		}
 
