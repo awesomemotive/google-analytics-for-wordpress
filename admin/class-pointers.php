@@ -77,6 +77,9 @@ class Yoast_GA_Pointers {
 		);
 	}
 
+	/**
+	 * Check if we need to run the tour or the page pointer.
+	 */
 	protected function prepare_pointer() {
 		global $pagenow;
 
@@ -171,7 +174,7 @@ class Yoast_GA_Pointers {
 			'content'  => $content,
 			'position' => array(
 				'edge' => 'top',
-				'align' => 'center'
+				'align' => 'center',
 			),
 		);
 
