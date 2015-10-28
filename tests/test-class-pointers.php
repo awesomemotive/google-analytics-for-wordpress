@@ -1,5 +1,27 @@
 <?php
 
+class Yoast_GA_Pointers_Double extends Yoast_GA_Pointers {
+
+	/**
+	 * @var array Holds the admin pages we have pointers for and the callback that generates the pointers content
+	 */
+	private $admin_pages = array(
+		'yst_ga_settings'   => 'settings_pointer',
+		'yst_ga_dashboard'  => 'dashboard_pointer',
+		'yst_ga_extensions' => 'extensions_pointer',
+	);
+
+	public function get_localize_script() {
+		return $this->localize_script();
+	}
+
+	public function get_prepare_pointer() {
+		$this->prepare_pointer();
+	}
+
+}
+
+
 class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 
 	/**
@@ -39,7 +61,7 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$this->class_instance = $this->getMock( 'Yoast_GA_Pointers', array( 'prepare_page_pointer', 'prepare_tour_pointer', 'get_current_page', 'get_ignore_url' ) );
+		$this->class_instance = $this->getMock( 'Yoast_GA_Pointers_Double', array( 'prepare_page_pointer', 'prepare_tour_pointer', 'get_current_page', 'get_ignore_url' ) );
 	}
 
 	/**
@@ -92,7 +114,7 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 	/**
 	 * Check that prepare_page_pointer is called when the user is on one of the admin pages and the tour is active.
 	 *
-	 * @covers Yoast_GA_Pointers::localize_script
+	 * @covers Yoast_GA_Pointers::prepare_pointer
 	 */
 	public function test_localize_script_CALLS_prepare_page_pointer() {
 		// Overwrite global $pagenow with 'admin.php' to fake we're on 'admin.php' page.
@@ -103,19 +125,19 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 		$this->class_instance
 			->expects( $this->once() )
 			->method( 'get_current_page' )
-			->will( $this->returnValue( 'settings' ) );
+			->will( $this->returnValue( 'yst_ga_settings' ) );
 
 		$this->class_instance
 			->expects( $this->once() )
 			->method( 'prepare_page_pointer' );
 
-		$this->class_instance->localize_script();
+		$this->class_instance->get_prepare_pointer();
 	}
 
 	/**
 	 * Check that prepare_tour_pointer is called when the user is not on one of the google analytics pages.
 	 *
-	 * @covers Yoast_GA_Pointers::localize_script
+	 * @covers Yoast_GA_Pointers::prepare_pointer
 	 */
 	public function test_localize_script_CALLS_prepare_tour_pointer() {
 		$this->class_instance
@@ -127,7 +149,7 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 			->expects( $this->once() )
 			->method( 'prepare_tour_pointer' );
 
-		$this->class_instance->localize_script();
+		$this->class_instance->get_prepare_pointer();
 	}
 
 	/**
@@ -153,9 +175,9 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 
 		$this->button_array = wp_parse_args( $this->button_array, $this->button_array_defaults );
 
-		$yoast_ga_pointers = new Yoast_GA_Pointers();
+		$yoast_ga_pointers = new Yoast_GA_Pointers_Double();
 
-		$actual = $yoast_ga_pointers->localize_script();
+		$actual = $yoast_ga_pointers->get_localize_script();
 
 		$this->assertContains( $this->selector, $actual );
 		$this->assertContains( $this->options_array, $actual );
@@ -173,7 +195,7 @@ class Yoast_GA_Pointers_Test extends GA_UnitTestCase {
 			->expects( $this->once() )
 			->method( 'get_ignore_url' );
 
-		$this->class_instance->localize_script();
+		$this->class_instance->get_localize_script();
 
 	}
 
