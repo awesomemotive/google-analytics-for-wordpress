@@ -34,12 +34,20 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 
 		<div id="ga-promote">
 			<?php
-			$ga_class            = Yoast_Google_Analytics::get_instance();
-			$wp_block_google     = $ga_class->check_google_access_from_wp();
-			$check_google_access = $ga_class->check_google_access();
+
+			/**
+			 * Check if google can be accessed
+			 *
+			 * @return bool
+			 */
+			function check_google_access() {
+				$ga_class = Yoast_Google_Analytics::get_instance();
+
+				return ( $ga_class->check_google_access_from_wp() && $ga_class->check_google_access() );
+			}
 
 			// Start if statement wp_block_google && check_google_access.
-			if ( $wp_block_google && $check_google_access ) :
+			if ( check_google_access() ) :
 
 				$profiles = Yoast_GA_Admin_Form::parse_optgroups( $yoast_ga_admin->get_profiles() );
 
@@ -79,7 +87,7 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 			<?php else : ?>
 				<h3>' <?php _e( 'Cannot connect to Google', 'google-analytics-for-wordpress' ); ?></h3>;
 				<?php
-				if ( $wp_block_google === false && $check_google_access === false ) : ?>
+				if ( ! check_google_access()) : ?>
 					<p> <?php _e( 'Your server is blocking requests to Google, to fix this, add <code>*.googleapis.com</code> to the <code>WP_ACCESSIBLE_HOSTS</code> constant in your <em>wp-config.php</em> or ask your webhost to do this.', 'google-analytics-for-wordpress' ); ?></p>
 		<?php   else : ?>
 					<p><?php _e( 'Your firewall or webhost is blocking requests to Google, please ask your webhost company to fix this.', 'google-analytics-for-wordpress' ); ?> </p>
