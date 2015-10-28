@@ -134,17 +134,28 @@ class Yoast_GA_Pointers {
 		);
 
 		if ( isset( $pointer['next_page'] ) ) {
-			$this->button_array['primary_button'] = array(
-				'text'     => __( 'Next', 'google-analytics-for-wordpress' ),
-				'location' => admin_url( 'admin.php?page=yst_ga_' . $pointer['next_page'] ),
-			);
+			$this->add_button( 'primary_button', __( 'Next', 'google-analytics-for-wordpress' ), admin_url( 'admin.php?page=yst_ga_' . $pointer['next_page'] ) );
+
 		}
 		if ( isset( $pointer['prev_page'] ) ) {
-			$this->button_array['previous_button'] = array(
-				'text'     => __( 'Previous', 'google-analytics-for-wordpress' ),
-				'location' => admin_url( 'admin.php?page=yst_ga_' . $pointer['prev_page'] ),
-			);
+			$this->add_button( 'previous_button', __( 'Previous', 'google-analytics-for-wordpress' ), admin_url( 'admin.php?page=yst_ga_' . $pointer['prev_page'] ) );
 		}
+	}
+
+	/**
+	 * Create the button to navigate the tour.
+	 *
+	 * @param string $key
+	 * @param string $text
+	 * @param string $location
+	 *
+	 * @return array
+	 */
+	protected function add_button( $key, $text, $location ) {
+		return $this->button_array[$key] = array(
+			'text' => $text,
+			'location' => $location,
+		);
 	}
 
 	/**
@@ -161,10 +172,7 @@ class Yoast_GA_Pointers {
 			'position' => array( 'edge' => 'top', 'align' => 'center' ),
 		);
 
-		$this->button_array['primary_button'] = array(
-			'text'     => __( 'Start tour', 'google-analytics-for-wordpress' ),
-			'location' => admin_url( 'admin.php?page=yst_ga_settings' ),
-		);
+		$this->add_button( 'primary_button', __( 'Start tour', 'google-analytics-for-wordpress' ), admin_url( 'admin.php?page=yst_ga_settings' ) );
 	}
 
 	/**
