@@ -9,7 +9,7 @@
 class Yoast_GA_Pointers {
 
 	/**
-	 * @var object Instance of this class
+	 * @var Yoast_GA_Pointers
 	 */
 	public static $instance;
 
@@ -55,14 +55,12 @@ class Yoast_GA_Pointers {
 	 * Class constructor.
 	 */
 	public function __construct() {
-		if ( current_user_can( 'manage_options' ) ) {
-			if ( ! get_user_meta( get_current_user_id(), 'ga_ignore_tour' ) ) {
-				wp_enqueue_style( 'wp-pointer' );
-				wp_enqueue_script( 'jquery-ui' );
-				wp_enqueue_script( 'wp-pointer' );
-				wp_enqueue_script( 'yoast_ga_pointer', Yoast_GA_Admin_Assets::get_asset_path( 'assets/js/yoast_ga_pointers' ) . Yoast_GA_Admin_Assets::file_ext( '.js' ), array( 'jquery' ), GAWP_VERSION );
-				wp_localize_script( 'yoast_ga_pointer', 'YoastGAPointerL10n', $this->localize_script() );
-			}
+		if ( current_user_can( 'manage_options' ) && ! get_user_meta( get_current_user_id(), 'ga_ignore_tour' ) ) {
+			wp_enqueue_style( 'wp-pointer' );
+			wp_enqueue_script( 'jquery-ui' );
+			wp_enqueue_script( 'wp-pointer' );
+			wp_enqueue_script( 'yoast_ga_pointer', Yoast_GA_Admin_Assets::get_asset_path( 'assets/js/yoast_ga_pointers' ) . Yoast_GA_Admin_Assets::file_ext( '.js' ), array( 'jquery' ), GAWP_VERSION );
+			wp_localize_script( 'yoast_ga_pointer', 'YoastGAPointerL10n', $this->localize_script() );
 		}
 	}
 
@@ -86,10 +84,10 @@ class Yoast_GA_Pointers {
 		$this->button_array = wp_parse_args( $this->button_array, $this->button_array_defaults );
 
 		return array(
-			'selector' => $this->selector,
-			'ignore_url' => $this->get_ignore_url(),
-			'options' => $this->options_array,
-			'buttons' => $this->button_array,
+			'selector'          => $this->selector,
+			'ignore_url'        => $this->get_ignore_url(),
+			'options'           => $this->options_array,
+			'buttons'           => $this->button_array,
 			'close_button_text' => __( 'Close', 'google-analytics-for-wordpress' ),
 		);
 	}
@@ -97,7 +95,7 @@ class Yoast_GA_Pointers {
 	/**
 	 * Get the singleton instance of this class
 	 *
-	 * @return object
+	 * @return Yoast_GA_Pointers
 	 */
 	public static function get_instance() {
 		if ( ! ( self::$instance instanceof self ) ) {
@@ -175,13 +173,13 @@ class Yoast_GA_Pointers {
 	 * @return mixed
 	 */
 	protected function get_ignore_url() {
-		$arr_params = array(
+		$ignore_tour_parameters = array(
 			'ga_restart_tour' => false,
 			'ga_ignore_tour'  => '1',
 			'nonce'           => wp_create_nonce( 'ga-ignore-tour' ),
 		);
 
-		return esc_url( add_query_arg( $arr_params ) );
+		return esc_url( add_query_arg( $ignore_tour_parameters ) );
 	}
 
 	/**
@@ -194,7 +192,8 @@ class Yoast_GA_Pointers {
 		return array(
 			'content'   => '<h3>' . __( 'Settings', 'google-analytics-for-wordpress' ) . '</h3>'
 			               . '<p><strong>' . __( 'Tab: General', 'google-analytics-for-wordpress' ) . '</strong></p>'
-			               . '<p>' . __( 'These are the general settings for Google Analytics by Yoast. Here you can authenticate and connect your Google Analytics profile, enable general tracking features and restart this tour.', 'google-analytics-for-wordpress' ) . '</p>'
+			               /* translators: %s is the product name 'Google Analytics by Yoast' */
+			               . '<p>' . sprintf( __( 'These are the general settings for %s. Here you can authenticate and connect your Google Analytics profile, enable general tracking features and restart this tour.', 'google-analytics-for-wordpress' ), 'Google Analytics by Yoast' )  . '</p>'
 			               . '<p><strong>' . __( 'Tab: Universal', 'google-analytics-for-wordpress' ) . '</strong></p>'
 			               . '<p>' . __( 'Enable Universal tracking and tracking features related to Universal tracking.', 'google-analytics-for-wordpress' ) . '</p>'
 			               . '<p><strong>' . __( 'Tab: Advanced', 'google-analytics-for-wordpress' ) . '</strong></p>'
@@ -226,7 +225,7 @@ class Yoast_GA_Pointers {
 		return array(
 			'content'   => '<h3>' . __( 'Dashboard', 'google-analytics-for-wordpress' ) . '</h3>'
 			               . '<p><strong>' . __( 'Tab: Overview', 'google-analytics-for-wordpress' ) . '</strong><br/>'
-			               . __( 'View your website’s last month’s analytics, such as Sessions and bounce rate.', 'google-analytics-for-wordpress' ) . '</p>'
+			               . __( 'View your website’s last month’s analytics, such as sessions and bounce rate.', 'google-analytics-for-wordpress' ) . '</p>'
 			               . '<p><strong>' . __( 'Tab: Reports', 'google-analytics-for-wordpress' ) . '</strong><br/>'
 			               . __( 'View specific reports of your site’s analytics, such as traffic sources, your site’s popular pages and countries where your visitors come from.', 'google-analytics-for-wordpress' ) . '</p>'
 			               . '<p><strong>' . __( 'Tab: Custom dimension reports', 'google-analytics-for-wordpress' )
