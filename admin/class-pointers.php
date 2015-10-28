@@ -32,9 +32,9 @@ class Yoast_GA_Pointers {
 	 * @var array Holds the admin pages we have pointers for and the callback that generates the pointers content
 	 */
 	private $admin_pages = array(
-		'settings'   => 'settings_pointer',
-		'dashboard'  => 'dashboard_pointer',
-		'extensions' => 'extensions_pointer',
+		'yst_ga_settings'   => 'settings_pointer',
+		'yst_ga_dashboard'  => 'dashboard_pointer',
+		'yst_ga_extensions' => 'extensions_pointer',
 	);
 
 	/**
@@ -43,7 +43,7 @@ class Yoast_GA_Pointers {
 	public function __construct() {
 		if ( current_user_can( 'manage_options' ) && ! get_user_meta( get_current_user_id(), 'ga_ignore_tour' ) ) {
 
-			Yoast_GA_Admin_Assets::load_tour_assets( $this );
+			Yoast_GA_Admin_Assets::load_tour_assets( $this->localize_script() );
 		}
 	}
 
@@ -52,7 +52,7 @@ class Yoast_GA_Pointers {
 	 *
 	 * @return array
 	 */
-	public function localize_script() {
+	protected function localize_script() {
 		$this->prepare_pointer();
 
 		$button_array_defaults = array(
@@ -109,7 +109,7 @@ class Yoast_GA_Pointers {
 	 * @return string
 	 */
 	protected function get_current_page() {
-		return preg_replace( '/^(yst_ga_)/', '', filter_input( INPUT_GET, 'page' ) );
+		return filter_input( INPUT_GET, 'page' );
 	}
 
 	/**
@@ -118,7 +118,9 @@ class Yoast_GA_Pointers {
 	 * @param string $page
 	 */
 	protected function prepare_page_pointer( $page ) {
-		$pointer = call_user_func( array( $this, $this->admin_pages[ $page ] ) );
+		$method = $this->admin_pages[ $page ];
+
+		$pointer = $this->$method();
 
 		$this->selector = '#yoast_ga_title';
 

@@ -101,14 +101,14 @@ class Yoast_GA_Admin_Assets {
 	/**
 	 * Load assets that are only needed for the tour
 	 *
-	 * @param Yoast_GA_Pointers $instance
+	 * @param array $localize_script_array
 	 */
-	public static function load_tour_assets( $instance ) {
+	public static function load_tour_assets( $localize_script_array ) {
 		wp_enqueue_style( 'wp-pointer' );
 		wp_enqueue_script( 'jquery-ui' );
 		wp_enqueue_script( 'wp-pointer' );
 		wp_enqueue_script( 'yoast_ga_pointer', Yoast_GA_Admin_Assets::get_asset_path( 'assets/js/yoast_ga_pointers' ) . Yoast_GA_Admin_Assets::file_ext( '.js' ), array( 'jquery' ), GAWP_VERSION );
-		wp_localize_script( 'yoast_ga_pointer', 'YoastGAPointerL10n', $instance->localize_script() );
+		wp_localize_script( 'yoast_ga_pointer', 'YoastGAPointerL10n', $localize_script_array );
 	}
 
 }
