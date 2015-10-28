@@ -57,7 +57,7 @@ class Yoast_GA_JS_Test extends GA_UnitTestCase {
 	/**
 	 * Test a tracking prefix
 	 *
-	 * @covers Yoast_GA_JS::tracking_prefix()
+	 * @covers Yoast_GA_JS::get_tracking_prefix()
 	 */
 	public function test_get_tracking_prefix() {
 		$this->assertEquals( $this->class_instance->get_tracking_prefix(), '/yoast-ga/' );
