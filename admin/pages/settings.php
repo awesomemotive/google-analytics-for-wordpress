@@ -27,73 +27,84 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 ?>
 <input type="hidden" name="return_tab" id="return_tab" value="general" />
 <div class="tabwrapper">
+
+	<!-- start general tab -->
 	<div id="general" class="gatab">
-		<?php
-		echo '<h2>' . __( 'General settings', 'google-analytics-for-wordpress' ) . '</h2>';
+		<h2><?php _e( 'General settings', 'google-analytics-for-wordpress' ); ?></h2>
 
-		echo '<div id="ga-promote">';
+		<div id="ga-promote">
+			<?php
 
-		$ga_class            = Yoast_Google_Analytics::get_instance();
-		$wp_block_google     = $ga_class->check_google_access_from_wp();
-		$check_google_access = $ga_class->check_google_access();
+			/**
+			 * Check if google can be accessed
+			 *
+			 * @return bool
+			 */
+			function check_google_access() {
+				$ga_class = Yoast_Google_Analytics::get_instance();
 
-		if ( $wp_block_google && $check_google_access ) {
-
-			$profiles = Yoast_GA_Admin_Form::parse_optgroups( $yoast_ga_admin->get_profiles() );
-
-			$auth_url = Yoast_Google_Analytics::get_instance()->create_auth_url();
-			add_thickbox();
-			echo '<script>yst_thickbox_heading = "' . __( 'Paste your Google authentication code', 'google-analytics-for-wordpress' ) . '";</script>';
-
-			echo "<div id='google_ua_code_field'>";
-			if ( count( $profiles ) == 0 ) {
-				echo '<div class="ga-form ga-form-input">';
-				echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle">' . __( 'Google profile', 'google-analytics-for-wordpress' ) . ':</label>';
-				echo '<a id="yst_ga_authenticate" class="button" onclick="yst_popupwindow(\'' . $auth_url . '\',500,500);">' . __( 'Authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a>';
-				echo '</div>';
-				echo '<div class="ga-form ga-form-input">';
-				echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle">' . __( 'Current UA-profile', 'google-analytics-for-wordpress' ) . '</label>';
-				echo esc_html( $yoast_ga_admin->get_tracking_code() );
-				echo '</div>';
+				return ( $ga_class->check_google_access_from_wp() && $ga_class->check_google_access() );
 			}
-			else {
-				echo Yoast_GA_Admin_Form::select( __( 'Analytics profile', 'google-analytics-for-wordpress' ), 'analytics_profile', $profiles, null, false, __( 'Select a profile', 'google-analytics-for-wordpress' ) );
 
-				echo '<div class="ga-form ga-form-input">';
-				echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle">&nbsp;</label>';
-				echo '<a id="yst_ga_authenticate" class="button" onclick="yst_popupwindow(\'' . $auth_url . '\',500,500);">' . __( 'Re-authenticate with your Google account', 'google-analytics-for-wordpress' ) . '</a>';
-				echo '</div>';
-			}
-			echo '</div>';
+			// Start if statement wp_block_google && check_google_access.
+			if ( check_google_access() ) :
 
-			echo '<div id="oauth_code" class="ga-form ga-form-input">';
-			echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle">' . __( 'Paste your Google code here', 'google-analytics-for-wordpress' ) . ':</label>';
-			echo Yoast_GA_Admin_Form::input( 'text', null, 'google_auth_code', null, null );
+				$profiles = Yoast_GA_Admin_Form::parse_optgroups( $yoast_ga_admin->get_profiles() );
 
-			echo '<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle-submit">&nbsp;</label>';
-			echo '<div class="ga-form ga-form-input"><input type="submit" name="ga-form-settings" value="' . __( 'Save authentication code', 'google-analytics-for-wordpress' ) . '" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-settings" onclick="yst_closepopupwindow();"></div>';
-			echo '</div>';
-		}
-		else {
-			echo '<h3>' . __( 'Cannot connect to Google', 'google-analytics-for-wordpress' ) . '</h3>';
-			if ( $wp_block_google == false && $check_google_access == false ) {
-				echo '<p>' . __( 'Your server is blocking requests to Google, to fix this, add <code>*.googleapis.com</code> to the <code>WP_ACCESSIBLE_HOSTS</code> constant in your <em>wp-config.php</em> or ask your webhost to do this.', 'google-analytics-for-wordpress' ) . '</p>';
-			}
-			else {
-				echo '<p>' . __( 'Your firewall or webhost is blocking requests to Google, please ask your webhost company to fix this.', 'google-analytics-for-wordpress' ) . '</p>';
-			}
-			echo '<p>' . __( 'Until this is fixed, you can only use the manual authentication method and cannot use the dashboards feature.', 'google-analytics-for-wordpress' ) . '</p>';
-		}
+				$auth_url = Yoast_Google_Analytics::get_instance()->create_auth_url();
+				add_thickbox();
+			?>
 
-		echo '<label class="ga-form ga-form-checkbox-label ga-form-label-left">';
-		echo Yoast_GA_Admin_Form::input( 'checkbox', null, 'manual_ua_code', __( 'Manually enter your UA code', 'google-analytics-for-wordpress' ) );
-		echo '</label>';
-		echo '<div id="enter_ua">';
-		echo Yoast_GA_Admin_Form::input( 'text', null, 'manual_ua_code_field' );
-		echo '<p><strong>' . __( 'Warning: If you use a manual UA code, you won\'t be able to use the dashboards.', 'google-analytics-for-wordpress' ) . '</strong></p>';
-		echo '</div>';
-		echo '<div class="clear"></div></div>';
-		?>
+				<script>yst_thickbox_heading = "<?php _e( 'Paste your Google authentication code', 'google-analytics-for-wordpress' )?>";</script>
+
+				<div id='google_ua_code_field'>
+					<?php if ( count( $profiles ) === 0 ) : ?>
+						<div class="ga-form ga-form-input">
+							<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle"><?php _e( 'Google profile', 'google-analytics-for-wordpress' ); ?>:</label>
+							<a id="yst_ga_authenticate" class="button" onclick="yst_popupwindow('<?php echo $auth_url; ?>',500,500);"><?php _e( 'Authenticate with your Google account', 'google-analytics-for-wordpress' ); ?></a>
+						</div>
+						<div class="ga-form ga-form-input">
+							<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle"><?php _e( 'Current UA-profile', 'google-analytics-for-wordpress' ); ?></label>
+							<?php echo esc_html( $yoast_ga_admin->get_tracking_code() ); ?>
+						</div>
+					<?php else :
+						echo Yoast_GA_Admin_Form::select( __( 'Analytics profile', 'google-analytics-for-wordpress' ), 'analytics_profile', $profiles, null, false, __( 'Select a profile', 'google-analytics-for-wordpress' ) ); ?>
+
+						<div class="ga-form ga-form-input">
+							<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle">&nbsp;</label>
+							<a id="yst_ga_authenticate" class="button" onclick="yst_popupwindow('<?php echo $auth_url ?>',500,500);"><?php _e( 'Re-authenticate with your Google account', 'google-analytics-for-wordpress' )?></a>
+						</div>
+					<?php endif; ?>
+				</div>
+
+				<div id="oauth_code" class="ga-form ga-form-input">
+					<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle"><?php _e( 'Paste your Google code here', 'google-analytics-for-wordpress' ) ?></label>
+					<?php echo Yoast_GA_Admin_Form::input( 'text', null, 'google_auth_code', null, null ); ?>
+
+					<label class="ga-form ga-form-text-label ga-form-label-left" id="yoast-ga-form-label-text-ga-authwithgoogle-submit">&nbsp;</label>
+					<div class="ga-form ga-form-input"><input type="submit" name="ga-form-settings" value="<?php _e( 'Save authentication code', 'google-analytics-for-wordpress' ) ?>" class="button button-primary ga-form-submit" id="yoast-ga-form-submit-settings" onclick="yst_closepopupwindow();"></div>
+				</div>
+			<?php else : ?>
+				<h3>' <?php _e( 'Cannot connect to Google', 'google-analytics-for-wordpress' ); ?></h3>;
+				<?php
+				if ( ! check_google_access() ) : ?>
+					<p> <?php _e( 'Your server is blocking requests to Google, to fix this, add <code>*.googleapis.com</code> to the <code>WP_ACCESSIBLE_HOSTS</code> constant in your <em>wp-config.php</em> or ask your webhost to do this.', 'google-analytics-for-wordpress' ); ?></p>
+		<?php   else : ?>
+					<p><?php _e( 'Your firewall or webhost is blocking requests to Google, please ask your webhost company to fix this.', 'google-analytics-for-wordpress' ); ?> </p>
+			<?php endif; ?>
+			<p><?php _e( 'Until this is fixed, you can only use the manual authentication method and cannot use the dashboards feature.', 'google-analytics-for-wordpress' ); ?></p>
+		<?php endif; ?>
+
+			<label class="ga-form ga-form-checkbox-label ga-form-label-left">
+				<?php echo Yoast_GA_Admin_Form::input( 'checkbox', null, 'manual_ua_code', __( 'Manually enter your UA code', 'google-analytics-for-wordpress' ) ); ?>
+			</label>
+			<div id="enter_ua">
+				<?php echo Yoast_GA_Admin_Form::input( 'text', null, 'manual_ua_code_field' ); ?>
+				<p><strong><?php _e( 'Warning: If you use a manual UA code, you won\'t be able to use the dashboards.', 'google-analytics-for-wordpress' ); ?></strong></p>
+			</div>
+			<div class="clear"></div>
+		</div>
+
 		<div class="clear"><br /></div>
 		<?php
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Track outbound click and downloads', 'google-analytics-for-wordpress' ), 'track_outbound', null, __( 'Clicks and downloads will be tracked as events, you can find these under Content &#xBB; Event Tracking in your Google Analytics reports.', 'google-analytics-for-wordpress' ) );
@@ -103,10 +114,28 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Disable analytics dashboard', 'google-analytics-for-wordpress' ), 'dashboards_disabled', null, __( 'This will completely disable the dashboard and stop the plugin from fetching the latest analytics data.', 'google-analytics-for-wordpress' ) );
 
 		?>
+		<div class="clear"><br /></div>
+
+		<?php if ( get_user_meta( get_current_user_id(), 'ga_ignore_tour' ) ) : ?>
+		<h2><?php _e( 'Introduction Tour', 'google-analytics-for-wordpress' ) ?></h2>
+		<div id="ga_form_introduction_tour">
+			<p>
+				<?php _e( 'Take this tour to quickly learn about the use of this plugin.', 'google-analytics-for-wordpress' ); ?>
+			</p>
+			<p>
+				<a class="button-secondary" href="<?php echo esc_url( admin_url( 'admin.php?page=yst_ga_settings&ga_restart_tour=1' ) ); ?>"><?php _e( 'Start Tour', 'google-analytics-for-wordpress' ); ?></a>
+			</p>
+		</div>
+		<br/>
+		<?php endif; ?>
+
 	</div>
+	<!-- end general tab -->
+
+	<!-- start universal tab -->
 	<div id="universal" class="gatab">
+		<h2><?php _e( 'Universal settings', 'google-analytics-for-wordpress' ); ?></h2>
 		<?php
-		echo '<h2>' . __( 'Universal settings', 'google-analytics-for-wordpress' ) . '</h2>';
 		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Enable Universal tracking', 'google-analytics-for-wordpress' ), 'enable_universal', null, sprintf( __( 'First enable Universal tracking in your Google Analytics account. Please read %1$sthis guide%2$s to learn how to do that.', 'google-analytics-for-wordpress' ), '<a href="http://kb.yoast.com/article/125-universal-analytics#utm_medium=kb-link&utm_source=gawp-config&utm_campaign=wpgaplugin" target="_blank">', '</a>' ) );
 		echo Yoast_GA_Admin_Form::input(
 			'checkbox',
@@ -129,9 +158,12 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		do_action( 'yst_ga_universal_tab' );
 		?>
 	</div>
+	<!-- end universal tab -->
+
+	<!-- start advanced tab -->
 	<div id="advanced" class="gatab">
+		<h2><?php _e( 'Advanced settings', 'google-analytics-for-wordpress' ); ?></h2>
 		<?php
-		echo '<h2>' . __( 'Advanced settings', 'google-analytics-for-wordpress' ) . '</h2>';
 		echo Yoast_GA_Admin_Form::select( __( 'Track downloads as', 'google-analytics-for-wordpress' ), 'track_download_as', $yoast_ga_admin->track_download_types(), __( 'Not recommended, as this would skew your statistics, but it does make it possible to track downloads as goals.', 'google-analytics-for-wordpress' ) );
 		echo Yoast_GA_Admin_Form::input( 'text', __( 'Extensions of files to track as downloads', 'google-analytics-for-wordpress' ), 'extensions_of_files', null, 'Please separate extensions using commas' );
 		echo Yoast_GA_Admin_Form::select( __( 'Track full URL of outbound clicks or just the domain', 'google-analytics-for-wordpress' ), 'track_full_url', $yoast_ga_admin->get_track_full_url() );
@@ -153,24 +185,28 @@ echo Yoast_GA_Admin_Form::create_form( 'settings' );
 		do_action( 'yst_ga_advanced-tab' );
 		?>
 	</div>
-	<div id="customdimensions" class="gatab">
-		<?php
-		echo '<h2>' . __( 'Custom dimensions', 'google-analytics-for-wordpress' ) . '</h2>';
-		do_action( 'yst_ga_custom_dimensions_tab-content' );
-		?>
-	</div>
-	<?php do_action( 'yst_ga_custom_tabs-content' ); ?>
-	<div id="debugmode" class="gatab">
-		<?php
-		echo '<h2>' . __( 'Debug', 'google-analytics-for-wordpress' ) . '</h2>';
+	<!-- end advanced tab -->
 
-		echo '<div id="ga-promote">';
-		echo '<p class="ga-topdescription">' . __( 'If you want to confirm that tracking on your blog is working as it should, enable this option and check the console of your browser. Be absolutely sure to disable debugging afterwards, as it is slower than normal tracking.', 'google-analytics-for-wordpress' ) . '</p>';
-		echo '<p class="ga-topdescription">' . __( '<strong>Note</strong> the debugging is only loaded for administrators.', 'google-analytics-for-wordpress' ) . '</p>';
-		echo '</div>';
-		echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Enable debug mode', 'google-analytics-for-wordpress' ), 'debug_mode' );
-		?>
+	<!-- start custom dimensions tab -->
+	<div id="customdimensions" class="gatab">
+		<h2><?php _e( 'Custom dimensions', 'google-analytics-for-wordpress' ); ?></h2>
+		<?php do_action( 'yst_ga_custom_dimensions_tab-content' ); ?>
 	</div>
+	<!-- end custom dimensions tab -->
+
+	<?php do_action( 'yst_ga_custom_tabs-content' ); ?>
+
+	<!-- start debug mode tab -->
+	<div id="debugmode" class="gatab">
+		<h2><?php _e( 'Debug', 'google-analytics-for-wordpress' ) ?></h2>
+		<div id="ga-promote">
+			<p class="ga-topdescription"><?php _e( 'If you want to confirm that tracking on your blog is working as it should, enable this option and check the console of your browser. Be absolutely sure to disable debugging afterwards, as it is slower than normal tracking.', 'google-analytics-for-wordpress' ); ?></p>
+			<p class="ga-topdescription"><?php _e( '<strong>Note</strong> the debugging is only loaded for administrators.', 'google-analytics-for-wordpress' ); ?></p>
+		</div>
+		<?php echo Yoast_GA_Admin_Form::input( 'checkbox', __( 'Enable debug mode', 'google-analytics-for-wordpress' ), 'debug_mode' ); ?>
+	</div>
+	<!-- end debug mode tab -->
+
 </div>
 <?php
 echo Yoast_GA_Admin_Form::end_form( __( 'Save changes', 'google-analytics-for-wordpress' ), 'settings', 'yst_closepopupwindow();' );

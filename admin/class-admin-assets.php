@@ -90,12 +90,25 @@ class Yoast_GA_Admin_Assets {
 	 *
 	 * @return string
 	 */
-	private static function file_ext( $ext ) {
+	public static function file_ext( $ext ) {
 		if ( ! defined( 'SCRIPT_DEBUG' ) || ! SCRIPT_DEBUG ) {
 			$ext = '.min' . $ext;
 		}
 
 		return $ext;
+	}
+
+	/**
+	 * Load assets that are only needed for the tour
+	 *
+	 * @param array $localize_script_array
+	 */
+	public static function load_tour_assets( $localize_script_array ) {
+		wp_enqueue_style( 'wp-pointer' );
+		wp_enqueue_script( 'jquery-ui' );
+		wp_enqueue_script( 'wp-pointer' );
+		wp_enqueue_script( 'yoast_ga_pointer', Yoast_GA_Admin_Assets::get_asset_path( 'assets/js/yoast_ga_pointers' ) . Yoast_GA_Admin_Assets::file_ext( '.js' ), array( 'jquery' ), GAWP_VERSION );
+		wp_localize_script( 'yoast_ga_pointer', 'YoastGAPointerL10n', $localize_script_array );
 	}
 
 }
