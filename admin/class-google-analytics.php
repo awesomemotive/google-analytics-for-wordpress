@@ -319,8 +319,9 @@ class Yoast_Google_Analytics_Notice {
 	 * Throw a warning if no UA code is set.
 	 */
 	public static function config_warning() {
+		/* translators: 1: link to Google Analytics by Yoast settings page. 2: closing of the link. */
 		self::show_error(
-			sprintf( __( 'Please configure your %sGoogle Analytics settings%s!', 'google-analytics-for-wordpress' ),
+			sprintf( __( 'Please configure your %1$sGoogle Analytics settings%2$s!', 'google-analytics-for-wordpress' ),
 				'<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">',
 				'</a>'
 			)
@@ -331,9 +332,10 @@ class Yoast_Google_Analytics_Notice {
 	 * Throw a warning when the fetching failed
 	 */
 	public static function warning_fetching_data_authenticate() {
+		/* translators: 1: link to Google Analytics by Yoast settings page. 2: closing of the link */
 		self::show_error(
 			sprintf(
-				__( 'It seems the authentication for the plugin has expired, please %sre-authenticate%s with Google Analytics to allow the plugin to fetch data.', 'google-analytics-for-wordpress' ),
+				__( 'It seems the authentication for the plugin has expired, please %1$sre-authenticate%2$s with Google Analytics to allow the plugin to fetch data.', 'google-analytics-for-wordpress' ),
 				'<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">',
 				'</a>'
 			)
@@ -344,9 +346,10 @@ class Yoast_Google_Analytics_Notice {
 	 * Throw a warning when the fetching failed
 	 */
 	public static function warning_fetching_data() {
+		/* translators: 1: link to knowledge base article about authentication issues. 2: closing of the link. */
 		self::show_error(
 			sprintf(
-				__( 'Data is not up-to-date, there was an error in retrieving the data from Google Analytics. This error could be caused by several issues. If the error persists, please see %sthis page%s.', 'google-analytics-for-wordpress' ),
+				__( 'Data is not up-to-date, there was an error in retrieving the data from Google Analytics. This error could be caused by several issues. If the error persists, please %1$sread this article about authentication issues%2$s.', 'google-analytics-for-wordpress' ),
 				'<a href="http://yoa.st/2p">',
 				'</a>'
 			)

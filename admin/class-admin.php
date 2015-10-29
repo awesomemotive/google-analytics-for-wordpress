@@ -37,6 +37,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 		add_filter( 'plugin_action_links_' . plugin_basename( GAWP_FILE ), array( $this, 'add_action_links' ) );
 
+		$this->ignore_tour();
+		$this->load_tour();
 	}
 
 	/**
@@ -335,7 +337,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	public function premium_promo() {
 		echo '<div class="ga-promote">';
 		echo '<p>';
-		printf( __( 'If you want to track custom dimensions like page views per author or post type, you should upgrade to the %1$spremium version of Google Analytics by Yoast%2$s.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=text-link&utm_source=gawp-config&utm_campaign=wpgaplugin&utm_content=custom_dimensions_tab">', '</a>' );
+		/* translators: 1: link to the Google Analytics product page on Yoast.com. 2: product name and closing of the link: 'Google Analytics by Yoast</a>' */
+		printf( __( 'If you want to track custom dimensions like page views per author or post type, you should upgrade to the %1$spremium version of %2$s.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=text-link&utm_source=gawp-config&utm_campaign=wpgaplugin&utm_content=custom_dimensions_tab">', 'Google Analytics by Yoast</a>' );
 		echo ' ';
 		_e( 'This will also give you email access to the support team at Yoast, who will provide support on the plugin 24/7.', 'google-analytics-for-wordpress' );
 		echo '</p>';
@@ -557,13 +560,14 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		$extensions = array(
 			'ga_premium' => (object) array(
 				'url'    => 'https://yoast.com/wordpress/plugins/google-analytics/',
-				'title'  => __( 'Google Analytics by Yoast Premium', 'google-analytics-for-wordpress' ),
-				'desc'   => __( 'The premium version of Google Analytics by Yoast with more features and support.', 'google-analytics-for-wordpress' ),
+				'title'  => 'Google Analytics by Yoast Premium',
+				/* translators: %s stands for 'Google Analytics by Yoast'. */
+				'desc'   => sprintf( __( 'The premium version of %s with more features and support.', 'google-analytics-for-wordpress' ), 'Google Analytics by Yoast' ),
 				'status' => 'uninstalled',
 			),
 			'ecommerce'  => (object) array(
 				'url'    => 'https://yoast.com/wordpress/plugins/ga-ecommerce/',
-				'title'  => __( 'Google Analytics by Yoast', 'google-analytics-for-wordpress' ) . '<br />' . __( 'eCommerce tracking', 'google-analytics-for-wordpress' ),
+				'title'  => 'Google Analytics by Yoast<br />' . __( 'eCommerce tracking', 'google-analytics-for-wordpress' ),
 				'desc'   => __( 'Track your eCommerce data and transactions with this eCommerce extension for Google Analytics.', 'google-analytics-for-wordpress' ),
 				'status' => 'uninstalled',
 			),
@@ -611,6 +615,28 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			}
 
 			delete_transient( $transient_name );
+		}
+	}
+
+	/**
+	 * See if we should start our tour.
+	 */
+	private function load_tour() {
+		if ( filter_input( INPUT_GET, 'ga_restart_tour' ) ) {
+			delete_user_meta( get_current_user_id(), 'ga_ignore_tour' );
+		}
+
+		if ( ! get_user_meta( get_current_user_id(), 'ga_ignore_tour' ) ) {
+			add_action( 'admin_enqueue_scripts', array( 'Yoast_GA_Pointers', 'get_instance' ) );
+		}
+	}
+
+	/**
+	 * Listener for the ignore tour GET value. If this one is set, just set the user meta to true.
+	 */
+	private function ignore_tour() {
+		if ( filter_input( INPUT_GET, 'ga_ignore_tour' ) && wp_verify_nonce( filter_input( INPUT_GET, 'nonce' ), 'ga-ignore-tour' ) ) {
+			update_user_meta( get_current_user_id(), 'ga_ignore_tour', true );
 		}
 	}
 
