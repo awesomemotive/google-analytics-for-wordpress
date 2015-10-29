@@ -153,25 +153,26 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 	}
 
 	/**
-	 * Ouput tracking link
+	 * Output tracking link
 	 *
-	 * @param string $label
-	 * @param array  $matches
+	 * @param string               $category
+	 * @param Yoast_GA_Link_Target $link_target
 	 *
-	 * @return mixed
+	 * @return string
 	 */
-	protected function output_parse_link( $label, $matches ) {
-		$link        = $this->get_target( $label, $matches );
+	protected function output_parse_link( $category, Yoast_GA_Link_Target $link_target ) {
 		$object_name = $this->get_js_object_name();
+
 		// bail early for links that we can't handle
-		if ( is_null( $link['type'] ) || 'internal' === $link['type'] ) {
-			return $matches[0];
+		if ( $link_target->type === 'internal' ) {
+			return $link_target->hyperlink;
 		}
 
 		$onclick  = null;
-		$full_url = $this->make_full_url( $link );
+		$full_url = $this->make_full_url( $link_target );
 
-		switch ( $link['type'] ) {
+
+		switch ( $link_target->type ) {
 			case 'download':
 				if ( $this->options['track_download_as'] == 'pageview' ) {
 					$onclick = $object_name . "('send', 'pageview', '" . esc_js( $full_url ) . "');";
@@ -182,29 +183,29 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 
 				break;
 			case 'email':
-				$onclick = $object_name . "('send', 'event', 'mailto', '" . esc_js( $link['original_url'] ) . "');";
+				$onclick = $object_name . "('send', 'event', 'mailto', '" . esc_js( $link_target->original_url ) . "');";
 
 				break;
 			case 'internal-as-outbound':
-				$label = $this->sanitize_internal_label();
+				$category = $this->sanitize_internal_label();
 
-				$onclick = $object_name . "('send', '" . esc_js( $this->options['track_download_as'] ) . "', '" . esc_js( $link['category'] ) . '-' . esc_js( $label ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "');";
+				$onclick = $object_name . "('send', '" . esc_js( $this->options['track_download_as'] ) . "', '" . esc_js( $link_target->category ) . '-' . esc_js( $category ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link_target->link_text ) ) . "');";
 
 				break;
 			case 'outbound':
 				if ( $this->options['track_outbound'] == 1 ) {
-					$onclick = $object_name . "('send', 'event', '" . esc_js( $link['category'] ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link['link_text'] ) ) . "');";
+					$onclick = $object_name . "('send', 'event', '" . esc_js( $link_target->category ) . "', '" . esc_js( $full_url ) . "', '" . esc_js( strip_tags( $link_target->link_text ) ) . "');";
 				}
 
 				break;
 		}
 
-		$link['link_attributes'] = $this->output_add_onclick( $link['link_attributes'], $onclick );
-		if ( ! empty( $link['link_attributes'] ) ) {
-			return '<a href="' . $full_url . '" ' . trim( $link['link_attributes'] ) . '>' . $link['link_text'] . '</a>';
+		$link_target->link_attributes = $this->output_add_onclick( $link_target->link_attributes, $onclick );
+		if ( ! empty( $link_target->link_attributes ) ) {
+			return '<a href="' . $full_url . '" ' . trim( $link_target->link_attributes ) . '>' . $link_target->link_text . '</a>';
 		}
 
-		return '<a href="' . $full_url . '">' . $link['link_text'] . '</a>';
+		return '<a href="' . $full_url . '">' . $link_target->link_text . '</a>';
 	}
 
 	/**

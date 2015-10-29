@@ -390,7 +390,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	 *
 	 * @covers Yoast_GA_Universal::the_content()
 	 */
-	public function test_the_content_WITH_outbound_link() {
+	public function test_the_content_WITH_outbound_link_AND_full_URL() {
 		$this->track_outbound = 1;
 
 		$this->helper_replace_links( 'http://examples.org/test', "<a href=\"http://examples.org/test\" onclick=\"__gaTracker('send', 'event', 'outbound-article', 'http://examples.org/test', 'Linking text');\">Linking text</a>", 'the_content' );
@@ -408,11 +408,11 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content with an internal link as outbound
+	 * Test some content with an internal link as outbound and full URL
 	 *
 	 * @covers Yoast_GA_Universal::the_content()
 	 */
-	public function test_the_content_WITH_interal_link_as_outbound_link() {
+	public function test_the_content_WITH_internal_link_as_outbound_link_AND_full_URL() {
 		$this->track_internal_as_outbound = '/out/';
 		$this->track_internal_as_label    = 'test-label';
 
@@ -420,16 +420,53 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content as internal link as outbound and track as pageview
+	 * Test some content with an internal link as outbound and relative URL
 	 *
 	 * @covers Yoast_GA_Universal::the_content()
 	 */
-	public function test_the_content_WITH_interal_link_as_outbound_link_as_pageview() {
+	public function test_the_content_WITH_internal_link_as_outbound_link_AND_relative_URL() {
+		$this->track_internal_as_outbound = '/out/';
+		$this->track_internal_as_label    = 'test-label';
+
+		$this->helper_replace_links('/out/outbound', "<a href=\"/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-article-test-label', '/out/outbound', 'Linking text');\">Linking text</a>", 'the_content' );
+	}
+
+	/**
+	 * Test some content with an internal link as outbound and link attributes
+	 *
+	 * @covers Yoast_GA_Universal::the_content()
+	 */
+	public function test_the_content_WITH_internal_link_as_outbound_link_AND_link_attributes() {
+		$this->track_internal_as_outbound = '/out/';
+		$this->track_internal_as_label    = 'test-label';
+
+		$this->helper_replace_links( get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-article-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\" target=\"_blank\">Linking text</a>", 'the_content', 'target="_blank"' );
+	}
+
+	/**
+	 * Test some content as internal link as outbound and track as pageview with full URL
+	 *
+	 * @covers Yoast_GA_Universal::the_content()
+	 */
+	public function test_the_content_WITH_internal_link_as_outbound_link_as_pageview_WITH_full_URL() {
 		$this->track_internal_as_outbound = '/out/';
 		$this->track_internal_as_label    = 'test-label';
 		$this->track_download_as          = 'pageview';
 
 		$this->helper_replace_links( get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-article-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'the_content' );
+	}
+
+	/**
+	 * Test some content as internal link as outbound and track as pageview with relative URL
+	 *
+	 * @covers Yoast_GA_Universal::the_content()
+	 */
+	public function test_the_content_WITH_internal_link_as_outbound_link_as_pageview_WITH_relative_URL() {
+		$this->track_internal_as_outbound = '/out/';
+		$this->track_internal_as_label    = 'test-label';
+		$this->track_download_as          = 'pageview';
+
+		$this->helper_replace_links( '/out/outbound', "<a href=\"/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-article-test-label', '/out/outbound', 'Linking text');\">Linking text</a>", 'the_content' );
 	}
 
 	/**
@@ -466,11 +503,11 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
-	 * Test some content with an internal link as outbound
+	 * Test some content with an internal link as outbound with full URL
 	 *
 	 * @covers Yoast_GA_Universal::widget_content()
 	 */
-	public function test_widget_content_WITH_interal_link_as_outbound_link() {
+	public function test_widget_content_WITH_internal_link_as_outbound_link_WITH_full_URL() {
 		$this->track_internal_as_outbound = '/out/';
 		$this->track_internal_as_label    = 'test-label';
 
@@ -478,16 +515,41 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Test some content with an internal link as outbound with relative URL
+	 *
+	 * @covers Yoast_GA_Universal::widget_content()
+	 */
+	public function test_widget_content_WITH_internal_link_as_outbound_link_WITH_relative_URL() {
+		$this->track_internal_as_outbound = '/out/';
+		$this->track_internal_as_label    = 'test-label';
+
+		$this->helper_replace_links( '/out/outbound', "<a href=\"/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-widget-test-label', '/out/outbound', 'Linking text');\">Linking text</a>", 'widget_content' );
+	}
+
+	/**
 	 * Test some content as internal link as outbound and track as pageview
 	 *
 	 * @covers Yoast_GA_Universal::widget_content()
 	 */
-	public function test_widget_content_WITH_interal_link_as_outbound_link_as_pageview() {
+	public function test_widget_content_WITH_internal_link_as_outbound_link_as_pageview_WITH_full_URL() {
 		$this->track_internal_as_outbound = '/out/';
 		$this->track_internal_as_label    = 'test-label';
 		$this->track_download_as          = 'pageview';
 
 		$this->helper_replace_links( get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-widget-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'widget_content' );
+	}
+
+	/**
+	 * Test some content as internal link as outbound and track as pageview
+	 *
+	 * @covers Yoast_GA_Universal::widget_content()
+	 */
+	public function test_widget_content_WITH_internal_link_as_outbound_link_as_pageview_WITH_relative_URL() {
+		$this->track_internal_as_outbound = '/out/';
+		$this->track_internal_as_label    = 'test-label';
+		$this->track_download_as          = 'pageview';
+
+		$this->helper_replace_links( '/out/outbound', "<a href=\"/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-widget-test-label', '/out/outbound', 'Linking text');\">Linking text</a>", 'widget_content' );
 	}
 
 	/**
@@ -528,7 +590,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	 *
 	 * @covers Yoast_GA_Universal::nav_menu()
 	 */
-	public function test_nav_menu_WITH_interal_link_as_outbound_link() {
+	public function test_nav_menu_WITH_internal_link_as_outbound_link_WITH_full_URL() {
 		$this->track_internal_as_outbound = '/out/';
 		$this->track_internal_as_label    = 'test-label';
 
@@ -536,16 +598,41 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Test some content with an internal link as outbound
+	 *
+	 * @covers Yoast_GA_Universal::nav_menu()
+	 */
+	public function test_nav_menu_WITH_internal_link_as_outbound_link_WITH_relative_URL() {
+		$this->track_internal_as_outbound = '/out/';
+		$this->track_internal_as_label    = 'test-label';
+
+		$this->helper_replace_links( '/out/outbound', "<a href=\"/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-menu-test-label', '/out/outbound', 'Linking text');\">Linking text</a>", 'nav_menu' );
+	}
+
+	/**
 	 * Test some content as internal link as outbound and track as pageview
 	 *
 	 * @covers Yoast_GA_Universal::nav_menu()
 	 */
-	public function test_nav_menu_WITH_interal_link_as_outbound_link_as_pageview() {
+	public function test_nav_menu_WITH_internal_link_as_outbound_link_as_pageview_WITH_full_URL() {
 		$this->track_internal_as_outbound = '/out/';
 		$this->track_internal_as_label    = 'test-label';
 		$this->track_download_as          = 'pageview';
 
 		$this->helper_replace_links( get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-menu-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'nav_menu' );
+	}
+
+	/**
+	 * Test some content as internal link as outbound and track as pageview
+	 *
+	 * @covers Yoast_GA_Universal::nav_menu()
+	 */
+	public function test_nav_menu_WITH_internal_link_as_outbound_link_as_pageview_WITH_relative_URL() {
+		$this->track_internal_as_outbound = '/out/';
+		$this->track_internal_as_label    = 'test-label';
+		$this->track_download_as          = 'pageview';
+
+		$this->helper_replace_links( '/out/outbound', "<a href=\"/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-menu-test-label', '/out/outbound', 'Linking text');\">Linking text</a>", 'nav_menu' );
 	}
 
 	/**
@@ -586,7 +673,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	 *
 	 * @covers Yoast_GA_Universal::comment_text()
 	 */
-	public function test_comment_text_WITH_interal_link_as_outbound_link() {
+	public function test_comment_text_WITH_internal_link_as_outbound_link_WITH_full_URL() {
 		$this->track_internal_as_outbound = '/out/';
 		$this->track_internal_as_label    = 'test-label';
 
@@ -594,16 +681,41 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 	}
 
 	/**
+	 * Test some content with an internal link as outbound
+	 *
+	 * @covers Yoast_GA_Universal::comment_text()
+	 */
+	public function test_comment_text_WITH_internal_link_as_outbound_link_WITH_relative_URL() {
+		$this->track_internal_as_outbound = '/out/';
+		$this->track_internal_as_label    = 'test-label';
+
+		$this->helper_replace_links( '/out/outbound', "<a href=\"/out/outbound\" onclick=\"__gaTracker('send', 'event', 'outbound-comment-test-label', '/out/outbound', 'Linking text');\">Linking text</a>", 'comment_text' );
+	}
+
+	/**
 	 * Test some content as internal link as outbound and track as pageview
 	 *
 	 * @covers Yoast_GA_Universal::comment_text()
 	 */
-	public function test_comment_text_WITH_interal_link_as_outbound_link_as_pageview() {
+	public function test_comment_text_WITH_internal_link_as_outbound_link_as_pageview_WITH_full_URL() {
 		$this->track_internal_as_outbound = '/out/';
 		$this->track_internal_as_label    = 'test-label';
 		$this->track_download_as          = 'pageview';
 
 		$this->helper_replace_links( get_site_url() . '/out/outbound', "<a href=\"" . get_site_url() . "/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-comment-test-label', '" . get_site_url() . "/out/outbound', 'Linking text');\">Linking text</a>", 'comment_text' );
+	}
+
+	/**
+	 * Test some content as internal link as outbound and track as pageview
+	 *
+	 * @covers Yoast_GA_Universal::comment_text()
+	 */
+	public function test_comment_text_WITH_internal_link_as_outbound_link_as_pageview_WITH_relative_URL() {
+		$this->track_internal_as_outbound = '/out/';
+		$this->track_internal_as_label    = 'test-label';
+		$this->track_download_as          = 'pageview';
+
+		$this->helper_replace_links( '/out/outbound', "<a href=\"/out/outbound\" onclick=\"__gaTracker('send', 'pageview', 'outbound-comment-test-label', '/out/outbound', 'Linking text');\">Linking text</a>", 'comment_text' );
 	}
 
 	/**

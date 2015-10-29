@@ -21,7 +21,7 @@ class Yoast_Google_Analytics_Notice_Test extends GA_UnitTestCase {
 		ob_start();
 		Yoast_Google_Analytics_Notice::warning_fetching_data();
 		$output   = ob_get_clean();
-		$expected = '<div class="error"><p>Data is not up-to-date, there was an error in retrieving the data from Google Analytics. This error could be caused by several issues. If the error persists, please see <a href="http://yoa.st/2p">this page</a>.</p></div>';
+		$expected = '<div class="error"><p>Data is not up-to-date, there was an error in retrieving the data from Google Analytics. This error could be caused by several issues. If the error persists, please <a href="http://yoa.st/2p">read this article about authentication issues</a>.</p></div>';
 
 		$this->assertEquals( $output, $expected );
 	}

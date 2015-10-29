@@ -38,7 +38,7 @@ matrix:
 
 before_script:
   - phpenv local 5.6
-  - composer selfupdate --no-interaction
+  - composer selfupdate 1.0.0-alpha10 --no-interaction
   - composer install --no-interaction
   - composer config-yoastcs
   - phpenv local --unset
@@ -64,6 +64,7 @@ script:
 notifications:
   slack:
     secure: 1sg/MwkvRDNLgOxkQ6lvDRGgKbNt0gpwYN6bgGxcT3hOxPMJjjNBJlwO6td/3NuMuMjr/EomzXprL8XOlqPsyBfqFZoLX+fV3v4or2IVyUjPdQVStOX1UsV9kTAIW81idSoGarvRV/PAN1HHfHc+wuLTqpSSPhrtxuGxNozvvl0=
+  email: false
 
 addons:
     code_climate:

@@ -11,7 +11,7 @@ $has_extensions = false;
 
 $extensions = $yoast_ga_admin->get_extensions();
 ?>
-	<h2 id="yoast_ga_title"><?php echo __( 'Google Analytics by Yoast: ', 'google-analytics-for-wordpress' ) . __( 'Extensions', 'google-analytics-for-wordpress' ); ?></h2>
+	<h2 id="yoast_ga_title">Google Analytics by Yoast: <?php echo _e( 'Extensions', 'google-analytics-for-wordpress' ); ?></h2>
 
 	<h2 class="nav-tab-wrapper" id="ga-tabs">
 		<a class="nav-tab active" id="extensions-tab" href="#top#extensions"><?php _e( 'Extensions', 'google-analytics-for-wordpress' ); ?></a>
@@ -48,7 +48,8 @@ $extensions = $yoast_ga_admin->get_extensions();
 		<div id="licenses" class="wpseotab gatab">
 		<?php
 		if ( ! $has_extensions ) {
-			echo '<p>' . __( 'You have not installed any extensions for Google Analytics by Yoast, so there are no licenses to activate.', 'google-analytics-for-wordpress' ) . '</p>';
+			/* translators: %s stands for 'Google Analytics by Yoast'. */
+			echo '<p>' . sprintf( __( 'You have not installed any extensions for %s, so there are no licenses to activate.', 'google-analytics-for-wordpress' ), 'Google Analytics by Yoast' ) . '</p>';
 		}
 		else {
 			do_action( 'yst_ga_show_license_form' );
