@@ -319,7 +319,7 @@ class Yoast_Google_Analytics_Notice {
 	 * Throw a warning if no UA code is set.
 	 */
 	public static function config_warning() {
-		/* translators: 1: link to Google Analytics ny Yoast settings page. 2: closing of the link. */
+		/* translators: 1: link to Google Analytics by Yoast settings page. 2: closing of the link. */
 		self::show_error(
 			sprintf( __( 'Please configure your %1$sGoogle Analytics settings%2$s!', 'google-analytics-for-wordpress' ),
 				'<a href="' . admin_url( 'admin.php?page=yst_ga_settings' ) . '">',
