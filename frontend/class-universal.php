@@ -160,7 +160,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 	 *
 	 * @return string
 	 */
-	protected function output_parse_link( $category, $link_target ) {
+	protected function output_parse_link( $category, Yoast_GA_Link_Target $link_target ) {
 		$object_name = $this->get_js_object_name();
 
 		// bail early for links that we can't handle

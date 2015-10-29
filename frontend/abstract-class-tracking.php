@@ -60,9 +60,9 @@ abstract class Yoast_GA_Tracking {
 	 * @param string               $category
 	 * @param Yoast_GA_Link_Target $link_target
 	 *
-	 * @return mixed
+	 * @return string
 	 */
-	abstract protected function output_parse_link( $category, $link_target );
+	abstract protected function output_parse_link( $category, Yoast_GA_Link_Target $link_target );
 
 	/**
 	 * Class constructor
@@ -101,7 +101,7 @@ abstract class Yoast_GA_Tracking {
 	 *
 	 * @param array $matches
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	public function parse_article_link( $matches ) {
 		return $this->parse_link( 'outbound-article', $matches );
@@ -112,7 +112,7 @@ abstract class Yoast_GA_Tracking {
 	 *
 	 * @param array $matches
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	public function parse_comment_link( $matches ) {
 		return $this->parse_link( 'outbound-comment', $matches );
@@ -123,7 +123,7 @@ abstract class Yoast_GA_Tracking {
 	 *
 	 * @param array $matches
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	public function parse_widget_link( $matches ) {
 		return $this->parse_link( 'outbound-widget', $matches );
@@ -134,7 +134,7 @@ abstract class Yoast_GA_Tracking {
 	 *
 	 * @param array $matches
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	public function parse_nav_menu( $matches ) {
 		return $this->parse_link( 'outbound-menu', $matches );
@@ -145,10 +145,10 @@ abstract class Yoast_GA_Tracking {
 	 *
 	 * @param string $text
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	public function the_content( $text ) {
-		if ( false === $this->do_tracking() ) {
+		if ( ! $this->do_tracking() ) {
 			return $text;
 		}
 
@@ -164,7 +164,7 @@ abstract class Yoast_GA_Tracking {
 	 *
 	 * @param string $text
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	public function widget_content( $text ) {
 		if ( ! $this->do_tracking() ) {
@@ -180,7 +180,7 @@ abstract class Yoast_GA_Tracking {
 	 *
 	 * @param string $text
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	public function nav_menu( $text ) {
 		if ( ! $this->do_tracking() ) {
@@ -199,7 +199,7 @@ abstract class Yoast_GA_Tracking {
 	 *
 	 * @param string $text
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	public function comment_text( $text ) {
 		if ( ! $this->do_tracking() ) {
@@ -212,8 +212,6 @@ abstract class Yoast_GA_Tracking {
 
 		return $text;
 	}
-
-
 
 	/**
 	 * Merge the existing onclick with a new one and append it
@@ -251,6 +249,7 @@ abstract class Yoast_GA_Tracking {
 	 * @return string
 	 */
 	public function make_full_url( $link ) {
+		$protocol = '';
 		switch ( $link->type ) {
 			case 'download':
 			case 'internal':
@@ -318,16 +317,16 @@ abstract class Yoast_GA_Tracking {
 	 * @param string $category
 	 * @param array  $matches
 	 *
-	 * @return mixed
+	 * @return string
 	 */
-	protected function parse_link( $category, $matches ) {
+	protected function parse_link( $category, array $matches ) {
 		return $this->output_parse_link( $category, new Yoast_GA_Link_Target( $category, $matches, $this->options ) );
 	}
 
 	/**
 	 * Get the options class
 	 *
-	 * @return object|Yoast_GA_Options
+	 * @return Yoast_GA_Options
 	 */
 	protected function get_options_class() {
 		return Yoast_GA_Options::instance();

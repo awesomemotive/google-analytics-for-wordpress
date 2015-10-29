@@ -91,19 +91,19 @@ class Yoast_GA_Link_Target {
 	 * @param array  $matches
 	 * @param array  $options
 	 */
-	public function __construct( $category, $matches, $options ) {
-		$this->options = $options;
-		$this->category = $category;
-		$this->original_url = $matches[5];
-		$this->domain = $this->yoast_ga_get_domain();
-		$this->extension = substr( strrchr( $this->original_url, '.' ), 1 );
-		$this->host = $this->domain['host'];
+	public function __construct( $category, array $matches, array $options ) {
+		$this->options         = $options;
+		$this->category        = $category;
+		$this->original_url    = $matches[5];
+		$this->domain          = $this->yoast_ga_get_domain();
+		$this->extension       = substr( strrchr( $this->original_url, '.' ), 1 );
+		$this->host            = $this->domain['host'];
 		$this->link_attributes = trim( $matches[1] . ' ' . $matches[6] );
-		$this->link_text = $matches[7];
-		$this->hyperlink = $matches[0];
+		$this->link_text       = $matches[7];
+		$this->hyperlink       = $matches[0];
 
 		$this->protocol = $matches[4];
-		$this->type = $this->get_target_type();
+		$this->type     = $this->get_target_type();
 
 
 	}

@@ -138,21 +138,14 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 	}
 
 	/**
-	 * Ouput tracking link
+	 * Output tracking link
 	 *
-	 * @param string $category
-	 * @param array  $matches
-	 *
-	 * @return mixed
-	 */
-
-	/**
 	 * @param string               $category
 	 * @param Yoast_GA_Link_Target $link_target
 	 *
 	 * @return string
 	 */
-	protected function output_parse_link( $category, $link_target ) {
+	protected function output_parse_link( $category, Yoast_GA_Link_Target $link_target ) {
 		// bail early for links that we can't handle
 		if ( $link_target->type === 'internal' ) {
 			return $link_target->hyperlink;
@@ -193,4 +186,3 @@ class Yoast_GA_JS extends Yoast_GA_Tracking {
 	}
 
 }
-
