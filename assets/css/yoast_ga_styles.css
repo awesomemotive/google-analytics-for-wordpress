@@ -220,3 +220,11 @@ select.ga-multiple {
 	display: inline-block;
 	margin: 0;
 }
+
+#ga_form_introduction_tour {
+	margin: 0 0 0 5px;
+}
+
+#ga_form_introduction_tour p:first-child {
+	margin-top: 0;
+}

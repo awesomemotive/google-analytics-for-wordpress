@@ -64,6 +64,7 @@ script:
 notifications:
   slack:
     secure: 1sg/MwkvRDNLgOxkQ6lvDRGgKbNt0gpwYN6bgGxcT3hOxPMJjjNBJlwO6td/3NuMuMjr/EomzXprL8XOlqPsyBfqFZoLX+fV3v4or2IVyUjPdQVStOX1UsV9kTAIW81idSoGarvRV/PAN1HHfHc+wuLTqpSSPhrtxuGxNozvvl0=
+  email: false
 
 addons:
     code_climate:
