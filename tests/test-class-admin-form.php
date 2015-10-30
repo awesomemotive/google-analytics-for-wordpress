@@ -46,7 +46,7 @@ class Yoast_GA_Admin_Form_Test extends GA_UnitTestCase {
 	/**
 	 * Create a test input field
 	 *
-	 * @covers Yoast_GA_Admin_Form:input()
+	 * @covers Yoast_GA_Admin_Form::input()
 	 */
 	public function test_input() {
 		Yoast_GA_Admin_Form::create_form( 'phpunit' );
@@ -62,7 +62,7 @@ class Yoast_GA_Admin_Form_Test extends GA_UnitTestCase {
 	/**
 	 * Create a test select field
 	 *
-	 * @covers Yoast_GA_Admin_Form:select()
+	 * @covers Yoast_GA_Admin_Form::select()
 	 */
 	public function test_select() {
 		Yoast_GA_Admin_Form::create_form( 'phpunit' );
@@ -84,7 +84,7 @@ class Yoast_GA_Admin_Form_Test extends GA_UnitTestCase {
 	/**
 	 * Create a test textarea field
 	 *
-	 * @covers Yoast_GA_Admin_Form:select()
+	 * @covers Yoast_GA_Admin_Form::select()
 	 */
 	public function test_textarea() {
 		Yoast_GA_Admin_Form::create_form( 'phpunit' );

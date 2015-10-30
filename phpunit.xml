@@ -21,4 +21,12 @@
 			<directory prefix="test-" suffix=".php">./vendor/yoast/api-libs/tests/</directory>
 		</testsuite>
 	</testsuites>
+
+	<filter>
+		<whitelist>
+			<directory>./includes</directory>
+			<directory>./frontend</directory>
+			<directory>./admin</directory>
+		</whitelist>
+	</filter>
 </phpunit>
