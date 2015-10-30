@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f82417a09ddcdcef541769f6a64854f0",
+    "hash": "df3c6f48e453e4615e7d9fa27f72df47",
+    "content-hash": "5257dc0877db4006d4a21bca02caaaa6",
     "packages": [
         {
             "name": "composer/installers",
@@ -103,16 +104,16 @@
         },
         {
             "name": "xrstf/composer-php52",
-            "version": "v1.0.17",
+            "version": "v1.0.19",
             "source": {
                 "type": "hg",
                 "url": "https://bitbucket.org/xrstf/composer-php52",
-                "reference": "70b853668d6c3f97b63dafcfaeebb622bf08fd30"
+                "reference": "9a4a9c46d0347b39bf9159815301dc66fc25324e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/xrstf/composer-php52/get/70b853668d6c3f97b63dafcfaeebb622bf08fd30.zip",
-                "reference": "70b853668d6c3f97b63dafcfaeebb622bf08fd30",
+                "url": "https://bitbucket.org/xrstf/composer-php52/get/9a4a9c46d0347b39bf9159815301dc66fc25324e.zip",
+                "reference": "9a4a9c46d0347b39bf9159815301dc66fc25324e",
                 "shasum": ""
             },
             "type": "library",
@@ -131,7 +132,7 @@
                 "MIT"
             ],
             "homepage": "http://www.xrstf.de/",
-            "time": "2015-02-01 14:28:15"
+            "time": "2015-10-01 14:11:58"
         },
         {
             "name": "yoast/api-libs",
@@ -336,16 +337,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git",
-                "reference": "18820b0cfe58ad6606c16f3fc786a7d87aa05d6d"
+                "reference": "a54499411fb9ca55a35fc7003422868cdd072ef2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/a9a032ef2ce775bd5c45b52db98fda45efa87148",
-                "reference": "18820b0cfe58ad6606c16f3fc786a7d87aa05d6d",
+                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/a54499411fb9ca55a35fc7003422868cdd072ef2",
+                "reference": "a54499411fb9ca55a35fc7003422868cdd072ef2",
                 "shasum": ""
             },
             "require": {
-                "squizlabs/php_codesniffer": "~2.0"
+                "squizlabs/php_codesniffer": "~2.2"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -353,10 +354,6 @@
                 "MIT"
             ],
             "authors": [
-                {
-                    "name": "X-Team",
-                    "homepage": "http://x-team.com/"
-                },
                 {
                     "name": "Contributors",
                     "homepage": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/graphs/contributors"
@@ -368,7 +365,7 @@
                 "standards",
                 "wordpress"
             ],
-            "time": "2015-04-22 22:42:09"
+            "time": "2015-10-22 12:41:51"
         },
         {
             "name": "yoast/yoastcs",
@@ -380,7 +377,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast/yoastcs/zipball/aad75dc7d0a297dd4b8bc094529caea40d555e61",
+                "url": "https://api.github.com/repos/Yoast/yoastcs/zipball/625f4ad392e947f4073f54dba55fa3310f5a9275",
                 "reference": "4d1b1dde64ba56b47dedcc6696384174e29e4cd1",
                 "shasum": ""
             },
