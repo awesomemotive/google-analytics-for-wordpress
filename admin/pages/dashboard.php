@@ -83,7 +83,7 @@ echo $yoast_ga_admin->content_head();
 					echo '<div class="ga-promote"><p>';
 					/* translators: 1: link to the Google Analytics by Yoast admin settings page. 2: closing of the link. */
 					echo sprintf(
-						__( 'We need you to authenticate with Google Analytics to use this functionality. If you set your UA-code manually, this won\'t work. You can %$1sauthenticate your Google Analytics profile here%$2s to enable dashboards.', 'google-analytics-for-wordpress' ),
+						__( 'We need you to authenticate with Google Analytics to use this functionality. If you set your UA-code manually, this won\'t work. You can %1$sauthenticate your Google Analytics profile here%2$s to enable dashboards.', 'google-analytics-for-wordpress' ),
 						'<a href=" ' . admin_url( 'admin.php?page=yst_ga_settings#top#general' ) . '">',
 						'</a>'
 					);
