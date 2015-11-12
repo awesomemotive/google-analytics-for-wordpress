@@ -337,10 +337,8 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	public function premium_promo() {
 		echo '<div class="ga-promote">';
 		echo '<p>';
-		/* translators: 1: link to the Google Analytics product page on Yoast.com. 2: product name and closing of the link: 'Google Analytics by Yoast</a>' */
-		printf( __( 'If you want to track custom dimensions like page views per author or post type, you should upgrade to the %1$spremium version of %2$s.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=text-link&utm_source=gawp-config&utm_campaign=wpgaplugin&utm_content=custom_dimensions_tab">', 'Google Analytics by Yoast</a>' );
-		echo ' ';
-		_e( 'This will also give you email access to the support team at Yoast, who will provide support on the plugin 24/7.', 'google-analytics-for-wordpress' );
+		/* translators: 1: link to the Google Analytics product page on Yoast.com. 2: product name: 'Google Analytics by Yoast Premium' 3: closing tag for link. */
+		printf( __( 'If you want to track custom dimensions like page views per author or post type, you should %1$supgrade to %2$s%3$s. This will also give you email access to the support team at Yoast, who will provide support on the plugin 24/7.', 'google-analytics-for-wordpress' ), '<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=text-link&utm_source=gawp-config&utm_campaign=wpgaplugin&utm_content=custom_dimensions_tab">', 'Google Analytics by Yoast Premium', '</a>' );
 		echo '</p>';
 		echo '</div>';
 	}
