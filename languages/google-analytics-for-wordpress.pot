@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Google Analytics by Yoast 5.4.6\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/yoast/google-analytics-for-wordpress/issues\n"
-"POT-Creation-Date: 2015-11-03 14:46:17+00:00\n"
+"POT-Creation-Date: 2015-11-17 15:10:19+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -82,48 +82,44 @@ msgstr ""
 
 #: admin/class-admin.php:341
 #. translators: 1: link to the Google Analytics product page on Yoast.com. 2:
-#. product name and closing of the link: 'Google Analytics by Yoast</a>'
+#. product name: 'Google Analytics by Yoast Premium' 3: closing tag for link.
 msgid ""
 "If you want to track custom dimensions like page views per author or post "
-"type, you should upgrade to the %1$spremium version of %2$s."
+"type, you should %1$supgrade to %2$s%3$s. This will also give you email "
+"access to the support team at Yoast, who will provide support on the plugin "
+"24/7."
 msgstr ""
 
-#: admin/class-admin.php:343
-msgid ""
-"This will also give you email access to the support team at Yoast, who will "
-"provide support on the plugin 24/7."
-msgstr ""
-
-#: admin/class-admin.php:481
+#: admin/class-admin.php:479
 msgid "Event"
 msgstr ""
 
-#: admin/class-admin.php:482
+#: admin/class-admin.php:480
 msgid "Pageview"
 msgstr ""
 
-#: admin/class-admin.php:493
+#: admin/class-admin.php:491
 msgid "Just the domain"
 msgstr ""
 
-#: admin/class-admin.php:494
+#: admin/class-admin.php:492
 msgid "Full links"
 msgstr ""
 
-#: admin/class-admin.php:514
+#: admin/class-admin.php:512
 msgid "Debug information"
 msgstr ""
 
-#: admin/class-admin.php:565
+#: admin/class-admin.php:563
 #. translators: %s stands for 'Google Analytics by Yoast'.
 msgid "The premium version of %s with more features and support."
 msgstr ""
 
-#: admin/class-admin.php:570
+#: admin/class-admin.php:568
 msgid "eCommerce tracking"
 msgstr ""
 
-#: admin/class-admin.php:571
+#: admin/class-admin.php:569
 msgid ""
 "Track your eCommerce data and transactions with this eCommerce extension "
 "for Google Analytics."
