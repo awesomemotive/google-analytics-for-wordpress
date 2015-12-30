@@ -47,24 +47,21 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 				return null;
 			}
 
-			// Set tracking code here
 			if ( ! empty( $ua_code ) ) {
-				if ( $this->options['add_allow_linker'] && ! $this->options['allow_anchor'] ) {
-					$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowLinker': true}";
+				// Prepare the arguments to be passed into the create method.
+				$create_arguments = array(
+					'trackingId' => $ua_code,
+					'cookieDomain' => $domain,
+				);
+				if ( $this->options['add_allow_linker'] ) {
+					$create_arguments['allowLinker'] = true;
 				}
-				else {
-					if ( $this->options['allow_anchor'] && ! $this->options['add_allow_linker'] ) {
-						$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowAnchor': true}";
-					}
-					else {
-						if ( $this->options['allow_anchor'] && $this->options['add_allow_linker'] ) {
-							$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowAnchor': true, 'allowLinker': true}";
-						}
-						else {
-							$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "'";
-						}
-					}
+				if ( $this->options['allow_anchor'] ) {
+					$create_arguments['allowAnchor'] = true;
 				}
+				// Allow other plugins / themes to filter the create args.
+				$create_arguments = apply_filters( 'yst_ga_filter_ga_create_args', $create_arguments );
+				$gaq_push[] = "'create', " .  json_encode((object)$create_arguments);
 			}
 
 			$gaq_push[] = "'set', 'forceSSL', true";
