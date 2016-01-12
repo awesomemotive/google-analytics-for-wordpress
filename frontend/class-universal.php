@@ -61,7 +61,7 @@ class Yoast_GA_Universal extends Yoast_GA_Tracking {
 				}
 				// Allow other plugins / themes to filter the create args.
 				$create_arguments = apply_filters( 'yst_ga_filter_ga_create_args', $create_arguments );
-				$gaq_push[] = "'create', " .  json_encode((object)$create_arguments);
+				$gaq_push[] = "'create', " .  json_encode( ( object ) $create_arguments );
 			}
 
 			$gaq_push[] = "'set', 'forceSSL', true";

@@ -231,7 +231,9 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$tracking = $this->prepare_tracking();
 
 		if ( $tracking['is_array'] ) {
-			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto'", $tracking['data'] ) );
+			//$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto'", $tracking['data'] ) );
+
+			$this->assertTrue( in_array( '\'create\', {"trackingId":"' . $this->manual_ua_code_field . '","cookieDomain":"auto"}', $tracking['data'] ) );
 			$this->assertTrue( in_array( "'send','pageview'", $tracking['data'] ) );
 		}
 		else {
@@ -271,7 +273,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$tracking = $this->prepare_tracking();
 
 		if ( $tracking['is_array'] ) {
-			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor': true}", $tracking['data'] ) );
+			$this->assertTrue( in_array( '\'create\', {"trackingId":"' . $this->manual_ua_code_field . '","cookieDomain":"auto","allowAnchor":true}', $tracking['data'] ) );
 			$this->assertTrue( in_array( "'send','pageview'", $tracking['data'] ) );
 		}
 		else {
@@ -292,7 +294,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$tracking = $this->prepare_tracking();
 
 		if ( $tracking['is_array'] ) {
-			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowLinker': true}", $tracking['data'] ) );
+			$this->assertTrue( in_array( '\'create\', {"trackingId":"' . $this->manual_ua_code_field . '","cookieDomain":"auto","allowLinker":true}', $tracking['data'] ) );
 			$this->assertTrue( in_array( "'send','pageview'", $tracking['data'] ) );
 		}
 		else {
@@ -314,7 +316,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$tracking = $this->prepare_tracking();
 
 		if ( $tracking['is_array'] ) {
-			$this->assertTrue( in_array( "'create', 'UA-1234567-89', 'auto', {'allowAnchor': true, 'allowLinker': true}", $tracking['data'] ) );
+			$this->assertTrue( in_array( '\'create\', {"trackingId":"' . $this->manual_ua_code_field . '","cookieDomain":"auto","allowLinker":true,"allowAnchor":true}', $tracking['data'] ) );
 			$this->assertTrue( in_array( "'send','pageview'", $tracking['data'] ) );
 		}
 		else {
@@ -849,7 +851,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$output = ob_get_contents();
 		ob_end_clean();
 
-		$expected_output  = "_gaTracker('create', '" . $this->manual_ua_code_field . "', 'auto');";
+		$expected_output = '__gaTracker(\'create\', {"trackingId":"' . $this->manual_ua_code_field . '","cookieDomain":"auto"})';
 
 		$this->assertContains( $expected_output, $output );
 
@@ -910,7 +912,7 @@ class Yoast_GA_Universal_Test extends GA_UnitTestCase {
 		$output = ob_get_contents();
 		ob_end_clean();
 
-		$expected_output  = "_gaTracker('create', '" . $this->manual_ua_code_field . "', 'auto');";
+		$expected_output = '__gaTracker(\'create\', {"trackingId":"' . $this->manual_ua_code_field . '","cookieDomain":"auto"})';
 
 		$this->assertContains( $expected_output, $output );
 	}
