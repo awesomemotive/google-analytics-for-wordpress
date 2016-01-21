@@ -355,10 +355,10 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 				'project_slug'   => 'google-analytics-for-wordpress',
 				'plugin_name'    => 'Google Analytics by Yoast',
 				'hook'           => 'yoast_ga_admin_footer',
-				'glotpress_url'  => 'https://translate.yoast.com',
+				'glotpress_url'  => 'http://translate.yoast.com/gp/',
 				'glotpress_name' => 'Yoast Translate',
-				'glotpress_logo' => 'https://cdn.yoast.com/wp-content/uploads/i18n-images/Yoast_Translate.svg',
-				'register_url '  => 'https://translate.yoast.com/projects#utm_source=plugin&utm_medium=promo-box&utm_campaign=yoast-ga-i18n-promo',
+				'glotpress_logo' => 'https://translate.yoast.com/gp-templates/images/Yoast_Translate.svg',
+				'register_url '  => 'http://translate.yoast.com/gp/projects#utm_source=plugin&utm_medium=promo-box&utm_campaign=yoast-ga-i18n-promo',
 			)
 		);
 
