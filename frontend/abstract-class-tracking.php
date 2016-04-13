@@ -272,9 +272,7 @@ abstract class Yoast_GA_Tracking {
 	 */
 	public function do_tracking() {
 		if ( $this->do_tracking === null ) {
-			global $current_user;
-
-			get_currentuserinfo();
+			$current_user = wp_get_current_user();
 
 			$this->do_tracking = true;
 
