@@ -301,14 +301,11 @@ abstract class Yoast_GA_Tracking {
 	 */
 	public function do_tracking() {
 		if ( $this->do_tracking === null ) {
-			global $current_user;
-
-			get_currentuserinfo();
-
+			$user = wp_get_current_user();
 			$this->do_tracking = true;
 
-			if ( 0 != $current_user->ID && isset( $this->options['ignore_users'] ) ) {
-				if ( ! empty( $current_user->roles ) && in_array( $current_user->roles[0], $this->options['ignore_users'] ) ) {
+			if ( 0 != $user->ID && isset( $this->options['ignore_users'] ) ) {
+				if ( ! empty( $user->roles ) && in_array( $user->roles[0], $this->options['ignore_users'] ) ) {
 					$this->do_tracking = false;
 				}
 			}
@@ -454,8 +451,8 @@ abstract class Yoast_GA_Tracking {
 	 * When a usergroup is disabled, show a message in the source to notify the user they are in a disabled user group.
 	 */
 	protected function disabled_usergroup() {
-		/* translators %1$s is the product name 'Google Analytics by Yoast'. %2$s displays the plugin version the website uses and a link to the plugin on Yoast.com */
-		echo '<!-- ' . sprintf( __( 'This site uses the %1$s plugin version %2$s', 'google-analytics-for-wordpress' ), 'Google Analytics by Yoast', GAWP_VERSION . ' - https://yoast.com/wordpress/plugins/google-analytics/' ) . ' -->';
+		/* translators %1$s is the product name 'Google Analytics by MonsterInsights'. %2$s displays the plugin version the website uses and a link to the plugin on MonsterInsights.com */
+		echo '<!-- ' . sprintf( __( 'This site uses the %1$s plugin version %2$s', 'google-analytics-for-wordpress' ), 'Google Analytics by MonsterInsights', GAWP_VERSION . ' - https://www.monsterinsights.com/' ) . ' -->';
 
 		if ( current_user_can( 'manage_options' ) ) {
 			echo '<!-- ' . __( '@Webmaster, normally you will find the Google Analytics tracking code here, but you are in the disabled user groups. To change this, navigate to Analytics -> Settings (Ignore usergroups)', 'google-analytics-for-wordpress' ) . ' -->';
@@ -465,7 +462,7 @@ abstract class Yoast_GA_Tracking {
 		}
 
 		// Do not make this translatable, as this is the product name.
-		echo '<!-- / Google Analytics by Yoast -->';
+		echo '<!-- / Google Analytics by MonsterInsights -->';
 	}
 
 	/**
@@ -475,8 +472,8 @@ abstract class Yoast_GA_Tracking {
 	 */
 	protected function debug_mode() {
 		if ( $this->options['debug_mode'] === 1 ) {
-			/* translators %1$s is the product name 'Google Analytics by Yoast'. %2$s displays the plugin version the website uses and a link to the plugin on Yoast.com */
-			echo '<!-- ' . sprintf( __( 'This site uses the %1$s plugin version %2$s', 'google-analytics-for-wordpress' ), 'Google Analytics by Yoast', GAWP_VERSION . ' - https://yoast.com/wordpress/plugins/google-analytics/' ) . ' -->';
+			/* translators %1$s is the product name 'Google Analytics by MonsterInsights'. %2$s displays the plugin version the website uses and a link to the plugin on MonsterInsights.com */
+			echo '<!-- ' . sprintf( __( 'This site uses the %1$s plugin version %2$s', 'google-analytics-for-wordpress' ), 'Google Analytics by MonsterInsights', GAWP_VERSION . ' - https://www.monsterinsights.com/' ) . ' -->';
 
 			if ( current_user_can( 'manage_options' ) ) {
 				echo '<!-- ' . __( '@Webmaster, normally you will find the Google Analytics tracking code here, but the Debug Mode is enabled. To change this, navigate to Analytics -> Settings -> (Tab) Debug Mode and disable Debug Mode to enable tracking of your site.', 'google-analytics-for-wordpress' ) . ' -->';
@@ -486,7 +483,7 @@ abstract class Yoast_GA_Tracking {
 			}
 
 			// Do not make this translatable, as this is the product name.
-			echo '<!-- / Google Analytics by Yoast -->';
+			echo '<!-- / Google Analytics by MonsterInsights -->';
 
 			return true;
 		}

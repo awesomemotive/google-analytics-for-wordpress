@@ -12,6 +12,6 @@
 	</a></p>
 	<?php endforeach; ?>
 	<?php _e( 'Remove these ads?', 'google-analytics-for-wordpress' ); ?><br />
-	<a href="https://yoast.com/wordpress/plugins/google-analytics/#utm_medium=text-link&utm_source=gawp-config&utm_campaign=wpgaplugin" target="_blank"><?php _e( 'Upgrade to Google Analytics By Yoast Premium »', 'google-analytics-for-wordpress' ); ?></a>
+	<a href="https://www.monsterinsights.com/pricing/#utm_medium=text-link&utm_source=gawp-config&utm_campaign=wpgaplugin" target="_blank"><?php _e( 'Upgrade to Google Analytics By MonsterInsights Pro »', 'google-analytics-for-wordpress' ); ?></a>
 </div>
 </div>

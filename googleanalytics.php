@@ -5,19 +5,19 @@
  */
 
 /**
- * Plugin Name: Google Analytics by Yoast
- * Plugin URI: https://yoast.com/wordpress/plugins/google-analytics/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wpgaplugin&utm_content=v504
+ * Plugin Name: Google Analytics by MonsterInsights
+ * Plugin URI: https://www.monsterinsights.com/pricing/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wpgaplugin&utm_content=v504
  * Description: This plugin makes it simple to add Google Analytics to your WordPress site, adding lots of features, e.g. error page, search result and automatic outgoing links and download tracking.
- * Author: Team Yoast
- * Version: 5.4.6
+ * Author: MonsterInsights
+ * Version: 5.5.3
  * Requires at least: 3.9
- * Author URI: https://yoast.com/
+ * Author URI: https://www.monsterinsights.com/
  * License: GPL v3
  * Text Domain: google-analytics-for-wordpress
  * Domain Path: /languages
  *
  * Google Analytics for WordPress
- * Copyright (C) 2008-2015, Team Yoast, support@yoast.com
+ * Copyright (C) 2008-2016, MonsterInsights, support@monsterinsights.com
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,13 +35,33 @@
 
 // This plugin was originally based on Rich Boakes' Analytics plugin: http://boakes.org/analytics, but has since been rewritten and refactored multiple times.
 
-define( 'GAWP_VERSION', '5.4.6' );
+define( 'GAWP_VERSION', '5.5.3' );
 
 define( 'GAWP_FILE', __FILE__ );
 
 define( 'GAWP_PATH', plugin_basename( __FILE__ ) );
 
 define( 'GAWP_URL', trailingslashit( plugin_dir_url( __FILE__ ) ) );
+
+function monsterinsights_needs_manual_update_check(){
+	require_once 'includes/ecommerce-addon-license-fix.php';
+}
+add_action( 'plugins_loaded', 'monsterinsights_needs_manual_update_check');
+
+function monsterinsights_lite_60_admin_notice() {
+	if ( ! current_user_can('manage_options' ) ) {
+		return;
+	}
+	if ( ! get_option( 'monsterinsights_60_beta' , false ) ) { ?>
+		<div class="updated notice is-dismissible">
+			<p><?php echo sprintf(__( 'MonsterInsights 6.0 is Coming Soon — %sCheck out the sneak peak%s — It’s going to be awesome', 'google-analytics-for-wordpress'), '<a href="https://www.monsterinsights.com/monsterinsights-6-0-beta/">', '</a>' ); ?></p>
+		</div>
+		<?php 
+		update_option( 'monsterinsights_60_beta', true );
+	}
+
+}
+add_action( 'admin_notices', 'monsterinsights_lite_60_admin_notice' );
 
 if ( file_exists( dirname( GAWP_FILE ) . '/vendor/autoload_52.php' ) ) {
 	require dirname( GAWP_FILE ) . '/vendor/autoload_52.php';
