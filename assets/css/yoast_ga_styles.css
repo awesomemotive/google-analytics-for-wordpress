@@ -179,7 +179,9 @@ select.ga-multiple {
 	padding: 20px 10px 0 120px;
 	border-bottom: 1px solid #ccc;
 	background: #fff no-repeat left 10px;
-	background-size: 130px 100px;
+	background-repeat: no-repeat;
+	background-size: 84px 84px;
+	background-position-x: 5%;
 }
 
 .wpseotab .extension button.installed {
@@ -191,6 +193,8 @@ select.ga-multiple {
 .wpseotab .extension .button-primary.activate-link {
 	border-color: #f06000;
 	background-color: #f18500;
+	box-shadow: none;
+	text-shadow: none;
 }
 
 .extension a {
@@ -199,10 +203,16 @@ select.ga-multiple {
 
 .ecommerce h3 {
 	background-image: url(../img/eComm_130x100.png) !important;
+	background-repeat: no-repeat;
+	background-size: 84px 84px;
+	background-position-x: 5%;
 }
 
 .ga_premium h3 {
 	background-image: url(../img/ga-premium-banner.png) !important;
+	background-repeat: no-repeat;
+	background-size: 84px 84px;
+	background-position-x: 5%;
 }
 
 #ga-debug-info h3 {
