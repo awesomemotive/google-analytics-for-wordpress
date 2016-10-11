@@ -54,7 +54,7 @@ function monsterinsights_lite_60_admin_notice() {
 	}
 	if ( ! get_option( 'monsterinsights_60_beta' , false ) ) { ?>
 		<div class="updated notice is-dismissible">
-			<p><?php echo sprintf(__( 'MonsterInsights 6.0 is Coming Soon — %sCheck out the sneak peak%s — It’s going to be awesome', 'google-analytics-for-wordpress'), '<a href="https://www.monsterinsights.com/monsterinsights-6-0-beta/">', '</a>' ); ?></p>
+			<p><?php echo sprintf(__( 'MonsterInsights 6.0 is Coming Soon — %sCheck out the sneak peak%s — It’s going to be awesome', 'google-analytics-for-wordpress'), '<a href="https://www.monsterinsights.com/whats-coming-monsterinsights-6-0-sneak-peak/">', '</a>' ); ?></p>
 		</div>
 		<?php 
 		update_option( 'monsterinsights_60_beta', true );
