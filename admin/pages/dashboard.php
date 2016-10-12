@@ -261,7 +261,7 @@ echo $yoast_ga_admin->content_head();
 			</textarea>
 			<p class="submit">
 				<input type="hidden" name="monsterinsights-action" value="download_sysinfo" />
-				<?php submit_button( 'Download System Info File', 'primary', 'monsterinsights-download-sysinfo', false ); ?>
+				<?php submit_button( __('Download System Info File', 'google-analytics-for-wordpress' ), 'primary', 'monsterinsights-download-sysinfo', false ); ?>
 			</p>
 			</form>
 		</div>
