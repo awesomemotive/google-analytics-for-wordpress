@@ -6,7 +6,7 @@ Add Google Analytics to WordPress and be able to use all the powerful functions 
 
 We're excited to take over development of Google Analytics By Yoast, which is now MonsterInsights.
 
-You can download the free version on [WordPress.org](https://wordpress.org/plugin/google-analytics-for-wordpress) and the Premium version (and eCommerce addon) on [our website](https://www.monsterinsights.com)
+You can download the free version on [WordPress.org](https://wordpress.org/plugins/google-analytics-for-wordpress) and the Premium version (and eCommerce addon) on [our website](https://www.monsterinsights.com)
 
 # What We're Up To
 
