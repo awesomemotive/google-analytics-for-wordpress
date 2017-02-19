@@ -4,10 +4,10 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.9
 Tested up to: 4.7.2
-Stable tag: 6.0.0
+Stable tag: 6.0.1
 License: GPL v3
 
-The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back. Simply put, get stats that matter.
+The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
 
 == Description ==
 
@@ -26,7 +26,7 @@ At MonsterInsights, user experience is our #1 priority. That's why we make it ex
 
 We took the pain out of connecting with Google Analytics and made it easy. Here's why over 1 million smart business owners, designers, and developers love MonsterInsights, and you will too!
 
-https://www.youtube.com/watch?v=nHZBUDceRt0?rel=0
+https://www.youtube.com/watch?v=nHZBUDceRt0
 
 = Quick & Easy Google Analytics Setup =
 
@@ -71,7 +71,7 @@ With our Ads tracking addon, publishers can easily track the performance of thei
 
 MonsterInsights allow you to take full advantage of all the powerful Google Analytics features such as custom dimensions, file download tracking, outbound link tracking, events tracking, performance tracking, and more.
 
->I like how simple it is for client users and how I can turn on the advanced features for myself to get all the details right.
+>I like how simple it is for client users and how I can turn on the advanced features for myself to get all the details right.<br>
 > Skip Shean
 
 = Full MonsterInsights Feature List =
@@ -136,6 +136,9 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+
+= 6.0.1, February 19, 2017 =
+* Fixed: Typo that caused an issue with PHP 7 installs.
 
 = 6.0.0, February 18, 2017 =
 * New: Completely overhauled design, from top to bottom. The plugin has been completely rewritten.
