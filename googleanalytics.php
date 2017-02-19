@@ -2,11 +2,11 @@
 /**
  * Plugin Name:         Google Analytics for WordPress by MonsterInsights
  * Plugin URI:          https://www.monsterinsights.com/?utm_source=wordpress&utm_medium=plugin&utm_campaign=wpmipluginpro&utm_content=v600
- * Description:         The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back. Get stats that matter.
+ * Description:         The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/
  *
- * Version:             6.0.0
+ * Version:             6.0.1
  * Requires at least:   3.9.0
  * Tested up to:        4.7.2
  *
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '6.0.0';
+	public $version = '6.0.1';
 
 	/**
 	 * Plugin file.

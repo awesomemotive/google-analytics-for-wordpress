@@ -41,7 +41,7 @@ function monsterinsights_get_section_settings( $section, $page = 'tracking' ) {
 				'tooltip_title' => false,
 				'tooltip_desc'  => false,
 				'field_class'   => '',
-				'multiselect'   => false,
+				'multiple'      => false,
 				'allowclear'    => true,
 				'notice_type'   => '',
 			) );
@@ -131,7 +131,7 @@ function monsterinsights_save_settings() {
 			'tooltip_title' => false,
 			'tooltip_desc'  => false,
 			'field_class'   => '',
-			'multiselect'   => false,
+			'multiple'      => false,
 			'allowclear'    => true,
 			'notice_type'   => '',
 		) );
@@ -320,7 +320,7 @@ add_filter( 'monsterinsights_settings_sanitize_multicheck', 'monsterinsights_san
  * @todo  docbloc
  */
 function monsterinsights_sanitize_select_field( $value, $id, $setting, $previous_value ) {
-	if ( $setting['multiselect'] ) {
+	if ( ! empty( $setting['multiple'] ) && $setting['multiple'] ) {
 		$save_value = array();
 	} else {
 		$save_value = '';
