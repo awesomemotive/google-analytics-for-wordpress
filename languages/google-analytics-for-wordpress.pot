@@ -1,1127 +1,2343 @@
-# Copyright (C) 2015 Team Yoast
-# This file is distributed under the GPL v3.
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Google Analytics by Yoast 5.4.6\n"
-"Report-Msgid-Bugs-To: "
-"https://github.com/yoast/google-analytics-for-wordpress/issues\n"
-"POT-Creation-Date: 2015-11-17 15:10:19+00:00\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: MonsterInsights Lite\n"
+"Report-Msgid-Bugs-To: https://github.com/awesomemotive/monsterinsights/"
+"issues\n"
+"POT-Creation-Date: 2017-02-18 20:50-0500\n"
+"PO-Revision-Date: 2016-07-21 17:01-0400\n"
+"Last-Translator: Chris Christoff <support@monsterinsights.com>\n"
+"Language-Team: Chris Christoff <support@monsterinsights.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yoast Translate Team <translations@yoast.com>\n"
-"Language-Team: Yoast Translate <translations@yoast.com>\n"
-"X-Generator: grunt-wp-i18n 0.4.9\n"
-"X-Poedit-KeywordsList: "
-"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
-"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
-"Language: en\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Country: United States\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: googleanalytics.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-Bookmarks: \n"
-"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-1: .roboci\n"
+"X-Poedit-SearchPathExcluded-2: assets\n"
+"X-Poedit-SearchPathExcluded-3: bin\n"
+"X-Poedit-SearchPathExcluded-4: build\n"
+"X-Poedit-SearchPathExcluded-5: docs\n"
+"X-Poedit-SearchPathExcluded-6: phpdox\n"
+"X-Poedit-SearchPathExcluded-7: tests\n"
+"X-Poedit-SearchPathExcluded-8: tmp\n"
+"X-Poedit-SearchPathExcluded-9: vendor\n"
+"X-Poedit-SearchPathExcluded-10: wordpress\n"
+"X-Poedit-SearchPathExcluded-11: pro\n"
+"X-Poedit-SearchPathExcluded-12: *.css\n"
+"X-Poedit-SearchPathExcluded-13: googleanalytics-premium.php\n"
 
-#: admin/class-admin-form.php:46 admin/pages/settings.php:220
-msgid "Save changes"
+#: googleanalytics.php:218 googleanalytics.php:232
+msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: admin/class-admin-menu.php:72 admin/class-admin-menu.php:135
-msgid "Yoast Google Analytics:"
+#: googleanalytics.php:348
+msgid ""
+"The version of MonsterInsights eCommerce addon you have is not compatible "
+"with the version of MonsterInsights installed. Please update the eCommerce "
+"addon as soon as possible"
 msgstr ""
 
-#: admin/class-admin-menu.php:72 admin/pages/settings.php:33
-msgid "General settings"
+#: googleanalytics.php:370
+#, php-format
+msgid ""
+"Sorry, but your version of WordPress does not meet MonsterInsights's "
+"required version of %1$s3.8%2$s to run properly. The plugin not been "
+"activated. %3$sClick here to return to the Dashboard%4$s."
 msgstr ""
 
-#: admin/class-admin-menu.php:72
-msgid "Analytics"
+#: googleanalytics.php:391
+#, php-format
+msgid ""
+"Please %1$sdeactivate%2$s the MonsterInsights Pro Plugin. Your lite version "
+"of MonsterInsights may not work as expected until the Pro version is "
+"deactivated."
 msgstr ""
 
-#: admin/class-admin-menu.php:236 admin/class-pointers.php:240
-#: admin/pages/dashboard.php:14
-msgid "Dashboard"
+#: googleanalytics.php:531
+#, php-format
+msgid ""
+"Sorry, but your version of WordPress does not meet MonsterInsight's required "
+"version of %1$s3.8%2$s to run properly. The plugin not been activated. "
+"%3$sClick here to return to the Dashboard%4$s."
 msgstr ""
 
-#: admin/class-admin-menu.php:242 admin/class-admin.php:328
-#: admin/class-pointers.php:207 admin/pages/settings.php:10
+#: googleanalytics.php:536
+#, php-format
+msgid ""
+"Please deactivate MonsterInsights Pro before activating MonsterInsights "
+"Lite. The Lite version has not been activated. %2$sClick here to return to "
+"the Dashboard%2$s."
+msgstr ""
+
+#: includes/admin/admin.php:36 includes/admin/admin.php:39
+#: includes/admin/admin.php:49
+msgid "Settings:"
+msgstr ""
+
+#: includes/admin/admin.php:36 includes/admin/admin.php:42
+#: includes/admin/admin.php:86
+msgid "Insights"
+msgstr ""
+
+#: includes/admin/admin.php:39 includes/admin/admin.php:49
+#: includes/admin/admin.php:154
 msgid "Settings"
 msgstr ""
 
-#: admin/class-admin-menu.php:249 admin/pages/extensions.php:14
-#: admin/pages/extensions.php:17
-msgid "Extensions"
+#: includes/admin/admin.php:42 includes/admin/admin.php:46
+msgid "Dashboard:"
 msgstr ""
 
-#: admin/class-admin.php:93
+#: includes/admin/admin.php:46 includes/admin/pages/dashboard.php:55
+msgid "Dashboard"
+msgstr ""
+
+#: includes/admin/admin.php:54
+msgid "Reports:"
+msgstr ""
+
+#: includes/admin/admin.php:54 includes/admin/pages/reports.php:92
+msgid "Reports"
+msgstr ""
+
+#: includes/admin/admin.php:63 includes/admin/admin.php:91
+msgid "Addons:"
+msgstr ""
+
+#: includes/admin/admin.php:63 includes/admin/admin.php:91
+msgid "Addons"
+msgstr ""
+
+#: includes/admin/admin.php:86 includes/admin/admin.php:88
+#: includes/admin/pages/network-settings.php:53
+msgid "Network Settings"
+msgstr ""
+
+#: includes/admin/admin.php:136
+msgid "Documentation"
+msgstr ""
+
+#: includes/admin/admin.php:141
+msgid "Get MonsterInsights Pro"
+msgstr ""
+
+#: includes/admin/admin.php:147 includes/admin/admin.php:150
+msgid "Support"
+msgstr ""
+
+#: includes/admin/admin.php:265
+#, php-format
 msgid ""
-"Yoast plugins share some code between them to make your site faster. As a "
-"result of that, we need all Yoast plugins to be up to date. We've detected "
-"this isn't the case, so please update the Yoast plugins that aren't up to "
-"date yet."
+"Please rate %sMonsterInsights%s %s on %sWordPress.org%s to help us spread "
+"the word. Thank you from the MonsterInsights team!"
 msgstr ""
 
-#: admin/class-admin.php:136
-msgid "Settings saved."
+#: includes/admin/common.php:122
+msgid "Loading..."
 msgstr ""
 
-#: admin/class-admin.php:143
-msgid "There were no changes to save, please try again."
-msgstr ""
-
-#: admin/class-admin.php:187
-msgid "The UA code needs to follow UA-XXXXXXXX-X format."
-msgstr ""
-
-#: admin/class-admin.php:325
-msgid "FAQ"
-msgstr ""
-
-#: admin/class-admin.php:341
-#. translators: 1: link to the Google Analytics product page on Yoast.com. 2:
-#. product name: 'Google Analytics by Yoast Premium' 3: closing tag for link.
+#: includes/admin/common.php:123
 msgid ""
-"If you want to track custom dimensions like page views per author or post "
-"type, you should %1$supgrade to %2$s%3$s. This will also give you email "
-"access to the support team at Yoast, who will provide support on the plugin "
-"24/7."
+"Warning: You have unsaved setting changes. If you leave the settings page "
+"without saving your changes will be lost. Did you still want to leave the "
+"page?"
 msgstr ""
 
-#: admin/class-admin.php:479
-msgid "Event"
+#: includes/admin/common.php:125
+msgid "Status: Active"
 msgstr ""
 
-#: admin/class-admin.php:480
-msgid "Pageview"
+#: includes/admin/common.php:126 includes/admin/pages/addons.php:493
+msgid "Activate"
 msgstr ""
 
-#: admin/class-admin.php:491
-msgid "Just the domain"
+#: includes/admin/common.php:127
+msgid "Status: Network Activated"
 msgstr ""
 
-#: admin/class-admin.php:492
-msgid "Full links"
+#: includes/admin/common.php:128 includes/admin/pages/addons.php:491
+msgid "Network activate"
 msgstr ""
 
-#: admin/class-admin.php:512
-msgid "Debug information"
+#: includes/admin/common.php:130
+msgid "Activating..."
 msgstr ""
 
-#: admin/class-admin.php:563
-#. translators: %s stands for 'Google Analytics by Yoast'.
-msgid "The premium version of %s with more features and support."
+#: includes/admin/common.php:131 includes/admin/pages/addons.php:466
+#: includes/admin/pages/addons.php:468
+msgid "Deactivate"
 msgstr ""
 
-#: admin/class-admin.php:568
-msgid "eCommerce tracking"
+#: includes/admin/common.php:132 includes/admin/pages/addons.php:464
+msgid "Network deactivate"
 msgstr ""
 
-#: admin/class-admin.php:569
-msgid ""
-"Track your eCommerce data and transactions with this eCommerce extension "
-"for Google Analytics."
+#: includes/admin/common.php:134
+msgid "Deactivating..."
 msgstr ""
 
-#: admin/class-google-analytics.php:324
-#. translators: 1: link to Google Analytics by Yoast settings page. 2: closing
-#. of the link.
+#: includes/admin/common.php:135
+msgid "Status: Inactive"
+msgstr ""
+
+#: includes/admin/common.php:136
+msgid "Status: Network inactive"
+msgstr ""
+
+#: includes/admin/common.php:137 includes/admin/pages/addons.php:423
+msgid "Install"
+msgstr ""
+
+#: includes/admin/common.php:139
+msgid "Installing..."
+msgstr ""
+
+#: includes/admin/common.php:140
+msgid "Proceed"
+msgstr ""
+
+#: includes/admin/google.php:446 includes/admin/google.php:547
+msgid "Permission Denied"
+msgstr ""
+
+#: includes/admin/google.php:459
+msgid "Cannot connect to Google"
+msgstr ""
+
+#: includes/admin/google.php:479
+msgid "No profiles viewable for that account. Please use another account."
+msgstr ""
+
+#: includes/admin/google.php:486
+msgid "Bad Google Code. Please try again."
+msgstr ""
+
+#: includes/admin/google.php:493
+msgid "Please paste in your Google code."
+msgstr ""
+
+#: includes/admin/google.php:519
+msgid "Invalid profile selected."
+msgstr ""
+
+#: includes/admin/google.php:525
+msgid "Please select a profile."
+msgstr ""
+
+#: includes/admin/google.php:585
+msgid "Analytics profile"
+msgstr ""
+
+#: includes/admin/google.php:586
+msgid "Select a profile"
+msgstr ""
+
+#: includes/admin/google.php:696
+#, php-format
 msgid "Please configure your %1$sGoogle Analytics settings%2$s!"
 msgstr ""
 
-#: admin/class-google-analytics.php:338
-#. translators: 1: link to Google Analytics by Yoast settings page. 2: closing
-#. of the link
+#: includes/admin/google.php:709
+#, php-format
 msgid ""
-"It seems the authentication for the plugin has expired, please "
+"It seems the authentication for the plugin has expired, please %1$sre-"
+"authenticate%2$s with Google Analytics to allow the plugin to fetch data."
+msgstr ""
+
+#: includes/admin/google.php:722
+#, php-format
+msgid ""
+"It seems the authentication for the plugin is missing permissions. Please "
 "%1$sre-authenticate%2$s with Google Analytics to allow the plugin to fetch "
 "data."
 msgstr ""
 
-#: admin/class-google-analytics.php:352
-#. translators: 1: link to knowledge base article about authentication issues.
-#. 2: closing of the link.
+#: includes/admin/google.php:735 includes/admin/pages/dashboard.php:120
+#: includes/admin/pages/reports.php:163
+#, php-format
 msgid ""
 "Data is not up-to-date, there was an error in retrieving the data from "
-"Google Analytics. This error could be caused by several issues. If the "
-"error persists, please %1$sread this article about authentication "
-"issues%2$s."
+"Google Analytics. This error could be caused by several issues. If the error "
+"persists, please see %1$sthis page%2$s."
 msgstr ""
 
-#: admin/class-pointers.php:76 tests/test-class-pointers.php:185
-msgid "Close"
+#: includes/admin/googleauth.php:25 includes/admin/googleauth.php:73
+#: includes/admin/googleauth.php:120
+msgid "This process will replace your current Google Analytics connection."
 msgstr ""
 
-#: admin/class-pointers.php:140 admin/dashboards/class-admin-dashboards.php:145
+#: includes/admin/googleauth.php:26 includes/admin/googleauth.php:27
+#: includes/admin/googleauth.php:45 includes/admin/googleauth.php:74
+#: includes/admin/googleauth.php:75 includes/admin/googleauth.php:93
+#: includes/admin/googleauth.php:121 includes/admin/googleauth.php:122
+#: includes/admin/googleauth.php:140
+msgid "Cancel"
+msgstr ""
+
+#: includes/admin/googleauth.php:34
+msgid "RE-AUTHENTICATE"
+msgstr ""
+
+#: includes/admin/googleauth.php:35
+msgid "Re-authenticate your Google Analytics account with MonsterInsights"
+msgstr ""
+
+#: includes/admin/googleauth.php:37
+msgid "AUTHENTICATION"
+msgstr ""
+
+#: includes/admin/googleauth.php:38
+msgid "Authenticate your Google Analytics account with MonsterInsights"
+msgstr ""
+
+#: includes/admin/googleauth.php:45 includes/admin/googleauth.php:93
+#: includes/admin/googleauth.php:140
+msgid "CANCEL"
+msgstr ""
+
+#: includes/admin/googleauth.php:51 includes/admin/googleauth.php:99
+#: includes/admin/googleauth.php:146
 msgid "Next"
 msgstr ""
 
-#: admin/class-pointers.php:144 admin/dashboards/class-admin-dashboards.php:146
-msgid "Previous"
+#: includes/admin/googleauth.php:53 includes/admin/googleauth.php:101
+#: includes/admin/googleauth.php:148
+msgid "NEXT"
 msgstr ""
 
-#: admin/class-pointers.php:168 tests/test-class-pointers.php:161
-msgid "Congratulations!"
+#: includes/admin/googleauth.php:81
+msgid "ENTER GOOGLE CODE"
 msgstr ""
 
-#: admin/class-pointers.php:169 tests/test-class-pointers.php:162
+#: includes/admin/googleauth.php:82
+msgid "Click To Get Google Code"
+msgstr ""
+
+#: includes/admin/googleauth.php:83
+msgid "Copy the Google code into the box below and click next"
+msgstr ""
+
+#: includes/admin/googleauth.php:84
+msgid "Paste Google Code here"
+msgstr ""
+
+#: includes/admin/googleauth.php:129
+msgid "SELECT PROFILE"
+msgstr ""
+
+#: includes/admin/googleauth.php:130
+msgid "Select the Google Analytics Profile to Use"
+msgstr ""
+
+#: includes/admin/googleauth.php:167
+msgid "Your Google connection has been replaced."
+msgstr ""
+
+#: includes/admin/googleauth.php:172
+msgid "DONE"
+msgstr ""
+
+#: includes/admin/googleauth.php:173
+msgid "You're all set!"
+msgstr ""
+
+#: includes/admin/googleauth.php:185
+msgid "Save and close"
+msgstr ""
+
+#: includes/admin/googleauth.php:187
+msgid "CLOSE"
+msgstr ""
+
+#: includes/admin/googleauth.php:207
+msgid "An error has occured."
+msgstr ""
+
+#: includes/admin/googleauth.php:208 includes/admin/googleauth.php:209
+#: includes/admin/googleauth.php:228
+msgid "Exit"
+msgstr ""
+
+#: includes/admin/googleauth.php:215
+msgid "ERROR"
+msgstr ""
+
+#: includes/admin/googleauth.php:230
+msgid "EXIT"
+msgstr ""
+
+#: includes/admin/licensing/license.php:118
+#: includes/admin/licensing/license.php:218
+#: includes/admin/licensing/license.php:345
 msgid ""
-"You've just installed Google Analytics by Yoast! Click \"Start tour\" to "
-"view a quick introduction of this plugin's core functionality."
+"There was an error connecting to the remote key API. Please try again later."
 msgstr ""
 
-#: admin/class-pointers.php:181 tests/test-class-pointers.php:172
-msgid "Start tour"
+#: includes/admin/licensing/license.php:136
+#: includes/admin/licensing/license.php:145
+msgid "Congratulations! This site is now receiving automatic updates."
 msgstr ""
 
-#: admin/class-pointers.php:208
-msgid "Tab: General"
+#: includes/admin/licensing/license.php:291
+msgid "Congratulations! Your key has been refreshed successfully."
 msgstr ""
 
-#: admin/class-pointers.php:210
-#. translators: %s is the product name 'Google Analytics by Yoast'
+#: includes/admin/licensing/license.php:356
 msgid ""
-"These are the general settings for %s. Here you can authenticate and "
-"connect your Google Analytics profile, enable general tracking features and "
-"restart this tour."
+"Congratulations! You have deactivated the key from this site successfully."
 msgstr ""
 
-#: admin/class-pointers.php:211
-msgid "Tab: Universal"
-msgstr ""
-
-#: admin/class-pointers.php:212
+#: includes/admin/licensing/license.php:462
+#: includes/admin/licensing/license.php:523
+#, php-format
 msgid ""
-"Enable Universal tracking and tracking features related to Universal "
-"tracking."
+"Your license key for MonsterInsights has expired. %1$sPlease click here to "
+"renew your license key and continue receiving automatic updates.%2$s"
 msgstr ""
 
-#: admin/class-pointers.php:213
-msgid "Tab: Advanced"
-msgstr ""
-
-#: admin/class-pointers.php:214
+#: includes/admin/licensing/license.php:471
+#: includes/admin/licensing/license.php:532
 msgid ""
-"The section where you can find the advanced settings of this plugin. Here "
-"you can alter how you track certain things and add custom code if "
-"necessary. Only use this if you know what you’re doing."
+"Your license key for MonsterInsights has been disabled. Please use a "
+"different key to continue receiving automatic updates."
 msgstr ""
 
-#: admin/class-pointers.php:215
-msgid "Tab: Custom dimensions"
-msgstr ""
-
-#: admin/class-pointers.php:217
-#. translators: %s links to
-#. `https:yoast.com/wordpress/plugins/google-analytics/`
+#: includes/admin/licensing/license.php:480
+#: includes/admin/licensing/license.php:541
 msgid ""
-"You can only use this functionality if you have %s. Custom dimensions allow "
-"for much more powerful and specific tracking."
+"Your license key for MonsterInsights is invalid. The key no longer exists or "
+"the user associated with the key has been deleted. Please use a different "
+"key to continue receiving automatic updates."
 msgstr ""
 
-#: admin/class-pointers.php:218
-msgid "Tab: Debug mode"
-msgstr ""
-
-#: admin/class-pointers.php:219
+#: includes/admin/licensing/license.php:514
+#, php-format
 msgid ""
-"Only use this if you know what you’re doing. Here you can check what could "
-"be hindering your tracking."
+"No valid license key has been entered, so automatic updates for "
+"MonsterInsights have been turned off. %1$sPlease click here to enter your "
+"license key and begin receiving automatic updates.%2$s"
 msgstr ""
 
-#: admin/class-pointers.php:220
-msgid "Subscribe to our Newsletter"
+#: includes/admin/licensing/skin.php:86
+msgid "There was an error installing the addon. Please try again."
 msgstr ""
 
-#: admin/class-pointers.php:221
+#: includes/admin/notice.php:236
+msgid "Dismiss this notice"
+msgstr ""
+
+#: includes/admin/pages/addons.php:83
+msgid "MonsterInsights Addons"
+msgstr ""
+
+#: includes/admin/pages/addons.php:86
+msgid "Search MI Addons"
+msgstr ""
+
+#: includes/admin/pages/addons.php:88
+msgid "Sort Ascending (A-Z)"
+msgstr ""
+
+#: includes/admin/pages/addons.php:89
+msgid "Sort Descending (Z-A)"
+msgstr ""
+
+#: includes/admin/pages/addons.php:124
 msgid ""
-"If you would like us to keep you up-to-date regarding Google Analytics and "
-"other plugins by Yoast, subscribe to our newsletter:"
+"In order to get access to Addons, you need to resolve your license key "
+"errors."
 msgstr ""
 
-#: admin/class-pointers.php:224
-msgid "Email"
-msgstr ""
-
-#: admin/class-pointers.php:226
-msgid "Subscribe"
-msgstr ""
-
-#: admin/class-pointers.php:241
-msgid "Tab: Overview"
-msgstr ""
-
-#: admin/class-pointers.php:242
+#: includes/admin/pages/addons.php:140
 msgid ""
-"View your website’s last month’s analytics, such as sessions and bounce "
-"rate."
+"There was an issue retrieving the addons for this site. Please click on the "
+"button below the refresh the addons data."
 msgstr ""
 
-#: admin/class-pointers.php:243
-msgid "Tab: Reports"
+#: includes/admin/pages/addons.php:143
+msgid "Refresh Addons"
 msgstr ""
 
-#: admin/class-pointers.php:244
+#: includes/admin/pages/addons.php:161
+msgid "Available Addons:"
+msgstr ""
+
+#: includes/admin/pages/addons.php:181
+msgid "Unlock More Addons"
+msgstr ""
+
+#: includes/admin/pages/addons.php:182
+#, php-format
 msgid ""
-"View specific reports of your site’s analytics, such as traffic sources, "
-"your site’s popular pages and countries where your visitors come from."
+"%1$sWant even more addons?%2$sUpgrade your MonsterInsights account%3$s and "
+"unlock the following addons:"
 msgstr ""
 
-#: admin/class-pointers.php:245
-msgid "Tab: Custom dimension reports"
+#: includes/admin/pages/addons.php:398
+msgid "Upgrade Now"
 msgstr ""
 
-#: admin/class-pointers.php:246
+#: includes/admin/pages/addons.php:417
+#, php-format
+msgid "Status: %1$sNot Installed%2$s"
+msgstr ""
+
+#: includes/admin/pages/addons.php:428
+msgid "Why can't I install addons?"
+msgstr ""
+
+#: includes/admin/pages/addons.php:455
+#, php-format
+msgid "Status: %1$sNetwork Active%2$s"
+msgstr ""
+
+#: includes/admin/pages/addons.php:457
+#, php-format
+msgid "Status: %1$sActive%2$s"
+msgstr ""
+
+#: includes/admin/pages/addons.php:483
+#, php-format
+msgid "Status: %1$sNetwork Inactive%2$s"
+msgstr ""
+
+#: includes/admin/pages/addons.php:485
+#, php-format
+msgid "Status: %1$sInactive%2$s"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:39 includes/admin/pages/reports.php:56
+msgid "Access denied"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:78 includes/admin/pages/reports.php:121
+#, php-format
+msgid "Please %1$senable the dashboard%2$s to see report data."
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:84 includes/admin/pages/dashboard.php:98
+#: includes/admin/pages/dashboard.php:112
+#: includes/admin/pages/dashboard.php:126 includes/admin/pages/reports.php:127
+#: includes/admin/pages/reports.php:141 includes/admin/pages/reports.php:155
+#: includes/admin/pages/reports.php:169
 msgid ""
-"View basic reports of your custom dimensions, such as traffic per author, "
-"per category, etc."
+"The Google oAuth authentication needs to be re-authenticated to view data."
 msgstr ""
 
-#: admin/class-pointers.php:259
-msgid "Extensions and Licenses"
-msgstr ""
-
-#: admin/class-pointers.php:260
-msgid "Tab: Extensions"
-msgstr ""
-
-#: admin/class-pointers.php:262
-#. translators: %s links to `https:yoast.com/wordpress/plugins/`.
+#: includes/admin/pages/dashboard.php:92 includes/admin/pages/reports.php:135
+#, php-format
 msgid ""
-"See which extensions you have installed and which you haven’t installed "
-"yet. You can find extensions to our Google Analytics plugin %shere%s."
+"Please %1$sauthenticate %2$swith Google Analytics to allow the plugin to "
+"fetch data."
 msgstr ""
 
-#: admin/class-pointers.php:263
-msgid "Tab: Licenses"
-msgstr ""
-
-#: admin/class-pointers.php:264
-msgid "Here you can activate, deactivate and renew your licenses."
-msgstr ""
-
-#: admin/class-pointers.php:265
-msgid "Like this plugin?"
-msgstr ""
-
-#: admin/class-pointers.php:267
-#. translators: %s links to
-#. `https:wordpress.org/plugins/google-analytics-for-wordpress/`
+#: includes/admin/pages/dashboard.php:106 includes/admin/pages/reports.php:149
+#, php-format
 msgid ""
-"So, we&#8217;ve come to the end of the tour. If you like the plugin, please "
-"%srate it 5 stars on WordPress.org%s!"
+"Please %1$sre-authenticate%2$s with Google Analytics to allow the plugin to "
+"fetch data."
 msgstr ""
 
-#: admin/class-pointers.php:269
-#. translators: %s links to `https:yoast.com`
+#: includes/admin/pages/network-settings.php:54
 msgid ""
-"Thank you for using our plugin and good luck with your "
-"Analytics!<br/><br/>Best,<br/>Team Yoast - %sYoast.com%s"
+"Activate your MonsterInsights license key on this panel to hide the license "
+"key settings and addon pages for subsites."
 msgstr ""
 
-#: admin/dashboards/class-admin-dashboards.php:135
-msgid ": activate to sort column ascending"
+#: includes/admin/pages/network-settings.php:59
+#: includes/admin/settings/tab-general.php:71
+msgid "License Key"
 msgstr ""
 
-#: admin/dashboards/class-admin-dashboards.php:136
-msgid ": activate to sort column descending"
+#: includes/admin/pages/network-settings.php:65
+#: includes/admin/settings/tab-general.php:77
+msgid "Verify Key"
 msgstr ""
 
-#: admin/dashboards/class-admin-dashboards.php:137
-msgid "No data available"
+#: includes/admin/pages/network-settings.php:66
+#: includes/admin/settings/tab-general.php:78
+msgid "Deactivate Key"
 msgstr ""
 
-#: admin/dashboards/class-admin-dashboards.php:139
-msgid "No rows to show"
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:142
-msgid "Loading..."
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:143
-msgid "First"
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:144
-msgid "Last"
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:147
-msgid "Processing..."
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:148
-msgid "Search"
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:149
-msgid "No matching records found"
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:152 admin/pages/dashboard.php:18
-msgid "Reports"
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:153 admin/pages/dashboard.php:19
-msgid "Custom dimension reports"
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:191
-#: admin/dashboards/class-admin-dashboards.php:214
-#: admin/dashboards/class-admin-dashboards.php:223
-#: admin/dashboards/class-admin-dashboards.php:232
-msgid "Sessions"
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:192
+#: includes/admin/pages/network-settings.php:67
+#: includes/admin/settings/tab-general.php:79
 msgid ""
-"A session is a group of interactions that take place on your website within "
-"a given time frame. For example a single session can contain multiple "
-"screen or page views, events, social interactions, and ecommerce "
-"transactions. <a href=\"http://yoa.st/gasessions\" target=\"_blank\">[Learn "
-"more]</a>"
+"License key to enable automatic updates for MonsterInsights Pro & addons. "
+"Deactivate your license if you want to use it on another WordPress site."
 msgstr ""
 
-#: admin/dashboards/class-admin-dashboards.php:197
-msgid "Pageviews"
+#: includes/admin/pages/network-settings.php:74
+#: includes/admin/settings/tab-general.php:86
+msgid "License Key Type"
 msgstr ""
 
-#: admin/dashboards/class-admin-dashboards.php:198
-msgid "The total number of pageviews per day."
+#: includes/admin/pages/network-settings.php:78
+#: includes/admin/settings/tab-general.php:90
+#, php-format
+msgid "Your license key type for this site is %s."
 msgstr ""
 
-#: admin/dashboards/class-admin-dashboards.php:203
-msgid "Bounce rate"
+#: includes/admin/pages/network-settings.php:81
+#: includes/admin/settings/tab-general.php:93
+msgid "Refresh Key"
 msgstr ""
 
-#: admin/dashboards/class-admin-dashboards.php:204
+#: includes/admin/pages/network-settings.php:82
+#: includes/admin/settings/tab-general.php:94
 msgid ""
-"Bounce Rate is the percentage of single-page sessions (i.e. sessions in "
-"which the person left your site from the entrance page without interacting "
-"with the page). <a href=\"http://yoa.st/gabounce\" target=\"_blank\">[Learn "
-"more]</a>"
+"Your license key type (handles updates and Addons). Click refresh if your "
+"license has been upgraded or the type is incorrect."
 msgstr ""
 
-#: admin/dashboards/class-admin-dashboards.php:210
-msgid "Traffic sources"
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:211
-msgid ""
-"Every referral to a web site has an origin, or (traffic) source. Possible "
-"sources include: “google” (the name of a search engine), “facebook.com” "
-"(the name of a referring site), “spring_newsletter” (the name of one of "
-"your newsletters), and “direct” (users that typed your URL directly into "
-"their browser, or who had bookmarked your site). <a "
-"href=\"http://yoa.st/gabnce\" target=\"_blank\">[Learn more]</a>"
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:219
-msgid "Popular pages"
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:220
-msgid "Pages by url."
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:228
-msgid "Countries"
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:229
-msgid ""
-"The country or territory from which visits originated. <a "
-"href=\"http://yoa.st/gacountry\" target=\"_blank\">[Learn more]</a>"
-msgstr ""
-
-#: admin/dashboards/views/graph.php:15 admin/dashboards/views/table.php:15
-msgid "Last month"
-msgstr ""
-
-#: admin/pages/dashboard.php:14
-msgid "Google Analytics by Yoast: "
-msgstr ""
-
-#: admin/pages/dashboard.php:17
-msgid "Overview"
-msgstr ""
-
-#: admin/pages/dashboard.php:44 admin/pages/dashboard.php:86
-#. translators: 1: links to the Google Analytics by Yoast admin settings page.
-#. 2: closing of the link.
-#. translators: 1: link to the Google Analytics by Yoast admin settings page.
-#. 2: closing of the link.
-msgid ""
-"We need you to authenticate with Google Analytics to use this "
-"functionality. If you set your UA-code manually, this won't work. You can "
-"%1$sauthenticate your Google Analytics profile here%2$s to enable "
-"dashboards."
-msgstr ""
-
-#: admin/pages/dashboard.php:54 admin/pages/dashboard.php:96
-#. translators: 1: links to the Google Analytics by Yoast admin settings page.
-#. 2: closing of the link.
-#. translators: 1: link to the Google Analytics by Yoast admin settings page.
-#. 2: closing of the link.
-msgid ""
-"Because we've switched to a newer version of the Google Analytics API, "
-"you'll need to re-authenticate with Google Analytics. We're sorry for the "
-"inconvenience. You can %1$sre-authenticate your Google Analytics profile "
-"here%2$s."
-msgstr ""
-
-#: admin/pages/dashboard.php:68 admin/pages/dashboard.php:117
-#. translators: 1: links to the Google Analytics by Yoast admin settings page.
-#. 2: closing of the link.
-#. translators: 1: link to the Google Analytics by Yoast admin settings page.
-#. 2: closing of the link.
-msgid ""
-"You have not yet finished setting up Google Analytics for Wordpress by "
-"Yoast. Please %1$sadd your Analytics profile here%2$s to enable tracking."
-msgstr ""
-
-#: admin/pages/dashboard.php:105
-msgid "Select a dimension"
-msgstr ""
-
-#: admin/pages/extensions.php:18
-msgid "Licenses"
-msgstr ""
-
-#: admin/pages/extensions.php:36
-msgid "Get this extension"
-msgstr ""
-
-#: admin/pages/extensions.php:39 vendor/yoast/license-manager/views/form.php:50
-msgid "Activate License"
-msgstr ""
-
-#: admin/pages/extensions.php:41
-msgid "Installed"
-msgstr ""
-
-#: admin/pages/extensions.php:52
-#. translators: %s stands for 'Google Analytics by Yoast'.
-msgid ""
-"You have not installed any extensions for %s, so there are no licenses to "
-"activate."
-msgstr ""
-
-#: admin/pages/settings.php:17
+#: includes/admin/pages/settings.php:61 includes/admin/pages/settings.php:62
 msgid "General"
 msgstr ""
 
-#: admin/pages/settings.php:18
-msgid "Universal"
+#: includes/admin/pages/settings.php:65 includes/admin/pages/settings.php:66
+msgid "Tracking"
 msgstr ""
 
-#: admin/pages/settings.php:19
-msgid "Advanced"
+#: includes/admin/pages/settings.php:150
+msgid "Settings saved successfully."
 msgstr ""
 
-#: admin/pages/settings.php:20
-msgid "Custom Dimensions"
+#: includes/admin/pages/settings.php:213 includes/admin/pages/settings.php:270
+msgid "You do not have permission to manage MonsterInsights settings"
 msgstr ""
 
-#: admin/pages/settings.php:22
-msgid "Debug mode"
+#: includes/admin/pages/settings.php:213 includes/admin/pages/settings.php:270
+msgid "Error"
 msgstr ""
 
-#: admin/pages/settings.php:58
-msgid "Paste your Google authentication code"
+#: includes/admin/pages/settings.php:230
+msgid "Successfully migrated to Universal Analytics (analytics.js)!"
 msgstr ""
 
-#: admin/pages/settings.php:63
-msgid "Google profile"
+#: includes/admin/pages/settings.php:287
+msgid "Successfully migrated to JS events tracking!"
 msgstr ""
 
-#: admin/pages/settings.php:64
-msgid "Authenticate with your Google account"
+#. Author of the plugin/theme
+#: includes/admin/partials/header.php:19
+msgid "MonsterInsights"
 msgstr ""
 
-#: admin/pages/settings.php:67
-msgid "Current UA-profile"
+#: includes/admin/partials/header.php:20
+msgid "MonsterInsights Mascot"
 msgstr ""
 
-#: admin/pages/settings.php:71
-msgid "Analytics profile"
+#: includes/admin/reports/overview.php:32
+msgid "Overview"
 msgstr ""
 
-#: admin/pages/settings.php:71
-msgid "Select a profile"
+#: includes/admin/reports/overview.php:122
+msgid "PAGE VIEWS"
 msgstr ""
 
-#: admin/pages/settings.php:75
-msgid "Re-authenticate with your Google account"
+#: includes/admin/reports/overview.php:131
+msgid "UP"
 msgstr ""
 
-#: admin/pages/settings.php:81
-msgid "Paste your Google code here"
+#: includes/admin/reports/overview.php:132
+msgid "DOWN"
 msgstr ""
 
-#: admin/pages/settings.php:85
-msgid "Save authentication code"
+#: includes/admin/reports/overview.php:305
+msgid "TOP POSTS AND PAGES"
 msgstr ""
 
-#: admin/pages/settings.php:88
-msgid "Cannot connect to Google"
+#: includes/admin/reports/overview.php:310
+msgid "TITLE"
 msgstr ""
 
-#: admin/pages/settings.php:91
-msgid ""
-"Your server is blocking requests to Google, to fix this, add "
-"<code>*.googleapis.com</code> to the <code>WP_ACCESSIBLE_HOSTS</code> "
-"constant in your <em>wp-config.php</em> or ask your webhost to do this."
+#: includes/admin/reports/overview.php:313
+#: includes/admin/reports/overview.php:358
+#: includes/admin/reports/overview.php:431
+msgid "VIEWS"
 msgstr ""
 
-#: admin/pages/settings.php:93
-msgid ""
-"Your firewall or webhost is blocking requests to Google, please ask your "
-"webhost company to fix this."
+#: includes/admin/reports/overview.php:326
+msgid "Unknown Page or Post"
 msgstr ""
 
-#: admin/pages/settings.php:95
-msgid ""
-"Until this is fixed, you can only use the manual authentication method and "
-"cannot use the dashboards feature."
+#: includes/admin/reports/overview.php:350
+msgid "TOP TRAFFIC SOURCES"
 msgstr ""
 
-#: admin/pages/settings.php:99
-msgid "Manually enter your UA code"
+#: includes/admin/reports/overview.php:355
+msgid "SITE"
 msgstr ""
 
-#: admin/pages/settings.php:103
-msgid ""
-"Warning: If you use a manual UA code, you won't be able to use the "
-"dashboards."
+#: includes/admin/reports/overview.php:371
+msgid "Unknown Source"
 msgstr ""
 
-#: admin/pages/settings.php:110
-msgid "Track outbound click and downloads"
+#: includes/admin/reports/overview.php:401
+msgid "TOP COUNTRIES"
 msgstr ""
 
-#: admin/pages/settings.php:110
-msgid ""
-"Clicks and downloads will be tracked as events, you can find these under "
-"Content &#xBB; Event Tracking in your Google Analytics reports."
+#: includes/admin/reports/overview.php:408
+msgid "views"
 msgstr ""
 
-#: admin/pages/settings.php:111
-msgid "Allow tracking of anonymous data"
+#: includes/admin/reports/overview.php:428
+msgid "COUNTRY"
 msgstr ""
 
-#: admin/pages/settings.php:111
-msgid ""
-"By allowing us to track anonymous data we can better help you, because we "
-"know with which WordPress configurations, themes and plugins we should "
-"test. No personal data will be submitted."
+#: includes/admin/reports/overview.php:434
+msgid "%"
 msgstr ""
 
-#: admin/pages/settings.php:113
-#. translators: %s is a link to the Google Analytics help page on Google.com
-#. for _anonymizeIp
-msgid "Anonymize IPs"
+#: includes/admin/reports/overview.php:448
+msgid "Country not set"
 msgstr ""
 
-#: admin/pages/settings.php:113
-msgid ""
-"This adds %1$s, telling Google Analytics to anonymize the information sent "
-"by the tracker objects by removing the last octet of the IP address prior "
-"to its storage."
+#: includes/admin/settings/register-settings.php:23
+msgid "Engagement"
 msgstr ""
 
-#: admin/pages/settings.php:114
-msgid "Ignore users"
+#: includes/admin/settings/register-settings.php:27
+msgid "Demographics"
 msgstr ""
 
-#: admin/pages/settings.php:114
-msgid ""
-"Users of the role you select will be ignored, so if you select Editor, all "
-"Editors will be ignored."
-msgstr ""
-
-#: admin/pages/settings.php:115
-msgid "Disable analytics dashboard"
-msgstr ""
-
-#: admin/pages/settings.php:115
-msgid ""
-"This will completely disable the dashboard and stop the plugin from "
-"fetching the latest analytics data."
-msgstr ""
-
-#: admin/pages/settings.php:121
-msgid "Introduction Tour"
-msgstr ""
-
-#: admin/pages/settings.php:124
-msgid "Take this tour to quickly learn about the use of this plugin."
-msgstr ""
-
-#: admin/pages/settings.php:127
-msgid "Start Tour"
-msgstr ""
-
-#: admin/pages/settings.php:138
-msgid "Universal settings"
-msgstr ""
-
-#: admin/pages/settings.php:141
-#. translators: %s is a link to the Google Analytics help page on Google.com to
-#. enable Universal tracking
-msgid "Enable Universal tracking"
-msgstr ""
-
-#: admin/pages/settings.php:141
-msgid ""
-"First enable Universal tracking in your Google Analytics account. Please "
-"read %1$sthis guide%2$s to learn how to do that."
-msgstr ""
-
-#: admin/pages/settings.php:144
-msgid "Enable Demographics and Interests Reports for Remarketing and Advertising"
-msgstr ""
-
-#: admin/pages/settings.php:146
-msgid ""
-"Note that usage of this function is affected by privacy and cookie laws "
-"around the world. Be sure to follow the laws that affect your target "
-"audience."
-msgstr ""
-
-#: admin/pages/settings.php:149
-#. translators: 1: contains the link to a knowledge base article, 2: contains
-#. the the closing tag for both links, 3: contains a link to Google
-#. documentation about remarketing.
-msgid ""
-"Check this setting to add the Demographics and Remarketing features to your "
-"Google Analytics tracking code. We've written an article in our "
-"%1$sknowledge base%2$s about Demographics and Interest reports. For more "
-"information about Remarketing, we refer you to %3$sGoogle's "
-"documentation%2$s."
-msgstr ""
-
-#: admin/pages/settings.php:156
-#. translators: 1: links to the Google Analytics help page on Google.com to
-#. enable link attribution, 2: closing tag for the link
+#: includes/admin/settings/register-settings.php:31
 msgid "Enhanced Link Attribution"
 msgstr ""
 
-#: admin/pages/settings.php:156
+#: includes/admin/settings/register-settings.php:35
+msgid "File Downloads"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:39
+msgid "Affiliate Links"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:43
+msgid "Social"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:48
+msgid "Ads"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:52
+msgid "Forms"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:57
+msgid "eCommerce"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:61
+msgid "Media"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:66
+msgid "Memberships"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:71
+msgid "Custom Dimensions"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:75
+msgid "Performance"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:79
+msgid "Additional Reporting"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:84
+msgid "Notifications"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:89
+msgid "Compatibility"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:93
+msgid "Permissions"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:137
+msgid "Ignore these user roles from tracking:"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:138
+msgid ""
+"Users that have at least one of these roles will not be tracked into Google "
+"Analytics."
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:147
+msgid "Track outbound clicks and download links?"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:148
+msgid ""
+"We recommend tracking clicks and downloads, so you know where users are "
+"exiting your site, and what downloads they are interacting with. "
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:152
+msgid "No"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:153
+msgid "Yes, using PHP (deprecated)"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:154
+msgid "Using Javascript (recommended)"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:164
+msgid ""
+"Enable Demographics and Interests Reports for Remarketing and Advertising"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:165
+#, php-format
+msgid ""
+"Check this setting to add the Demographics and Remarketing features to your "
+"Google Analytics tracking code. Make sure to enable Demographics and "
+"Remarketing in your Google Analaytics account. We have a guide for how to do "
+"that in our %1$sknowledge base%2$s. For more information about Remarketing, "
+"we refer you to %3$sGoogle's documentation%2$s."
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:172
+msgid "Anonymize IP addresses?"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:173
+#, php-format
+msgid ""
+"This adds %1$s, telling Google Analytics to anonymize the information sent "
+"by the tracker objects by removing the last octet of the IP address prior to "
+"its storage."
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:183
+msgid "Enable enhanced link attribution?"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:184
+#, php-format
 msgid "Add %1$sEnhanced Link Attribution%2$s to your tracking code."
 msgstr ""
 
-#: admin/pages/settings.php:168
-msgid "Advanced settings"
+#: includes/admin/settings/register-settings.php:189
+msgid "Turn on allowAnchor"
 msgstr ""
 
-#: admin/pages/settings.php:170
-msgid "Track downloads as"
-msgstr ""
-
-#: admin/pages/settings.php:170
+#: includes/admin/settings/register-settings.php:190
+#, php-format
 msgid ""
-"Not recommended, as this would skew your statistics, but it does make it "
-"possible to track downloads as goals."
+"This adds a %1$s call to your tracking code, and makes RSS link tagging use "
+"a %2$s as well."
 msgstr ""
 
-#: admin/pages/settings.php:171
-msgid "Extensions of files to track as downloads"
+#: includes/admin/settings/register-settings.php:195
+msgid "Turn on allowLinker"
 msgstr ""
 
-#: admin/pages/settings.php:172
-msgid "Track full URL of outbound clicks or just the domain"
-msgstr ""
-
-#: admin/pages/settings.php:174
-#. translators: 1: link to the Google Analytics help page on Google.com to set
-#. subdomain tracking.
-msgid "Subdomain tracking"
-msgstr ""
-
-#: admin/pages/settings.php:174
+#: includes/admin/settings/register-settings.php:196
+#, php-format
 msgid ""
-"This allows you to set the domain that's set by %1$s for tracking "
-"subdomains.<br/>If empty, this will not be set."
+"This adds a %1$s call to your tracking code, allowing you to use %2$s and "
+"related functions."
 msgstr ""
 
-#: admin/pages/settings.php:176
-#. translators: 1: will output `<code>/out/</code>`. 2: will output
-#. `<code>/out/,/recommends/</code>`
+#: includes/admin/settings/register-settings.php:201
+msgid "Turn on tag links in RSS"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:202
+#, php-format
+msgid ""
+"Do not use this feature if you use FeedBurner, as FeedBurner can do this "
+"automatically and better than this plugin can. Check %1$sthis help page%2$s "
+"for info on how to enable this feature in FeedBurner."
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:212
+msgid "Track downloads as an:"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:213
+msgid ""
+"Tracking as pageviews is not recommended, as this would skew your "
+"statistics, but it does make it possible to track downloads as goals. This "
+"feature requires that event tracking be turned on."
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:217
+msgid "Event (recommended)"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:218
+msgid "Pageview"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:223
+msgid "Extensions of files to track as downloads:"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:224
+msgid ""
+"If you have enabled event tracking, MonsterInsights will send an event/"
+"pageview to GA if a link to a local file has one of the above extensions."
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:234
 msgid "Set path for internal links to track as outbound links"
 msgstr ""
 
-#: admin/pages/settings.php:176
+#: includes/admin/settings/register-settings.php:235
+#, php-format
 msgid ""
 "If you want to track all internal links that begin with %1$s, enter %1$s in "
 "the box above. If you have multiple prefixes you can separate them with "
 "comma's: %2$s"
 msgstr ""
 
-#: admin/pages/settings.php:177
-msgid "Label for those links"
+#: includes/admin/settings/register-settings.php:240
+msgid "Label for those links:"
 msgstr ""
 
-#: admin/pages/settings.php:179
-msgid "Tag links in RSS feed with campaign variables"
-msgstr ""
-
-#: admin/pages/settings.php:179
+#: includes/admin/settings/register-settings.php:241
+#, php-format
 msgid ""
-"Do not use this feature if you use FeedBurner, as FeedBurner can do this "
-"automatically and better than this plugin can. Check <a "
-"href=\"https://support.google.com/feedburner/answer/165769?hl=en&amp;ref_"
-"topic=13075\" target=\"_blank\">this help page</a> for info on how to "
-"enable this feature in FeedBurner."
+"The label to use for these links, this will be added to where the click came "
+"from, so if the label is %s, the label for a click from the content of an "
+"article becomes \"outbound-article-aff\"."
 msgstr ""
 
-#: admin/pages/settings.php:181
-#. translators: 1: link to the Google Analytics help page on Google.com to
-#. enable link attribution. 2: code tag - <code>#</a>
-msgid "Allow anchor"
+#: includes/admin/settings/register-settings.php:291
+msgid "Domain to track as:"
 msgstr ""
 
-#: admin/pages/settings.php:181
+#: includes/admin/settings/register-settings.php:292
+#, php-format
 msgid ""
-"This adds a %1$s call to your tracking code, and makes RSS link tagging use "
-"a %2$s as well."
+"This allows you to %1$sset the domain%2$s that's used for tracking. Only is "
+"used if set to a value, else defaults to automatic determination. It is very "
+"rare that you would need to use this setting."
 msgstr ""
 
-#: admin/pages/settings.php:183
-#. translators: 1: link to the Google Analytics help page on Google.com add the
-#. allow linker tag. 2: code tag - <code>_link</code>
-msgid "Add <code>_setAllowLinker</code>"
-msgstr ""
-
-#: admin/pages/settings.php:183
-msgid ""
-"This adds a %1$s call to your tracking code, allowing you to use %2$s and "
-"related functions."
-msgstr ""
-
-#: admin/pages/settings.php:187
-#. translators: 1: is a link to the Google Analytics help page on Google.com to
-#. add custom code for the tracking
+#: includes/admin/settings/register-settings.php:297
 msgid "Custom code"
 msgstr ""
 
-#: admin/pages/settings.php:187
+#: includes/admin/settings/register-settings.php:298
+#, php-format
 msgid ""
-"Not for the average user: this allows you to add a line of code, to be "
-"added before the %1$s call."
+"Not for the average user: this allows you to add a line of code, to be added "
+"before the %1$s call."
 msgstr ""
 
-#: admin/pages/settings.php:200
-msgid "Custom dimensions"
+#: includes/admin/settings/register-settings.php:303
+msgid "Enable Debug Mode"
 msgstr ""
 
-#: admin/pages/settings.php:209
-msgid "Debug"
-msgstr ""
-
-#: admin/pages/settings.php:211
+#: includes/admin/settings/register-settings.php:304
 msgid ""
-"If you want to confirm that tracking on your blog is working as it should, "
-"enable this option and check the console of your browser. Be absolutely "
-"sure to disable debugging afterwards, as it is slower than normal tracking."
+"Turns on debugging in JS events tracking, logging of eCommerce requests and "
+"enables debug settings."
 msgstr ""
 
-#: admin/pages/settings.php:212
-msgid "<strong>Note</strong> the debugging is only loaded for administrators."
+#: includes/admin/settings/register-settings.php:314
+msgid "Let these user roles see reports (and the dashboard):"
 msgstr ""
 
-#: admin/pages/settings.php:214
-msgid "Enable debug mode"
+#: includes/admin/settings/register-settings.php:324
+msgid "Let these user roles save settings:"
 msgstr ""
 
-#: admin/pages/settings.php:229
-msgid "Select the users to ignore"
+#: includes/admin/settings/register-settings.php:325
+#, php-format
+msgid ""
+"Users that have at least one of these roles will be able to view and save "
+"the settings panel, along with any user with the %s capability."
 msgstr ""
 
-#: admin/views/content-footer.php:14
-msgid "Remove these ads?"
+#: includes/admin/settings/settings-api.php:722
+#, php-format
+msgid "You must have the %s capability to view/edit this setting"
 msgstr ""
 
-#: admin/views/content-footer.php:15
-msgid "Upgrade to Google Analytics By Yoast Premium »"
+#: includes/admin/settings/settings-api.php:894
+#, php-format
+msgid "The callback function used for the %s setting is missing."
 msgstr ""
 
-#: frontend/abstract-class-tracking.php:360
-#: frontend/abstract-class-tracking.php:381
-msgid "This site uses the %1$s plugin version %2$s"
+#: includes/admin/settings/settings-api.php:924
+#: includes/admin/settings/tab-general.php:208
+msgid "Save Changes"
 msgstr ""
 
-#: frontend/abstract-class-tracking.php:363
+#: includes/admin/settings/tab-general.php:51
+#, php-format
+msgid ""
+"MonsterInsights has detected that it's files are being blocked. This is "
+"usually caused by a adblock browser plugin (particularly uBlock Origin), or "
+"a conflicting WordPress theme or plugin. This issue only affects the admin "
+"side of MonsterInsights. To solve this, ensure MonsterInsights is "
+"whitelisted for your website URL in any adblock browser plugin you use. For "
+"step by step directions on how to do this, %1$sclick here%2$s. If this "
+"doesn't solve the issue (rare), send us a ticket %3$shere%2$s and we'll be "
+"happy to help diagnose the issue."
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:104
+msgid "Analytics Profile"
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:106
+msgid "Google Authentication"
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:112
+msgid "Profile Active: "
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:114
+msgid "Re-Authenticate with your Google account"
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:115
+msgid "Deauthenticate"
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:118
+msgid "Authenticate with your Google account"
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:119
+#, php-format
+msgid ""
+"Having issues automatically authenticating? %s Click here to authenticate "
+"manually %s."
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:137
+msgid "Manually enter your UA code"
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:141
+msgid ""
+"Warning: If you use a manual UA code, you won't be able to use the dashboard "
+"or reports."
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:148
+msgid "Disable Dashboard"
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:149
+msgid "Hide the dashboard and reports pages."
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:156
+msgid "Pick Tracking Mode"
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:162
+msgid "GA.js (Deprecated)"
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:163
+msgid "Analytics.js (Universal Analytics)"
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:164
+#, php-format
+msgid ""
+"Warning: You're currently using deprecated ga.js tracking. We recommend "
+"switching to analytics.js, as it is significantly more accurate than ga.js, "
+"and allows for functionality (like the more accurate Javascript based events "
+"tracking we offer). Further Google Analytics has deprecated support for ga."
+"js, and it may stop working at any time when Google decides to disable it "
+"from their server. To switch to using the newer Universal Analytics "
+"(analytics.js) %1$sclick here%2$s."
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:173
+msgid "Switch to JS events tracking"
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:179
+#, php-format
+msgid ""
+"Warning: You're currently using deprecated PHP based events tracking. We "
+"recommend switching to JS events tracking, as it is significantly more "
+"accurate than PHP based events tracking and we will eventually discontinue "
+"PHP based events tracking. To switch %1$sclick here%2$s."
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:187
+msgid "Allow Usage Tracking"
+msgstr ""
+
+#: includes/admin/settings/tab-general.php:188
+msgid ""
+"By allowing us to track usage data we can better help you, because we know "
+"with which WordPress configurations, themes and plugins we should test."
+msgstr ""
+
+#: includes/admin/settings/tab-tracking.php:40
+msgid "Upgrade"
+msgstr ""
+
+#: includes/admin/tracking.php:282
+msgid ""
+"Allow MonsterInsights to track plugin usage? Opt-in to tracking and our "
+"newsletter to stay informed of the latest changes to MonsterInsights and "
+"help us ensure compatibility."
+msgstr ""
+
+#: includes/admin/tracking.php:283
+msgid "Allow"
+msgstr ""
+
+#: includes/admin/tracking.php:284
+msgid "Do not allow"
+msgstr ""
+
+#: includes/admin/tracking.php:301
+msgid "Once Weekly"
+msgstr ""
+
+#: includes/deprecated.php:126
+#, php-format
+msgid "%1$s is %3$sdeprecated%4$s since MonsterInsights version %2$s!"
+msgstr ""
+
+#: includes/deprecated.php:179
+#, php-format
+msgid "%1$s is %3$sdeprecated%4$s since MonsterInsights version %2$s."
+msgstr ""
+
+#: includes/deprecated.php:247 includes/deprecated.php:262
+#: includes/deprecated.php:274 includes/deprecated.php:289
+#: includes/deprecated.php:303 includes/deprecated.php:320
+#: includes/deprecated.php:347
+#, php-format
+msgid "Use %s instead."
+msgstr ""
+
+#: includes/frontend/tracking/class-tracking-disabled.php:90
+#, php-format
 msgid ""
 "@Webmaster, normally you will find the Google Analytics tracking code here, "
 "but you are in the disabled user groups. To change this, navigate to "
-"Analytics -> Settings (Ignore usergroups)"
+"Insights %1$s Settings %1$s Ignore Users"
 msgstr ""
 
-#: frontend/abstract-class-tracking.php:366
+#: includes/frontend/tracking/class-tracking-disabled.php:92
 msgid ""
 "Normally you will find the Google Analytics tracking code here, but the "
 "webmaster disabled your user group."
 msgstr ""
 
-#: frontend/abstract-class-tracking.php:384
+#: includes/frontend/tracking/class-tracking-preview.php:88
 msgid ""
-"@Webmaster, normally you will find the Google Analytics tracking code here, "
-"but the Debug Mode is enabled. To change this, navigate to Analytics -> "
-"Settings -> (Tab) Debug Mode and disable Debug Mode to enable tracking of "
-"your site."
+"You are currently in a preview window. MonsterInsights doesn't track preview "
+"window traffic to avoid false visit reports."
 msgstr ""
 
-#: frontend/abstract-class-tracking.php:387
+#: includes/helpers.php:111
+msgid "United States"
+msgstr ""
+
+#: includes/helpers.php:112
+msgid "Canada"
+msgstr ""
+
+#: includes/helpers.php:113
+msgid "United Kingdom"
+msgstr ""
+
+#: includes/helpers.php:114
+msgid "Afghanistan"
+msgstr ""
+
+#: includes/helpers.php:115
+msgid "&#197;land Islands"
+msgstr ""
+
+#: includes/helpers.php:116
+msgid "Albania"
+msgstr ""
+
+#: includes/helpers.php:117
+msgid "Algeria"
+msgstr ""
+
+#: includes/helpers.php:118
+msgid "American Samoa"
+msgstr ""
+
+#: includes/helpers.php:119
+msgid "Andorra"
+msgstr ""
+
+#: includes/helpers.php:120
+msgid "Angola"
+msgstr ""
+
+#: includes/helpers.php:121
+msgid "Anguilla"
+msgstr ""
+
+#: includes/helpers.php:122
+msgid "Antarctica"
+msgstr ""
+
+#: includes/helpers.php:123
+msgid "Antigua and Barbuda"
+msgstr ""
+
+#: includes/helpers.php:124
+msgid "Argentina"
+msgstr ""
+
+#: includes/helpers.php:125
+msgid "Armenia"
+msgstr ""
+
+#: includes/helpers.php:126
+msgid "Aruba"
+msgstr ""
+
+#: includes/helpers.php:127
+msgid "Australia"
+msgstr ""
+
+#: includes/helpers.php:128
+msgid "Austria"
+msgstr ""
+
+#: includes/helpers.php:129
+msgid "Azerbaijan"
+msgstr ""
+
+#: includes/helpers.php:130
+msgid "Bahamas"
+msgstr ""
+
+#: includes/helpers.php:131
+msgid "Bahrain"
+msgstr ""
+
+#: includes/helpers.php:132
+msgid "Bangladesh"
+msgstr ""
+
+#: includes/helpers.php:133
+msgid "Barbados"
+msgstr ""
+
+#: includes/helpers.php:134
+msgid "Belarus"
+msgstr ""
+
+#: includes/helpers.php:135
+msgid "Belgium"
+msgstr ""
+
+#: includes/helpers.php:136
+msgid "Belize"
+msgstr ""
+
+#: includes/helpers.php:137
+msgid "Benin"
+msgstr ""
+
+#: includes/helpers.php:138
+msgid "Bermuda"
+msgstr ""
+
+#: includes/helpers.php:139
+msgid "Bhutan"
+msgstr ""
+
+#: includes/helpers.php:140
+msgid "Bolivia"
+msgstr ""
+
+#: includes/helpers.php:141
+msgid "Bonaire, Saint Eustatius and Saba"
+msgstr ""
+
+#: includes/helpers.php:142
+msgid "Bosnia and Herzegovina"
+msgstr ""
+
+#: includes/helpers.php:143
+msgid "Botswana"
+msgstr ""
+
+#: includes/helpers.php:144
+msgid "Bouvet Island"
+msgstr ""
+
+#: includes/helpers.php:145
+msgid "Brazil"
+msgstr ""
+
+#: includes/helpers.php:146
+msgid "British Indian Ocean Territory"
+msgstr ""
+
+#: includes/helpers.php:147
+msgid "Brunei Darrussalam"
+msgstr ""
+
+#: includes/helpers.php:148
+msgid "Bulgaria"
+msgstr ""
+
+#: includes/helpers.php:149
+msgid "Burkina Faso"
+msgstr ""
+
+#: includes/helpers.php:150
+msgid "Burundi"
+msgstr ""
+
+#: includes/helpers.php:151
+msgid "Cambodia"
+msgstr ""
+
+#: includes/helpers.php:152
+msgid "Cameroon"
+msgstr ""
+
+#: includes/helpers.php:153
+msgid "Cape Verde"
+msgstr ""
+
+#: includes/helpers.php:154
+msgid "Cayman Islands"
+msgstr ""
+
+#: includes/helpers.php:155
+msgid "Central African Republic"
+msgstr ""
+
+#: includes/helpers.php:156
+msgid "Chad"
+msgstr ""
+
+#: includes/helpers.php:157
+msgid "Chile"
+msgstr ""
+
+#: includes/helpers.php:158
+msgid "China"
+msgstr ""
+
+#: includes/helpers.php:159
+msgid "Christmas Island"
+msgstr ""
+
+#: includes/helpers.php:160
+msgid "Cocos Islands"
+msgstr ""
+
+#: includes/helpers.php:161
+msgid "Colombia"
+msgstr ""
+
+#: includes/helpers.php:162
+msgid "Comoros"
+msgstr ""
+
+#: includes/helpers.php:163
+msgid "Congo, Democratic People's Republic"
+msgstr ""
+
+#: includes/helpers.php:164
+msgid "Congo, Republic of"
+msgstr ""
+
+#: includes/helpers.php:165
+msgid "Cook Islands"
+msgstr ""
+
+#: includes/helpers.php:166
+msgid "Costa Rica"
+msgstr ""
+
+#: includes/helpers.php:167
+msgid "Cote d'Ivoire"
+msgstr ""
+
+#: includes/helpers.php:168
+msgid "Croatia/Hrvatska"
+msgstr ""
+
+#: includes/helpers.php:169
+msgid "Cuba"
+msgstr ""
+
+#: includes/helpers.php:170
+msgid "Cura&Ccedil;ao"
+msgstr ""
+
+#: includes/helpers.php:171
+msgid "Cyprus"
+msgstr ""
+
+#: includes/helpers.php:172
+msgid "Czech Republic"
+msgstr ""
+
+#: includes/helpers.php:173
+msgid "Denmark"
+msgstr ""
+
+#: includes/helpers.php:174
+msgid "Djibouti"
+msgstr ""
+
+#: includes/helpers.php:175
+msgid "Dominica"
+msgstr ""
+
+#: includes/helpers.php:176
+msgid "Dominican Republic"
+msgstr ""
+
+#: includes/helpers.php:177
+msgid "East Timor"
+msgstr ""
+
+#: includes/helpers.php:178
+msgid "Ecuador"
+msgstr ""
+
+#: includes/helpers.php:179
+msgid "Egypt"
+msgstr ""
+
+#: includes/helpers.php:180
+msgid "Equatorial Guinea"
+msgstr ""
+
+#: includes/helpers.php:181
+msgid "El Salvador"
+msgstr ""
+
+#: includes/helpers.php:182
+msgid "Eritrea"
+msgstr ""
+
+#: includes/helpers.php:183
+msgid "Estonia"
+msgstr ""
+
+#: includes/helpers.php:184
+msgid "Ethiopia"
+msgstr ""
+
+#: includes/helpers.php:185
+msgid "Falkland Islands"
+msgstr ""
+
+#: includes/helpers.php:186
+msgid "Faroe Islands"
+msgstr ""
+
+#: includes/helpers.php:187
+msgid "Fiji"
+msgstr ""
+
+#: includes/helpers.php:188
+msgid "Finland"
+msgstr ""
+
+#: includes/helpers.php:189
+msgid "France"
+msgstr ""
+
+#: includes/helpers.php:190
+msgid "French Guiana"
+msgstr ""
+
+#: includes/helpers.php:191
+msgid "French Polynesia"
+msgstr ""
+
+#: includes/helpers.php:192
+msgid "French Southern Territories"
+msgstr ""
+
+#: includes/helpers.php:193
+msgid "Gabon"
+msgstr ""
+
+#: includes/helpers.php:194
+msgid "Gambia"
+msgstr ""
+
+#: includes/helpers.php:195
+msgid "Georgia"
+msgstr ""
+
+#: includes/helpers.php:196
+msgid "Germany"
+msgstr ""
+
+#: includes/helpers.php:197
+msgid "Greece"
+msgstr ""
+
+#: includes/helpers.php:198
+msgid "Ghana"
+msgstr ""
+
+#: includes/helpers.php:199
+msgid "Gibraltar"
+msgstr ""
+
+#: includes/helpers.php:200
+msgid "Greenland"
+msgstr ""
+
+#: includes/helpers.php:201
+msgid "Grenada"
+msgstr ""
+
+#: includes/helpers.php:202
+msgid "Guadeloupe"
+msgstr ""
+
+#: includes/helpers.php:203
+msgid "Guam"
+msgstr ""
+
+#: includes/helpers.php:204
+msgid "Guatemala"
+msgstr ""
+
+#: includes/helpers.php:205
+msgid "Guernsey"
+msgstr ""
+
+#: includes/helpers.php:206
+msgid "Guinea"
+msgstr ""
+
+#: includes/helpers.php:207
+msgid "Guinea-Bissau"
+msgstr ""
+
+#: includes/helpers.php:208
+msgid "Guyana"
+msgstr ""
+
+#: includes/helpers.php:209
+msgid "Haiti"
+msgstr ""
+
+#: includes/helpers.php:210
+msgid "Heard and McDonald Islands"
+msgstr ""
+
+#: includes/helpers.php:211
+msgid "Holy See (City Vatican State)"
+msgstr ""
+
+#: includes/helpers.php:212
+msgid "Honduras"
+msgstr ""
+
+#: includes/helpers.php:213
+msgid "Hong Kong"
+msgstr ""
+
+#: includes/helpers.php:214
+msgid "Hungary"
+msgstr ""
+
+#: includes/helpers.php:215
+msgid "Iceland"
+msgstr ""
+
+#: includes/helpers.php:216
+msgid "India"
+msgstr ""
+
+#: includes/helpers.php:217
+msgid "Indonesia"
+msgstr ""
+
+#: includes/helpers.php:218
+msgid "Iran"
+msgstr ""
+
+#: includes/helpers.php:219
+msgid "Iraq"
+msgstr ""
+
+#: includes/helpers.php:220
+msgid "Ireland"
+msgstr ""
+
+#: includes/helpers.php:221
+msgid "Isle of Man"
+msgstr ""
+
+#: includes/helpers.php:222
+msgid "Israel"
+msgstr ""
+
+#: includes/helpers.php:223
+msgid "Italy"
+msgstr ""
+
+#: includes/helpers.php:224
+msgid "Jamaica"
+msgstr ""
+
+#: includes/helpers.php:225
+msgid "Japan"
+msgstr ""
+
+#: includes/helpers.php:226
+msgid "Jersey"
+msgstr ""
+
+#: includes/helpers.php:227
+msgid "Jordan"
+msgstr ""
+
+#: includes/helpers.php:228
+msgid "Kazakhstan"
+msgstr ""
+
+#: includes/helpers.php:229
+msgid "Kenya"
+msgstr ""
+
+#: includes/helpers.php:230
+msgid "Kiribati"
+msgstr ""
+
+#: includes/helpers.php:231
+msgid "Kuwait"
+msgstr ""
+
+#: includes/helpers.php:232
+msgid "Kyrgyzstan"
+msgstr ""
+
+#: includes/helpers.php:233
+msgid "Lao People's Democratic Republic"
+msgstr ""
+
+#: includes/helpers.php:234
+msgid "Latvia"
+msgstr ""
+
+#: includes/helpers.php:235
+msgid "Lebanon"
+msgstr ""
+
+#: includes/helpers.php:236
+msgid "Lesotho"
+msgstr ""
+
+#: includes/helpers.php:237
+msgid "Liberia"
+msgstr ""
+
+#: includes/helpers.php:238
+msgid "Libyan Arab Jamahiriya"
+msgstr ""
+
+#: includes/helpers.php:239
+msgid "Liechtenstein"
+msgstr ""
+
+#: includes/helpers.php:240
+msgid "Lithuania"
+msgstr ""
+
+#: includes/helpers.php:241
+msgid "Luxembourg"
+msgstr ""
+
+#: includes/helpers.php:242
+msgid "Macau"
+msgstr ""
+
+#: includes/helpers.php:243
+msgid "Macedonia"
+msgstr ""
+
+#: includes/helpers.php:244
+msgid "Madagascar"
+msgstr ""
+
+#: includes/helpers.php:245
+msgid "Malawi"
+msgstr ""
+
+#: includes/helpers.php:246
+msgid "Malaysia"
+msgstr ""
+
+#: includes/helpers.php:247
+msgid "Maldives"
+msgstr ""
+
+#: includes/helpers.php:248
+msgid "Mali"
+msgstr ""
+
+#: includes/helpers.php:249
+msgid "Malta"
+msgstr ""
+
+#: includes/helpers.php:250
+msgid "Marshall Islands"
+msgstr ""
+
+#: includes/helpers.php:251
+msgid "Martinique"
+msgstr ""
+
+#: includes/helpers.php:252
+msgid "Mauritania"
+msgstr ""
+
+#: includes/helpers.php:253
+msgid "Mauritius"
+msgstr ""
+
+#: includes/helpers.php:254
+msgid "Mayotte"
+msgstr ""
+
+#: includes/helpers.php:255
+msgid "Mexico"
+msgstr ""
+
+#: includes/helpers.php:256
+msgid "Micronesia"
+msgstr ""
+
+#: includes/helpers.php:257
+msgid "Moldova, Republic of"
+msgstr ""
+
+#: includes/helpers.php:258
+msgid "Monaco"
+msgstr ""
+
+#: includes/helpers.php:259
+msgid "Mongolia"
+msgstr ""
+
+#: includes/helpers.php:260
+msgid "Montenegro"
+msgstr ""
+
+#: includes/helpers.php:261
+msgid "Montserrat"
+msgstr ""
+
+#: includes/helpers.php:262
+msgid "Morocco"
+msgstr ""
+
+#: includes/helpers.php:263
+msgid "Mozambique"
+msgstr ""
+
+#: includes/helpers.php:264
+msgid "Myanmar"
+msgstr ""
+
+#: includes/helpers.php:265
+msgid "Namibia"
+msgstr ""
+
+#: includes/helpers.php:266
+msgid "Nauru"
+msgstr ""
+
+#: includes/helpers.php:267
+msgid "Nepal"
+msgstr ""
+
+#: includes/helpers.php:268
+msgid "Netherlands"
+msgstr ""
+
+#: includes/helpers.php:269
+msgid "Netherlands Antilles"
+msgstr ""
+
+#: includes/helpers.php:270
+msgid "New Caledonia"
+msgstr ""
+
+#: includes/helpers.php:271
+msgid "New Zealand"
+msgstr ""
+
+#: includes/helpers.php:272
+msgid "Nicaragua"
+msgstr ""
+
+#: includes/helpers.php:273
+msgid "Niger"
+msgstr ""
+
+#: includes/helpers.php:274
+msgid "Nigeria"
+msgstr ""
+
+#: includes/helpers.php:275
+msgid "Niue"
+msgstr ""
+
+#: includes/helpers.php:276
+msgid "Norfolk Island"
+msgstr ""
+
+#: includes/helpers.php:277
+msgid "North Korea"
+msgstr ""
+
+#: includes/helpers.php:278
+msgid "Northern Mariana Islands"
+msgstr ""
+
+#: includes/helpers.php:279
+msgid "Norway"
+msgstr ""
+
+#: includes/helpers.php:280
+msgid "Oman"
+msgstr ""
+
+#: includes/helpers.php:281
+msgid "Pakistan"
+msgstr ""
+
+#: includes/helpers.php:282
+msgid "Palau"
+msgstr ""
+
+#: includes/helpers.php:283
+msgid "Palestinian Territories"
+msgstr ""
+
+#: includes/helpers.php:284
+msgid "Panama"
+msgstr ""
+
+#: includes/helpers.php:285
+msgid "Papua New Guinea"
+msgstr ""
+
+#: includes/helpers.php:286
+msgid "Paraguay"
+msgstr ""
+
+#: includes/helpers.php:287
+msgid "Peru"
+msgstr ""
+
+#: includes/helpers.php:288
+msgid "Philippines"
+msgstr ""
+
+#: includes/helpers.php:289
+msgid "Pitcairn Island"
+msgstr ""
+
+#: includes/helpers.php:290
+msgid "Poland"
+msgstr ""
+
+#: includes/helpers.php:291
+msgid "Portugal"
+msgstr ""
+
+#: includes/helpers.php:292
+msgid "Puerto Rico"
+msgstr ""
+
+#: includes/helpers.php:293
+msgid "Qatar"
+msgstr ""
+
+#: includes/helpers.php:294
+msgid "Republic of Kosovo"
+msgstr ""
+
+#: includes/helpers.php:295
+msgid "Reunion Island"
+msgstr ""
+
+#: includes/helpers.php:296
+msgid "Romania"
+msgstr ""
+
+#: includes/helpers.php:297
+msgid "Russian Federation"
+msgstr ""
+
+#: includes/helpers.php:298
+msgid "Rwanda"
+msgstr ""
+
+#: includes/helpers.php:299
+msgid "Saint Barth&eacute;lemy"
+msgstr ""
+
+#: includes/helpers.php:300
+msgid "Saint Helena"
+msgstr ""
+
+#: includes/helpers.php:301
+msgid "Saint Kitts and Nevis"
+msgstr ""
+
+#: includes/helpers.php:302
+msgid "Saint Lucia"
+msgstr ""
+
+#: includes/helpers.php:303
+msgid "Saint Martin (French)"
+msgstr ""
+
+#: includes/helpers.php:304
+msgid "Saint Martin (Dutch)"
+msgstr ""
+
+#: includes/helpers.php:305
+msgid "Saint Pierre and Miquelon"
+msgstr ""
+
+#: includes/helpers.php:306
+msgid "Saint Vincent and the Grenadines"
+msgstr ""
+
+#: includes/helpers.php:307
+msgid "San Marino"
+msgstr ""
+
+#: includes/helpers.php:308
+msgid "S&atilde;o Tom&eacute; and Pr&iacute;ncipe"
+msgstr ""
+
+#: includes/helpers.php:309
+msgid "Saudi Arabia"
+msgstr ""
+
+#: includes/helpers.php:310
+msgid "Senegal"
+msgstr ""
+
+#: includes/helpers.php:311
+msgid "Serbia"
+msgstr ""
+
+#: includes/helpers.php:312
+msgid "Seychelles"
+msgstr ""
+
+#: includes/helpers.php:313
+msgid "Sierra Leone"
+msgstr ""
+
+#: includes/helpers.php:314
+msgid "Singapore"
+msgstr ""
+
+#: includes/helpers.php:315
+msgid "Slovak Republic"
+msgstr ""
+
+#: includes/helpers.php:316
+msgid "Slovenia"
+msgstr ""
+
+#: includes/helpers.php:317
+msgid "Solomon Islands"
+msgstr ""
+
+#: includes/helpers.php:318
+msgid "Somalia"
+msgstr ""
+
+#: includes/helpers.php:319
+msgid "South Africa"
+msgstr ""
+
+#: includes/helpers.php:320
+msgid "South Georgia"
+msgstr ""
+
+#: includes/helpers.php:321
+msgid "South Korea"
+msgstr ""
+
+#: includes/helpers.php:322
+msgid "South Sudan"
+msgstr ""
+
+#: includes/helpers.php:323
+msgid "Spain"
+msgstr ""
+
+#: includes/helpers.php:324
+msgid "Sri Lanka"
+msgstr ""
+
+#: includes/helpers.php:325
+msgid "Sudan"
+msgstr ""
+
+#: includes/helpers.php:326
+msgid "Suriname"
+msgstr ""
+
+#: includes/helpers.php:327
+msgid "Svalbard and Jan Mayen Islands"
+msgstr ""
+
+#: includes/helpers.php:328
+msgid "Swaziland"
+msgstr ""
+
+#: includes/helpers.php:329
+msgid "Sweden"
+msgstr ""
+
+#: includes/helpers.php:330
+msgid "Switzerland"
+msgstr ""
+
+#: includes/helpers.php:331
+msgid "Syrian Arab Republic"
+msgstr ""
+
+#: includes/helpers.php:332
+msgid "Taiwan"
+msgstr ""
+
+#: includes/helpers.php:333
+msgid "Tajikistan"
+msgstr ""
+
+#: includes/helpers.php:334
+msgid "Tanzania"
+msgstr ""
+
+#: includes/helpers.php:335
+msgid "Thailand"
+msgstr ""
+
+#: includes/helpers.php:336
+msgid "Timor-Leste"
+msgstr ""
+
+#: includes/helpers.php:337
+msgid "Togo"
+msgstr ""
+
+#: includes/helpers.php:338
+msgid "Tokelau"
+msgstr ""
+
+#: includes/helpers.php:339
+msgid "Tonga"
+msgstr ""
+
+#: includes/helpers.php:340
+msgid "Trinidad and Tobago"
+msgstr ""
+
+#: includes/helpers.php:341
+msgid "Tunisia"
+msgstr ""
+
+#: includes/helpers.php:342
+msgid "Turkey"
+msgstr ""
+
+#: includes/helpers.php:343
+msgid "Turkmenistan"
+msgstr ""
+
+#: includes/helpers.php:344
+msgid "Turks and Caicos Islands"
+msgstr ""
+
+#: includes/helpers.php:345
+msgid "Tuvalu"
+msgstr ""
+
+#: includes/helpers.php:346
+msgid "Uganda"
+msgstr ""
+
+#: includes/helpers.php:347
+msgid "Ukraine"
+msgstr ""
+
+#: includes/helpers.php:348
+msgid "United Arab Emirates"
+msgstr ""
+
+#: includes/helpers.php:349
+msgid "Uruguay"
+msgstr ""
+
+#: includes/helpers.php:350
+msgid "US Minor Outlying Islands"
+msgstr ""
+
+#: includes/helpers.php:351
+msgid "Uzbekistan"
+msgstr ""
+
+#: includes/helpers.php:352
+msgid "Vanuatu"
+msgstr ""
+
+#: includes/helpers.php:353
+msgid "Venezuela"
+msgstr ""
+
+#: includes/helpers.php:354
+msgid "Vietnam"
+msgstr ""
+
+#: includes/helpers.php:355
+msgid "Virgin Islands (British)"
+msgstr ""
+
+#: includes/helpers.php:356
+msgid "Virgin Islands (USA)"
+msgstr ""
+
+#: includes/helpers.php:357
+msgid "Wallis and Futuna Islands"
+msgstr ""
+
+#: includes/helpers.php:358
+msgid "Western Sahara"
+msgstr ""
+
+#: includes/helpers.php:359
+msgid "Western Samoa"
+msgstr ""
+
+#: includes/helpers.php:360
+msgid "Yemen"
+msgstr ""
+
+#: includes/helpers.php:361
+msgid "Zambia"
+msgstr ""
+
+#: includes/helpers.php:362
+msgid "Zimbabwe"
+msgstr ""
+
+#: lite/includes/admin/addons.php:9
+msgid "Want to setup Social Tracking?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:10
+#, php-format
 msgid ""
-"Normally you will find the Google Analytics tracking code here, but the "
-"webmaster has enabled the Debug Mode."
+"To setup social tracking, please %1$supgrade your MonsterInsights account"
+"%2$s to unlock this feature."
 msgstr ""
 
-#: googleanalytics.php:79
+#: lite/includes/admin/addons.php:10 lite/includes/admin/addons.php:18
+#: lite/includes/admin/addons.php:26 lite/includes/admin/addons.php:35
+#: lite/includes/admin/addons.php:43 lite/includes/admin/addons.php:51
+#: lite/includes/admin/addons.php:59 lite/includes/admin/addons.php:67
+#: lite/includes/admin/addons.php:75 lite/includes/admin/addons.php:83
+msgid "Learn more about MonsterInsights Pro"
+msgstr ""
+
+#: lite/includes/admin/addons.php:17
+msgid "Want to setup Ad Tracking?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:18
+#, php-format
 msgid ""
-"The Standard PHP Library (SPL) extension seem to be unavailable. Please ask "
-"your web host to enable it."
+"To setup ad tracking, please %1$supgrade your MonsterInsights account%2$s to "
+"unlock this feature."
 msgstr ""
 
-#: googleanalytics.php:92
+#: lite/includes/admin/addons.php:25
+msgid "Want to setup Form Tracking?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:26
+#, php-format
 msgid ""
-"The (standard) PHP filter extension seem to be unavailable. Please ask your "
-"web host to enable it."
+"To setup form tracking, please %1$supgrade your MonsterInsights account%2$s "
+"to unlock this feature."
 msgstr ""
 
-#: vendor/yoast/i18n-module/i18n-module.php:170
+#: lite/includes/admin/addons.php:34
+msgid "Want to setup Media Tracking?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:35
+#, php-format
 msgid ""
-"As you can see, there is a translation of this plugin in %1$s. This "
-"translation is currently %3$d%% complete. We need your help to make it "
-"complete and to fix any errors. Please register at %4$s to help complete "
-"the translation to %1$s!"
+"To setup media tracking, please %1$supgrade your MonsterInsights account%2$s "
+"to unlock this feature."
 msgstr ""
 
-#: vendor/yoast/i18n-module/i18n-module.php:172
+#: lite/includes/admin/addons.php:42
+msgid "Want to setup Membership Tracking?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:43
+#, php-format
 msgid ""
-"You're using WordPress in %1$s. While %2$s has been translated to %1$s for "
-"%3$d%%, it's not been shipped with the plugin yet. You can help! Register "
-"at %4$s to help complete the translation to %1$s!"
+"To setup membership tracking, please %1$supgrade your MonsterInsights account"
+"%2$s to unlock this feature."
 msgstr ""
 
-#: vendor/yoast/i18n-module/i18n-module.php:174
+#: lite/includes/admin/addons.php:50
+msgid "Want to setup Custom Dimensions?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:51
+#, php-format
 msgid ""
-"You're using WordPress in a language we don't support yet. We'd love for "
-"%2$s to be translated in that language too, but unfortunately, it isn't "
-"right now. You can change that! Register at %4$s to help translate it!"
+"To setup custom dimension tracking, please %1$supgrade your MonsterInsights "
+"account%2$s to unlock this feature."
 msgstr ""
 
-#: vendor/yoast/i18n-module/i18n-module.php:194
-msgid "Translation of %s"
+#: lite/includes/admin/addons.php:58
+msgid "Want to setup Performance Tracking?"
 msgstr ""
 
-#: vendor/yoast/i18n-module/i18n-module.php:199
-msgid "Register now &raquo;"
-msgstr ""
-
-#: vendor/yoast/license-manager/class-license-manager.php:138
+#: lite/includes/admin/addons.php:59
+#, php-format
 msgid ""
-"<b>Warning!</b> You're blocking external requests which means you won't be "
-"able to get %s updates. Please add %s to %s."
+"To setup performance tracking, please %1$supgrade your MonsterInsights "
+"account%2$s to unlock this feature."
 msgstr ""
 
-#: vendor/yoast/license-manager/class-license-manager.php:179
-msgid "Your %s license has been activated. "
+#: lite/includes/admin/addons.php:66
+msgid "Want to setup Custom Reporting?"
 msgstr ""
 
-#: vendor/yoast/license-manager/class-license-manager.php:183
-msgid "You have an unlimited license. "
-msgstr ""
-
-#: vendor/yoast/license-manager/class-license-manager.php:185
-msgid "You have used %d/%d activations. "
-msgstr ""
-
-#: vendor/yoast/license-manager/class-license-manager.php:190
-msgid "<a href=\"%s\">Did you know you can upgrade your license?</a>"
-msgstr ""
-
-#: vendor/yoast/license-manager/class-license-manager.php:194
+#: lite/includes/admin/addons.php:67
+#, php-format
 msgid ""
-"<a href=\"%s\">Your license is expiring in %d days, would you like to "
-"extend it?</a>"
+"To setup custom reporting, please %1$supgrade your MonsterInsights account"
+"%2$s to unlock this feature."
 msgstr ""
 
-#: vendor/yoast/license-manager/class-license-manager.php:203
+#: lite/includes/admin/addons.php:74
+msgid "Want to setup Custom Notifications?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:75
+#, php-format
 msgid ""
-"You've reached your activation limit. You must <a href=\"%s\">upgrade your "
-"license</a> to use it on this site."
+"To setup custom notifications, please %1$supgrade your MonsterInsights "
+"account%2$s to unlock this feature."
 msgstr ""
 
-#: vendor/yoast/license-manager/class-license-manager.php:206
+#: lite/includes/admin/addons.php:82
+msgid "Want to setup eCommerce Tracking"
+msgstr ""
+
+#: lite/includes/admin/addons.php:83
+#, php-format
 msgid ""
-"Your license has expired. You must <a href=\"%s\">extend your license</a> "
-"in order to use it again."
+"To setup eCommerce tracking, please %1$supgrade your MonsterInsights account"
+"%2$s to unlock this feature."
 msgstr ""
 
-#: vendor/yoast/license-manager/class-license-manager.php:209
-msgid "Failed to activate your license, your license key seems to be invalid."
-msgstr ""
-
-#: vendor/yoast/license-manager/class-license-manager.php:233
-msgid "Your %s license has been deactivated."
-msgstr ""
-
-#: vendor/yoast/license-manager/class-license-manager.php:235
-msgid "Failed to deactivate your %s license."
-msgstr ""
-
-#: vendor/yoast/license-manager/class-license-manager.php:271
-msgid "Request error: \"%s\" (%scommon license notices%s)"
-msgstr ""
-
-#: vendor/yoast/license-manager/class-license-manager.php:430
-msgid "%s: License Settings"
-msgstr ""
-
-#: vendor/yoast/license-manager/class-plugin-license-manager.php:73
+#: lite/includes/admin/addons.php:109
+#, php-format
 msgid ""
-"%s is network activated, you can manage your license in the <a "
-"href=\"%s\">network admin license page</a>."
+"Demographics and Interests tracking is only available on Universal Tracking "
+"(analytics.js). You're currently using deprecated ga.js tracking. We "
+"recommend switching to analytics.js, as it is significantly more accurate "
+"than ga.js, and allows for additional functionality (like the more accurate "
+"Javascript based events tracking we offer). Further Google Analytics has "
+"deprecated support for ga.js, and it may stop working at any time when "
+"Google decides to disable it from their server. To switch to using the newer "
+"Universal Analytics (analytics.js) %1$sclick here%2$s."
 msgstr ""
 
-#: vendor/yoast/license-manager/class-plugin-license-manager.php:75
+#: lite/includes/admin/addons.php:115
+#, php-format
 msgid ""
-"%s is network activated, please contact your site administrator to manage "
-"the license."
+"Enhanced Link Attribution tracking is only available on Universal Tracking "
+"(analytics.js). You're currently using deprecated ga.js tracking. We "
+"recommend switching to analytics.js, as it is significantly more accurate "
+"than ga.js, and allows for additional functionality (like the more accurate "
+"Javascript based events tracking we offer). Further Google Analytics has "
+"deprecated support for ga.js, and it may stop working at any time when "
+"Google decides to disable it from their server. To switch to using the newer "
+"Universal Analytics (analytics.js) %1$sclick here%2$s."
 msgstr ""
 
-#: vendor/yoast/license-manager/class-theme-license-manager.php:34
-#: vendor/yoast/license-manager/samples/sample-plugin.php:53
-msgid "%s License"
+#: lite/includes/admin/addons.php:120
+msgid "Subdomain tracking:"
 msgstr ""
 
-#: vendor/yoast/license-manager/class-theme-license-manager.php:34
-msgid "Theme License"
-msgstr ""
-
-#: vendor/yoast/license-manager/class-theme-update-manager.php:96
+#: lite/includes/admin/addons.php:121
+#, php-format
 msgid ""
-"Updating this theme will lose any customizations you have made. 'Cancel' to "
-"stop, 'OK' to update."
-msgstr ""
-
-#: vendor/yoast/license-manager/class-theme-update-manager.php:101
-msgid ""
-"<strong>%s version %s</strong> is available. <a href=\"%s\" "
-"class=\"thickbox\" title=\"%s\">Check out what's new</a> or <a href=\"%s\" "
-"%s>update now</a>."
-msgstr ""
-
-#: vendor/yoast/license-manager/class-update-manager.php:83
-msgid "%s failed to check for updates because of the following error: <em>%s</em>"
-msgstr ""
-
-#: vendor/yoast/license-manager/class-update-manager.php:153
-msgid ""
-"This site has not been activated properly on yoast.com and thus cannot "
-"check for future updates. Please activate your site with a valid license "
-"key."
-msgstr ""
-
-#: vendor/yoast/license-manager/views/form.php:15
-msgid ""
-"We couldn't create a connection to our API to verify your license key(s). "
-"Please ask your hosting company to allow outgoing connections from your "
-"server to %s."
-msgstr ""
-
-#: vendor/yoast/license-manager/views/form.php:19
-msgid ""
-"Your server has an outdated version of the PHP module cURL (Version: %s). "
-"Please ask your hosting company to update this to a recent version of cURL. "
-"You can read more about that in our %sKnowledge base%s."
-msgstr ""
-
-#: vendor/yoast/license-manager/views/form.php:31
-msgid "License status"
-msgstr ""
-
-#: vendor/yoast/license-manager/views/form.php:41
-msgid "Toggle license status"
-msgstr ""
-
-#: vendor/yoast/license-manager/views/form.php:45
-msgid "Deactivate License"
-msgstr ""
-
-#: vendor/yoast/license-manager/views/form.php:46
-msgid "(deactivate your license so you can activate it on another WordPress site)"
-msgstr ""
-
-#: vendor/yoast/license-manager/views/form.php:52
-msgid "Please enter a license key in the field below first."
-msgstr ""
-
-#: vendor/yoast/license-manager/views/form.php:60
-msgid "License Key"
-msgstr ""
-
-#: vendor/yoast/license-manager/views/form.php:62
-msgid "Paste your %s license key here.."
-msgstr ""
-
-#: vendor/yoast/license-manager/views/form.php:64
-msgid "You defined your license key using the %s PHP constant."
-msgstr ""
-
-#: vendor/yoast/license-manager/views/form.php:81
-msgid "Your %s license will expire on %s."
-msgstr ""
-
-#: vendor/yoast/license-manager/views/form.php:84
-msgid "%sRenew your license now%s."
+"This allows you to set the domain that's set by %1$s for tracking "
+"subdomains. If empty, this will not be set. Can be used to set localhost for "
+"ga.js tracking."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-msgid "Google Analytics by Yoast"
+msgid "Google Analytics for WordPress by MonsterInsights"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
 msgid ""
-"https://yoast.com/wordpress/plugins/google-analytics/#utm_source=wordpress&"
-"utm_medium=plugin&utm_campaign=wpgaplugin&utm_content=v504"
+"https://www.monsterinsights.com/?"
+"utm_source=wordpress&utm_medium=plugin&utm_campaign=wpmipluginpro&utm_content=v600"
 msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"This plugin makes it simple to add Google Analytics to your WordPress site, "
-"adding lots of features, e.g. error page, search result and automatic "
-"outgoing links and download tracking."
-msgstr ""
-
-#. Author of the plugin/theme
-msgid "Team Yoast"
+"The best Google Analytics plugin for WordPress. See how visitors find and "
+"use your website, so you can keep them coming back. Simply put, get stats "
+"that matter."
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://yoast.com/"
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:138
-msgctxt ""
-"_START_, _END_ and _TOTAL_ will be replaced by JS (See: "
-"http://datatables.net/reference/option/language.info)"
-msgid "Showing _START_ to _END_ of _TOTAL_ rows"
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:140
-msgctxt ""
-"_MAX_ will be replaced by JS (See: "
-"http://datatables.net/reference/option/language.infoFiltered)"
-msgid "(filtered from _MAX_ total rows)"
-msgstr ""
-
-#: admin/dashboards/class-admin-dashboards.php:141
-msgctxt "_MAX_ will be replaced by JS"
-msgid "Show _MENU_ rows"
+msgid "https://www.monsterinsights.com/"
 msgstr ""
