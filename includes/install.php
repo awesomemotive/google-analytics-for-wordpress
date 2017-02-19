@@ -78,9 +78,9 @@ class MonsterInsights_Install {
 			update_option( 'monsterinsights_db_version', '6.0.0' );
 			
 		} else { // if existing install
-			//if ( version_compare( $version, '6.1.0', '<' ) ) {
-			//	$this->v610_upgrades();
-			//}
+			if ( version_compare( $version, '6.0.2', '<' ) ) {
+				$this->v602_upgrades();
+			}
 			// @todo: doc as nonpublic
 			
 			update_option( 'monsterinsights_version_upgraded_from', $version );
@@ -391,9 +391,6 @@ class MonsterInsights_Install {
 			if ( isset( $options['custom_metrics'] ) ) {
 				unset( $options['custom_metrics'] );
 			}	
-			if ( isset( $options['manual_ua_code_field'] ) ) {
-				unset( $options['manual_ua_code_field'] );
-			}	
 			if ( isset( $options['track_full_url'] ) ) {
 				unset( $options['track_full_url'] );
 			}	
@@ -475,13 +472,14 @@ class MonsterInsights_Install {
 					$options['cron_last_run'] = strtotime("-25 hours");
 				} else {
 					// if UA in manual code field, remove analytics profile fields if set
-					if ( ! empty( $options['manual_ua_code' ] ) ) {
+					if ( ! empty( $options['manual_ua_code_field' ] ) ) {
 						if ( isset( $options['analytics_profile_code'] ) ) {
 							unset( $options['analytics_profile_code'] );
 						}
 						if ( isset( $options['analytics_profile'] ) ) {
 							unset( $options['analytics_profile'] );
 						}
+						$options['manual_ua_code'] = $options['manual_ua_code_field'];
 						delete_option( 'yoast-ga-access_token' );
 						delete_option( 'yoast-ga-refresh_token' );
 						delete_option( 'yst_ga_api' );
@@ -516,6 +514,10 @@ class MonsterInsights_Install {
 						delete_option( 'yst_ga_api' );
 					}
 				}
+			
+			if ( isset( $options['manual_ua_code_field'] ) ) {
+				unset( $options['manual_ua_code_field'] );
+			}
 
 		// oAuth Stir Data Tank
 			// Will happen automatically as cron_last_run set to 25 hours ago
@@ -578,8 +580,7 @@ class MonsterInsights_Install {
 		return array(
 			'analytics_profile'          => '',
 			'analytics_profile_code'     => '',
-			'manual_ua_code'             => 0,
-			'manual_ua_code_field'       => '',
+			'manual_ua_code'             => '',
 			'track_internal_as_outbound' => 0,
 			'track_internal_as_label'    => '',
 			'track_outbound'             => 1,
@@ -604,6 +605,30 @@ class MonsterInsights_Install {
 		);
 	}
 
+	/**
+	 * MonsterInsights Version 6.0.2 upgrades.
+	 *
+	 * This detects if a manual auth code is in the Yoast settings, and not
+	 * in the MI settings, and that oAuth hasn't been performed (caused by the
+	 * manual ua code not being transferred during the 6.0 upgrade routine)
+	 * and automatically fixes it.
+	 *
+	 * @since 6.0.2
+	 * @access public
+	 * 
+	 * @return void
+	 */
+	public function v602_upgrades() {
+		$options = get_option( 'yst_ga', array() );
+		if ( ( empty( $this->new_settings[ 'manual_ua_code'] ) || $this->new_settings[ 'manual_ua_code']  === '1' )  &&  
+			 empty( $this->new_settings[ 'analytics_profile_code'] ) &&
+			 ! empty( $options ) &&
+			 is_array( $options ) &&
+			 ! empty( $options['ga_general']['manual_ua_code_field'] )
+		) {
+			$this->new_settings['manual_ua_code'] = $options['ga_general']['manual_ua_code_field'];
+		}
+	}
 
 	/**
 	 * MonsterInsights Version 6.1 upgrades.
