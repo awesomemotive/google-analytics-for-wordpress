@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.9
 Tested up to: 4.7.2
-Stable tag: 6.0.1
+Stable tag: 6.0.2
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -136,6 +136,9 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+
+= 6.0.2, February 19, 2017 =
+* Fixed: Upgrade routine could drop manual UA codes in certain cases. If you upgraded to 6.0.0 or 6.0.1 and it lost the manual UA code, installing this update will automatically restore the UA code entered as long as you haven't used the oAuth or re-entered the manual UA code.
 
 = 6.0.1, February 19, 2017 =
 * Fixed: Typo that caused an issue with PHP 7 installs.

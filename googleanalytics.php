@@ -6,7 +6,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/
  *
- * Version:             6.0.1
+ * Version:             6.0.2
  * Requires at least:   3.9.0
  * Tested up to:        4.7.2
  *
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '6.0.1';
+	public $version = '6.0.2';
 
 	/**
 	 * Plugin file.
@@ -177,7 +177,7 @@ final class MonsterInsights_Lite {
 
 			// This does the version to version background upgrade routines and initial install
 			$mi_version = get_option( 'monsterinsights_current_version', '5.5.3' );
-			if ( version_compare( $mi_version, '6.0.0', '<' ) ) {
+			if ( version_compare( $mi_version, '6.0.2', '<' ) ) {
 				monsterinsights_lite_call_install_and_upgrade();
 			}
 
