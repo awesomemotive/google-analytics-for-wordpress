@@ -113,7 +113,7 @@ function monsterinsights_disabled_user_group( ) {
     $user      = wp_get_current_user();
     $disabled  = false;
 
-    $roles     = monsterinsights_get_option( 'ignore_roles', array() );
+    $roles     = monsterinsights_get_option( 'ignore_users', array() );
 
     if ( ! empty( $roles ) && is_array( $roles ) ) {
         foreach ( $roles as $role ) {

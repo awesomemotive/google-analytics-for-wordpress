@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.9
 Tested up to: 4.7.2
-Stable tag: 6.0.2
+Stable tag: 6.0.4
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -136,6 +136,21 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+
+= 6.0.4, February 20, 2017 =
+* Tweak: monsterinsights_delete_options now checks to ensure an array is passed in
+* Tweak: The reporting class now has many more object property checks.
+* Fixed: In install if WP version not supported or if MI Pro was active, the plugin attempted to call a property of the plugin object which didn't exist.
+* Fixed: In the deactivate/uninstall routines, MI attempted to use a method of a class object which might not exist, as it might not be the active instance. Better instance handling has been added as well as many more exists checks have been added througought the plugin.
+* Fixed: Conflicting loads when both MI Pro and Lite are installed. Note, you should only have Pro installed if you want to use it. That being said, we've done extensive testing to ensure we've handled all of the edge cases surrounding this. This could also lead to issues where it would be impossible to remove Lite and/or Pro from a site if both were installed.
+* Fixed: Conflicts with the Pinnacle theme, which loads it's CSS file (with overrides to literally all select2 inputs not just the ones it adds) across the entire admin. This lead to an issue where in the Google Auth, a user might not have been able to see (or could appear with wacky styling) the dropdown of profiles to select. If you cannot see this dropdown after authenticating, let us know as its most likely a simple plugin or theme conflict on CSS styling.
+* Fixed: The notices to deactivate/uninstall MI Lite/Pro when the other one were installed had an errant extra quotation mark, and they're now more specific about the action to take.
+* Fixed: For some users, the setting for user role exclusion was not working. This has been corrected.
+* Fixed: A redirect issue that was looping for some users. The code that does this, while working for most, doesn't for some. We've removed it until a full investigation can be completed.
+
+= 6.0.3, February 20, 2017 =
+* Fixed: Path for fontawesome font files was incorrect
+* Fixed: Notice in the install routine for the $version variable not being set.
 
 = 6.0.2, February 19, 2017 =
 * Fixed: Upgrade routine could drop manual UA codes in certain cases. If you upgraded to 6.0.0 or 6.0.1 and it lost the manual UA code, installing this update will automatically restore the UA code entered as long as you haven't used the oAuth or re-entered the manual UA code.
