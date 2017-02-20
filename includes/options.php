@@ -224,7 +224,7 @@ function monsterinsights_delete_option( $key = '' ) {
  */
 function monsterinsights_delete_options( $keys = array() ) {
 	// If no keys, exit
-	if ( empty( $keys ) ){
+	if ( empty( $keys ) || ! is_array( $keys ) ){
 		return false;
 	}
 

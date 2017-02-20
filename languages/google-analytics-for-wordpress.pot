@@ -5,14 +5,14 @@ msgstr ""
 "Project-Id-Version: MonsterInsights Lite\n"
 "Report-Msgid-Bugs-To: https://github.com/awesomemotive/monsterinsights/"
 "issues\n"
-"POT-Creation-Date: 2017-02-18 20:50-0500\n"
+"POT-Creation-Date: 2017-02-20 13:23-0500\n"
 "PO-Revision-Date: 2016-07-21 17:01-0400\n"
 "Last-Translator: Chris Christoff <support@monsterinsights.com>\n"
 "Language-Team: Chris Christoff <support@monsterinsights.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: googleanalytics.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -57,9 +57,9 @@ msgstr ""
 #: googleanalytics.php:391
 #, php-format
 msgid ""
-"Please %1$sdeactivate%2$s the MonsterInsights Pro Plugin. Your lite version "
-"of MonsterInsights may not work as expected until the Pro version is "
-"deactivated."
+"Please %1$uninstall%2$s the MonsterInsights Lite Plugin. Your Pro version of "
+"MonsterInsights may not work as expected until the Lite version is "
+"uninstalled."
 msgstr ""
 
 #: googleanalytics.php:531
@@ -73,9 +73,9 @@ msgstr ""
 #: googleanalytics.php:536
 #, php-format
 msgid ""
-"Please deactivate MonsterInsights Pro before activating MonsterInsights "
-"Lite. The Lite version has not been activated. %2$sClick here to return to "
-"the Dashboard%2$s."
+"Please uninstall and remove MonsterInsights Pro before activating "
+"MonsterInsights Lite. The Lite version has not been activated. %1$sClick "
+"here to return to the Dashboard%2$s."
 msgstr ""
 
 #: includes/admin/admin.php:36 includes/admin/admin.php:39
@@ -2334,8 +2334,7 @@ msgstr ""
 #. Description of the plugin/theme
 msgid ""
 "The best Google Analytics plugin for WordPress. See how visitors find and "
-"use your website, so you can keep them coming back. Simply put, get stats "
-"that matter."
+"use your website, so you can keep them coming back."
 msgstr ""
 
 #. Author URI of the plugin/theme

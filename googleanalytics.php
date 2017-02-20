@@ -6,7 +6,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/
  *
- * Version:             6.0.2
+ * Version:             6.0.4
  * Requires at least:   3.9.0
  * Tested up to:        4.7.2
  *
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '6.0.2';
+	public $version = '6.0.4';
 
 	/**
 	 * Plugin file.
@@ -157,7 +157,7 @@ final class MonsterInsights_Lite {
 			}
 	
 			// Detect Pro version and return early
-			if ( class_exists( 'MonsterInsights' ) ) {
+			if ( class_exists( 'MonsterInsights' ) && defined( 'GAWP_VERSION' ) ) {
 				add_action( 'admin_notices', array( self::$instance, 'monsterinsights_pro_notice' ) );
 				return;
 			}
@@ -367,7 +367,7 @@ final class MonsterInsights_Lite {
 		}
 		?>
 		<div class="error">
-			<p><?php echo sprintf( esc_html__( 'Sorry, but your version of WordPress does not meet MonsterInsights\'s required version of %1$s3.8%2$s to run properly. The plugin not been activated. %3$sClick here to return to the Dashboard%4$s.', 'google-analytics-by-wordpress' ), '<strong>', '</strong>', '<a href="' . $url . '">"', '</a>' ); ?></p>
+			<p><?php echo sprintf( esc_html__( 'Sorry, but your version of WordPress does not meet MonsterInsights\'s required version of %1$s3.8%2$s to run properly. The plugin not been activated. %3$sClick here to return to the Dashboard%4$s.', 'google-analytics-for-wordpress' ), '<strong>', '</strong>', '<a href="' . $url . '">', '</a>' ); ?></p>
 		</div>
 		<?php
 	}
@@ -388,7 +388,7 @@ final class MonsterInsights_Lite {
 		}
 		?>
 		<div class="error">
-			<p><?php echo sprintf( esc_html__( 'Please %1$sdeactivate%2$s the MonsterInsights Pro Plugin. Your lite version of MonsterInsights may not work as expected until the Pro version is deactivated.', 'google-analytics-for-wordpress' ), '<a href="' . $url . '">"', '</a>' ); ?></p>
+			<p><?php echo sprintf( esc_html__( 'Please %1$uninstall%2$s the MonsterInsights Lite Plugin. Your Pro version of MonsterInsights may not work as expected until the Lite version is uninstalled.', 'google-analytics-for-wordpress' ), '<a href="' . $url . '">', '</a>' ); ?></p>
 		</div>
 		<?php
 
@@ -528,12 +528,12 @@ function monsterinsights_lite_activation_hook( $network_wide ) {
 	
 	if ( version_compare( $wp_version, '3.8', '<' ) && ( ! defined( 'MONSTERINSIGHTS_FORCE_ACTIVATION' ) || ! MONSTERINSIGHTS_FORCE_ACTIVATION ) ) {
 		deactivate_plugins( plugin_basename( __FILE__ ) );
-		wp_die( sprintf( esc_html__( 'Sorry, but your version of WordPress does not meet MonsterInsight\'s required version of %1$s3.8%2$s to run properly. The plugin not been activated. %3$sClick here to return to the Dashboard%4$s.', 'google-analytics-by-wordpress' ), '<strong>', '</strong>', '<a href="' . $url . '">"', '</a>' ) );
+		wp_die( sprintf( esc_html__( 'Sorry, but your version of WordPress does not meet MonsterInsight\'s required version of %1$s3.8%2$s to run properly. The plugin not been activated. %3$sClick here to return to the Dashboard%4$s.', 'google-analytics-by-wordpress' ), '<strong>', '</strong>', '<a href="' . $url . '">', '</a>' ) );
 	}
 	
 	if ( class_exists( 'MonsterInsights' ) ) {
 		deactivate_plugins( plugin_basename( __FILE__ ) );
-		wp_die( sprintf( esc_html__( 'Please deactivate MonsterInsights Pro before activating MonsterInsights Lite. The Lite version has not been activated. %2$sClick here to return to the Dashboard%2$s.', 'google-analytics-by-wordpress' ), '<a href="' . $url . '">"', '</a>' ) );
+		wp_die( sprintf( esc_html__( 'Please uninstall and remove MonsterInsights Pro before activating MonsterInsights Lite. The Lite version has not been activated. %1$sClick here to return to the Dashboard%2$s.', 'google-analytics-by-wordpress' ), '<a href="' . $url . '">', '</a>' ) );
 	}
 }
 register_activation_hook( __FILE__, 'monsterinsights_lite_activation_hook' );
@@ -547,9 +547,12 @@ register_activation_hook( __FILE__, 'monsterinsights_lite_activation_hook' );
  * @return 	void
  */
 function monsterinsights_lite_deactivation_hook( $network_wide ) {
-
-	$instance = MonsterInsights_Lite::get_instance();
-
+	// Note, if both MI Pro and Lite are active, this is an MI Pro instance
+	// Therefore MI Lite can only use functions of the instance common to
+	// both plugins. If it needs to be pro specific, then include a file that
+	// has that method.
+	$instance = MonsterInsights();
+	
 	if ( is_multisite() && $network_wide ) {
 		$site_list = get_sites();
 		$options = array(
@@ -569,7 +572,6 @@ function monsterinsights_lite_deactivation_hook( $network_wide ) {
 		);
 		monsterinsights_delete_options( $options );
 	}
-
 }
 register_deactivation_hook( __FILE__, 'monsterinsights_lite_deactivation_hook' );
 
@@ -583,8 +585,11 @@ register_deactivation_hook( __FILE__, 'monsterinsights_lite_deactivation_hook' )
  */
 function monsterinsights_lite_uninstall_hook( $network_wide ) {
 
-	$instance = MonsterInsights_lite::get_instance();
-
+	$instance = MonsterInsights();
+	// Note, if both MI Pro and Lite are active, this is an MI Pro instance
+	// Therefore MI Lite can only use functions of the instance common to
+	// both plugins. If it needs to be pro specific, then include a file that
+	// has that method.
 	if ( is_multisite() && $network_wide ) {
 		delete_site_option( 'monsterinsights_license' );
 		delete_site_option( 'monsterinsights_license_updates' );
@@ -631,7 +636,9 @@ function monsterinsights_lite_uninstall_hook( $network_wide ) {
 		delete_option( 'monsterinsights_lite_refresh_token' );
 
 		// Destroy the data
-		$instance->reports->delete_aggregate_data();
+		if ( isset( $instance->reports ) && method_exists( $instance->reports,'delete_aggregate_data' ) ) {
+			$instance->reports->delete_aggregate_data();
+		}
 	}
 
 }
@@ -677,14 +684,14 @@ function monsterinsights_lite_install_and_upgrade() {
 
 	// If the WordPress site doesn't meet the correct WP version requirements, don't activate MonsterInsights
 	if ( version_compare( $wp_version, '3.8', '<' ) ) {
-		if ( is_plugin_active( MonsterInsights_Lite()->basename ) ) {
+		if ( is_plugin_active( plugin_basename( __FILE__ ) ) ) {
 			return;
 		}
 	}
 
 	// Don't run if MI Pro is installed
 	if ( class_exists( 'MonsterInsights' ) ) {
-		if ( is_plugin_active( MonsterInsights_Lite()->basename ) ) {
+		if ( is_plugin_active( plugin_basename( __FILE__ ) ) ) {
 			return;
 		}
 	}

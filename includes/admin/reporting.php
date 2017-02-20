@@ -69,7 +69,7 @@ final class MonsterInsights_Reporting {
 		$this->dashboard_disabled = monsterinsights_get_option( 'dashboards_disabled', false );
 		$this->dashboard_report   = monsterinsights_get_option( 'dashboard_report', 'overview' );
 
-		if ( $this->client->status === 'valid' ) {
+		if ( isset( $this->client->status ) && $this->client->status === 'valid' ) {
 			// Cron actions
 				// Add cron if its not there
 				add_action( 'wp', array( $this, 'schedule_cron' ) );
@@ -173,7 +173,9 @@ final class MonsterInsights_Reporting {
 		 * not be used by other developers. This hook's behavior may be modified
 		 * or the hook may be removed at any time, without warning.
 		 */
-		do_action( 'monsterinsights_delete_aggregate_data', $this->client, $this->client->profile );
+		if ( ! empty( $this->client ) && ! empty( $this->client->profile ) ) {
+			do_action( 'monsterinsights_delete_aggregate_data', $this->client, $this->client->profile );
+		}
 		$options = array(
 			'cron_failed',
 			'cron_last_run',

@@ -105,7 +105,7 @@ class MonsterInsights_Install {
 		update_option( monsterinsights_get_option_name(), $this->new_settings );
 
 		// This is where we redirect to the MI welcome page
-		set_transient( '_monsterinsights_activation_redirect', true, 30 );
+		//set_transient( '_monsterinsights_activation_redirect', true, 30 ); @todo: Investigate
 
 		// There's no code for this function below this. Just an explanation
 		// of the MI core options.
@@ -211,7 +211,7 @@ class MonsterInsights_Install {
 		}
 
 		// Let addons + MI Pro/Lite hook in here. @todo: doc as nonpublic
-		do_action( 'monsterinsights_after_new_install_routine', $version );
+		do_action( 'monsterinsights_after_new_install_routine', MONSTERINSIGHTS_VERSION );
 	}
 
 	/**
@@ -593,7 +593,6 @@ class MonsterInsights_Install {
 			'anonymize_ips'              => 0,
 			'track_download_as'          => 'event',
 			'extensions_of_files'        => 'doc,exe,js,pdf,ppt,tgz,zip,xls',
-			'track_full_url'             => 'domain',
 			'subdomain_tracking'         => '',
 			'tag_links_in_rss'           => 0,
 			'allow_anchor'               => 0,
@@ -602,6 +601,8 @@ class MonsterInsights_Install {
 			'custom_code'                => '',
 			'debug_mode'                 => 0,
 			'anonymous_data'             => 0,
+			'save_setings'               => array(),
+			'view_reports'               => array(),
 		);
 	}
 

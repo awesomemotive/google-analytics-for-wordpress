@@ -242,13 +242,13 @@ function monsterinsights_welcome_redirect() {
 
     $upgrade = get_option( 'monsterinsights_version_upgraded_from' );
     if( ! $upgrade ) { // First time install
-        wp_safe_redirect( admin_url( 'admin.php?page=monsterinsights_settings#monsterinsights-main-tab-general' ) ); exit;
+        //wp_safe_redirect( admin_url( 'admin.php?page=monsterinsights_settings#monsterinsights-main-tab-general' ) ); exit;
     } else { // Update
         return;
         //wp_safe_redirect( admin_url( 'admin.php?page=monsterinsights_settings#monsterinsights-main-tab-general' ) ); exit;
     }
 }
-add_action( 'admin_init', 'monsterinsights_welcome_redirect', 11 );
+//add_action( 'admin_init', 'monsterinsights_welcome_redirect', 11 ); @todo: Investigate
 
 /**
  * When user is on a WPForms related admin page, display footer text

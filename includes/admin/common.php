@@ -168,6 +168,42 @@ function monsterinsights_admin_scripts() {
 add_action( 'admin_enqueue_scripts', 'monsterinsights_admin_scripts' );
 
 /**
+ * Remove Assets that conflict with ours from our screens.
+ *
+ * @since 6.0.4
+ * @access public
+ *
+ * @return null Return early if not on the proper screen.
+ */
+function monsterinsights_remove_conflicting_asset_files() {
+
+	// Get current screen.
+	$screen = get_current_screen();
+	
+	// Bail if we're not on a MonsterInsights screen.
+	if ( empty( $screen->id ) || strpos( $screen->id, 'monsterinsights' ) === false ) {
+		return;
+	}
+	
+	$styles = array(
+		'kt_admin_css', // Pinnacle theme
+	);
+	
+	$scripts = array(
+		'kad_admin_js', // Pinnacle theme
+	);
+
+	foreach ( $styles as $style ) {
+		wp_dequeue_style( $style ); // Remove CSS file from MI screen
+	}
+
+	foreach ( $scripts as $script ) {
+		wp_dequeue_script( $script ); // Remove JS file from MI screen
+	}
+}
+add_action( 'admin_enqueue_scripts', 'monsterinsights_remove_conflicting_asset_files', 9999 );
+
+/**
  * Remove non-MI notices from MI page.
  *
  * @since 6.0.0
