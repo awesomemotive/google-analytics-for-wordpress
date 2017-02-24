@@ -6,7 +6,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/
  *
- * Version:             6.0.4
+ * Version:             6.0.11
  * Requires at least:   3.9.0
  * Tested up to:        4.7.2
  *
