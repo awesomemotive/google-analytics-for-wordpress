@@ -42,7 +42,7 @@ class MonsterInsights_Tracking {
 		add_action( 'admin_head', array( $this, 'check_for_optout' ) );
 		add_action( 'admin_notices', array( $this, 'monsterinsights_admin_notice' ) );
 		add_filter( 'cron_schedules', array( $this, 'add_schedules' ) );
-		add_action( 'monsterinsights_send_tracking_checkin', array( $this, 'send_checkin' ) );
+		add_action( 'monsterinsights_daily_cron', array( $this, 'send_checkin' ) );
 	}
 
 	/**
@@ -68,7 +68,7 @@ class MonsterInsights_Tracking {
 		$theme_data    = wp_get_theme();
 		$theme         = $theme_data->Name . ' ' . $theme_data->Version;
 		$tracking_mode = monsterinsights_get_option( 'tracking_mode', 'analytics' );
-		$events_mode   = monsterinsights_get_option( 'events_mode', false );
+		$events_mode   = monsterinsights_get_option( 'events_mode', 'none' );
 
 		if ( $tracking_mode === false ) {
 			$tracking_mode = 'analytics';
@@ -240,10 +240,10 @@ class MonsterInsights_Tracking {
 	 * @return void
 	 */
 	public function schedule_send() {
-		// We send once a week (while tracking is allowed) to check in, which can be used to determine active sites
-		if ( ! wp_next_scheduled( 'monsterinsights_weekly_cron' ) ) {
+		// We send once a day (while tracking is allowed) to check in, which can be used to determine active sites
+		if ( ! wp_next_scheduled( 'monsterinsights_daily_cron' ) ) {
 			// Set the next event of fetching data
-			wp_schedule_event( strtotime( date( 'Y-m-d', strtotime( 'tomorrow' ) ) . ' 00:01:30 ' ), 'weekly', 'monsterinsights_send_tracking_checkin' );
+			wp_schedule_event( strtotime( date( 'Y-m-d', strtotime( 'tomorrow' ) ) . ' 00:01:00 ' ), 'daily', 'monsterinsights_daily_cron' );
 		}
 	}
 

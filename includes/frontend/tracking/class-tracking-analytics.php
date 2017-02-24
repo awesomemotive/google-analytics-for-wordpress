@@ -182,27 +182,26 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 <!-- This site uses the Google Analytics by MonsterInsights plugin v<?php echo MONSTERINSIGHTS_VERSION; ?> - Using Analytics tracking - https://www.monsterinsights.com/ -->
 <?php if ( monsterinsights_get_ua() ) { ?>
 <script type="text/javascript" data-cfasync="false">
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','<?php echo $src; ?>','__gaTracker');
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','<?php echo $src; ?>','__gaTracker');
 
-	<?php
-	if ( current_user_can( 'manage_options' ) && $is_debug_mode ) {
-		echo 'window.ga_debug = {trace: true};';
-	}
-	echo $compat;
-	if ( count( $options ) >= 1 ) {
-		foreach ( $options as $item ) {
-			if ( ! is_array( $item ) ) {
-				echo '  __gaTracker(' . $item . ");\n";
-			} else if ( ! empty ( $item['value'] ) ) {
-				echo '  ' . $item['value'] . "\n";
-			}
+<?php
+if ( current_user_can( 'manage_options' ) && $is_debug_mode ) {
+	echo 'window.ga_debug = {trace: true};';
+}
+echo $compat;
+if ( count( $options ) >= 1 ) {
+	foreach ( $options as $item ) {
+		if ( ! is_array( $item ) ) {
+			echo '	__gaTracker(' . $item . ");\n";
+		} else if ( ! empty ( $item['value'] ) ) {
+			echo '	' . $item['value'] . "\n";
 		}
 	}
-	?>
-
+}
+?>
 </script>
 <?php } else {  ?>
 <!-- No UA code set -->

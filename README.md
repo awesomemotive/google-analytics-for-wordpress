@@ -198,7 +198,7 @@ We declare these for code that relies on old constants. Please upgrade your code
 These rules dictate which Google Analytics UA code is used. 
 The order of priority is as follows (top of list has most priority):
 
-- `monsterinsights_ga_ua` filter
+- `monsterinsights_get_ua` filter
 - MonsterInsights per site settings for manual UA or oAuth retrieved UA
 	- Note, these settings are hidden when MONSTERINSIGHTS_GA_UA is defined
 - `MONSTERINSIGHTS_GA_UA` constant
@@ -207,7 +207,7 @@ The order of priority is as follows (top of list has most priority):
 
 As a result of this order of priority, on MS installs you can use the `MONSTERINSIGHTS_MS_GA_UA` constant to 
 set the default UA for all of the subsites of an MS install, and then override that on a subsite basis using either
-the UI in the settings panel, the `MONSTERINSIGHTS_GA_UA` constant or the `monsterinsights_ga_ua` filter. 
+the UI in the settings panel, the `MONSTERINSIGHTS_GA_UA` constant or the `monsterinsights_get_ua` filter. 
 
 Let's say you run a really large MS install, like for a university, and all of your sites are {sitename}.mysite.com or 
 mysite.com/{example}/. In this case, you can quickly deploy MI for your entire network by network activating MonsterInsights

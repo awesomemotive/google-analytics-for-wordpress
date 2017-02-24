@@ -63,6 +63,7 @@ class MonsterInsights_Install {
 
 		$version = get_option( 'monsterinsights_current_version', false );
 		$yoast   = get_option( 'yst_ga', false );
+		$cachec  = false; // have we forced an object cache to be cleared already (so we don't clear it unnecessarily)
 
 		// if new install and have not used Yoast previously
 		if ( ! $version && ! $yoast ) {
@@ -76,10 +77,23 @@ class MonsterInsights_Install {
 			$this->upgrade_from_yoast();
 			// This is the version used for MI upgrade routines.
 			update_option( 'monsterinsights_db_version', '6.0.0' );
+
+			if ( ! $cachec ) {
+				wp_cache_flush();
+				$cachec = true;
+			}
 			
 		} else { // if existing install
 			if ( version_compare( $version, '6.0.2', '<' ) ) {
 				$this->v602_upgrades();
+			}
+			if ( version_compare( $version, '6.0.11', '<' ) ) {
+				$this->v6011_upgrades();
+
+				if ( ! $cachec ) {
+					wp_cache_flush();
+					$cachec = true;
+				}
 			}
 			// @todo: doc as nonpublic
 			
@@ -632,6 +646,33 @@ class MonsterInsights_Install {
 	}
 
 	/**
+	 * MonsterInsights Version 6.0.11 upgrades.
+	 *
+	 * This upgrade routine finds and removes the old crons if they exist.
+	 *
+	 * @since 6.0.11
+	 * @access public
+	 * 
+	 * @return void
+	 */
+	public function v6011_upgrades() {
+		// If old tracking checkin exists, remove it
+		if ( wp_next_scheduled( 'monsterinsights_send_tracking_checkin' ) ) {
+			wp_clear_scheduled_hook( 'monsterinsights_send_tracking_checkin' );
+		}
+
+		// Remove Weekly cron
+		if ( wp_next_scheduled( 'monsterinsights_weekly_cron' ) ) {
+			wp_clear_scheduled_hook( 'monsterinsights_weekly_cron' );
+		}
+
+		// Remove Yoast cron
+		if ( wp_next_scheduled( 'yst_ga_aggregate_data' ) ) {
+			wp_clear_scheduled_hook( 'yst_ga_aggregate_data' );
+		}
+	}
+
+	/**
 	 * MonsterInsights Version 6.1 upgrades.
 	 *
 	 * This function does the
@@ -649,9 +690,8 @@ class MonsterInsights_Install {
 		 * Running List of Things To Do In 6.1.0's Upgrade Routine
 		 *
 		 * 1. Drop Yoast yst_ga options if the upgraded from option === 6.0 or higher
-		 * 2. Remove the Yoast scheduled cron event if the upgraded from option === 6.0 or higher
-		 * 3. Remove yst_ga support from helper options
-		 * 4. Remove track_full_url
+		 * 2. Remove yst_ga support from helper options
+		 * 3. Remove track_full_url
 		 */
 	}
 }

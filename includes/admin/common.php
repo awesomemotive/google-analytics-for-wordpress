@@ -187,6 +187,17 @@ function monsterinsights_remove_conflicting_asset_files() {
 	
 	$styles = array(
 		'kt_admin_css', // Pinnacle theme
+		'select2-css', // Schema theme
+		'tweetshare_style', // TweetShare - Click To Tweet
+		'tweetshare_custom_style', // TweetShare - Click To Tweet
+		'tweeetshare_font_script', // TweetShare - Click To Tweet
+		'tweeetshare_jquery_script',  // TweetShare - Click To Tweet
+		'tweeetshare_jqueryui_script', // TweetShare - Click To Tweet
+		'tweeetshare_custom_script', // TweetShare - Click To Tweet
+		'tweeetshare_custome_style', // TweetShare - Click To Tweet
+		'tweeetshare_notice_style', // TweetShare - Click To Tweet
+		'tweeetshare_theme_style', // TweetShare - Click To Tweet
+		'tweeetshare_tweet_box_style', // TweetShare - Click To Tweet
 	);
 	
 	$scripts = array(
