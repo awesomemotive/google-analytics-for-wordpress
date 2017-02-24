@@ -26,7 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return array Array of the options to use.
  */
-function monsterinsights_tracking_script( ) {   
+function monsterinsights_tracking_script( ) {
+
     $tracking_mode = monsterinsights_get_option( 'tracking_mode', 'analytics' );
     require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/class-tracking-abstract.php';
     $mode = '';
@@ -80,6 +81,7 @@ function monsterinsights_tracking_script( ) {
     do_action( 'monsterinsights_tracking_after', $mode );
 }
 add_action( 'wp_head', 'monsterinsights_tracking_script', 8 );
+add_action( 'login_head', 'monsterinsights_tracking_script', 8 );
 
 /**
  * Get frontend tracking options.
@@ -96,18 +98,20 @@ add_action( 'wp_head', 'monsterinsights_tracking_script', 8 );
 function monsterinsights_events_tracking( ) {
     $events_mode = monsterinsights_get_option( 'events_mode', false );
     $tracking_mode = monsterinsights_get_option( 'tracking_mode', false );
+    $disabled_user = monsterinsights_disabled_user_group();
 
-    if ( ! monsterinsights_disabled_user_group() && $events_mode === 'php' && ( $tracking_mode === 'ga' || $tracking_mode === 'analytics' ) ) {
+    if ( ! $disabled_user && $events_mode === 'php' && ( $tracking_mode === 'ga' || $tracking_mode === 'analytics' ) ) {
         require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/events/class-events-php.php';
         new MonsterInsights_Events_PHP();
-    } else if ( ! monsterinsights_disabled_user_group() && $events_mode === 'js' && $tracking_mode === 'analytics' ) {
+    } else if ( ! $disabled_user && $events_mode === 'js' && $tracking_mode === 'analytics' ) {
         require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/events/class-events-js.php';
         new MonsterInsights_Events_JS();
     } else {
         // User is in the disabled group or events mode is off
     }
 }
-add_action( 'template_redirect', 'monsterinsights_events_tracking' );
+add_action( 'template_redirect', 'monsterinsights_events_tracking', 9 );
+add_action( 'login_head', 'monsterinsights_events_tracking', 8 );
 
 function monsterinsights_disabled_user_group( ) {
     $user      = wp_get_current_user();

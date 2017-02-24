@@ -98,6 +98,7 @@ final class MonsterInsights_GA {
 		$this->status        = $this->get_status();
 		$this->base 		 = MonsterInsights();
 
+
 		// Show any info/error notices
 		$this->get_notices();
 
@@ -108,7 +109,7 @@ final class MonsterInsights_GA {
 		add_action( 'admin_init', array( $this, 'deactivate_google' ) ); // Deactivate
 	}
 
-	private function get_client() { 
+	private function get_client() {
 		return ! empty( $this->client ) ? $this->client : monsterinsights_create_client();
 	}
 
@@ -150,24 +151,17 @@ final class MonsterInsights_GA {
 			$failed   = monsterinsights_get_option( 'cron_failed', false );
 			$dash_dis = monsterinsights_get_option( 'dashboards_disabled', false );
 
-			if ( $this->is_wp_blocking_google() || $this->is_google_on_blacklist() ) {
-				$status = 'blocked';
-				return $status;
-			}
-
 			// See if issue connecting or expired
 			if ( ! $dash_dis && $failed && ( $last_run === false || monsterinsights_hours_between( $last_run ) >= 48 )  ) { 
 				$status = 'blocked';
-
-				if ( ! $this->client->getAccessToken() ) {
-					$status = 'expired';
-				}
-				return $status;
 			}
 
-			// Check to make sure access token is there
-			if ( ! $this->client->getAccessToken() ) {
+			$access_token = $this->client->get_access_token();
+
+			// Check to make sure access token is there and not expired
+			if ( empty( $access_token ) || empty( $access_token['expires'] ) || current_time( 'timestamp' ) >= $access_token['expires'] ) {
 				$status = 'expired';
+				return $status;
 			}
 
 			// See if needs permissions
@@ -251,10 +245,8 @@ final class MonsterInsights_GA {
 	 *
 	 * @return array
 	 */
-	public function get_profiles() { // @todo: this needs exception handling for a 401 login required
-		$accounts = $this->format_profile_call(
-			$this->do_request( 'https://www.googleapis.com/analytics/v3/management/accountSummaries' )
-		);
+	public function get_profiles() { // @todo: this needs exception handling for a 401 login required		
+		$accounts = $this->format_profile_call();
 		if ( is_array( $accounts ) ) {
 			return $accounts;
 		} else {
@@ -298,53 +290,72 @@ final class MonsterInsights_GA {
 	 *
 	 * @return mixed
 	 */
-	private function format_profile_call( $response ) {
+	private function format_profile_call() {
+		$accounts    = array();
+		$start_index = 1;
+		$paginate    = false;
+		$continue    = true;
+		while ( $continue ) {
+			$body     = array(
+				'max-results'  => 1000,
+				'start-index'  => $paginate ? $start_index + 1000 : $start_index,
+			);
+			if ( $paginate ) {
+				$start_index = $start_index + 1000;
+			}
+			$response = $this->client->do_request( 'https://www.googleapis.com/analytics/v3/management/accounts/~all/webproperties/~all/profiles', false, 'GET', $body );
+			if ( ! empty( $response ) ) {
+				$response = array(
+					'response' => array( 'code' => $this->client->get_http_response_code() ),
+					'body'     => json_decode( $response->getResponseBody(), true ),
+				);
+			} else {
+				break;
+			}
+			
+			if ( isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
+				if ( ! empty( $response['body']['items'] ) && is_array( $response['body']['items'] ) ) {
+					foreach ( $response['body']['items'] as $item ) {
 
-		if ( isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
-			if ( ! empty( $response['body']['items'] ) && is_array( $response['body']['items'] ) ) {
-				$accounts = array();
-
-				foreach ( $response['body']['items'] as $item ) {
-					// Check if webProperties is set
-					if ( isset( $item['webProperties'] ) ) {
-						$profiles = array();
-
-						foreach ( $item['webProperties'] as $property_key => $property ) {
-							$profiles[ $property_key ] = array(
-								'id'    => $property['id'],
-								'name'  => $property['name'],
-								'items' => array(),
+						// Only deal with web properties, not apps.
+						if ( isset( $item['type'] ) && 'WEB' != $item['type'] ) {
+							continue;
+						}
+						
+						if ( empty( $accounts[ $item['accountId'] ] ) ) {
+							$accounts[ $item['accountId'] ] = array( 
+								'id'          => $item['accountId'],
+								'ua_code'     => $item['webPropertyId'],
+								'parent_name' => $item['websiteUrl'],
+								'items'       => array(),
 							);
-
-							// Check if profiles is set
-							if ( isset( $property['profiles'] ) ) {
-								foreach ( $property['profiles'] as $key => $profile ) {
-									$profiles[ $property_key ]['items'][ $key ] = array_merge(
-										$profile,
-										array(
-											'name'    => $profile['name'] . ' (' . $property['id'] . ')',
-											'ua_code' => $property['id'],
-										)
-									);
-								}
-							}
 						}
 
-						$accounts[ $item['id'] ] = array(
-							'id'          => $item['id'],
-							'ua_code'     => $property['id'],
-							'parent_name' => $item['name'],
-							'items'       => $profiles,
-						);
+						if ( empty( $accounts[ $item['accountId'] ]['items'][ $item['internalWebPropertyId'] ] ) ) {
+							$accounts[ $item['accountId'] ]['items'][ $item['internalWebPropertyId'] ]= array( 
+								'id'          => $item['webPropertyId'],
+								'name'        => $item['websiteUrl'],
+								'items'       => array(),
+							);
+						}
 
+						if ( empty( $accounts[ $item['accountId'] ]['items'][ $item['internalWebPropertyId'] ]['items'][ $item['id'] ] ) ) {
+							$accounts[ $item['accountId'] ]['items'][ $item['internalWebPropertyId'] ]['items'][ $item['id'] ] = array( 
+								'name'    => $item['name'] . ' (' . $item['webPropertyId'] . ')',
+								'ua_code' => $item['webPropertyId'],
+								'id'      => $item['id'],
+							);
+						}
 					}
 				}
-
-				return $accounts;
+			}
+			if ( isset( $response['body']['totalResults'] ) && $start_index < $response['body']['totalResults'] && ! empty( $response['body']['nextLink'] ) ) {
+				$paginate    = true;
+			} else {
+				$continue   = false;
 			}
 		}
-
-		return false;
+		return $accounts;
 	}
 
 	private function clear_oauth_data() {
@@ -706,7 +717,7 @@ final class MonsterInsights_GA {
 	public function monsterinsights_show_admin_config_expired_notice() {
 		echo '<div class="error"><p>' . 
 			sprintf(
-				esc_html__( 'It seems the authentication for the plugin has expired, please %1$sre-authenticate%2$s with Google Analytics to allow the plugin to fetch data.', 'google-analytics-for-wordpress' ),
+				esc_html__( 'It seems the authentication for the plugin has expired or the connection to Google Analytics is blocked, please try %1$sre-authenticating%2$s with Google Analytics to allow the plugin to fetch data.', 'google-analytics-for-wordpress' ),
 				'<a href="' . admin_url( 'admin.php?page=monsterinsights_settings' ) . '">',
 				'</a>'
 			)
@@ -738,5 +749,4 @@ final class MonsterInsights_GA {
 			)
 		. '</p></div>';
 	}
-
 }

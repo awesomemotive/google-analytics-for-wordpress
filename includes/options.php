@@ -150,7 +150,6 @@ function monsterinsights_update_option( $key = '', $value = false ) {
 	//    $did_update = update_site_option( $option_name, $settings );
 	//} else {
 		$did_update = update_option( $option_name, $settings );
-		update_option( 'yst_ga', $settings ); // Will remove at some point. Please use the helper function instead of calling this option directly.
 	//}
 
 	// If it updated, let's update the global variable
@@ -201,7 +200,6 @@ function monsterinsights_delete_option( $key = '' ) {
 	//    $did_update = update_site_option( 'monsterinsights_settings', $settings );
 	//} else {
 		$did_update = update_option( $option_name, $settings );
-		update_option( 'yst_ga', $settings ); // Will remove at some point. Please use the helper function instead of calling this option directly.
 	//}
 
 	// If it updated, let's update the global variable
@@ -254,7 +252,6 @@ function monsterinsights_delete_options( $keys = array() ) {
 	//    $did_update = update_site_option( 'monsterinsights_settings', $settings );
 	//} else {
 		$did_update = update_option( $option_name, $settings );
-		update_option( 'yst_ga', $settings ); // Will remove at some point. Please use the helper function instead of calling this option directly.
 	//}
 
 	// If it updated, let's update the global variable

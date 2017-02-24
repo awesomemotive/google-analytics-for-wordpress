@@ -55,16 +55,6 @@ class MonsterInsights_GA_Client extends MonsterInsights_GA_Lib_Client {
 
 		// Let's get an access token if we've got a refresh token.
 		$this->refresh_tokens();
-		$token = $this->get_access_token();
-		if ( ! empty( $token ) ) {
-			$token = json_encode( $token );
-
-			try {
-				$this->client->setAccessToken( $token );
-			} catch ( MonsterInsights_GA_Lib_Auth_Exception $exception ) {
-
-			}
-		}
 	}
 
 	/**
@@ -118,11 +108,14 @@ class MonsterInsights_GA_Client extends MonsterInsights_GA_Lib_Client {
 	 *
 	 * @return array
 	 */
-	public function do_request( $target_request_url, $decode_response = false, $request_method = 'GET' ) {
+	public function do_request( $target_request_url, $decode_response = false, $request_method = 'GET', $body = array() ) {
 		// Get response.
-		$response = $this->getAuth()->authenticatedRequest(
-			new MonsterInsights_GA_Lib_Http_Request( $target_request_url, $request_method )
-		);
+		$request  = new MonsterInsights_GA_Lib_Http_Request( $target_request_url, $request_method );
+		if ( ! empty( $body ) ) {
+			$request->setPostBody( $body ); // used exclusively for auth profiles
+		}
+
+		$response = $this->getAuth()->authenticatedRequest( $request );
 
 		// Storing the response code.
 		$this->http_response_code = $response->getResponseHttpCode();
@@ -338,8 +331,9 @@ class MonsterInsights_GA_Client extends MonsterInsights_GA_Lib_Client {
 		try {
 			$this->setAccessToken( json_encode( $access_token ) );
 		} catch ( MonsterInsights_GA_Lib_Auth_Exception $exception ) {
-
+			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -347,7 +341,7 @@ class MonsterInsights_GA_Client extends MonsterInsights_GA_Lib_Client {
 	 *
 	 * @return mixed
 	 */
-	private function get_access_token() {
+	public function get_access_token() {
 		return get_option( $this->option_access_token, array( 'access_token' => false, 'expires' => 0 ) );
 	}
 

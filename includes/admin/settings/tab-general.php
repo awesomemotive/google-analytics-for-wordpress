@@ -221,6 +221,7 @@ add_action( 'monsterinsights_tab_settings_general', 'monsterinsights_settings_ge
  * @return void
  */
 function monsterinsights_settings_save_general() {
+    $thow_notice    = false;
     $manual_ua_code = isset( $_POST['manual_ua_code'] ) ? $_POST['manual_ua_code'] : '';
     $manual_ua_code = monsterinsights_is_valid_ua( $manual_ua_code ); // also sanitizes the string
     
@@ -228,7 +229,7 @@ function monsterinsights_settings_save_general() {
         monsterinsights_update_option( 'manual_ua_code', $manual_ua_code );
     } else {
         if ( empty ( $_POST['manual_ua_code'] ) ) {
-            // @todo: throw alert?
+             $throw_notice = true;
         }
         monsterinsights_update_option( 'manual_ua_code', '' );
     }
@@ -278,7 +279,11 @@ function monsterinsights_settings_save_general() {
     do_action( 'monsterinsights_settings_save_general_end' );
 
     // Output an admin notice so the user knows what happened
-    add_action( 'monsterinsights_settings_general_tab_notice', 'monsterinsights_updated_settings' );
+    if ( $throw_notice ) {
+        add_action( 'monsterinsights_settings_general_tab_notice', 'monsterinsights_invalid_ua_code' );
+    } else {
+        add_action( 'monsterinsights_settings_general_tab_notice', 'monsterinsights_updated_settings' );
+    }
 }
 add_action( 'monsterinsights_settings_save_general', 'monsterinsights_settings_save_general', 11 );
 

@@ -151,6 +151,18 @@ function monsterinsights_updated_settings() {
 }
 
 /**
+ * Outputs a WordPress style notification to tell the user their UA code was bad.
+ *
+ * @since 6.0.3
+ * @access public
+ *
+ * @return void
+ */
+function monsterinsights_invalid_ua_code() {
+    echo monsterinsights_get_message( 'error', esc_html__( 'Invalid UA code.', 'google-analytics-for-wordpress' ) );   
+}
+
+/**
  * Outputs a checkbox for settings. 
  *
  * Do not use this in other plugins. We may remove this at any time
