@@ -73,7 +73,7 @@ jQuery( document ).ready( function( $ ) {
     } );
 
     // Setup Select2
-        $('.monsterinsights-select2').select2();
+        $('.monsterinsights-select300').select300();
 
 
         var fields_changed = false;
@@ -108,6 +108,7 @@ jQuery( document ).ready( function( $ ) {
                 $('#monsterinsights_google_auth_view').html(response);
                 $('#monsterinsights_google_auth_view').removeClass('monsterinsights-hideme');
                 $('#monsterinsights_google_auth_block_view').removeClass('monsterinsights-hideme');
+                $('#wpadminbar').addClass('monsterinsights-hideme');
                 document.body.style.overflowY = "hidden";
                 document.body.style.overflowX = "hidden";
                 window.scrollTo( 0, 0 );
@@ -132,6 +133,7 @@ jQuery( document ).ready( function( $ ) {
                 $('#monsterinsights_google_auth_view').html(response);
                 $('#monsterinsights_google_auth_view').removeClass('monsterinsights-hideme');
                 $('#monsterinsights_google_auth_block_view').removeClass('monsterinsights-hideme');
+                $('#wpadminbar').addClass('monsterinsights-hideme');
                 document.body.style.overflowY = "hidden";
                 document.body.style.overflowX = "hidden";
                 window.scrollTo( 0, 0 );
@@ -167,7 +169,7 @@ jQuery( document ).ready( function( $ ) {
 
                 var view = document.getElementById('monsterinsightsview').value;
                 if ( view == 'selectprofile' ) {
-                    $('.monsterinsights_select_ga_profile').select2();
+                    $('.monsterinsights_select_ga_profile').select300();
                 }
             }).fail( function(xhr, textStatus, errorThrown) {
                 var message = $(xhr.responseText).text();
@@ -203,6 +205,7 @@ jQuery( document ).ready( function( $ ) {
                 $('#monsterinsights_google_auth_view').addClass('monsterinsights-hideme');
                 $('#monsterinsights_google_auth_block_view').addClass('monsterinsights-hideme');
                 $('#adminmenumain').removeClass('monsterinsights_opacity_60');
+                $('#wpadminbar').removeClass('monsterinsights-hideme');
             }).fail( function(xhr, textStatus, errorThrown) {
                 var message = $(xhr.responseText).text();
                 message = message.substring(0, message.indexOf("Call Stack"));

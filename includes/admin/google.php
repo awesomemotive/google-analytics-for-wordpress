@@ -246,7 +246,7 @@ final class MonsterInsights_GA {
 	 * @return array
 	 */
 	public function get_profiles() { // @todo: this needs exception handling for a 401 login required		
-		$accounts = $this->format_profile_call();
+		$accounts = $this->get_profiles_request();
 		if ( is_array( $accounts ) ) {
 			return $accounts;
 		} else {
@@ -284,13 +284,13 @@ final class MonsterInsights_GA {
 
 
 	/**
-	 * Format the accounts request
+	 * Get accounts request
 	 *
 	 * @param array $response
 	 *
 	 * @return mixed
 	 */
-	private function format_profile_call() {
+	private function get_profiles_request() {
 		$accounts    = array();
 		$start_index = 1;
 		$paginate    = false;
@@ -310,7 +310,7 @@ final class MonsterInsights_GA {
 					'body'     => json_decode( $response->getResponseBody(), true ),
 				);
 			} else {
-				break;
+				return esc_html__( 'Google Analytics had a connection error', 'google-analytics-for-wordpress' );
 			}
 			
 			if ( isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
@@ -348,11 +348,16 @@ final class MonsterInsights_GA {
 						}
 					}
 				}
+			} else if ( isset( $response['response']['code'] ) && isset( $response['body']['error']['errors']['message'] )  && $response['response']['code'] !== 200 && ! $paginate ) {
+				return $response['body']['error']['errors']['message'];
+			} else if ( isset( $response['response']['code'] ) && $response['response']['code'] !== 200 && ! $paginate ) {
+				return esc_html__( 'Google Analytics had a connection error', 'google-analytics-for-wordpress' );
 			}
+
 			if ( isset( $response['body']['totalResults'] ) && $start_index < $response['body']['totalResults'] && ! empty( $response['body']['nextLink'] ) ) {
 				$paginate    = true;
 			} else {
-				$continue   = false;
+				$continue    = false;
 			}
 		}
 		return $accounts;
@@ -476,12 +481,18 @@ final class MonsterInsights_GA {
 				$auth_key = ! empty( $_POST['stepdata'] ) ? sanitize_text_field( $_POST['stepdata'] ) : '';
 				if ( $auth_key ) {
 					if ( $this->test_authkey( $auth_key ) ) {
-						$profiles = $this->get_profiles();
+						$profiles = $this->get_profiles_request();
 						delete_option( 'monsterinsights_get_profiles' );
 						update_option( 'monsterinsights_get_profiles', $profiles );
-						if ( ! empty( $profiles ) ) {
-							$select = $this->ga_select();
+						if ( ! empty( $profiles ) && is_array( $profiles ) ) {
+							$select = $this->ga_select( $profiles );
 							$nextview = monsterinsights_google_auth_selectprofile_view( $reauth, $select );
+						} else if ( ! empty( $profiles ) && is_string( $profiles ) ) {
+							// Error from Google
+							$auth_url = $this->create_auth_url();
+							$this->client->clear_data();
+							$this->set_test_client();
+							$nextview = monsterinsights_google_auth_enterkey_view( $reauth, $auth_url, esc_html( $profiles ) );
 						} else {
 							// No profiles or not enough permissions
 							$auth_url = $this->create_auth_url();
@@ -594,7 +605,7 @@ final class MonsterInsights_GA {
 		$select = '';
 		$select .= '<div class="monsterinsights_ga_form">';
 		$select .= '<label for="monsterinsights_step_data" id="monsterinsights_select_ga_profile_label">' . esc_html__( 'Analytics profile', 'google-analytics-for-wordpress' ) . ':</label>';
-		$select .= '<select data-placeholder="' . esc_attr__( 'Select a profile', 'google-analytics-for-wordpress' ) . '" name="monsterinsights_step_data" class="monsterinsights-select2 monsterinsights_select_ga_profile" id="monsterinsights_step_data" style="width:80%;margin-left:10%;margin-right:10%;">';
+		$select .= '<select data-placeholder="' . esc_attr__( 'Select a profile', 'google-analytics-for-wordpress' ) . '" name="monsterinsights_step_data" class="monsterinsights-select300 monsterinsights_select_ga_profile" id="monsterinsights_step_data" style="width:80%;margin-left:10%;margin-right:10%;background-color: #FFF;">';
 		$select .= '<option></option>';
 
 		if ( count( $values ) >= 1 ) {

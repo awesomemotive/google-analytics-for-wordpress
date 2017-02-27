@@ -23,8 +23,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return void
  */
 function monsterinsights_settings_general_tab() {
-    add_action( 'admin_print_footer_scripts', 'monsterinsights_settings_ublock_error_js', 9999999 );
-
     // Get settings
     $manual_ua_code              = monsterinsights_get_option( 'manual_ua_code', '' );
     $manual_ua_code              = esc_html( $manual_ua_code );
@@ -47,10 +45,6 @@ function monsterinsights_settings_general_tab() {
     ?>
     <div id="monsterinsights-settings-general">
         <div class="monsterinsights-tab-settings-notices">
-            <div id="monsterinsights-ublock-origin-error" class="error" style="display:none;">
-                <?php echo sprintf( esc_html__( 'MonsterInsights has detected that it\'s files are being blocked. This is usually caused by a adblock browser plugin (particularly uBlock Origin), or a conflicting WordPress theme or plugin. This issue only affects the admin side of MonsterInsights. To solve this, ensure MonsterInsights is whitelisted for your website URL in any adblock browser plugin you use. For step by step directions on how to do this, %1$sclick here%2$s. If this doesn\'t solve the issue (rare), send us a ticket %3$shere%2$s and we\'ll be happy to help diagnose the issue.', 'google-analytics-for-wordpress'), '<a href="https://monsterinsights.com/docs/monsterinsights-asset-files-blocked/" target="_blank" rel="noopener noreferrer" referrer="no-referrer">', '</a>', '<a href="https://monsterinsights.com/contact/" target="_blank" rel="noopener noreferrer" referrer="no-referrer">');
-                ?>
-            </div>
         <?php 
         // Output any notices now
         /** 
@@ -228,7 +222,7 @@ function monsterinsights_settings_save_general() {
     if ( $manual_ua_code ) {
         monsterinsights_update_option( 'manual_ua_code', $manual_ua_code );
     } else {
-        if ( empty ( $_POST['manual_ua_code'] ) ) {
+        if ( empty ( $manual_ua_code ) && isset( $_POST['manual_ua_code'] ) ) {
              $throw_notice = true;
         }
         monsterinsights_update_option( 'manual_ua_code', '' );
@@ -286,15 +280,3 @@ function monsterinsights_settings_save_general() {
     }
 }
 add_action( 'monsterinsights_settings_save_general', 'monsterinsights_settings_save_general', 11 );
-
-function monsterinsights_settings_ublock_error_js(){
-    echo "<script type='text/javascript'>\n";
-    echo "jQuery( document ).ready( function( $ ) {
-            if ( window.uorigindetected == null){
-               $('#monsterinsights-ublock-origin-error').show();
-               $('.monsterinsights-nav-tabs').hide();
-               $('.monsterinsights-nav-container').hide();
-            }
-        });";
-    echo "\n</script>";
-}

@@ -264,7 +264,7 @@
 		/** GA Auth Styles */
 			/** Container */
 				.monsterinsights_opacity_60{opacity:.6}
-				#monsterinsights_google_auth_view{color:#000;font-family:"proxima-nova","Helvetica Neue",sans-serif;-webkit-transition:opacity 1s;-moz-transition:opacity 1s;-o-transition:opacity 1s;transition:opacity 1s;text-align:center;-webkit-perspective:700px;-webkit-perspective-origin:320px 700px;margin:0 auto;height:588px;width:400px;overflow:hidden;max-width:100%;margin:auto;top:0;left:0;bottom:0;right:0;position:absolute;z-index:300001;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;background-color:#f3f5ff;-moz-box-shadow:0 0 43px rgba(97,93,155,.23);-webkit-box-shadow:0 0 43px rgba(97,93,155,.23);box-shadow:0 0 43px rgba(97,93,155,.23)}
+				#monsterinsights_google_auth_view{color:#000;font-family:"proxima-nova","Helvetica Neue",sans-serif;-webkit-transition:opacity 1s;-moz-transition:opacity 1s;-o-transition:opacity 1s;transition:opacity 1s;text-align:center;-webkit-perspective:700px;-webkit-perspective-origin:320px 700px;margin:0 auto;height:588px;width:400px;overflow:hidden;max-width:100%;margin:auto;top:0;left:0;bottom:0;right:0;position:absolute;z-index:301;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;background-color:#f3f5ff;-moz-box-shadow:0 0 43px rgba(97,93,155,.23);-webkit-box-shadow:0 0 43px rgba(97,93,155,.23);box-shadow:0 0 43px rgba(97,93,155,.23)}
 
 			/** Backgrounds */
 				.monsterinsights_google_auth_start_view{background-image:url(../images/gauth-1-of-3.png);background-repeat:no-repeat}
@@ -291,7 +291,7 @@
 				}
 
 			/** Header/Footer */
-				#monsterinsights_google_auth_block_view{position:fixed;background:rgba(243,246,255,.9);top:0;right:0;bottom:0;left:0;z-index:300000}
+				#monsterinsights_google_auth_block_view{position:fixed;background:rgba(243,246,255,.9);top:0;right:0;bottom:0;left:0;z-index:300}
 				#monsterinsights_google_auth_box_header{height:80px;width:100%}
 				#monsterinsights_google_auth_box_contents{height:187px;padding-top:321px;width:100%}
 				#monsterinsights_google_auth_box_contents.monsterinsights_google_auth_reauth{padding-top:303px}
@@ -316,7 +316,7 @@
 				#monsterinsights_google_auth_view.monsterinsights_google_auth_reauth{height:650px}
 				.monsterinsights_google_auth_step_data_enterkey_view{width:80%;margin-right:10%;margin-left:10%;height:30px;margin-top:10px}
 				.monsterinsights-google-loading{width:100%;height:100%;background-color:#FFF;color:#000;font-size:30px;padding-top:30px}
-				body.monsterinsights_page .select2-container--open{z-index:300002 !important}
+				body.monsterinsights_page .select300-drop{z-index:302 !important}
 
 	/** Tracking Tab Styles **/
 		/** Upgrade CSS */

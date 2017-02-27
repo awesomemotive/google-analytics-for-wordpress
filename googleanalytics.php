@@ -6,7 +6,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/
  *
- * Version:             6.0.11
+ * Version:             6.0.12
  * Requires at least:   3.9.0
  * Tested up to:        4.7.2
  *
@@ -32,7 +32,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category            Plugin
- * @copyright           Copyright © 2016 Chris Christoff
+ * @copyright           Copyright © 2017 Chris Christoff
  * @author              Chris Christoff
  * @package             MonsterInsights
  */
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '6.0.11';
+	public $version = '6.0.12';
 
 	/**
 	 * Plugin file.
@@ -123,7 +123,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var MonsterInsights_GA $ga Instance of GA class.
 	 */
-	public $ga;
+	protected $ga;
 
 	/**
 	 * Primary class constructor.
@@ -250,12 +250,12 @@ final class MonsterInsights_Lite {
 		if ( $key === 'ga' ) {
 			if ( empty( self::$instance->ga ) ) {
 				// LazyLoad GA for Frontend
-				self::$instance->ga = new MonsterInsights_GA();
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/google.php';
+				self::$instance->ga = new MonsterInsights_GA();
 			}
-			return $key;
+			return self::$instance->$key;
 		} else {
-			return $key;
+			return self::$instance->$key;
 		}
 	}
 
@@ -616,7 +616,7 @@ register_deactivation_hook( __FILE__, 'monsterinsights_lite_deactivation_hook' )
  * @return 	void
  */
 function monsterinsights_lite_uninstall_hook( $network_wide ) {
-
+	wp_cache_flush();
 	$instance = MonsterInsights();
 	// Note, if both MI Pro and Lite are active, this is an MI Pro instance
 	// Therefore MI Lite can only use functions of the instance common to

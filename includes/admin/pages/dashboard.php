@@ -48,6 +48,7 @@ function monsterinsights_dashboard_page() {
 	$lite_access_key    = get_option( 'monsterinsights_lite_access_token', false );
 	$needs_re_auth      = ( ( $failed && ( $last_run === false || monsterinsights_hours_between( $last_run ) >= 48 ) ) || ( empty( $pro_access_key ) && empty( $lite_access_key ) ) || ( version_compare( $oauth_version, '1.0', '<' ) )  ) ? true : false;
 	?>
+	<?php echo monsterinsights_ublock_notice(); ?>
 	<div id="monsterinsights-reports" class="wrap">
 		<div class="monsterinsights-clear">
 			<div class="monsterinsights-reports-action-bar">
