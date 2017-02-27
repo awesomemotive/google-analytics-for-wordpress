@@ -190,7 +190,7 @@ function monsterinsights_remove_conflicting_asset_files() {
 	
 	$styles = array(
 		'kt_admin_css', // Pinnacle theme
-		'select300-css', // Schema theme
+		'select2-css', // Schema theme
 		'tweetshare_style', // TweetShare - Click To Tweet
 		'tweetshare_custom_style', // TweetShare - Click To Tweet
 		'tweeetshare_font_script', // TweetShare - Click To Tweet
