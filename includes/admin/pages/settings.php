@@ -53,6 +53,7 @@ function monsterinsights_settings_page() {
      */
     do_action( 'monsterinsights_head' );
     ?>
+    <?php echo monsterinsights_ublock_notice(); ?>
 
     <!-- Tabs -->
     <h1 id="monsterinsights-settings-page-main-nav" class="monsterinsights-main-nav-container monsterinsights-nav-container" data-container="#monsterinsights-settings-pages">

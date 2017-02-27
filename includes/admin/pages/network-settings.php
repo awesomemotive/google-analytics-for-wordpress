@@ -35,6 +35,7 @@ function monsterinsights_network_page() {
     $license_key                 = ! empty( $network_license['key'] ) ? esc_attr( $network_license['key'] ) : '';
     $license_key_type            = ! empty( $network_license['type'] ) ? esc_html( $network_license['type'] ) : '';
     ?>
+    <?php echo monsterinsights_ublock_notice(); ?>
     <div id="monsterinsights-settings" class="wrap">
         <div id="monsterinsights-tabs" class="monsterinsights-clear" data-navigation="#monsterinsights-tabs-nav">
             <div id="monsterinsights-tab-general" class="monsterinsights-tab monsterinsights-clear monsterinsights-active">

@@ -162,13 +162,11 @@ User defined:
 - `MONSTERINSIGHTS_AIRPLANE_MODE`
 	- For future use. Currently does nothing. Useful for local site testing.
 - `MONSTERINSIGHTS_GA_UA`
-	- Don't use oAuth or the wizard, but hardcode to use UA. Note, this will not allow backend reports to work. You can also use the filter `monsterinsights_ga_ua`.
+	- Don't use oAuth or the wizard, but hardcode to use UA. Note, this will not allow backend reports to work. You can also use the filter `monsterinsights_get_ua`.
 - `MONSTERINSIGHTS_MULTISITE_GA_UA`. See UA priority rules below.
 	- You can use this constant to force the same the same UA for all subsites of an MS install. Note, this will not allow backend reports to work. See UA priority rules below.
 - `MONSTERINSIGHTS_DEBUG_MODE`
 	- Enables analytics.js and events tracking debug mode. Sets asset version to time(). In future, turns on logging to file for logging class. Available to turn on in backend via debug_mode setting.
-- `MONSTERINSIGHTS_SHAREASALE_ID`
-	- If you want to bundle MonsterInsights with a theme, you can use this constant to ensure you get affiliate credit for any conversions.
 
 ### Lite Only ###
 - `MONSTERINSIGHTS_LITE_VERSION`

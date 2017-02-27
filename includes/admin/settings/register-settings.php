@@ -329,6 +329,12 @@ function monsterinsights_get_registered_settings() {
 					'multiple'    => true,
 					'allowclear'  => true
 				),
+				'anonymous_data' => array(
+					'id'          => 'anonymous_data',
+					'name'        => __( 'Allow Usage Tracking', 'google-analytics-for-wordpress' ),
+					'desc'        => __( 'By allowing us to track usage data we can better help you, because we know with which WordPress configurations, themes and plugins we should test.', 'google-analytics-for-wordpress' ),
+					'type' 		  => 'checkbox',
+				),
 			)
 		),
 	);

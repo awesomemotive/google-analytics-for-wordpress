@@ -78,7 +78,7 @@ function monsterinsights_addons_page() {
      */
     do_action('monsterinsights_head');
     ?>
-
+    <?php echo monsterinsights_ublock_notice(); ?>
     <div id="monsterinsights-addon-heading" class="monsterinsights-addons-subheading monsterinsights-clearfix-after">
         <h1><?php esc_html_e( 'MonsterInsights Addons', 'google-analytics-for-wordpress' ); ?></h1>
         <form id="add-on-search">
@@ -90,7 +90,6 @@ function monsterinsights_addons_page() {
             </select>
         </form>
     </div>
-
     <div id="monsterinsights-addons" class="wrap">
         <div class="monsterinsights-clear">
             <?php

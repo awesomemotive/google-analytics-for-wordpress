@@ -781,7 +781,7 @@ function monsterinsights_select_callback($args) {
 	$class = monsterinsights_sanitize_html_class( $args['field_class'] );
 
 	if ( isset( $args['select2'] ) ) {
-		$class .= ' monsterinsights-select2';
+		$class .= ' monsterinsights-select300';
 	}
 
 	$allowclear   = isset( $args['allowclear'] ) ? (bool) $args['allowclear'] : false;

@@ -133,161 +133,163 @@ final class MonsterInsights_Report_Overview extends MonsterInsights_Report {
 							?>
 						<script>
 							jQuery(document).ready(function() {
-								var ctx = document.getElementById("monsterinsights-overview-pageviews");
-								var data = {
-									labels: [<?php echo implode( ', ', $pageviews_labels ); ?>],
-									datasets: [
-										{
-											lineTension: 0,
-											backgroundColor: 'rgba(236,249,246,.5)',
-											borderColor: "#47c2a5",
-											fillColor : "#ecf9f6",
-											pointRadius: 5,
-											pointHoverRadius: 5,
-											pointBorderColor : "#fff",
-											pointBackgroundColor : "#489be8",
-											data: [<?php echo implode( ', ', $pageviews_datapoints ); ?>],
-											
-										}
-									]
-								};
+								if ( window.uorigindetected != null){
+									var ctx = document.getElementById("monsterinsights-overview-pageviews");
+									var data = {
+										labels: [<?php echo implode( ', ', $pageviews_labels ); ?>],
+										datasets: [
+											{
+												lineTension: 0,
+												backgroundColor: 'rgba(236,249,246,.5)',
+												borderColor: "#47c2a5",
+												fillColor : "#ecf9f6",
+												pointRadius: 5,
+												pointHoverRadius: 5,
+												pointBorderColor : "#fff",
+												pointBackgroundColor : "#489be8",
+												data: [<?php echo implode( ', ', $pageviews_datapoints ); ?>],
+												
+											}
+										]
+									};
 
-								Chart.defaults.global.tooltips.custom = function(tooltip) {
-								  // Tooltip Element
-								  var tooltipEl = jQuery('#monsterinsights-chartjs-tooltip');
-								  if (!tooltipEl[0]) {
-									jQuery('body').append('<div id="monsterinsights-chartjs-tooltip"></div>');
-									tooltipEl = jQuery('#monsterinsights-chartjs-tooltip');
-								  }
-								  // Hide if no tooltip
-								  if (!tooltip.opacity) {
-									tooltipEl.css({
-									  opacity: 0
-									});
-									jQuery('.chartjs-wrap canvas').each(function(index, el) {
-									  jQuery(el).css('cursor', 'default');
-									});
-									return;
-								  }
-								  jQuery(this._chart.canvas).css('cursor', 'pointer');
+									Chart.defaults.global.tooltips.custom = function(tooltip) {
+									  // Tooltip Element
+									  var tooltipEl = jQuery('#monsterinsights-chartjs-tooltip');
+									  if (!tooltipEl[0]) {
+										jQuery('body').append('<div id="monsterinsights-chartjs-tooltip"></div>');
+										tooltipEl = jQuery('#monsterinsights-chartjs-tooltip');
+									  }
+									  // Hide if no tooltip
+									  if (!tooltip.opacity) {
+										tooltipEl.css({
+										  opacity: 0
+										});
+										jQuery('.chartjs-wrap canvas').each(function(index, el) {
+										  jQuery(el).css('cursor', 'default');
+										});
+										return;
+									  }
+									  jQuery(this._chart.canvas).css('cursor', 'pointer');
 
-								  // Set caret Position
-								  tooltipEl.removeClass('above below no-transform');
-								  if (tooltip.yAlign) {
-									tooltipEl.addClass(tooltip.yAlign);
-								  } else {
-									tooltipEl.addClass('no-transform');
-								  }
-								// Set Text
-								var title = '';
-								if ( tooltip.title[0] == 0 ) {
-									title = '0%';
-								} else if ( tooltip.title[0] > 0 ) {
-									title = '<img src="<?php echo $up; ?>" srcset="<?php echo $up2x; ?> 2x" alt="<?php echo $uplabel; ?>" style="margin-right:6px"/>' + tooltip.title[1];
-								} else {
-									title = '<img src="<?php echo $down; ?>" srcset="<?php echo $down2x; ?> 2x" alt="<?php echo $downlabel; ?>" style="margin-right:6px"/>' + Math.abs( tooltip.title[1] );
-								}
-								tooltipEl.html(title);
-								  
-								  // Find Y Location on page
-								  var top = 0;
-								  
-								  if (tooltip.yAlign) {
-									var ch = 0;
-									if (tooltip.caretHeight) {
-									  ch = tooltip.caretHeight;
-									}
-									if (tooltip.yAlign == 'above') {
-									  top = tooltip.y - ch - tooltip.caretPadding;
+									  // Set caret Position
+									  tooltipEl.removeClass('above below no-transform');
+									  if (tooltip.yAlign) {
+										tooltipEl.addClass(tooltip.yAlign);
+									  } else {
+										tooltipEl.addClass('no-transform');
+									  }
+									// Set Text
+									var title = '';
+									if ( tooltip.title[0] == 0 ) {
+										title = '0%';
+									} else if ( tooltip.title[0] > 0 ) {
+										title = '<img src="<?php echo $up; ?>" srcset="<?php echo $up2x; ?> 2x" alt="<?php echo $uplabel; ?>" style="margin-right:6px"/>' + tooltip.title[1];
 									} else {
-									  top = tooltip.y + ch + tooltip.caretPadding;
+										title = '<img src="<?php echo $down; ?>" srcset="<?php echo $down2x; ?> 2x" alt="<?php echo $downlabel; ?>" style="margin-right:6px"/>' + Math.abs( tooltip.title[1] );
 									}
-								  }
+									tooltipEl.html(title);
+									  
+									  // Find Y Location on page
+									  var top = 0;
+									  
+									  if (tooltip.yAlign) {
+										var ch = 0;
+										if (tooltip.caretHeight) {
+										  ch = tooltip.caretHeight;
+										}
+										if (tooltip.yAlign == 'above') {
+										  top = tooltip.y - ch - tooltip.caretPadding;
+										} else {
+										  top = tooltip.y + ch + tooltip.caretPadding;
+										}
+									  }
 
-								  // Display, position, and set styles for font
-								  tooltipEl.css({
-									opacity: 1,
-									width: tooltip.width ? (tooltip.width + 'px') : 'auto',
-									left: 30 + tooltip.x + 'px',
-									top: top - 8 +'px',
-									fontFamily: tooltip._fontFamily,
-									fontSize: tooltip.fontSize,
-									fontStyle: tooltip._fontStyle,
-									padding: tooltip.yPadding + 'px ' + tooltip.xPadding + 'px',
-								  });
-								};
+									  // Display, position, and set styles for font
+									  tooltipEl.css({
+										opacity: 1,
+										width: tooltip.width ? (tooltip.width + 'px') : 'auto',
+										left: 30 + tooltip.x + 'px',
+										top: top - 8 +'px',
+										fontFamily: tooltip._fontFamily,
+										fontSize: tooltip.fontSize,
+										fontStyle: tooltip._fontStyle,
+										padding: tooltip.yPadding + 'px ' + tooltip.xPadding + 'px',
+									  });
+									};
 
-								var MonsterInsightsOverviewPageviews = new Chart(ctx, {
-									type: 'line',
-									data: data,
-									options: {
-										legend: {
-											 display: false,
-										},
-										tooltips: {
-											enabled: false,
-											yAlign: 'above',
-										  callbacks: {
-											  title: function(tooltipItem, data) {
-												  tooltipItem = tooltipItem[0];
-												  var prevvalue = 0;
-												  if ( tooltipItem.index != 0 ) {
-													prevvalue = data.datasets[0].data[tooltipItem.index - 1]
+									var MonsterInsightsOverviewPageviews = new Chart(ctx, {
+										type: 'line',
+										data: data,
+										options: {
+											legend: {
+												 display: false,
+											},
+											tooltips: {
+												enabled: false,
+												yAlign: 'above',
+											  callbacks: {
+												  title: function(tooltipItem, data) {
+													  tooltipItem = tooltipItem[0];
+													  var prevvalue = 0;
+													  if ( tooltipItem.index != 0 ) {
+														prevvalue = data.datasets[0].data[tooltipItem.index - 1]
+													  }
+													  
+													  var value     = data.datasets[0].data[tooltipItem.index];
+													  var change    = 0;
+													  if ( prevvalue == 0 && value == 0 ) {
+														change = 0;
+													  } else if ( prevvalue == 0 ) {
+														change = 100;
+													  } else if ( value == 0 ) {
+														change = -100;
+													  } else {
+														change = ((value - prevvalue) / prevvalue) * 100;
+													  }
+													  change   = Math.round( change );
+													  return new Array(change, value);
+												  },
+												  label: function(tooltipItem, data) {
+													 return '';
 												  }
-												  
-												  var value     = data.datasets[0].data[tooltipItem.index];
-												  var change    = 0;
-												  if ( prevvalue == 0 && value == 0 ) {
-													change = 0;
-												  } else if ( prevvalue == 0 ) {
-													change = 100;
-												  } else if ( value == 0 ) {
-													change = -100;
-												  } else {
-													change = ((value - prevvalue) / prevvalue) * 100;
-												  }
-												  change   = Math.round( change );
-												  return new Array(change, value);
-											  },
-											  label: function(tooltipItem, data) {
-												 return '';
 											  }
-										  }
-									  },
-										scales: {
-											xAxes: [{
-											   spanGaps: true,
-												position: 'bottom',
-												gridLines: {
-													show: true,
-													color: "#f1f1f1",
-												},
-												ticks: {
-													fontColor: "#7f8591",
-												}
-											}],
-											yAxes: [{
-												gridLines: {
-													show: true,
-													color: "#f1f1f1",
-												},
-												ticks: {
-													fontColor: "#7f8591",
-													callback: function(value) {if (value % 1 === 0) {return value;}}
-												}
-											}]
-										},
-										animation: {
-											duration: 5000,
-										},
-										legend : {
-											display: false,
-										},
-										responsive: true,
-										maintainAspectRatio: false,
-										borderWidth: 1,
-									}
-								});
+										  },
+											scales: {
+												xAxes: [{
+												   spanGaps: true,
+													position: 'bottom',
+													gridLines: {
+														show: true,
+														color: "#f1f1f1",
+													},
+													ticks: {
+														fontColor: "#7f8591",
+													}
+												}],
+												yAxes: [{
+													gridLines: {
+														show: true,
+														color: "#f1f1f1",
+													},
+													ticks: {
+														fontColor: "#7f8591",
+														callback: function(value) {if (value % 1 === 0) {return value;}}
+													}
+												}]
+											},
+											animation: {
+												duration: 5000,
+											},
+											legend : {
+												display: false,
+											},
+											responsive: true,
+											maintainAspectRatio: false,
+											borderWidth: 1,
+										}
+									});
+								}
 							});
 						</script>
 						<div id="monsterinsights-chartjs-tooltip"></div>
@@ -405,21 +407,23 @@ final class MonsterInsights_Report_Overview extends MonsterInsights_Report {
 						<div id="monsterinsights-reports-country-map" style="height: 400px;" ></div>
 						<script type="text/javascript">
 							jQuery(function(){
-							  var viewname = <?php echo "' " . __( 'views', 'google-analytics-for-wordpress' ) . "'"; ?>;
-							  var monsterinsights_countries = <?php echo $this->get_countries_array( $countries ) ?>;
-							  jQuery('#monsterinsights-reports-country-map').vectorMap({
-								map: 'world_mill',
-								series: {
-								  regions: [{
-									values: monsterinsights_countries,
-									scale: ['#FFFFFF', '#0071A4'],
-									normalizeFunction: 'polynomial'
-								  }]
-								},
-								onRegionTipShow: function(e, el, code){
-								  el.html(el.html()+' ('+ monsterinsights_countries[code] + viewname +')');
+								if ( window.uorigindetected != null) {
+								  var viewname = <?php echo "' " . __( 'views', 'google-analytics-for-wordpress' ) . "'"; ?>;
+								  var monsterinsights_countries = <?php echo $this->get_countries_array( $countries ) ?>;
+								  jQuery('#monsterinsights-reports-country-map').vectorMap({
+									map: 'world_mill',
+									series: {
+									  regions: [{
+										values: monsterinsights_countries,
+										scale: ['#FFFFFF', '#0071A4'],
+										normalizeFunction: 'polynomial'
+									  }]
+									},
+									onRegionTipShow: function(e, el, code){
+									  el.html(el.html()+' ('+ monsterinsights_countries[code] + viewname +')');
+									}
+								  });
 								}
-							  });
 							});
 						</script>
 					</div>
