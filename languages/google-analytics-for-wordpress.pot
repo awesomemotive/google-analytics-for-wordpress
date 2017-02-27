@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: MonsterInsights Lite\n"
 "Report-Msgid-Bugs-To: https://github.com/awesomemotive/monsterinsights/"
 "issues\n"
-"POT-Creation-Date: 2017-02-20 13:23-0500\n"
+"POT-Creation-Date: 2017-02-27 18:35-0500\n"
 "PO-Revision-Date: 2016-07-21 17:01-0400\n"
 "Last-Translator: Chris Christoff <support@monsterinsights.com>\n"
 "Language-Team: Chris Christoff <support@monsterinsights.com>\n"
@@ -35,18 +35,18 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-12: *.css\n"
 "X-Poedit-SearchPathExcluded-13: googleanalytics-premium.php\n"
 
-#: googleanalytics.php:218 googleanalytics.php:232
+#: googleanalytics.php:220 googleanalytics.php:234
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: googleanalytics.php:348
+#: googleanalytics.php:375
 msgid ""
 "The version of MonsterInsights eCommerce addon you have is not compatible "
 "with the version of MonsterInsights installed. Please update the eCommerce "
 "addon as soon as possible"
 msgstr ""
 
-#: googleanalytics.php:370
+#: googleanalytics.php:397
 #, php-format
 msgid ""
 "Sorry, but your version of WordPress does not meet MonsterInsights's "
@@ -54,7 +54,7 @@ msgid ""
 "activated. %3$sClick here to return to the Dashboard%4$s."
 msgstr ""
 
-#: googleanalytics.php:391
+#: googleanalytics.php:418
 #, php-format
 msgid ""
 "Please %1$uninstall%2$s the MonsterInsights Lite Plugin. Your Pro version of "
@@ -62,7 +62,7 @@ msgid ""
 "uninstalled."
 msgstr ""
 
-#: googleanalytics.php:531
+#: googleanalytics.php:563
 #, php-format
 msgid ""
 "Sorry, but your version of WordPress does not meet MonsterInsight's required "
@@ -70,7 +70,7 @@ msgid ""
 "%3$sClick here to return to the Dashboard%4$s."
 msgstr ""
 
-#: googleanalytics.php:536
+#: googleanalytics.php:568
 #, php-format
 msgid ""
 "Please uninstall and remove MonsterInsights Pro before activating "
@@ -97,7 +97,7 @@ msgstr ""
 msgid "Dashboard:"
 msgstr ""
 
-#: includes/admin/admin.php:46 includes/admin/pages/dashboard.php:55
+#: includes/admin/admin.php:46 includes/admin/pages/dashboard.php:56
 msgid "Dashboard"
 msgstr ""
 
@@ -105,7 +105,7 @@ msgstr ""
 msgid "Reports:"
 msgstr ""
 
-#: includes/admin/admin.php:54 includes/admin/pages/reports.php:92
+#: includes/admin/admin.php:54 includes/admin/pages/reports.php:93
 msgid "Reports"
 msgstr ""
 
@@ -118,7 +118,7 @@ msgid "Addons"
 msgstr ""
 
 #: includes/admin/admin.php:86 includes/admin/admin.php:88
-#: includes/admin/pages/network-settings.php:53
+#: includes/admin/pages/network-settings.php:54
 msgid "Network Settings"
 msgstr ""
 
@@ -156,7 +156,7 @@ msgstr ""
 msgid "Status: Active"
 msgstr ""
 
-#: includes/admin/common.php:126 includes/admin/pages/addons.php:493
+#: includes/admin/common.php:126 includes/admin/pages/addons.php:492
 msgid "Activate"
 msgstr ""
 
@@ -164,7 +164,7 @@ msgstr ""
 msgid "Status: Network Activated"
 msgstr ""
 
-#: includes/admin/common.php:128 includes/admin/pages/addons.php:491
+#: includes/admin/common.php:128 includes/admin/pages/addons.php:490
 msgid "Network activate"
 msgstr ""
 
@@ -172,12 +172,12 @@ msgstr ""
 msgid "Activating..."
 msgstr ""
 
-#: includes/admin/common.php:131 includes/admin/pages/addons.php:466
-#: includes/admin/pages/addons.php:468
+#: includes/admin/common.php:131 includes/admin/pages/addons.php:465
+#: includes/admin/pages/addons.php:467
 msgid "Deactivate"
 msgstr ""
 
-#: includes/admin/common.php:132 includes/admin/pages/addons.php:464
+#: includes/admin/common.php:132 includes/admin/pages/addons.php:463
 msgid "Network deactivate"
 msgstr ""
 
@@ -193,7 +193,7 @@ msgstr ""
 msgid "Status: Network inactive"
 msgstr ""
 
-#: includes/admin/common.php:137 includes/admin/pages/addons.php:423
+#: includes/admin/common.php:137 includes/admin/pages/addons.php:422
 msgid "Install"
 msgstr ""
 
@@ -205,55 +205,73 @@ msgstr ""
 msgid "Proceed"
 msgstr ""
 
-#: includes/admin/google.php:446 includes/admin/google.php:547
+#: includes/admin/common.php:344
+#, php-format
+msgid ""
+"MonsterInsights has detected that it's files are being blocked. This is "
+"usually caused by a adblock browser plugin (particularly uBlock Origin), or "
+"a conflicting WordPress theme or plugin. This issue only affects the admin "
+"side of MonsterInsights. To solve this, ensure MonsterInsights is "
+"whitelisted for your website URL in any adblock browser plugin you use. For "
+"step by step directions on how to do this, %1$sclick here%2$s. If this "
+"doesn't solve the issue (rare), send us a ticket %3$shere%2$s and we'll be "
+"happy to help diagnose the issue."
+msgstr ""
+
+#: includes/admin/google.php:313 includes/admin/google.php:354
+msgid "Google Analytics had a connection error"
+msgstr ""
+
+#: includes/admin/google.php:462 includes/admin/google.php:569
 msgid "Permission Denied"
 msgstr ""
 
-#: includes/admin/google.php:459
+#: includes/admin/google.php:475
 msgid "Cannot connect to Google"
 msgstr ""
 
-#: includes/admin/google.php:479
+#: includes/admin/google.php:501
 msgid "No profiles viewable for that account. Please use another account."
 msgstr ""
 
-#: includes/admin/google.php:486
+#: includes/admin/google.php:508
 msgid "Bad Google Code. Please try again."
 msgstr ""
 
-#: includes/admin/google.php:493
+#: includes/admin/google.php:515
 msgid "Please paste in your Google code."
 msgstr ""
 
-#: includes/admin/google.php:519
+#: includes/admin/google.php:541
 msgid "Invalid profile selected."
 msgstr ""
 
-#: includes/admin/google.php:525
+#: includes/admin/google.php:547
 msgid "Please select a profile."
 msgstr ""
 
-#: includes/admin/google.php:585
+#: includes/admin/google.php:607
 msgid "Analytics profile"
 msgstr ""
 
-#: includes/admin/google.php:586
+#: includes/admin/google.php:608
 msgid "Select a profile"
 msgstr ""
 
-#: includes/admin/google.php:696
+#: includes/admin/google.php:718
 #, php-format
 msgid "Please configure your %1$sGoogle Analytics settings%2$s!"
 msgstr ""
 
-#: includes/admin/google.php:709
+#: includes/admin/google.php:731
 #, php-format
 msgid ""
-"It seems the authentication for the plugin has expired, please %1$sre-"
-"authenticate%2$s with Google Analytics to allow the plugin to fetch data."
+"It seems the authentication for the plugin has expired or the connection to "
+"Google Analytics is blocked, please try %1$sre-authenticating%2$s with "
+"Google Analytics to allow the plugin to fetch data."
 msgstr ""
 
-#: includes/admin/google.php:722
+#: includes/admin/google.php:744
 #, php-format
 msgid ""
 "It seems the authentication for the plugin is missing permissions. Please "
@@ -261,8 +279,8 @@ msgid ""
 "data."
 msgstr ""
 
-#: includes/admin/google.php:735 includes/admin/pages/dashboard.php:120
-#: includes/admin/pages/reports.php:163
+#: includes/admin/google.php:757 includes/admin/pages/dashboard.php:121
+#: includes/admin/pages/reports.php:164
 #, php-format
 msgid ""
 "Data is not up-to-date, there was an error in retrieving the data from "
@@ -451,66 +469,66 @@ msgstr ""
 msgid "Sort Descending (Z-A)"
 msgstr ""
 
-#: includes/admin/pages/addons.php:124
+#: includes/admin/pages/addons.php:123
 msgid ""
 "In order to get access to Addons, you need to resolve your license key "
 "errors."
 msgstr ""
 
-#: includes/admin/pages/addons.php:140
+#: includes/admin/pages/addons.php:139
 msgid ""
 "There was an issue retrieving the addons for this site. Please click on the "
 "button below the refresh the addons data."
 msgstr ""
 
-#: includes/admin/pages/addons.php:143
+#: includes/admin/pages/addons.php:142
 msgid "Refresh Addons"
 msgstr ""
 
-#: includes/admin/pages/addons.php:161
+#: includes/admin/pages/addons.php:160
 msgid "Available Addons:"
 msgstr ""
 
-#: includes/admin/pages/addons.php:181
+#: includes/admin/pages/addons.php:180
 msgid "Unlock More Addons"
 msgstr ""
 
-#: includes/admin/pages/addons.php:182
+#: includes/admin/pages/addons.php:181
 #, php-format
 msgid ""
 "%1$sWant even more addons?%2$sUpgrade your MonsterInsights account%3$s and "
 "unlock the following addons:"
 msgstr ""
 
-#: includes/admin/pages/addons.php:398
+#: includes/admin/pages/addons.php:397
 msgid "Upgrade Now"
 msgstr ""
 
-#: includes/admin/pages/addons.php:417
+#: includes/admin/pages/addons.php:416
 #, php-format
 msgid "Status: %1$sNot Installed%2$s"
 msgstr ""
 
-#: includes/admin/pages/addons.php:428
+#: includes/admin/pages/addons.php:427
 msgid "Why can't I install addons?"
 msgstr ""
 
-#: includes/admin/pages/addons.php:455
+#: includes/admin/pages/addons.php:454
 #, php-format
 msgid "Status: %1$sNetwork Active%2$s"
 msgstr ""
 
-#: includes/admin/pages/addons.php:457
+#: includes/admin/pages/addons.php:456
 #, php-format
 msgid "Status: %1$sActive%2$s"
 msgstr ""
 
-#: includes/admin/pages/addons.php:483
+#: includes/admin/pages/addons.php:482
 #, php-format
 msgid "Status: %1$sNetwork Inactive%2$s"
 msgstr ""
 
-#: includes/admin/pages/addons.php:485
+#: includes/admin/pages/addons.php:484
 #, php-format
 msgid "Status: %1$sInactive%2$s"
 msgstr ""
@@ -519,110 +537,114 @@ msgstr ""
 msgid "Access denied"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:78 includes/admin/pages/reports.php:121
+#: includes/admin/pages/dashboard.php:79 includes/admin/pages/reports.php:122
 #, php-format
 msgid "Please %1$senable the dashboard%2$s to see report data."
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:84 includes/admin/pages/dashboard.php:98
-#: includes/admin/pages/dashboard.php:112
-#: includes/admin/pages/dashboard.php:126 includes/admin/pages/reports.php:127
-#: includes/admin/pages/reports.php:141 includes/admin/pages/reports.php:155
-#: includes/admin/pages/reports.php:169
+#: includes/admin/pages/dashboard.php:85 includes/admin/pages/dashboard.php:99
+#: includes/admin/pages/dashboard.php:113
+#: includes/admin/pages/dashboard.php:127 includes/admin/pages/reports.php:128
+#: includes/admin/pages/reports.php:142 includes/admin/pages/reports.php:156
+#: includes/admin/pages/reports.php:170
 msgid ""
 "The Google oAuth authentication needs to be re-authenticated to view data."
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:92 includes/admin/pages/reports.php:135
+#: includes/admin/pages/dashboard.php:93 includes/admin/pages/reports.php:136
 #, php-format
 msgid ""
 "Please %1$sauthenticate %2$swith Google Analytics to allow the plugin to "
 "fetch data."
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:106 includes/admin/pages/reports.php:149
+#: includes/admin/pages/dashboard.php:107 includes/admin/pages/reports.php:150
 #, php-format
 msgid ""
 "Please %1$sre-authenticate%2$s with Google Analytics to allow the plugin to "
 "fetch data."
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:54
+#: includes/admin/pages/network-settings.php:55
 msgid ""
 "Activate your MonsterInsights license key on this panel to hide the license "
 "key settings and addon pages for subsites."
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:59
-#: includes/admin/settings/tab-general.php:71
+#: includes/admin/pages/network-settings.php:60
+#: includes/admin/settings/tab-general.php:65
 msgid "License Key"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:65
-#: includes/admin/settings/tab-general.php:77
+#: includes/admin/pages/network-settings.php:66
+#: includes/admin/settings/tab-general.php:71
 msgid "Verify Key"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:66
-#: includes/admin/settings/tab-general.php:78
+#: includes/admin/pages/network-settings.php:67
+#: includes/admin/settings/tab-general.php:72
 msgid "Deactivate Key"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:67
-#: includes/admin/settings/tab-general.php:79
+#: includes/admin/pages/network-settings.php:68
+#: includes/admin/settings/tab-general.php:73
 msgid ""
 "License key to enable automatic updates for MonsterInsights Pro & addons. "
 "Deactivate your license if you want to use it on another WordPress site."
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:74
-#: includes/admin/settings/tab-general.php:86
+#: includes/admin/pages/network-settings.php:75
+#: includes/admin/settings/tab-general.php:80
 msgid "License Key Type"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:78
-#: includes/admin/settings/tab-general.php:90
+#: includes/admin/pages/network-settings.php:79
+#: includes/admin/settings/tab-general.php:84
 #, php-format
 msgid "Your license key type for this site is %s."
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:81
-#: includes/admin/settings/tab-general.php:93
+#: includes/admin/pages/network-settings.php:82
+#: includes/admin/settings/tab-general.php:87
 msgid "Refresh Key"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:82
-#: includes/admin/settings/tab-general.php:94
+#: includes/admin/pages/network-settings.php:83
+#: includes/admin/settings/tab-general.php:88
 msgid ""
 "Your license key type (handles updates and Addons). Click refresh if your "
 "license has been upgraded or the type is incorrect."
 msgstr ""
 
-#: includes/admin/pages/settings.php:61 includes/admin/pages/settings.php:62
+#: includes/admin/pages/settings.php:62 includes/admin/pages/settings.php:63
 msgid "General"
 msgstr ""
 
-#: includes/admin/pages/settings.php:65 includes/admin/pages/settings.php:66
+#: includes/admin/pages/settings.php:66 includes/admin/pages/settings.php:67
 msgid "Tracking"
 msgstr ""
 
-#: includes/admin/pages/settings.php:150
+#: includes/admin/pages/settings.php:151
 msgid "Settings saved successfully."
 msgstr ""
 
-#: includes/admin/pages/settings.php:213 includes/admin/pages/settings.php:270
+#: includes/admin/pages/settings.php:163
+msgid "Invalid UA code."
+msgstr ""
+
+#: includes/admin/pages/settings.php:226 includes/admin/pages/settings.php:283
 msgid "You do not have permission to manage MonsterInsights settings"
 msgstr ""
 
-#: includes/admin/pages/settings.php:213 includes/admin/pages/settings.php:270
+#: includes/admin/pages/settings.php:226 includes/admin/pages/settings.php:283
 msgid "Error"
 msgstr ""
 
-#: includes/admin/pages/settings.php:230
+#: includes/admin/pages/settings.php:243
 msgid "Successfully migrated to Universal Analytics (analytics.js)!"
 msgstr ""
 
-#: includes/admin/pages/settings.php:287
+#: includes/admin/pages/settings.php:300
 msgid "Successfully migrated to JS events tracking!"
 msgstr ""
 
@@ -651,53 +673,53 @@ msgstr ""
 msgid "DOWN"
 msgstr ""
 
-#: includes/admin/reports/overview.php:305
+#: includes/admin/reports/overview.php:307
 msgid "TOP POSTS AND PAGES"
 msgstr ""
 
-#: includes/admin/reports/overview.php:310
+#: includes/admin/reports/overview.php:312
 msgid "TITLE"
 msgstr ""
 
-#: includes/admin/reports/overview.php:313
-#: includes/admin/reports/overview.php:358
-#: includes/admin/reports/overview.php:431
+#: includes/admin/reports/overview.php:315
+#: includes/admin/reports/overview.php:360
+#: includes/admin/reports/overview.php:435
 msgid "VIEWS"
 msgstr ""
 
-#: includes/admin/reports/overview.php:326
+#: includes/admin/reports/overview.php:328
 msgid "Unknown Page or Post"
 msgstr ""
 
-#: includes/admin/reports/overview.php:350
+#: includes/admin/reports/overview.php:352
 msgid "TOP TRAFFIC SOURCES"
 msgstr ""
 
-#: includes/admin/reports/overview.php:355
+#: includes/admin/reports/overview.php:357
 msgid "SITE"
 msgstr ""
 
-#: includes/admin/reports/overview.php:371
+#: includes/admin/reports/overview.php:373
 msgid "Unknown Source"
 msgstr ""
 
-#: includes/admin/reports/overview.php:401
+#: includes/admin/reports/overview.php:403
 msgid "TOP COUNTRIES"
 msgstr ""
 
-#: includes/admin/reports/overview.php:408
+#: includes/admin/reports/overview.php:411
 msgid "views"
 msgstr ""
 
-#: includes/admin/reports/overview.php:428
+#: includes/admin/reports/overview.php:432
 msgid "COUNTRY"
 msgstr ""
 
-#: includes/admin/reports/overview.php:434
+#: includes/admin/reports/overview.php:438
 msgid "%"
 msgstr ""
 
-#: includes/admin/reports/overview.php:448
+#: includes/admin/reports/overview.php:452
 msgid "Country not set"
 msgstr ""
 
@@ -972,6 +994,18 @@ msgid ""
 "the settings panel, along with any user with the %s capability."
 msgstr ""
 
+#: includes/admin/settings/register-settings.php:334
+#: includes/admin/settings/tab-general.php:181
+msgid "Allow Usage Tracking"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:335
+#: includes/admin/settings/tab-general.php:182
+msgid ""
+"By allowing us to track usage data we can better help you, because we know "
+"with which WordPress configurations, themes and plugins we should test."
+msgstr ""
+
 #: includes/admin/settings/settings-api.php:722
 #, php-format
 msgid "You must have the %s capability to view/edit this setting"
@@ -983,85 +1017,72 @@ msgid "The callback function used for the %s setting is missing."
 msgstr ""
 
 #: includes/admin/settings/settings-api.php:924
-#: includes/admin/settings/tab-general.php:208
+#: includes/admin/settings/tab-general.php:202
 msgid "Save Changes"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:51
-#, php-format
-msgid ""
-"MonsterInsights has detected that it's files are being blocked. This is "
-"usually caused by a adblock browser plugin (particularly uBlock Origin), or "
-"a conflicting WordPress theme or plugin. This issue only affects the admin "
-"side of MonsterInsights. To solve this, ensure MonsterInsights is "
-"whitelisted for your website URL in any adblock browser plugin you use. For "
-"step by step directions on how to do this, %1$sclick here%2$s. If this "
-"doesn't solve the issue (rare), send us a ticket %3$shere%2$s and we'll be "
-"happy to help diagnose the issue."
-msgstr ""
-
-#: includes/admin/settings/tab-general.php:104
+#: includes/admin/settings/tab-general.php:98
 msgid "Analytics Profile"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:106
+#: includes/admin/settings/tab-general.php:100
 msgid "Google Authentication"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:112
+#: includes/admin/settings/tab-general.php:106
 msgid "Profile Active: "
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:114
+#: includes/admin/settings/tab-general.php:108
 msgid "Re-Authenticate with your Google account"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:115
+#: includes/admin/settings/tab-general.php:109
 msgid "Deauthenticate"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:118
+#: includes/admin/settings/tab-general.php:112
 msgid "Authenticate with your Google account"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:119
+#: includes/admin/settings/tab-general.php:113
 #, php-format
 msgid ""
 "Having issues automatically authenticating? %s Click here to authenticate "
 "manually %s."
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:137
+#: includes/admin/settings/tab-general.php:131
 msgid "Manually enter your UA code"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:141
+#: includes/admin/settings/tab-general.php:135
 msgid ""
 "Warning: If you use a manual UA code, you won't be able to use the dashboard "
 "or reports."
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:148
+#: includes/admin/settings/tab-general.php:142
 msgid "Disable Dashboard"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:149
+#: includes/admin/settings/tab-general.php:143
 msgid "Hide the dashboard and reports pages."
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:156
+#: includes/admin/settings/tab-general.php:150
 msgid "Pick Tracking Mode"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:162
+#: includes/admin/settings/tab-general.php:156
 msgid "GA.js (Deprecated)"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:163
+#: includes/admin/settings/tab-general.php:157
 msgid "Analytics.js (Universal Analytics)"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:164
+#: includes/admin/settings/tab-general.php:158
 #, php-format
 msgid ""
 "Warning: You're currently using deprecated ga.js tracking. We recommend "
@@ -1073,27 +1094,17 @@ msgid ""
 "(analytics.js) %1$sclick here%2$s."
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:173
+#: includes/admin/settings/tab-general.php:167
 msgid "Switch to JS events tracking"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:179
+#: includes/admin/settings/tab-general.php:173
 #, php-format
 msgid ""
 "Warning: You're currently using deprecated PHP based events tracking. We "
 "recommend switching to JS events tracking, as it is significantly more "
 "accurate than PHP based events tracking and we will eventually discontinue "
 "PHP based events tracking. To switch %1$sclick here%2$s."
-msgstr ""
-
-#: includes/admin/settings/tab-general.php:187
-msgid "Allow Usage Tracking"
-msgstr ""
-
-#: includes/admin/settings/tab-general.php:188
-msgid ""
-"By allowing us to track usage data we can better help you, because we know "
-"with which WordPress configurations, themes and plugins we should test."
 msgstr ""
 
 #: includes/admin/settings/tab-tracking.php:40

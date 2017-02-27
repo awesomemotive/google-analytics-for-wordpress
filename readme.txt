@@ -139,6 +139,7 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 
 = 6.0.12, February 27, 2017 =
 * New: The JS events tracking has been moved to a new JS file instead of inline. This will offer the same performance as inlining under HTTP/2, but with the benefit of better cache bursting.
+* New: Expanded admin adblock detection.
 * Tweak: Select2 is now bundled as Select300 in MonsterInsights. We're pulling down the latest copy of Selct2 and then on-the-fly renaming it. This should end any conflicts between our select2 boxes and other plugins/themes.
 * Tweak: We've implemented better error detection on the authentication flow. Some users may have previously seen "No profile errors", due to issues with their server setup will now see more accurate errors.
 * Tweak: For servers that use PHP Object caching, the cache will now be flushed during the uninstall routiens. This should solve a very rare uninstall error.
