@@ -16,8 +16,12 @@
     // us to polyfill Array.prototype.lastIndexOf, and if they continue to drop, we might remove this polyfill at some point. In that case note that events tracking
     // for IE 7/8 will continue to work, with the exception of events tracking of downloads.
     function __gaTrackerClickEventPHP() {
+        var debug_mode = false;
+        if ( monsterinsights_frontend.is_debug_mode === "true" ) {
+            debug_mode = true;
+        }
         var phpvalues = { 
-            'is_debug_mode'       : monsterinsights_frontend.is_debug_mode,
+            'is_debug_mode'       : debug_mode,
             'download_extensions' : monsterinsights_frontend.download_extensions, /* Let's get the extensions to track */
             'inbound_paths'       : monsterinsights_frontend.inbound_paths, /* Let's get the internal paths to track */
             'home_url'            : monsterinsights_frontend.home_url, /* Let's get the url to compare for external/internal use */
@@ -39,11 +43,14 @@
             console.log( "Event.which: " + event.which );
             console.log( "El: ");
             console.log( el );
-            console.log( "Will track: " + ! ( ! __gaTracker.hasOwnProperty( "loaded" ) || __gaTracker.loaded != true || ( event.which != 1 && event.which != 2 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey  ) ) ) ;
+            console.log( "GA Loaded and click: " + ! ( ! __gaTracker.hasOwnProperty( "loaded" ) || __gaTracker.loaded != true || ( event.which != 1 && event.which != 2 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey  ) ) ) ;
         }
 
         /* If GA is blocked or not loaded, or not main|middle|touch click then don't track */
         if ( ! __gaTracker.hasOwnProperty( "loaded" ) || __gaTracker.loaded != true || ( event.which != 1 && event.which != 2 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey  ) ) {
+            if ( is_debug_mode ) {
+                console.log( "Will track: false");
+            }
             return;
         }
 
@@ -72,6 +79,10 @@
             var home_url            = phpvalues.home_url; /* Let's get the url to compare for external/internal use */
             var track_download_as   = phpvalues.track_download_as; /* should downloads be tracked as events or pageviews */
             var internal_label      = "outbound-link-" + phpvalues.internal_label; /* What is the prefix for internal-as-external links */
+
+            if ( is_debug_mode ) {
+                console.log( "Will track: true");
+            }
 
             /* Remove the anchor at the end, if there is one */
             extension = extension.substring( 0, (extension.indexOf( "#" ) == -1 ) ? extension.length : extension.indexOf( "#" ) );
@@ -296,10 +307,6 @@
                             console.log(  "Target | " + type + " | " + link + " is not a tracked click." );
                         }
                     }
-
-                    if ( is_debug_mode ) {
-                        return false;
-                    }
                 } else { /* Prevent standard click, track then open */
                         if (!event.defaultPrevented) {
                             event.preventDefault ? event.preventDefault() : event.returnValue = !1;
@@ -356,14 +363,18 @@
                             console.log(  "Not Target | " + type + " | " + link + " is not a tracked click." );
                         }
                     }
-                    
-                    if ( is_debug_mode ) {
-                        return false;
-                    }
 
-                    /* Run hitCallback again if GA takes longer than 1 second */
-                    setTimeout( __gaTrackerHitBack, 1000 );
+                    if ( ! is_debug_mode ) {
+                     /* Run hitCallback again if GA takes longer than 1 second */
+                        setTimeout( __gaTrackerHitBack, 1000 );
+                    } else {
+                        window.location.href = link;
+                    }
                 }
+            }
+        } else {
+            if ( is_debug_mode ) {
+                console.log( "Will track: false");
             }
         }
     }

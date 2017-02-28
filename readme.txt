@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.9
 Tested up to: 4.7.3
-Stable tag: 6.0.12
+Stable tag: 6.0.13
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -137,12 +137,16 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 
 == Changelog ==
 
+= 6.0.13, February 28, 2017 =
+* Tweak: Better detection of issues with authentication due to an outdate WP version.
+* Fixed: Issue where JS tracking inadvertantly turned on debug mode due to a bad string to boolean conversion.
+
 = 6.0.12, February 27, 2017 =
 * New: The JS events tracking has been moved to a new JS file instead of inline. This will offer the same performance as inlining under HTTP/2, but with the benefit of better cache bursting.
 * New: Expanded admin adblock detection.
 * Tweak: Select2 is now bundled as Select300 in MonsterInsights. We're pulling down the latest copy of Selct2 and then on-the-fly renaming it. This should end any conflicts between our select2 boxes and other plugins/themes.
 * Tweak: We've implemented better error detection on the authentication flow. Some users may have previously seen "No profile errors", due to issues with their server setup will now see more accurate errors.
-* Tweak: For servers that use PHP Object caching, the cache will now be flushed during the uninstall routiens. This should solve a very rare uninstall error.
+* Tweak: For servers that use PHP Object caching, the cache will now be flushed during the uninstall routines. This should solve a very rare uninstall error.
 * Fixed: A "Invalid UA code" error was displayed whenever someone used oAuth2 and then saved the settings panel, despite having a valid UA code.
 * Fixed: An issue with the lazyloading of the Google Client for frontend use has been fixed.
 

@@ -291,6 +291,8 @@ final class MonsterInsights_GA {
 	 * @return mixed
 	 */
 	private function get_profiles_request() {
+		global $wp_version;
+		$version = str_replace( '-src', '', $wp_version );
 		$accounts    = array();
 		$start_index = 1;
 		$paginate    = false;
@@ -310,7 +312,11 @@ final class MonsterInsights_GA {
 					'body'     => json_decode( $response->getResponseBody(), true ),
 				);
 			} else {
-				return esc_html__( 'Google Analytics had a connection error', 'google-analytics-for-wordpress' );
+				if ( version_compare( $version, '4.6', '<' ) ) {
+					return esc_html__( 'MonsterInsights requires WordPress version 4.6 or newer to use oAuth. Please update your WordPress version.', 'google-analytics-for-wordpress' );
+				} else {
+					return esc_html__( 'Google Analytics had a connection error.', 'google-analytics-for-wordpress' );
+				}
 			}
 			
 			if ( isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
@@ -351,7 +357,11 @@ final class MonsterInsights_GA {
 			} else if ( isset( $response['response']['code'] ) && isset( $response['body']['error']['errors']['message'] )  && $response['response']['code'] !== 200 && ! $paginate ) {
 				return $response['body']['error']['errors']['message'];
 			} else if ( isset( $response['response']['code'] ) && $response['response']['code'] !== 200 && ! $paginate ) {
-				return esc_html__( 'Google Analytics had a connection error', 'google-analytics-for-wordpress' );
+				if ( version_compare( $version, '4.6', '<' ) ) {
+					return esc_html__( 'MonsterInsights requires WordPress version 4.6 or newer to use oAuth. Please update your WordPress version.', 'google-analytics-for-wordpress' );
+				} else {
+					return esc_html__( 'Google Analytics had a connection error.', 'google-analytics-for-wordpress' );
+				}
 			}
 
 			if ( isset( $response['body']['totalResults'] ) && $start_index < $response['body']['totalResults'] && ! empty( $response['body']['nextLink'] ) ) {
