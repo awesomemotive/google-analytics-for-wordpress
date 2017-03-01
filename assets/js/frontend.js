@@ -21,8 +21,16 @@
             debug_mode = true;
         }
 
-        var inbound_paths = monsterinsights_frontend.inbound_paths.split(",");
-        var download_extensions = monsterinsights_frontend.download_extensions.split(",");
+        var inbound_paths = [];
+        var download_extensions = [];
+
+        if ( typeof monsterinsights_frontend.download_extensions == 'string' ) {
+            download_extensions = monsterinsights_frontend.download_extensions.split(",");
+        }
+        if ( typeof monsterinsights_frontend.inbound_paths == 'string' ) {
+            inbound_paths = monsterinsights_frontend.inbound_paths.split(",");
+        }
+        
         var phpvalues = { 
             'is_debug_mode'       : debug_mode,
             'download_extensions' : download_extensions, /* Let's get the extensions to track */
