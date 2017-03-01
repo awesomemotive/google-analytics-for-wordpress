@@ -95,14 +95,11 @@ class MonsterInsights_Events_JS {
 
 		$i = 0;
 		foreach ( $inbound_paths as $path ){
-			$inbound_paths[ $i ] = '"'. esc_js( trim( $path ) ) . '"';
+			$inbound_paths[ $i ] = esc_js( trim( $path ) );
 			$i++;
 		}
 
-		$inbound_paths = "[" . implode( ",", $inbound_paths ) . "]";
-		if ( $inbound_paths === '[""]' ) {
-			$inbound_paths = "[]";
-		}
+		$inbound_paths = implode( ",", $inbound_paths );
 
 		// Get download extensions to track
 		$download_extensions = monsterinsights_get_option( 'extensions_of_files', '' );
@@ -110,14 +107,11 @@ class MonsterInsights_Events_JS {
 
 		$i = 0;
 		foreach( $download_extensions as $extension ){
-			$download_extensions[ $i ] = '"'. esc_js( trim( $extension ) ) . '"';
+			$download_extensions[ $i ] = esc_js( trim( $extension ) );
 			$i++;
 		}
 
-		$download_extensions = "[" . implode( ",", $download_extensions ) . "]";
-		if ( $download_extensions === '[""]' ) {
-			$download_extensions = "[]";
-		}
+		$download_extensions = implode( ",", $download_extensions );
 
 		$track_download_as = monsterinsights_get_option( 'track_download_as', '' );
 		$track_download_as = $track_download_as === 'pageview' ? 'pageview' : 'event';
@@ -138,14 +132,13 @@ class MonsterInsights_Events_JS {
 			MONSTERINSIGHTS_PLUGIN_SLUG . '-frontend-script',
 			'monsterinsights_frontend',
 			array(
-				'ajaxurl'             => admin_url( 'admin-ajax.php' ),
 				'js_events_tracking'  => 'true',
 				'is_debug_mode' 	  => $is_debug_mode,
 				'download_extensions' => $download_extensions, /* Let's get the extensions to track */
 				'inbound_paths'       => $inbound_paths, /* Let's get the internal paths to track */
 				'home_url'            => home_url(), /* Let's get the url to compare for external/internal use */
 				'track_download_as'   => $track_download_as, /* should downloads be tracked as events or pageviews */
-				'internal_label'      => "outbound-link-" . $internal_label, /* What is the prefix for internal-as-external links */
+				'internal_label'      => $internal_label, /* What is the prefix for internal-as-external links */
 			)
 		);
 	}

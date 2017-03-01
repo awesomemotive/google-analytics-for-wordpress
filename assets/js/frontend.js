@@ -20,10 +20,13 @@
         if ( monsterinsights_frontend.is_debug_mode === "true" ) {
             debug_mode = true;
         }
+
+        var inbound_paths = monsterinsights_frontend.inbound_paths.split(",");
+        var download_extensions = monsterinsights_frontend.download_extensions.split(",");
         var phpvalues = { 
             'is_debug_mode'       : debug_mode,
-            'download_extensions' : monsterinsights_frontend.download_extensions, /* Let's get the extensions to track */
-            'inbound_paths'       : monsterinsights_frontend.inbound_paths, /* Let's get the internal paths to track */
+            'download_extensions' : download_extensions, /* Let's get the extensions to track */
+            'inbound_paths'       : inbound_paths, /* Let's get the internal paths to track */
             'home_url'            : monsterinsights_frontend.home_url, /* Let's get the url to compare for external/internal use */
             'track_download_as'   : monsterinsights_frontend.track_download_as, /* should downloads be tracked as events or pageviews */
             'internal_label'      : "outbound-link-" + monsterinsights_frontend.internal_label, /* What is the prefix for internal-as-external links */
@@ -78,7 +81,7 @@
             var inbound_paths       = phpvalues.inbound_paths; /* Let's get the internal paths to track */
             var home_url            = phpvalues.home_url; /* Let's get the url to compare for external/internal use */
             var track_download_as   = phpvalues.track_download_as; /* should downloads be tracked as events or pageviews */
-            var internal_label      = "outbound-link-" + phpvalues.internal_label; /* What is the prefix for internal-as-external links */
+            var internal_label      = phpvalues.internal_label; /* What is the prefix for internal-as-external links */
 
             if ( is_debug_mode ) {
                 console.log( "Will track: true");
