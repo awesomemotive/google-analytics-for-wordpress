@@ -347,7 +347,7 @@ final class MonsterInsights_License {
         }
 
         // If an error is returned, set the error and return.
-        if ( ! empty( $deactivate->error ) ) {
+        if ( ! empty( $deactivate->error ) && ! monsterinsights_is_debug_mode() ) {
             $this->errors[] = $deactivate->error;
             return;
         }

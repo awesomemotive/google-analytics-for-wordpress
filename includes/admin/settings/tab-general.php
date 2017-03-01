@@ -261,7 +261,9 @@ function monsterinsights_settings_save_general() {
     }
 
     $anonymous_data = isset( $_POST['anonymous_data'] ) ? 1 : 0;
-    monsterinsights_update_option( 'anonymous_data', $anonymous_data );
+    if ( $anonymous_data ) {
+        monsterinsights_update_option( 'anonymous_data', $anonymous_data );
+    }
 
     /** 
      * Developer Alert:
