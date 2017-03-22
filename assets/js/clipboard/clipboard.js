@@ -1,5 +1,5 @@
 /*!
- * clipboard.js v1.6.0
+ * clipboard.js v1.6.1
  * https://zenorocha.github.io/clipboard.js
  *
  * Licensed MIT © Zeno Rocha
@@ -10,7 +10,7 @@ var DOCUMENT_NODE_TYPE = 9;
 /**
  * A polyfill for Element.matches()
  */
-if (Element && !Element.prototype.matches) {
+if (typeof Element !== 'undefined' && !Element.prototype.matches) {
     var proto = Element.prototype;
 
     proto.matches = proto.matchesSelector ||

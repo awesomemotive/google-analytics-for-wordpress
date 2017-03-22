@@ -55,7 +55,7 @@ function monsterinsights_admin_menu() {
     }
     
     // then tools
-    //add_submenu_page( $hook, __( 'Tools:', 'google-analytics-for-wordpress' ), __( 'Tools', 'google-analytics-for-wordpress' ), 'manage_options', 'monsterinsights_tools', 'monsterinsights_tools_page' );
+    add_submenu_page( $hook, __( 'Tools:', 'google-analytics-for-wordpress' ), __( 'Tools', 'google-analytics-for-wordpress' ), 'manage_options', 'monsterinsights_tools', 'monsterinsights_tools_page' );
     
     // then addons
     $network_license = get_site_option( 'monsterinsights_license' );

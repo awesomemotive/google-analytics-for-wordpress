@@ -68,6 +68,13 @@ function monsterinsights_get_ua() {
 		}
 	}
 
+	if ( is_multisite() ) {
+		$ua_code = monsterinsights_is_valid_ua( get_site_option( 'monsterinsights_network_manual_ua_code', '' ) );
+		if ( $ua_code ) {
+			$ua = $ua_code;
+		}
+	}
+
 	if ( defined( 'MONSTERINSIGHTS_GA_UA' ) && monsterinsights_is_valid_ua( MONSTERINSIGHTS_GA_UA ) ) {
 		$ua = MONSTERINSIGHTS_GA_UA;
 	}
@@ -441,4 +448,23 @@ function monsterinsights_get_option_name() {
 	//} else {
 	//	return 'monsterinsights_settings';
 	//}
+}
+
+function monsterinsights_export_settings() {
+	$settings = monsterinsights_get_options();
+	$exclude  = array( 
+				'analytics_profile',
+				'analytics_profile_code',
+				'analytics_profile_name',
+				'oauth_version',
+				'cron_last_run',
+				'monsterinsights_oauth_status',
+	);
+
+	foreach ( $exclude as $e ) {
+		if ( ! empty( $settings[ $e ] ) ) {
+			unset( $settings[ $e ] );
+		}
+	}
+	return wp_json_encode( $settings );
 }

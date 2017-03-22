@@ -127,9 +127,9 @@ class MonsterInsights_Tracking {
 			return false;
 		}
 
-		// Send a maximum of once per week
+		// Send a maximum of once per day
 		$last_send = $this->get_last_send();
-		if( is_numeric( $last_send ) && $last_send > strtotime( '-1 week' ) && ! $ignore_last_checkin ) {
+		if( is_numeric( $last_send ) && $last_send > strtotime( '-1 day' ) && ! $ignore_last_checkin ) {
 			return false;
 		}
 

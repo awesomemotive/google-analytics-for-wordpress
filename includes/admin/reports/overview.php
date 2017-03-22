@@ -59,7 +59,7 @@ final class MonsterInsights_Report_Overview extends MonsterInsights_Report {
 		update_option( 'monsterinsights_report_overview_top_sources', $top_sources );
 
 		// Top countries
-		$countries = $client->do_request( 'https://www.googleapis.com/analytics/v3/data/ga?ids=ga%3A' . $id . '&start-date=' . $dates['start']  . '&end-date=' . $dates['end']  . '&metrics=ga%3Apageviews&dimensions=ga%3Acountry&sort=-ga%3Apageviews&max-results=' . $this->get_api_max_limit() );
+		$countries = $client->do_request( 'https://www.googleapis.com/analytics/v3/data/ga?ids=ga%3A' . $id . '&start-date=' . $dates['start']  . '&end-date=' . $dates['end']  . '&metrics=ga%3Apageviews&dimensions=ga%3AcountryIsoCode&sort=-ga%3Apageviews&max-results=' . $this->get_api_max_limit() );
 		$countries = $this->parse_request( $countries );
 		update_option( 'monsterinsights_report_overview_countries', $countries );
 
@@ -102,6 +102,10 @@ final class MonsterInsights_Report_Overview extends MonsterInsights_Report {
 		$countries = ! empty( $data['countries'] ) ? $data['countries'] : false;
 		?>
 		<?php
+		if ( empty( $pageviews ) && empty( $top ) && empty( $sources ) && empty( $countries ) ) {
+			echo MonsterInsights()->notices->display_inline_notice( 'monsterinsights_standard_notice', '', __( 'If you\'ve just installed MonsterInsights, data may take up to 24 hours to populate here. Check back soon!','google-analytics-for-wordpress'), 'notice', false, array() );
+		}
+
 		if ( ! empty( $pageviews ) ) {
 			$pageviews_labels = array();
 			$pageviews_datapoints = array();
@@ -442,6 +446,7 @@ final class MonsterInsights_Report_Overview extends MonsterInsights_Report {
 					<div class="monsterinsights-reports-box-datalist">
 						<?php 
 							$i = 0;
+							$list_of_countries = monsterinsights_get_country_list( true );
 							foreach ( $countries['data'] as $countries_index => $countries_values ) { ?>
 							<?php
 								if ( $i === 10 ) { // Limit to 10 max
@@ -450,6 +455,7 @@ final class MonsterInsights_Report_Overview extends MonsterInsights_Report {
 									$i++;
 								}
 								$title   = isset( $countries_values[0] ) ? esc_html( $countries_values[0] ) : __( 'Country not set', 'google-analytics-for-wordpress' );
+								$title   = isset( $list_of_countries[ $title ] ) ? esc_html( $list_of_countries[ $title ] )  : $title;
 								$views   = isset( $countries_values[1] ) ? absint( $countries_values[1] ) : 0;
 								$percent = ! empty( $countries['total']['ga:pageviews'] ) &&  absint( $countries['total']['ga:pageviews'] ) > 0 ? $views / absint( $countries['total']['ga:pageviews'] ) : 0;
 								$percent = number_format( $percent * 100, 2 ) . '%';
@@ -677,6 +683,7 @@ final class MonsterInsights_Report_Overview extends MonsterInsights_Report {
 			  "XK" => 0,
 			  "XS" => 0,
 			  "NC" => 0,
+			  "PS" => 0,
 			);
 
 		if ( empty( $countries ) || ! is_array( $countries ) || empty( $countries['data'] ) || empty( $countries['total']['ga:pageviews'] ) ) {
@@ -689,9 +696,12 @@ final class MonsterInsights_Report_Overview extends MonsterInsights_Report {
 					continue;
 				}
 
-				if ( isset( $list_of_countries[ $title ] ) ) {
+				if ( isset( $js_countries[ $title ] ) ) {
 					$views   = isset( $countries_values[1] ) ? absint( $countries_values[1] ) : 0;
-					$js_countries[ $list_of_countries[ $title ] ] = $views;
+					$js_countries[ $title ] = $views;
+				} else if ( isset( $list_of_countries[ $title ] ) ) {
+					$views   = isset( $countries_values[1] ) ? absint( $countries_values[1] ) : 0;
+					$js_countries[ $list_of_countries[ $title ] ] = $views;				
 				} else {
 					continue;
 				}
@@ -704,7 +714,6 @@ final class MonsterInsights_Report_Overview extends MonsterInsights_Report {
 		}
 		$to_return .= "}" . PHP_EOL;
 		return $to_return;
-		
 	}
 }
 new MonsterInsights_Report_Overview();

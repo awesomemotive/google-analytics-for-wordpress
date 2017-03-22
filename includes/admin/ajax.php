@@ -34,7 +34,7 @@ function monsterinsights_ajax_set_user_setting() {
 
     // Send back the response.
     wp_send_json_success();
-    die();
+    wp_die();
 
 }
 add_action( 'wp_ajax_monsterinsights_install_addon', 'monsterinsights_ajax_install_addon' );
@@ -77,7 +77,7 @@ function monsterinsights_ajax_install_addon() {
         if ( false === ( $creds = request_filesystem_credentials( $url, $method, false, false, null ) ) ) {
             $form = ob_get_clean();
             echo json_encode( array( 'form' => $form ) );
-            die;
+            wp_die();
         }
 
         // If we are not authenticated, make it happen now.
@@ -86,7 +86,7 @@ function monsterinsights_ajax_install_addon() {
             request_filesystem_credentials( $url, $method, true, false, null );
             $form = ob_get_clean();
             echo json_encode( array( 'form' => $form ) );
-            die;
+            wp_die();
         }
 
         // We do not need any extra credentials if we have gotten this far, so let's install the plugin.
@@ -103,13 +103,13 @@ function monsterinsights_ajax_install_addon() {
         if ( $installer->plugin_info() ) {
             $plugin_basename = $installer->plugin_info();
             echo json_encode( array( 'plugin' => $plugin_basename ) );
-            die;
+            wp_die();
         }
     }
 
     // Send back a response.
     echo json_encode( true );
-    die;
+    wp_die();
 
 }
 
@@ -139,12 +139,12 @@ function monsterinsights_ajax_activate_addon() {
 
         if ( is_wp_error( $activate ) ) {
             echo json_encode( array( 'error' => $activate->get_error_message() ) );
-            die;
+            wp_die();
         }
     }
 
     echo json_encode( true );
-    die;
+    wp_die();
 
 }
 
@@ -174,8 +174,7 @@ function monsterinsights_ajax_deactivate_addon() {
     }
 
     echo json_encode( true );
-    die;
-
+    wp_die();
 }
 
 /**
@@ -199,12 +198,60 @@ function monsterinsights_ajax_dismiss_notice() {
 
         // Return true
         echo json_encode( true );
-        die;
+        wp_die();
     }
 
     // If here, an error occured
     echo json_encode( false );
-    die;
+    wp_die();
 
 }
 add_action( 'wp_ajax_monsterinsights_ajax_dismiss_notice', 'monsterinsights_ajax_dismiss_notice' );
+
+
+function monsterinsights_get_shortlink() {
+    // Run a security check first.
+    check_ajax_referer( 'mi-admin-nonce', 'nonce' );
+
+    $shorten = ! empty( $_POST['url'] ) ? esc_url_raw( $_POST['url'] ) : '';
+    if ( ! current_user_can( 'monsterinsights_view_dashboard' ) ) {
+        echo $shorten;
+        wp_die();
+    }
+
+    $url     = 'https://www.googleapis.com/urlshortener/v1/url';
+
+    // If no url passed die
+    if ( ! $shorten ) {
+        echo $shorten;
+        wp_die();
+    }
+
+    // if the url is already shortened, don't re-run
+    if ( strpos( $shorten, 'goo.g') !== false ) {
+        echo $shorten;
+        wp_die();
+    }
+    
+    $result = wp_remote_post(
+        add_query_arg(
+            'key', 
+            'AIzaSyCfHOlx8NbBVSpmHPqxophzULWSAzWDyio', 
+            'https://www.googleapis.com/urlshortener/v1/url'
+        ), 
+        array(
+            'body' => json_encode( array('longUrl' => esc_url_raw( $shorten ) ) ),
+            'headers' => array( 'Content-Type' => 'application/json')
+        )
+    );
+
+    if ( is_wp_error( $result ) ) {
+        echo $shorten;
+        wp_die();
+    }
+    $result = json_decode( $result['body'] );
+    $shortlink = $result->id;
+    echo $shortlink;
+    wp_die();
+}
+add_action( 'wp_ajax_monsterinsights_get_shortlink', 'monsterinsights_get_shortlink' );

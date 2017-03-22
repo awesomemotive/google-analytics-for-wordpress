@@ -60,19 +60,19 @@ function monsterinsights_settings_page() {
         <a class="monsterinsights-main-nav-item monsterinsights-nav-item monsterinsights-spacing-item" href="#">&nbsp;</a>
 
         <a class="monsterinsights-main-nav-item monsterinsights-nav-item monsterinsights-active" href="#monsterinsights-main-tab-general" title="<?php echo esc_attr( __( 'General', 'google-analytics-for-wordpress' ) ); ?>">
-            <?php _e( 'General', 'google-analytics-for-wordpress' ); ?>
+            <?php echo esc_html__( 'General', 'google-analytics-for-wordpress' ); ?>
         </a>
 
         <a class="monsterinsights-main-nav-item monsterinsights-nav-item" href="#monsterinsights-main-tab-tracking" title="<?php echo esc_attr( __( 'Tracking', 'google-analytics-for-wordpress' ) ); ?>">
-            <?php _e( 'Tracking', 'google-analytics-for-wordpress' ); ?>
+            <?php echo esc_html__( 'Tracking', 'google-analytics-for-wordpress' ); ?>
         </a>
         <!--
         <a class="monsterinsights-main-nav-item monsterinsights-nav-item" href="#monsterinsights-main-tab-status" title="<?php //echo esc_attr( __( 'Status', 'google-analytics-for-wordpress' ) ); ?>">
-            <?php //_e( 'Status', 'google-analytics-for-wordpress' ); ?>
+            <?php //echo esc_html__( 'Status', 'google-analytics-for-wordpress' ); ?>
         </a>
 
         <a class="monsterinsights-main-nav-item monsterinsights-nav-item" href="#monsterinsights-main-tab-support" title="<?php //echo esc_attr( __( 'Support', 'google-analytics-for-wordpress' ) ); ?>">
-            <?php //_e( 'Support', 'google-analytics-for-wordpress' ); ?>
+            <?php //echo esc_html__( 'Support', 'google-analytics-for-wordpress' ); ?>
         </a>
          -->
     </h1>
