@@ -33,6 +33,7 @@
 	/** Special Classes */
 		.monsterinsights-hideme{display:none;visibility: hidden;}
 		.monsterinsights-no-text-decoration{text-decoration:none}
+		.monsterinsights-required-indicator{color: #b94a48;display: inline;}
 
 	/** Clearfixes */
 		.monsterinsights-clear{clear:both}
@@ -58,6 +59,7 @@
 		@media (min-width: 600px) and (max-width: 767px) {
 			body.monsterinsights_page .button{margin-top:10px}
 		}
+		body.monsterinsights_page .monsterinsights-action-button{align-items:flex-start;background-color:#eee;background-image:linear-gradient(#fcfcfc,#eee);border-image-outset:0;border-image-repeat:stretch;border-image-slice:100%;border-image-source:none;border-image-width:1;box-sizing:border-box;color:#333;cursor:pointer;display:block;float:left;font-family:Helvetica,arial,nimbussansl,liberationsans,freesans,clean,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:13px;font-stretch:normal;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-weight:700;height:33.6px;letter-spacing:normal;line-height:20px;overflow-x:visible;overflow-y:visible;position:relative;text-align:center;text-indent:0;text-rendering:auto;text-shadow:none;text-size-adjust:100%;text-transform:none;user-select:none;vertical-align:middle;white-space:nowrap;word-spacing:0;writing-mode:horizontal-tb;-webkit-appearance:none;-webkit-border-image:none;border-color:#d5d5d5;border-radius:3px;border-style:solid;border-width:.8px;margin:0;padding:6px 12px}
 
 	/** Clipboard & Code */
 		div.monsterinsights-code{position:relative;margin:0 0 10px}
@@ -359,9 +361,20 @@
 
 /** Tools Page Styles **/
 	/** Generic Tools Page Styles **/
-
+		#monsterinsights-tools-pages .monsterinsights-main-nav-tab { padding: 30px 5px;margin: 0px; }
+		
 	/** URL Generator Tab Styles **/
-
+		.monsterinsights-main-nav-tabs label{margin-top:7px;display:block;color:#444851}
+		#monsterinsights-tools-pages .form-table th,#monsterinsights-tools-pages .form-table td,#monsterinsights-tools-pages .form-table tr{ padding: 0px 0px 20px 0px; border: none;}
+		#monsterinsights-tools-pages .monsterinsights-nav-tab .description { margin-top: 0px; }
+		#monsterinsights-tools-pages input[type="text"],#monsterinsights-tools-pages input[type=url],#monsterinsights-tools-pages textarea{width:350px;padding-right:0;font-size:13px;border-width:2px;border-radius:3px;border-color:#e4e9ee;box-shadow:none;}
+		#monsterinsights-tools-pages input[type="text"],#monsterinsights-tools-pages input[type=url]{height:32px;}
+		#monsterinsights-tools-pages textarea{ height: 100px;}
+		@media (max-width: 767px) {
+			#monsterinsights-tools-pages input[type="text"],#monsterinsights-tools-pages input[type="url"],#monsterinsights-tools-pages textarea{width:90%!important;}
+			#monsterinsights-tools-pages input[type="text"],#monsterinsights-tools-pages input[type="url"]{height:auto;}
+		}
+		#monsterinsights-related-resources-list{ list-style-type: disc; padding-left: 40px;}
 	/** Import/Export Tab Styles **/
 
 	/** Tools Page Media Queries **/

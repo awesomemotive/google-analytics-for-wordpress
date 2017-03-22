@@ -315,7 +315,11 @@ final class MonsterInsights_GA {
 				if ( version_compare( $version, '4.6', '<' ) ) {
 					return esc_html__( 'MonsterInsights requires WordPress version 4.6 or newer to use oAuth. Please update your WordPress version.', 'google-analytics-for-wordpress' );
 				} else {
-					return esc_html__( 'Google Analytics had a connection error.', 'google-analytics-for-wordpress' );
+					if ( ! empty( $accounts ) ) {
+						return $accounts;
+					} else {
+						return esc_html__( 'Google Analytics had a connection error or your Google account is not signed up for Google Analytics.', 'google-analytics-for-wordpress' );
+					}
 				}
 			}
 			
@@ -360,7 +364,12 @@ final class MonsterInsights_GA {
 				if ( version_compare( $version, '4.6', '<' ) ) {
 					return esc_html__( 'MonsterInsights requires WordPress version 4.6 or newer to use oAuth. Please update your WordPress version.', 'google-analytics-for-wordpress' );
 				} else {
-					return esc_html__( 'Google Analytics had a connection error.', 'google-analytics-for-wordpress' );
+					if ( ! empty( $accounts ) ) {
+						return $accounts;
+					} else {
+						$code = isset( $response['response']['code'] ) ? $response['response']['code'] : 'Unknown';
+						return sprintf( esc_html__( 'Google Analytics had a connection error. Error code: %s.', 'google-analytics-for-wordpress' ), $code );
+					}
 				}
 			}
 

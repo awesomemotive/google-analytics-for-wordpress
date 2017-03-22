@@ -59,7 +59,7 @@ function monsterinsights_settings_general_tab() {
         </div>
         <table class="form-table">
             <tbody>
-                <?php if ( ! monsterinsights_is_network_active() || ( monsterinsights_is_network_active() && empty ( $network_license ) ) ) { ?>
+                <?php if ( ( ! monsterinsights_is_network_active() || ( monsterinsights_is_network_active() && empty ( $network_license ) ) ) && monsterinsights_is_pro_version() ) { ?>
                     <tr id="monsterinsights-settings-key-box">
                         <th scope="row">
                             <label for="monsterinsights-settings-key"><?php esc_html_e( 'License Key', 'google-analytics-for-wordpress' ); ?></label>
@@ -74,7 +74,7 @@ function monsterinsights_settings_general_tab() {
                             </form>
                         </td>
                     </tr>
-                    <?php if ( ! empty( $license_key_type ) ) : ?>
+                    <?php if ( ! empty( $license_key_type ) && monsterinsights_is_pro_version() ) : ?>
                     <tr id="monsterinsights-settings-key-type-box">
                         <th scope="row">
                             <label for="monsterinsights-settings-key-type"><?php esc_html_e( 'License Key Type', 'google-analytics-for-wordpress' ); ?></label>
@@ -144,7 +144,7 @@ function monsterinsights_settings_general_tab() {
                     echo monsterinsights_make_checkbox( 'dashboards_disabled', $title, $description );
                     ?>
 
-                    <?php if ( $tracking_mode === 'ga' ){  ?>
+                    <?php if ( $tracking_mode === 'ga' || monsterinsights_is_debug_mode() ){  ?>
                     <tr id="monsterinsights-tracking-mode">
                         <th scope="row">
                             <label for="monsterinsights-tracking-mode"><?php esc_html_e( 'Pick Tracking Mode', 'google-analytics-for-wordpress' ); ?></label>
@@ -215,7 +215,7 @@ add_action( 'monsterinsights_tab_settings_general', 'monsterinsights_settings_ge
  * @return void
  */
 function monsterinsights_settings_save_general() {
-    $thow_notice    = false;
+    $throw_notice    = false;
     $manual_ua_code = isset( $_POST['manual_ua_code'] ) ? $_POST['manual_ua_code'] : '';
     $manual_ua_code = monsterinsights_is_valid_ua( $manual_ua_code ); // also sanitizes the string
     
@@ -234,7 +234,7 @@ function monsterinsights_settings_save_general() {
     $old_tracking_mode = monsterinsights_get_option( 'tracking_mode', 'analytics' );
     $tracking_mode     = isset( $_POST['tracking_mode'] ) ? $_POST['tracking_mode'] : 'analytics';
 
-    if ( $old_tracking_mode === 'ga' ) {
+    if ( $old_tracking_mode === 'ga' || monsterinsights_is_debug_mode() ) {
         if ( $tracking_mode !== 'analytics' && $tracking_mode !== 'ga' ) {
             /** 
              * Developer Alert:

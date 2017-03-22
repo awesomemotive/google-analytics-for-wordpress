@@ -81,7 +81,7 @@ function monsterinsights_tracking_script( ) {
     do_action( 'monsterinsights_tracking_after', $mode );
 }
 add_action( 'wp_head', 'monsterinsights_tracking_script', 8 );
-add_action( 'login_head', 'monsterinsights_tracking_script', 8 );
+//add_action( 'login_head', 'monsterinsights_tracking_script', 8 );
 
 /**
  * Get frontend tracking options.
@@ -111,7 +111,7 @@ function monsterinsights_events_tracking( ) {
     }
 }
 add_action( 'template_redirect', 'monsterinsights_events_tracking', 9 );
-add_action( 'login_head', 'monsterinsights_events_tracking', 8 );
+//add_action( 'login_head', 'monsterinsights_events_tracking', 8 );
 
 function monsterinsights_disabled_user_group( ) {
     $user      = wp_get_current_user();
