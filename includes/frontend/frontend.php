@@ -97,7 +97,7 @@ add_action( 'wp_head', 'monsterinsights_tracking_script', 8 );
  */
 function monsterinsights_events_tracking( ) {
     $events_mode = monsterinsights_get_option( 'events_mode', false );
-    $tracking_mode = monsterinsights_get_option( 'tracking_mode', false );
+    $tracking_mode = monsterinsights_get_option( 'tracking_mode', 'analytics' );
     $disabled_user = monsterinsights_disabled_user_group();
 
     if ( ! $disabled_user && $events_mode === 'php' && ( $tracking_mode === 'ga' || $tracking_mode === 'analytics' ) ) {

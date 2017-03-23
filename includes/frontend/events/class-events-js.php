@@ -54,7 +54,7 @@ class MonsterInsights_Events_JS {
 	 */
 	public function __construct() {
 		$this->base     = MonsterInsights();
-		$tracking       = monsterinsights_get_option( 'tracking_mode', false );
+		$tracking       = monsterinsights_get_option( 'tracking_mode', 'analytics' );
 		$events         = monsterinsights_get_option( 'events_mode', false );
 		if ( $events === 'js' && $tracking === 'analytics' ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'output_javascript' ), 9 ); 
