@@ -38,13 +38,18 @@ var MonsterInsights = function(){
 		}
 	}
 
+	function toObject(arr) {
+	  var rv = {};
+	  for (var i = 0; i < arr.length; ++i)
+		rv[i] = arr[i];
+	  return rv;
+	}
+
 	function __gaTrackerSend ( valuesArray, fieldsArray ) {
 		valuesArray = typeof valuesArray !== 'undefined' ? valuesArray : [];
-		fieldsArray = typeof fieldsArray !== 'undefined' ? fieldsArray : [];
+		fieldsArray = typeof fieldsArray !== 'undefined' ? fieldsArray : {};
 
-		if ( fieldsArray.length > 0 ) {
-			__gaTracker( 'send', fieldsArray );
-		}
+		__gaTracker( 'send', fieldsArray );
 
 		lastClicked.valuesArray = valuesArray;
 		lastClicked.fieldsArray = fieldsArray;
@@ -269,37 +274,47 @@ var MonsterInsights = function(){
 				if ( target || type == 'mailto' ) { /* If target opens a new window then just track */
 					if ( type == 'download' ) {
 						if ( track_download_as == 'pageview' ) {
-							fieldsArray.hitType = 'pageview';
-							fieldsArray.page    = link;
+							fieldsArray = { 
+								hitType : 'pageview',
+								page    : link,
+							};
 							
 							__gaTrackerSend( valuesArray, fieldsArray );
 						} else {
-							fieldsArray.hitType       = 'event';
-							fieldsArray.eventCategory = 'download';
-							fieldsArray.eventAction   = link;
-							fieldsArray.eventLabel    = valuesArray.title;
+							fieldsArray = {
+								hitType       : 'event',
+								eventCategory : 'download',
+								eventAction   : link,
+								eventLabel    : valuesArray.title,
+							};
 
 							__gaTrackerSend( valuesArray, fieldsArray );
 						}
 					} else if ( type == 'mailto' ) {
-						fieldsArray.hitType       = 'event';
-						fieldsArray.eventCategory = 'mailto';
-						fieldsArray.eventAction   = link;
-						fieldsArray.eventLabel    = valuesArray.title;
+						fieldsArray = {
+							hitType       : 'event',
+							eventCategory : 'mailto',
+							eventAction   : link,
+							eventLabel    : valuesArray.title,
+						};
 
 						__gaTrackerSend( valuesArray, fieldsArray );
 					} else if ( type == 'internal-as-outbound' ) {
-						fieldsArray.hitType       = 'event';
-						fieldsArray.eventCategory = internal_label;
-						fieldsArray.eventAction   = link;
-						fieldsArray.eventLabel    = valuesArray.title;
+						fieldsArray = {
+							hitType       : 'event',
+							eventCategory : internal_label,
+							eventAction   : link,
+							eventLabel    : valuesArray.title,
+						};
 
 						__gaTrackerSend( valuesArray, fieldsArray );
 					} else if ( type == 'external' ) {
-						fieldsArray.hitType       = 'event';
-						fieldsArray.eventCategory = 'outbound-link';
-						fieldsArray.eventAction   = link;
-						fieldsArray.eventLabel    = valuesArray.title;
+						fieldsArray = {
+							hitType: 'event',
+							eventCategory:'outbound-link',
+							eventAction: link,
+							eventLabel: valuesArray.title,
+						};
 
 						__gaTrackerSend( valuesArray, fieldsArray );
 					} else {
@@ -320,17 +335,21 @@ var MonsterInsights = function(){
 					
 					if ( type == 'download' ) {
 						if ( track_download_as == 'pageview' ) {
-							fieldsArray.hitType       = 'pageview';
-							fieldsArray.page 		  = link;
-							fieldsArray.hitCallback   = __gaTrackerHitBack;
+							fieldsArray = {
+								hitType       : 'pageview',
+								page 		  : link,
+								hitCallback   : __gaTrackerHitBack,
+							};
 
 							__gaTrackerSend( valuesArray, fieldsArray );
 						} else {
-							fieldsArray.hitType       = 'event';
-							fieldsArray.eventCategory = 'download';
-							fieldsArray.eventAction   = link;
-							fieldsArray.eventLabel    = valuesArray.title;
-							fieldsArray.hitCallback   = __gaTrackerHitBack;
+							fieldsArray = {
+								hitType       : 'event',
+								eventCategory : 'download',
+								eventAction   : link,
+								eventLabel    : valuesArray.title,
+								hitCallback   : __gaTrackerHitBack,
+							};
 
 							__gaTrackerSend( valuesArray, fieldsArray );
 						}
@@ -344,11 +363,13 @@ var MonsterInsights = function(){
 								}
 							}
 
-							fieldsArray.hitType       = 'event';
-							fieldsArray.eventCategory = internal_label;
-							fieldsArray.eventAction   = link;
-							fieldsArray.eventLabel    = valuesArray.title;
-							fieldsArray.hitCallback   = __gaTrackerHitBack;
+							fieldsArray = {
+								hitType       : 'event',
+								eventCategory : internal_label,
+								eventAction   : link,
+								eventLabel    : valuesArray.title,
+								hitCallback   : __gaTrackerHitBack,
+							};
 
 							if ( navigator.sendBeacon ) {
 								fieldsArray.transport = 'beacon';
@@ -367,11 +388,13 @@ var MonsterInsights = function(){
 								}
 							}
 							
-							fieldsArray.hitType       = 'event';
-							fieldsArray.eventCategory = 'outbound-link';
-							fieldsArray.eventAction   = link;
-							fieldsArray.eventLabel    = valuesArray.title;
-							fieldsArray.hitCallback   = __gaTrackerHitBack;
+							fieldsArray = {
+								hitType       = 'event',
+								eventCategory = 'outbound-link',
+								eventAction   = link,
+								eventLabel    = valuesArray.title,
+								hitCallback   = __gaTrackerHitBack,
+							};
 
 							if ( navigator.sendBeacon ) {
 								fieldsArray.transport = 'beacon';
