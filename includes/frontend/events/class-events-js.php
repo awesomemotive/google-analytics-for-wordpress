@@ -90,7 +90,11 @@ class MonsterInsights_Events_JS {
 		$internal_label = esc_js( $internal_label );
 
 		// Get inbound as outbound to track
-		$inbound_paths = monsterinsights_get_option( 'track_internal_as_outbound', '' );
+		$inbound_paths = monsterinsights_get_option( 'track_internal_as_outbound','' );
+		$inbound_paths = explode( ',', $inbound_paths );
+		if ( ! is_array( $inbound_paths ) ) {
+			$inbound_paths = array( $inbound_paths );
+		}
 		$i = 0;
 		foreach ( $inbound_paths as $path ){
 			$inbound_paths[ $i ] = esc_js( trim( $path ) );
@@ -102,7 +106,9 @@ class MonsterInsights_Events_JS {
 		// Get download extensions to track
 		$download_extensions = monsterinsights_get_option( 'extensions_of_files', '' );
 		$download_extensions = explode( ',', str_replace( '.', '', $download_extensions ) );
-
+		if ( ! is_array( $download_extensions ) ) {
+			$download_extensions = array( $download_extensions );
+		}
 		$i = 0;
 		foreach( $download_extensions as $extension ){
 			$download_extensions[ $i ] = esc_js( trim( $extension ) );
