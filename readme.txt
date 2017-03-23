@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.9
 Tested up to: 4.7.4
-Stable tag: 6.0.16
+Stable tag: 6.1.3
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -136,8 +136,10 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 6.1.1 - 6.1.3 (depending on which version of MI you have), March 22, 2017 =
+* Bugfix: (pro users) Issue with JS events throwing an error for array on non-set settings.
 
-= 6.1.0, March 7, 2017 =
+= 6.1.0, March 22, 2017 =
 * New: Campaign URL building tool with shortlink capability.
 * New: Settings import/export tool.
 * New: Experimental (beta) hash tracking for single-page style themes. Note, as the description for the setting says, this feature is a beta feature, and can be tweaked or removed in upcoming versions.
