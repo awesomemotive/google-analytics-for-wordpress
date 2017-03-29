@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.9
 Tested up to: 4.7.4
-Stable tag: 6.1.4
+Stable tag: 6.1.6
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -136,6 +136,14 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 6.1.6, March 29, 2017 =
+* New: Select2 filter for the Google oAuth list of profiles, to make it easier to find your Google property by fully supporting search by URL.
+* Tweak: Inbound-as-external now is prioritized before downloads in tracking preference order.
+
+= 6.1.5, March 24, 2017 =
+* New: Added some functions to prepare for upcoming new addon (Google AMP) and updates (eCommerce, Performance, Dimensions).
+* Tweak: JS events tracking for click events.
+
 = 6.1.4, March 23, 2017 =
 * Tweak: JS events tracking for click events.
 * Bugfix: Edge case where JS events tracking won't turn on if the main tracking setting was disabled (such as faulty import).
