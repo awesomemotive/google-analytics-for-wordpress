@@ -358,8 +358,6 @@ final class MonsterInsights_GA {
 						}
 					}
 				}
-			} else if ( isset( $response['response']['code'] ) && isset( $response['body']['error']['errors']['message'] )  && $response['response']['code'] !== 200 && ! $paginate ) {
-				return $response['body']['error']['errors']['message'];
 			} else if ( isset( $response['response']['code'] ) && $response['response']['code'] !== 200 && ! $paginate ) {
 				if ( version_compare( $version, '4.6', '<' ) ) {
 					return esc_html__( 'MonsterInsights requires WordPress version 4.6 or newer to use oAuth. Please update your WordPress version.', 'google-analytics-for-wordpress' );
@@ -368,7 +366,24 @@ final class MonsterInsights_GA {
 						return $accounts;
 					} else {
 						$code = isset( $response['response']['code'] ) ? $response['response']['code'] : 'Unknown';
-						return sprintf( esc_html__( 'Google Analytics had a connection error. Error code: %s.', 'google-analytics-for-wordpress' ), $code );
+						$type = isset( $response['body']['error']['errors'][0]['reason'] ) ? $response['body']['error']['errors'][0]['reason'] : false;
+						if ( $type === 'insufficientPermissions' ) {
+							return esc_html__( 'Please ensure your Google Account is signed up for Google Analytics.', 'google-analytics-for-wordpress' );
+						} else if ( $type === 'badRequest' ) {
+							return esc_html__( 'Bad Request. Please contact support.', 'google-analytics-for-wordpress' );
+						} else if ( $type === 'dailyLimitExceeded' ) {
+							return esc_html__( 'Daily Limit Exceeded. Please contact support.', 'google-analytics-for-wordpress' );
+						} else if ( $type === 'userRateLimitExceeded' ) {
+							return esc_html__( 'User Rate Limit Exceeded. Wait 2 minutes and then try again.', 'google-analytics-for-wordpress' );
+						} else if ( $type === 'rateLimitExceeded' ) {
+							return esc_html__( 'Project Rate Limit Exceeded. Wait 2 minutes and then try again.', 'google-analytics-for-wordpress' );
+						} else if ( $type === 'quotaExceeded' ) {
+							return esc_html__( 'Project Rate Limit Quota Exceeded. Wait 2 minutes and then try again.', 'google-analytics-for-wordpress' );
+						} else if ( $type === 'internalServerError' || $type === 'backendError' ) {
+							return esc_html__( 'Google Analytics is having API issues on their side. Wait 2 minutes and then try again.', 'google-analytics-for-wordpress' );
+						} else {
+							return sprintf( esc_html__( 'Google Analytics had a connection error. Error code: %1$s. Reason: %2$s', 'google-analytics-for-wordpress' ), $code, $type );
+						}
 					}
 				}
 			}
@@ -652,7 +667,7 @@ final class MonsterInsights_GA {
 	 * @return string
 	 */
 	private function create_optgroup( $optgroup, $value ) {
-		$optgroup = '<optgroup label="' . esc_attr( $optgroup ) . '">';
+		$optgroup = '<optgroup label="' . esc_attr( $optgroup ) . '" disabled>';
 
 		foreach ( $value['items'] as $option ) {
 			if ( ! empty( $option['items'] ) ) {

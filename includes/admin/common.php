@@ -107,7 +107,7 @@ function monsterinsights_admin_scripts() {
 			wp_enqueue_script( MONSTERINSIGHTS_PLUGIN_SLUG . '-jvectormap-world-script' );
 
 		// Select300
-			wp_register_script( MONSTERINSIGHTS_PLUGIN_SLUG . '-select300-script', plugins_url( 'assets/js/select300/select300.js', MONSTERINSIGHTS_PLUGIN_FILE ), array( 'jquery' ), monsterinsights_get_asset_version() );
+			wp_register_script( MONSTERINSIGHTS_PLUGIN_SLUG . '-select300-script', plugins_url( 'assets/js/select300/select300.full.js', MONSTERINSIGHTS_PLUGIN_FILE ), array( 'jquery' ), time() );
 			wp_enqueue_script( MONSTERINSIGHTS_PLUGIN_SLUG . '-select300-script' );
 
 		// Our Admin JS
@@ -124,7 +124,7 @@ function monsterinsights_admin_scripts() {
 				MONSTERINSIGHTS_PLUGIN_SLUG . '-list-script'
 			);
 
-			wp_register_script( MONSTERINSIGHTS_PLUGIN_SLUG . '-admin-script', plugins_url( 'assets/js/admin' . $suffix . '.js', MONSTERINSIGHTS_PLUGIN_FILE ), $deps, monsterinsights_get_asset_version() );
+			wp_register_script( MONSTERINSIGHTS_PLUGIN_SLUG . '-admin-script', plugins_url( 'assets/js/admin' . $suffix . '.js', MONSTERINSIGHTS_PLUGIN_FILE ), $deps, time() );
 			wp_enqueue_script( MONSTERINSIGHTS_PLUGIN_SLUG . '-admin-script' );
 			wp_localize_script(
 				MONSTERINSIGHTS_PLUGIN_SLUG . '-admin-script',

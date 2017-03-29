@@ -124,6 +124,8 @@ class MonsterInsights_Events_JS {
 			$is_debug_mode = 'false';
 		}
 
+		$hash_tracking = monsterinsights_get_option( 'hash_tracking', false ) ? 'true' : 'false';
+
 		$suffix = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) || ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 		if ( ! file_exists( MONSTERINSIGHTS_PLUGIN_DIR . 'assets/js/frontend.min.js' ) ) {
 			$suffix = '';
@@ -140,7 +142,7 @@ class MonsterInsights_Events_JS {
 				'home_url'            => home_url(), /* Let's get the url to compare for external/internal use */
 				'track_download_as'   => $track_download_as, /* should downloads be tracked as events or pageviews */
 				'internal_label'      => $internal_label, /* What is the prefix for internal-as-external links */
-				'hash_tracking'       => (string) monsterinsights_get_option( 'hash_tracking', false ), /* Should hash track */
+				'hash_tracking'       => $hash_tracking, /* Should hash track */
 			)
 		);
 	}
