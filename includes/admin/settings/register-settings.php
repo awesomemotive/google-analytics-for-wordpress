@@ -274,7 +274,7 @@ function monsterinsights_get_registered_settings() {
 			array()
 		),
 		/** Dimensions Tracking Settings */
-		'memberships' => apply_filters('monsterinsights_settings_dimensions',
+		'dimensions' => apply_filters('monsterinsights_settings_dimensions',
 			array()
 		),
 		/** Performance Tracking Settings */

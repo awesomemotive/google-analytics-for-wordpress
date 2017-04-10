@@ -73,45 +73,34 @@ function monsterinsights_settings_tracking_tab() {
                 $class = ( 0 === $i ? ' monsterinsights-active' : '' ); 
                 ?>
                  <div id="monsterinsights-sub-tab-<?php echo esc_attr( $id ); ?>" class="monsterinsights-sub-nav-tab monsterinsights-nav-tab<?php echo esc_attr( $class ); ?>">
-                    <?php
-                    if ( has_action( 'monsterinsights_tab_settings_tracking_' . $id ) ) {
+                    <?php echo '<h2 class="monsterinsights-sub-tab-header">' . esc_html( $item['title'] ) . '</h2>'; ?>
+                     <div class="monsterinsights-subtab-settings-notices">
+                        <?php 
+                        // Output any notices now
                         /** 
                          * Developer Alert:
                          *
-                         * This internal use action will be removed soon. DO NOT USE.
+                         * Per the README, this is considered an internal hook and should
+                         * not be used by other developers. This hook's behavior may be modified
+                         * or the hook may be removed at any time, without warning.
                          */
-                        do_action( 'monsterinsights_tab_settings_tracking_' . $id  );
-                    } else { 
+                        do_action( 'monsterinsights_tracking_' . $id . '_tab_notice' );
                         ?>
-                         <?php echo '<h2 class="monsterinsights-sub-tab-header">' . esc_html( $item['title'] ) . '</h2>'; ?>
-                         <div class="monsterinsights-subtab-settings-notices">
-                            <?php 
-                            // Output any notices now
-                            /** 
-                             * Developer Alert:
-                             *
-                             * Per the README, this is considered an internal hook and should
-                             * not be used by other developers. This hook's behavior may be modified
-                             * or the hook may be removed at any time, without warning.
-                             */
-                            do_action( 'monsterinsights_tracking_' . $id . '_tab_notice' );
-                            ?>
-                        </div>
-                        <!-- Settings Form -->
-                        <form id="monsterinsights-tracking-<?php echo esc_attr( $id );?>-tab" method="post">
-                            <table class="form-table">
-                                <tbody>
-                                    <?php
-                                    //do_action( 'monsterinsights_settings_tab_top_' . $id  );
-                                    echo monsterinsights_get_section_settings( $id, 'tracking' );
-                                    //do_action( 'monsterinsights_settings_tab_bottom_' . $id  );
-                                    ?>
-                                </tbody>
-                            </table>
-                            <?php echo monsterinsights_render_submit_field( $id, 'tracking' ); ?>
-                        </form>
-                    <?php } ?>
                     </div>
+                    <!-- Settings Form -->
+                    <form id="monsterinsights-tracking-<?php echo esc_attr( $id );?>-tab" method="post">
+                        <table class="form-table">
+                            <tbody>
+                                <?php
+                                //do_action( 'monsterinsights_settings_tab_top_' . $id  );
+                                echo monsterinsights_get_section_settings( $id, 'tracking' );
+                                //do_action( 'monsterinsights_settings_tab_bottom_' . $id  );
+                                ?>
+                            </tbody>
+                        </table>
+                        <?php echo monsterinsights_render_submit_field( $id, 'tracking' ); ?>
+                    </form>
+                </div>
                 <?php
                 $i++;
             }

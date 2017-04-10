@@ -5,87 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-function monsterinsights_lite_social_addon_notice( ) {
-	echo '<div class="monsterinsights-upsell-box"><h2>' . esc_html__( 'Want to setup Social Tracking?', 'google-analytics-for-wordpress') . '</h2>'
-		 . '<p class="upsell-lite">' . sprintf( esc_html__( 'To setup social tracking, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '">', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a></p>'
-
-		 . '</div>';
-}
-add_action( 'monsterinsights_tab_settings_tracking_social', 'monsterinsights_lite_social_addon_notice' );
-
-function monsterinsights_lite_ads_addon_notice( ) {
-	echo '<div class="monsterinsights-upsell-box"><h2>' . esc_html__( 'Want to setup Ad Tracking?', 'google-analytics-for-wordpress') . '</h2>'
-		 . '<p class="upsell-lite">' . sprintf( esc_html__( 'To setup ad tracking, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a></p>'
-
-		 . '</div>';
-}
-add_action( 'monsterinsights_tab_settings_tracking_ads', 'monsterinsights_lite_ads_addon_notice' );
-
-function monsterinsights_lite_forms_addon_notice( ) {
-	echo '<div class="monsterinsights-upsell-box"><h2>' . esc_html__( 'Want to setup Form Tracking?', 'google-analytics-for-wordpress') . '</h2>'
-		 . '<p class="upsell-lite">' . sprintf( esc_html__( 'To setup form tracking, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a></p>'
-
-		 . '</div>';
-}
-add_action( 'monsterinsights_tab_settings_tracking_forms', 'monsterinsights_lite_forms_addon_notice' );
-
-
-function monsterinsights_lite_media_addon_notice( ) {
-	echo '<div class="monsterinsights-upsell-box"><h2>' . esc_html__( 'Want to setup Media Tracking?', 'google-analytics-for-wordpress') . '</h2>'
-		 . '<p class="upsell-lite">' . sprintf( esc_html__( 'To setup media tracking, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a></p>'
-
-		 . '</div>';
-}
-add_action( 'monsterinsights_tab_settings_tracking_media', 'monsterinsights_lite_media_addon_notice' );
-
-function monsterinsights_lite_memberships_addon_notice( ) {
-	echo '<div class="monsterinsights-upsell-box"><h2>' . esc_html__( 'Want to setup Membership Tracking?', 'google-analytics-for-wordpress') . '</h2>'
-		 . '<p class="upsell-lite">' . sprintf( esc_html__( 'To setup membership tracking, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a></p>'
-
-		 . '</div>';
-}
-add_action( 'monsterinsights_tab_settings_tracking_memberships', 'monsterinsights_lite_memberships_addon_notice' );
-
-function monsterinsights_lite_dimensions_addon_notice( ) {
-	echo '<div class="monsterinsights-upsell-box"><h2>' . esc_html__( 'Want to setup Custom Dimensions?', 'google-analytics-for-wordpress') . '</h2>'
-		 . '<p class="upsell-lite">' . sprintf( esc_html__( 'To setup custom dimension tracking, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a></p>'
-
-		 . '</div>';
-}
-add_action( 'monsterinsights_tab_settings_tracking_dimensions', 'monsterinsights_lite_dimensions_addon_notice' );
-
-function monsterinsights_lite_performance_addon_notice( ) {
-	echo '<div class="monsterinsights-upsell-box"><h2>' . esc_html__( 'Want to setup Performance Tracking?', 'google-analytics-for-wordpress') . '</h2>'
-		 . '<p class="upsell-lite">' . sprintf( esc_html__( 'To setup performance tracking, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a></p>'
-
-		 . '</div>';
-}
-add_action( 'monsterinsights_tab_settings_tracking_performance', 'monsterinsights_lite_performance_addon_notice' );
-
-function monsterinsights_lite_reporting_addon_notice( ) {
-	echo '<div class="monsterinsights-upsell-box"><h2>' . esc_html__( 'Want to setup Custom Reporting?', 'google-analytics-for-wordpress') . '</h2>'
-		 . '<p class="upsell-lite">' . sprintf( esc_html__( 'To setup custom reporting, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a></p>'
-
-		 . '</div>';
-}
-add_action( 'monsterinsights_tab_settings_tracking_reporting', 'monsterinsights_lite_reporting_addon_notice' );
-
-function monsterinsights_lite_notifications_addon_notice( ) {
-	echo '<div class="monsterinsights-upsell-box"><h2>' . esc_html__( 'Want to setup Custom Notifications?', 'google-analytics-for-wordpress') . '</h2>'
-		 . '<p class="upsell-lite">' . sprintf( esc_html__( 'To setup custom notifications, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a></p>'
-
-		 . '</div>';
-}
-add_action( 'monsterinsights_tab_settings_tracking_notifications', 'monsterinsights_lite_notifications_addon_notice' );
-
-function monsterinsights_lite_ecommerce_addon_notice( ) {
-	echo '<div class="monsterinsights-upsell-box"><h2>' . esc_html__( 'Want to setup eCommerce Tracking', 'google-analytics-for-wordpress') . '</h2>'
-		 . '<p class="upsell-lite">' . sprintf( esc_html__( 'To setup eCommerce tracking, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a></p>'
-
-		 . '</div>';
-}
-add_action( 'monsterinsights_tab_settings_tracking_ecommerce', 'monsterinsights_lite_ecommerce_addon_notice' );
-
 function monsterinsights_registered_settings_filter( $settings ) {
 	$tracking_mode   = monsterinsights_get_option( 'tracking_mode', 'analytics' );
 	$events_tracking = monsterinsights_get_option( 'events_mode', 'js' );
@@ -120,6 +39,88 @@ function monsterinsights_registered_settings_filter( $settings ) {
 		$settings['links']['enhanced_link_attribution']['name'] = __( 'Subdomain tracking:', 'google-analytics-for-wordpress' );
 		$settings['links']['enhanced_link_attribution']['desc'] = sprintf( esc_html__( 'This allows you to set the domain that\'s set by %1$s for tracking subdomains. If empty, this will not be set. Can be used to set localhost for ga.js tracking.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory#_gat.GA_Tracker_._setDomainName" target="_blank" rel="noopener noreferrer" referrer="no-referrer"><code>_setDomainName</code></a>' );
 	}
+
+
+	// Addons:
+		// Social
+			$settings['social']['social_notice'] = array( 
+				'id' => 'social_notice',
+				'name' => __( 'Want to setup Social Tracking?', 'google-analytics-for-wordpress'),
+				'type' => 'upgrade_notice',
+				'desc' => sprintf( esc_html__( 'To setup social tracking, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '">', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a>'
+			);
+
+		// Ads
+			$settings['ads']['ads_notice'] = array( 
+				'id' => 'ads_notice',
+				'name' => __( 'Want to setup Ad Tracking?', 'google-analytics-for-wordpress'),
+				'type' => 'upgrade_notice',
+				'desc' => sprintf( esc_html__( 'To setup ad tracking, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '">', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a>'
+			);
+
+		// Forms
+			$settings['forms']['forms_notice'] = array( 
+				'id' => 'forms_notice',
+				'name' => __( 'Want to setup Forms Tracking?', 'google-analytics-for-wordpress'),
+				'type' => 'upgrade_notice',
+				'desc' => sprintf( esc_html__( 'To setup form tracking, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '">', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a>'
+			);
+
+		// Media
+			$settings['media']['media_notice'] = array( 
+				'id' => 'media_notice',
+				'name' => __( 'Want to setup Media Tracking?', 'google-analytics-for-wordpress'),
+				'type' => 'upgrade_notice',
+				'desc' => sprintf( esc_html__( 'To setup media tracking, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '">', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a>'
+			);
+
+		// Membership
+			$settings['membership']['membership_notice'] = array( 
+				'id' => 'membership_notice',
+				'name' => __( 'Want to setup Membership Tracking?', 'google-analytics-for-wordpress'),
+				'type' => 'upgrade_notice',
+				'desc' => sprintf( esc_html__( 'To setup membership tracking, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '">', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a>'
+			);
+
+		// Dimensions
+			$settings['dimensions']['dimensions_notice'] = array( 
+				'id' => 'dimensions_notice',
+				'name' => __( 'Want to setup Custom Dimensions?', 'google-analytics-for-wordpress'),
+				'type' => 'upgrade_notice',
+				'desc' => sprintf( esc_html__( 'To setup custom dimensions, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '">', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a>'
+			);
+
+			// Performance
+			$settings['performance']['performance_notice'] = array( 
+				'id' => 'performance_notice',
+				'name' => __( 'Want to setup Performance Tracking?', 'google-analytics-for-wordpress'),
+				'type' => 'upgrade_notice',
+				'desc' => sprintf( esc_html__( 'To setup performance tracking, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '">', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a>'
+			);
+
+			// Reporting
+			$settings['reporting']['reporting_notice'] = array( 
+				'id' => 'reporting_notice',
+				'name' => __( 'Want to setup Custom Reporting?', 'google-analytics-for-wordpress'),
+				'type' => 'upgrade_notice',
+				'desc' => sprintf( esc_html__( 'To setup custom reporting, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '">', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a>'
+			);
+
+			// Reporting
+			$settings['notifications']['notifications_notice'] = array( 
+				'id' => 'notifications_notice',
+				'name' => __( 'Want to setup Custom Notifications?', 'google-analytics-for-wordpress'),
+				'type' => 'upgrade_notice',
+				'desc' => sprintf( esc_html__( 'To setup custom notifications, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '">', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a>'
+			);
+
+			// Reporting
+			$settings['ecommerce']['ecommerce_notice'] = array( 
+				'id' => 'ecommerce_notice',
+				'name' => __( 'Want to setup eCommerce Tracking?', 'google-analytics-for-wordpress'),
+				'type' => 'upgrade_notice',
+				'desc' => sprintf( esc_html__( 'To setup ecommerce tracking, please %1$supgrade your MonsterInsights account%2$s to unlock this feature.', 'google-analytics-for-wordpress' ), '<a href="' . esc_attr( monsterinsights_get_upgrade_link() ) . '">', '</a>' ) , '<br /><a href="' . monsterinsights_get_upgrade_link() . '" class="monsterinsights-upsell-box-button button button-primary" target="_blank" rel="noopener noreferrer" referrer="no-referrer" >' . esc_html__( 'Learn more about MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a>'
+			);
 	return $settings;
 }
 add_filter( 'monsterinsights_registered_settings', 'monsterinsights_registered_settings_filter' );

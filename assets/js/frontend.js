@@ -117,7 +117,7 @@ var MonsterInsights = function(){
 		return inbound_paths;
 	}
 
-	function __gaTrackerTrackedClickType() {
+	function __gaTrackerTrackedClickType( event ) {
 		if ( event.which == 1 ) {
 			return 'event.which=1';
 		} else if ( event.which == 2 ) {
@@ -196,7 +196,7 @@ var MonsterInsights = function(){
 		// Start Values Array
 		valuesArray.el         = el;
 		valuesArray.ga_loaded  = __gaTrackerLoaded();
-		valuesArray.click_type = __gaTrackerTrackedClickType();
+		valuesArray.click_type = __gaTrackerTrackedClickType( event );
 
 		/* If GA is blocked or not loaded, or not main|middle|touch click then don't track */
 		if ( ! __gaTrackerLoaded() || ! __gaTrackerTrackedClick() ) {

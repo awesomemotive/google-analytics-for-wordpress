@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: MonsterInsights Lite\n"
 "Report-Msgid-Bugs-To: https://github.com/awesomemotive/monsterinsights/"
 "issues\n"
-"POT-Creation-Date: 2017-03-28 12:15-0400\n"
+"POT-Creation-Date: 2017-04-06 14:54-0700\n"
 "PO-Revision-Date: 2016-07-21 17:01-0400\n"
 "Last-Translator: Chris Christoff <support@monsterinsights.com>\n"
 "Language-Team: Chris Christoff <support@monsterinsights.com>\n"
@@ -246,7 +246,7 @@ msgstr ""
 msgid "Imported!"
 msgstr ""
 
-#: includes/admin/common.php:366
+#: includes/admin/common.php:367
 #, php-format
 msgid ""
 "MonsterInsights has detected that it's files are being blocked. This is "
@@ -259,7 +259,7 @@ msgid ""
 "happy to help diagnose the issue."
 msgstr ""
 
-#: includes/admin/google.php:316 includes/admin/google.php:365
+#: includes/admin/google.php:316 includes/admin/google.php:363
 msgid ""
 "MonsterInsights requires WordPress version 4.6 or newer to use oAuth. Please "
 "update your WordPress version."
@@ -272,52 +272,82 @@ msgid ""
 msgstr ""
 
 #: includes/admin/google.php:371
-#, php-format
-msgid "Google Analytics had a connection error. Error code: %s."
+msgid "Please ensure your Google Account is signed up for Google Analytics."
 msgstr ""
 
-#: includes/admin/google.php:481 includes/admin/google.php:588
+#: includes/admin/google.php:373
+msgid "Bad Request. Please contact support."
+msgstr ""
+
+#: includes/admin/google.php:375
+msgid "Daily Limit Exceeded. Please contact support."
+msgstr ""
+
+#: includes/admin/google.php:377
+msgid "User Rate Limit Exceeded. Wait 2 minutes and then try again."
+msgstr ""
+
+#: includes/admin/google.php:379
+msgid "Project Rate Limit Exceeded. Wait 2 minutes and then try again."
+msgstr ""
+
+#: includes/admin/google.php:381
+msgid "Project Rate Limit Quota Exceeded. Wait 2 minutes and then try again."
+msgstr ""
+
+#: includes/admin/google.php:383
+msgid ""
+"Google Analytics is having API issues on their side. Wait 2 minutes and then "
+"try again."
+msgstr ""
+
+#: includes/admin/google.php:385
+#, php-format
+msgid "Google Analytics had a connection error. Error code: %1$s. Reason: %2$s"
+msgstr ""
+
+#: includes/admin/google.php:496 includes/admin/google.php:603
 msgid "Permission Denied"
 msgstr ""
 
-#: includes/admin/google.php:494
+#: includes/admin/google.php:509
 msgid "Cannot connect to Google"
 msgstr ""
 
-#: includes/admin/google.php:520
+#: includes/admin/google.php:535
 msgid "No profiles viewable for that account. Please use another account."
 msgstr ""
 
-#: includes/admin/google.php:527
+#: includes/admin/google.php:542
 msgid "Bad Google Code. Please try again."
 msgstr ""
 
-#: includes/admin/google.php:534
+#: includes/admin/google.php:549
 msgid "Please paste in your Google code."
 msgstr ""
 
-#: includes/admin/google.php:560
+#: includes/admin/google.php:575
 msgid "Invalid profile selected."
 msgstr ""
 
-#: includes/admin/google.php:566
+#: includes/admin/google.php:581
 msgid "Please select a profile."
 msgstr ""
 
-#: includes/admin/google.php:626
+#: includes/admin/google.php:641
 msgid "Analytics profile"
 msgstr ""
 
-#: includes/admin/google.php:627
+#: includes/admin/google.php:642
 msgid "Select a profile"
 msgstr ""
 
-#: includes/admin/google.php:737
+#: includes/admin/google.php:752
 #, php-format
 msgid "Please configure your %1$sGoogle Analytics settings%2$s!"
 msgstr ""
 
-#: includes/admin/google.php:750
+#: includes/admin/google.php:765
 #, php-format
 msgid ""
 "It seems the authentication for the plugin has expired or the connection to "
@@ -325,7 +355,7 @@ msgid ""
 "Google Analytics to allow the plugin to fetch data."
 msgstr ""
 
-#: includes/admin/google.php:763
+#: includes/admin/google.php:778
 #, php-format
 msgid ""
 "It seems the authentication for the plugin is missing permissions. Please "
@@ -333,7 +363,7 @@ msgid ""
 "data."
 msgstr ""
 
-#: includes/admin/google.php:776 includes/admin/pages/dashboard.php:121
+#: includes/admin/google.php:791 includes/admin/pages/dashboard.php:121
 #: includes/admin/pages/reports.php:164
 #, php-format
 msgid ""
@@ -1311,29 +1341,29 @@ msgid ""
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:340
-#: includes/admin/settings/tab-general.php:181
+#: includes/admin/settings/tab-general.php:183
 msgid "Allow Usage Tracking"
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:341
-#: includes/admin/settings/tab-general.php:182
+#: includes/admin/settings/tab-general.php:184
 msgid ""
 "By allowing us to track usage data we can better help you, because we know "
 "with which WordPress configurations, themes and plugins we should test."
 msgstr ""
 
-#: includes/admin/settings/settings-api.php:722
+#: includes/admin/settings/settings-api.php:725
 #, php-format
 msgid "You must have the %s capability to view/edit this setting"
 msgstr ""
 
-#: includes/admin/settings/settings-api.php:894
+#: includes/admin/settings/settings-api.php:914
 #, php-format
 msgid "The callback function used for the %s setting is missing."
 msgstr ""
 
-#: includes/admin/settings/settings-api.php:924
-#: includes/admin/settings/tab-general.php:202
+#: includes/admin/settings/settings-api.php:944
+#: includes/admin/settings/tab-general.php:204
 msgid "Save Changes"
 msgstr ""
 
@@ -1398,7 +1428,7 @@ msgstr ""
 msgid "Analytics.js (Universal Analytics)"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:158
+#: includes/admin/settings/tab-general.php:159
 #, php-format
 msgid ""
 "Warning: You're currently using deprecated ga.js tracking. We recommend "
@@ -1410,11 +1440,11 @@ msgid ""
 "(analytics.js) %1$sclick here%2$s."
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:167
+#: includes/admin/settings/tab-general.php:169
 msgid "Switch to JS events tracking"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:173
+#: includes/admin/settings/tab-general.php:175
 #, php-format
 msgid ""
 "Warning: You're currently using deprecated PHP based events tracking. We "
@@ -2492,125 +2522,7 @@ msgstr ""
 msgid "Zimbabwe"
 msgstr ""
 
-#: lite/includes/admin/addons.php:9
-msgid "Want to setup Social Tracking?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:10
-#, php-format
-msgid ""
-"To setup social tracking, please %1$supgrade your MonsterInsights account"
-"%2$s to unlock this feature."
-msgstr ""
-
-#: lite/includes/admin/addons.php:10 lite/includes/admin/addons.php:18
-#: lite/includes/admin/addons.php:26 lite/includes/admin/addons.php:35
-#: lite/includes/admin/addons.php:43 lite/includes/admin/addons.php:51
-#: lite/includes/admin/addons.php:59 lite/includes/admin/addons.php:67
-#: lite/includes/admin/addons.php:75 lite/includes/admin/addons.php:83
-msgid "Learn more about MonsterInsights Pro"
-msgstr ""
-
-#: lite/includes/admin/addons.php:17
-msgid "Want to setup Ad Tracking?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:18
-#, php-format
-msgid ""
-"To setup ad tracking, please %1$supgrade your MonsterInsights account%2$s to "
-"unlock this feature."
-msgstr ""
-
-#: lite/includes/admin/addons.php:25
-msgid "Want to setup Form Tracking?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:26
-#, php-format
-msgid ""
-"To setup form tracking, please %1$supgrade your MonsterInsights account%2$s "
-"to unlock this feature."
-msgstr ""
-
-#: lite/includes/admin/addons.php:34
-msgid "Want to setup Media Tracking?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:35
-#, php-format
-msgid ""
-"To setup media tracking, please %1$supgrade your MonsterInsights account%2$s "
-"to unlock this feature."
-msgstr ""
-
-#: lite/includes/admin/addons.php:42
-msgid "Want to setup Membership Tracking?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:43
-#, php-format
-msgid ""
-"To setup membership tracking, please %1$supgrade your MonsterInsights account"
-"%2$s to unlock this feature."
-msgstr ""
-
-#: lite/includes/admin/addons.php:50
-msgid "Want to setup Custom Dimensions?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:51
-#, php-format
-msgid ""
-"To setup custom dimension tracking, please %1$supgrade your MonsterInsights "
-"account%2$s to unlock this feature."
-msgstr ""
-
-#: lite/includes/admin/addons.php:58
-msgid "Want to setup Performance Tracking?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:59
-#, php-format
-msgid ""
-"To setup performance tracking, please %1$supgrade your MonsterInsights "
-"account%2$s to unlock this feature."
-msgstr ""
-
-#: lite/includes/admin/addons.php:66
-msgid "Want to setup Custom Reporting?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:67
-#, php-format
-msgid ""
-"To setup custom reporting, please %1$supgrade your MonsterInsights account"
-"%2$s to unlock this feature."
-msgstr ""
-
-#: lite/includes/admin/addons.php:74
-msgid "Want to setup Custom Notifications?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:75
-#, php-format
-msgid ""
-"To setup custom notifications, please %1$supgrade your MonsterInsights "
-"account%2$s to unlock this feature."
-msgstr ""
-
-#: lite/includes/admin/addons.php:82
-msgid "Want to setup eCommerce Tracking"
-msgstr ""
-
-#: lite/includes/admin/addons.php:83
-#, php-format
-msgid ""
-"To setup eCommerce tracking, please %1$supgrade your MonsterInsights account"
-"%2$s to unlock this feature."
-msgstr ""
-
-#: lite/includes/admin/addons.php:109
+#: lite/includes/admin/addons.php:28
 #, php-format
 msgid ""
 "Demographics and Interests tracking is only available on Universal Tracking "
@@ -2623,7 +2535,7 @@ msgid ""
 "Universal Analytics (analytics.js) %1$sclick here%2$s."
 msgstr ""
 
-#: lite/includes/admin/addons.php:115
+#: lite/includes/admin/addons.php:34
 #, php-format
 msgid ""
 "Enhanced Link Attribution tracking is only available on Universal Tracking "
@@ -2636,16 +2548,134 @@ msgid ""
 "Universal Analytics (analytics.js) %1$sclick here%2$s."
 msgstr ""
 
-#: lite/includes/admin/addons.php:120
+#: lite/includes/admin/addons.php:39
 msgid "Subdomain tracking:"
 msgstr ""
 
-#: lite/includes/admin/addons.php:121
+#: lite/includes/admin/addons.php:40
 #, php-format
 msgid ""
 "This allows you to set the domain that's set by %1$s for tracking "
 "subdomains. If empty, this will not be set. Can be used to set localhost for "
 "ga.js tracking."
+msgstr ""
+
+#: lite/includes/admin/addons.php:48
+msgid "Want to setup Social Tracking?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:50
+#, php-format
+msgid ""
+"To setup social tracking, please %1$supgrade your MonsterInsights account"
+"%2$s to unlock this feature."
+msgstr ""
+
+#: lite/includes/admin/addons.php:50 lite/includes/admin/addons.php:58
+#: lite/includes/admin/addons.php:66 lite/includes/admin/addons.php:74
+#: lite/includes/admin/addons.php:82 lite/includes/admin/addons.php:90
+#: lite/includes/admin/addons.php:98 lite/includes/admin/addons.php:106
+#: lite/includes/admin/addons.php:114 lite/includes/admin/addons.php:122
+msgid "Learn more about MonsterInsights Pro"
+msgstr ""
+
+#: lite/includes/admin/addons.php:56
+msgid "Want to setup Ad Tracking?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:58
+#, php-format
+msgid ""
+"To setup ad tracking, please %1$supgrade your MonsterInsights account%2$s to "
+"unlock this feature."
+msgstr ""
+
+#: lite/includes/admin/addons.php:64
+msgid "Want to setup Forms Tracking?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:66
+#, php-format
+msgid ""
+"To setup form tracking, please %1$supgrade your MonsterInsights account%2$s "
+"to unlock this feature."
+msgstr ""
+
+#: lite/includes/admin/addons.php:72
+msgid "Want to setup Media Tracking?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:74
+#, php-format
+msgid ""
+"To setup media tracking, please %1$supgrade your MonsterInsights account%2$s "
+"to unlock this feature."
+msgstr ""
+
+#: lite/includes/admin/addons.php:80
+msgid "Want to setup Membership Tracking?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:82
+#, php-format
+msgid ""
+"To setup membership tracking, please %1$supgrade your MonsterInsights account"
+"%2$s to unlock this feature."
+msgstr ""
+
+#: lite/includes/admin/addons.php:88
+msgid "Want to setup Custom Dimensions?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:90
+#, php-format
+msgid ""
+"To setup custom dimensions, please %1$supgrade your MonsterInsights account"
+"%2$s to unlock this feature."
+msgstr ""
+
+#: lite/includes/admin/addons.php:96
+msgid "Want to setup Performance Tracking?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:98
+#, php-format
+msgid ""
+"To setup performance tracking, please %1$supgrade your MonsterInsights "
+"account%2$s to unlock this feature."
+msgstr ""
+
+#: lite/includes/admin/addons.php:104
+msgid "Want to setup Custom Reporting?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:106
+#, php-format
+msgid ""
+"To setup custom reporting, please %1$supgrade your MonsterInsights account"
+"%2$s to unlock this feature."
+msgstr ""
+
+#: lite/includes/admin/addons.php:112
+msgid "Want to setup Custom Notifications?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:114
+#, php-format
+msgid ""
+"To setup custom notifications, please %1$supgrade your MonsterInsights "
+"account%2$s to unlock this feature."
+msgstr ""
+
+#: lite/includes/admin/addons.php:120
+msgid "Want to setup eCommerce Tracking?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:122
+#, php-format
+msgid ""
+"To setup ecommerce tracking, please %1$supgrade your MonsterInsights account"
+"%2$s to unlock this feature."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
