@@ -155,8 +155,10 @@ function monsterinsights_settings_general_tab() {
                             ?>
                             <label><input type="radio" name="tracking_mode" value="ga" <?php checked( $tracking_mode, 'ga' ); ?> ><?php esc_html_e('GA.js (Deprecated)', 'google-analytics-for-wordpress'); ?> </label>
                             <label><input type="radio" name="tracking_mode" value="analytics" <?php checked( $tracking_mode, 'analytics' ); ?> ><?php esc_html_e( 'Analytics.js (Universal Analytics)', 'google-analytics-for-wordpress'); ?> </label>
+                            <?php if ($tracking_mode === 'ga' ) { ?>
                             <?php echo monsterinsights_get_message( 'error', sprintf( esc_html__( 'Warning: You\'re currently using deprecated ga.js tracking. We recommend switching to analytics.js, as it is significantly more accurate than ga.js, and allows for functionality (like the more accurate Javascript based events tracking we offer). Further Google Analytics has deprecated support for ga.js, and it may stop working at any time when Google decides to disable it from their server. To switch to using the newer Universal Analytics (analytics.js) %1$sclick here%2$s.', 'google-analytics-for-wordpress' ), '<a href="' . $url .'">', '</a>' ) );
-                         ?>
+                            ?>
+                            <?php } ?>
                         </td>
                     </tr>
                     <?php } ?>

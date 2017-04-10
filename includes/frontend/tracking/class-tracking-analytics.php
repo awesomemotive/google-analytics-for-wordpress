@@ -188,18 +188,18 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 <!-- This site uses the Google Analytics by MonsterInsights plugin v<?php echo MONSTERINSIGHTS_VERSION; ?> - Using Analytics tracking - https://www.monsterinsights.com/ -->
 <?php if ( monsterinsights_get_ua() ) { ?>
 <script type="text/javascript" data-cfasync="false">
-	// Function to detect opted out users
+	/* Function to detect opted out users */
 	function __gaTrackerIsOptedOut() {
 		return document.cookie.indexOf(disableStr + '=true') > -1;
 	}
 
-	// Disable tracking if the opt-out cookie exists.
+	/* Disable tracking if the opt-out cookie exists. */
 	var disableStr = 'ga-disable-<?php echo monsterinsights_get_ua(); ?>';
 	if ( __gaTrackerIsOptedOut() ) {
 		window[disableStr] = true;
 	}
 
-	// Opt-out function
+	/* Opt-out function */
 	function __gaTrackerOptout() {
 	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
 	  window[disableStr] = true;
