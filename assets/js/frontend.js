@@ -97,7 +97,7 @@ var MonsterInsights = function(){
 		return __gaTracker.hasOwnProperty( "loaded" ) && __gaTracker.loaded == true; // jshint ignore:line
 	}
 
-	function __gaTrackerTrackedClick() {
+	function __gaTrackerTrackedClick( event ) {
 		return event.which == 1 || event.which == 2 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
 	}
 
@@ -199,7 +199,7 @@ var MonsterInsights = function(){
 		valuesArray.click_type = __gaTrackerTrackedClickType( event );
 
 		/* If GA is blocked or not loaded, or not main|middle|touch click then don't track */
-		if ( ! __gaTrackerLoaded() || ! __gaTrackerTrackedClick() ) {
+		if ( ! __gaTrackerLoaded() || ! __gaTrackerTrackedClick( event ) ) {
 			valuesArray.exit = 'loaded';
 			__gaTrackerNotSend( valuesArray );
 			return;

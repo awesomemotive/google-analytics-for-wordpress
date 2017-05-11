@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.9
 Tested up to: 4.7.4
-Stable tag: 6.1.7
+Stable tag: 6.1.8
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -17,7 +17,7 @@ We believe that you shouldn't have to hire a developer to add Google Analytics t
 
 MonsterInsights allow you to connect your WordPress website with Google Analytics, so you can see how visitors find and use your website, so you can keep them coming back. Simply put, we show you the stats that matter.
 
-With almost 13 million downloads, MonsterInsights is the most popular Google Analytics plugin for WordPress.
+With almost 15 million downloads, MonsterInsights is the most popular Google Analytics plugin for WordPress.
 
 At MonsterInsights, user experience is our #1 priority. That's why we make it extremely easy for you to connect and view your Google Analytics reports from inside your WordPress dashboard. Our tracking settings and workflows make MonsterInsights the most beginner friendly google analytics plugin in the market.
 
@@ -136,8 +136,13 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 6.1.8, May 11, 2017 =
+* New: Functions needed to support future features including enhanced eCommerce
+* Bugfix: Compatibility with Firefox for link tracking.
+* Bugfix: Issue saving certain fields.
+
 = 6.1.7, April 10, 2017 =
-* New: Changes needed to support new addons, including the Google AMP addon, available as ovf today.
+* New: Changes needed to support new addons, including the Google AMP addon, available as of today.
 * Tweak: Comments for frontend are minification-safe.
 * Tweak: GA notice is now hidden when debug mode is on.
 * Tweak: All settings now use the Settings API framework, including all addons.

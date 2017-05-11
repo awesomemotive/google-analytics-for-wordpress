@@ -5,14 +5,14 @@ msgstr ""
 "Project-Id-Version: MonsterInsights Lite\n"
 "Report-Msgid-Bugs-To: https://github.com/awesomemotive/monsterinsights/"
 "issues\n"
-"POT-Creation-Date: 2017-04-06 14:54-0700\n"
+"POT-Creation-Date: 2017-05-11 16:54-0400\n"
 "PO-Revision-Date: 2016-07-21 17:01-0400\n"
 "Last-Translator: Chris Christoff <support@monsterinsights.com>\n"
 "Language-Team: Chris Christoff <support@monsterinsights.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0\n"
+"X-Generator: Poedit 2.0.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: googleanalytics.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -62,7 +62,7 @@ msgid ""
 "uninstalled."
 msgstr ""
 
-#: googleanalytics.php:563
+#: googleanalytics.php:564
 #, php-format
 msgid ""
 "Sorry, but your version of WordPress does not meet MonsterInsight's required "
@@ -70,7 +70,7 @@ msgid ""
 "%3$sClick here to return to the Dashboard%4$s."
 msgstr ""
 
-#: googleanalytics.php:568
+#: googleanalytics.php:569
 #, php-format
 msgid ""
 "Please uninstall and remove MonsterInsights Pro before activating "
@@ -1352,17 +1352,17 @@ msgid ""
 "with which WordPress configurations, themes and plugins we should test."
 msgstr ""
 
-#: includes/admin/settings/settings-api.php:725
+#: includes/admin/settings/settings-api.php:737
 #, php-format
 msgid "You must have the %s capability to view/edit this setting"
 msgstr ""
 
-#: includes/admin/settings/settings-api.php:914
+#: includes/admin/settings/settings-api.php:926
 #, php-format
 msgid "The callback function used for the %s setting is missing."
 msgstr ""
 
-#: includes/admin/settings/settings-api.php:944
+#: includes/admin/settings/settings-api.php:958
 #: includes/admin/settings/tab-general.php:204
 msgid "Save Changes"
 msgstr ""
@@ -1514,1011 +1514,1011 @@ msgid ""
 "window traffic to avoid false visit reports."
 msgstr ""
 
-#: includes/helpers.php:134
+#: includes/helpers.php:289
 msgid "United States"
 msgstr ""
 
-#: includes/helpers.php:135
+#: includes/helpers.php:290
 msgid "Canada"
 msgstr ""
 
-#: includes/helpers.php:136
+#: includes/helpers.php:291
 msgid "United Kingdom"
 msgstr ""
 
-#: includes/helpers.php:137
+#: includes/helpers.php:292
 msgid "Afghanistan"
 msgstr ""
 
-#: includes/helpers.php:138
+#: includes/helpers.php:293
 msgid "&#197;land Islands"
 msgstr ""
 
-#: includes/helpers.php:139
+#: includes/helpers.php:294
 msgid "Albania"
 msgstr ""
 
-#: includes/helpers.php:140
+#: includes/helpers.php:295
 msgid "Algeria"
 msgstr ""
 
-#: includes/helpers.php:141
+#: includes/helpers.php:296
 msgid "American Samoa"
 msgstr ""
 
-#: includes/helpers.php:142
+#: includes/helpers.php:297
 msgid "Andorra"
 msgstr ""
 
-#: includes/helpers.php:143
+#: includes/helpers.php:298
 msgid "Angola"
 msgstr ""
 
-#: includes/helpers.php:144
+#: includes/helpers.php:299
 msgid "Anguilla"
 msgstr ""
 
-#: includes/helpers.php:145
+#: includes/helpers.php:300
 msgid "Antarctica"
 msgstr ""
 
-#: includes/helpers.php:146
+#: includes/helpers.php:301
 msgid "Antigua and Barbuda"
 msgstr ""
 
-#: includes/helpers.php:147
+#: includes/helpers.php:302
 msgid "Argentina"
 msgstr ""
 
-#: includes/helpers.php:148
+#: includes/helpers.php:303
 msgid "Armenia"
 msgstr ""
 
-#: includes/helpers.php:149
+#: includes/helpers.php:304
 msgid "Aruba"
 msgstr ""
 
-#: includes/helpers.php:150
+#: includes/helpers.php:305
 msgid "Australia"
 msgstr ""
 
-#: includes/helpers.php:151
+#: includes/helpers.php:306
 msgid "Austria"
 msgstr ""
 
-#: includes/helpers.php:152
+#: includes/helpers.php:307
 msgid "Azerbaijan"
 msgstr ""
 
-#: includes/helpers.php:153
+#: includes/helpers.php:308
 msgid "Bahamas"
 msgstr ""
 
-#: includes/helpers.php:154
+#: includes/helpers.php:309
 msgid "Bahrain"
 msgstr ""
 
-#: includes/helpers.php:155
+#: includes/helpers.php:310
 msgid "Bangladesh"
 msgstr ""
 
-#: includes/helpers.php:156
+#: includes/helpers.php:311
 msgid "Barbados"
 msgstr ""
 
-#: includes/helpers.php:157
+#: includes/helpers.php:312
 msgid "Belarus"
 msgstr ""
 
-#: includes/helpers.php:158
+#: includes/helpers.php:313
 msgid "Belgium"
 msgstr ""
 
-#: includes/helpers.php:159
+#: includes/helpers.php:314
 msgid "Belize"
 msgstr ""
 
-#: includes/helpers.php:160
+#: includes/helpers.php:315
 msgid "Benin"
 msgstr ""
 
-#: includes/helpers.php:161
+#: includes/helpers.php:316
 msgid "Bermuda"
 msgstr ""
 
-#: includes/helpers.php:162
+#: includes/helpers.php:317
 msgid "Bhutan"
 msgstr ""
 
-#: includes/helpers.php:163
+#: includes/helpers.php:318
 msgid "Bolivia"
 msgstr ""
 
-#: includes/helpers.php:164
+#: includes/helpers.php:319
 msgid "Bonaire, Saint Eustatius and Saba"
 msgstr ""
 
-#: includes/helpers.php:165
+#: includes/helpers.php:320
 msgid "Bosnia and Herzegovina"
 msgstr ""
 
-#: includes/helpers.php:166
+#: includes/helpers.php:321
 msgid "Botswana"
 msgstr ""
 
-#: includes/helpers.php:167
+#: includes/helpers.php:322
 msgid "Bouvet Island"
 msgstr ""
 
-#: includes/helpers.php:168
+#: includes/helpers.php:323
 msgid "Brazil"
 msgstr ""
 
-#: includes/helpers.php:169
+#: includes/helpers.php:324
 msgid "British Indian Ocean Territory"
 msgstr ""
 
-#: includes/helpers.php:170
+#: includes/helpers.php:325
 msgid "Brunei Darrussalam"
 msgstr ""
 
-#: includes/helpers.php:171
+#: includes/helpers.php:326
 msgid "Bulgaria"
 msgstr ""
 
-#: includes/helpers.php:172
+#: includes/helpers.php:327
 msgid "Burkina Faso"
 msgstr ""
 
-#: includes/helpers.php:173
+#: includes/helpers.php:328
 msgid "Burundi"
 msgstr ""
 
-#: includes/helpers.php:174
+#: includes/helpers.php:329
 msgid "Cambodia"
 msgstr ""
 
-#: includes/helpers.php:175
+#: includes/helpers.php:330
 msgid "Cameroon"
 msgstr ""
 
-#: includes/helpers.php:176
+#: includes/helpers.php:331
 msgid "Cape Verde"
 msgstr ""
 
-#: includes/helpers.php:177
+#: includes/helpers.php:332
 msgid "Cayman Islands"
 msgstr ""
 
-#: includes/helpers.php:178
+#: includes/helpers.php:333
 msgid "Central African Republic"
 msgstr ""
 
-#: includes/helpers.php:179
+#: includes/helpers.php:334
 msgid "Chad"
 msgstr ""
 
-#: includes/helpers.php:180
+#: includes/helpers.php:335
 msgid "Chile"
 msgstr ""
 
-#: includes/helpers.php:181
+#: includes/helpers.php:336
 msgid "China"
 msgstr ""
 
-#: includes/helpers.php:182
+#: includes/helpers.php:337
 msgid "Christmas Island"
 msgstr ""
 
-#: includes/helpers.php:183
+#: includes/helpers.php:338
 msgid "Cocos Islands"
 msgstr ""
 
-#: includes/helpers.php:184
+#: includes/helpers.php:339
 msgid "Colombia"
 msgstr ""
 
-#: includes/helpers.php:185
+#: includes/helpers.php:340
 msgid "Comoros"
 msgstr ""
 
-#: includes/helpers.php:186
+#: includes/helpers.php:341
 msgid "Congo, Democratic People's Republic"
 msgstr ""
 
-#: includes/helpers.php:187
+#: includes/helpers.php:342
 msgid "Congo, Republic of"
 msgstr ""
 
-#: includes/helpers.php:188
+#: includes/helpers.php:343
 msgid "Cook Islands"
 msgstr ""
 
-#: includes/helpers.php:189
+#: includes/helpers.php:344
 msgid "Costa Rica"
 msgstr ""
 
-#: includes/helpers.php:190
+#: includes/helpers.php:345
 msgid "Cote d'Ivoire"
 msgstr ""
 
-#: includes/helpers.php:191
+#: includes/helpers.php:346
 msgid "Croatia/Hrvatska"
 msgstr ""
 
-#: includes/helpers.php:192
+#: includes/helpers.php:347
 msgid "Cuba"
 msgstr ""
 
-#: includes/helpers.php:193
+#: includes/helpers.php:348
 msgid "Cura&Ccedil;ao"
 msgstr ""
 
-#: includes/helpers.php:194
+#: includes/helpers.php:349
 msgid "Cyprus"
 msgstr ""
 
-#: includes/helpers.php:195
+#: includes/helpers.php:350
 msgid "Czechia"
 msgstr ""
 
-#: includes/helpers.php:196
+#: includes/helpers.php:351
 msgid "Denmark"
 msgstr ""
 
-#: includes/helpers.php:197
+#: includes/helpers.php:352
 msgid "Djibouti"
 msgstr ""
 
-#: includes/helpers.php:198
+#: includes/helpers.php:353
 msgid "Dominica"
 msgstr ""
 
-#: includes/helpers.php:199
+#: includes/helpers.php:354
 msgid "Dominican Republic"
 msgstr ""
 
-#: includes/helpers.php:200
+#: includes/helpers.php:355
 msgid "East Timor"
 msgstr ""
 
-#: includes/helpers.php:201
+#: includes/helpers.php:356
 msgid "Ecuador"
 msgstr ""
 
-#: includes/helpers.php:202
+#: includes/helpers.php:357
 msgid "Egypt"
 msgstr ""
 
-#: includes/helpers.php:203
+#: includes/helpers.php:358
 msgid "Equatorial Guinea"
 msgstr ""
 
-#: includes/helpers.php:204
+#: includes/helpers.php:359
 msgid "El Salvador"
 msgstr ""
 
-#: includes/helpers.php:205
+#: includes/helpers.php:360
 msgid "Eritrea"
 msgstr ""
 
-#: includes/helpers.php:206
+#: includes/helpers.php:361
 msgid "Estonia"
 msgstr ""
 
-#: includes/helpers.php:207
+#: includes/helpers.php:362
 msgid "Ethiopia"
 msgstr ""
 
-#: includes/helpers.php:208
+#: includes/helpers.php:363
 msgid "Falkland Islands"
 msgstr ""
 
-#: includes/helpers.php:209
+#: includes/helpers.php:364
 msgid "Faroe Islands"
 msgstr ""
 
-#: includes/helpers.php:210
+#: includes/helpers.php:365
 msgid "Fiji"
 msgstr ""
 
-#: includes/helpers.php:211
+#: includes/helpers.php:366
 msgid "Finland"
 msgstr ""
 
-#: includes/helpers.php:212
+#: includes/helpers.php:367
 msgid "France"
 msgstr ""
 
-#: includes/helpers.php:213
+#: includes/helpers.php:368
 msgid "French Guiana"
 msgstr ""
 
-#: includes/helpers.php:214
+#: includes/helpers.php:369
 msgid "French Polynesia"
 msgstr ""
 
-#: includes/helpers.php:215
+#: includes/helpers.php:370
 msgid "French Southern Territories"
 msgstr ""
 
-#: includes/helpers.php:216
+#: includes/helpers.php:371
 msgid "Gabon"
 msgstr ""
 
-#: includes/helpers.php:217
+#: includes/helpers.php:372
 msgid "Gambia"
 msgstr ""
 
-#: includes/helpers.php:218
+#: includes/helpers.php:373
 msgid "Georgia"
 msgstr ""
 
-#: includes/helpers.php:219
+#: includes/helpers.php:374
 msgid "Germany"
 msgstr ""
 
-#: includes/helpers.php:220
+#: includes/helpers.php:375
 msgid "Greece"
 msgstr ""
 
-#: includes/helpers.php:221
+#: includes/helpers.php:376
 msgid "Ghana"
 msgstr ""
 
-#: includes/helpers.php:222
+#: includes/helpers.php:377
 msgid "Gibraltar"
 msgstr ""
 
-#: includes/helpers.php:223
+#: includes/helpers.php:378
 msgid "Greenland"
 msgstr ""
 
-#: includes/helpers.php:224
+#: includes/helpers.php:379
 msgid "Grenada"
 msgstr ""
 
-#: includes/helpers.php:225
+#: includes/helpers.php:380
 msgid "Guadeloupe"
 msgstr ""
 
-#: includes/helpers.php:226
+#: includes/helpers.php:381
 msgid "Guam"
 msgstr ""
 
-#: includes/helpers.php:227
+#: includes/helpers.php:382
 msgid "Guatemala"
 msgstr ""
 
-#: includes/helpers.php:228
+#: includes/helpers.php:383
 msgid "Guernsey"
 msgstr ""
 
-#: includes/helpers.php:229
+#: includes/helpers.php:384
 msgid "Guinea"
 msgstr ""
 
-#: includes/helpers.php:230
+#: includes/helpers.php:385
 msgid "Guinea-Bissau"
 msgstr ""
 
-#: includes/helpers.php:231
+#: includes/helpers.php:386
 msgid "Guyana"
 msgstr ""
 
-#: includes/helpers.php:232
+#: includes/helpers.php:387
 msgid "Haiti"
 msgstr ""
 
-#: includes/helpers.php:233
+#: includes/helpers.php:388
 msgid "Heard and McDonald Islands"
 msgstr ""
 
-#: includes/helpers.php:234
+#: includes/helpers.php:389
 msgid "Holy See (City Vatican State)"
 msgstr ""
 
-#: includes/helpers.php:235
+#: includes/helpers.php:390
 msgid "Honduras"
 msgstr ""
 
-#: includes/helpers.php:236
+#: includes/helpers.php:391
 msgid "Hong Kong"
 msgstr ""
 
-#: includes/helpers.php:237
+#: includes/helpers.php:392
 msgid "Hungary"
 msgstr ""
 
-#: includes/helpers.php:238
+#: includes/helpers.php:393
 msgid "Iceland"
 msgstr ""
 
-#: includes/helpers.php:239
+#: includes/helpers.php:394
 msgid "India"
 msgstr ""
 
-#: includes/helpers.php:240
+#: includes/helpers.php:395
 msgid "Indonesia"
 msgstr ""
 
-#: includes/helpers.php:241
+#: includes/helpers.php:396
 msgid "Iran"
 msgstr ""
 
-#: includes/helpers.php:242
+#: includes/helpers.php:397
 msgid "Iraq"
 msgstr ""
 
-#: includes/helpers.php:243
+#: includes/helpers.php:398
 msgid "Ireland"
 msgstr ""
 
-#: includes/helpers.php:244
+#: includes/helpers.php:399
 msgid "Isle of Man"
 msgstr ""
 
-#: includes/helpers.php:245
+#: includes/helpers.php:400
 msgid "Israel"
 msgstr ""
 
-#: includes/helpers.php:246
+#: includes/helpers.php:401
 msgid "Italy"
 msgstr ""
 
-#: includes/helpers.php:247
+#: includes/helpers.php:402
 msgid "Jamaica"
 msgstr ""
 
-#: includes/helpers.php:248
+#: includes/helpers.php:403
 msgid "Japan"
 msgstr ""
 
-#: includes/helpers.php:249
+#: includes/helpers.php:404
 msgid "Jersey"
 msgstr ""
 
-#: includes/helpers.php:250
+#: includes/helpers.php:405
 msgid "Jordan"
 msgstr ""
 
-#: includes/helpers.php:251
+#: includes/helpers.php:406
 msgid "Kazakhstan"
 msgstr ""
 
-#: includes/helpers.php:252
+#: includes/helpers.php:407
 msgid "Kenya"
 msgstr ""
 
-#: includes/helpers.php:253
+#: includes/helpers.php:408
 msgid "Kiribati"
 msgstr ""
 
-#: includes/helpers.php:254
+#: includes/helpers.php:409
 msgid "Kuwait"
 msgstr ""
 
-#: includes/helpers.php:255
+#: includes/helpers.php:410
 msgid "Kyrgyzstan"
 msgstr ""
 
-#: includes/helpers.php:256
+#: includes/helpers.php:411
 msgid "Lao People's Democratic Republic"
 msgstr ""
 
-#: includes/helpers.php:257
+#: includes/helpers.php:412
 msgid "Latvia"
 msgstr ""
 
-#: includes/helpers.php:258
+#: includes/helpers.php:413
 msgid "Lebanon"
 msgstr ""
 
-#: includes/helpers.php:259
+#: includes/helpers.php:414
 msgid "Lesotho"
 msgstr ""
 
-#: includes/helpers.php:260
+#: includes/helpers.php:415
 msgid "Liberia"
 msgstr ""
 
-#: includes/helpers.php:261
+#: includes/helpers.php:416
 msgid "Libyan Arab Jamahiriya"
 msgstr ""
 
-#: includes/helpers.php:262
+#: includes/helpers.php:417
 msgid "Liechtenstein"
 msgstr ""
 
-#: includes/helpers.php:263
+#: includes/helpers.php:418
 msgid "Lithuania"
 msgstr ""
 
-#: includes/helpers.php:264
+#: includes/helpers.php:419
 msgid "Luxembourg"
 msgstr ""
 
-#: includes/helpers.php:265
+#: includes/helpers.php:420
 msgid "Macau"
 msgstr ""
 
-#: includes/helpers.php:266
+#: includes/helpers.php:421
 msgid "Macedonia"
 msgstr ""
 
-#: includes/helpers.php:267
+#: includes/helpers.php:422
 msgid "Madagascar"
 msgstr ""
 
-#: includes/helpers.php:268
+#: includes/helpers.php:423
 msgid "Malawi"
 msgstr ""
 
-#: includes/helpers.php:269
+#: includes/helpers.php:424
 msgid "Malaysia"
 msgstr ""
 
-#: includes/helpers.php:270
+#: includes/helpers.php:425
 msgid "Maldives"
 msgstr ""
 
-#: includes/helpers.php:271
+#: includes/helpers.php:426
 msgid "Mali"
 msgstr ""
 
-#: includes/helpers.php:272
+#: includes/helpers.php:427
 msgid "Malta"
 msgstr ""
 
-#: includes/helpers.php:273
+#: includes/helpers.php:428
 msgid "Marshall Islands"
 msgstr ""
 
-#: includes/helpers.php:274
+#: includes/helpers.php:429
 msgid "Martinique"
 msgstr ""
 
-#: includes/helpers.php:275
+#: includes/helpers.php:430
 msgid "Mauritania"
 msgstr ""
 
-#: includes/helpers.php:276
+#: includes/helpers.php:431
 msgid "Mauritius"
 msgstr ""
 
-#: includes/helpers.php:277
+#: includes/helpers.php:432
 msgid "Mayotte"
 msgstr ""
 
-#: includes/helpers.php:278
+#: includes/helpers.php:433
 msgid "Mexico"
 msgstr ""
 
-#: includes/helpers.php:279
+#: includes/helpers.php:434
 msgid "Micronesia"
 msgstr ""
 
-#: includes/helpers.php:280
+#: includes/helpers.php:435
 msgid "Moldova, Republic of"
 msgstr ""
 
-#: includes/helpers.php:281
+#: includes/helpers.php:436
 msgid "Monaco"
 msgstr ""
 
-#: includes/helpers.php:282
+#: includes/helpers.php:437
 msgid "Mongolia"
 msgstr ""
 
-#: includes/helpers.php:283
+#: includes/helpers.php:438
 msgid "Montenegro"
 msgstr ""
 
-#: includes/helpers.php:284
+#: includes/helpers.php:439
 msgid "Montserrat"
 msgstr ""
 
-#: includes/helpers.php:285
+#: includes/helpers.php:440
 msgid "Morocco"
 msgstr ""
 
-#: includes/helpers.php:286
+#: includes/helpers.php:441
 msgid "Mozambique"
 msgstr ""
 
-#: includes/helpers.php:287
+#: includes/helpers.php:442
 msgid "Myanmar"
 msgstr ""
 
-#: includes/helpers.php:288
+#: includes/helpers.php:443
 msgid "Namibia"
 msgstr ""
 
-#: includes/helpers.php:289
+#: includes/helpers.php:444
 msgid "Nauru"
 msgstr ""
 
-#: includes/helpers.php:290
+#: includes/helpers.php:445
 msgid "Nepal"
 msgstr ""
 
-#: includes/helpers.php:291
+#: includes/helpers.php:446
 msgid "Netherlands"
 msgstr ""
 
-#: includes/helpers.php:292
+#: includes/helpers.php:447
 msgid "Netherlands Antilles"
 msgstr ""
 
-#: includes/helpers.php:293
+#: includes/helpers.php:448
 msgid "New Caledonia"
 msgstr ""
 
-#: includes/helpers.php:294
+#: includes/helpers.php:449
 msgid "New Zealand"
 msgstr ""
 
-#: includes/helpers.php:295
+#: includes/helpers.php:450
 msgid "Nicaragua"
 msgstr ""
 
-#: includes/helpers.php:296
+#: includes/helpers.php:451
 msgid "Niger"
 msgstr ""
 
-#: includes/helpers.php:297
+#: includes/helpers.php:452
 msgid "Nigeria"
 msgstr ""
 
-#: includes/helpers.php:298
+#: includes/helpers.php:453
 msgid "Niue"
 msgstr ""
 
-#: includes/helpers.php:299
+#: includes/helpers.php:454
 msgid "Norfolk Island"
 msgstr ""
 
-#: includes/helpers.php:300
+#: includes/helpers.php:455
 msgid "North Korea"
 msgstr ""
 
-#: includes/helpers.php:301
+#: includes/helpers.php:456
 msgid "Northern Mariana Islands"
 msgstr ""
 
-#: includes/helpers.php:302
+#: includes/helpers.php:457
 msgid "Norway"
 msgstr ""
 
-#: includes/helpers.php:303
+#: includes/helpers.php:458
 msgid "Oman"
 msgstr ""
 
-#: includes/helpers.php:304
+#: includes/helpers.php:459
 msgid "Pakistan"
 msgstr ""
 
-#: includes/helpers.php:305
+#: includes/helpers.php:460
 msgid "Palau"
 msgstr ""
 
-#: includes/helpers.php:306
+#: includes/helpers.php:461
 msgid "Palestinian Territories"
 msgstr ""
 
-#: includes/helpers.php:307
+#: includes/helpers.php:462
 msgid "Panama"
 msgstr ""
 
-#: includes/helpers.php:308
+#: includes/helpers.php:463
 msgid "Papua New Guinea"
 msgstr ""
 
-#: includes/helpers.php:309
+#: includes/helpers.php:464
 msgid "Paraguay"
 msgstr ""
 
-#: includes/helpers.php:310
+#: includes/helpers.php:465
 msgid "Peru"
 msgstr ""
 
-#: includes/helpers.php:311
+#: includes/helpers.php:466
 msgid "Philippines"
 msgstr ""
 
-#: includes/helpers.php:312
+#: includes/helpers.php:467
 msgid "Pitcairn Island"
 msgstr ""
 
-#: includes/helpers.php:313
+#: includes/helpers.php:468
 msgid "Poland"
 msgstr ""
 
-#: includes/helpers.php:314
+#: includes/helpers.php:469
 msgid "Portugal"
 msgstr ""
 
-#: includes/helpers.php:315
+#: includes/helpers.php:470
 msgid "Puerto Rico"
 msgstr ""
 
-#: includes/helpers.php:316
+#: includes/helpers.php:471
 msgid "Qatar"
 msgstr ""
 
-#: includes/helpers.php:317
+#: includes/helpers.php:472
 msgid "Republic of Kosovo"
 msgstr ""
 
-#: includes/helpers.php:318
+#: includes/helpers.php:473
 msgid "Reunion Island"
 msgstr ""
 
-#: includes/helpers.php:319
+#: includes/helpers.php:474
 msgid "Romania"
 msgstr ""
 
-#: includes/helpers.php:320
+#: includes/helpers.php:475
 msgid "Russian Federation"
 msgstr ""
 
-#: includes/helpers.php:321
+#: includes/helpers.php:476
 msgid "Rwanda"
 msgstr ""
 
-#: includes/helpers.php:322
+#: includes/helpers.php:477
 msgid "Saint Barth&eacute;lemy"
 msgstr ""
 
-#: includes/helpers.php:323
+#: includes/helpers.php:478
 msgid "Saint Helena"
 msgstr ""
 
-#: includes/helpers.php:324
+#: includes/helpers.php:479
 msgid "Saint Kitts and Nevis"
 msgstr ""
 
-#: includes/helpers.php:325
+#: includes/helpers.php:480
 msgid "Saint Lucia"
 msgstr ""
 
-#: includes/helpers.php:326
+#: includes/helpers.php:481
 msgid "Saint Martin (French)"
 msgstr ""
 
-#: includes/helpers.php:327
+#: includes/helpers.php:482
 msgid "Saint Martin (Dutch)"
 msgstr ""
 
-#: includes/helpers.php:328
+#: includes/helpers.php:483
 msgid "Saint Pierre and Miquelon"
 msgstr ""
 
-#: includes/helpers.php:329
+#: includes/helpers.php:484
 msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
-#: includes/helpers.php:330
+#: includes/helpers.php:485
 msgid "San Marino"
 msgstr ""
 
-#: includes/helpers.php:331
+#: includes/helpers.php:486
 msgid "S&atilde;o Tom&eacute; and Pr&iacute;ncipe"
 msgstr ""
 
-#: includes/helpers.php:332
+#: includes/helpers.php:487
 msgid "Saudi Arabia"
 msgstr ""
 
-#: includes/helpers.php:333
+#: includes/helpers.php:488
 msgid "Senegal"
 msgstr ""
 
-#: includes/helpers.php:334
+#: includes/helpers.php:489
 msgid "Serbia"
 msgstr ""
 
-#: includes/helpers.php:335
+#: includes/helpers.php:490
 msgid "Seychelles"
 msgstr ""
 
-#: includes/helpers.php:336
+#: includes/helpers.php:491
 msgid "Sierra Leone"
 msgstr ""
 
-#: includes/helpers.php:337
+#: includes/helpers.php:492
 msgid "Singapore"
 msgstr ""
 
-#: includes/helpers.php:338
+#: includes/helpers.php:493
 msgid "Slovak Republic"
 msgstr ""
 
-#: includes/helpers.php:339
+#: includes/helpers.php:494
 msgid "Slovenia"
 msgstr ""
 
-#: includes/helpers.php:340
+#: includes/helpers.php:495
 msgid "Solomon Islands"
 msgstr ""
 
-#: includes/helpers.php:341
+#: includes/helpers.php:496
 msgid "Somalia"
 msgstr ""
 
-#: includes/helpers.php:342
+#: includes/helpers.php:497
 msgid "South Africa"
 msgstr ""
 
-#: includes/helpers.php:343
+#: includes/helpers.php:498
 msgid "South Georgia"
 msgstr ""
 
-#: includes/helpers.php:344
+#: includes/helpers.php:499
 msgid "South Korea"
 msgstr ""
 
-#: includes/helpers.php:345
+#: includes/helpers.php:500
 msgid "South Sudan"
 msgstr ""
 
-#: includes/helpers.php:346
+#: includes/helpers.php:501
 msgid "Spain"
 msgstr ""
 
-#: includes/helpers.php:347
+#: includes/helpers.php:502
 msgid "Sri Lanka"
 msgstr ""
 
-#: includes/helpers.php:348
+#: includes/helpers.php:503
 msgid "Sudan"
 msgstr ""
 
-#: includes/helpers.php:349
+#: includes/helpers.php:504
 msgid "Suriname"
 msgstr ""
 
-#: includes/helpers.php:350
+#: includes/helpers.php:505
 msgid "Svalbard and Jan Mayen Islands"
 msgstr ""
 
-#: includes/helpers.php:351
+#: includes/helpers.php:506
 msgid "Swaziland"
 msgstr ""
 
-#: includes/helpers.php:352
+#: includes/helpers.php:507
 msgid "Sweden"
 msgstr ""
 
-#: includes/helpers.php:353
+#: includes/helpers.php:508
 msgid "Switzerland"
 msgstr ""
 
-#: includes/helpers.php:354
+#: includes/helpers.php:509
 msgid "Syrian Arab Republic"
 msgstr ""
 
-#: includes/helpers.php:355
+#: includes/helpers.php:510
 msgid "Taiwan"
 msgstr ""
 
-#: includes/helpers.php:356
+#: includes/helpers.php:511
 msgid "Tajikistan"
 msgstr ""
 
-#: includes/helpers.php:357
+#: includes/helpers.php:512
 msgid "Tanzania"
 msgstr ""
 
-#: includes/helpers.php:358
+#: includes/helpers.php:513
 msgid "Thailand"
 msgstr ""
 
-#: includes/helpers.php:359
+#: includes/helpers.php:514
 msgid "Timor-Leste"
 msgstr ""
 
-#: includes/helpers.php:360
+#: includes/helpers.php:515
 msgid "Togo"
 msgstr ""
 
-#: includes/helpers.php:361
+#: includes/helpers.php:516
 msgid "Tokelau"
 msgstr ""
 
-#: includes/helpers.php:362
+#: includes/helpers.php:517
 msgid "Tonga"
 msgstr ""
 
-#: includes/helpers.php:363
+#: includes/helpers.php:518
 msgid "Trinidad and Tobago"
 msgstr ""
 
-#: includes/helpers.php:364
+#: includes/helpers.php:519
 msgid "Tunisia"
 msgstr ""
 
-#: includes/helpers.php:365
+#: includes/helpers.php:520
 msgid "Turkey"
 msgstr ""
 
-#: includes/helpers.php:366
+#: includes/helpers.php:521
 msgid "Turkmenistan"
 msgstr ""
 
-#: includes/helpers.php:367
+#: includes/helpers.php:522
 msgid "Turks and Caicos Islands"
 msgstr ""
 
-#: includes/helpers.php:368
+#: includes/helpers.php:523
 msgid "Tuvalu"
 msgstr ""
 
-#: includes/helpers.php:369
+#: includes/helpers.php:524
 msgid "Uganda"
 msgstr ""
 
-#: includes/helpers.php:370
+#: includes/helpers.php:525
 msgid "Ukraine"
 msgstr ""
 
-#: includes/helpers.php:371
+#: includes/helpers.php:526
 msgid "United Arab Emirates"
 msgstr ""
 
-#: includes/helpers.php:372
+#: includes/helpers.php:527
 msgid "Uruguay"
 msgstr ""
 
-#: includes/helpers.php:373
+#: includes/helpers.php:528
 msgid "US Minor Outlying Islands"
 msgstr ""
 
-#: includes/helpers.php:374
+#: includes/helpers.php:529
 msgid "Uzbekistan"
 msgstr ""
 
-#: includes/helpers.php:375
+#: includes/helpers.php:530
 msgid "Vanuatu"
 msgstr ""
 
-#: includes/helpers.php:376
+#: includes/helpers.php:531
 msgid "Venezuela"
 msgstr ""
 
-#: includes/helpers.php:377
+#: includes/helpers.php:532
 msgid "Vietnam"
 msgstr ""
 
-#: includes/helpers.php:378
+#: includes/helpers.php:533
 msgid "Virgin Islands (British)"
 msgstr ""
 
-#: includes/helpers.php:379
+#: includes/helpers.php:534
 msgid "Virgin Islands (USA)"
 msgstr ""
 
-#: includes/helpers.php:380
+#: includes/helpers.php:535
 msgid "Wallis and Futuna Islands"
 msgstr ""
 
-#: includes/helpers.php:381
+#: includes/helpers.php:536
 msgid "Western Sahara"
 msgstr ""
 
-#: includes/helpers.php:382
+#: includes/helpers.php:537
 msgid "Western Samoa"
 msgstr ""
 
-#: includes/helpers.php:383
+#: includes/helpers.php:538
 msgid "Yemen"
 msgstr ""
 
-#: includes/helpers.php:384
+#: includes/helpers.php:539
 msgid "Zambia"
 msgstr ""
 
-#: includes/helpers.php:385
+#: includes/helpers.php:540
 msgid "Zimbabwe"
 msgstr ""
 

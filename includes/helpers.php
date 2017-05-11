@@ -14,6 +14,165 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+
+function monsterinsights_is_page_reload() {
+	// Can't be a refresh without having a referrer
+	if ( ! isset( $_SERVER['HTTP_REFERER'] ) ) {
+		return false;
+	}
+
+	// IF the referrer is identical to the current page request, then it's a refresh
+	return ( parse_url( $_SERVER['HTTP_REFERER'], PHP_URL_PATH ) === parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ) );
+}
+
+
+function monsterinsights_track_user() {
+	$user        = wp_get_current_user();
+	$track_user  = true;
+	$roles     = monsterinsights_get_option( 'ignore_users', array() );
+
+	if ( ! empty( $roles ) && is_array( $roles ) ) {
+		foreach ( $roles as $role ) {
+			if ( is_string( $role ) ) {
+				if ( current_user_can( $role ) ) {
+					$track_user = false;
+					break;
+				}
+			}
+		}
+	}
+
+	$track_super_admin = apply_filters( 'monsterinsights_track_super_admins', false );
+	if ( $track_super_admin === false && is_super_admin() ) {
+		$track_user = false;
+	}
+	
+	// or if UA code is not entered
+	$ua_code = monsterinsights_get_ua();
+	if ( empty( $ua_code ) ) {
+		$track_user = false;
+	}
+
+	return apply_filters( 'monsterinsights_track_user', $track_user, $user );
+}
+
+function monsterinsights_get_client_id( $payment_id = false ) {
+	if ( is_object( $payment_id ) ) {
+		$payment_id = $payment_id->ID;
+	}
+	$user_cid    = monsterinsights_get_uuid();
+	$payment_cid = get_post_meta( $payment_id, '_yoast_gau_uuid', true );
+
+	if ( ! empty( $payment_id ) && ! empty( $saved_cid ) ) {
+		return $saved_cid;
+	} else if ( ! empty( $user_cid ) ) {
+		return $user_cid;
+	} else {
+		return monsterinsights_generate_uuid();
+	}
+}
+
+/**
+ * Returns the Google Analytics clientId to store for later use
+ *
+ * @since 6.0.0
+ *
+ * @link  https://developers.google.com/analytics/devguides/collection/analyticsjs/domains#getClientId
+ *
+ * @return bool|string False if cookie isn't set, GA UUID otherwise
+ */
+function monsterinsights_get_uuid() {
+	if ( empty( $_COOKIE['_ga'] ) ) {
+		return false;
+	}
+	
+	/** 
+	 * Example cookie formats:
+	 *
+	 * GA1.2.XXXXXXX.YYYYY
+	 * _ga=1.2.XXXXXXX.YYYYYY -- We want the XXXXXXX.YYYYYY part
+	 * 
+	 */
+
+	$ga_cookie    = $_COOKIE['_ga'];
+	$cookie_parts = explode('.', $ga_cookie );
+	if ( is_array( $cookie_parts ) && ! empty( $cookie_parts[2] ) && ! empty( $cookie_parts[3] ) ) {
+		$uuid = (string) $cookie_parts[2] . '.' . (string) $cookie_parts[3];
+		if ( is_string( $uuid ) ) {
+			return $uuid;
+		} else {
+			return false;
+		}
+	} else {
+		return false;
+	}
+}
+
+
+/**
+ * Generate UUID v4 function - needed to generate a CID when one isn't available
+ *
+ * @link http://www.stumiller.me/implementing-google-analytics-measurement-protocol-in-php-and-wordpress/
+ *
+ * @since 6.1.8
+ * @return string
+ */
+function monsterinsights_generate_uuid() {
+
+	return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+
+		// 32 bits for "time_low"
+		mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
+
+		// 16 bits for "time_mid"
+		mt_rand( 0, 0xffff ),
+
+		// 16 bits for "time_hi_and_version",
+		// four most significant bits holds version number 4
+		mt_rand( 0, 0x0fff ) | 0x4000,
+
+		// 16 bits, 8 bits for "clk_seq_hi_res",
+		// 8 bits for "clk_seq_low",
+		// two most significant bits holds zero and one for variant DCE1.1
+		mt_rand( 0, 0x3fff ) | 0x8000,
+
+		// 48 bits for "node"
+		mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff )
+	);
+}
+
+/**
+ * Returns the Google Analytics clientId to store for later use
+ *
+ * @since 6.0.0
+ *
+ * @return GA UUID or error code.
+ */
+function monsterinsights_get_cookie( $debug = false ) {
+	if ( empty( $_COOKIE['_ga'] ) ) {
+		return ( $debug ) ? 'FCE' : false;
+	}
+	
+	$ga_cookie    = $_COOKIE['_ga'];
+	$cookie_parts = explode('.', $ga_cookie );
+	if ( is_array( $cookie_parts ) && ! empty( $cookie_parts[2] ) && ! empty( $cookie_parts[3] ) ) {
+		$uuid = (string) $cookie_parts[2] . '.' . (string) $cookie_parts[3];
+		if ( is_string( $uuid ) ) {
+			return $ga_cookie;
+		} else {
+			return ( $debug ) ? 'FA' : false;
+		}
+	} else {
+		return ( $debug ) ? 'FAE' : false;
+	}
+}
+
+
+function monsterinsights_generate_ga_client_id() {
+	return rand(100000000,999999999) . '.' . time();
+}
+ 
+
 /**
  * Hours between two timestamps.
  *
@@ -105,10 +264,6 @@ function monsterinsights_get_message( $type = 'error', $text = '' ) {
 	}
 }
 
-function monsterinsights_generate_ga_client_id() {
-	return rand(100000000,999999999) . '.' . time();
-}
- 
 // Set cookie to expire in 2 years
 function monsterinsights_get_cookie_expiration_date( $time ) {
 	return date('D, j F Y H:i:s', time() + $time );
