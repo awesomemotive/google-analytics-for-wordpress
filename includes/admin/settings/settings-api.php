@@ -142,9 +142,10 @@ function monsterinsights_save_settings() {
 		$value = apply_filters( 'monsterinsights_settings_sanitize'         , $value, $id, $args, $previous_value );
 
 		// Save
-		do_action( 'monsterinsights_settings_save_' . $args['type'], $value, $id, $args, $previous_value );
 		if ( ! has_action( 'monsterinsights_settings_save_' . $args['type'] ) ) {
 			monsterinsights_update_option( $id, $value );
+		} else {
+			do_action( 'monsterinsights_settings_save_' . $args['type'], $value, $id, $args, $previous_value );
 		}
 	}
 	add_action( 'monsterinsights_tracking_' . $tab . '_tab_notice', 'monsterinsights_updated_settings' );
@@ -517,7 +518,18 @@ function monsterinsights_checkbox_callback( $args ) {
 	$class = monsterinsights_sanitize_html_class( $args['field_class'] );
 
 	$checked  = ! empty( $monsterinsights_option ) ? checked( 1, $monsterinsights_option, false ) : '';
-	$html     = '<input type="checkbox" id="monsterinsights_settings[' . monsterinsights_sanitize_key( $args['id'] ) . ']"' . $name . ' value="1" ' . $checked . ' class="' . $class . '"/>';
+
+	$disabled = '';
+
+	if ( isset( $args['faux'] ) && true === $args['faux'] ) {
+		// Disable class
+		$disabled = 'disabled="disabled"';
+		
+		// Checked
+		$checked  = isset( $args['std'] ) && true === $args['std'] ? checked( 1, 1, false ) : '';
+	}
+
+	$html     = '<input type="checkbox" id="monsterinsights_settings[' . monsterinsights_sanitize_key( $args['id'] ) . ']"' . $name . ' value="1" ' . $checked . ' class="' . $class . '" ' . $disabled . ' />';
 	$html    .= '<p class="description">'  . wp_kses_post( $args['desc'] ) . '</p>';
 
 	return apply_filters( 'monsterinsights_after_setting_output', $html, $args );
@@ -933,8 +945,10 @@ function monsterinsights_render_submit_field( $section, $page = 'tracking' ) {
 		$submit_button     = false;
 		foreach ( $settings[$section] as $setting ) {
 			if ( ! empty( $non_setting_types ) && ! empty( $setting['type'] ) && ! in_array( $setting['type'], $non_setting_types ) ) {
-				$submit_button = true;
-				break;
+				if ( empty( $setting['faux'] ) ) {
+					$submit_button = true;
+					break;
+				}
 			}
 		}
 		if ( $submit_button ) {
