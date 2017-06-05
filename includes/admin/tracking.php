@@ -4,7 +4,7 @@
  *
  * @package     MonsterInsights
  * @subpackage  Admin
- * @copyright   Copyright (c) 2016, Chris Christoff
+ * @copyright   Copyright (c) 2017, Chris Christoff
  * @since       6.0.0
 */
 
@@ -123,13 +123,22 @@ class MonsterInsights_Tracking {
 	 */
 	public function send_checkin( $override = false, $ignore_last_checkin = false ) {
 
+		$home_url = trailingslashit( home_url() );
+		if ( $home_url === 'https://www.monsterinsights.com/'     || 
+			 $home_url === 'https://beta.monsterinsights.com/'    ||
+			 $home_url === 'https://staging.monsterinsights.com/' ||
+			 $home_url === 'https://testing.monsterinsights.com/'
+		) {
+			return false;
+		}
+
 		if( ! $this->tracking_allowed() && ! $override ) {
 			return false;
 		}
 
-		// Send a maximum of once per day
+		// Send a maximum of once per week
 		$last_send = $this->get_last_send();
-		if( is_numeric( $last_send ) && $last_send > strtotime( '-1 day' ) && ! $ignore_last_checkin ) {
+		if( is_numeric( $last_send ) && $last_send > strtotime( '-1 week' ) && ! $ignore_last_checkin ) {
 			return false;
 		}
 

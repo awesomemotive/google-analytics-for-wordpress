@@ -269,7 +269,7 @@ function monsterinsights_get_addons_data( $key ) {
     
     // Get Addons
     // If the key is valid, we'll get personalised upgrade URLs for each Addon (if necessary) and plugin update information.
-    if ( $key && $type !== 'basic' ) {
+    if ( $key ) {
         $addons = $base->license->perform_remote_request( 'get-addons-data-v600', array( 'tgm-updater-key' => $key ) ); 
     } else {
         $addons = $base->license->perform_remote_request( 'get-all-addons-data', array() ); 

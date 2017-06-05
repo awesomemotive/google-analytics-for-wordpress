@@ -5,14 +5,14 @@ msgstr ""
 "Project-Id-Version: MonsterInsights Lite\n"
 "Report-Msgid-Bugs-To: https://github.com/awesomemotive/monsterinsights/"
 "issues\n"
-"POT-Creation-Date: 2017-05-11 16:54-0400\n"
+"POT-Creation-Date: 2017-06-05 17:21-0400\n"
 "PO-Revision-Date: 2016-07-21 17:01-0400\n"
 "Last-Translator: Chris Christoff <support@monsterinsights.com>\n"
 "Language-Team: Chris Christoff <support@monsterinsights.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: googleanalytics.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -62,7 +62,7 @@ msgid ""
 "uninstalled."
 msgstr ""
 
-#: googleanalytics.php:564
+#: googleanalytics.php:565
 #, php-format
 msgid ""
 "Sorry, but your version of WordPress does not meet MonsterInsight's required "
@@ -70,7 +70,7 @@ msgid ""
 "%3$sClick here to return to the Dashboard%4$s."
 msgstr ""
 
-#: googleanalytics.php:569
+#: googleanalytics.php:570
 #, php-format
 msgid ""
 "Please uninstall and remove MonsterInsights Pro before activating "
@@ -89,8 +89,7 @@ msgid "Insights"
 msgstr ""
 
 #: includes/admin/admin.php:39 includes/admin/admin.php:49
-#: includes/admin/admin.php:154 includes/admin/pages/tools.php:45
-#: includes/admin/pages/tools.php:46
+#: includes/admin/admin.php:154
 msgid "Settings"
 msgstr ""
 
@@ -150,103 +149,103 @@ msgid ""
 "the word. Thank you from the MonsterInsights team!"
 msgstr ""
 
-#: includes/admin/common.php:135
+#: includes/admin/common.php:131
 msgid "Loading..."
 msgstr ""
 
-#: includes/admin/common.php:136
+#: includes/admin/common.php:132
 msgid ""
 "Warning: You have unsaved setting changes. If you leave the settings page "
 "without saving your changes will be lost. Did you still want to leave the "
 "page?"
 msgstr ""
 
-#: includes/admin/common.php:138
+#: includes/admin/common.php:134
 msgid "Status: Active"
 msgstr ""
 
-#: includes/admin/common.php:139 includes/admin/pages/addons.php:492
+#: includes/admin/common.php:135 includes/admin/pages/addons.php:492
 msgid "Activate"
 msgstr ""
 
-#: includes/admin/common.php:140
+#: includes/admin/common.php:136
 msgid "Status: Network Activated"
 msgstr ""
 
-#: includes/admin/common.php:141 includes/admin/pages/addons.php:490
+#: includes/admin/common.php:137 includes/admin/pages/addons.php:490
 msgid "Network activate"
 msgstr ""
 
-#: includes/admin/common.php:143
+#: includes/admin/common.php:139
 msgid "Activating..."
 msgstr ""
 
-#: includes/admin/common.php:144 includes/admin/pages/addons.php:465
+#: includes/admin/common.php:140 includes/admin/pages/addons.php:465
 #: includes/admin/pages/addons.php:467
 msgid "Deactivate"
 msgstr ""
 
-#: includes/admin/common.php:145 includes/admin/pages/addons.php:463
+#: includes/admin/common.php:141 includes/admin/pages/addons.php:463
 msgid "Network deactivate"
 msgstr ""
 
-#: includes/admin/common.php:147
+#: includes/admin/common.php:143
 msgid "Deactivating..."
 msgstr ""
 
-#: includes/admin/common.php:148
+#: includes/admin/common.php:144
 msgid "Status: Inactive"
 msgstr ""
 
-#: includes/admin/common.php:149
+#: includes/admin/common.php:145
 msgid "Status: Network inactive"
 msgstr ""
 
-#: includes/admin/common.php:150 includes/admin/pages/addons.php:422
+#: includes/admin/common.php:146 includes/admin/pages/addons.php:422
 msgid "Install"
 msgstr ""
 
-#: includes/admin/common.php:152
+#: includes/admin/common.php:148
 msgid "Installing..."
 msgstr ""
 
-#: includes/admin/common.php:153
+#: includes/admin/common.php:149
 msgid "Proceed"
 msgstr ""
 
-#: includes/admin/common.php:155
+#: includes/admin/common.php:151
 msgid "Copied!"
 msgstr ""
 
-#: includes/admin/common.php:156
+#: includes/admin/common.php:152
 msgid "Copy to Clipboard"
 msgstr ""
 
-#: includes/admin/common.php:157
+#: includes/admin/common.php:153
 msgid "Failed!"
 msgstr ""
 
-#: includes/admin/common.php:159 includes/admin/pages/tools.php:163
+#: includes/admin/common.php:155
 msgid "Shorten URL"
 msgstr ""
 
-#: includes/admin/common.php:160
+#: includes/admin/common.php:156
 msgid "Shortened!"
 msgstr ""
 
-#: includes/admin/common.php:161
+#: includes/admin/common.php:157
 msgid "Working..."
 msgstr ""
 
-#: includes/admin/common.php:162 includes/admin/pages/tools.php:273
+#: includes/admin/common.php:158 includes/admin/pages/tools.php:87
 msgid "Import"
 msgstr ""
 
-#: includes/admin/common.php:163
+#: includes/admin/common.php:159
 msgid "Imported!"
 msgstr ""
 
-#: includes/admin/common.php:367
+#: includes/admin/common.php:363
 #, php-format
 msgid ""
 "MonsterInsights has detected that it's files are being blocked. This is "
@@ -259,7 +258,7 @@ msgid ""
 "happy to help diagnose the issue."
 msgstr ""
 
-#: includes/admin/google.php:316 includes/admin/google.php:363
+#: includes/admin/google.php:316 includes/admin/google.php:406
 msgid ""
 "MonsterInsights requires WordPress version 4.6 or newer to use oAuth. Please "
 "update your WordPress version."
@@ -271,83 +270,83 @@ msgid ""
 "up for Google Analytics."
 msgstr ""
 
-#: includes/admin/google.php:371
+#: includes/admin/google.php:414
 msgid "Please ensure your Google Account is signed up for Google Analytics."
 msgstr ""
 
-#: includes/admin/google.php:373
+#: includes/admin/google.php:416
 msgid "Bad Request. Please contact support."
 msgstr ""
 
-#: includes/admin/google.php:375
+#: includes/admin/google.php:418
 msgid "Daily Limit Exceeded. Please contact support."
 msgstr ""
 
-#: includes/admin/google.php:377
+#: includes/admin/google.php:420
 msgid "User Rate Limit Exceeded. Wait 2 minutes and then try again."
 msgstr ""
 
-#: includes/admin/google.php:379
+#: includes/admin/google.php:422
 msgid "Project Rate Limit Exceeded. Wait 2 minutes and then try again."
 msgstr ""
 
-#: includes/admin/google.php:381
+#: includes/admin/google.php:424
 msgid "Project Rate Limit Quota Exceeded. Wait 2 minutes and then try again."
 msgstr ""
 
-#: includes/admin/google.php:383
+#: includes/admin/google.php:426
 msgid ""
 "Google Analytics is having API issues on their side. Wait 2 minutes and then "
 "try again."
 msgstr ""
 
-#: includes/admin/google.php:385
+#: includes/admin/google.php:428
 #, php-format
 msgid "Google Analytics had a connection error. Error code: %1$s. Reason: %2$s"
 msgstr ""
 
-#: includes/admin/google.php:496 includes/admin/google.php:603
+#: includes/admin/google.php:539 includes/admin/google.php:646
 msgid "Permission Denied"
 msgstr ""
 
-#: includes/admin/google.php:509
+#: includes/admin/google.php:552
 msgid "Cannot connect to Google"
 msgstr ""
 
-#: includes/admin/google.php:535
+#: includes/admin/google.php:578
 msgid "No profiles viewable for that account. Please use another account."
 msgstr ""
 
-#: includes/admin/google.php:542
+#: includes/admin/google.php:585
 msgid "Bad Google Code. Please try again."
 msgstr ""
 
-#: includes/admin/google.php:549
+#: includes/admin/google.php:592
 msgid "Please paste in your Google code."
 msgstr ""
 
-#: includes/admin/google.php:575
+#: includes/admin/google.php:618
 msgid "Invalid profile selected."
 msgstr ""
 
-#: includes/admin/google.php:581
+#: includes/admin/google.php:624
 msgid "Please select a profile."
 msgstr ""
 
-#: includes/admin/google.php:641
+#: includes/admin/google.php:688
 msgid "Analytics profile"
 msgstr ""
 
-#: includes/admin/google.php:642
+#: includes/admin/google.php:689
 msgid "Select a profile"
 msgstr ""
 
-#: includes/admin/google.php:752
+#: includes/admin/google.php:799
 #, php-format
 msgid "Please configure your %1$sGoogle Analytics settings%2$s!"
 msgstr ""
 
-#: includes/admin/google.php:765
+#: includes/admin/google.php:812
 #, php-format
 msgid ""
 "It seems the authentication for the plugin has expired or the connection to "
@@ -355,7 +354,7 @@ msgid ""
 "Google Analytics to allow the plugin to fetch data."
 msgstr ""
 
-#: includes/admin/google.php:778
+#: includes/admin/google.php:825
 #, php-format
 msgid ""
 "It seems the authentication for the plugin is missing permissions. Please "
@@ -363,7 +362,7 @@ msgid ""
 "data."
 msgstr ""
 
-#: includes/admin/google.php:791 includes/admin/pages/dashboard.php:121
+#: includes/admin/google.php:838 includes/admin/pages/dashboard.php:121
 #: includes/admin/pages/reports.php:164
 #, php-format
 msgid ""
@@ -730,243 +729,74 @@ msgstr ""
 msgid "Invalid UA code."
 msgstr ""
 
-#: includes/admin/pages/settings.php:226 includes/admin/pages/settings.php:283
+#: includes/admin/pages/settings.php:226 includes/admin/pages/settings.php:281
 msgid "You do not have permission to manage MonsterInsights settings"
 msgstr ""
 
-#: includes/admin/pages/settings.php:226 includes/admin/pages/settings.php:283
+#: includes/admin/pages/settings.php:226 includes/admin/pages/settings.php:281
 msgid "Error"
 msgstr ""
 
-#: includes/admin/pages/settings.php:243
+#: includes/admin/pages/settings.php:242
 msgid "Successfully migrated to Universal Analytics (analytics.js)!"
 msgstr ""
 
-#: includes/admin/pages/settings.php:300
+#: includes/admin/pages/settings.php:297
 msgid "Successfully migrated to JS events tracking!"
 msgstr ""
 
-#: includes/admin/pages/tools.php:41
+#: includes/admin/pages/tools.php:31 includes/admin/pages/tools.php:32
+msgid "Import/Export"
+msgstr ""
+
+#: includes/admin/pages/tools.php:35
 msgid "Campaign URL Builder"
 msgstr ""
 
-#: includes/admin/pages/tools.php:42
+#: includes/admin/pages/tools.php:36
 msgid "URL Builder"
 msgstr ""
 
-#: includes/admin/pages/tools.php:66
-msgid "Generate custom campaign parameters for your advertising URLS."
-msgstr ""
-
-#: includes/admin/pages/tools.php:67
-msgid ""
-"The URL builder helps you add parameters to your URLs you use in custom web-"
-"based or email ad campaigns. A custom campaign is any ad campaign not using "
-"the AdWords auto-tagging feature. When users click one of the custom links, "
-"the unique parameters are sent to your Analytics account, so you can "
-"identify the urls that are the most effective in attracting users to your "
-"content."
-msgstr ""
-
-#: includes/admin/pages/tools.php:68
-msgid ""
-"Fill out the required fields (marked with *) in the form below, and as you "
-"make changes the full campaign URL will be generated for you."
-msgstr ""
-
-#: includes/admin/pages/tools.php:76
-msgid "Website URL"
-msgstr ""
-
-#: includes/admin/pages/tools.php:81
-#, php-format
-msgid "The full website URL (e.g. %1$s)"
-msgstr ""
-
-#: includes/admin/pages/tools.php:87 includes/admin/pages/tools.php:178
-msgid "Campaign Source"
-msgstr ""
-
-#: includes/admin/pages/tools.php:92
-#, php-format
-msgid "Enter a referrer (e.g. %1$s, %2$s, %3$s)"
-msgstr ""
-
-#: includes/admin/pages/tools.php:98 includes/admin/pages/tools.php:189
-msgid "Campaign Medium"
-msgstr ""
-
-#: includes/admin/pages/tools.php:103
-#, php-format
-msgid "Enter a marketing medium (e.g. %1$s, %2$s, %3$s)"
-msgstr ""
-
-#: includes/admin/pages/tools.php:109 includes/admin/pages/tools.php:199
-msgid "Campaign Name"
-msgstr ""
-
-#: includes/admin/pages/tools.php:114
-#, php-format
-msgid "Enter a name to identify the campaign (e.g. %1$s)"
-msgstr ""
-
-#: includes/admin/pages/tools.php:120 includes/admin/pages/tools.php:209
-msgid "Campaign Term"
-msgstr ""
-
-#: includes/admin/pages/tools.php:125
-msgid "Enter the paid keyword"
-msgstr ""
-
-#: includes/admin/pages/tools.php:131 includes/admin/pages/tools.php:219
-msgid "Campaign Content"
-msgstr ""
-
-#: includes/admin/pages/tools.php:136
-msgid "Enter something to differentiate ads"
-msgstr ""
-
-#: includes/admin/pages/tools.php:142
-msgid "Use Fragment"
-msgstr ""
-
-#: includes/admin/pages/tools.php:147
-msgid ""
-"Set the parameters in the fragment portion of the URL (not recommended)."
-msgstr ""
-
-#: includes/admin/pages/tools.php:153
-msgid "URL to use (updates automatically):"
-msgstr ""
-
-#: includes/admin/pages/tools.php:160
-msgid "Copy to clipboard"
-msgstr ""
-
-#: includes/admin/pages/tools.php:172
-msgid "More information and examples for each option"
-msgstr ""
-
-#: includes/admin/pages/tools.php:173
-msgid ""
-"The following table gives a detailed explanation and example of each of the "
-"campaign parameters."
-msgstr ""
-
-#: includes/admin/pages/tools.php:182
-msgid "Required."
-msgstr ""
-
-#: includes/admin/pages/tools.php:183
-#, php-format
-msgid "Use %1$s to identify a search engine, newsletter name, or other source."
-msgstr ""
-
-#: includes/admin/pages/tools.php:184 includes/admin/pages/tools.php:194
-#: includes/admin/pages/tools.php:204 includes/admin/pages/tools.php:214
-msgid "Example:"
-msgstr ""
-
-#: includes/admin/pages/tools.php:193
-#, php-format
-msgid "Use %1$s to identify a medium such as email or cost-per- click."
-msgstr ""
-
-#: includes/admin/pages/tools.php:203
-#, php-format
-msgid ""
-"Used for keyword analysis. Use %1$s to identify a specific product promotion "
-"or strategic campaign."
-msgstr ""
-
-#: includes/admin/pages/tools.php:213
-#, php-format
-msgid "Used for paid search. Use %1$s to note the keywords for this ad."
-msgstr ""
-
-#: includes/admin/pages/tools.php:223
-#, php-format
-msgid ""
-"Used for A/B testing and content-targeted ads. Use %1$s to differentiate ads "
-"or links that point to the same URL."
-msgstr ""
-
-#: includes/admin/pages/tools.php:224
-msgid "Examples:"
-msgstr ""
-
-#: includes/admin/pages/tools.php:224
-msgid "or"
-msgstr ""
-
-#: includes/admin/pages/tools.php:230
-msgid "More information:"
-msgstr ""
-
-#: includes/admin/pages/tools.php:233
-msgid "About Campaigns"
-msgstr ""
-
-#: includes/admin/pages/tools.php:234
-msgid "About Custom Campaigns"
-msgstr ""
-
-#: includes/admin/pages/tools.php:235
-msgid "Best practices for creating Custom Campaigns"
-msgstr ""
-
-#: includes/admin/pages/tools.php:236
-msgid "About the Referral Traffic report"
-msgstr ""
-
-#: includes/admin/pages/tools.php:237
-msgid "About traffic source dimensions"
-msgstr ""
-
-#: includes/admin/pages/tools.php:238
-msgid "AdWords Auto-Tagging"
-msgstr ""
-
-#: includes/admin/pages/tools.php:246
+#: includes/admin/pages/tools.php:60
 msgid "Setting Tools"
 msgstr ""
 
-#: includes/admin/pages/tools.php:247
+#: includes/admin/pages/tools.php:61
 msgid ""
 "You can use the below tools to import settings from other MonsterInsights "
 "websites or export settings to import into another MonsterInsights install."
 msgstr ""
 
-#: includes/admin/pages/tools.php:254
+#: includes/admin/pages/tools.php:68
 msgid "Import Settings"
 msgstr ""
 
-#: includes/admin/pages/tools.php:260
+#: includes/admin/pages/tools.php:74
 msgid "Successfully imported settings!"
 msgstr ""
 
-#: includes/admin/pages/tools.php:268
+#: includes/admin/pages/tools.php:82
 msgid ""
 "Paste the import field content from another MonsterInsights site in above."
 msgstr ""
 
-#: includes/admin/pages/tools.php:281
+#: includes/admin/pages/tools.php:95
 msgid "Export Settings:"
 msgstr ""
 
-#: includes/admin/pages/tools.php:293
+#: includes/admin/pages/tools.php:107
 msgid "Export"
 msgstr ""
 
-#: includes/admin/pages/tools.php:365
+#: includes/admin/pages/tools.php:179
 msgid "Please upload a valid .json file"
 msgstr ""
 
-#: includes/admin/pages/tools.php:371
+#: includes/admin/pages/tools.php:185
 msgid "Please upload a file to import"
 msgstr ""
 
-#: includes/admin/pages/tools.php:376
+#: includes/admin/pages/tools.php:190
 msgid "Please upload a real settings export file to import"
 msgstr ""
 
@@ -1060,7 +890,7 @@ msgid "Demographics"
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:31
-msgid "Enhanced Link Attribution"
+msgid "Link Attribution"
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:35
@@ -1083,80 +913,96 @@ msgstr ""
 msgid "Forms"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:57
+#: includes/admin/settings/register-settings.php:56
 msgid "eCommerce"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:61
+#: includes/admin/settings/register-settings.php:60
 msgid "Media"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:66
+#: includes/admin/settings/register-settings.php:65
 msgid "Memberships"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:71
+#: includes/admin/settings/register-settings.php:70
 msgid "Custom Dimensions"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:75
+#: includes/admin/settings/register-settings.php:74
 msgid "Performance"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:79
+#: includes/admin/settings/register-settings.php:78
+msgid "Google AMP"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:82
+msgid "Google Optimize"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:86
+msgid "FB Instant Articles"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:90
+msgid "Bounce Reduction"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:95
 msgid "Additional Reporting"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:84
+#: includes/admin/settings/register-settings.php:100
 msgid "Notifications"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:89
+#: includes/admin/settings/register-settings.php:105
 msgid "Compatibility"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:93
+#: includes/admin/settings/register-settings.php:109
 msgid "Permissions"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:137
+#: includes/admin/settings/register-settings.php:153
 msgid "Ignore these user roles from tracking:"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:138
+#: includes/admin/settings/register-settings.php:154
 msgid ""
 "Users that have at least one of these roles will not be tracked into Google "
 "Analytics."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:147
+#: includes/admin/settings/register-settings.php:163
 msgid "Track outbound clicks and download links?"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:148
+#: includes/admin/settings/register-settings.php:164
 msgid ""
 "We recommend tracking clicks and downloads, so you know where users are "
 "exiting your site, and what downloads they are interacting with. "
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:152
+#: includes/admin/settings/register-settings.php:168
 msgid "No"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:153
+#: includes/admin/settings/register-settings.php:169
 msgid "Yes, using PHP (deprecated)"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:154
+#: includes/admin/settings/register-settings.php:170
 msgid "Using Javascript (recommended)"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:164
+#: includes/admin/settings/register-settings.php:180
 msgid ""
 "Enable Demographics and Interests Reports for Remarketing and Advertising"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:165
+#: includes/admin/settings/register-settings.php:181
 #, php-format
 msgid ""
 "Check this setting to add the Demographics and Remarketing features to your "
@@ -1166,11 +1012,11 @@ msgid ""
 "we refer you to %3$sGoogle's documentation%2$s."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:172
+#: includes/admin/settings/register-settings.php:188
 msgid "Anonymize IP addresses?"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:173
+#: includes/admin/settings/register-settings.php:189
 #, php-format
 msgid ""
 "This adds %1$s, telling Google Analytics to anonymize the information sent "
@@ -1178,60 +1024,54 @@ msgid ""
 "its storage."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:183
+#: includes/admin/settings/register-settings.php:199
 msgid "Enable enhanced link attribution?"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:184
+#: includes/admin/settings/register-settings.php:200
 #, php-format
 msgid "Add %1$sEnhanced Link Attribution%2$s to your tracking code."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:189
-msgid "Turn on anchor tracking (beta; see description)"
+#: includes/admin/settings/register-settings.php:205
+msgid "Turn on anchor tracking"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:190
+#: includes/admin/settings/register-settings.php:206
 msgid ""
 "Many WordPress \"1-page\" style themes rely on anchor tags for navigation to "
 "show virtual pages. The problem is that to Google Analytics, these are all "
 "just a single page, and it makes it hard to get meaningful statistics about "
-"pages viewed. This experimental MonsterInsights feature allows for the "
-"tracking of anchor links as pages in Google Analytics. As a beta, first-look "
-"feature, we're adding a setting to turn this functionality on so we can "
-"collect feedback from people that want to use it. We may tweak or remove "
-"this feature at any time. Note: This feature tracks all anchor links as "
-"pages, without the ability to opt a particular anchor tag out currently, so "
-"only use this if you are using a \"1-page\" style WordPress theme"
+"pages viewed. This feature allows proper tracking in those themes."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:195
+#: includes/admin/settings/register-settings.php:211
 msgid "Turn on allowAnchor"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:196
+#: includes/admin/settings/register-settings.php:212
 #, php-format
 msgid ""
 "This adds a %1$s call to your tracking code, and makes RSS link tagging use "
 "a %2$s as well."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:201
+#: includes/admin/settings/register-settings.php:217
 msgid "Turn on allowLinker"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:202
+#: includes/admin/settings/register-settings.php:218
 #, php-format
 msgid ""
 "This adds a %1$s call to your tracking code, allowing you to use %2$s and "
 "related functions."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:207
+#: includes/admin/settings/register-settings.php:223
 msgid "Turn on tag links in RSS"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:208
+#: includes/admin/settings/register-settings.php:224
 #, php-format
 msgid ""
 "Do not use this feature if you use FeedBurner, as FeedBurner can do this "
@@ -1239,40 +1079,40 @@ msgid ""
 "for info on how to enable this feature in FeedBurner."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:218
+#: includes/admin/settings/register-settings.php:234
 msgid "Track downloads as an:"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:219
+#: includes/admin/settings/register-settings.php:235
 msgid ""
 "Tracking as pageviews is not recommended, as this would skew your "
 "statistics, but it does make it possible to track downloads as goals. This "
 "feature requires that event tracking be turned on."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:223
+#: includes/admin/settings/register-settings.php:239
 msgid "Event (recommended)"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:224
+#: includes/admin/settings/register-settings.php:240
 msgid "Pageview"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:229
+#: includes/admin/settings/register-settings.php:245
 msgid "Extensions of files to track as downloads:"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:230
+#: includes/admin/settings/register-settings.php:246
 msgid ""
 "If you have enabled event tracking, MonsterInsights will send an event/"
 "pageview to GA if a link to a local file has one of the above extensions."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:240
+#: includes/admin/settings/register-settings.php:256
 msgid "Set path for internal links to track as outbound links"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:241
+#: includes/admin/settings/register-settings.php:257
 #, php-format
 msgid ""
 "If you want to track all internal links that begin with %1$s, enter %1$s in "
@@ -1280,11 +1120,11 @@ msgid ""
 "comma's: %2$s"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:246
+#: includes/admin/settings/register-settings.php:262
 msgid "Label for those links:"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:247
+#: includes/admin/settings/register-settings.php:263
 #, php-format
 msgid ""
 "The label to use for these links, this will be added to where the click came "
@@ -1292,11 +1132,11 @@ msgid ""
 "article becomes \"outbound-article-aff\"."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:297
+#: includes/admin/settings/register-settings.php:329
 msgid "Domain to track as:"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:298
+#: includes/admin/settings/register-settings.php:330
 #, php-format
 msgid ""
 "This allows you to %1$sset the domain%2$s that's used for tracking. Only is "
@@ -1304,65 +1144,71 @@ msgid ""
 "rare that you would need to use this setting."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:303
+#: includes/admin/settings/register-settings.php:335
 msgid "Custom code"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:304
+#: includes/admin/settings/register-settings.php:336
 #, php-format
 msgid ""
 "Not for the average user: this allows you to add a line of code, to be added "
 "before the %1$s call."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:309
+#: includes/admin/settings/register-settings.php:341
 msgid "Enable Debug Mode"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:310
+#: includes/admin/settings/register-settings.php:342
 msgid ""
 "Turns on debugging in JS events tracking, logging of eCommerce requests and "
 "enables debug settings."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:320
+#: includes/admin/settings/register-settings.php:352
 msgid "Let these user roles see reports (and the dashboard):"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:330
+#: includes/admin/settings/register-settings.php:362
 msgid "Let these user roles save settings:"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:331
+#: includes/admin/settings/register-settings.php:363
 #, php-format
 msgid ""
 "Users that have at least one of these roles will be able to view and save "
 "the settings panel, along with any user with the %s capability."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:340
+#: includes/admin/settings/register-settings.php:372
 #: includes/admin/settings/tab-general.php:183
 msgid "Allow Usage Tracking"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:341
+#: includes/admin/settings/register-settings.php:373
 #: includes/admin/settings/tab-general.php:184
 msgid ""
 "By allowing us to track usage data we can better help you, because we know "
 "with which WordPress configurations, themes and plugins we should test."
 msgstr ""
 
-#: includes/admin/settings/settings-api.php:737
+#: includes/admin/settings/settings-api.php:747
 #, php-format
 msgid "You must have the %s capability to view/edit this setting"
 msgstr ""
 
-#: includes/admin/settings/settings-api.php:926
+#: includes/admin/settings/settings-api.php:907
+#: includes/admin/settings/tab-tracking.php:108
+#: lite/includes/admin/tools.php:12
+msgid "Click here to Upgrade"
+msgstr ""
+
+#: includes/admin/settings/settings-api.php:937
 #, php-format
 msgid "The callback function used for the %s setting is missing."
 msgstr ""
 
-#: includes/admin/settings/settings-api.php:958
+#: includes/admin/settings/settings-api.php:969
 #: includes/admin/settings/tab-general.php:204
 msgid "Save Changes"
 msgstr ""
@@ -1453,26 +1299,36 @@ msgid ""
 "PHP based events tracking. To switch %1$sclick here%2$s."
 msgstr ""
 
-#: includes/admin/settings/tab-tracking.php:40
-msgid "Upgrade"
+#: includes/admin/settings/tab-tracking.php:106
+#: lite/includes/admin/tools.php:10
+msgid "Want even more fine tuned control over your website analytics?"
 msgstr ""
 
-#: includes/admin/tracking.php:282
+#: includes/admin/settings/tab-tracking.php:107
+msgid ""
+"By upgrading to MonsterInsights Pro, you get access to numerous addons and "
+"tools that help you better understand what people are doing on your website, "
+"so you can keep doing more of what's working. Some of the features include: "
+"Ecommerce tracking, Author tracking, Post Type tracking, Ads tracking, "
+"Google AMP tracking, Performance optimization, and so much more!"
+msgstr ""
+
+#: includes/admin/tracking.php:291
 msgid ""
 "Allow MonsterInsights to track plugin usage? Opt-in to tracking and our "
 "newsletter to stay informed of the latest changes to MonsterInsights and "
 "help us ensure compatibility."
 msgstr ""
 
-#: includes/admin/tracking.php:283
+#: includes/admin/tracking.php:292
 msgid "Allow"
 msgstr ""
 
-#: includes/admin/tracking.php:284
+#: includes/admin/tracking.php:293
 msgid "Do not allow"
 msgstr ""
 
-#: includes/admin/tracking.php:301
+#: includes/admin/tracking.php:310
 msgid "Once Weekly"
 msgstr ""
 
@@ -1514,1011 +1370,1011 @@ msgid ""
 "window traffic to avoid false visit reports."
 msgstr ""
 
-#: includes/helpers.php:289
+#: includes/helpers.php:292
 msgid "United States"
 msgstr ""
 
-#: includes/helpers.php:290
+#: includes/helpers.php:293
 msgid "Canada"
 msgstr ""
 
-#: includes/helpers.php:291
+#: includes/helpers.php:294
 msgid "United Kingdom"
 msgstr ""
 
-#: includes/helpers.php:292
+#: includes/helpers.php:295
 msgid "Afghanistan"
 msgstr ""
 
-#: includes/helpers.php:293
+#: includes/helpers.php:296
 msgid "&#197;land Islands"
 msgstr ""
 
-#: includes/helpers.php:294
+#: includes/helpers.php:297
 msgid "Albania"
 msgstr ""
 
-#: includes/helpers.php:295
+#: includes/helpers.php:298
 msgid "Algeria"
 msgstr ""
 
-#: includes/helpers.php:296
+#: includes/helpers.php:299
 msgid "American Samoa"
 msgstr ""
 
-#: includes/helpers.php:297
+#: includes/helpers.php:300
 msgid "Andorra"
 msgstr ""
 
-#: includes/helpers.php:298
+#: includes/helpers.php:301
 msgid "Angola"
 msgstr ""
 
-#: includes/helpers.php:299
+#: includes/helpers.php:302
 msgid "Anguilla"
 msgstr ""
 
-#: includes/helpers.php:300
+#: includes/helpers.php:303
 msgid "Antarctica"
 msgstr ""
 
-#: includes/helpers.php:301
+#: includes/helpers.php:304
 msgid "Antigua and Barbuda"
 msgstr ""
 
-#: includes/helpers.php:302
+#: includes/helpers.php:305
 msgid "Argentina"
 msgstr ""
 
-#: includes/helpers.php:303
+#: includes/helpers.php:306
 msgid "Armenia"
 msgstr ""
 
-#: includes/helpers.php:304
+#: includes/helpers.php:307
 msgid "Aruba"
 msgstr ""
 
-#: includes/helpers.php:305
+#: includes/helpers.php:308
 msgid "Australia"
 msgstr ""
 
-#: includes/helpers.php:306
+#: includes/helpers.php:309
 msgid "Austria"
 msgstr ""
 
-#: includes/helpers.php:307
+#: includes/helpers.php:310
 msgid "Azerbaijan"
 msgstr ""
 
-#: includes/helpers.php:308
+#: includes/helpers.php:311
 msgid "Bahamas"
 msgstr ""
 
-#: includes/helpers.php:309
+#: includes/helpers.php:312
 msgid "Bahrain"
 msgstr ""
 
-#: includes/helpers.php:310
+#: includes/helpers.php:313
 msgid "Bangladesh"
 msgstr ""
 
-#: includes/helpers.php:311
+#: includes/helpers.php:314
 msgid "Barbados"
 msgstr ""
 
-#: includes/helpers.php:312
+#: includes/helpers.php:315
 msgid "Belarus"
 msgstr ""
 
-#: includes/helpers.php:313
+#: includes/helpers.php:316
 msgid "Belgium"
 msgstr ""
 
-#: includes/helpers.php:314
+#: includes/helpers.php:317
 msgid "Belize"
 msgstr ""
 
-#: includes/helpers.php:315
+#: includes/helpers.php:318
 msgid "Benin"
 msgstr ""
 
-#: includes/helpers.php:316
+#: includes/helpers.php:319
 msgid "Bermuda"
 msgstr ""
 
-#: includes/helpers.php:317
+#: includes/helpers.php:320
 msgid "Bhutan"
 msgstr ""
 
-#: includes/helpers.php:318
+#: includes/helpers.php:321
 msgid "Bolivia"
 msgstr ""
 
-#: includes/helpers.php:319
+#: includes/helpers.php:322
 msgid "Bonaire, Saint Eustatius and Saba"
 msgstr ""
 
-#: includes/helpers.php:320
+#: includes/helpers.php:323
 msgid "Bosnia and Herzegovina"
 msgstr ""
 
-#: includes/helpers.php:321
+#: includes/helpers.php:324
 msgid "Botswana"
 msgstr ""
 
-#: includes/helpers.php:322
+#: includes/helpers.php:325
 msgid "Bouvet Island"
 msgstr ""
 
-#: includes/helpers.php:323
+#: includes/helpers.php:326
 msgid "Brazil"
 msgstr ""
 
-#: includes/helpers.php:324
+#: includes/helpers.php:327
 msgid "British Indian Ocean Territory"
 msgstr ""
 
-#: includes/helpers.php:325
+#: includes/helpers.php:328
 msgid "Brunei Darrussalam"
 msgstr ""
 
-#: includes/helpers.php:326
+#: includes/helpers.php:329
 msgid "Bulgaria"
 msgstr ""
 
-#: includes/helpers.php:327
+#: includes/helpers.php:330
 msgid "Burkina Faso"
 msgstr ""
 
-#: includes/helpers.php:328
+#: includes/helpers.php:331
 msgid "Burundi"
 msgstr ""
 
-#: includes/helpers.php:329
+#: includes/helpers.php:332
 msgid "Cambodia"
 msgstr ""
 
-#: includes/helpers.php:330
+#: includes/helpers.php:333
 msgid "Cameroon"
 msgstr ""
 
-#: includes/helpers.php:331
+#: includes/helpers.php:334
 msgid "Cape Verde"
 msgstr ""
 
-#: includes/helpers.php:332
+#: includes/helpers.php:335
 msgid "Cayman Islands"
 msgstr ""
 
-#: includes/helpers.php:333
+#: includes/helpers.php:336
 msgid "Central African Republic"
 msgstr ""
 
-#: includes/helpers.php:334
+#: includes/helpers.php:337
 msgid "Chad"
 msgstr ""
 
-#: includes/helpers.php:335
+#: includes/helpers.php:338
 msgid "Chile"
 msgstr ""
 
-#: includes/helpers.php:336
+#: includes/helpers.php:339
 msgid "China"
 msgstr ""
 
-#: includes/helpers.php:337
+#: includes/helpers.php:340
 msgid "Christmas Island"
 msgstr ""
 
-#: includes/helpers.php:338
+#: includes/helpers.php:341
 msgid "Cocos Islands"
 msgstr ""
 
-#: includes/helpers.php:339
+#: includes/helpers.php:342
 msgid "Colombia"
 msgstr ""
 
-#: includes/helpers.php:340
+#: includes/helpers.php:343
 msgid "Comoros"
 msgstr ""
 
-#: includes/helpers.php:341
+#: includes/helpers.php:344
 msgid "Congo, Democratic People's Republic"
 msgstr ""
 
-#: includes/helpers.php:342
+#: includes/helpers.php:345
 msgid "Congo, Republic of"
 msgstr ""
 
-#: includes/helpers.php:343
+#: includes/helpers.php:346
 msgid "Cook Islands"
 msgstr ""
 
-#: includes/helpers.php:344
+#: includes/helpers.php:347
 msgid "Costa Rica"
 msgstr ""
 
-#: includes/helpers.php:345
+#: includes/helpers.php:348
 msgid "Cote d'Ivoire"
 msgstr ""
 
-#: includes/helpers.php:346
+#: includes/helpers.php:349
 msgid "Croatia/Hrvatska"
 msgstr ""
 
-#: includes/helpers.php:347
+#: includes/helpers.php:350
 msgid "Cuba"
 msgstr ""
 
-#: includes/helpers.php:348
+#: includes/helpers.php:351
 msgid "Cura&Ccedil;ao"
 msgstr ""
 
-#: includes/helpers.php:349
+#: includes/helpers.php:352
 msgid "Cyprus"
 msgstr ""
 
-#: includes/helpers.php:350
+#: includes/helpers.php:353
 msgid "Czechia"
 msgstr ""
 
-#: includes/helpers.php:351
+#: includes/helpers.php:354
 msgid "Denmark"
 msgstr ""
 
-#: includes/helpers.php:352
+#: includes/helpers.php:355
 msgid "Djibouti"
 msgstr ""
 
-#: includes/helpers.php:353
+#: includes/helpers.php:356
 msgid "Dominica"
 msgstr ""
 
-#: includes/helpers.php:354
+#: includes/helpers.php:357
 msgid "Dominican Republic"
 msgstr ""
 
-#: includes/helpers.php:355
+#: includes/helpers.php:358
 msgid "East Timor"
 msgstr ""
 
-#: includes/helpers.php:356
+#: includes/helpers.php:359
 msgid "Ecuador"
 msgstr ""
 
-#: includes/helpers.php:357
+#: includes/helpers.php:360
 msgid "Egypt"
 msgstr ""
 
-#: includes/helpers.php:358
+#: includes/helpers.php:361
 msgid "Equatorial Guinea"
 msgstr ""
 
-#: includes/helpers.php:359
+#: includes/helpers.php:362
 msgid "El Salvador"
 msgstr ""
 
-#: includes/helpers.php:360
+#: includes/helpers.php:363
 msgid "Eritrea"
 msgstr ""
 
-#: includes/helpers.php:361
+#: includes/helpers.php:364
 msgid "Estonia"
 msgstr ""
 
-#: includes/helpers.php:362
+#: includes/helpers.php:365
 msgid "Ethiopia"
 msgstr ""
 
-#: includes/helpers.php:363
+#: includes/helpers.php:366
 msgid "Falkland Islands"
 msgstr ""
 
-#: includes/helpers.php:364
+#: includes/helpers.php:367
 msgid "Faroe Islands"
 msgstr ""
 
-#: includes/helpers.php:365
+#: includes/helpers.php:368
 msgid "Fiji"
 msgstr ""
 
-#: includes/helpers.php:366
+#: includes/helpers.php:369
 msgid "Finland"
 msgstr ""
 
-#: includes/helpers.php:367
+#: includes/helpers.php:370
 msgid "France"
 msgstr ""
 
-#: includes/helpers.php:368
+#: includes/helpers.php:371
 msgid "French Guiana"
 msgstr ""
 
-#: includes/helpers.php:369
+#: includes/helpers.php:372
 msgid "French Polynesia"
 msgstr ""
 
-#: includes/helpers.php:370
+#: includes/helpers.php:373
 msgid "French Southern Territories"
 msgstr ""
 
-#: includes/helpers.php:371
+#: includes/helpers.php:374
 msgid "Gabon"
 msgstr ""
 
-#: includes/helpers.php:372
+#: includes/helpers.php:375
 msgid "Gambia"
 msgstr ""
 
-#: includes/helpers.php:373
+#: includes/helpers.php:376
 msgid "Georgia"
 msgstr ""
 
-#: includes/helpers.php:374
+#: includes/helpers.php:377
 msgid "Germany"
 msgstr ""
 
-#: includes/helpers.php:375
+#: includes/helpers.php:378
 msgid "Greece"
 msgstr ""
 
-#: includes/helpers.php:376
+#: includes/helpers.php:379
 msgid "Ghana"
 msgstr ""
 
-#: includes/helpers.php:377
+#: includes/helpers.php:380
 msgid "Gibraltar"
 msgstr ""
 
-#: includes/helpers.php:378
+#: includes/helpers.php:381
 msgid "Greenland"
 msgstr ""
 
-#: includes/helpers.php:379
+#: includes/helpers.php:382
 msgid "Grenada"
 msgstr ""
 
-#: includes/helpers.php:380
+#: includes/helpers.php:383
 msgid "Guadeloupe"
 msgstr ""
 
-#: includes/helpers.php:381
+#: includes/helpers.php:384
 msgid "Guam"
 msgstr ""
 
-#: includes/helpers.php:382
+#: includes/helpers.php:385
 msgid "Guatemala"
 msgstr ""
 
-#: includes/helpers.php:383
+#: includes/helpers.php:386
 msgid "Guernsey"
 msgstr ""
 
-#: includes/helpers.php:384
+#: includes/helpers.php:387
 msgid "Guinea"
 msgstr ""
 
-#: includes/helpers.php:385
+#: includes/helpers.php:388
 msgid "Guinea-Bissau"
 msgstr ""
 
-#: includes/helpers.php:386
+#: includes/helpers.php:389
 msgid "Guyana"
 msgstr ""
 
-#: includes/helpers.php:387
+#: includes/helpers.php:390
 msgid "Haiti"
 msgstr ""
 
-#: includes/helpers.php:388
+#: includes/helpers.php:391
 msgid "Heard and McDonald Islands"
 msgstr ""
 
-#: includes/helpers.php:389
+#: includes/helpers.php:392
 msgid "Holy See (City Vatican State)"
 msgstr ""
 
-#: includes/helpers.php:390
+#: includes/helpers.php:393
 msgid "Honduras"
 msgstr ""
 
-#: includes/helpers.php:391
+#: includes/helpers.php:394
 msgid "Hong Kong"
 msgstr ""
 
-#: includes/helpers.php:392
+#: includes/helpers.php:395
 msgid "Hungary"
 msgstr ""
 
-#: includes/helpers.php:393
+#: includes/helpers.php:396
 msgid "Iceland"
 msgstr ""
 
-#: includes/helpers.php:394
+#: includes/helpers.php:397
 msgid "India"
 msgstr ""
 
-#: includes/helpers.php:395
+#: includes/helpers.php:398
 msgid "Indonesia"
 msgstr ""
 
-#: includes/helpers.php:396
+#: includes/helpers.php:399
 msgid "Iran"
 msgstr ""
 
-#: includes/helpers.php:397
+#: includes/helpers.php:400
 msgid "Iraq"
 msgstr ""
 
-#: includes/helpers.php:398
+#: includes/helpers.php:401
 msgid "Ireland"
 msgstr ""
 
-#: includes/helpers.php:399
+#: includes/helpers.php:402
 msgid "Isle of Man"
 msgstr ""
 
-#: includes/helpers.php:400
+#: includes/helpers.php:403
 msgid "Israel"
 msgstr ""
 
-#: includes/helpers.php:401
+#: includes/helpers.php:404
 msgid "Italy"
 msgstr ""
 
-#: includes/helpers.php:402
+#: includes/helpers.php:405
 msgid "Jamaica"
 msgstr ""
 
-#: includes/helpers.php:403
+#: includes/helpers.php:406
 msgid "Japan"
 msgstr ""
 
-#: includes/helpers.php:404
+#: includes/helpers.php:407
 msgid "Jersey"
 msgstr ""
 
-#: includes/helpers.php:405
+#: includes/helpers.php:408
 msgid "Jordan"
 msgstr ""
 
-#: includes/helpers.php:406
+#: includes/helpers.php:409
 msgid "Kazakhstan"
 msgstr ""
 
-#: includes/helpers.php:407
+#: includes/helpers.php:410
 msgid "Kenya"
 msgstr ""
 
-#: includes/helpers.php:408
+#: includes/helpers.php:411
 msgid "Kiribati"
 msgstr ""
 
-#: includes/helpers.php:409
+#: includes/helpers.php:412
 msgid "Kuwait"
 msgstr ""
 
-#: includes/helpers.php:410
+#: includes/helpers.php:413
 msgid "Kyrgyzstan"
 msgstr ""
 
-#: includes/helpers.php:411
+#: includes/helpers.php:414
 msgid "Lao People's Democratic Republic"
 msgstr ""
 
-#: includes/helpers.php:412
+#: includes/helpers.php:415
 msgid "Latvia"
 msgstr ""
 
-#: includes/helpers.php:413
+#: includes/helpers.php:416
 msgid "Lebanon"
 msgstr ""
 
-#: includes/helpers.php:414
+#: includes/helpers.php:417
 msgid "Lesotho"
 msgstr ""
 
-#: includes/helpers.php:415
+#: includes/helpers.php:418
 msgid "Liberia"
 msgstr ""
 
-#: includes/helpers.php:416
+#: includes/helpers.php:419
 msgid "Libyan Arab Jamahiriya"
 msgstr ""
 
-#: includes/helpers.php:417
+#: includes/helpers.php:420
 msgid "Liechtenstein"
 msgstr ""
 
-#: includes/helpers.php:418
+#: includes/helpers.php:421
 msgid "Lithuania"
 msgstr ""
 
-#: includes/helpers.php:419
+#: includes/helpers.php:422
 msgid "Luxembourg"
 msgstr ""
 
-#: includes/helpers.php:420
+#: includes/helpers.php:423
 msgid "Macau"
 msgstr ""
 
-#: includes/helpers.php:421
+#: includes/helpers.php:424
 msgid "Macedonia"
 msgstr ""
 
-#: includes/helpers.php:422
+#: includes/helpers.php:425
 msgid "Madagascar"
 msgstr ""
 
-#: includes/helpers.php:423
+#: includes/helpers.php:426
 msgid "Malawi"
 msgstr ""
 
-#: includes/helpers.php:424
+#: includes/helpers.php:427
 msgid "Malaysia"
 msgstr ""
 
-#: includes/helpers.php:425
+#: includes/helpers.php:428
 msgid "Maldives"
 msgstr ""
 
-#: includes/helpers.php:426
+#: includes/helpers.php:429
 msgid "Mali"
 msgstr ""
 
-#: includes/helpers.php:427
+#: includes/helpers.php:430
 msgid "Malta"
 msgstr ""
 
-#: includes/helpers.php:428
+#: includes/helpers.php:431
 msgid "Marshall Islands"
 msgstr ""
 
-#: includes/helpers.php:429
+#: includes/helpers.php:432
 msgid "Martinique"
 msgstr ""
 
-#: includes/helpers.php:430
+#: includes/helpers.php:433
 msgid "Mauritania"
 msgstr ""
 
-#: includes/helpers.php:431
+#: includes/helpers.php:434
 msgid "Mauritius"
 msgstr ""
 
-#: includes/helpers.php:432
+#: includes/helpers.php:435
 msgid "Mayotte"
 msgstr ""
 
-#: includes/helpers.php:433
+#: includes/helpers.php:436
 msgid "Mexico"
 msgstr ""
 
-#: includes/helpers.php:434
+#: includes/helpers.php:437
 msgid "Micronesia"
 msgstr ""
 
-#: includes/helpers.php:435
+#: includes/helpers.php:438
 msgid "Moldova, Republic of"
 msgstr ""
 
-#: includes/helpers.php:436
+#: includes/helpers.php:439
 msgid "Monaco"
 msgstr ""
 
-#: includes/helpers.php:437
+#: includes/helpers.php:440
 msgid "Mongolia"
 msgstr ""
 
-#: includes/helpers.php:438
+#: includes/helpers.php:441
 msgid "Montenegro"
 msgstr ""
 
-#: includes/helpers.php:439
+#: includes/helpers.php:442
 msgid "Montserrat"
 msgstr ""
 
-#: includes/helpers.php:440
+#: includes/helpers.php:443
 msgid "Morocco"
 msgstr ""
 
-#: includes/helpers.php:441
+#: includes/helpers.php:444
 msgid "Mozambique"
 msgstr ""
 
-#: includes/helpers.php:442
+#: includes/helpers.php:445
 msgid "Myanmar"
 msgstr ""
 
-#: includes/helpers.php:443
+#: includes/helpers.php:446
 msgid "Namibia"
 msgstr ""
 
-#: includes/helpers.php:444
+#: includes/helpers.php:447
 msgid "Nauru"
 msgstr ""
 
-#: includes/helpers.php:445
+#: includes/helpers.php:448
 msgid "Nepal"
 msgstr ""
 
-#: includes/helpers.php:446
+#: includes/helpers.php:449
 msgid "Netherlands"
 msgstr ""
 
-#: includes/helpers.php:447
+#: includes/helpers.php:450
 msgid "Netherlands Antilles"
 msgstr ""
 
-#: includes/helpers.php:448
+#: includes/helpers.php:451
 msgid "New Caledonia"
 msgstr ""
 
-#: includes/helpers.php:449
+#: includes/helpers.php:452
 msgid "New Zealand"
 msgstr ""
 
-#: includes/helpers.php:450
+#: includes/helpers.php:453
 msgid "Nicaragua"
 msgstr ""
 
-#: includes/helpers.php:451
+#: includes/helpers.php:454
 msgid "Niger"
 msgstr ""
 
-#: includes/helpers.php:452
+#: includes/helpers.php:455
 msgid "Nigeria"
 msgstr ""
 
-#: includes/helpers.php:453
+#: includes/helpers.php:456
 msgid "Niue"
 msgstr ""
 
-#: includes/helpers.php:454
+#: includes/helpers.php:457
 msgid "Norfolk Island"
 msgstr ""
 
-#: includes/helpers.php:455
+#: includes/helpers.php:458
 msgid "North Korea"
 msgstr ""
 
-#: includes/helpers.php:456
+#: includes/helpers.php:459
 msgid "Northern Mariana Islands"
 msgstr ""
 
-#: includes/helpers.php:457
+#: includes/helpers.php:460
 msgid "Norway"
 msgstr ""
 
-#: includes/helpers.php:458
+#: includes/helpers.php:461
 msgid "Oman"
 msgstr ""
 
-#: includes/helpers.php:459
+#: includes/helpers.php:462
 msgid "Pakistan"
 msgstr ""
 
-#: includes/helpers.php:460
+#: includes/helpers.php:463
 msgid "Palau"
 msgstr ""
 
-#: includes/helpers.php:461
+#: includes/helpers.php:464
 msgid "Palestinian Territories"
 msgstr ""
 
-#: includes/helpers.php:462
+#: includes/helpers.php:465
 msgid "Panama"
 msgstr ""
 
-#: includes/helpers.php:463
+#: includes/helpers.php:466
 msgid "Papua New Guinea"
 msgstr ""
 
-#: includes/helpers.php:464
+#: includes/helpers.php:467
 msgid "Paraguay"
 msgstr ""
 
-#: includes/helpers.php:465
+#: includes/helpers.php:468
 msgid "Peru"
 msgstr ""
 
-#: includes/helpers.php:466
+#: includes/helpers.php:469
 msgid "Philippines"
 msgstr ""
 
-#: includes/helpers.php:467
+#: includes/helpers.php:470
 msgid "Pitcairn Island"
 msgstr ""
 
-#: includes/helpers.php:468
+#: includes/helpers.php:471
 msgid "Poland"
 msgstr ""
 
-#: includes/helpers.php:469
+#: includes/helpers.php:472
 msgid "Portugal"
 msgstr ""
 
-#: includes/helpers.php:470
+#: includes/helpers.php:473
 msgid "Puerto Rico"
 msgstr ""
 
-#: includes/helpers.php:471
+#: includes/helpers.php:474
 msgid "Qatar"
 msgstr ""
 
-#: includes/helpers.php:472
+#: includes/helpers.php:475
 msgid "Republic of Kosovo"
 msgstr ""
 
-#: includes/helpers.php:473
+#: includes/helpers.php:476
 msgid "Reunion Island"
 msgstr ""
 
-#: includes/helpers.php:474
+#: includes/helpers.php:477
 msgid "Romania"
 msgstr ""
 
-#: includes/helpers.php:475
+#: includes/helpers.php:478
 msgid "Russian Federation"
 msgstr ""
 
-#: includes/helpers.php:476
+#: includes/helpers.php:479
 msgid "Rwanda"
 msgstr ""
 
-#: includes/helpers.php:477
+#: includes/helpers.php:480
 msgid "Saint Barth&eacute;lemy"
 msgstr ""
 
-#: includes/helpers.php:478
+#: includes/helpers.php:481
 msgid "Saint Helena"
 msgstr ""
 
-#: includes/helpers.php:479
+#: includes/helpers.php:482
 msgid "Saint Kitts and Nevis"
 msgstr ""
 
-#: includes/helpers.php:480
+#: includes/helpers.php:483
 msgid "Saint Lucia"
 msgstr ""
 
-#: includes/helpers.php:481
+#: includes/helpers.php:484
 msgid "Saint Martin (French)"
 msgstr ""
 
-#: includes/helpers.php:482
+#: includes/helpers.php:485
 msgid "Saint Martin (Dutch)"
 msgstr ""
 
-#: includes/helpers.php:483
+#: includes/helpers.php:486
 msgid "Saint Pierre and Miquelon"
 msgstr ""
 
-#: includes/helpers.php:484
+#: includes/helpers.php:487
 msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
-#: includes/helpers.php:485
+#: includes/helpers.php:488
 msgid "San Marino"
 msgstr ""
 
-#: includes/helpers.php:486
+#: includes/helpers.php:489
 msgid "S&atilde;o Tom&eacute; and Pr&iacute;ncipe"
 msgstr ""
 
-#: includes/helpers.php:487
+#: includes/helpers.php:490
 msgid "Saudi Arabia"
 msgstr ""
 
-#: includes/helpers.php:488
+#: includes/helpers.php:491
 msgid "Senegal"
 msgstr ""
 
-#: includes/helpers.php:489
+#: includes/helpers.php:492
 msgid "Serbia"
 msgstr ""
 
-#: includes/helpers.php:490
+#: includes/helpers.php:493
 msgid "Seychelles"
 msgstr ""
 
-#: includes/helpers.php:491
+#: includes/helpers.php:494
 msgid "Sierra Leone"
 msgstr ""
 
-#: includes/helpers.php:492
+#: includes/helpers.php:495
 msgid "Singapore"
 msgstr ""
 
-#: includes/helpers.php:493
+#: includes/helpers.php:496
 msgid "Slovak Republic"
 msgstr ""
 
-#: includes/helpers.php:494
+#: includes/helpers.php:497
 msgid "Slovenia"
 msgstr ""
 
-#: includes/helpers.php:495
+#: includes/helpers.php:498
 msgid "Solomon Islands"
 msgstr ""
 
-#: includes/helpers.php:496
+#: includes/helpers.php:499
 msgid "Somalia"
 msgstr ""
 
-#: includes/helpers.php:497
+#: includes/helpers.php:500
 msgid "South Africa"
 msgstr ""
 
-#: includes/helpers.php:498
+#: includes/helpers.php:501
 msgid "South Georgia"
 msgstr ""
 
-#: includes/helpers.php:499
+#: includes/helpers.php:502
 msgid "South Korea"
 msgstr ""
 
-#: includes/helpers.php:500
+#: includes/helpers.php:503
 msgid "South Sudan"
 msgstr ""
 
-#: includes/helpers.php:501
+#: includes/helpers.php:504
 msgid "Spain"
 msgstr ""
 
-#: includes/helpers.php:502
+#: includes/helpers.php:505
 msgid "Sri Lanka"
 msgstr ""
 
-#: includes/helpers.php:503
+#: includes/helpers.php:506
 msgid "Sudan"
 msgstr ""
 
-#: includes/helpers.php:504
+#: includes/helpers.php:507
 msgid "Suriname"
 msgstr ""
 
-#: includes/helpers.php:505
+#: includes/helpers.php:508
 msgid "Svalbard and Jan Mayen Islands"
 msgstr ""
 
-#: includes/helpers.php:506
+#: includes/helpers.php:509
 msgid "Swaziland"
 msgstr ""
 
-#: includes/helpers.php:507
+#: includes/helpers.php:510
 msgid "Sweden"
 msgstr ""
 
-#: includes/helpers.php:508
+#: includes/helpers.php:511
 msgid "Switzerland"
 msgstr ""
 
-#: includes/helpers.php:509
+#: includes/helpers.php:512
 msgid "Syrian Arab Republic"
 msgstr ""
 
-#: includes/helpers.php:510
+#: includes/helpers.php:513
 msgid "Taiwan"
 msgstr ""
 
-#: includes/helpers.php:511
+#: includes/helpers.php:514
 msgid "Tajikistan"
 msgstr ""
 
-#: includes/helpers.php:512
+#: includes/helpers.php:515
 msgid "Tanzania"
 msgstr ""
 
-#: includes/helpers.php:513
+#: includes/helpers.php:516
 msgid "Thailand"
 msgstr ""
 
-#: includes/helpers.php:514
+#: includes/helpers.php:517
 msgid "Timor-Leste"
 msgstr ""
 
-#: includes/helpers.php:515
+#: includes/helpers.php:518
 msgid "Togo"
 msgstr ""
 
-#: includes/helpers.php:516
+#: includes/helpers.php:519
 msgid "Tokelau"
 msgstr ""
 
-#: includes/helpers.php:517
+#: includes/helpers.php:520
 msgid "Tonga"
 msgstr ""
 
-#: includes/helpers.php:518
+#: includes/helpers.php:521
 msgid "Trinidad and Tobago"
 msgstr ""
 
-#: includes/helpers.php:519
+#: includes/helpers.php:522
 msgid "Tunisia"
 msgstr ""
 
-#: includes/helpers.php:520
+#: includes/helpers.php:523
 msgid "Turkey"
 msgstr ""
 
-#: includes/helpers.php:521
+#: includes/helpers.php:524
 msgid "Turkmenistan"
 msgstr ""
 
-#: includes/helpers.php:522
+#: includes/helpers.php:525
 msgid "Turks and Caicos Islands"
 msgstr ""
 
-#: includes/helpers.php:523
+#: includes/helpers.php:526
 msgid "Tuvalu"
 msgstr ""
 
-#: includes/helpers.php:524
+#: includes/helpers.php:527
 msgid "Uganda"
 msgstr ""
 
-#: includes/helpers.php:525
+#: includes/helpers.php:528
 msgid "Ukraine"
 msgstr ""
 
-#: includes/helpers.php:526
+#: includes/helpers.php:529
 msgid "United Arab Emirates"
 msgstr ""
 
-#: includes/helpers.php:527
+#: includes/helpers.php:530
 msgid "Uruguay"
 msgstr ""
 
-#: includes/helpers.php:528
+#: includes/helpers.php:531
 msgid "US Minor Outlying Islands"
 msgstr ""
 
-#: includes/helpers.php:529
+#: includes/helpers.php:532
 msgid "Uzbekistan"
 msgstr ""
 
-#: includes/helpers.php:530
+#: includes/helpers.php:533
 msgid "Vanuatu"
 msgstr ""
 
-#: includes/helpers.php:531
+#: includes/helpers.php:534
 msgid "Venezuela"
 msgstr ""
 
-#: includes/helpers.php:532
+#: includes/helpers.php:535
 msgid "Vietnam"
 msgstr ""
 
-#: includes/helpers.php:533
+#: includes/helpers.php:536
 msgid "Virgin Islands (British)"
 msgstr ""
 
-#: includes/helpers.php:534
+#: includes/helpers.php:537
 msgid "Virgin Islands (USA)"
 msgstr ""
 
-#: includes/helpers.php:535
+#: includes/helpers.php:538
 msgid "Wallis and Futuna Islands"
 msgstr ""
 
-#: includes/helpers.php:536
+#: includes/helpers.php:539
 msgid "Western Sahara"
 msgstr ""
 
-#: includes/helpers.php:537
+#: includes/helpers.php:540
 msgid "Western Samoa"
 msgstr ""
 
-#: includes/helpers.php:538
+#: includes/helpers.php:541
 msgid "Yemen"
 msgstr ""
 
-#: includes/helpers.php:539
+#: includes/helpers.php:542
 msgid "Zambia"
 msgstr ""
 
-#: includes/helpers.php:540
+#: includes/helpers.php:543
 msgid "Zimbabwe"
 msgstr ""
 
@@ -2560,122 +2416,120 @@ msgid ""
 "ga.js tracking."
 msgstr ""
 
-#: lite/includes/admin/addons.php:48
-msgid "Want to setup Social Tracking?"
+#: lite/includes/admin/addons.php:49 lite/includes/admin/addons.php:58
+#: lite/includes/admin/addons.php:67 lite/includes/admin/addons.php:76
+#: lite/includes/admin/addons.php:85 lite/includes/admin/addons.php:94
+#: lite/includes/admin/addons.php:103 lite/includes/admin/addons.php:112
+#: lite/includes/admin/addons.php:157 lite/includes/admin/addons.php:166
+msgid "Want to increase your traffic, conversion, & engagement?"
 msgstr ""
 
-#: lite/includes/admin/addons.php:50
-#, php-format
+#: lite/includes/admin/addons.php:51
 msgid ""
-"To setup social tracking, please %1$supgrade your MonsterInsights account"
-"%2$s to unlock this feature."
+"By upgrading to MonsterInsights Pro, you can add Social tracking to see "
+"who's clicking on your social share links, so you can track and maximize "
+"your social sharing exposure."
 msgstr ""
 
-#: lite/includes/admin/addons.php:50 lite/includes/admin/addons.php:58
-#: lite/includes/admin/addons.php:66 lite/includes/admin/addons.php:74
-#: lite/includes/admin/addons.php:82 lite/includes/admin/addons.php:90
-#: lite/includes/admin/addons.php:98 lite/includes/admin/addons.php:106
-#: lite/includes/admin/addons.php:114 lite/includes/admin/addons.php:122
-msgid "Learn more about MonsterInsights Pro"
-msgstr ""
-
-#: lite/includes/admin/addons.php:56
-msgid "Want to setup Ad Tracking?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:58
-#, php-format
+#: lite/includes/admin/addons.php:60
 msgid ""
-"To setup ad tracking, please %1$supgrade your MonsterInsights account%2$s to "
-"unlock this feature."
+"By upgrading to MonsterInsights Pro, you can add Ads tracking to see who's "
+"clicking on your Google Ads, so you can increase your revenue."
 msgstr ""
 
-#: lite/includes/admin/addons.php:64
-msgid "Want to setup Forms Tracking?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:66
-#, php-format
+#: lite/includes/admin/addons.php:69
 msgid ""
-"To setup form tracking, please %1$supgrade your MonsterInsights account%2$s "
-"to unlock this feature."
+"By upgrading to MonsterInsights Pro, you can add Forms tracking to see who's "
+"seeing and submitting your forms, so you can increase your conversion rate."
 msgstr ""
 
-#: lite/includes/admin/addons.php:72
-msgid "Want to setup Media Tracking?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:74
-#, php-format
+#: lite/includes/admin/addons.php:78
 msgid ""
-"To setup media tracking, please %1$supgrade your MonsterInsights account%2$s "
-"to unlock this feature."
+"By upgrading to MonsterInsights Pro, you can add Media tracking to see who's "
+"interacting with the media on your site, so you know what your users are "
+"most interested in on your site. You can use this to tailor future content "
+"to meet your audience's interest to promote repeat visitors and expand your "
+"average user's time spent visiting your website on each visit."
 msgstr ""
 
-#: lite/includes/admin/addons.php:80
-msgid "Want to setup Membership Tracking?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:82
-#, php-format
-msgid ""
-"To setup membership tracking, please %1$supgrade your MonsterInsights account"
-"%2$s to unlock this feature."
-msgstr ""
-
-#: lite/includes/admin/addons.php:88
-msgid "Want to setup Custom Dimensions?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:90
-#, php-format
-msgid ""
-"To setup custom dimensions, please %1$supgrade your MonsterInsights account"
-"%2$s to unlock this feature."
+#: lite/includes/admin/addons.php:87
+msgid "By upgrading to MonsterInsights Pro, you can add Membership tracking."
 msgstr ""
 
 #: lite/includes/admin/addons.php:96
-msgid "Want to setup Performance Tracking?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:98
-#, php-format
 msgid ""
-"To setup performance tracking, please %1$supgrade your MonsterInsights "
-"account%2$s to unlock this feature."
+"By upgrading to MonsterInsights Pro, you can add Custom Dimensions and track "
+"who's the most popular author on your site, which post types get the most "
+"traffic, and more. Why not check it out?"
 msgstr ""
 
-#: lite/includes/admin/addons.php:104
-msgid "Want to setup Custom Reporting?"
-msgstr ""
-
-#: lite/includes/admin/addons.php:106
-#, php-format
+#: lite/includes/admin/addons.php:105
 msgid ""
-"To setup custom reporting, please %1$supgrade your MonsterInsights account"
-"%2$s to unlock this feature."
-msgstr ""
-
-#: lite/includes/admin/addons.php:112
-msgid "Want to setup Custom Notifications?"
+"By upgrading to MonsterInsights Pro, you can adjust the sample rate so you "
+"don't exceed Google Analytics' processing limit. You can also use it to "
+"enable Google Optimize for A/B testing and personalization."
 msgstr ""
 
 #: lite/includes/admin/addons.php:114
-#, php-format
-msgid ""
-"To setup custom notifications, please %1$supgrade your MonsterInsights "
-"account%2$s to unlock this feature."
+msgid "By upgrading to MonsterInsights Pro, you can enable enhanced reporting."
 msgstr ""
 
-#: lite/includes/admin/addons.php:120
-msgid "Want to setup eCommerce Tracking?"
+#: lite/includes/admin/addons.php:121
+msgid "Want to use track users visiting your AMP pages?"
 msgstr ""
 
-#: lite/includes/admin/addons.php:122
-#, php-format
+#: lite/includes/admin/addons.php:123
+msgid "By upgrading to MonsterInsights Pro, you can enable AMP page tracking."
+msgstr ""
+
+#: lite/includes/admin/addons.php:130
 msgid ""
-"To setup ecommerce tracking, please %1$supgrade your MonsterInsights account"
-"%2$s to unlock this feature."
+"Want to use Google Optimize to retarget your website vistors and perform A/B "
+"split tests with ease?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:132
+msgid "By upgrading to MonsterInsights Pro, you can enable Google Optimize."
+msgstr ""
+
+#: lite/includes/admin/addons.php:139
+msgid ""
+"Want to expand your website audience beyond your website with Facebook "
+"Instant Articles?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:141
+msgid ""
+"By upgrading to MonsterInsights Pro, you can track your Facebook Instant "
+"Article visitors with MonsterInsights."
+msgstr ""
+
+#: lite/includes/admin/addons.php:148
+msgid "Want to adjust your website bounce rate?"
+msgstr ""
+
+#: lite/includes/admin/addons.php:150
+msgid ""
+"By upgrading to MonsterInsights Pro, you can adjust your Google Analytics "
+"bounce rate with MonsterInsights."
+msgstr ""
+
+#: lite/includes/admin/addons.php:159
+msgid "By upgrading to MonsterInsights Pro, you can enable notifications."
+msgstr ""
+
+#: lite/includes/admin/addons.php:168
+msgid ""
+"By upgrading to MonsterInsights Pro, you can add Ecommerce tracking to see "
+"who's buying your product, what's the most popular item on your store, the "
+"average order value, and tons more."
+msgstr ""
+
+#: lite/includes/admin/tools.php:11
+msgid ""
+"By upgrading to MonsterInsights Pro, you can unlock the MonsterInsights URL "
+"builder that helps you better track your advertising and email marketing "
+"campaigns."
 msgstr ""
 
 #. Plugin Name of the plugin/theme

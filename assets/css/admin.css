@@ -5,6 +5,9 @@
  * For more information see the `Backwards Compatibility Guidelines for Developers` section of the README.md file.
  **/
  /** Generic MonsterInsights Styles **/
+	/** Font from FortAwesome project. */
+		@font-face{font-family: 'Misettings';src: url('../fonts/icons.eot');src: url('../fonts/icons.eot?#iefix') format('embedded-opentype'), url('../fonts/icons.woff2') format('woff2'),url('../fonts/icons.woff') format('woff'),url('../fonts/icons.ttf') format('truetype'),url('../fonts/icons.otf') format('opentype');font-weight: 400;font-style: normal;}
+	
 	/** Hide other plugin's error messages on our pages */
 		body.monsterinsights_page div.wrap > div.error,body.monsterinsights_page div.wrap > div.notice,body.monsterinsights_page div.wrap > div.updated{margin-left:20px;margin-right:20px}
 		body.monsterinsights_page .update-nag{margin-left:20px;margin-bottom:20px}
@@ -91,25 +94,30 @@
 			/* Generic */
 				.monsterinsights-notice{border:1px solid;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;box-sizing:border-box;display:table; width: 100%; margin: 10px 0px;}
 				.monsterinsights-notice:after{content:"";display:table;clear:both}
-				.monsterinsights-notice-icon{padding:20px;box-sizing:border-box;width:60px;color:#fff;font-family:"FontAwesome";font-size:18px;-moz-border-radius:5px 0 0;-webkit-border-radius:5px 0 0;border-radius:5px 0 0;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;display:table-cell;vertical-align: middle;text-align: center;}
-				.monsterinsights-notice-text{color:#434751;font-size:16px;font-weight:700;padding: 0px 60px 0px 20px;box-sizing:border-box;word-wrap:break-word;display:table-cell;position: relative;vertical-align: middle;}
+				.monsterinsights-notice-icon{padding:20px;box-sizing:border-box;width:60px;color:#fff;font-family:"Misettings";font-size:18px;-moz-border-radius:5px 0 0;-webkit-border-radius:5px 0 0;border-radius:5px 0 0;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;display:table-cell;vertical-align: middle;text-align: center;}
+				.monsterinsights-notice-text{color:#434751;font-size:16px;font-weight:700;padding: 20px;box-sizing:border-box;word-wrap:break-word;display:table-cell;position: relative;vertical-align: middle;}
 				body.monsterinsights_page div.wrap > div.error,body.monsterinsights_page div.wrap > div.notice,body.monsterinsights_page div.wrap > div.updated{margin-left:0;margin-right:0}
 				.monsterinsights-notice .button { margin: 0px 0px 1em 0px }
+				.monsterinsights-notice-message{margin:0px;}
 
 			/* Alert */
-				.monsterinsights-alert-notice-icon{background-color:#fdbf2f}
+				.monsterinsights-alert-notice-icon{background-color:#fdbf2f;}
+				.monsterinsights-alert-notice-icon:before{content: '\f017';}
 				.monsterinsights-alert-notice{border-color:#fdbf2f;background-color:rgba(253,192,47,0.1)}
 
 			/* Error */
-				.monsterinsights-error-notice-icon{background-color:#df4228}
+				.monsterinsights-error-notice-icon{background-color:#df4228;}
+				.monsterinsights-error-notice-icon:before{content: '\f014';}
 				.monsterinsights-error-notice{border-color:#df4228;background-color:rgba(224,66,40,0.1)}
 
 			/* Info */
-				.monsterinsights-info-notice-icon{background-color:#479be7}
+				.monsterinsights-info-notice-icon{background-color:#479be7;}
+				.monsterinsights-info-notice-icon:before{content: '\f016';}
 				.monsterinsights-info-notice{border-color:#479be7;background-color:rgba(72,155,232,0.1)}
 
 			/* Success */
-				.monsterinsights-success-notice-icon{background-color:#47c1a5}
+				.monsterinsights-success-notice-icon{background-color:#47c1a5;}
+				.monsterinsights-success-notice-icon:before{content: '\f015';}
 				.monsterinsights-success-notice{border-color:#47c1a5;background-color:rgba(71,194,165,0.1)}
 
 			/* Dismiss Notice */
@@ -122,11 +130,12 @@
 
 /** MonsterInsights Icons **/
 	/** Generic Icons Styles **/
-		@font-face{font-family:'MISettings';src:url(../fonts/MISettings.eot);src:url(../fonts/MISettings.eot?#iefix) format("embedded-opentype"),url(../fonts/MISettings.woff) format("woff"),url(../fonts/MISettings.ttf) format("truetype"),url(../fonts/MISettings.svg#MISettings) format("svg");font-weight:400;font-style:normal}
-		[class*='monstericon-']:before{display:inline-block;font-family:'MISettings';font-style:normal;font-weight:400;line-height:50px;padding-right:7px;padding-left:5px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;vertical-align:middle}
+		[class*='monstericon-']:before{display:inline-block;font-family:'Misettings';font-style:normal;font-weight:400;line-height:50px;padding-right:12px;padding-left:5px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;vertical-align:middle;font-size: 20px}
 		[class*='monstericon-'].monsterinsights-active:before{color:#479be7}
 		[class*='monstericon-']:active:before{color:#479be7}
 		[class*='monstericon-']:hover:before{color:#479be7}
+
+
 
 	/** Defined Icons **/
 		.monstericon-ads:before{content:'\0041'}
@@ -146,6 +155,10 @@
 		.monstericon-reporting:before{content:'\004f'}
 		.monstericon-social:before{content:'\0050'}
 		.monstericon-media:before{content:'\0051'}
+		.monstericon-amp:before{content:'\f000'}
+		.monstericon-goptimize:before{content:'\f002'}
+		.monstericon-fbia:before{content:'\f001'}
+		.monstericon-bounce:before{content:'\0051'} /* Todo: Update with icons from Jonathon */
 		.monsterinsights-upgrade-menu-icon{float:right;color:#7f8591;font-size:10px;font-weight:700;text-transform:uppercase;line-height:1;display:inline-block;padding:6px 12px;background-color:#fff;border-radius:3px;margin-right:18px;margin-top:15px}
 		.monsterinsights-main-nav-item.monsterinsights-active .monsterinsights-upgrade-menu-icon,.monsterinsights-main-nav-item:hover .monsterinsights-upgrade-menu-icon{background-color:#f7f8fa}
 
@@ -165,7 +178,7 @@
 			.monsterinsights-main-nav-container{ height:50px;}
 
 		/** Sub Nav Container **/
-			.monsterinsights-sub-nav-container{display:table-cell;float:none;vertical-align:top;background-color:#f7f8fa;float:left;width:270px;margin:0;padding:0;border-left:1px solid #e4e9ee;border-top:1px solid #e4e9ee;border-bottom:1px solid #e4e9ee;border-right:1px solid #e4e9ee;border-collapse:collapse;border-top-left-radius:3px;border-bottom-left-radius:3px}
+			.monsterinsights-sub-nav-container{display:table-cell;float:none;vertical-align:top;background-color:#f7f8fa;float:left;width:290px;margin:0;padding:0;border-left:1px solid #e4e9ee;border-top:1px solid #e4e9ee;border-bottom:1px solid #e4e9ee;border-right:1px solid #e4e9ee;border-collapse:collapse;border-top-left-radius:3px;border-bottom-left-radius:3px}
 
 	/** Nav Item **/
 		/** Generic **/
@@ -182,8 +195,8 @@
 			.monsterinsights-main-nav-item.monsterinsights-active{border:0 !important}
 
 		/** Sub Nav Item **/
-			.monsterinsights-sub-nav-item{font-size:13px;background-color:#f7f8fa;font-weight:500;line-height:50px;width:270px;margin:0;padding:5px 0 5px 8px;text-decoration:none;color:#7f8591;border-bottom:1px solid #e4e9ee;border-right:none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;transition:none;box-shadow:none;-webkit-box-shadow:none;-webkit-transition:none;}
-			.monsterinsights-sub-nav-item.monsterinsights-active,.monsterinsights-sub-nav-item:hover,.monsterinsights-sub-nav-item:active{width:270px;border-right:1px solid #fff;background-color:#fff;color:#444851}
+			.monsterinsights-sub-nav-item{font-size:13px;background-color:#f7f8fa;font-weight:500;line-height:50px;width:100%;margin:0;padding:5px 15px 5px 15px;text-decoration:none;color:#7f8591;border-bottom:1px solid #e4e9ee;border-right:none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;transition:none;box-shadow:none;-webkit-box-shadow:none;-webkit-transition:none;}
+			.monsterinsights-sub-nav-item.monsterinsights-active,.monsterinsights-sub-nav-item:hover,.monsterinsights-sub-nav-item:active{border-right:1px solid #fff;background-color:#fff;color:#444851}
 
 	/** Nav Tab Container **/
 		/** Generic **/
@@ -322,8 +335,13 @@
 
 	/** Tracking Tab Styles **/
 		/** Upgrade CSS */
+			.monsterinsights-upsell-under-box{background-color:#f6fbff;border:1px solid #d6ecff;border-radius:3px;padding:10px 20px;margin-top:30px;}
 			.monsterinsights-upsell-box{background-color:#f6fbff;border:1px solid #d6ecff;border-radius:3px;padding:10px 20px}
 			a.monsterinsights-upsell-box-button.button.button-primary{margin-top:20px}
+			.monsterinsights-no-settings-shown td{ padding: 5px 0px 0px 0px !important}
+			.monsterinsights-no-settings-shown tr{ border:none !important}
+			#monsterinsights-settings-pages p.monsterinsights-upsell-button-par{margin-bottom: 1em}
+			.monsterinsights-upsell-lite-text{font-size: 14px; margin-bottom:2px;}
 			
 	/** Status Tab Styles **/
 
@@ -362,6 +380,7 @@
 /** Tools Page Styles **/
 	/** Generic Tools Page Styles **/
 		#monsterinsights-tools-pages .monsterinsights-main-nav-tab { padding: 30px 5px;margin: 0px; }
+		#monsterinsights-tools-pages .monsterinsights-main-nav-tab .monsterinsights-upsell-under-box{ margin-top: 0px; }
 		
 	/** URL Generator Tab Styles **/
 		.monsterinsights-main-nav-tabs label{margin-top:7px;display:block;color:#444851}

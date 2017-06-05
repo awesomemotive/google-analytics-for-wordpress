@@ -1,14 +1,4 @@
 <?php
-/**
- * Tools class.
- *
- * @since 6.0.0
- *
- * @package MonsterInsights
- * @subpackage Tools
- * @author  Chris Christoff
- */
-
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -38,12 +28,12 @@ function monsterinsights_tools_page() {
 	<h1 id="monsterinsights-tools-page-main-nav" class="monsterinsights-main-nav-container monsterinsights-nav-container" data-container="#monsterinsights-tools-pages">
 		<a class="monsterinsights-main-nav-item monsterinsights-nav-item monsterinsights-spacing-item" href="#">&nbsp;</a>
 
-		<a class="monsterinsights-main-nav-item monsterinsights-nav-item monsterinsights-active" href="#monsterinsights-main-tab-url-builder" title="<?php echo esc_attr( __( 'Campaign URL Builder', 'google-analytics-for-wordpress' ) ); ?>">
-			<?php echo esc_html__( 'URL Builder', 'google-analytics-for-wordpress' ); ?>
+		<a class="monsterinsights-main-nav-item monsterinsights-nav-item monsterinsights-active" href="#monsterinsights-main-tab-settings" title="<?php echo esc_attr( __( 'Import/Export', 'google-analytics-for-wordpress' ) ); ?>">
+			<?php echo esc_html__( 'Import/Export', 'google-analytics-for-wordpress' ); ?>
 		</a>
 
-		<a class="monsterinsights-main-nav-item monsterinsights-nav-item" href="#monsterinsights-main-tab-settings" title="<?php echo esc_attr( __( 'Settings', 'google-analytics-for-wordpress' ) ); ?>">
-			<?php echo esc_html__( 'Settings', 'google-analytics-for-wordpress' ); ?>
+		<a class="monsterinsights-main-nav-item monsterinsights-nav-item" href="#monsterinsights-main-tab-url-builder" title="<?php echo esc_attr( __( 'Campaign URL Builder', 'google-analytics-for-wordpress' ) ); ?>">
+			<?php echo esc_html__( 'URL Builder', 'google-analytics-for-wordpress' ); ?>
 		</a>
 	</h1>
 
@@ -51,194 +41,18 @@ function monsterinsights_tools_page() {
 	<!-- Tab Panels -->
 	<div id="monsterinsights-tools-pages" class="monsterinsights-main-nav-tabs monsterinsights-nav-tabs wrap" data-navigation="#monsterinsights-tools-page-main-nav">
 		<h1 class="monsterinsights-hideme"></h1><!-- so wp notices are below the nav bar -->
-		 <div id="monsterinsights-main-tab-url-builder" class="monsterinsights-main-nav-tab monsterinsights-nav-tab monsterinsights-active">
-			<?php monsterinsights_tools_url_builder_tab(); ?>
-		</div>
-		 <div id="monsterinsights-main-tab-settings" class="monsterinsights-main-nav-tab monsterinsights-nav-tab">
+		<div id="monsterinsights-main-tab-settings" class="monsterinsights-main-nav-tab monsterinsights-nav-tab monsterinsights-active">
 			<?php monsterinsights_tools_settings_tab(); ?>
+		</div>
+		<div id="monsterinsights-main-tab-url-builder" class="monsterinsights-main-nav-tab monsterinsights-nav-tab">
+			<?php monsterinsights_tools_url_builder_tab(); ?>
 		</div>
 	</div>
 	<?php
 }
 
-function monsterinsights_tools_url_builder_tab() {
-	ob_start();?>
-	<h2><?php echo esc_html__( 'Generate custom campaign parameters for your advertising URLS.', 'google-analytics-for-wordpress' );?></h2>
-	<p><?php echo  esc_html__( 'The URL builder helps you add parameters to your URLs you use in custom web-based or email ad campaigns. A custom campaign is any ad campaign not using the AdWords auto-tagging feature. When users click one of the custom links, the unique parameters are sent to your Analytics account, so you can identify the urls that are the most effective in attracting users to your content.', 'google-analytics-for-wordpress' ); ?> </p>
-	<p><?php echo esc_html__('Fill out the required fields (marked with *) in the form below, and as you make changes the full campaign URL will be generated for you.', 'google-analytics-for-wordpress' ); ?></p>
-	<br />
-	<form id="monsterinsights-url-builder" action="javascript:void(0);">
-		<table class="form-table">
-			<tbody>
-				<tr>
-					<th scope="row">
-						<label for="monsterinsights-url-builer-domain">
-							<?php echo esc_html__( 'Website URL', 'google-analytics-for-wordpress' );?><span class="monsterinsights-required-indicator">*</span>
-						</label>
-					</th>
-					<td>
-						<input type="url" name="domain" id="monsterinsights-url-builer-domain" value="" />
-						<p class="description"><?php echo sprintf( esc_html__( 'The full website URL (e.g. %1$s)', 'google-analytics-for-wordpress' ), home_url() );?></p>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						<label for="monsterinsights-url-builer-source">
-							<?php echo esc_html__( 'Campaign Source', 'google-analytics-for-wordpress' );?><span class="monsterinsights-required-indicator">*</span>
-						</label>
-					</th>
-					<td>
-						<input type="text" name="source" id="monsterinsights-url-builer-source" value="" />
-						<p class="description"><?php echo sprintf( esc_html__( 'Enter a referrer (e.g. %1$s, %2$s, %3$s)', 'google-analytics-for-wordpress' ), '<code>facebook</code>', '<code>newsletter</code>', '<code>google</code>' );?></p>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						<label for="monsterinsights-url-builer-medium">
-							<?php echo esc_html__( 'Campaign Medium', 'google-analytics-for-wordpress' );?>
-						</label>
-					</th>
-					<td>
-						<input type="text" name="medium" id="monsterinsights-url-builer-medium" value="" />
-						<p class="description"><?php echo sprintf( esc_html__( 'Enter a marketing medium (e.g. %1$s, %2$s, %3$s)', 'google-analytics-for-wordpress' ), '<code>cpc</code>', '<code>banner</code>', '<code>email</code>' );?></p>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						<label for="monsterinsights-url-builer-name">
-							<?php echo esc_html__( 'Campaign Name', 'google-analytics-for-wordpress' );?>
-						</label>
-					</th>
-					<td>
-						<input type="text" name="name" id="monsterinsights-url-builer-name" value="" />
-						<p class="description"><?php echo sprintf( esc_html__( 'Enter a name to identify the campaign (e.g. %1$s)', 'google-analytics-for-wordpress' ), '<code>spring_sale</code>' );?></p>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						<label for="monsterinsights-url-builer-term">
-							<?php echo esc_html__( 'Campaign Term', 'google-analytics-for-wordpress' );?>
-						</label>
-					</th>
-					<td>
-						<input type="text" name="term" id="monsterinsights-url-builer-term" value="" />
-						<p class="description"><?php echo esc_html__( 'Enter the paid keyword', 'google-analytics-for-wordpress' );?></p>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						<label for="monsterinsights-url-builer-content">
-							<?php echo esc_html__( 'Campaign Content', 'google-analytics-for-wordpress' );?>
-						</label>
-					</th>
-					<td>
-						<input type="text" name="content" id="monsterinsights-url-builer-content" value="" />
-						<p class="description"><?php echo esc_html__( 'Enter something to differentiate ads', 'google-analytics-for-wordpress' );?></p>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						<label for="monsterinsights-url-builer-fragment">
-							<?php echo esc_html__( 'Use Fragment', 'google-analytics-for-wordpress' );?>
-						</label>
-					</th>
-					<td>
-						<input type="checkbox" name="fragment" id="monsterinsights-url-builer-fragment" value="" />
-						<p class="description"><?php echo esc_html__( 'Set the parameters in the fragment portion of the URL (not recommended).', 'google-analytics-for-wordpress' );?></p>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						<label for="monsterinsights-url-builer-url">
-							<?php echo esc_html__( 'URL to use (updates automatically):', 'google-analytics-for-wordpress' );?>
-						</label>
-					</th>
-					<td>
-						<textarea name="url" id="monsterinsights-url-builer-url" value="" readonly="readonly"></textarea>
-						<p>
-							<button class="monsterinsights-copy-to-clipboard monsterinsights-action-button button button-action" data-clipboard-target="#monsterinsights-url-builer-url">
-								<?php echo esc_html__( 'Copy to clipboard' ,'google-analytics-for-wordpress');?>
-							</button>
-							<button id="monsterinsights-shorten-url" class="monsterinsights-action-button button button-secondary" style="margin-left: 20px;">
-								<?php echo esc_html__( 'Shorten URL' ,'google-analytics-for-wordpress');?>
-							</button>
-						</p>
-					</td>
-				</tr>
-
-			</tbody>
-		</table>
-	</form>
-	<h2><?php echo esc_html__( 'More information and examples for each option', 'google-analytics-for-wordpress');?></h2>
-	<p><?php echo esc_html__( 'The following table gives a detailed explanation and example of each of the campaign parameters.', 'google-analytics-for-wordpress');?></p>
-	<table class="wp-list-table widefat striped">
-	  <tbody>
-		<tr>
-		  <td>
-			<p><strong><?php echo esc_html__( 'Campaign Source', 'google-analytics-for-wordpress');?></strong></p>
-			<p><code>utm_source</code></p>
-		  </td>
-		  <td>
-			<p><strong><?php echo esc_html__( 'Required.', 'google-analytics-for-wordpress');?></strong></p>
-			<p><?php echo sprintf( esc_html__( 'Use %1$s to identify a search engine, newsletter name, or other source.', 'google-analytics-for-wordpress'),'<code>utm_source</code>');?></p>
-			<p><em><?php echo esc_html__( 'Example:', 'google-analytics-for-wordpress');?></em> <code>google</code></p>
-		  </td>
-		</tr>
-		<tr>
-		  <td>
-			<p><strong><?php echo esc_html__( 'Campaign Medium', 'google-analytics-for-wordpress');?></strong></p>
-			<p><code>utm_medium</code></p>
-		  </td>
-		  <td>
-			<p><?php echo sprintf(esc_html__( 'Use %1$s to identify a medium such as email or cost-per- click.', 'google-analytics-for-wordpress'),'<code>utm_medium</code>');?></p>
-			<p><em><?php echo esc_html__( 'Example:', 'google-analytics-for-wordpress');?></em> <code>cpc</code></p>
-		  </td>
-		</tr>
-		<tr>
-		  <td>
-			<p><strong><?php echo esc_html__( 'Campaign Name', 'google-analytics-for-wordpress');?></strong></p>
-			<p><code>utm_campaign</code></p>
-		  </td>
-		  <td>
-			<p><?php echo sprintf(esc_html__( 'Used for keyword analysis. Use %1$s to identify a specific product promotion or strategic campaign.', 'google-analytics-for-wordpress'),'<code>utm_campaign</code>');?></p>
-			<p><em><?php echo esc_html__( 'Example:', 'google-analytics-for-wordpress');?></em> <code>utm_campaign=spring_sale</code></p>
-		  </td>
-		</tr>
-		<tr>
-		  <td>
-			<p><strong><?php echo esc_html__( 'Campaign Term', 'google-analytics-for-wordpress');?></strong></p>
-			<p><code>utm_term</code></p>
-		  </td>
-		  <td>
-			<p><?php echo sprintf( esc_html__( 'Used for paid search. Use %1$s to note the keywords for this ad.', 'google-analytics-for-wordpress'),'<code>utm_term</code>');?></p>
-			<p><em><?php echo esc_html__( 'Example:', 'google-analytics-for-wordpress');?></em> <code>running+shoes</code></p>
-		  </td>
-		</tr>
-		<tr>
-		  <td>
-			<p><strong><?php echo esc_html__( 'Campaign Content', 'google-analytics-for-wordpress');?></strong></p>
-			<p><code>utm_content</code></p>
-		  </td>
-		  <td>
-			<p><?php echo sprintf(esc_html__( 'Used for A/B testing and content-targeted ads. Use %1$s to differentiate ads or links that point to the same URL.', 'google-analytics-for-wordpress'),'<code>utm_content</code>');?></p>
-			<p><em><?php echo esc_html__( 'Examples:', 'google-analytics-for-wordpress');?></em> <code>logolink</code> <em><?php echo esc_html__( 'or', 'google-analytics-for-wordpress');?></em> <code>textlink</code></p>
-		  </td>
-		</tr>
-	  </tbody>
-	</table>
-	
-	<h2 id="monsterinsights-related-resources"><?php echo esc_html__( 'More information:', 'google-analytics-for-wordpress');?></h2>
-
-	<ul id="monsterinsights-related-resources-list">
-	  <li><a href="https://support.google.com/analytics/answer/1247851"><?php echo esc_html__( 'About Campaigns', 'google-analytics-for-wordpress');?></a></li>
-	  <li><a href="https://support.google.com/analytics/answer/1033863"><?php echo esc_html__( 'About Custom Campaigns', 'google-analytics-for-wordpress');?></a></li>
-	  <li><a href="https://support.google.com/analytics/answer/1037445"><?php echo esc_html__( 'Best practices for creating Custom Campaigns', 'google-analytics-for-wordpress');?></a></li>
-	  <li><a href="https://support.google.com/analytics/answer/1247839"><?php echo esc_html__( 'About the Referral Traffic report', 'google-analytics-for-wordpress');?></a></li>
-	  <li><a href="https://support.google.com/analytics/answer/1033173"><?php echo esc_html__( 'About traffic source dimensions', 'google-analytics-for-wordpress');?></a></li>
-	  <li><a href="https://support.google.com/adwords/answer/1752125"><?php echo esc_html__( 'AdWords Auto-Tagging', 'google-analytics-for-wordpress');?></a></li>
-	</ul>
-	<?php
-	echo ob_get_clean();
+function monsterinsights_tools_url_builder_tab(){
+	do_action( 'monsterinsights_tools_url_builder_tab' );
 }
 
 function monsterinsights_tools_settings_tab() {

@@ -44,6 +44,7 @@ function monsterinsights_get_section_settings( $section, $page = 'tracking' ) {
 				'multiple'      => false,
 				'allowclear'    => true,
 				'notice_type'   => 'info',
+				'no_label'      => false,
 			) );
 			$output .= monsterinsights_render_field( $args );
 		}
@@ -151,6 +152,15 @@ function monsterinsights_save_settings() {
 	add_action( 'monsterinsights_tracking_' . $tab . '_tab_notice', 'monsterinsights_updated_settings' );
 }
 add_action( 'current_screen', 'monsterinsights_save_settings' );
+
+function monsterinsights_is_settings_tab( $tab = '' ){
+	$tabs = monsterinsights_get_settings_tabs();
+	if ( empty( $tab ) || empty( $tabs ) || ! is_string( $tab ) || ! is_array( $tabs ) ) {
+		return false;
+	}
+
+	return !empty( $tabs[$tab]);
+}
 
 /**
  * Flattens the set of registered settings and their type so we can easily sanitize all the settings
@@ -893,7 +903,8 @@ function monsterinsights_notice_callback( $args ) {
  */
 function monsterinsights_upgrade_notice_callback( $args ) {
 	$html =   '<div class="monsterinsights-upsell-box"><h2>' . esc_html( $args['name' ] ) . '</h2>'
-			. '<p class="upsell-lite">' . $args['desc'] . '</p>'
+			. '<p class="monsterinsights-upsell-lite-text">' . $args['desc'] . '</p>'
+			. '<p class="monsterinsights-upsell-button-par"><a href="https://www.monsterinsights.com/lite/" class="monsterinsights-upsell-box-button button button-primary">' . __( 'Click here to Upgrade', 'google-analytics-for-wordpress' ) . '</a></p>'
 			. '</div>';
 	return apply_filters( 'monsterinsights_after_setting_output', $html, $args ); 
 }
@@ -957,6 +968,7 @@ function monsterinsights_render_submit_field( $section, $page = 'tracking' ) {
 			$html .= wp_nonce_field( 'monsterinsights-settings-nonce', 'monsterinsights-settings-nonce', true, false );
 			$html .= get_submit_button( esc_html__( 'Save Changes', 'google-analytics-for-wordpress' ), 'primary', 'monsterinsights-settings-submit', false );
 		}
+		$html      = apply_filters( 'monsterinsights_html_after_submit_field', $html, $page, $section );
 	}
 	return $html;
 }
@@ -967,7 +979,7 @@ function monsterinsights_render_submit_field( $section, $page = 'tracking' ) {
 function monsterinsights_render_field( $args ) {
 	$output = '';
 	$output .='<tr id="monsterinsights-input-' . monsterinsights_sanitize_key( $args['id'] ) .'">';
-		if ( ! empty( $args['name'] ) ) {
+		if ( ! empty( $args['name'] ) && empty( $args['no_label'] ) ) {
 			$output .= '<th scope="row">';
 				$output .='<label for="monsterinsights_settings[' . monsterinsights_sanitize_key( $args['id'] ) . ']">' . esc_html( $args["name"] ) . '</label>';
 			$output .= '</th>';

@@ -28,7 +28,7 @@ function monsterinsights_get_settings_tabs() {
 			'level' => 'lite'
 		),
 		'links' => array( 
-			'title' => esc_html__( 'Enhanced Link Attribution', 'google-analytics-for-wordpress' ),
+			'title' => esc_html__( 'Link Attribution', 'google-analytics-for-wordpress' ),
 			'level' => 'lite'
 		),
 		'files' => array( 
@@ -51,7 +51,6 @@ function monsterinsights_get_settings_tabs() {
 		'forms' => array( 
 			'title' => esc_html__( 'Forms', 'google-analytics-for-wordpress' ),
 			'level' => 'plus',
-			'comingsoon' => true
 		),
 		'ecommerce' => array( 
 			'title' => esc_html__( 'eCommerce', 'google-analytics-for-wordpress' ),
@@ -73,7 +72,24 @@ function monsterinsights_get_settings_tabs() {
 		),
 		'performance' => array( 
 			'title' => esc_html__( 'Performance', 'google-analytics-for-wordpress' ),
-			'level' => 'basic'
+			'level' => 'plus'
+		),
+		'amp' => array( 
+			'title' => esc_html__( 'Google AMP', 'google-analytics-for-wordpress' ),
+			'level' => 'plus'
+		),
+		'goptimize' => array( 
+			'title' => esc_html__( 'Google Optimize', 'google-analytics-for-wordpress' ),
+			'level' => 'plus'
+		),
+		'fbia' => array( 
+			'title' => esc_html__( 'FB Instant Articles', 'google-analytics-for-wordpress' ),
+			'level' => 'plus'
+		),
+		'bounce' => array( 
+			'title' => esc_html__( 'Bounce Reduction', 'google-analytics-for-wordpress' ),
+			'level' => 'plus',
+			'comingsoon' => true
 		),
 		'reporting' => array( 
 			'title' => esc_html__( 'Additional Reporting', 'google-analytics-for-wordpress' ),
@@ -186,8 +202,8 @@ function monsterinsights_get_registered_settings() {
 				),
 				'hash_tracking' => array(
 					'id'          => 'hash_tracking',
-					'name'        => __( 'Turn on anchor tracking (beta; see description)', 'google-analytics-for-wordpress' ),
-					'desc'        => esc_html__( 'Many WordPress "1-page" style themes rely on anchor tags for navigation to show virtual pages. The problem is that to Google Analytics, these are all just a single page, and it makes it hard to get meaningful statistics about pages viewed. This experimental MonsterInsights feature allows for the tracking of anchor links as pages in Google Analytics. As a beta, first-look feature, we\'re adding a setting to turn this functionality on so we can collect feedback from people that want to use it. We may tweak or remove this feature at any time. Note: This feature tracks all anchor links as pages, without the ability to opt a particular anchor tag out currently, so only use this if you are using a "1-page" style WordPress theme', 'google-analytics-for-wordpress' ),
+					'name'        => __( 'Turn on anchor tracking', 'google-analytics-for-wordpress' ),
+					'desc'        => esc_html__( 'Many WordPress "1-page" style themes rely on anchor tags for navigation to show virtual pages. The problem is that to Google Analytics, these are all just a single page, and it makes it hard to get meaningful statistics about pages viewed. This feature allows proper tracking in those themes.', 'google-analytics-for-wordpress' ),
 					'type' 		  => 'checkbox',
 				),
 				'allow_anchor' => array(
@@ -279,6 +295,22 @@ function monsterinsights_get_registered_settings() {
 		),
 		/** Performance Tracking Settings */
 		'performance' => apply_filters('monsterinsights_settings_performance',
+			array()
+		),
+		/** AMP Tracking Settings */
+		'amp' => apply_filters('monsterinsights_settings_amp',
+			array()
+		),
+		/** Google Optimize Tracking Settings */
+		'goptimize' => apply_filters('monsterinsights_settings_goptimize',
+			array()
+		),
+		/** Facebook Instant Articles Tracking Settings */
+		'fbia' => apply_filters('monsterinsights_settings_fbia',
+			array()
+		),
+		/** Bounce Reduction Settings */
+		'bounce' => apply_filters('monsterinsights_settings_bounce',
 			array()
 		),
 		/** Reporting Tracking Settings */
