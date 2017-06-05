@@ -224,7 +224,7 @@ function monsterinsights_settings_save_general() {
     if ( $manual_ua_code ) {
         monsterinsights_update_option( 'manual_ua_code', $manual_ua_code );
     } else {
-        if ( empty ( $manual_ua_code ) && isset( $_POST['manual_ua_code'] ) ) {
+        if ( empty ( $manual_ua_code ) && ! empty( $_POST['manual_ua_code'] ) ) {
              $throw_notice = true;
         }
         monsterinsights_update_option( 'manual_ua_code', '' );

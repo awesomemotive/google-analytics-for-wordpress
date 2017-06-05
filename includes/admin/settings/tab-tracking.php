@@ -36,11 +36,10 @@ function monsterinsights_settings_tracking_tab() {
                 if ( isset( $item['comingsoon'] ) && $item['comingsoon'] || empty( $item['title'] ) ) {
                     continue;
                 }
-                $class = ( 0 === $i ? 'monsterinsights-active' : '' ); 
-                $upgrade_span = ! $is_pro && $item['level'] !== 'lite' ? '<span class="monsterinsights-upgrade-menu-icon">' . esc_html__( 'Upgrade', 'google-analytics-for-wordpress' ) . '</span>' : '';
+                $class = ( 0 === $i ? 'monsterinsights-active' : '' );
                 ?>
                 <a class="monsterinsights-sub-nav-item monsterinsights-nav-item monsterinsights-active monstericon-<?php echo esc_attr( $id ); ?> <?php echo esc_attr( $class ); ?>" href="#monsterinsights-main-tab-tracking?monsterinsights-sub-tab-<?php echo esc_attr( $id ); ?>" title="<?php echo esc_attr( $item['title'] ); ?>">
-                    <?php echo esc_html( $item['title'] ) . $upgrade_span; ?>
+                    <?php echo esc_html( $item['title'] ); ?>
                 </a>
                 <?php 
                 $i++; 
@@ -73,7 +72,9 @@ function monsterinsights_settings_tracking_tab() {
                 $class = ( 0 === $i ? ' monsterinsights-active' : '' ); 
                 ?>
                  <div id="monsterinsights-sub-tab-<?php echo esc_attr( $id ); ?>" class="monsterinsights-sub-nav-tab monsterinsights-nav-tab<?php echo esc_attr( $class ); ?>">
+                    <?php if ( $item['level'] === 'lite' ||  $is_pro ) { ?>
                     <?php echo '<h2 class="monsterinsights-sub-tab-header">' . esc_html( $item['title'] ) . '</h2>'; ?>
+                    <?php } ?>
                      <div class="monsterinsights-subtab-settings-notices">
                         <?php 
                         // Output any notices now
@@ -88,7 +89,8 @@ function monsterinsights_settings_tracking_tab() {
                         ?>
                     </div>
                     <!-- Settings Form -->
-                    <form id="monsterinsights-tracking-<?php echo esc_attr( $id );?>-tab" method="post">
+                    <?php $class = ( $item['level'] !== 'lite' && ! $is_pro ) ? 'monsterinsights-no-settings-shown' : ''; ?>
+                    <form id="monsterinsights-tracking-<?php echo esc_attr( $id );?>-tab" class="<?php echo $class; ?>" method="post">
                         <table class="form-table">
                             <tbody>
                                 <?php
@@ -99,6 +101,12 @@ function monsterinsights_settings_tracking_tab() {
                             </tbody>
                         </table>
                         <?php echo monsterinsights_render_submit_field( $id, 'tracking' ); ?>
+                        <?php if ( $item['level'] === 'lite' && !$is_pro ) { ?>
+                            <div class="monsterinsights-upsell-under-box">
+                                <h2><?php esc_html_e( "Want even more fine tuned control over your website analytics?", 'google-analytics-for-wordpress' ); ?></h2>
+                                <p class="monsterinsights-upsell-lite-text"><?php esc_html_e( "By upgrading to MonsterInsights Pro, you get access to numerous addons and tools that help you better understand what people are doing on your website, so you can keep doing more of what's working. Some of the features include: Ecommerce tracking, Author tracking, Post Type tracking, Ads tracking, Google AMP tracking, Performance optimization, and so much more!", 'google-analytics-for-wordpress' ); ?></p>
+                                <p class="monsterinsights-upsell-button-par"><a href="https://www.monsterinsights.com/lite/" class="button button-primary"><?php esc_html_e( "Click here to Upgrade", 'google-analytics-for-wordpress' ); ?></a></p></div>
+                        <?php } ?>
                     </form>
                 </div>
                 <?php

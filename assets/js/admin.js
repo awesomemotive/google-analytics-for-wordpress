@@ -872,6 +872,16 @@ jQuery( document ).ready( function( $ ) {
 						 $('.monsterinsights-sub-nav-tabs .monsterinsights-sub-nav-tab  .monsterinsights-subtab-settings-notices .monsterinsights-notice' ).remove();
 					} 
 				}
+				 // Is the window taller than the #adminmenuwrap?
+				  if ($(window).height() > $("#adminmenuwrap").height()) {
+					 // ...if so, make the #adminmenuwrap fixed
+					 $('#adminmenuwrap').css('position', 'fixed'); 
+					
+				  } else {
+					 //...otherwise, leave it relative        
+					 $('#adminmenuwrap').css('position', 'relative'); 
+
+				  }
 			}   
 		}
 });

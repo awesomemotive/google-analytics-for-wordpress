@@ -14,6 +14,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+function monsterinsights_debug_output( $var ) {
+	error_log( print_r( $var, true ) . "\n", 3, MONSTERINSIGHTS_PLUGIN_DIR . 'log.txt' );
+}
 
 function monsterinsights_is_page_reload() {
 	// Can't be a refresh without having a referrer

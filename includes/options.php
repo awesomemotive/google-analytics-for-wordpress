@@ -28,7 +28,7 @@ function monsterinsights_get_options() {
 	//} else {
 	//    return $settings;
 	//}
-	if ( empty( $settings ) ) {
+	if ( empty( $settings ) || ! is_array( $settings ) ) {
 		$settings = array();
 	}
 	return $settings;
@@ -146,6 +146,10 @@ function monsterinsights_update_option( $key = '', $value = false ) {
 	   $settings = get_option( $option_name );
 	//   $update_network_option = false;
 	//}
+
+	if ( ! is_array( $settings ) ) {
+		$settings = array();
+	}
 
 	// Let's let devs alter that value coming in
 	$value = apply_filters( 'monsterinsights_update_option', $value, $key );

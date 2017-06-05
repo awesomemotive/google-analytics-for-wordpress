@@ -227,8 +227,7 @@ function monsterinsights_switch_to_analyticsjs() {
     }
 
     $return       = '';
-    $allowed_tabs = array( 'engagement', 'performance', 'ecommerce', 'demographics', 'dimensions' );
-    if ( ! empty( $_REQUEST['return'] ) && in_array( $_REQUEST['return'], $allowed_tabs ) ) {
+    if ( ! empty( $_REQUEST['return'] ) && monsterinsights_is_settings_tab( $_REQUEST['return'] ) ) {
         $return = admin_url( 'admin.php?page=monsterinsights_settings&monsterinsights-message=tracking_mode_switched#monsterinsights-main-tab-tracking?monsterinsights-sub-tab-') . $_REQUEST['return'];
         $return = add_query_arg( 'return', $_REQUEST['return'], $return );
     } else {
@@ -248,8 +247,7 @@ function monsterinsights_switch_to_analyticsjs_show_notice() {
         return;
     }
     
-    $allowed_tabs = array( 'engagement', 'performance', 'ecommerce', 'demographics', 'dimensions' );
-    if ( ! empty( $_REQUEST['return'] ) && in_array( $_REQUEST['return'], $allowed_tabs ) ) {
+    if ( ! empty( $_REQUEST['return'] ) && monsterinsights_is_settings_tab( $_REQUEST['return'] ) ) {
         add_action( 'monsterinsights_tracking_' . $_REQUEST['return'] . '_tab_notice', 'monsterinsights_switched_to_analyticsjs' );
     } else {
         add_action( 'monsterinsights_settings_general_tab_notice', 'monsterinsights_switched_to_analyticsjs' );
@@ -284,8 +282,7 @@ function monsterinsights_switch_to_jsevents() {
     }
 
     $return       = '';
-    $allowed_tabs = array( 'engagement', 'performance', 'ecommerce', 'demographics', 'dimensions' );
-    if ( ! empty( $_REQUEST['return'] ) && in_array( $_REQUEST['return'], $allowed_tabs ) ) {
+    if ( ! empty( $_REQUEST['return'] ) && monsterinsights_is_settings_tab( $_REQUEST['return'] ) ) {
         $return = admin_url( 'admin.php?page=monsterinsights_settings&monsterinsights-message=jsvents_mode_switched#monsterinsights-main-tab-tracking?monsterinsights-sub-tab-') . $_REQUEST['return'];
         $return = add_query_arg( 'return', $_REQUEST['return'], $return );
     } else {
@@ -305,7 +302,7 @@ function monsterinsights_switch_to_jsevents_show_notice() {
         return;
     }
     
-    $allowed_tabs = array( 'engagement', 'performance', 'ecommerce', 'demographics', 'dimensions' );
+    $allowed_tabs = array( 'engagement', 'performance', 'ecommerce', 'demographics', 'dimensions', 'goptimize' );
     if ( ! empty( $_REQUEST['return'] ) && in_array( $_REQUEST['return'], $allowed_tabs ) ) {
         add_action( 'monsterinsights_tracking_' . $_REQUEST['return'] . '_tab_notice', 'monsterinsights_switched_to_jsevents' );
     } else {

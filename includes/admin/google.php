@@ -331,7 +331,50 @@ final class MonsterInsights_GA {
 						if ( isset( $item['type'] ) && 'WEB' != $item['type'] ) {
 							continue;
 						}
-						
+
+						/**
+						 * Future:
+						* // Accounts
+						* 	// Properties
+						* 		// Views
+						* $items = array(
+						* 	{account_id} => array(
+						* 		{property_id} => array(
+						* 			{view_id} => array( 
+						* 				'account_id'  => '',
+						* 				'property_id' => '',
+						* 				'view_id'	  => '',
+						* 				'url'		  => '',
+						* 				'view_name'	  => '',
+						* 				'ua_code'	  => '',
+						* 			),
+						* 		),
+						* 	),
+						* ),
+						**/
+						/*
+						CurrenT:
+						$accounts[ $item['accountId'] ] = array( 
+							'id'          => $item['accountId'],
+							'ua_code'     => $item['webPropertyId'],
+							'parent_name' => $item['websiteUrl'],
+							'items'       => array(
+								[ $item['internalWebPropertyId'] ]= array( 
+									'id'          => $item['webPropertyId'],
+									'name'        => $item['websiteUrl'],
+									'items'       => array(
+										[ $item['id'] ] = array( 
+											'name'    => $item['name'] . ' (' . $item['webPropertyId'] . ')',
+											'ua_code' => $item['webPropertyId'],
+											'id'      => $item['id'],
+										);
+									),
+								);
+							),
+						);
+						*/
+
+
 						if ( empty( $accounts[ $item['accountId'] ] ) ) {
 							$accounts[ $item['accountId'] ] = array( 
 								'id'          => $item['accountId'],
@@ -627,11 +670,15 @@ final class MonsterInsights_GA {
 		if ( empty( $profiles ) || ! is_array( $profiles ) ) { 
 			$profiles = $this->get_profiles();
 		}
-
+		
 		$optgroups = array();
 		foreach ( $profiles as $key => $value ) {
 			foreach ( $value['items'] as $subitem ) {
-				$optgroups[ $subitem['name'] ]['items'] = $subitem['items'];
+				if ( empty( $optgroups[ $subitem['name'] ]['items'] ) ) {
+					$optgroups[ $subitem['name'] ]['items'] = $subitem['items'];
+				} else {
+					$optgroups[ $subitem['name'] ]['items'] = array_merge( $optgroups[ $subitem['name'] ]['items'], $subitem['items'] );
+				}
 			}
 		}
 

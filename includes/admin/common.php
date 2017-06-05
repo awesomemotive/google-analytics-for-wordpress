@@ -36,10 +36,6 @@ function monsterinsights_admin_styles() {
 	wp_register_style( MONSTERINSIGHTS_PLUGIN_SLUG . '-jvectormap-style', plugins_url( 'assets/css/jvectormap/jquery-jvectormap-2.0.3.css', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version() );
 	wp_enqueue_style( MONSTERINSIGHTS_PLUGIN_SLUG . '-jvectormap-style' );
 
-	// FontAwesome (used for message boxes)
-	wp_register_style( MONSTERINSIGHTS_PLUGIN_SLUG . '-font-awesome', plugins_url( 'assets/css/font-awesome/font-awesome.min.css', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version() );
-	wp_enqueue_style( MONSTERINSIGHTS_PLUGIN_SLUG . '-font-awesome' );
-
 	 // Select300
 	wp_register_style( MONSTERINSIGHTS_PLUGIN_SLUG . '-select300-style', plugins_url( 'assets/css/select300/select300.css', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version() );
 	wp_enqueue_style( MONSTERINSIGHTS_PLUGIN_SLUG . '-select300-style' );
@@ -313,7 +309,7 @@ function monsterinsights_get_upgrade_link() {
 		// Note: On the Addons screen, if the user has a license, we won't hit this function,
 		// as the API will tell us the direct URL to send the user to based on their license key,
 		// so they see pro-rata pricing.
-		return 'https://www.monsterinsights.com/pricing/?utm_source=proplugin&utm_medium=link&utm_campaign=WordPress';
+		return 'https://www.monsterinsights.com/lite/?utm_source=proplugin&utm_medium=link&utm_campaign=WordPress';
 	}
 
 	$shareasale_id = monsterinsights_get_shareasale_id();
@@ -321,7 +317,7 @@ function monsterinsights_get_upgrade_link() {
 	// If at this point we still don't have an ID, we really don't have one!
 	// Just return the standard upgrade URL.
 	if ( empty( $shareasale_id ) ) {
-		return 'https://www.monsterinsights.com/pricing/?utm_source=liteplugin&utm_medium=link&utm_campaign=WordPress';
+		return 'https://www.monsterinsights.com/lite/?utm_source=liteplugin&utm_medium=link&utm_campaign=WordPress';
 	}
 
 	// If here, we have a ShareASale ID

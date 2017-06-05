@@ -3,8 +3,8 @@ Contributors: chriscct7, smub
 Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.9
-Tested up to: 4.7.4
-Stable tag: 6.1.8
+Tested up to: 4.8.0
+Stable tag: 6.2.0
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -136,6 +136,35 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 6.2.0: June 6, 2017 =
+* New: Form Tracking addon
+* New: Google Optimize addon
+* New: Facebook Instant Articles addon
+* New: Telephone link tracking
+* New: Functions for supporting enhanced eCommerce tracking in the eCommerce addon
+* New: Measurement protocol functions
+* New: Tweaks for the settings pages to get ready for a speed improvement release upcoming along with some coming soon addons.
+* Tweaks: Spelling corrections.
+* Fix: Internet Explorer tracking fix.
+* Fix: Issue with initialization of settings on certain installs.
+
+
+= 6.1.11: May 31, 2017 =
+* Tweak: Renamed the tools tab for settings import/export
+* Bugfix: Issue with saving of manual UA codes
+* Bugfix: Fixed a couple display issues in the admin
+* Bugfix: Issue for undefined index when the settings array hasn't been initialized.
+
+= 6.1.10, May 18, 2017 =
+* New: Performance improvement in tracking.
+
+= 6.1.9, May 15, 2017 =
+* New: Plugin has been tested for compatibility with WordPress 4.8-beta1. We'll continue to test through the beta and release candidates, but MonsterInsights is 4.8 ready as-is.
+* Tweak: Deleting lite plugin will no longer delete license key of installed pro version.
+* Bugfix: Import/export settings page has been fixed so that on sites with a ton of plugins installed that make lots of admin bar items, the admin bar will have relative positioning now to allow it to be scrollable.
+* Bugfix: Users with more than 1 property for the same domain name can now use any of the views for those properties.
+* Bugfix: For Pro users, sometimes all available addons for your license level didn't show, requiring you to download them from our site. This has been corrected.
+
 = 6.1.8, May 11, 2017 =
 * New: Functions needed to support future features including enhanced eCommerce
 * Bugfix: Compatibility with Firefox for link tracking.
