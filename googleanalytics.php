@@ -6,9 +6,9 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/
  *
- * Version:             6.2.0
+ * Version:             6.2.1
  * Requires at least:   3.9.0
- * Tested up to:        4.8.0
+ * Tested up to:        4.8.1
  *
  * License:             GPL v3
  * 
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '6.2.0';
+	public $version = '6.2.1';
 
 	/**
 	 * Plugin file.
@@ -181,6 +181,11 @@ final class MonsterInsights_Lite {
 				monsterinsights_lite_call_install_and_upgrade();
 			}
 
+			if ( is_admin() ) {
+				new AM_Notification( 'mi-lite', self::$instance->version );
+				new AM_Deactivation_Survey( 'MonsterInsights', basename( __DIR__ ) );
+			}
+
 			// Load the plugin textdomain.
 			add_action( 'plugins_loaded', array( self::$instance, 'load_plugin_textdomain' ) );
 
@@ -194,7 +199,11 @@ final class MonsterInsights_Lite {
 				self::$instance->notices    = new MonsterInsights_Notice_Admin();
 				self::$instance->license    = new MonsterInsights_License();
 				self::$instance->reports 	= new MonsterInsights_Reporting();
-				add_action( 'admin_init', array( self::$instance, 'require_updater' ) );
+				if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
+					self::$instance->require_updater();
+				} else {
+					add_action( 'admin_init', array( self::$instance, 'require_updater' ) );
+				}
 			}
 
 			// Run hook to load MonsterInsights addons.
@@ -452,12 +461,15 @@ final class MonsterInsights_Lite {
 		if ( is_admin() || ( defined( 'DOING_CRON' ) && DOING_CRON ) ) {
 
 			// Lite and Pro files
+				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'assets/lib/pandora/class-am-notification.php';
+				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'assets/lib/pandora/class-am-deactivation-survey.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/ajax.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/admin.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/common.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/notice.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/capabilities.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/licensing/license.php';
+				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/licensing/autoupdate.php';
 
 			// Pages
 				// Multisite

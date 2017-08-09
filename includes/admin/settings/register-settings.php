@@ -50,7 +50,7 @@ function monsterinsights_get_settings_tabs() {
 		),
 		'forms' => array( 
 			'title' => esc_html__( 'Forms', 'google-analytics-for-wordpress' ),
-			'level' => 'plus',
+			'level' => 'pro',
 		),
 		'ecommerce' => array( 
 			'title' => esc_html__( 'eCommerce', 'google-analytics-for-wordpress' ),
@@ -80,7 +80,7 @@ function monsterinsights_get_settings_tabs() {
 		),
 		'goptimize' => array( 
 			'title' => esc_html__( 'Google Optimize', 'google-analytics-for-wordpress' ),
-			'level' => 'plus'
+			'level' => 'pro'
 		),
 		'fbia' => array( 
 			'title' => esc_html__( 'FB Instant Articles', 'google-analytics-for-wordpress' ),
@@ -366,6 +366,17 @@ function monsterinsights_get_registered_settings() {
 					'select2'     => true,
 					'multiple'    => true,
 					'allowclear'  => true
+				),
+				'automatic_updates' => array(
+					'id'          => 'automatic_updates',
+					'name'        => __( 'Automatic Updates', 'google-analytics-for-wordpress' ),
+					'type' 		  => 'radio',
+					'std'  		  => 'none',
+					'options'     => array(
+						'all'     => __( 'Yes (Recommended) - Get the latest features, bugfixes, and security updates as they are released.', 'google-analytics-for-wordpress' ),
+						'minor'   => __( 'Minor Only - Only get bugfixes and security updates, but not major features.', 'google-analytics-for-wordpress' ),
+						'none'    => __( 'None - Manually update everything.', 'google-analytics-for-wordpress' ),
+					),
 				),
 				'anonymous_data' => array(
 					'id'          => 'anonymous_data',

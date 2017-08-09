@@ -188,13 +188,15 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 <!-- This site uses the Google Analytics by MonsterInsights plugin v<?php echo MONSTERINSIGHTS_VERSION; ?> - Using Analytics tracking - https://www.monsterinsights.com/ -->
 <?php if ( monsterinsights_get_ua() ) { ?>
 <script type="text/javascript" data-cfasync="false">
+	<?php if ( $this->should_do_optout() ) { ?>
+	var disableStr = 'ga-disable-<?php echo monsterinsights_get_ua(); ?>';
+
 	/* Function to detect opted out users */
 	function __gaTrackerIsOptedOut() {
 		return document.cookie.indexOf(disableStr + '=true') > -1;
 	}
 
 	/* Disable tracking if the opt-out cookie exists. */
-	var disableStr = 'ga-disable-<?php echo monsterinsights_get_ua(); ?>';
 	if ( __gaTrackerIsOptedOut() ) {
 		window[disableStr] = true;
 	}
@@ -204,7 +206,7 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
 	  window[disableStr] = true;
 	}
-
+	<?php } ?>
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -234,5 +236,9 @@ if ( count( $options ) >= 1 ) {
 		$output = ob_get_contents();
 		ob_end_clean();
 		return $output;
+	}
+
+	public function should_do_optout() {
+		return ! ( defined( 'MI_NO_TRACKING_OPTOUT' ) && MI_NO_TRACKING_OPTOUT );
 	}
 }

@@ -108,23 +108,6 @@ function monsterinsights_add_admin_body_class( $classes ) {
 }
 add_filter( 'admin_body_class', 'monsterinsights_add_admin_body_class', 10, 1 );
 
-
-function monsterinsights_menu_icon_css() {
-    // Force correct sizing for retina vs non-retina display
-    ?>
-    <style type="text/css">
-        #toplevel_page_monsterinsights_dashboard .wp-menu-image img,
-        #toplevel_page_monsterinsights_settings .wp-menu-image img,
-        #toplevel_page_monsterinsights_network .wp-menu-image img { 
-            width: 18px; 
-            height: 18px;
-            padding-top: 7px;
-        }
-    </style>
-    <?php
-}
-add_action( 'admin_head', 'monsterinsights_menu_icon_css' );
-
 /**
  * Add a link to the settings page to the plugins list
  *
@@ -267,3 +250,42 @@ function monsterinsights_admin_footer( $text ) {
     return $text;
 }
 add_filter( 'admin_footer_text', 'monsterinsights_admin_footer', 1, 2 );
+
+function monsterinsights_deprecated_notices() {
+    // Don't show on MonsterInsights pages
+    $screen = get_current_screen(); 
+    if ( empty( $screen->id ) || strpos( $screen->id, 'monsterinsights' ) !== false ) {
+        return;
+    }
+    
+    $analytics = monsterinsights_get_option( 'tracking_mode', 'analytics' );
+    $events    = monsterinsights_get_option( 'events_mode', false );
+    $updates   = monsterinsights_get_option( 'automatic_updates', false );
+    $url       = admin_url( 'admin.php?page=monsterinsights_settings' );
+    $notices   = get_option( 'monsterinsights_notices' );
+
+    if ( ! is_array( $notices ) ) {
+        $notices = array();
+    }
+
+    if ( $analytics === 'ga' && ! isset( $notices ['monsterinsights_deprecated_ga' ] ) ){
+       echo '<div class="notice notice-error is-dismissible monsterinsights-notice" data-notice="monsterinsights_deprecated_ga">';
+            echo '<p>';
+            echo sprintf( esc_html__( 'Warning: You\'re currently using deprecated ga.js tracking which we will be removing support for in an upcoming release. We recommend switching to analytics.js, as it is significantly more accurate than ga.js, and allows for functionality (like the more accurate Javascript based events tracking we offer). Further Google Analytics has deprecated support for ga.js, and it may stop working at any time when Google decides to disable it from their server. To switch to using the newer Universal Analytics (analytics.js) %1$sclick here%2$s. Users who do not manually switch over will be automatically switched over in an upcoming release.', 'google-analytics-for-wordpress' ), '<a href="' . $url .'">', '</a>' ); 
+            echo '</p>';
+        echo '</div>';
+    } else if ( $events === 'php' && ! isset( $notices ['monsterinsights_deprecated_php' ] ) ){
+       echo '<div class="notice notice-error is-dismissible monsterinsights-notice" data-notice="monsterinsights_deprecated_php">';
+            echo '<p>';
+            echo sprintf( esc_html__( 'Warning: You\'re currently using deprecated PHP based events tracking which we will be removing support for in an upcoming release. We recommend switching to JS events tracking, as it is significantly more accurate than PHP based events tracking. To switch %1$sclick here%2$s. Users who do not manually switch over will be automatically switched over in an upcoming release.', 'google-analytics-for-wordpress' ), '<a href="' . $url .'">', '</a>' ); 
+            echo '</p>';
+        echo '</div>';
+    } else if ( empty( $updates) && ! isset( $notices ['monsterinsights_automatic_updates' ] ) ){ 
+           echo '<div class="notice notice-info is-dismissible monsterinsights-notice" data-notice="monsterinsights_automatic_updates">';
+            echo '<p>';
+            echo sprintf( esc_html__( 'Important: Please %1$sconfigure the Automatic Updates Settings%2$s in MonsterInsights.', 'google-analytics-for-wordpress' ), '<a href="' . $url .'">', '</a>' ); 
+            echo '</p>';
+        echo '</div>';
+    }
+}
+add_action( 'admin_notices', 'monsterinsights_deprecated_notices' );
