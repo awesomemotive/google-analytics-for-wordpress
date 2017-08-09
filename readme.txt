@@ -3,8 +3,8 @@ Contributors: chriscct7, smub
 Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.9
-Tested up to: 4.8.0
-Stable tag: 6.2.0
+Tested up to: 4.8.1
+Stable tag: 6.2.1
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -136,6 +136,16 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 6.2.1: August 9, 2017 =
+* New: MonsterInsights now has the ability to automatically update itself and it's addons. You can set MonsterInsights to automatically update minor versions only or all new versions inside the MonsterInsights settings panel in Tracking -> Permissions.
+* Tweak: Introduce scrollbars on GA auth screen for users with many Google accounts
+* Tweak: Added notice to users still on deprecated GA.js tracking and PHP-based events tracking.
+* Fix: Issue with notices having multiple icons has been resolved.
+* Fix: Facebook Instant Articles can now properly handle the Automattic Facebook plugin transformation changes (requires FB IA addon version 1.0.1 or newer)
+* Fix: Conflict with wp_head output for some themes.
+* Fix: Correct level for Forms and Google Optimize addons.
+* Fix: License key errors will no longer show to lite users.
+
 = 6.2.0: June 6, 2017 =
 * New: Form Tracking addon
 * New: Google Optimize addon

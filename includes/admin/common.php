@@ -24,6 +24,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function monsterinsights_admin_styles() {
 
+	// Load Common admin styles.
+	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+	if ( ! file_exists( MONSTERINSIGHTS_PLUGIN_DIR . 'assets/css/admin-common.min.css' ) ) {
+		$suffix = '';
+	}
+	wp_register_style( MONSTERINSIGHTS_PLUGIN_SLUG . '-admin-common-style', plugins_url( 'assets/css/admin-common' . $suffix . '.css', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version() );
+	wp_enqueue_style( MONSTERINSIGHTS_PLUGIN_SLUG . '-admin-common-style' );
+
 	// Get current screen.
 	$screen = get_current_screen();
 	
@@ -71,6 +79,23 @@ add_action( 'admin_enqueue_scripts', 'monsterinsights_admin_styles' );
  * @return null Return early if not on the proper screen.
  */
 function monsterinsights_admin_scripts() {
+
+	// Our Common Admin JS
+	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+	if ( ! file_exists( MONSTERINSIGHTS_PLUGIN_DIR . 'assets/js/admin-common.min.js' ) ) {
+		$suffix = '';
+	}
+	
+	wp_register_script( MONSTERINSIGHTS_PLUGIN_SLUG . '-admin-common-script', plugins_url( 'assets/js/admin-common' . $suffix . '.js', MONSTERINSIGHTS_PLUGIN_FILE ), array( 'jquery' ), monsterinsights_get_asset_version() );
+	wp_enqueue_script( MONSTERINSIGHTS_PLUGIN_SLUG . '-admin-common-script' );
+	wp_localize_script(
+		MONSTERINSIGHTS_PLUGIN_SLUG . '-admin-common-script',
+		'monsterinsights_admin_common',
+		array(
+			'ajax'                  => admin_url( 'admin-ajax.php' ),
+			'dismiss_notice_nonce'  => wp_create_nonce( 'monsterinsights-dismiss-notice' ),
+		)
+	);
 
 	// Get current screen.
 	$screen = get_current_screen();
@@ -254,6 +279,13 @@ function hide_non_monsterinsights_warnings () {
 	if ( !empty( $wp_filter['user_admin_notices']->callbacks ) && is_array( $wp_filter['user_admin_notices']->callbacks ) ) {
 		foreach( $wp_filter['user_admin_notices']->callbacks as $priority => $hooks ) {
 			foreach ( $hooks as $name => $arr ) {
+				if ( is_object( $arr['function'] ) && $arr['function'] instanceof Closure ) {
+					unset( $wp_filter['user_admin_notices']->callbacks[ $priority ][ $name ] );
+					continue;
+				}
+				if ( ! empty( $arr['function'][0] ) && is_object( $arr['function'][0] ) && strpos( strtolower( get_class( $arr['function'][0] ) ), 'monsterinsights' ) !== false ) {
+					continue;
+				}
 				if ( !empty( $name ) && strpos( $name, 'monsterinsights' ) === false ) {
 					unset( $wp_filter['user_admin_notices']->callbacks[$priority][$name] );
 				}
@@ -264,6 +296,13 @@ function hide_non_monsterinsights_warnings () {
 	if ( !empty( $wp_filter['admin_notices']->callbacks ) && is_array( $wp_filter['admin_notices']->callbacks ) ) {
 		foreach( $wp_filter['admin_notices']->callbacks as $priority => $hooks ) {
 			foreach ( $hooks as $name => $arr ) {
+				if ( is_object( $arr['function'] ) && $arr['function'] instanceof Closure ) {
+					unset( $wp_filter['admin_notices']->callbacks[ $priority ][ $name ] );
+					continue;
+				}
+				if ( ! empty( $arr['function'][0] ) && is_object( $arr['function'][0] ) && strpos( strtolower( get_class( $arr['function'][0] ) ), 'monsterinsights' ) !== false ) {
+					continue;
+				}
 				if ( !empty( $name ) && strpos( $name, 'monsterinsights' ) === false ) {
 					unset( $wp_filter['admin_notices']->callbacks[$priority][$name] );
 				}
@@ -274,6 +313,13 @@ function hide_non_monsterinsights_warnings () {
 	if ( !empty( $wp_filter['all_admin_notices']->callbacks ) && is_array( $wp_filter['all_admin_notices']->callbacks ) ) {
 		foreach( $wp_filter['all_admin_notices']->callbacks as $priority => $hooks ) {
 			foreach ( $hooks as $name => $arr ) {
+				if ( is_object( $arr['function'] ) && $arr['function'] instanceof Closure ) {
+					unset( $wp_filter['all_admin_notices']->callbacks[ $priority ][ $name ] );
+					continue;
+				}
+				if ( ! empty( $arr['function'][0] ) && is_object( $arr['function'][0] ) && strpos( strtolower( get_class( $arr['function'][0] ) ), 'monsterinsights' ) !== false ) {
+					continue;
+				}
 				if ( !empty( $name ) && strpos( $name, 'monsterinsights' ) === false ) {
 					unset( $wp_filter['all_admin_notices']->callbacks[$priority][$name] );
 				}

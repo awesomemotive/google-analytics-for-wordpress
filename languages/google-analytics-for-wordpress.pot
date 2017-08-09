@@ -5,14 +5,14 @@ msgstr ""
 "Project-Id-Version: MonsterInsights Lite\n"
 "Report-Msgid-Bugs-To: https://github.com/awesomemotive/monsterinsights/"
 "issues\n"
-"POT-Creation-Date: 2017-06-05 17:21-0400\n"
+"POT-Creation-Date: 2017-08-09 13:08-0400\n"
 "PO-Revision-Date: 2016-07-21 17:01-0400\n"
 "Last-Translator: Chris Christoff <support@monsterinsights.com>\n"
 "Language-Team: Chris Christoff <support@monsterinsights.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.2\n"
+"X-Generator: Poedit 2.0.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: googleanalytics.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -35,18 +35,18 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-12: *.css\n"
 "X-Poedit-SearchPathExcluded-13: googleanalytics-premium.php\n"
 
-#: googleanalytics.php:220 googleanalytics.php:234
+#: googleanalytics.php:229 googleanalytics.php:243
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: googleanalytics.php:375
+#: googleanalytics.php:384
 msgid ""
 "The version of MonsterInsights eCommerce addon you have is not compatible "
 "with the version of MonsterInsights installed. Please update the eCommerce "
 "addon as soon as possible"
 msgstr ""
 
-#: googleanalytics.php:397
+#: googleanalytics.php:406
 #, php-format
 msgid ""
 "Sorry, but your version of WordPress does not meet MonsterInsights's "
@@ -54,7 +54,7 @@ msgid ""
 "activated. %3$sClick here to return to the Dashboard%4$s."
 msgstr ""
 
-#: googleanalytics.php:418
+#: googleanalytics.php:427
 #, php-format
 msgid ""
 "Please %1$uninstall%2$s the MonsterInsights Lite Plugin. Your Pro version of "
@@ -62,7 +62,7 @@ msgid ""
 "uninstalled."
 msgstr ""
 
-#: googleanalytics.php:565
+#: googleanalytics.php:577
 #, php-format
 msgid ""
 "Sorry, but your version of WordPress does not meet MonsterInsight's required "
@@ -70,7 +70,7 @@ msgid ""
 "%3$sClick here to return to the Dashboard%4$s."
 msgstr ""
 
-#: googleanalytics.php:570
+#: googleanalytics.php:582
 #, php-format
 msgid ""
 "Please uninstall and remove MonsterInsights Pro before activating "
@@ -89,7 +89,7 @@ msgid "Insights"
 msgstr ""
 
 #: includes/admin/admin.php:39 includes/admin/admin.php:49
-#: includes/admin/admin.php:154
+#: includes/admin/admin.php:137
 msgid "Settings"
 msgstr ""
 
@@ -130,122 +130,154 @@ msgstr ""
 msgid "Network Settings"
 msgstr ""
 
-#: includes/admin/admin.php:136
+#: includes/admin/admin.php:119
 msgid "Documentation"
 msgstr ""
 
-#: includes/admin/admin.php:141
+#: includes/admin/admin.php:124
 msgid "Get MonsterInsights Pro"
 msgstr ""
 
-#: includes/admin/admin.php:147 includes/admin/admin.php:150
+#: includes/admin/admin.php:130 includes/admin/admin.php:133
 msgid "Support"
 msgstr ""
 
-#: includes/admin/admin.php:265
+#: includes/admin/admin.php:248
 #, php-format
 msgid ""
 "Please rate %sMonsterInsights%s %s on %sWordPress.org%s to help us spread "
 "the word. Thank you from the MonsterInsights team!"
 msgstr ""
 
-#: includes/admin/common.php:131
+#: includes/admin/admin.php:274
+#, php-format
+msgid ""
+"Warning: You're currently using deprecated ga.js tracking which we will be "
+"removing support for in an upcoming release. We recommend switching to "
+"analytics.js, as it is significantly more accurate than ga.js, and allows "
+"for functionality (like the more accurate Javascript based events tracking "
+"we offer). Further Google Analytics has deprecated support for ga.js, and it "
+"may stop working at any time when Google decides to disable it from their "
+"server. To switch to using the newer Universal Analytics (analytics.js) "
+"%1$sclick here%2$s. Users who do not manually switch over will be "
+"automatically switched over in an upcoming release."
+msgstr ""
+
+#: includes/admin/admin.php:280
+#, php-format
+msgid ""
+"Warning: You're currently using deprecated PHP based events tracking which "
+"we will be removing support for in an upcoming release. We recommend "
+"switching to JS events tracking, as it is significantly more accurate than "
+"PHP based events tracking. To switch %1$sclick here%2$s. Users who do not "
+"manually switch over will be automatically switched over in an upcoming "
+"release."
+msgstr ""
+
+#: includes/admin/admin.php:286
+#, php-format
+msgid ""
+"Important: Please %1$sconfigure the Automatic Updates Settings%2$s in "
+"MonsterInsights."
+msgstr ""
+
+#: includes/admin/common.php:156
 msgid "Loading..."
 msgstr ""
 
-#: includes/admin/common.php:132
+#: includes/admin/common.php:157
 msgid ""
 "Warning: You have unsaved setting changes. If you leave the settings page "
 "without saving your changes will be lost. Did you still want to leave the "
 "page?"
 msgstr ""
 
-#: includes/admin/common.php:134
+#: includes/admin/common.php:159
 msgid "Status: Active"
 msgstr ""
 
-#: includes/admin/common.php:135 includes/admin/pages/addons.php:492
+#: includes/admin/common.php:160 includes/admin/pages/addons.php:492
 msgid "Activate"
 msgstr ""
 
-#: includes/admin/common.php:136
+#: includes/admin/common.php:161
 msgid "Status: Network Activated"
 msgstr ""
 
-#: includes/admin/common.php:137 includes/admin/pages/addons.php:490
+#: includes/admin/common.php:162 includes/admin/pages/addons.php:490
 msgid "Network activate"
 msgstr ""
 
-#: includes/admin/common.php:139
+#: includes/admin/common.php:164
 msgid "Activating..."
 msgstr ""
 
-#: includes/admin/common.php:140 includes/admin/pages/addons.php:465
+#: includes/admin/common.php:165 includes/admin/pages/addons.php:465
 #: includes/admin/pages/addons.php:467
 msgid "Deactivate"
 msgstr ""
 
-#: includes/admin/common.php:141 includes/admin/pages/addons.php:463
+#: includes/admin/common.php:166 includes/admin/pages/addons.php:463
 msgid "Network deactivate"
 msgstr ""
 
-#: includes/admin/common.php:143
+#: includes/admin/common.php:168
 msgid "Deactivating..."
 msgstr ""
 
-#: includes/admin/common.php:144
+#: includes/admin/common.php:169
 msgid "Status: Inactive"
 msgstr ""
 
-#: includes/admin/common.php:145
+#: includes/admin/common.php:170
 msgid "Status: Network inactive"
 msgstr ""
 
-#: includes/admin/common.php:146 includes/admin/pages/addons.php:422
+#: includes/admin/common.php:171 includes/admin/pages/addons.php:422
 msgid "Install"
 msgstr ""
 
-#: includes/admin/common.php:148
+#: includes/admin/common.php:173
 msgid "Installing..."
 msgstr ""
 
-#: includes/admin/common.php:149
+#: includes/admin/common.php:174
 msgid "Proceed"
 msgstr ""
 
-#: includes/admin/common.php:151
+#: includes/admin/common.php:176
 msgid "Copied!"
 msgstr ""
 
-#: includes/admin/common.php:152
+#: includes/admin/common.php:177
 msgid "Copy to Clipboard"
 msgstr ""
 
-#: includes/admin/common.php:153
+#: includes/admin/common.php:178
 msgid "Failed!"
 msgstr ""
 
-#: includes/admin/common.php:155
+#: includes/admin/common.php:180
 msgid "Shorten URL"
 msgstr ""
 
-#: includes/admin/common.php:156
+#: includes/admin/common.php:181
 msgid "Shortened!"
 msgstr ""
 
-#: includes/admin/common.php:157
+#: includes/admin/common.php:182
 msgid "Working..."
 msgstr ""
 
-#: includes/admin/common.php:158 includes/admin/pages/tools.php:87
+#: includes/admin/common.php:183 includes/admin/pages/tools.php:87
 msgid "Import"
 msgstr ""
 
-#: includes/admin/common.php:159
+#: includes/admin/common.php:184
 msgid "Imported!"
 msgstr ""
 
-#: includes/admin/common.php:363
+#: includes/admin/common.php:409
 #, php-format
 msgid ""
 "MonsterInsights has detected that it's files are being blocked. This is "
@@ -497,30 +529,30 @@ msgid ""
 "Congratulations! You have deactivated the key from this site successfully."
 msgstr ""
 
-#: includes/admin/licensing/license.php:462
-#: includes/admin/licensing/license.php:523
+#: includes/admin/licensing/license.php:466
+#: includes/admin/licensing/license.php:527
 #, php-format
 msgid ""
 "Your license key for MonsterInsights has expired. %1$sPlease click here to "
 "renew your license key and continue receiving automatic updates.%2$s"
 msgstr ""
 
-#: includes/admin/licensing/license.php:471
-#: includes/admin/licensing/license.php:532
+#: includes/admin/licensing/license.php:475
+#: includes/admin/licensing/license.php:536
 msgid ""
 "Your license key for MonsterInsights has been disabled. Please use a "
 "different key to continue receiving automatic updates."
 msgstr ""
 
-#: includes/admin/licensing/license.php:480
-#: includes/admin/licensing/license.php:541
+#: includes/admin/licensing/license.php:484
+#: includes/admin/licensing/license.php:545
 msgid ""
 "Your license key for MonsterInsights is invalid. The key no longer exists or "
 "the user associated with the key has been deleted. Please use a different "
 "key to continue receiving automatic updates."
 msgstr ""
 
-#: includes/admin/licensing/license.php:514
+#: includes/admin/licensing/license.php:518
 #, php-format
 msgid ""
 "No valid license key has been entered, so automatic updates for "
@@ -532,7 +564,7 @@ msgstr ""
 msgid "There was an error installing the addon. Please try again."
 msgstr ""
 
-#: includes/admin/notice.php:236
+#: includes/admin/notice.php:225
 msgid "Dismiss this notice"
 msgstr ""
 
@@ -655,45 +687,45 @@ msgid ""
 msgstr ""
 
 #: includes/admin/pages/network-settings.php:62
-#: includes/admin/settings/tab-general.php:65
+#: includes/admin/settings/tab-general.php:66
 msgid "License Key"
 msgstr ""
 
 #: includes/admin/pages/network-settings.php:68
-#: includes/admin/settings/tab-general.php:71
+#: includes/admin/settings/tab-general.php:72
 msgid "Verify Key"
 msgstr ""
 
 #: includes/admin/pages/network-settings.php:69
-#: includes/admin/settings/tab-general.php:72
+#: includes/admin/settings/tab-general.php:73
 msgid "Deactivate Key"
 msgstr ""
 
 #: includes/admin/pages/network-settings.php:70
-#: includes/admin/settings/tab-general.php:73
+#: includes/admin/settings/tab-general.php:74
 msgid ""
 "License key to enable automatic updates for MonsterInsights Pro & addons. "
 "Deactivate your license if you want to use it on another WordPress site."
 msgstr ""
 
 #: includes/admin/pages/network-settings.php:78
-#: includes/admin/settings/tab-general.php:80
+#: includes/admin/settings/tab-general.php:81
 msgid "License Key Type"
 msgstr ""
 
 #: includes/admin/pages/network-settings.php:82
-#: includes/admin/settings/tab-general.php:84
+#: includes/admin/settings/tab-general.php:85
 #, php-format
 msgid "Your license key type for this site is %s."
 msgstr ""
 
 #: includes/admin/pages/network-settings.php:85
-#: includes/admin/settings/tab-general.php:87
+#: includes/admin/settings/tab-general.php:88
 msgid "Refresh Key"
 msgstr ""
 
 #: includes/admin/pages/network-settings.php:86
-#: includes/admin/settings/tab-general.php:88
+#: includes/admin/settings/tab-general.php:89
 msgid ""
 "Your license key type (handles updates and Addons). Click refresh if your "
 "license has been upgraded or the type is incorrect."
@@ -1181,12 +1213,35 @@ msgid ""
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:372
-#: includes/admin/settings/tab-general.php:183
+#: includes/admin/settings/tab-general.php:186
+msgid "Automatic Updates"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:376
+#: includes/admin/settings/tab-general.php:189
+msgid ""
+"Yes (Recommended) - Get the latest features, bugfixes, and security updates "
+"as they are released."
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:377
+#: includes/admin/settings/tab-general.php:190
+msgid ""
+"Minor Only - Only get bugfixes and security updates, but not major features."
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:378
+#: includes/admin/settings/tab-general.php:191
+msgid "None - Manually update everything."
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:383
+#: includes/admin/settings/tab-general.php:198
 msgid "Allow Usage Tracking"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:373
-#: includes/admin/settings/tab-general.php:184
+#: includes/admin/settings/register-settings.php:384
+#: includes/admin/settings/tab-general.php:199
 msgid ""
 "By allowing us to track usage data we can better help you, because we know "
 "with which WordPress configurations, themes and plugins we should test."
@@ -1209,72 +1264,72 @@ msgid "The callback function used for the %s setting is missing."
 msgstr ""
 
 #: includes/admin/settings/settings-api.php:969
-#: includes/admin/settings/tab-general.php:204
+#: includes/admin/settings/tab-general.php:219
 msgid "Save Changes"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:98
+#: includes/admin/settings/tab-general.php:99
 msgid "Analytics Profile"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:100
+#: includes/admin/settings/tab-general.php:101
 msgid "Google Authentication"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:106
+#: includes/admin/settings/tab-general.php:107
 msgid "Profile Active: "
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:108
+#: includes/admin/settings/tab-general.php:109
 msgid "Re-Authenticate with your Google account"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:109
+#: includes/admin/settings/tab-general.php:110
 msgid "Deauthenticate"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:112
+#: includes/admin/settings/tab-general.php:113
 msgid "Authenticate with your Google account"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:113
+#: includes/admin/settings/tab-general.php:114
 #, php-format
 msgid ""
 "Having issues automatically authenticating? %s Click here to authenticate "
 "manually %s."
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:131
+#: includes/admin/settings/tab-general.php:132
 msgid "Manually enter your UA code"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:135
+#: includes/admin/settings/tab-general.php:136
 msgid ""
 "Warning: If you use a manual UA code, you won't be able to use the dashboard "
 "or reports."
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:142
+#: includes/admin/settings/tab-general.php:143
 msgid "Disable Dashboard"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:143
+#: includes/admin/settings/tab-general.php:144
 msgid "Hide the dashboard and reports pages."
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:150
+#: includes/admin/settings/tab-general.php:151
 msgid "Pick Tracking Mode"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:156
+#: includes/admin/settings/tab-general.php:157
 msgid "GA.js (Deprecated)"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:157
+#: includes/admin/settings/tab-general.php:158
 msgid "Analytics.js (Universal Analytics)"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:159
+#: includes/admin/settings/tab-general.php:160
 #, php-format
 msgid ""
 "Warning: You're currently using deprecated ga.js tracking. We recommend "
@@ -1286,11 +1341,11 @@ msgid ""
 "(analytics.js) %1$sclick here%2$s."
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:169
+#: includes/admin/settings/tab-general.php:170
 msgid "Switch to JS events tracking"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:175
+#: includes/admin/settings/tab-general.php:176
 #, php-format
 msgid ""
 "Warning: You're currently using deprecated PHP based events tracking. We "

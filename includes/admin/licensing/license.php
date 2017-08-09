@@ -454,6 +454,10 @@ final class MonsterInsights_License {
             $option = get_option( 'monsterinsights_license' );
         }
 
+        if ( ! monsterinsights_is_pro_version() ) {
+            return;
+        }
+
         if ( is_multisite() && is_network_admin() ) {
             // If a key has expired, output nag about renewing the key.
             if ( isset( $option['is_expired'] ) && $option['is_expired'] ) :

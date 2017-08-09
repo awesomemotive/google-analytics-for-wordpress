@@ -106,31 +106,6 @@ jQuery( document ).ready( function( $ ) {
 		});
 	}
 
-	/**
-	* Dismissable Notices
-	* - Sends an AJAX request to mark the notice as dismissed
-	*/
-	$( 'div.monsterinsights-notice' ).on( 'click', '.notice-dismiss', function( e ) {
-		e.preventDefault();
-		$( this ).closest( 'div.monsterinsights-notice' ).fadeOut();
-
-		// If this is a dismissible notice, it means we need to send an AJAX request
-		if ( $( this ).hasClass( 'is-dismissible' ) ) {
-			$.post(
-				monsterinsights_admin.ajax,
-				{
-					action: 'monsterinsights_ajax_dismiss_notice',
-					nonce:  monsterinsights_admin.dismiss_notice_nonce,
-					notice: $( this ).parent().data( 'notice' )
-				},
-				function( response ) {
-				},
-				'json'
-			);
-		}
-
-	} );
-
 	function modelMatcher(params, data) {
 			data.parentText = data.parentText || "";
 
@@ -891,7 +866,7 @@ function monsterinsights_popupwindow(url, w, h) {
 	monsterinsights_closepopupwindow();
 	var left = (screen.width/2)-(w/2);
 	var top = (screen.height/8);
-	monsterinsights_authwindow = window.open(url, 'monsterinsights_ga_auth_window', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+	monsterinsights_authwindow = window.open(url, 'monsterinsights_ga_auth_window', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 }
 
 function monsterinsights_closepopupwindow() {

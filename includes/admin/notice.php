@@ -140,17 +140,6 @@ final class MonsterInsights_Notice_Admin {
         ?>
         <div class="monsterinsights-notice <?php echo 'monsterinsights-' . esc_attr( $type ) . '-notice' . $dismissible; ?>" data-notice="<?php echo esc_attr( $name ); ?>">
             <div class="monsterinsights-notice-icon <?php echo 'monsterinsights-' . esc_attr( $type ) . '-notice-icon'?>">
-                <?php
-                if ( $type === 'success' ) {
-                    echo '<i class="fa fa-check" aria-hidden="true"></i>';
-                } else if ( $type === 'alert' ){
-                    echo '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>';
-                } else if ( $type === 'info' ){
-                    echo '<i class="fa fa-info" aria-hidden="true"></i>';
-                } else {
-                    echo'<i class="fa fa-times" aria-hidden="true"></i>';
-                }
-                ?>
             </div>
             <div class="monsterinsights-notice-text <?php echo 'monsterinsights-' . esc_attr( $type ) . '-notice-text'?>">
                 <?php

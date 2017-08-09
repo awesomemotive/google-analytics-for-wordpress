@@ -133,17 +133,19 @@ class MonsterInsights_Updater {
         }
 
         // If the user cannot update plugins, stop processing here.
-        if ( ! current_user_can( 'update_plugins' ) ) {
+        if ( ! current_user_can( 'update_plugins' ) && ( ! defined( 'DOING_CRON' ) || ! DOING_CRON ) ) {
             return;
         }
 
         // Load the updater hooks and filters.
         add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'update_plugins_filter' ) );
-        //add_filter( 'set_site_transient_update_plugins', array( $this, 'set_site_transient_update_plugins' ) );
-        //add_filter( 'transient_update_plugins', array( $this, 'transient_update_plugins' ) );
+
         add_filter( 'http_request_args', array( $this, 'http_request_args' ), 10, 2 );
         add_filter( 'plugins_api', array( $this, 'plugins_api' ), 10, 3 );
 
+        // ManageWP premium update filters
+        //add_filter( 'mwp_premium_update_notification', array( $this, 'premium_update_push' ) );
+        //add_filter( 'mwp_premium_perform_update', array( $this, 'premium_update' ) );
     }
 
     /**
@@ -173,7 +175,12 @@ class MonsterInsights_Updater {
         // Infuse the update object with our data if the version from the remote API is newer.
         if ( isset( $this->update->new_version ) && version_compare( $this->version, $this->update->new_version, '<' ) ) {
             // The $plugin_update object contains new_version, package, slug and last_update keys.
-            $value->response[$this->plugin_path] = $this->update;
+            //$this->update->full_slug             = $this->plugin_slug;
+            //$this->update->name                  = $this->plugin_name;
+            $this->update->monsterinsights_plugin  = true;
+            $this->update->old_version             = $this->version;
+            $this->update->plugin                  = $this->plugin_path;
+            $value->response[$this->plugin_path]   = $this->update;
         }
 
         // Return the update object.
@@ -277,6 +284,40 @@ class MonsterInsights_Updater {
         // Return the new API object with our custom data.
         return $api;
 
+    }
+
+    // Integration with ManageWP
+    public function premium_update_push( $premium_update ) {
+        if ( ! function_exists( 'get_plugin_data' ) ) {
+            include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+        }
+
+        $update = $this->set_plugins_api( array() );
+        if ( ! empty( $update ) && version_compare( MONSTERINSIGHTS_VERSION, $update->version, '<' ) ) {
+            $plugin_data                = get_plugin_data( $update->slug );
+            $plugin_data['type']        = 'plugin';
+            $plugin_data['slug']        = $update->slug;
+            $plugin_data['new_version'] = $update->version;
+            $premium_update[]           = $plugin_data;
+        }
+        return $premium_update;
+    }
+
+    // Integration with ManageWP
+    public function premium_update( $premium_update ) {
+        if ( ! function_exists( 'get_plugin_data' ) ) {
+            include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+        }
+
+        $update = $this->set_plugins_api( array() );
+        if ( ! empty( $update ) && version_compare( MONSTERINSIGHTS_VERSION, $update->version, '<' ) ) {
+            $plugin_data                = get_plugin_data( $update->slug );
+            $plugin_data['type']        = 'plugin';
+            $plugin_data['slug']        = $update->slug;
+            $plugin_data['url']         = $update->download_link; // OR provide your own callback function for managing the update
+            array_push( $premium_update, $plugin_data );
+        }
+        return $premium_update;
     }
 
     /**

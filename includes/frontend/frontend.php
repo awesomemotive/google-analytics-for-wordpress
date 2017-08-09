@@ -29,6 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function monsterinsights_tracking_script( ) {
 
     $tracking_mode = monsterinsights_get_option( 'tracking_mode', 'analytics' );
+
     require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/class-tracking-abstract.php';
     $mode = '';
 
@@ -80,8 +81,8 @@ function monsterinsights_tracking_script( ) {
     do_action( 'monsterinsights_tracking_after_' . $mode );
     do_action( 'monsterinsights_tracking_after', $mode );
 }
-add_action( 'wp_head', 'monsterinsights_tracking_script', 8 );
-//add_action( 'login_head', 'monsterinsights_tracking_script', 8 );
+add_action( 'wp_head', 'monsterinsights_tracking_script', 6 );
+//add_action( 'login_head', 'monsterinsights_tracking_script', 6 );
 
 /**
  * Get frontend tracking options.
