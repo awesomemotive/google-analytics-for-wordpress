@@ -244,6 +244,8 @@ function monsterinsights_remove_conflicting_asset_files() {
 		'tweeetshare_notice_style', // TweetShare - Click To Tweet
 		'tweeetshare_theme_style', // TweetShare - Click To Tweet
 		'tweeetshare_tweet_box_style', // TweetShare - Click To Tweet
+		'soultype2-admin', // SoulType Plugin
+		'thesis-options-stylesheet', // Thesis Options Stylesheet
 	);
 	
 	$scripts = array(

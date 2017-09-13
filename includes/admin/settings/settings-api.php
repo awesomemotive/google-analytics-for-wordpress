@@ -415,7 +415,7 @@ add_filter( 'monsterinsights_settings_sanitize_password', 'monsterinsights_sanit
  */
 function monsterinsights_sanitize_number_field( $value, $id, $setting, $previous_value ) {
 	if ( is_int( (int) $value ) ) {
-		return $int;
+		return $value;
 	} else if ( is_int( $previous_value ) ) {
 		return $previous_value;
 	} else {
