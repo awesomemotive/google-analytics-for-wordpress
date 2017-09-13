@@ -281,7 +281,13 @@ function monsterinsights_deprecated_notices() {
             echo '</p>';
         echo '</div>';
     } else if ( empty( $updates) && ! isset( $notices ['monsterinsights_automatic_updates' ] ) ){ 
-           echo '<div class="notice notice-info is-dismissible monsterinsights-notice" data-notice="monsterinsights_automatic_updates">';
+        if ( defined( 'MONSTERINSIGHTS_SHOWING_EMPTY_CONFIG_NOTICE' ) && MONSTERINSIGHTS_SHOWING_EMPTY_CONFIG_NOTICE ) {
+            return;
+        }
+        if ( defined( 'MONSTERINSIGHTS_SHOWING_OPTIN_TRACKING_NOTICE' ) && MONSTERINSIGHTS_SHOWING_OPTIN_TRACKING_NOTICE ) {
+            return;
+        }
+        echo '<div class="notice notice-info is-dismissible monsterinsights-notice" data-notice="monsterinsights_automatic_updates">';
             echo '<p>';
             echo sprintf( esc_html__( 'Important: Please %1$sconfigure the Automatic Updates Settings%2$s in MonsterInsights.', 'google-analytics-for-wordpress' ), '<a href="' . $url .'">', '</a>' ); 
             echo '</p>';

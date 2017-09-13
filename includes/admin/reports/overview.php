@@ -102,8 +102,9 @@ final class MonsterInsights_Report_Overview extends MonsterInsights_Report {
 		$countries = ! empty( $data['countries'] ) ? $data['countries'] : false;
 		?>
 		<?php
-		if ( empty( $pageviews ) && empty( $top ) && empty( $sources ) && empty( $countries ) ) {
-			echo MonsterInsights()->notices->display_inline_notice( 'monsterinsights_standard_notice', '', __( 'If you\'ve just installed MonsterInsights, data may take up to 24 hours to populate here. Check back soon!','google-analytics-for-wordpress'), 'notice', false, array() );
+		if ( ( empty( $pageviews ) && empty( $top ) && empty( $sources ) && empty( $countries ) ) || ( empty( $top['total']['ga:pageviews'] ) ) || ( empty( $top['data'] ) ) ) {
+			echo MonsterInsights()->notices->display_inline_notice( 'monsterinsights_standard_notice', '', __( 'If you\'ve just installed MonsterInsights, data may take up to 24 hours to populate here. Check back soon!','google-analytics-for-wordpress'), 'info', false, array() );
+			return;
 		}
 
 		if ( ! empty( $pageviews ) ) {

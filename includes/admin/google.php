@@ -183,7 +183,7 @@ final class MonsterInsights_GA {
 	private function get_notices() {
 		// Notice for no manual or profile GA
 		if ( $this->status === 'empty' ) {
-			add_action( 'admin_notices', array( $this, 'monsterinsights_show_admin_config_empty_notice' ) );
+			add_action( 'admin_notices', array( $this, 'monsterinsights_show_admin_config_empty_notice' ),6 );
 		}
 
 		$current_page = filter_input( INPUT_GET, 'page' );
@@ -196,17 +196,17 @@ final class MonsterInsights_GA {
 		
 			// Notice for GA Access token expired (needs re-authenticate)
 			if ( $this->status === 'expired' ) {
-				add_action( 'admin_notices', array( $this, 'monsterinsights_show_admin_config_expired_notice' ) );
+				add_action( 'admin_notices', array( $this, 'monsterinsights_show_admin_config_expired_notice' ),6 );
 			}
 			
 			// Notice for Needs Permissions
 			if ( $this->status === 'needs-permissions' ) {
-				add_action( 'admin_notices', array( $this, 'monsterinsights_show_admin_config_needs_permissions_notice' ) );
+				add_action( 'admin_notices', array( $this, 'monsterinsights_show_admin_config_needs_permissions_notice' ),6 );
 			}
 
 			// Notice for trouble connecting to Google
 			if ( $this->status === 'blocked' ) {
-				add_action( 'admin_notices', array( $this, 'monsterinsights_show_admin_config_blocked_notice' ) );
+				add_action( 'admin_notices', array( $this, 'monsterinsights_show_admin_config_blocked_notice' ),6 );
 			}
 		}
 	}
@@ -794,6 +794,10 @@ final class MonsterInsights_GA {
 		$screen = get_current_screen(); 
 		if ( empty( $screen->id ) || strpos( $screen->id, 'monsterinsights' ) !== false ) {
 			return;
+		}
+		
+		if ( ! defined( 'MONSTERINSIGHTS_SHOWING_EMPTY_CONFIG_NOTICE' ) ) {
+			define( 'MONSTERINSIGHTS_SHOWING_EMPTY_CONFIG_NOTICE', true );
 		}
 		echo '<div class="error"><p>' . 
 			sprintf( esc_html__( 'Please configure your %1$sGoogle Analytics settings%2$s!', 'google-analytics-for-wordpress' ),

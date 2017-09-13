@@ -40,7 +40,7 @@ class MonsterInsights_Tracking {
 		add_action( 'monsterinsights_settings_save_general_end', array( $this, 'check_for_settings_optin' ) );
 		add_action( 'admin_head', array( $this, 'check_for_optin' ) );
 		add_action( 'admin_head', array( $this, 'check_for_optout' ) );
-		add_action( 'admin_notices', array( $this, 'monsterinsights_admin_notice' ) );
+		add_action( 'admin_notices', array( $this, 'monsterinsights_admin_notice' ),7 );
 		add_filter( 'cron_schedules', array( $this, 'add_schedules' ) );
 		add_action( 'monsterinsights_daily_cron', array( $this, 'send_checkin' ) );
 	}
@@ -69,6 +69,7 @@ class MonsterInsights_Tracking {
 		$theme         = $theme_data->Name . ' ' . $theme_data->Version;
 		$tracking_mode = monsterinsights_get_option( 'tracking_mode', 'analytics' );
 		$events_mode   = monsterinsights_get_option( 'events_mode', 'none' );
+		$update_mode   = monsterinsights_get_option( 'automatic_updates', false );
 
 		if ( $tracking_mode === false ) {
 			$tracking_mode = 'analytics';
@@ -76,6 +77,10 @@ class MonsterInsights_Tracking {
 
 		if ( $events_mode === false ) {
 			$events_mode = 'none';
+		}
+
+		if ( $update_mode === false ) {
+			$update_mode = 'none';
 		}
 
 		$data['php_version'] = phpversion();
@@ -92,6 +97,7 @@ class MonsterInsights_Tracking {
 		$data['setttings']     = monsterinsights_get_options();
 		$data['tracking_mode'] = $tracking_mode;
 		$data['events_mode']   = $events_mode;
+		$data['autoupdate']    = $update_mode;
 
 		// Retrieve current plugin information
 		if( ! function_exists( 'get_plugins' ) ) {
@@ -278,6 +284,10 @@ class MonsterInsights_Tracking {
 			return;
 		}
 
+		if ( defined( 'MONSTERINSIGHTS_SHOWING_EMPTY_CONFIG_NOTICE' ) && MONSTERINSIGHTS_SHOWING_EMPTY_CONFIG_NOTICE ) {
+			return;
+		}
+		
 		if (
 			stristr( network_site_url( '/' ), 'dev'       ) !== false ||
 			stristr( network_site_url( '/' ), 'localhost' ) !== false ||
@@ -285,6 +295,9 @@ class MonsterInsights_Tracking {
 		) {
 			update_option( 'monsterinsights_tracking_notice', '1' );
 		} else {
+			if ( ! defined( 'MONSTERINSIGHTS_SHOWING_OPTIN_TRACKING_NOTICE' ) ) {
+				define( 'MONSTERINSIGHTS_SHOWING_OPTIN_TRACKING_NOTICE', true );
+			}
 			$optin_url  = add_query_arg( 'mi_action', 'opt_into_tracking' );
 			$optout_url = add_query_arg( 'mi_action', 'opt_out_of_tracking' );
 			echo '<div class="updated"><p>';
