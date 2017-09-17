@@ -84,7 +84,8 @@ if ( ! class_exists( 'AM_Notification' ) ) {
 		 */
 		public function custom_post_type() {
 			register_post_type( 'amn_' . $this->plugin, array(
-				'supports' => false
+				'supports' => false,
+				'can_export' => false
 			) );
 		}
 
