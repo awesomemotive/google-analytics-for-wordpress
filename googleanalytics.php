@@ -8,7 +8,7 @@
  *
  * Version:             6.2.3
  * Requires at least:   3.9.0
- * Tested up to:        4.8.1
+ * Tested up to:        4.9.1
  *
  * License:             GPL v3
  * 
