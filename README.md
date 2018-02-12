@@ -4,11 +4,11 @@ The best Google Analytics Integration for WordPress. Period.<br />
 ![Total Downloads](https://img.shields.io/wordpress/plugin/dt/google-analytics-for-wordpress.svg?maxAge=2592000)
 ![WordPress Compatibility](https://img.shields.io/wordpress/v/google-analytics-for-wordpress.svg?maxAge=2592000)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.2-8892BF.svg?style=flat-square)](https://php.net/)
-[![Build Status](https://img.shields.io/travis/awesomemotive/google-analytics-for-wordpress/master.svg?maxAge=2592000)](https://travis-ci.org/awesomemotive/google-analytics-for-wordpress) 
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/awesomemotive/google-analytics-for-wordpress.svg)](https://scrutinizer-ci.com/gawesomemotive/google-analytics-for-wordpress/?branch=master) 
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/awesomemotive/google-analytics-for-wordpress.svg?maxAge=2592000)](https://scrutinizer-ci.com/g/awesomemotive/google-analytics-for-wordpress/?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d7e64d1841794c249ea74f1e0e81a0e2)](https://www.codacy.com/app/chriscct7/google-analytics-for-wordpress?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=awesomemotive/google-analytics-for-wordpress&amp;utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg)](https://github.com/awesomemotive/google-analytics-for-wordpress/blob/master/license.txt)
+[![Build Status](https://scrutinizer-ci.com/g/awesomemotive/google-analytics-for-wordpress/badges/build.png?b=master)](https://scrutinizer-ci.com/g/awesomemotive/google-analytics-for-wordpress/build-status/master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/awesomemotive/google-analytics-for-wordpress/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/awesomemotive/google-analytics-for-wordpress/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/awesomemotive/google-analytics-for-wordpress/?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2944b6d77fa342f59764e79285da02bf)](https://www.codacy.com/app/chriscct7/google-analytics-for-wordpress?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=awesomemotive/google-analytics-for-wordpress&amp;utm_campaign=Badge_Grade)
 
 ## Contributions ##
 Anyone is welcome to contribute to MonsterInsights. Please read the [guidelines for contributing](https://github.com/awesomemotive/google-analytics-for-wordpress/blob/master/CONTRIBUTING.md) to this repository.
@@ -52,8 +52,6 @@ MonsterInsights adheres to the WordPress core PHP standard with a couple deviati
 
 ### Additions ###
 
-- Required: Functions should be unit testable, documented and unit-tested
-	- When submitting new functions, ensure the functions are easily testable by PHPUnit where applicable. If altering existing functions, adjust and add/remove unit tests and documentation covering the function where applicable. If you're adding/editing a function in a class, make sure to add `@access {private|public|protected}`
 - Required: Code should be formatted using tabs, set to size of 4 spaces
 	- 4 spaces per tab is the universally accepted default tab size. Tabs are easier to read through in most editors. Additionally, they take up less file space than 4 spaces.
 - Required: Filter and function names should use underscores, not dashes
@@ -83,56 +81,50 @@ Via the WordPress.org translation system located [here](https://www.wordpress.or
 
 Please open a [issue](https://github.com/awesomemotive/google-analytics-for-wordpress/issues) for it.
 
-## Documentation ##
-
-MonsterInsights has adopted the WordPress core PHP documentation standard. See https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/ for information on documenting using this standard.
-
-MonsterInsights is compatible with both PHPDocumentor2 and PHPDox.
-
-Soon, you'll also be able to build phpDocumenter and PHPDox documentation for MonsterInsights by running `robo documentation`.
-
-In the meantime you can run `php phpDocumentor.phar run` and `php phpdox.phar` respectively. 
-
-Be aware in order to make the graphs in PHPDocumentor2 you must have Graphviz installed.
-
-## Automation ##
+## Automation and External Libraries ##
 
 A project goal of MonsterInsights, is to embrace automation whenever possible.
 
 The MonsterInsights project taskrunner standard is Robo, and tasks for this project can be found in RoboFile.php (not available to public), and executed via:
 robo {command}
 
-Some goals of the project moving forward is to allow for documentation of MonsterInsights, as well as releases of MonsterInsights with as minimal effort required.
+The entire deployment process, the thing that makes a new MonsterInsights version and releases it, is completely automated (no human interaction required) via Robo.
 
 The MonsterInsights project dependency management system is Composer. Please make sure you don't accidentily override our composer file in your PRs.
 
-## PHP Unit Testing ##
+We also use Node/NPM to manage packages used by our plugin primarily for admin styling and functionality.
 
-A goal of this project is to make all functionality unit tested. 
+We generally will always use the latest stable version of any Composer or NPM dependency, pulled and packaged during our automated release process, when possible. Some reasons we might use an out of date package include (but are not limited to):
 
-The project goal is to become code covered. Over time, we will release our internal unit tests to the public repo.
+- Lack of PHP version support
+- A bug in the current version of the dependency that affects our plugin's use of the dependency
+- Lack of time to test the current version of the dependency before the release of our plugin
+- A security issue, which may or may not be public
+- A compatibility issue between a dependency and a different dependency
+- A change in the dependency that affects MonsterInsights's ability to be conflict-free with other plugins
+- and so forth
 
-This project uses Travis-CI Free & Pro for continous integration on push and pull requests. 
+When possible, we will always override/prefix all CSS rules, JS functions, and PHP class and function names in the dependencies we include when possible. With ~2 million active installs, not doing so is not an option (too many badly coded plugins out there). This process is completely automated, and done on release, between the step when composer/npm brings down the latest dependency versions, and when the zip files are autogenerated.
 
-Code coverage analysis, as well as general project code quality is available from Codacy.
+When possible, we will also minify all JS/CSS files from dependencies into a single file that gets used, except when there's compatibility issues, or if there's a bug in the parser of the CSS/JS minifier we use.
 
-Perhaps you'd like to run our unit tests locally? 
+## Warning About Package Managing MonsterInsights ##
 
-Awesome, we offer 3 options for doing that:
+We do not maintain, nor have any current plans, to allow our plugin to be installed via Composer, Packagist, or other similar systems.
 
-- PHPCI
-- JoliCI (note: there's a bug that prevents this from working in Windows envs atm caused by a TLS verified call in dependency docker-php caused by a bug in openssl (which isn't changeable on WAMP). Ref: https://github.com/stage1/docker-php/issues/140 )
-- Standard PHPUnit
+We also do not recommend you via direct code or a management system (such as via a GitHub repo download Composer package), assume our plugin, on any branch, will be the current and/or stable branch of our plugin.
 
-JoliCI additionally allows you to parse and run the Travis-CI suite locally using Docker
+The only official and maintained source of our plugin is on WordPress.org for the Lite version, and from the My Account area (or via the automatic updates) for the Pro version.
 
 ## Development Checkout Procedure ##
 
-`php composer.phar install`
+`composer install`
+`cd assets`
+`npm update`
 
-or soon, the recommended way will be 
+or if you're a company employee, use the Robo checkout command:
 
-`php robo.phar setup`
+`robo devsetup`
 
 ## Constants ##
 
@@ -156,15 +148,15 @@ Plugin defined:
 
 User defined:
 - `MONSTERINSIGHTS_LICENSE_KEY`
-	- MonsterInsights license key to use
+	- MonsterInsights license key to use as the fallback (please use auth though not this, as you can do this on the network panel now on multisites)
 - `MONSTERINSIGHTS_FORCE_ACTIVATION`
 	- Override the WP version activation check. Use at your own risk.
 - `MONSTERINSIGHTS_AIRPLANE_MODE`
 	- For future use. Currently does nothing. Useful for local site testing.
 - `MONSTERINSIGHTS_GA_UA`
 	- Don't use oAuth or the wizard, but hardcode to use UA. Note, this will not allow backend reports to work. You can also use the filter `monsterinsights_get_ua`.
-- `MONSTERINSIGHTS_MULTISITE_GA_UA`. See UA priority rules below.
-	- You can use this constant to force the same the same UA for all subsites of an MS install. Note, this will not allow backend reports to work. See UA priority rules below.
+- `MONSTERINSIGHTS_MULTISITE_GA_UA`.
+	- You can use this constant to force the same the same UA for all subsites of an MS install. Note, this will not allow backend reports to work.
 - `MONSTERINSIGHTS_DEBUG_MODE`
 	- Enables analytics.js and events tracking debug mode. Sets asset version to time(). In future, turns on logging to file for logging class. Available to turn on in backend via debug_mode setting.
 
@@ -190,28 +182,3 @@ We declare these for code that relies on old constants. Please upgrade your code
 	- Use `MONSTERINSIGHTS_PLUGIN_DIR` instead.
 - `GAWP_URL`
 	- Use `MONSTERINSIGHTS_PLUGIN_URL` instead.
-
-
-## Google Analytics UA Priority Rules
-These rules dictate which Google Analytics UA code is used. 
-The order of priority is as follows (top of list has most priority):
-
-- `monsterinsights_get_ua` filter
-- MonsterInsights per site settings for manual UA or oAuth retrieved UA
-	- Note, these settings are hidden when MONSTERINSIGHTS_GA_UA is defined
-- `MONSTERINSIGHTS_GA_UA` constant
-- `MONSTERINSIGHTS_MS_GA_UA` constant (Multisite use only)
-
-
-As a result of this order of priority, on MS installs you can use the `MONSTERINSIGHTS_MS_GA_UA` constant to 
-set the default UA for all of the subsites of an MS install, and then override that on a subsite basis using either
-the UI in the settings panel, the `MONSTERINSIGHTS_GA_UA` constant or the `monsterinsights_get_ua` filter. 
-
-Let's say you run a really large MS install, like for a university, and all of your sites are {sitename}.mysite.com or 
-mysite.com/{example}/. In this case, you can quickly deploy MI for your entire network by network activating MonsterInsights
-and using the `MONSTERINSIGHTS_MS_GA_UA` constant. This is a new feature, available starting with MonsterInsights 6.0.0.
-
-Also, since you can now filter each option value retrieved (via the filter in the Option's class's get_option() function ),
-you can even set the values used for each setting. If you want, you can disable access to site users by setting the menu capability for MonsterInsights
-to a custom or non-existant capability, and as a result run MonsterInsights without any user even needing to see the WordPress backend for
-MonsterInsights.
