@@ -35,14 +35,13 @@ class MonsterInsights_Tracking {
 	 * @access public
 	 */
 	public function __construct() {
-
 		add_action( 'init', array( $this, 'schedule_send' ) );
 		add_action( 'monsterinsights_settings_save_general_end', array( $this, 'check_for_settings_optin' ) );
 		add_action( 'admin_head', array( $this, 'check_for_optin' ) );
 		add_action( 'admin_head', array( $this, 'check_for_optout' ) );
-		add_action( 'admin_notices', array( $this, 'monsterinsights_admin_notice' ),7 );
 		add_filter( 'cron_schedules', array( $this, 'add_schedules' ) );
 		add_action( 'monsterinsights_daily_cron', array( $this, 'send_checkin' ) );
+		add_action( 'monsterinsights_send_tracking_data', array( $this, 'send_tracking_data' ) );
 	}
 
 	/**
@@ -52,7 +51,7 @@ class MonsterInsights_Tracking {
 	 * @return bool
 	 */
 	private function tracking_allowed() {
-		return (bool) monsterinsights_get_option( 'anonymous_data', false );
+		return (bool) monsterinsights_get_option( 'anonymous_data', false ) || monsterinsights_is_pro_version();
 	}
 
 	/**
@@ -92,9 +91,9 @@ class MonsterInsights_Tracking {
 		$data['url']         = home_url();
 		$data['theme']       = $theme;
 		$data['email']       = get_bloginfo( 'admin_email' );
-		$data['key']         = monsterinsights_get_license();
+		$data['key']         = monsterinsights_get_license_key();
 		$data['sas']         = monsterinsights_get_shareasale_id();
-		$data['setttings']     = monsterinsights_get_options();
+		$data['settings']     = monsterinsights_get_options();
 		$data['tracking_mode'] = $tracking_mode;
 		$data['events_mode']   = $events_mode;
 		$data['autoupdate']    = $update_mode;
@@ -130,11 +129,7 @@ class MonsterInsights_Tracking {
 	public function send_checkin( $override = false, $ignore_last_checkin = false ) {
 
 		$home_url = trailingslashit( home_url() );
-		if ( $home_url === 'https://www.monsterinsights.com/'     || 
-			 $home_url === 'https://beta.monsterinsights.com/'    ||
-			 $home_url === 'https://staging.monsterinsights.com/' ||
-			 $home_url === 'https://testing.monsterinsights.com/'
-		) {
+		if ( strpos( $home_url, 'monsterinsights.com' ) !== false ) {
 			return false;
 		}
 
@@ -144,15 +139,23 @@ class MonsterInsights_Tracking {
 
 		// Send a maximum of once per week
 		$last_send = $this->get_last_send();
-		if( is_numeric( $last_send ) && $last_send > strtotime( '-1 week' ) && ! $ignore_last_checkin ) {
+		if ( is_numeric( $last_send ) && $last_send > strtotime( '-1 week' ) && ! $ignore_last_checkin ) {
 			return false;
 		}
 
-		$this->setup_data();
+		$hours   = (int) rand( 0 , 23 );
+		$minutes = (int) rand( 0 , 59 );
+		$seconds = (int) rand( 0 , 59 );
+		wp_schedule_single_event( time() + ( $hours * $minutes * $seconds ), 'monsterinsights_send_tracking_data' );
+		return true;
+	}
 
-		$request = wp_remote_post( 'https://www.monsterinsights.com/?edd_action=checkin', array(
+	public function send_tracking_data( ) {
+
+		$this->setup_data();
+		$request = wp_remote_post( 'https://miusage.com/v1/checkin/', array(
 			'method'      => 'POST',
-			'timeout'     => 20,
+			'timeout'     => 5,
 			'redirection' => 5,
 			'httpversion' => '1.1',
 			'blocking'    => true,
@@ -160,12 +163,8 @@ class MonsterInsights_Tracking {
 			'user-agent'  => 'MI/' . MONSTERINSIGHTS_VERSION . '; ' . get_bloginfo( 'url' )
 		) );
 
-		if( is_wp_error( $request ) ) {
-			return $request;
-		}
-
+		// If we have completed successfully, recheck in 1 week
 		update_option( 'mi_tracking_last_send', time() );
-
 		return true;
 
 	}
@@ -180,6 +179,10 @@ class MonsterInsights_Tracking {
 	 */
 	public function check_for_settings_optin() {
 		if ( ! current_user_can( 'monsterinsights_save_settings' ) ) {
+			return;
+		}
+
+		if ( monsterinsights_is_pro_version() ) {
 			return;
 		}
 
@@ -209,7 +212,11 @@ class MonsterInsights_Tracking {
 		if ( ! current_user_can( 'monsterinsights_save_settings' ) ) {
 			return;
 		}
-		
+
+		if ( monsterinsights_is_pro_version() ) {
+			return;
+		}
+
 		monsterinsights_update_option( 'anonymous_data', 1 );
 		$this->send_checkin( true );
 		update_option( 'monsterinsights_tracking_notice', 1 );
@@ -231,6 +238,10 @@ class MonsterInsights_Tracking {
 		}
 
 		if ( ! current_user_can( 'monsterinsights_save_settings' ) ) {
+			return;
+		}
+
+		if ( monsterinsights_is_pro_version() ) {
 			return;
 		}
 
@@ -259,52 +270,6 @@ class MonsterInsights_Tracking {
 		if ( ! wp_next_scheduled( 'monsterinsights_daily_cron' ) ) {
 			// Set the next event of fetching data
 			wp_schedule_event( strtotime( date( 'Y-m-d', strtotime( 'tomorrow' ) ) . ' 00:01:00 ' ), 'daily', 'monsterinsights_daily_cron' );
-		}
-	}
-
-	/**
-	 * Display the admin notice to users that have not opted-in or out
-	 *
-	 * @access public
-	 * @return void
-	 */
-	public function monsterinsights_admin_notice() {
-
-		$hide_notice = get_option( 'monsterinsights_tracking_notice' );
-
-		if ( $hide_notice ) {
-			return;
-		}
-
-		if ( monsterinsights_get_option( 'anonymous_data', false ) ) {
-			return;
-		}
-
-		if ( ! current_user_can( 'monsterinsights_save_settings' ) ) {
-			return;
-		}
-
-		if ( defined( 'MONSTERINSIGHTS_SHOWING_EMPTY_CONFIG_NOTICE' ) && MONSTERINSIGHTS_SHOWING_EMPTY_CONFIG_NOTICE ) {
-			return;
-		}
-		
-		if (
-			stristr( network_site_url( '/' ), 'dev'       ) !== false ||
-			stristr( network_site_url( '/' ), 'localhost' ) !== false ||
-			stristr( network_site_url( '/' ), ':8888'     ) !== false // This is common with MAMP on OS X
-		) {
-			update_option( 'monsterinsights_tracking_notice', '1' );
-		} else {
-			if ( ! defined( 'MONSTERINSIGHTS_SHOWING_OPTIN_TRACKING_NOTICE' ) ) {
-				define( 'MONSTERINSIGHTS_SHOWING_OPTIN_TRACKING_NOTICE', true );
-			}
-			$optin_url  = add_query_arg( 'mi_action', 'opt_into_tracking' );
-			$optout_url = add_query_arg( 'mi_action', 'opt_out_of_tracking' );
-			echo '<div class="updated"><p>';
-			echo esc_html__( 'Allow MonsterInsights to track plugin usage? Opt-in to tracking and our newsletter to stay informed of the latest changes to MonsterInsights and help us ensure compatibility.', 'google-analytics-for-wordpress' );
-			echo '&nbsp;<a href="' . esc_url( $optin_url ) . '" class="button-secondary">' . __( 'Allow', 'google-analytics-for-wordpress' ) . '</a>';
-			echo '&nbsp;<a href="' . esc_url( $optout_url ) . '" class="button-secondary">' . __( 'Do not allow', 'google-analytics-for-wordpress' ) . '</a>';
-			echo '</p></div>';
 		}
 	}
 

@@ -33,6 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return array Array of caps needed to have this meta cap. If returned array is empty, user has the capability.
  */
 function monsterinsights_add_capabilities( $caps, $cap, $user_id, $args ) {
+ 
     switch( $cap ) {
         case 'monsterinsights_view_dashboard' :
             $roles = monsterinsights_get_option( 'view_reports', array() );

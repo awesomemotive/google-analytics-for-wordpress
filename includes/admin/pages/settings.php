@@ -23,7 +23,11 @@ function monsterinsights_is_settings_page() {
     }
 
     $settings_page = false;
-    if ( ! empty( $admin_page_hooks['monsterinsights_dashboard'] ) && $current_screen->id === $admin_page_hooks['monsterinsights_dashboard'] . '_page_monsterinsights_settings' ) {
+    if ( ! empty( $admin_page_hooks['monsterinsights_settings'] ) && $current_screen->id === $admin_page_hooks['monsterinsights_settings'] ) {
+        $settings_page = true;
+    }
+
+    if ( ! empty( $admin_page_hooks['monsterinsights_reports'] ) && $current_screen->id === $admin_page_hooks['monsterinsights_reports'] ) {
         $settings_page = true;
     }
 
@@ -31,6 +35,18 @@ function monsterinsights_is_settings_page() {
         $settings_page = true;
     }
 
+    if ( $current_screen->id === 'insights_page_monsterinsights_settings' ) {
+        $settings_page = true;
+    }
+
+    if ( $current_screen->id === 'insights_page_monsterinsights_tracking' ) {
+        $settings_page = true;
+    }
+
+    if ( ! empty( $current_screen->base ) && strpos( $current_screen->base, 'monsterinsights_network' ) !== false ) {
+        $settings_page = true;
+    }
+   
     return $settings_page;
 }
 
@@ -63,18 +79,9 @@ function monsterinsights_settings_page() {
             <?php echo esc_html__( 'General', 'google-analytics-for-wordpress' ); ?>
         </a>
 
-        <a class="monsterinsights-main-nav-item monsterinsights-nav-item" href="#monsterinsights-main-tab-tracking" title="<?php echo esc_attr( __( 'Tracking', 'google-analytics-for-wordpress' ) ); ?>">
+        <a class="monsterinsights-main-nav-item monsterinsights-nav-item" href="<?php echo admin_url('admin.php?page=monsterinsights_tracking#monsterinsights-main-tab-tracking?monsterinsights-sub-tab-engagement');?>" title="<?php echo esc_attr( __( 'Tracking', 'google-analytics-for-wordpress' ) ); ?>">
             <?php echo esc_html__( 'Tracking', 'google-analytics-for-wordpress' ); ?>
         </a>
-        <!--
-        <a class="monsterinsights-main-nav-item monsterinsights-nav-item" href="#monsterinsights-main-tab-status" title="<?php //echo esc_attr( __( 'Status', 'google-analytics-for-wordpress' ) ); ?>">
-            <?php //echo esc_html__( 'Status', 'google-analytics-for-wordpress' ); ?>
-        </a>
-
-        <a class="monsterinsights-main-nav-item monsterinsights-nav-item" href="#monsterinsights-main-tab-support" title="<?php //echo esc_attr( __( 'Support', 'google-analytics-for-wordpress' ) ); ?>">
-            <?php //echo esc_html__( 'Support', 'google-analytics-for-wordpress' ); ?>
-        </a>
-         -->
     </h1>
 
 
@@ -84,17 +91,6 @@ function monsterinsights_settings_page() {
          <div id="monsterinsights-main-tab-general" class="monsterinsights-main-nav-tab monsterinsights-nav-tab monsterinsights-active">
             <?php monsterinsights_settings_general_tab(); ?>
         </div>
-         <div id="monsterinsights-main-tab-tracking" class="monsterinsights-main-nav-tab monsterinsights-nav-tab">
-            <?php monsterinsights_settings_tracking_tab(); ?>
-        </div>
-        <!--
-         <div id="monsterinsights-main-tab-status" class="monsterinsights-main-nav-tab monsterinsights-nav-tab">
-            <?php //monsterinsights_settings_status_tab(); ?>
-        </div>
-         <div id="monsterinsights-main-tab-support" class="monsterinsights-main-nav-tab monsterinsights-nav-tab">
-            <?php //monsterinsights_settings_support_tab(); ?>
-        </div>
-        -->
     </div>
     <?php
 }
@@ -201,112 +197,3 @@ function monsterinsights_make_checkbox( $option_id, $title = '', $description = 
     ob_end_clean();
     return $input_field;
 }
-
-function monsterinsights_switch_to_analyticsjs() {
-    $nonce = '';
-    if ( ! empty( $_REQUEST['monsterinsights-switch-to-analyticsjs-nonce'] ) ) {
-        $nonce = 'monsterinsights-switch-to-analyticsjs-nonce';
-    } else if ( ! empty( $_REQUEST['_wpnonce'] ) ) {
-        $nonce = '_wpnonce';
-    }
-    
-    if ( empty( $nonce ) ) {
-         return;
-    }
-    
-    if ( ! wp_verify_nonce( $_REQUEST[$nonce], 'monsterinsights-switch-to-analyticsjs-nonce' ) ) {
-        return;
-    }
-
-    if ( empty( $_REQUEST['monsterinsights-action'] ) || $_REQUEST['monsterinsights-action'] !== 'switch_to_analyticsjs' ) {
-        return;
-    }
-
-    if ( ! current_user_can( 'monsterinsights_save_settings' ) ) {
-        wp_die( esc_html__( 'You do not have permission to manage MonsterInsights settings', 'google-analytics-for-wordpress' ), esc_html__( 'Error', 'google-analytics-for-wordpress' ), array( 'response' => 403 ) );
-    }
-
-    $return       = '';
-    if ( ! empty( $_REQUEST['return'] ) && monsterinsights_is_settings_tab( $_REQUEST['return'] ) ) {
-        $return = admin_url( 'admin.php?page=monsterinsights_settings&monsterinsights-message=tracking_mode_switched#monsterinsights-main-tab-tracking?monsterinsights-sub-tab-') . $_REQUEST['return'];
-        $return = add_query_arg( 'return', $_REQUEST['return'], $return );
-    } else {
-        $return = admin_url( 'admin.php?page=monsterinsights_settings&monsterinsights-message=tracking_mode_switched');
-    }
-    monsterinsights_update_option( 'tracking_mode', 'analytics' );
-    wp_safe_redirect( $return );exit;
-}
-add_action( 'admin_init', 'monsterinsights_switch_to_analyticsjs',9 );
-
-function monsterinsights_switched_to_analyticsjs() {
-    echo monsterinsights_get_message( 'success', esc_html__( 'Successfully migrated to Universal Analytics (analytics.js)!', 'google-analytics-for-wordpress' ) );
-}
-
-function monsterinsights_switch_to_analyticsjs_show_notice() {
-    if ( empty( $_REQUEST['monsterinsights-message'] ) || $_REQUEST['monsterinsights-message'] !== 'tracking_mode_switched' ) {
-        return;
-    }
-    
-    if ( ! empty( $_REQUEST['return'] ) && monsterinsights_is_settings_tab( $_REQUEST['return'] ) ) {
-        add_action( 'monsterinsights_tracking_' . $_REQUEST['return'] . '_tab_notice', 'monsterinsights_switched_to_analyticsjs' );
-    } else {
-        add_action( 'monsterinsights_settings_general_tab_notice', 'monsterinsights_switched_to_analyticsjs' );
-    }
-}
-add_action( 'admin_init', 'monsterinsights_switch_to_analyticsjs_show_notice', 11 ); 
-
-
-
-function monsterinsights_switch_to_jsevents() {
-    $nonce = '';
-    if ( ! empty( $_REQUEST['monsterinsights-switch-to-jsevents-nonce'] ) ) {
-        $nonce = 'monsterinsights-switch-to-jsevents-nonce';
-    } else if ( ! empty( $_REQUEST['_wpnonce'] ) ) {
-        $nonce = '_wpnonce';
-    }
-    
-    if ( empty( $nonce ) ) {
-         return;
-    }
-    
-    if ( ! wp_verify_nonce( $_REQUEST[$nonce], 'monsterinsights-switch-to-jsevents-nonce' ) ) {
-        return;
-    }
-
-    if ( empty( $_REQUEST['monsterinsights-action'] ) || $_REQUEST['monsterinsights-action'] !== 'switch_to_jsevents' ) {
-        return;
-    }
-
-    if ( ! current_user_can( 'monsterinsights_save_settings' ) ) {
-        wp_die( esc_html__( 'You do not have permission to manage MonsterInsights settings', 'google-analytics-for-wordpress' ), esc_html__( 'Error', 'google-analytics-for-wordpress' ), array( 'response' => 403 ) );
-    }
-
-    $return       = '';
-    if ( ! empty( $_REQUEST['return'] ) && monsterinsights_is_settings_tab( $_REQUEST['return'] ) ) {
-        $return = admin_url( 'admin.php?page=monsterinsights_settings&monsterinsights-message=jsvents_mode_switched#monsterinsights-main-tab-tracking?monsterinsights-sub-tab-') . $_REQUEST['return'];
-        $return = add_query_arg( 'return', $_REQUEST['return'], $return );
-    } else {
-        $return = admin_url( 'admin.php?page=monsterinsights_settings&monsterinsights-message=jsvents_mode_switched');
-    }
-    monsterinsights_update_option( 'events_mode', 'js' );
-    wp_safe_redirect( $return );exit;
-}
-add_action( 'admin_init', 'monsterinsights_switch_to_jsevents',9 );
-
-function monsterinsights_switched_to_jsevents() {
-    echo monsterinsights_get_message( 'success', esc_html__( 'Successfully migrated to JS events tracking!', 'google-analytics-for-wordpress' ) );
-}
-
-function monsterinsights_switch_to_jsevents_show_notice() {
-    if ( empty( $_REQUEST['monsterinsights-message'] ) || $_REQUEST['monsterinsights-message'] !== 'jsvents_mode_switched' ) {
-        return;
-    }
-    
-    $allowed_tabs = array( 'engagement', 'performance', 'ecommerce', 'demographics', 'dimensions', 'goptimize' );
-    if ( ! empty( $_REQUEST['return'] ) && in_array( $_REQUEST['return'], $allowed_tabs ) ) {
-        add_action( 'monsterinsights_tracking_' . $_REQUEST['return'] . '_tab_notice', 'monsterinsights_switched_to_jsevents' );
-    } else {
-        add_action( 'monsterinsights_settings_general_tab_notice', 'monsterinsights_switched_to_jsevents' );
-    }
-}
-add_action( 'admin_init', 'monsterinsights_switch_to_jsevents_show_notice', 11 ); 

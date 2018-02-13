@@ -61,39 +61,61 @@ function monsterinsights_get_option( $key = '', $default = false ) {
  * @return string The UA to use.
  */
 function monsterinsights_get_ua() {
-	$ua = '';
-	if ( is_multisite() ) {
-		if ( defined( 'MONSTERINSIGHTS_MS_GA_UA' ) && monsterinsights_is_valid_ua( MONSTERINSIGHTS_MS_GA_UA ) ) {
-			$ua = MONSTERINSIGHTS_MS_GA_UA;
+	// Try getting it from the auth UA
+	$ua = MonsterInsights()->auth->get_ua();
+
+	// If that didn't work, try the manual UA at the site level
+	if ( empty( $ua ) ) {
+		$ua = MonsterInsights()->auth->get_manual_ua();	
+		// If that didn't work try getting it from the network
+		if ( empty( $ua ) ) {
+			$ua = monsterinsights_get_network_ua();
+			// If that didn't work, try getting it from the overall constant. If it's not there, leave it blank
+			if ( empty( $ua ) ) {
+				$ua = defined( 'MONSTERINSIGHTS_GA_UA' ) && MONSTERINSIGHTS_GA_UA ? monsterinsights_is_valid_ua( MONSTERINSIGHTS_GA_UA ) : '';
+			}
 		}
 	}
 
-	if ( is_multisite() ) {
-		$ua_code = monsterinsights_is_valid_ua( get_site_option( 'monsterinsights_network_manual_ua_code', '' ) );
-		if ( $ua_code ) {
-			$ua = $ua_code;
-		}
-	}
-
-	if ( defined( 'MONSTERINSIGHTS_GA_UA' ) && monsterinsights_is_valid_ua( MONSTERINSIGHTS_GA_UA ) ) {
-		$ua = MONSTERINSIGHTS_GA_UA;
-	}
-
-	$ua_code = monsterinsights_is_valid_ua( monsterinsights_get_option( 'analytics_profile_code', '' ) );
-
-	if ( $ua_code ) {
-		$ua = $ua_code;
-	}
-
-	$manual_ua_code = monsterinsights_is_valid_ua( monsterinsights_get_option( 'manual_ua_code', '' ) );
-
-	if ( $manual_ua_code ) {
-		$ua = $manual_ua_code;
-	}
-
+	// Feed through the filter
+	$pre_filter = $ua;
 	$ua = apply_filters( 'monsterinsights_get_ua', $ua );
 
-	return monsterinsights_is_valid_ua( $ua );
+	// Only run through monsterinsights_is_valid_ua if it's different than pre-filter
+	return $pre_filter === $ua ? $ua : monsterinsights_is_valid_ua( $ua );
+}
+
+/**
+ * Helper method for getting the network UA string.
+ *
+ * @since 6.0.0
+ * @access public
+ *
+ * @return string The UA to use.
+ */
+function monsterinsights_get_network_ua() {
+	if ( is_multisite() ) {	
+		return '';
+	}
+	
+	// First try network auth UA
+	$ua = MonsterInsights()->auth->get_network_ua();
+	if ( ! empty( $ua ) ) {
+		return $ua;
+	}
+	
+	// Then try manual network UA
+	$ua = MonsterInsights()->auth->get_network_manual_ua();
+	if ( ! empty( $ua ) ) {
+		return $ua;
+	}
+
+	// See if the constant is defined
+	if ( defined( 'MONSTERINSIGHTS_MS_GA_UA' ) && monsterinsights_is_valid_ua( MONSTERINSIGHTS_MS_GA_UA ) ) {
+		return MONSTERINSIGHTS_MS_GA_UA;
+	}
+
+	return '';
 }
 
 /**
@@ -275,150 +297,6 @@ function monsterinsights_delete_options( $keys = array() ) {
 }
 
 /**
- * Helper method for getting the license information.
- *
- * @since 6.0.0
- * @access public
- *
- * @param string $key   The setting key to retrieve.
- * @param mixed $default_value   The default value of the setting key to retrieve.
- * @return string       The value of the setting.
- */
-function monsterinsights_get_license() {
-	$license = false;
-	if ( defined( 'MONSTERINSIGHTS_LICENSE_KEY' ) && is_string( MONSTERINSIGHTS_LICENSE_KEY ) && strlen( MONSTERINSIGHTS_LICENSE_KEY ) > 10 ) {
-		$license = array( 'key' => MONSTERINSIGHTS_LICENSE_KEY );
-	} else if ( is_multisite() && monsterinsights_is_network_active() ){
-		$network_license = get_site_option( 'monsterinsights_license' );
-		if ( ! empty( $network_license['key'] ) && is_string( $network_license['key'] ) && strlen( $network_license['key'] ) > 10 ) {
-			$license = $network_license;
-		} else {
-			$site_license = get_option( 'monsterinsights_license' );
-			if ( ! empty( $site_license['key'] ) && is_string( $site_license['key'] ) && strlen( $site_license['key'] ) > 10 ) {
-				$license = $site_license;
-			}
-		}
-	} else {
-		$site_license = get_option( 'monsterinsights_license' );
-		if ( ! empty( $site_license['key'] ) && is_string( $site_license['key'] ) && strlen( $site_license['key'] ) > 10 ) {
-			$license = $site_license;
-		}
-	}
-
-	return apply_filters( 'monsterinsights_license', $license );
-}
-
-/**
- * Helper method for getting the license key.
- *
- * @since 6.0.0
- * @access public
- *
- * @param string $key   The setting key to retrieve.
- * @param mixed $default_value   The default value of the setting key to retrieve.
- * @return string       The value of the setting.
- */
-function monsterinsights_get_license_key() {
-	$license = false;
-	if ( defined( 'MONSTERINSIGHTS_LICENSE_KEY' ) && is_string( MONSTERINSIGHTS_LICENSE_KEY ) && strlen( MONSTERINSIGHTS_LICENSE_KEY ) > 10 ) {
-		$license = MONSTERINSIGHTS_LICENSE_KEY;
-	} else {
-		$license = monsterinsights_get_license();
-		if ( ! empty( $license['key'] ) && is_string( $license['key'] ) && strlen( $license['key'] ) > 10 ) {
-			$license = $license['key'];
-		} else {
-			$license = false;
-		}
-	}
-
-	return apply_filters( 'monsterinsights_license_key', $license );
-}
-
-/**
- * Helper method for updating the license key.
- *
- * @since 6.0.0
- * @access public
- *
- * @param string $key   The setting key.
- * @param string $value The value to set for the key.
- * @return boolean True if updated, false if not.
- */
-function monsterinsights_update_license_key( $license_key = false, $network = false, $override = false ) {
-	if ( ! $license_key || ! is_string( $license_key ) || ! strlen( $license_key ) > 10  ) {
-		return false;
-	}
-
-	if ( $network && is_multisite() && ( is_network_admin() || $override ) ) {
-		update_site_option( 'monsterinsights_license', $license_key );
-		return true;
-	} else {
-		update_option( 'monsterinsights_license', $license_key );
-		return true;
-	}
-}
-
- /**
- * Helper method for deleting the license key.
- *
- * @since 6.0.0
- * @access public
- *
- * @param string $key   The setting key.
- * @return boolean True if removed, false if not.
- */
-function monsterinsights_delete_license_key( $network = false, $override = false ) {
-	if ( $network && is_multisite() && ( is_network_admin() || $override ) ) {
-		delete_site_option( 'monsterinsights_license' );
-		return true;
-	} else {
-		delete_option( 'monsterinsights_license' );
-		return true;
-	}
-}
-
-
-/**
- * Returns the license key type for MonsterInsights.
- *
- * @access public
- * @since 6.0.0
- *
- * @return string $type The user's license key type for MonsterInsights.
- */
-function monsterinsights_get_license_key_type() {
-	$type = false;
-	$license = monsterinsights_get_license();
-	if ( ! empty( $license['type'] ) && is_string( $license['type'] ) ) {
-		if ( in_array( $license['type'], array( 'master', 'pro', 'plus', 'basic' ) ) ) {
-			$type = $license['type'];
-		}
-	}
-	return $type;
-}
-
-/**
- * Returns possible license key error flag.
- *
- * @access public
- * @since 6.0.0
- *
- * @return bool True if there are license key errors, false otherwise.
- */
-function monsterinsights_get_license_key_errors() {
-	$errors = false;
-	$license = monsterinsights_get_license();
-	if ( ! empty( $license['type'] ) && is_string( $license['type'] ) && strlen( $license['type'] ) > 3 ) {
-		if ( ( isset( $license['is_expired'] )  && $license['is_expired'] ) 
-		  || ( isset( $license['is_disabled'] ) && $license['is_disabled'] )
-		  || ( isset( $license['is_invalid'] )  && $license['is_invalid'] ) ) {
-			$errors = true;
-		}
-	}
-	return $errors;
-}
-
-/**
  * Is valid ua code.
  *
  * @access public
@@ -444,6 +322,41 @@ function monsterinsights_is_valid_ua( $ua_code = '' ) {
 	} else {
 		return '';
 	}
+}
+
+/**
+ * Helper method for getting the license information.
+ *
+ * @since 6.0.0
+ * @access public
+ *
+ * @param string $key   The setting key to retrieve.
+ * @param mixed $default_value   The default value of the setting key to retrieve.
+ * @return string       The value of the setting.
+ */
+function monsterinsights_get_license() {
+	$license  = MonsterInsights()->license->get_site_license();
+	$license  = $license ? $license : MonsterInsights()->license->get_network_license();
+	$default  = MonsterInsights()->license->get_default_license_key();
+	if ( empty( $license ) && ! empty( $default ) ) {
+		$license        = array();
+		$license['key'] = MonsterInsights()->license->get_default_license_key();
+	}
+	return $license;
+}
+
+/**
+ * Helper method for getting the license key.
+ *
+ * @since 6.0.0
+ * @access public
+ *
+ * @param string $key   The setting key to retrieve.
+ * @param mixed $default_value   The default value of the setting key to retrieve.
+ * @return string       The value of the setting.
+ */
+function monsterinsights_get_license_key() {
+	return MonsterInsights()->license->get_license_key();
 }
 
 function monsterinsights_get_option_name() {

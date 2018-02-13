@@ -38,7 +38,7 @@ function monsterinsights_settings_tracking_tab() {
                 }
                 $class = ( 0 === $i ? 'monsterinsights-active' : '' );
                 ?>
-                <a class="monsterinsights-sub-nav-item monsterinsights-nav-item monsterinsights-active monstericon-<?php echo esc_attr( $id ); ?> <?php echo esc_attr( $class ); ?>" href="#monsterinsights-main-tab-tracking?monsterinsights-sub-tab-<?php echo esc_attr( $id ); ?>" title="<?php echo esc_attr( $item['title'] ); ?>">
+                <a class="monsterinsights-sub-nav-item monsterinsights-nav-item monstericon-<?php echo esc_attr( $id ); ?> <?php echo esc_attr( $class ); ?>" href="#monsterinsights-main-tab-tracking?monsterinsights-sub-tab-<?php echo esc_attr( $id ); ?>" title="<?php echo esc_attr( $item['title'] ); ?>">
                     <?php echo esc_html( $item['title'] ); ?>
                 </a>
                 <?php 
@@ -70,6 +70,7 @@ function monsterinsights_settings_tracking_tab() {
                     continue;
                 }
                 $class = ( 0 === $i ? ' monsterinsights-active' : '' ); 
+                $i++;
                 ?>
                  <div id="monsterinsights-sub-tab-<?php echo esc_attr( $id ); ?>" class="monsterinsights-sub-nav-tab monsterinsights-nav-tab<?php echo esc_attr( $class ); ?>">
                     <?php if ( $item['level'] === 'lite' ||  $is_pro ) { ?>
@@ -110,7 +111,6 @@ function monsterinsights_settings_tracking_tab() {
                     </form>
                 </div>
                 <?php
-                $i++;
             }
             ?>
         </div>

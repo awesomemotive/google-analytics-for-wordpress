@@ -14,17 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class MonsterInsights_Tracking_Preview extends MonsterInsights_Tracking_Abstract {
-
-    /**
-     * Holds the base class object.
-     *
-     * @since 6.0.0
-     * @access public
-     *
-     * @var object $base Base class object.
-     */
-    public $base;
-    
     /**
      * Holds the name of the tracking type.
      *
@@ -52,7 +41,7 @@ class MonsterInsights_Tracking_Preview extends MonsterInsights_Tracking_Abstract
      * @access public
      */
     public function __construct() {
-        $this->base = MonsterInsights();
+
     }
 
     /**

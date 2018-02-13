@@ -7,7 +7,7 @@ function monsterinsights_get_mp_api_url( ) {
 	if ( monsterinsights_is_debug_mode() ) {
 		return 'https://www.google-analytics.com/debug/collect';
 	} else {
-		return 'https://ssl.google-analytics.com/collect';
+		return 'https://www.google-analytics.com/collect';
 	}
 }
 
@@ -88,7 +88,7 @@ function monsterinsights_mp_api_call( $args = array() ) {
 	);
 
 	$body = wp_parse_args( $body, $default_body );
-	// $body = apply_filters( 'monsterinsights_mp_api_call', $body );
+	//$body = apply_filters( 'monsterinsights_mp_api_call', $body );
 
 
 	// Ensure that the CID is not empty

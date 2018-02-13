@@ -37,10 +37,8 @@ function monsterinsights_tracking_script( ) {
         $mode = 'preview';
     } else if ( ! monsterinsights_track_user() ) {
         $mode = 'disabled';
-    } else if ( $tracking_mode === 'analytics' ) {
+    } else if ( $tracking_mode === 'analytics' || $tracking_mode === 'ga' ) {
         $mode = 'analytics';
-    } else if ( $tracking_mode === 'ga' ) {
-        $mode = 'ga';
     } else {
         //$mode = apply_filters( 'monsterinsights_custom_tracking_name', 'name-of-method' );
     }
@@ -64,12 +62,6 @@ function monsterinsights_tracking_script( ) {
         case 'analytics':
             require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/tracking/class-tracking-analytics.php';
             $tracking = new MonsterInsights_Tracking_Analytics();
-            echo $tracking->frontend_output();
-            break;
-
-        case 'ga':
-            require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/tracking/class-tracking-ga.php';
-            $tracking = new MonsterInsights_Tracking_GA();
             echo $tracking->frontend_output();
             break;
 
@@ -98,15 +90,11 @@ add_action( 'wp_head', 'monsterinsights_tracking_script', 6 );
  */
 function monsterinsights_events_tracking( ) {
     $events_mode   = monsterinsights_get_option( 'events_mode', false );
-    $tracking_mode = monsterinsights_get_option( 'tracking_mode', 'analytics' );
     $track_user    = monsterinsights_track_user();
 
-    if ( $track_user && $events_mode === 'php' && ( $tracking_mode === 'ga' || $tracking_mode === 'analytics' ) ) {
-        require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/events/class-events-php.php';
-        new MonsterInsights_Events_PHP();
-    } else if ( $track_user && $events_mode === 'js' && $tracking_mode === 'analytics' ) {
-        require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/events/class-events-js.php';
-        new MonsterInsights_Events_JS();
+    if ( $track_user && ( $events_mode === 'js' || $events_mode === 'php' ) ) {
+        require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/events/class-analytics-events.php';
+        new MonsterInsights_Analytics_Events();
     } else {
         // User is in the disabled group or events mode is off
     }

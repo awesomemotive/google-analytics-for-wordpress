@@ -50,15 +50,15 @@ function monsterinsights_maybe_refresh_addons() {
     }
 
 
-    if ( ! monsterinsights_is_refreshing_addons() ) {
+    if ( empty( $_POST['google-analytics-for-wordpress-refresh-addons-submit'] ) ) {
         return;
     }
 
-    if ( ! monsterinsights_refresh_addons_action() ) {
+    if ( ! wp_verify_nonce( $_POST['google-analytics-for-wordpress-refresh-addons'], 'google-analytics-for-wordpress-refresh-addons' ) ) {
         return;
     }
 
-    monsterinsights_get_addons_data( monsterinsights_get_license_key() );
+    monsterinsights_get_addons_data( MonsterInsights()->license->get_valid_license_key() );
 
 }
 add_action( 'current_screen', 'monsterinsights_maybe_refresh_addons' );
@@ -115,8 +115,8 @@ function monsterinsights_addons_page() {
  */
 function monsterinsights_addons_content() {
 
-    // If error(s) occured during license key verification, display them and exit now.
-    if ( false !== monsterinsights_get_license_key_errors() ) {
+    // If error(s) occurred during license key verification, display them and exit now.
+    if ( ! MonsterInsights()->license->get_valid_license_key() ) {
         ?>
         <div class="error below-h2">
             <p>
@@ -210,8 +210,8 @@ add_action( 'monsterinsights_addons_section', 'monsterinsights_addons_content' )
 function monsterinsights_get_addons() {
 
     // Get license key and type.
-    $key = monsterinsights_get_license_key();
-    $type = monsterinsights_get_license_key_type();
+    $key  = is_network_admin() ? MonsterInsights()->license->get_network_license_key() : MonsterInsights()->license->get_site_license_key();
+    $type = is_network_admin() ? MonsterInsights()->license->get_network_license_type() : MonsterInsights()->license->get_site_license_type();
     
     // Get addons data from transient or perform API query if no transient.
     if ( false === ( $addons = get_transient( '_monsterinsights_addons' ) ) ) {
@@ -263,16 +263,14 @@ function monsterinsights_get_addons() {
  * @return  array               Array of addon data otherwise.
  */
 function monsterinsights_get_addons_data( $key ) {
-    // Get the base class object.
-    $base = MonsterInsights();
-    $type = monsterinsights_get_license_key_type();
+    $type = is_network_admin() ? MonsterInsights()->license->get_network_license_type() : MonsterInsights()->license->get_site_license_type();
     
     // Get Addons
     // If the key is valid, we'll get personalised upgrade URLs for each Addon (if necessary) and plugin update information.
     if ( $key ) {
-        $addons = $base->license->perform_remote_request( 'get-addons-data-v600', array( 'tgm-updater-key' => $key ) ); 
+        $addons = MonsterInsights()->license_actions->perform_remote_request( 'get-addons-data-v600', array( 'tgm-updater-key' => $key ) ); 
     } else {
-        $addons = $base->license->perform_remote_request( 'get-all-addons-data', array() ); 
+        $addons = MonsterInsights()->license_actions->perform_remote_request( 'get-all-addons-data', array() ); 
     }
     
     // If there was an API error, set transient for only 10 minutes.
@@ -291,28 +289,6 @@ function monsterinsights_get_addons_data( $key ) {
     set_transient( '_monsterinsights_addons', $addons, 4 * HOUR_IN_SECONDS );
     return $addons;
 
-}
-
-/**
- * Flag to determine if addons are being refreshed.
- *
- * @since 6.0.0
- *
- * @return bool True if being refreshed, false otherwise.
- */
-function monsterinsights_is_refreshing_addons() {
-    return isset( $_POST['google-analytics-for-wordpress-refresh-addons-submit'] );
-}
-
-/**
- * Verifies nonces that allow addon refreshing.
- *
- * @since 6.0.0
- *
- * @return bool True if nonces check out, false otherwise.
- */
-function monsterinsights_refresh_addons_action() {
-    return isset( $_POST['google-analytics-for-wordpress-refresh-addons-submit'] ) && wp_verify_nonce( $_POST['google-analytics-for-wordpress-refresh-addons'], 'google-analytics-for-wordpress-refresh-addons' );
 }
 
 /**

@@ -149,19 +149,22 @@ var MonsterInsights = function(){
 
 		if ( link.match( /^javascript\:/i ) ) {
 			type = 'internal'; // if it's a JS link, it's internal
-		} else if ( __gaTrackerStringTrim( protocol ) == 'tel' || __gaTrackerStringTrim( protocol ) == 'tel:' ) { /* If it's an telephone */
+		} else if ( __gaTrackerStringTrim( protocol ) == 'tel' || __gaTrackerStringTrim( protocol ) == 'tel:' ) { /* If it's a telephone link */
 			type = "tel"; 
-		} else if ( __gaTrackerStringTrim( protocol ) == 'mailto' ||  __gaTrackerStringTrim( protocol ) == 'mailto:' ) { /* If it's an email */
+		} else if ( __gaTrackerStringTrim( protocol ) == 'mailto' ||  __gaTrackerStringTrim( protocol ) == 'mailto:' ) { /* If it's a email */
 			type = "mailto"; 
 		} else if ( hostname.length > 0 && currentdomain.length > 0 && ! hostname.endsWith( currentdomain ) ) { /* If it's a outbound */
 			type = "external"; 
-		} else if ( inbound_paths.length > 0 && pathname.length > 0 ) { /* If it's a internal as outbound */
+		} else if ( inbound_paths.length > 0 && pathname.length > 0 ) { /* If it's an internal as outbound */
 			for ( index = 0, len = inbound_paths.length; index < len; ++index ) {
 				if ( inbound_paths[ index ].length > 0 && pathname.startsWith( inbound_paths[ index ] ) ) {
 					type = "internal-as-outbound";
 					break;
 				}
 			}
+		/* Enable window.monsterinsights_experimental_mode at your own risk. We might eventually remove it. Also you may/can/will burn through GA quota for your property quickly. */
+		} else if ( window.monsterinsights_experimental_mode && hostname.length > 0 && document.domain.length > 0 && hostname !== document.domain ) { /* If it's a cross-hostname link */
+			type = "cross-hostname";
 		} 
 
 		if ( type === 'unknown' && download_extensions.length > 0 && extension.length > 0 ) { /* If it's a download */
@@ -331,13 +334,22 @@ var MonsterInsights = function(){
 						};
 
 						__gaTrackerSend( valuesArray, fieldsArray );
+					} else if ( type == 'cross-hostname' ) {
+						fieldsArray = {
+							hitType: 'event',
+							eventCategory:'cross-hostname',
+							eventAction: link,
+							eventLabel: valuesArray.title,
+						};
+
+						__gaTrackerSend( valuesArray, fieldsArray );
 					} else {
 						valuesArray.exit = 'type';
 						__gaTrackerNotSend( valuesArray );
 					}
 				} else { 
 					/* Prevent standard click, track then open */
-					if ( type != 'external' && type != 'internal-as-outbound' ) {
+					if ( type != 'cross-hostname' && type != 'external' && type != 'internal-as-outbound' ) {
 						if (! event.defaultPrevented ) {
 							if ( event.preventDefault ) {
 								event.preventDefault();
@@ -405,6 +417,31 @@ var MonsterInsights = function(){
 							fieldsArray = {
 								hitType       : 'event',
 								eventCategory : 'outbound-link',
+								eventAction   : link,
+								eventLabel    : valuesArray.title,
+								hitCallback   : __gaTrackerHitBack,
+							};
+
+							if ( navigator.sendBeacon ) {
+								fieldsArray.transport = 'beacon';
+							}
+
+							__gaTrackerSend( valuesArray, fieldsArray );
+							setTimeout( __gaTrackerHitBack, 1000 );
+						};						
+					} else if ( type == 'cross-hostname' ) {
+						window.onbeforeunload = function(e) {
+							if (! event.defaultPrevented ) {
+								if ( event.preventDefault ) {
+									event.preventDefault();
+								} else {
+									event.returnValue = false;
+								}
+							}
+							
+							fieldsArray = {
+								hitType       : 'event',
+								eventCategory : 'cross-hostname',
 								eventAction   : link,
 								eventLabel    : valuesArray.title,
 								hitCallback   : __gaTrackerHitBack,
