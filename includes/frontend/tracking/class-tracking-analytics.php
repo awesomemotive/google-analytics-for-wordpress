@@ -14,16 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstract {
-
-	/**
-	 * Holds the base class object.
-	 *
-	 * @since 6.0.0
-	 * @access public
-	 *
-	 * @var object $base Base class object.
-	 */
-	public $base;
 	
 	/**
 	 * Holds the name of the tracking type.
@@ -52,7 +42,7 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 	 * @access public
 	 */
 	public function __construct() {
-		$this->base = MonsterInsights();
+		
 	}
 
 	/**
@@ -71,16 +61,12 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 		global $wp_query;
 		$options = array();
 
-		if ( monsterinsights_get_ua_to_output() ) {
-			$ua_code = monsterinsights_get_ua_to_output();
-		} else {
+		$ua_code = monsterinsights_get_ua_to_output();
+		if ( empty( $ua_code ) ) {
 			return $options;
 		}
 
-		$domain = 'auto'; // Default domain value
-		if ( monsterinsights_get_option( 'subdomain_tracking', false ) ) {
-			$domain = esc_attr( monsterinsights_get_option( 'subdomain_tracking', '' ) );
-		}
+		$domain = esc_attr( monsterinsights_get_option( 'subdomain_tracking', 'auto' ) );
 
 		$allow_linker = monsterinsights_get_option( 'add_allow_linker', false );
 		$allow_anchor = monsterinsights_get_option( 'allow_anchor', false );
@@ -179,7 +165,7 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 		$is_debug_mode  =  monsterinsights_is_debug_mode();
 		$src     	    = apply_filters( 'monsterinsights_frontend_output_analytics_src', '//www.google-analytics.com/analytics.js' );
 		if ( current_user_can( 'manage_options' ) && $is_debug_mode ) {
-			$src     = apply_filters( 'monsterinsights_frontend_output_analytics_src', '//www.google-analytics.com/analytics_debug.js' );
+			$src       = apply_filters( 'monsterinsights_frontend_output_analytics_src', '//www.google-analytics.com/analytics_debug.js' );
 		}
 		$compat  = monsterinsights_get_option( 'gatracker_compatibility_mode', false );
 		$compat  = $compat ? 'window.ga = __gaTracker;' : '';

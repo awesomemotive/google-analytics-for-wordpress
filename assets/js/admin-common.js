@@ -1,4 +1,12 @@
 jQuery( document ).ready( function( $ ) {
+	var is_active = jQuery('#adminmenu a[href$="admin.php?page=monsterinsights_tracking"]').hasClass('current');
+	jQuery('#adminmenu a[href$="admin.php?page=monsterinsights_tracking"]').parent().remove();
+
+	if ( is_active ) {
+		jQuery('#adminmenu a[href$="admin.php?page=monsterinsights_settings"]').addClass('current');
+		jQuery('#adminmenu a[href$="admin.php?page=monsterinsights_settings"]').parent().addClass('current');
+	}
+	
 	/**
 	* Dismissable Notices
 	* - Sends an AJAX request to mark the notice as dismissed

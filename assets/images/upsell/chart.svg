@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox='0 0 560 260'>
+	<defs>
+		<style type="text/css">
+
+
+			
+
+			.dataset {
+			  fill-opacity: 0.2;
+			  -webkit-filter: url(#dropshadow);
+			          filter: url(#dropshadow);
+			}
+
+			#dataset-1 {
+			  fill: #52C0A5;
+			}
+
+			#dataset-2 {
+			  fill: #21A6EE;
+			}
+
+			#dataset-3 {
+			  fill: #807CCC;
+			}
+
+
+
+ 		</style>
+		<filter id='dropshadow'>
+			<feGaussianBlur in='SourceAlpha' stdDeviation='3'></feGaussianBlur>
+			<feOffset dx='0' dy='0' result='offsetblur'></feOffset>
+			<feComponentTransfer>
+				<feFuncA slope='0.2' type='linear'></feFuncA>
+			</feComponentTransfer>
+			<feMerge>
+				<feMergeNode></feMergeNode>
+				<feMergeNode in='SourceGraphic'></feMergeNode>
+			</feMerge>
+		</filter>
+	</defs>
+
+
+	<g class='datasets'>
+		<path class='dataset' id="dataset-3" d="M0,260c0,0,4-8,7-8c59,0,83-150,132-150s66,33,113,33s57-46,78-46c20,0,36,33,74,33s27-24,47-24
+			c19,0,48,115,109,162L0,259V260z"/>
+		<path class='dataset' id="dataset-2" d="M2.9,260c35-6,63-136,88-136c40.3,0,60,23.3,131,39c89.9,19.9,99-93,136.9-92.5c49,0.7,58.8,27.1,78.1,28.5
+			c59.1,4.3,123.1-83.9,129-95c-0.6,48.8-0.8,79.1-1.4,124.3c-0.8,67.2-1.6,131.7-1.6,131.7S2.9,259,2.9,260z"/>
+		<path class='dataset' id="dataset-1" d="M-0.1,260c0,0,22-61,64-61c41,0,48-55,90-55c41,0,40-18,62-18c21,0,47,58,98,58
+			c31.5,0,68.1-47.1,152.7-69.1C519.9,101,565.9,4,565.9,4c-0.5,60-3,256-3,256H-0.1z"/>
+
+
+
+	</g>
+</svg>

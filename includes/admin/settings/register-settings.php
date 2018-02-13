@@ -113,7 +113,7 @@ function monsterinsights_get_settings_tabs() {
 	/**
 	 * Developers Warning: MonsterInsights does not guarantee backwards compatiblity
 	 * of tabs yet. We might add/remove/reorder/edit tabs for the first few major
-	 * versions after 6.0 to ensure we've got the right layout for the long term. 
+	 * versions after 7.0 to ensure we've got the right layout for the long term. 
 	 * Changes may be done without advance warning or announcement. You've been warned. 
 	 */
 	return apply_filters( 'monsterinsights_settings_tabs', $tabs );
@@ -140,7 +140,7 @@ function monsterinsights_get_registered_settings() {
 	 * warning or announcement. You've been warned. 
 	 *
 	 * We will eventually promise backwards compatibility on these filters below but we want to ensure
-	 * for the first few major releases after 6.0 we do that the current settings arrangement won't stifle
+	 * for the first few major releases after 7.0 we do that the current settings arrangement won't stifle
 	 * our development progress. Once we're confident we've made the correct decision on settings layout, 
 	 * we'll remove this notice, and only at that point should you rely on the filters below.
 	 */
@@ -160,14 +160,13 @@ function monsterinsights_get_registered_settings() {
 				),
 				'events_mode' => array(
 					'id'          => 'events_mode',
-					'name'        => __( 'Track outbound clicks and download links?', 'google-analytics-for-wordpress' ),
-					'desc'        => __( 'We recommend tracking clicks and downloads, so you know where users are exiting your site, and what downloads they are interacting with. ', 'google-analytics-for-wordpress', 'google-analytics-for-wordpress' ),
+					'name'        => __( 'Enable MonsterInsights events tracking:', 'google-analytics-for-wordpress' ),
+					'desc'        => __( 'This turns on our Javascript based tracking system which among other things tracks clicks on outbound, affiliate, mail, telephone, hashed and download links.', 'google-analytics-for-wordpress', 'google-analytics-for-wordpress' ),
 					'type' 		  => 'radio',
 					'std'  		  => 'js',
 					'options'     => array(
+						'js'   => __( 'Yes (Recommended)', 'google-analytics-for-wordpress' ),
 						'none' => __( 'No', 'google-analytics-for-wordpress' ),
-						'php'  => __( 'Yes, using PHP (deprecated)', 'google-analytics-for-wordpress' ),
-						'js'   => __( 'Using Javascript (recommended)', 'google-analytics-for-wordpress' ),
 					),
 				),
 			)
@@ -178,7 +177,7 @@ function monsterinsights_get_registered_settings() {
 				'demographics' => array(
 					'id'          => 'demographics',
 					'name'        => __( 'Enable Demographics and Interests Reports for Remarketing and Advertising', 'google-analytics-for-wordpress' ),
-					'desc'        => sprintf( esc_html__( 'Check this setting to add the Demographics and Remarketing features to your Google Analytics tracking code. Make sure to enable Demographics and Remarketing in your Google Analaytics account. We have a guide for how to do that in our %1$sknowledge base%2$s. For more information about Remarketing, we refer you to %3$sGoogle\'s documentation%2$s.', 'google-analytics-for-wordpress. Note that usage of this function is affected by privacy and cookie laws around the world. Be sure to follow the laws that affect your target audience.' ), '<a href="https://www.monsterinsights.com/docs/enable-demographics-and-interests-report-in-google-analytics/#utm_medium=kb-link&amp;utm_source=gawp-config&amp;utm_campaign=wpgaplugin" target="_blank" rel="noopener noreferrer" referrer="no-referrer">',
+					'desc'        => sprintf( esc_html__( 'Check this setting to add the Demographics and Remarketing features to your Google Analytics tracking code. Make sure to enable Demographics and Remarketing in your Google Analaytics account. We have a guide for how to do that in our %1$sknowledge base%2$s. For more information about Remarketing, we refer you to %3$sGoogle\'s documentation%2$s. Note that usage of this function is affected by privacy and cookie laws around the world. Be sure to follow the laws that affect your target audience.', 'google-analytics-for-wordpress' ), '<a href="https://www.monsterinsights.com/docs/enable-demographics-and-interests-report-in-google-analytics/#utm_medium=kb-link&amp;utm_source=gawp-config&amp;utm_campaign=wpgaplugin" target="_blank" rel="noopener noreferrer" referrer="no-referrer">',
 									'</a>','<a href="https://support.google.com/analytics/answer/2444872?hl=' . get_locale() . '" target="_blank" rel="noopener noreferrer" referrer="no-referrer">'
 					),
 					'type' 		  => 'checkbox',
@@ -260,7 +259,7 @@ function monsterinsights_get_registered_settings() {
 				'track_internal_as_label' => array(
 					'id'          => 'track_internal_as_label',
 					'name'        => __( 'Label for those links:', 'google-analytics-for-wordpress' ),
-					'desc'        => sprintf( esc_html__( 'The label to use for these links, this will be added to where the click came from, so if the label is %s, the label for a click from the content of an article becomes "outbound-article-aff".', 'google-analytics-for-wordpress' ), '"aff"' ),
+					'desc'        => sprintf( esc_html__( 'The label to use for these links, this will be added to where the click came from, so if the label is %s, the label for a click from the content of an article becomes "outbound-link-aff".', 'google-analytics-for-wordpress' ), '"aff"' ),
 					'type' 		  => 'text',
 				),
 			)
@@ -387,5 +386,8 @@ function monsterinsights_get_registered_settings() {
 			)
 		),
 	);
+    if ( monsterinsights_is_pro_version() ) {
+       unset( $monsterinsights_settings['permissions']['anonymous_data'] );
+    }
 	return apply_filters( 'monsterinsights_registered_settings', $monsterinsights_settings );
 }

@@ -267,6 +267,48 @@ function monsterinsights_get_message( $type = 'error', $text = '' ) {
 	}
 }
 
+function monsterinsights_is_dev_url( $url = '' ) {
+	$is_local_url = false;
+	// Trim it up
+	$url = strtolower( trim( $url ) );
+	// Need to get the host...so let's add the scheme so we can use parse_url
+	if ( false === strpos( $url, 'http://' ) && false === strpos( $url, 'https://' ) ) {
+		$url = 'http://' . $url;
+	}
+	$url_parts = parse_url( $url );
+	$host      = ! empty( $url_parts['host'] ) ? $url_parts['host'] : false;
+	if ( ! empty( $url ) && ! empty( $host ) ) {
+		if ( false !== ip2long( $host ) ) {
+			if ( ! filter_var( $host, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
+				$is_local_url = true;
+			}
+		} else if ( 'localhost' === $host ) {
+			$is_local_url = true;
+		}
+
+		$tlds_to_check = array( '.dev', '.local', ':8888' );
+		foreach ( $tlds_to_check as $tld ) {
+				if ( false !== strpos( $host, $tld ) ) {
+					$is_local_url = true;
+					continue;
+				}
+			
+		}
+		if ( substr_count( $host, '.' ) > 1 ) {
+			$subdomains_to_check =  array( 'dev.', '*.staging.', 'beta.', 'test.' );
+			foreach ( $subdomains_to_check as $subdomain ) {
+				$subdomain = str_replace( '.', '(.)', $subdomain );
+				$subdomain = str_replace( array( '*', '(.)' ), '(.*)', $subdomain );
+				if ( preg_match( '/^(' . $subdomain . ')/', $host ) ) {
+					$is_local_url = true;
+					continue;
+				}
+			}
+		}
+	}
+	return $is_local_url;
+}
+
 // Set cookie to expire in 2 years
 function monsterinsights_get_cookie_expiration_date( $time ) {
 	return date('D, j F Y H:i:s', time() + $time );
@@ -802,6 +844,14 @@ function monsterinsights_get_country_list( $translated = false ) {
 	return $countries;
 }
 
+function monsterinsights_get_api_url(){
+	return apply_filters( 'monsterinsights_get_api_url', 'www.monsterinsights.com/v1/' );
+}
+
+function monsterinsights_get_licensing_url(){
+	return apply_filters( 'monsterinsights_get_licensing_url', 'https://www.monsterinsights.com' );
+}
+
 function monsterinsights_is_wp_seo_active( ) {
 	$wp_seo_active = false; // @todo: improve this check. This is from old Yoast code.
 	
@@ -814,7 +864,7 @@ function monsterinsights_is_wp_seo_active( ) {
 }
 
 function monsterinsights_get_asset_version() {
-	if ( monsterinsights_is_debug_mode() ) {
+	if ( monsterinsights_is_debug_mode() || ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ) {
 		return time();
 	} else {
 		return MONSTERINSIGHTS_VERSION;

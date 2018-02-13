@@ -100,7 +100,11 @@ class MonsterInsights_Install {
 				$this->v620_upgrades();
 			}
 
-			update_option( 'monsterinsights_db_version', '6.2.0' );
+			if ( version_compare( $version, '7.0.0', '<' ) ) {
+				$this->v700_upgrades();
+			}
+
+			update_option( 'monsterinsights_db_version', '7.0.0' );
 			
 			// @todo: doc as nonpublic
 			
@@ -117,7 +121,7 @@ class MonsterInsights_Install {
 		do_action( 'monsterinsights_after_install_routine', $version );
 
 		// This is the version of the MI settings themselves
-		update_option( 'monsterinsights_settings_version', '6.0.0' );
+		update_option( 'monsterinsights_settings_version', '7.0.0' );
 
 		// This is the version of MI installed
 		update_option( 'monsterinsights_current_version', MONSTERINSIGHTS_VERSION );
@@ -697,25 +701,73 @@ class MonsterInsights_Install {
 	}
 
 	/**
-	 * MonsterInsights Version 6.3 upgrades.
+	 * MonsterInsights Version 7.0 upgrades.
 	 *
 	 * This function does the
-	 * upgrade routine from MonsterInsights 6.2->6.3.
+	 * upgrade routine from MonsterInsights 6.2->7.0.
 	 *
-	 * @since 6.3.0
+	 * @since 7.0.0
 	 * @access public
 	 * 
 	 * @return void
 	 */
-	public function v630_upgrades() {
-		// Not in use yet.
-		
-		/**
-		 * Running List of Things To Do In 6.1.0's Upgrade Routine
-		 *
-		 * 1. Drop Yoast yst_ga options if the upgraded from option === 6.0 or higher
-		 * 2. Remove yst_ga support from helper options
-		 * 3. Remove track_full_url
-		 */
+	public function v700_upgrades() {
+		// 1. Remove old Yoast GA options
+		delete_option( 'yst_ga' );
+
+		// 2. Remove old cron jobs
+			// 2a Remove Yoast cron
+			if ( wp_next_scheduled( 'yst_ga_aggregate_data' ) ) {
+				wp_clear_scheduled_hook( 'yst_ga_aggregate_data' );
+			}
+
+			// 2b Remove Weekly cron
+			if ( wp_next_scheduled( 'monsterinsights_weekly_cron' ) ) {
+				wp_clear_scheduled_hook( 'monsterinsights_weekly_cron' );
+			}
+
+			// 2c Remove old tracking checkin
+			if ( wp_next_scheduled( 'monsterinsights_send_tracking_checkin' ) ) {
+				wp_clear_scheduled_hook( 'monsterinsights_send_tracking_checkin' );
+			}
+
+		// 3. Default all event tracking and tracking to GA + JS respectively
+			// 3a Set tracking_mode to use analytics.js
+			$this->new_settings['tracking_mode' ] = 'analytics';
+			
+
+			// 3b Set events mode to use JS if the events mode is not set explicitly to none
+			if ( empty( $this->new_settings['events_mode' ] ) || $this->new_settings['events_mode' ] !== 'none' ) {
+				$this->new_settings['events_mode' ] = 'js';
+			}
+
+		// 4. Migrate manual UA codes
+			// 4a Manual UA has the lowest priority
+			if ( ! empty( $this->new_settings['manual_ua_code' ] ) ) {
+				// Set as manual UA code
+				is_network_admin() ? update_site_option( 'monsterinsights_network_profile', array( 'manual' => $this->new_settings['manual_ua_code' ] ) ) : update_option( 'monsterinsights_site_profile', array( 'manual' => $this->new_settings['manual_ua_code' ] ) );
+			}
+
+			// 4b Then try the oAuth UA code
+			if ( ! empty( $this->new_settings['analytics_profile_code' ] ) ) {
+				// Set as manual UA code
+				is_network_admin() ? update_site_option( 'monsterinsights_network_profile', array( 'manual' => $this->new_settings['analytics_profile_code' ] ) ) : update_option( 'monsterinsights_site_profile', array( 'manual' => $this->new_settings['analytics_profile_code' ] ) );
+			}
+
+		// 5. Migrate License keys
+		if ( is_multisite() ) {
+			$ms_license = get_site_option( 'monsterinsights_license', '' );
+			if ( $ms_license ) {
+				update_site_option( 'monsterinsights_network_license_updates', get_site_option( 'monsterinsights_license_updates', '' ) );
+				update_site_option( 'monsterinsights_network_license', $ms_license );
+			}
+		}
+
+	}
+
+	public function v710_upgrades() {
+		// 1. remove old API keys from MI settings & manual UA code
+		// 2. Comprehensively review old settings and meta keys from pre-relay and consider removing them
+		// 3. Consider removing all install back compat to yoast.
 	}
 }
