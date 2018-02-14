@@ -425,6 +425,6 @@ final class MonsterInsights_API_Auth {
 	}
 
 	public function get_sitei() {
-		return  mb_strimwidth( rtrim( ltrim( sanitize_text_field( AUTH_KEY ) ) ), 0, 30 );
+		return  mb_strimwidth( rtrim( ltrim( sanitize_text_field( preg_replace('/[^a-zA-Z0-9]/', '', AUTH_KEY . SECURE_AUTH_KEY . LOGGED_IN_KEY )  ) ) ), 0, 30 );
 	}
 }
