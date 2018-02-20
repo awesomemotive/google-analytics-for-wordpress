@@ -92,7 +92,7 @@ function monsterinsights_registered_settings_filter( $settings ) {
 			$settings['goptimize']['goptimize_notice'] = array( 
 				'id' => 'goptimize_notice',
 				'no_label' => true,
-				'name' => __( 'Want to use Google Optimize to retarget your website vistors and perform A/B split tests with ease?', 'google-analytics-for-wordpress'),
+				'name' => __( 'Want to use Google Optimize to retarget your website visitors and perform A/B split tests with ease?', 'google-analytics-for-wordpress'),
 				'type' => 'upgrade_notice',
 				'desc' => esc_html__( "By upgrading to MonsterInsights Pro, you can enable Google Optimize.", 'google-analytics-for-wordpress' )
 			);

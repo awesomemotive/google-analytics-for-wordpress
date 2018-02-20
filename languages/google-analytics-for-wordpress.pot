@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: MonsterInsights Lite\n"
 "Report-Msgid-Bugs-To: https://github.com/awesomemotive/monsterinsights/"
 "issues\n"
-"POT-Creation-Date: 2018-02-13 14:07-0500\n"
+"POT-Creation-Date: 2018-02-19 10:18-0500\n"
 "PO-Revision-Date: 2016-07-21 17:01-0400\n"
 "Last-Translator: Chris Christoff <support@monsterinsights.com>\n"
 "Language-Team: Chris Christoff <support@monsterinsights.com>\n"
@@ -1303,7 +1303,7 @@ msgstr ""
 msgid ""
 "Check this setting to add the Demographics and Remarketing features to your "
 "Google Analytics tracking code. Make sure to enable Demographics and "
-"Remarketing in your Google Analaytics account. We have a guide for how to do "
+"Remarketing in your Google Analytics account. We have a guide for how to do "
 "that in our %1$sknowledge base%2$s. For more information about Remarketing, "
 "we refer you to %3$sGoogle's documentation%2$s. Note that usage of this "
 "function is affected by privacy and cookie laws around the world. Be sure to "
@@ -1601,7 +1601,7 @@ msgid ""
 "Google AMP tracking, Performance optimization, and so much more!"
 msgstr ""
 
-#: includes/admin/tracking.php:288
+#: includes/admin/tracking.php:216
 msgid "Once Weekly"
 msgstr ""
 
@@ -2755,8 +2755,8 @@ msgstr ""
 
 #: lite/includes/admin/settings.php:95
 msgid ""
-"Want to use Google Optimize to retarget your website vistors and perform A/B "
-"split tests with ease?"
+"Want to use Google Optimize to retarget your website visitors and perform A/"
+"B split tests with ease?"
 msgstr ""
 
 #: lite/includes/admin/settings.php:97

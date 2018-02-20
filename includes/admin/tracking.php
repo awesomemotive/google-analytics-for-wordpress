@@ -4,8 +4,8 @@
  *
  * @package     MonsterInsights
  * @subpackage  Admin
- * @copyright   Copyright (c) 2017, Chris Christoff
- * @since       6.0.0
+ * @copyright   Copyright (c) 2018, Chris Christoff
+ * @since       7.0.0
 */
 
 // Exit if accessed directly
@@ -17,55 +17,25 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Usage tracking
  *
  * @access public
- * @since  6.0.0
+ * @since  7.0.0
  * @return void
  */
 class MonsterInsights_Tracking {
 
-	/**
-	 * The data to send to the EDD site
-	 *
-	 * @access private
-	 */
-	private $data;
-
-	/**
-	 * Get things going
-	 *
-	 * @access public
-	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'schedule_send' ) );
 		add_action( 'monsterinsights_settings_save_general_end', array( $this, 'check_for_settings_optin' ) );
 		add_action( 'admin_head', array( $this, 'check_for_optin' ) );
 		add_action( 'admin_head', array( $this, 'check_for_optout' ) );
 		add_filter( 'cron_schedules', array( $this, 'add_schedules' ) );
-		add_action( 'monsterinsights_daily_cron', array( $this, 'send_checkin' ) );
-		add_action( 'monsterinsights_send_tracking_data', array( $this, 'send_tracking_data' ) );
+		add_action( 'monsterinsights_usage_tracking_cron', array( $this, 'send_checkin' ) );
 	}
 
-	/**
-	 * Check if the user has opted into tracking
-	 *
-	 * @access private
-	 * @return bool
-	 */
-	private function tracking_allowed() {
-		return (bool) monsterinsights_get_option( 'anonymous_data', false ) || monsterinsights_is_pro_version();
-	}
-
-	/**
-	 * Setup the data that is going to be tracked
-	 *
-	 * @access private
-	 * @return void
-	 */
-	private function setup_data() {
+	private function get_data() {
 		$data = array();
 
 		// Retrieve current theme info
 		$theme_data    = wp_get_theme();
-		$theme         = $theme_data->Name . ' ' . $theme_data->Version;
 		$tracking_mode = monsterinsights_get_option( 'tracking_mode', 'analytics' );
 		$events_mode   = monsterinsights_get_option( 'events_mode', 'none' );
 		$update_mode   = monsterinsights_get_option( 'automatic_updates', false );
@@ -82,21 +52,26 @@ class MonsterInsights_Tracking {
 			$update_mode = 'none';
 		}
 
-		$data['php_version'] = phpversion();
-		$data['mi_version']  = MONSTERINSIGHTS_VERSION;
-		$data['wp_version']  = get_bloginfo( 'version' );
-		$data['server']      = isset( $_SERVER['SERVER_SOFTWARE'] ) ? $_SERVER['SERVER_SOFTWARE'] : '';
-		$data['over_time']   = get_option( 'monsterinsights_over_time', array() );
-		$data['multisite']   = is_multisite();
-		$data['url']         = home_url();
-		$data['theme']       = $theme;
-		$data['email']       = get_bloginfo( 'admin_email' );
-		$data['key']         = monsterinsights_get_license_key();
-		$data['sas']         = monsterinsights_get_shareasale_id();
-		$data['settings']     = monsterinsights_get_options();
+		$data['php_version']   = phpversion();
+		$data['mi_version']    = MONSTERINSIGHTS_VERSION;
+		$data['wp_version']    = get_bloginfo( 'version' );
+		$data['server']        = isset( $_SERVER['SERVER_SOFTWARE'] ) ? $_SERVER['SERVER_SOFTWARE'] : '';
+		$data['over_time']     = get_option( 'monsterinsights_over_time', array() );
+		$data['multisite']     = is_multisite();
+		$data['url']           = home_url();
+		$data['themename']     = $theme_data->Name;
+		$data['themeversion']  = $theme_data->Version;
+		$data['email']         = get_bloginfo( 'admin_email' );
+		$data['key']           = monsterinsights_get_license_key();
+		$data['sas']           = monsterinsights_get_shareasale_id();
+		$data['settings']      = monsterinsights_get_options();
 		$data['tracking_mode'] = $tracking_mode;
 		$data['events_mode']   = $events_mode;
 		$data['autoupdate']    = $update_mode;
+		$data['pro']           = (int) monsterinsights_is_pro_version();
+		$data['sites']         = is_multisite() ? (int) get_blog_count() : 1;
+		$data['usagetracking'] = get_option( 'monsterinsights_usage_tracking_config', $tracking );
+		$data['usercount']     = get_user_count();
 
 		// Retrieve current plugin information
 		if( ! function_exists( 'get_plugins' ) ) {
@@ -117,15 +92,9 @@ class MonsterInsights_Tracking {
 		$data['inactive_plugins'] = $plugins;
 		$data['locale']           = get_locale();
 
-		$this->data = $data;
+		return $data;
 	}
 
-	/**
-	 * Send the data to the EDD server
-	 *
-	 * @access private
-	 * @return void
-	 */
 	public function send_checkin( $override = false, $ignore_last_checkin = false ) {
 
 		$home_url = trailingslashit( home_url() );
@@ -138,45 +107,48 @@ class MonsterInsights_Tracking {
 		}
 
 		// Send a maximum of once per week
-		$last_send = $this->get_last_send();
+		$last_send = get_option( 'monsterinsights_usage_tracking_last_checkin' );
 		if ( is_numeric( $last_send ) && $last_send > strtotime( '-1 week' ) && ! $ignore_last_checkin ) {
 			return false;
 		}
 
-		$hours   = (int) rand( 0 , 23 );
-		$minutes = (int) rand( 0 , 59 );
-		$seconds = (int) rand( 0 , 59 );
-		wp_schedule_single_event( time() + ( $hours * $minutes * $seconds ), 'monsterinsights_send_tracking_data' );
-		return true;
-	}
-
-	public function send_tracking_data( ) {
-
-		$this->setup_data();
 		$request = wp_remote_post( 'https://miusage.com/v1/checkin/', array(
 			'method'      => 'POST',
 			'timeout'     => 5,
 			'redirection' => 5,
 			'httpversion' => '1.1',
-			'blocking'    => true,
-			'body'        => $this->data,
+			'blocking'    => false,
+			'body'        => $this->get_data(),
 			'user-agent'  => 'MI/' . MONSTERINSIGHTS_VERSION . '; ' . get_bloginfo( 'url' )
 		) );
 
 		// If we have completed successfully, recheck in 1 week
-		update_option( 'mi_tracking_last_send', time() );
+		update_option( 'monsterinsights_usage_tracking_last_checkin', time() );
 		return true;
-
 	}
 
-	/**
-	 * Check for a new opt-in on settings save
-	 *
-	 * This runs during the sanitation of General settings, thus the return
-	 *
-	 * @access public
-	 * @return array
-	 */
+	private function tracking_allowed() {
+		return (bool) monsterinsights_get_option( 'anonymous_data', false ) || monsterinsights_is_pro_version();
+	}
+
+	public function schedule_send() {
+		if ( ! wp_next_scheduled( 'monsterinsights_usage_tracking_cron' ) ) {
+			$tracking             = array();
+			$tracking['day']      = rand( 0, 6  );
+			$tracking['hour']     = rand( 0, 23 );
+			$tracking['minute']   = rand( 0, 59 );
+			$tracking['second']   = rand( 0, 59 );
+			$tracking['offset']   = ( $tracking['day']    * DAY_IN_SECONDS    ) +
+									( $tracking['hour']   * HOUR_IN_SECONDS   ) +
+									( $tracking['minute'] * MINUTE_IN_SECONDS ) +
+									 $tracking['second'];
+			$tracking['initsend'] = strtotime("next sunday") + $tracking['offset'];
+
+			wp_schedule_event( $tracking['initsend'], 'weekly', 'monsterinsights_usage_tracking_cron' );
+			update_option( 'monsterinsights_usage_tracking_config', $tracking );
+		}
+	}
+
 	public function check_for_settings_optin() {
 		if ( ! current_user_can( 'monsterinsights_save_settings' ) ) {
 			return;
@@ -189,17 +161,11 @@ class MonsterInsights_Tracking {
 		// Send an intial check in on settings save
 		$anonymous_data = isset( $_POST['anonymous_data'] ) ? 1 : 0;
 		if ( $anonymous_data ) {
-			$this->send_checkin( true );
+			$this->send_checkin( true, true );
 		}
 
 	}
 
-	/**
-	 * Check for a new opt-in via the admin notice
-	 *
-	 * @access public
-	 * @return void
-	 */
 	public function check_for_optin() {
 		if ( ! ( ! empty( $_REQUEST['mi_action'] ) && 'opt_into_tracking' === $_REQUEST['mi_action'] ) ) {
 			return;
@@ -218,16 +184,10 @@ class MonsterInsights_Tracking {
 		}
 
 		monsterinsights_update_option( 'anonymous_data', 1 );
-		$this->send_checkin( true );
+		$this->send_checkin( true, true );
 		update_option( 'monsterinsights_tracking_notice', 1 );
 	}
 
-	/**
-	 * Check for a new opt-in via the admin notice
-	 *
-	 * @access public
-	 * @return void
-	 */
 	public function check_for_optout() {
 		if ( ! ( ! empty( $_REQUEST['mi_action'] ) && 'opt_out_of_tracking' === $_REQUEST['mi_action'] ) ) {
 			return;
@@ -249,38 +209,6 @@ class MonsterInsights_Tracking {
 		update_option( 'monsterinsights_tracking_notice', 1 );
 	}
 
-	/**
-	 * Get the last time a checkin was sent
-	 *
-	 * @access private
-	 * @return false|string
-	 */
-	private function get_last_send() {
-		return get_option( 'monsterinsights_tracking_last_send' );
-	}
-
-	/**
-	 * Schedule a weekly checkin
-	 *
-	 * @access public
-	 * @return void
-	 */
-	public function schedule_send() {
-		// We send once a day (while tracking is allowed) to check in, which can be used to determine active sites
-		if ( ! wp_next_scheduled( 'monsterinsights_daily_cron' ) ) {
-			// Set the next event of fetching data
-			wp_schedule_event( strtotime( date( 'Y-m-d', strtotime( 'tomorrow' ) ) . ' 00:01:00 ' ), 'daily', 'monsterinsights_daily_cron' );
-		}
-	}
-
-	/**
-	 * Registers new cron schedules
-	 *
-	 * @since 6.0.0
-	 *
-	 * @param array $schedules
-	 * @return array
-	 */
 	public function add_schedules( $schedules = array() ) {
 		// Adds once weekly to the existing schedules.
 		$schedules['weekly'] = array(
@@ -289,6 +217,5 @@ class MonsterInsights_Tracking {
 		);
 		return $schedules;
 	}
-
 }
 new MonsterInsights_Tracking();
