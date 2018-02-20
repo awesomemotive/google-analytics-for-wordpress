@@ -127,7 +127,7 @@ final class MonsterInsights_API_Auth {
 		if ( empty( $_REQUEST['key'] )      ||
 			 empty( $_REQUEST['token'] )    ||
 			 empty( $_REQUEST['ua'] )       ||
-			 empty( $_REQUEST['viewname'] ) ||
+			 empty( $_REQUEST['miview'] )   ||
 			 empty( $_REQUEST['a'] )        ||
 			 empty( $_REQUEST['w'] )        ||
 			 empty( $_REQUEST['p'] )
@@ -145,7 +145,7 @@ final class MonsterInsights_API_Auth {
 			'key'      => sanitize_text_field( $_REQUEST['key'] ),
 			'token'    => sanitize_text_field( $_REQUEST['token'] ),
 			'ua'       => monsterinsights_is_valid_ua( $_REQUEST['ua'] ),
-			'viewname' => sanitize_text_field( $_REQUEST['viewname'] ),
+			'viewname' => sanitize_text_field( $_REQUEST['miview'] ),
 			'a'        => sanitize_text_field( $_REQUEST['a'] ), // AccountID
 			'w'        => sanitize_text_field( $_REQUEST['w'] ), // PropertyID
 			'p'        => sanitize_text_field( $_REQUEST['p'] ), // View ID
@@ -241,7 +241,7 @@ final class MonsterInsights_API_Auth {
 		// Make sure has required params
 		if (
 			 empty( $_REQUEST['ua'] )       ||
-			 empty( $_REQUEST['viewname'] ) ||
+			 empty( $_REQUEST['miview'] )   ||
 			 empty( $_REQUEST['a'] )        ||
 			 empty( $_REQUEST['w'] )        ||
 			 empty( $_REQUEST['p'] )       
@@ -265,7 +265,7 @@ final class MonsterInsights_API_Auth {
 			'key'      => $existing['key'],
 			'token'    => $existing['token'],
 			'ua'       => monsterinsights_is_valid_ua( $_REQUEST['ua'] ),
-			'viewname' => sanitize_text_field( $_REQUEST['viewname'] ),
+			'viewname' => sanitize_text_field( $_REQUEST['miview'] ),
 			'a'        => sanitize_text_field( $_REQUEST['a'] ),
 			'w'        => sanitize_text_field( $_REQUEST['w'] ),
 			'p'        => sanitize_text_field( $_REQUEST['p'] ),

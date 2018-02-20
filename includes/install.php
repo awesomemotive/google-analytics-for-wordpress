@@ -229,12 +229,6 @@ class MonsterInsights_Install {
 
 		update_option( 'monsterinsights_over_time', $data );
 
-		// Add cron job
-		if ( ! wp_next_scheduled( 'monsterinsights_daily_cron' ) ) {
-			// Set the next event of fetching data
-			wp_schedule_event( strtotime( date( 'Y-m-d', strtotime( 'tomorrow' ) ) . ' 00:05:00 ' ), 'daily', 'monsterinsights_daily_cron' );
-		}
-
 		// Let addons + MI Pro/Lite hook in here. @todo: doc as nonpublic
 		do_action( 'monsterinsights_after_new_install_routine', MONSTERINSIGHTS_VERSION );
 	}
@@ -559,10 +553,10 @@ class MonsterInsights_Install {
 		update_option( 'monsterinsights_over_time', $data );
 		
 		// Add the cron job
-		if ( ! wp_next_scheduled( 'monsterinsights_daily_cron' ) ) {
+		//if ( ! wp_next_scheduled( 'monsterinsights_daily_cron' ) ) {
 			// Set the next event of fetching data
-			wp_schedule_event( strtotime( date( 'Y-m-d', strtotime( 'tomorrow' ) ) . ' 00:05:00 ' ), 'daily', 'monsterinsights_daily_cron' );
-		}
+			//wp_schedule_event( strtotime( date( 'Y-m-d', strtotime( 'tomorrow' ) ) . ' 00:05:00 ' ), 'daily', 'monsterinsights_daily_cron' );
+		//}
 		
 		// Finish up
 			// Save the new settings
@@ -763,11 +757,54 @@ class MonsterInsights_Install {
 			}
 		}
 
+		// 6. Remove old cron
+		if ( wp_next_scheduled( 'monsterinsights_daily_cron' ) ) {
+			wp_clear_scheduled_hook( 'monsterinsights_daily_cron' );
+		}
+		if ( wp_next_scheduled( 'monsterinsights_send_tracking_data' ) ) {
+			wp_clear_scheduled_hook( 'monsterinsights_send_tracking_data' );
+		}
+		delete_option( 'monsterinsights_tracking_last_send' );
+		delete_option( 'mi_tracking_last_send' );
+
+		// 7. Remove deprecated settings
+		$settings = array( '_repeated', 'ajax', 'asmselect0', 'bawac_force_nonce', 'cf_email', 'cf_message', 'cf_name', 'cf_number',
+							'cf_phone', 'cf_subject', 'credentials', 'cron_failed', 'cron_last_run', 'firebug_lite', 'global-css', 'google_auth_code', 
+							'grids', 'icl_post_language', 'mlcf_email', 'mlcf_name', 'navigation-skins', 'page', 'punch-fonts', 'return_tab', 'skins',
+							'wpcf_email', 'wpcf_your_name' );
+		foreach ( $settings as $setting ) {
+			if ( ! empty( $this->new_settings[ $setting ] ) ) {
+				unset( $this->new_settings[ $setting ] );
+			}
+		}
+
 	}
 
 	public function v710_upgrades() {
 		// 1. remove old API keys from MI settings & manual UA code
 		// 2. Comprehensively review old settings and meta keys from pre-relay and consider removing them
 		// 3. Consider removing all install back compat to yoast.
+		// 4. Remove old cron
+		if ( wp_next_scheduled( 'monsterinsights_daily_cron' ) ) {
+			wp_clear_scheduled_hook( 'monsterinsights_daily_cron' );
+		}
+		if ( wp_next_scheduled( 'monsterinsights_send_tracking_data' ) ) {
+			wp_clear_scheduled_hook( 'monsterinsights_send_tracking_data' );
+		}
+		delete_option( 'monsterinsights_tracking_last_send' );
+		delete_option( 'mi_tracking_last_send' );
+
+		// 5. Remove deprecated settings
+		$settings = array( '_repeated', 'ajax', 'asmselect0', 'bawac_force_nonce', 'cf_email', 'cf_message', 'cf_name', 'cf_number',
+							'cf_phone', 'cf_subject', 'credentials', 'cron_failed', 'cron_last_run', 'firebug_lite', 'global-css', 'google_auth_code', 
+							'grids', 'icl_post_language', 'mlcf_email', 'mlcf_name','navigation-skins', 'page', 'punch-fonts', 'return_tab', 'skins',
+							'wpcf_email', 'wpcf_your_name' );
+		foreach ( $settings as $setting ) {
+			if ( ! empty( $this->new_settings[ $setting ] ) ) {
+				unset( $this->new_settings[ $setting ] );
+			}
+		}
+
+		// 5. Remove old GA settings like oauth_version
 	}
 }
