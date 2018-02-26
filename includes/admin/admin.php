@@ -345,6 +345,19 @@ function monsterinsights_admin_setup_notices() {
         }
     }
     // 5. Automatic updates not configured
+    $authed   = MonsterInsights()->auth->is_authed() || MonsterInsights()->auth->is_network_authed();
+    $url      = is_network_admin() ? network_admin_url( 'admin.php?page=monsterinsights_network' ) : admin_url( 'admin.php?page=monsterinsights_settings' );
+
+    if ( empty( $authed ) && ! isset( $notices['monsterinsights_auth_not_manual' ] ) ) { 
+        echo '<div class="notice notice-info is-dismissible monsterinsights-notice" data-notice="monsterinsights_auth_not_manual">';
+            echo '<p>';
+            echo sprintf( esc_html__( 'Important: You are currently using manual UA code output. We highly recommend %1$sauthenticating with MonsterInsights%2$s so that you can access our new reporting area and take advantage of new MonsterInsights features.', 'google-analytics-for-wordpress' ), '<a href="' . $url .'">', '</a>' ); 
+            echo '</p>';
+        echo '</div>';
+        return;
+    }
+
+    // 6. Authetnicate, not manual
     if ( ! is_network_admin() ) {
         $updates   = monsterinsights_get_option( 'automatic_updates', false );
         $url       = admin_url( 'admin.php?page=monsterinsights_settings' );

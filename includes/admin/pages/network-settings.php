@@ -149,6 +149,22 @@ function monsterinsights_network_page() {
                                 </form>
                             </tr>
                             <?php } ?>
+                            <!-- Upgrade Doc -->
+                            <?php if ( ! monsterinsights_is_pro_version() ) { ?>
+                             <tr id="monsterinsights-upgrade-link">
+                                <th scope="row">
+                                    <label for="monsterinsights-upgrade-link"><?php esc_html_e( 'Unlock MonsterInsights Pro', 'google-analytics-for-wordpress' ); ?></label>
+                                </th>
+                                <td>
+                                    <p>
+                                        <?php echo sprintf( esc_html__( 'Already purchased an upgrade to MonsterInsights Pro? To unlock your Pro features and addons, %sfollow our upgrade guide%s to install MonsterInsights Pro.' ), '<a href="https://www.monsterinsights.com/docs/go-lite-pro/?utm_source=wpdashboard&utm_campaign=upgradedocinstall">', '</a>' ); ?>
+                                    </p>
+                                    <p>
+                                        <?php echo sprintf( esc_html__( "Don't yet have a Pro license? %sVisit our website%s to upgrade and learn more about all the amazing features, expanded report and powerful addons you unlock when you go Pro." ), '<a href="https://www.monsterinsights.com/lite/?utm_source=wpdashboard&utm_campaign=upgradedocbuy">', '</a>' ); ?>
+                                    </p>
+                                </td>
+                            </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

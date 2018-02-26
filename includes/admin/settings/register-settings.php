@@ -348,8 +348,8 @@ function monsterinsights_get_registered_settings() {
 			array(
 				'view_reports' => array(
 					'id'          => 'view_reports',
-					'name'        => __( 'Let these user roles see reports (and the dashboard):', 'google-analytics-for-wordpress' ),
-					'desc'        => sprintf( esc_html( 'Users that have at least one of these roles will be able to view the reports and dashboard, along with any user with the %s capability.', 'google-analytics-for-wordpress' ), '<code>manage_options</code>'),
+					'name'        => __( 'Let these user roles see reports:', 'google-analytics-for-wordpress' ),
+					'desc'        => sprintf( esc_html( 'Users that have at least one of these roles will be able to view the reports, along with any user with the %s capability.', 'google-analytics-for-wordpress' ), '<code>manage_options</code>'),
 					'type'        => 'select',
 					'options'     => monsterinsights_get_roles(),
 					'select2'     => true,

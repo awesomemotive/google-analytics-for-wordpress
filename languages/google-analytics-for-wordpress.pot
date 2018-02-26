@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: MonsterInsights Lite\n"
 "Report-Msgid-Bugs-To: https://github.com/awesomemotive/monsterinsights/"
 "issues\n"
-"POT-Creation-Date: 2018-02-19 10:18-0500\n"
+"POT-Creation-Date: 2018-02-26 11:38-0500\n"
 "PO-Revision-Date: 2016-07-21 17:01-0400\n"
 "Last-Translator: Chris Christoff <support@monsterinsights.com>\n"
 "Language-Team: Chris Christoff <support@monsterinsights.com>\n"
@@ -232,14 +232,22 @@ msgstr ""
 msgid "Do not allow"
 msgstr ""
 
-#: includes/admin/admin.php:355
+#: includes/admin/admin.php:354
+#, php-format
+msgid ""
+"Important: You are currently using manual UA code output. We highly "
+"recommend %1$sauthenticating with MonsterInsights%2$s so that you can access "
+"our new reporting area and take advantage of new MonsterInsights features."
+msgstr ""
+
+#: includes/admin/admin.php:368
 #, php-format
 msgid ""
 "Important: Please %1$sconfigure the Automatic Updates Settings%2$s in "
 "MonsterInsights."
 msgstr ""
 
-#: includes/admin/admin.php:382 includes/admin/admin.php:411
+#: includes/admin/admin.php:395 includes/admin/admin.php:424
 #, php-format
 msgid "%1$sGet MonsterInsights Pro%2$s"
 msgstr ""
@@ -512,7 +520,7 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: includes/admin/common.php:456
+#: includes/admin/common.php:473
 #, php-format
 msgid ""
 "MonsterInsights has detected that it's files are being blocked. This is "
@@ -759,6 +767,29 @@ msgstr ""
 msgid ""
 "This is the default UA code to use for subsites of a network (can be "
 "overriden at the single site level)."
+msgstr ""
+
+#: includes/admin/pages/network-settings.php:156
+#: includes/admin/settings/tab-general.php:176
+msgid "Unlock MonsterInsights Pro"
+msgstr ""
+
+#: includes/admin/pages/network-settings.php:160
+#: includes/admin/settings/tab-general.php:180
+#, php-format
+msgid ""
+"Already purchased an upgrade to MonsterInsights Pro? To unlock your Pro "
+"features and addons, %sfollow our upgrade guide%s to install MonsterInsights "
+"Pro."
+msgstr ""
+
+#: includes/admin/pages/network-settings.php:163
+#: includes/admin/settings/tab-general.php:183
+#, php-format
+msgid ""
+"Don't yet have a Pro license? %sVisit our website%s to upgrade and learn "
+"more about all the amazing features, expanded report and powerful addons you "
+"unlock when you go Pro."
 msgstr ""
 
 #: includes/admin/pages/reports.php:93
@@ -1464,7 +1495,7 @@ msgid ""
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:351
-msgid "Let these user roles see reports (and the dashboard):"
+msgid "Let these user roles see reports:"
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:361
@@ -1479,35 +1510,35 @@ msgid ""
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:371
-#: includes/admin/settings/tab-general.php:183
+#: includes/admin/settings/tab-general.php:200
 msgid "Automatic Updates"
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:375
-#: includes/admin/settings/tab-general.php:186
+#: includes/admin/settings/tab-general.php:203
 msgid ""
 "Yes (Recommended) - Get the latest features, bugfixes, and security updates "
 "as they are released."
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:376
-#: includes/admin/settings/tab-general.php:187
+#: includes/admin/settings/tab-general.php:204
 msgid ""
 "Minor Only - Only get bugfixes and security updates, but not major features."
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:377
-#: includes/admin/settings/tab-general.php:188
+#: includes/admin/settings/tab-general.php:205
 msgid "None - Manually update everything."
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:382
-#: includes/admin/settings/tab-general.php:195
+#: includes/admin/settings/tab-general.php:212
 msgid "Allow Usage Tracking"
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:383
-#: includes/admin/settings/tab-general.php:196
+#: includes/admin/settings/tab-general.php:213
 msgid ""
 "By allowing us to track usage data we can better help you, because we know "
 "with which WordPress configurations, themes and plugins we should test."
@@ -1530,7 +1561,7 @@ msgid "The callback function used for the %s setting is missing."
 msgstr ""
 
 #: includes/admin/settings/settings-api.php:969
-#: includes/admin/settings/tab-general.php:216
+#: includes/admin/settings/tab-general.php:233
 msgid "Save Changes"
 msgstr ""
 
@@ -1579,11 +1610,11 @@ msgid ""
 "%s will be used as the Google UA code."
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:174
+#: includes/admin/settings/tab-general.php:191
 msgid "Disable Reports"
 msgstr ""
 
-#: includes/admin/settings/tab-general.php:175
+#: includes/admin/settings/tab-general.php:192
 msgid "Hide the reports page."
 msgstr ""
 
@@ -1641,24 +1672,33 @@ msgstr ""
 msgid "%1$s is %3$sdeprecated%4$s since MonsterInsights version %2$s."
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-disabled.php:80
+#: includes/frontend/tracking/class-tracking-analytics.php:185
 msgid ""
-"MonsterInsights is not currently configured on this site. The site owner "
-"needs to authenticate with Google Analytics in the MonsterInsights settings "
-"panel."
+"Note: MonsterInsights is not currently configured on this site. The site "
+"owner needs to authenticate with Google Analytics in the MonsterInsights "
+"settings panel."
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-disabled.php:82
+#: includes/frontend/tracking/class-tracking-analytics.php:188
 msgid ""
-"MonsterInsights does not track you as a logged in site administrator to "
-"prevent site owners from accidentally skewing their own Google Analytics "
-"data. To view the Google Analytics code, view the source code either logged "
-"out or in the private browsing/incognito mode of your web browser."
+"Note: MonsterInsights does not track you as a logged in site administrator "
+"to prevent site owners from accidentally skewing their own Google Analytics "
+"data."
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-disabled.php:84
+#: includes/frontend/tracking/class-tracking-analytics.php:191
 msgid ""
-"The site owner has disabled Google Analytics tracking for your user role."
+"Note: The site owner has disabled Google Analytics tracking for your user "
+"role."
+msgstr ""
+
+#: includes/frontend/tracking/class-tracking-analytics.php:266
+msgid "Not running function"
+msgstr ""
+
+#: includes/frontend/tracking/class-tracking-analytics.php:266
+#, php-format
+msgid "because you're not being tracked. %s"
 msgstr ""
 
 #: includes/frontend/tracking/class-tracking-preview.php:77

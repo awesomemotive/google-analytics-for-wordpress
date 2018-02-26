@@ -204,7 +204,7 @@ class MonsterInsights_Report {
 
 			if ( ! empty( $data )             &&
 				 ! empty( $data['expires'] )  &&
-				   $data['expires'] >= date() &&
+				   $data['expires'] >= time() &&
 				 ! empty( $data['data'] )     && 
 				 ! empty( $data['p'] )        && 
 				   $data['p'] === $p

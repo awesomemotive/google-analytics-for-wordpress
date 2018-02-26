@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
 Tested up to: 4.9
-Stable tag: 7.0.0
+Stable tag: 7.0.1
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -134,6 +134,16 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.0.1: February 26, 2018 =
+- New: Support for the updated version of MonsterInsights AMP plugin which switches from using a custom REST endpoint to using the now built in Google AMP ClientID synching feature. If you're using the AMP addon, you'll want to also update that addon as well.
+- New: The __gaTracker and disable tracking functions will always be defined, even when we're not tracking users (for example if viewing a preview, or if a logged-in administrator) to allow sites to not have to worry about breakage when variable exist checking isn't done. 
+- New: We now output a notice in the console and output the GA code (though do not run it) when we're not tracking someone. This makes it easier to verify the Google code is indeed outputting, and also makes it more clear as to why a partiucular user isn't being tracked. Note, when testing Google Analytics code, always do it logged out, ideally in the private browsing/incognito mode of your web browser. We're going to keep working on improving the frontend system to simplify it and add new features for both Lite and Pro users now that we've jettisoned ga.js support in MonsterInsights 7.0. You'll see updates through the year that add new tracking features, particularly ones that we're tweaking in order to expand and refine our built-in reporting.
+- New: We added a "have a MonsterInsights license" link on the settings panel, to make it clearer the procedure for the quick and easy upgrade from MonsterInsights Lite to MonsterInsights Pro.
+- Tweak: We removed the phrase referencing the dashboard (removed in MonsterInsights 7.0) from the permissions settings.
+- Bugfix: Due to us forgetting to include our jQuery shim for disable() in the Lite, some users were unable to use the 10/25/50 expander feature on the reports page.
+- Bugfix: An accidental use of the PHP function date instead of the one called time meant that some users were unable to see updated reporting data each day in the Lite version.
+- Bugfix: In sitei() in the api-auth class, we used mb_strimwidth to trim the final string to 30 characters. While this is a great PHP function, not all servers have the mbstring (Multibyte String) PHP extension installed, from which all mb_* functions are provided, despite it being a "required" PHP extension to use WordPress core. This caused some servers to be unable to authenticate and thus get our amazing new reports (sad face). This usage has been replaced with a standard substr use, thus allowing for compatibility.
+
 = 7.0.0: February 20, 2018 =
 * New: Completely revamped reports with a new UI.
 * New: Ability to oAuth at the network level, and have that oAuth apply as the default to all subsites (can still override at a subsite level).

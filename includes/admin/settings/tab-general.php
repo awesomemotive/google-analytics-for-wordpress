@@ -169,6 +169,23 @@ function monsterinsights_settings_general_tab() {
                         </tr>
                     <?php } ?>
 
+                    <!-- Upgrade Doc -->
+                    <?php if ( ! monsterinsights_is_pro_version() ) { ?>
+                     <tr id="monsterinsights-upgrade-link">
+                        <th scope="row">
+                            <label for="monsterinsights-upgrade-link"><?php esc_html_e( 'Unlock MonsterInsights Pro', 'google-analytics-for-wordpress' ); ?></label>
+                        </th>
+                        <td>
+                            <p>
+                                <?php echo sprintf( esc_html__( 'Already purchased an upgrade to MonsterInsights Pro? To unlock your Pro features and addons, %sfollow our upgrade guide%s to install MonsterInsights Pro.' ), '<a href="https://www.monsterinsights.com/docs/go-lite-pro/?utm_source=wpdashboard&utm_campaign=upgradedocinstall">', '</a>' ); ?>
+                            </p>
+                            <p>
+                                <?php echo sprintf( esc_html__( "Don't yet have a Pro license? %sVisit our website%s to upgrade and learn more about all the amazing features, expanded report and powerful addons you unlock when you go Pro." ), '<a href="https://www.monsterinsights.com/lite/?utm_source=wpdashboard&utm_campaign=upgradedocbuy">', '</a>' ); ?>
+                            </p>
+                        </td>
+                    </tr>
+                    <?php } ?>
+
                     <!-- Disable Dashboard -->
                     <?php
                     $title       = esc_html__( 'Disable Reports', 'google-analytics-for-wordpress' );
@@ -180,7 +197,7 @@ function monsterinsights_settings_general_tab() {
                     <?php $automatic_updates = $automatic_updates ? $automatic_updates : 'none'; ?>
                     <tr id="monsterinsights-automatic-updates-mode">
                         <th scope="row">
-                            <label for="monsterinsights-tracking-mode"><?php esc_html_e( 'Automatic Updates', 'google-analytics-for-wordpress' ); ?></label>
+                            <label for="monsterinsights-automatic-updates-mode"><?php esc_html_e( 'Automatic Updates', 'google-analytics-for-wordpress' ); ?></label>
                         </th>
                         <td>
                             <label><input type="radio" name="automatic_updates" value="all" <?php checked( $automatic_updates, 'all' ); ?> ><?php esc_html_e('Yes (Recommended) - Get the latest features, bugfixes, and security updates as they are released.', 'google-analytics-for-wordpress'); ?> </label>

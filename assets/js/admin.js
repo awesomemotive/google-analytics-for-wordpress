@@ -21,10 +21,10 @@
 			errors[ errors.length ] = [errorMsg, url, lineNumber];
 		else
 			dbjsError(errorMsg, url, lineNumber);
-	}
+	};
 
 	jQuery(document).ready( function(){
-		for ( err in errors )
+		for ( var err in errors )
 			dbjsError( errors[err][0], errors[err][1], errors[err][2] );
 
 	});
@@ -53,6 +53,15 @@
 })();
 
 jQuery( document ).ready( function( $ ) {
+	// Disable function
+	jQuery.fn.extend({
+		disable: function(state) {
+			return this.each(function() {
+				this.disabled = state;
+			});
+		}
+	});
+
 	jQuery("#screen-meta-links").prependTo("#monsterinsights-header-temp");
 	jQuery("#screen-meta").prependTo("#monsterinsights-header-temp");
 
@@ -206,7 +215,7 @@ jQuery( document ).ready( function( $ ) {
 				  allowEscapeKey: false,
 				  allowEnterKey: false,
 				  onOpen: function () {
-					swal.showLoading()
+					swal.showLoading();
 				  }
 				}).catch(swal.noop);
 				var data = { 
@@ -248,7 +257,7 @@ jQuery( document ).ready( function( $ ) {
 				  allowEscapeKey: false,
 				  allowEnterKey: false,
 				  onOpen: function () {
-					swal.showLoading()
+					swal.showLoading();
 				  }
 				}).catch(swal.noop);
 				var data = { 
@@ -290,7 +299,7 @@ jQuery( document ).ready( function( $ ) {
 				  allowEscapeKey: false,
 				  allowEnterKey: false,
 				  onOpen: function () {
-					swal.showLoading()
+					swal.showLoading();
 				  }
 				}).catch(swal.noop);
 				var data = { 
@@ -347,7 +356,7 @@ jQuery( document ).ready( function( $ ) {
 				  allowEscapeKey: false,
 				  allowEnterKey: false,
 				  onOpen: function () {
-					swal.showLoading()
+					swal.showLoading();
 				  }
 				}).catch(swal.noop);
 				var data = { 
@@ -423,16 +432,16 @@ jQuery( document ).ready( function( $ ) {
 				var html     = domain + fragment + 'utm_source=' + encodeURIComponent(source);
 
 				if (medium) {
-					var html = html + '&utm_medium=' + encodeURIComponent(medium);
+					html = html + '&utm_medium=' + encodeURIComponent(medium);
 				}                
 				if (name) {
-					var html = html + '&utm_campaign=' + encodeURIComponent(name);
+					html = html + '&utm_campaign=' + encodeURIComponent(name);
 				}
 				if (term) {
-					var html = html + '&utm_term=' + encodeURIComponent(term);
+					html = html + '&utm_term=' + encodeURIComponent(term);
 				}
 				if (content) {
-					var html = html + '&utm_content=' + encodeURIComponent(content);
+					html = html + '&utm_content=' + encodeURIComponent(content);
 				}
 
 
@@ -616,7 +625,7 @@ jQuery( document ).ready( function( $ ) {
 						$this.next().hide();
 						return;
 					}
-				}
+				};
 				$.ajax(opts);
 			});
 
@@ -683,7 +692,7 @@ jQuery( document ).ready( function( $ ) {
 						$this.next().hide();
 						return;
 					}
-				}
+				};
 				$.ajax(opts);
 			});
 
@@ -813,7 +822,7 @@ jQuery( document ).ready( function( $ ) {
 										$this.next().hide();
 										return;
 									}
-								}
+								};
 								$.ajax(cred_opts);
 							});
 
@@ -846,7 +855,7 @@ jQuery( document ).ready( function( $ ) {
 						$this.next().hide();
 						return;
 					}
-				}
+				};
 				$.ajax(opts);
 			});
 
@@ -1041,7 +1050,7 @@ jQuery(document).ready(function($) {
 				observer.observe(this, options);
 			});
 		}
-	}
+	};
 	
 	jQuery('#monsterinsights-reports-page-main-nav .monsterinsights-main-nav-item.monsterinsights-nav-item').attrchange(function(attrName) {
 		if ( attrName != 'class' ){
