@@ -357,7 +357,7 @@ function monsterinsights_admin_setup_notices() {
         return;
     }
 
-    // 6. Authetnicate, not manual
+    // 6. Authenticate, not manual
     if ( ! is_network_admin() ) {
         $updates   = monsterinsights_get_option( 'automatic_updates', false );
         $url       = admin_url( 'admin.php?page=monsterinsights_settings' );
@@ -372,6 +372,7 @@ function monsterinsights_admin_setup_notices() {
         }
     }
 
+    // 7. WooUpsell
     if ( ! monsterinsights_is_pro_version() && class_exists( 'WooCommerce' ) ) {
         if ( ! isset( $notices['monsterinsights_woocommerce_tracking_available' ] ) ) { 
             echo '<div class="notice notice-success is-dismissible monsterinsights-notice monsterinsights-wooedd-upsell-row" data-notice="monsterinsights_woocommerce_tracking_available">';
@@ -401,6 +402,8 @@ function monsterinsights_admin_setup_notices() {
             return;
         }
     }
+
+    // 8. EDDUpsell
     if ( ! monsterinsights_is_pro_version() && class_exists( 'Easy_Digital_Downloads' ) ) {
         if ( ! isset( $notices['monsterinsights_edd_tracking_available' ] ) ) { 
             echo '<div class="notice notice-success is-dismissible monsterinsights-notice monsterinsights-wooedd-upsell-row" data-notice="monsterinsights_edd_tracking_available">';

@@ -27,9 +27,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return array Array of the options to use.
  */
 function monsterinsights_tracking_script( ) {
-
-    $tracking_mode = monsterinsights_get_option( 'tracking_mode', 'analytics' );
-
     require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/class-tracking-abstract.php';
 
     $mode = is_preview() ? 'preview' : 'analytics';

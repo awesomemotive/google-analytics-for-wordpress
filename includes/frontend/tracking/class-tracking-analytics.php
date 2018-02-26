@@ -66,6 +66,15 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 			return $options;
 		}
 
+		$track_user = monsterinsights_track_user();
+
+		if ( ! $track_user ) {
+			$options['create'] = "'create', '" . esc_js( $ua_code ) . "', '" . esc_js( 'auto' ) . "'";
+			$options['forceSSL'] = "'set', 'forceSSL', true";
+			$options['send'] = "'send','pageview'";
+			return $options;
+		}
+
 		$domain = esc_attr( monsterinsights_get_option( 'subdomain_tracking', 'auto' ) );
 
 		$allow_linker = monsterinsights_get_option( 'add_allow_linker', false );
