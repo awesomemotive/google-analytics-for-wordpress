@@ -425,6 +425,15 @@ final class MonsterInsights_API_Auth {
 	}
 
 	public function get_sitei() {
-		return  mb_strimwidth( rtrim( ltrim( sanitize_text_field( preg_replace('/[^a-zA-Z0-9]/', '', AUTH_KEY . SECURE_AUTH_KEY . LOGGED_IN_KEY )  ) ) ), 0, 30 );
+		$auth_key        = defined( 'AUTH_KEY' )        ? AUTH_KEY 		  : '';
+		$secure_auth_key = defined( 'SECURE_AUTH_KEY' ) ? SECURE_AUTH_KEY : '';
+		$logged_in_key   = defined( 'LOGGED_IN_KEY' )   ? LOGGED_IN_KEY   : '';
+
+		$sitei = $auth_key . $secure_auth_key . $logged_in_key;
+		$sitei = preg_replace('/[^a-zA-Z0-9]/', '', $sitei );
+		$sitei = sanitize_text_field( $sitei );
+		$sitei = trim( $sitei );
+		$sitei = ( strlen($sitei) > 30 ) ? substr($sitei, 0, 30 ) : $sitei;
+		return $sitei;
 	}
 }

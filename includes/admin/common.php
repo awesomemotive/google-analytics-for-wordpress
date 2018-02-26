@@ -217,6 +217,7 @@ function monsterinsights_remove_conflicting_asset_files() {
 		'imagify-sweetalert', // Imagify 
 		'smls-backend-style', // Smart Logo Showcase Lite
 		'wp-reactjs-starter', // wp-real-media-library
+		'control-panel-modal-plugin', // Ken Theme 
 	);
 	
 	$scripts = array(
@@ -231,6 +232,22 @@ function monsterinsights_remove_conflicting_asset_files() {
 	    'imagify-chart', // Imagify
 		'chartjs', // Comet Cache Pro
 		'wp-reactjs-starter', // wp-real-media-library
+		'jquery-tooltipster', // WP Real Media Library
+    	'jquery-nested-sortable', // WP Real Media Library
+		'jquery-aio-tree', // WP Real Media Library
+		'wp-media-picker', // WP Real Media Library
+		'rml-general', // WP Real Media Library
+		'rml-library', // WP Real Media Library
+		'rml-grid', // WP Real Media Library
+        'rml-list', // WP Real Media Library
+        'rml-modal', // WP Real Media Library
+        'rml-order', // WP Real Media Library
+        'rml-meta', // WP Real Media Library
+        'rml-uploader',  // WP Real Media Library
+        'rml-options',  // WP Real Media Library
+        'rml-usersettings',  // WP Real Media Library
+        'rml-main', // WP Real Media Library
+        'control-panel-sweet-alert', // Ken Theme
 	);
 
 	if ( ! empty( $styles ) ) {
