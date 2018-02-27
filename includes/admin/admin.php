@@ -313,38 +313,36 @@ function monsterinsights_admin_setup_notices() {
     }
 
     // 4. Optin setting not configured
-    if ( ! is_network_admin() ) {
-        if ( ! get_option( 'monsterinsights_tracking_notice' ) ) {
-            if ( ! monsterinsights_get_option( 'anonymous_data', false ) ) {
-                if ( ! monsterinsights_is_dev_url( network_site_url( '/' ) ) ) {
-                    if ( monsterinsights_is_pro_version() ) {
-                        monsterinsights_update_option( 'anonymous_data', 1 );
-                        return;
-                    }
-                    $optin_url  = add_query_arg( 'mi_action', 'opt_into_tracking' );
-                    $optout_url = add_query_arg( 'mi_action', 'opt_out_of_tracking' );
-                    echo '<div class="updated"><p>';
-                    echo esc_html__( 'Allow MonsterInsights to track plugin usage? Opt-in to tracking and our newsletter to stay informed of the latest changes to MonsterInsights and help us ensure compatibility.', 'google-analytics-for-wordpress' );
-                    echo '&nbsp;<a href="' . esc_url( $optin_url ) . '" class="button-secondary">' . __( 'Allow', 'google-analytics-for-wordpress' ) . '</a>';
-                    echo '&nbsp;<a href="' . esc_url( $optout_url ) . '" class="button-secondary">' . __( 'Do not allow', 'google-analytics-for-wordpress' ) . '</a>';
-                    echo '</p></div>';
-                    return;
-                } else {
-                    // is testing site
-                     update_option( 'monsterinsights_tracking_notice', '1' );
-                }
-            }
-        }
+    // if ( ! is_network_admin() ) {
+    //     if ( ! get_option( 'monsterinsights_tracking_notice' ) ) {
+    //         if ( ! monsterinsights_get_option( 'anonymous_data', false ) ) {
+    //             if ( ! monsterinsights_is_dev_url( network_site_url( '/' ) ) ) {
+    //                 if ( monsterinsights_is_pro_version() ) {
+    //                     monsterinsights_update_option( 'anonymous_data', 1 );
+    //                     return;
+    //                 }
+    //                 $optin_url  = add_query_arg( 'mi_action', 'opt_into_tracking' );
+    //                 $optout_url = add_query_arg( 'mi_action', 'opt_out_of_tracking' );
+    //                 echo '<div class="updated"><p>';
+    //                 echo esc_html__( 'Allow MonsterInsights to track plugin usage? Opt-in to tracking and our newsletter to stay informed of the latest changes to MonsterInsights and help us ensure compatibility.', 'google-analytics-for-wordpress' );
+    //                 echo '&nbsp;<a href="' . esc_url( $optin_url ) . '" class="button-secondary">' . __( 'Allow', 'google-analytics-for-wordpress' ) . '</a>';
+    //                 echo '&nbsp;<a href="' . esc_url( $optout_url ) . '" class="button-secondary">' . __( 'Do not allow', 'google-analytics-for-wordpress' ) . '</a>';
+    //                 echo '</p></div>';
+    //                 return;
+    //             } else {
+    //                 // is testing site
+    //                  update_option( 'monsterinsights_tracking_notice', '1' );
+    //             }
+    //         }
+    //     }
+    // }
+
+    $notices   = get_option( 'monsterinsights_notices' );
+    if ( ! is_array( $notices ) ) {
+        $notices = array();
     }
 
-    $notices = array();
-    if ( ! is_network_admin() || ( ! monsterinsights_is_pro_version() && ( class_exists( 'WooCommerce' ) || class_exists( 'Easy_Digital_Downloads' ) ) ) ) {
-        $notices   = get_option( 'monsterinsights_notices' );
-        if ( ! is_array( $notices ) ) {
-            $notices = array();
-        }
-    }
-    // 5. Automatic updates not configured
+    // 5. Authenticate, not manual
     $authed   = MonsterInsights()->auth->is_authed() || MonsterInsights()->auth->is_network_authed();
     $url      = is_network_admin() ? network_admin_url( 'admin.php?page=monsterinsights_network' ) : admin_url( 'admin.php?page=monsterinsights_settings' );
 
@@ -357,20 +355,20 @@ function monsterinsights_admin_setup_notices() {
         return;
     }
 
-    // 6. Authenticate, not manual
-    if ( ! is_network_admin() ) {
-        $updates   = monsterinsights_get_option( 'automatic_updates', false );
-        $url       = admin_url( 'admin.php?page=monsterinsights_settings' );
+    // 6. Automatic updates not configured
+    // if ( ! is_network_admin() ) {
+    //     $updates   = monsterinsights_get_option( 'automatic_updates', false );
+    //     $url       = admin_url( 'admin.php?page=monsterinsights_settings' );
 
-        if ( empty( $updates) && ! isset( $notices['monsterinsights_automatic_updates' ] ) ) { 
-            echo '<div class="notice notice-info is-dismissible monsterinsights-notice" data-notice="monsterinsights_automatic_updates">';
-                echo '<p>';
-                echo sprintf( esc_html__( 'Important: Please %1$sconfigure the Automatic Updates Settings%2$s in MonsterInsights.', 'google-analytics-for-wordpress' ), '<a href="' . $url .'">', '</a>' ); 
-                echo '</p>';
-            echo '</div>';
-            return;
-        }
-    }
+    //     if ( empty( $updates) && ! isset( $notices['monsterinsights_automatic_updates' ] ) ) { 
+    //         echo '<div class="notice notice-info is-dismissible monsterinsights-notice" data-notice="monsterinsights_automatic_updates">';
+    //             echo '<p>';
+    //             echo sprintf( esc_html__( 'Important: Please %1$sconfigure the Automatic Updates Settings%2$s in MonsterInsights.', 'google-analytics-for-wordpress' ), '<a href="' . $url .'">', '</a>' ); 
+    //             echo '</p>';
+    //         echo '</div>';
+    //         return;
+    //     }
+    // }
 
     // 7. WooUpsell
     if ( ! monsterinsights_is_pro_version() && class_exists( 'WooCommerce' ) ) {

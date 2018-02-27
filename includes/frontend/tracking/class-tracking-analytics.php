@@ -184,12 +184,12 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 		$compat     = $compat ? 'window.ga = __gaTracker;' : '';
 		$track_user = monsterinsights_track_user();
 		$ua         = monsterinsights_get_ua();
+		$output     = '';
+		$reason     = '';
 		ob_start();
 		?>
 <!-- This site uses the Google Analytics by MonsterInsights plugin v<?php echo MONSTERINSIGHTS_VERSION; ?> - Using Analytics tracking - https://www.monsterinsights.com/ -->
 <?php if ( ! $track_user ) {
-	$output = '';
-	$reason = '';
 	if ( empty( $ua ) ) {
 		$reason = __( 'Note: MonsterInsights is not currently configured on this site. The site owner needs to authenticate with Google Analytics in the MonsterInsights settings panel.', 'google-analytics-for-wordpress' );
 	    $output .=  '<!-- ' . esc_html( $reason ) . ' -->' . PHP_EOL;
