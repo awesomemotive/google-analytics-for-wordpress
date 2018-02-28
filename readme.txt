@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
 Tested up to: 4.9
-Stable tag: 7.0.2
+Stable tag: 7.0.3
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -134,6 +134,15 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+
+= 7.0.3: February 28, 2018 =
+- New: We added support for tracking download files that have a cache busting variable on the URL.
+- New: We added support for the new UserID mode used in our AMP addon.
+- Tweak: We fixed a bug with the notices class, and drastically cut back on the number of them.
+- Bugfix: We fixed a bug with our Facebook Instant Articles addon that prevented some users from being tracked for downloads.
+- Bugfix: We fixed a bug in the usage tracking for some types of installs.
+- Bugfix: We've allowed the disabling of tracking for admininistrator role users on single sites.
+
 = 7.0.2: February 27, 2018 =
 - Bugfix: Fixed a bug with the analytics.js output where a UA code wasn't entered, the $reason variable could be undefined.
 - Bugfix: Fixed an issue where a notice might not be dismissable and we've also removed several of them.

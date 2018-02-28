@@ -46,7 +46,7 @@ function monsterinsights_track_user() {
 	}
 
 	$track_super_admin = apply_filters( 'monsterinsights_track_super_admins', false );
-	if ( $track_super_admin === false && is_super_admin() ) {
+	if ( $track_super_admin === false && is_multisite() && is_super_admin() ) {
 		$track_user = false;
 	}
 	

@@ -169,7 +169,7 @@ var MonsterInsights = function(){
 
 		if ( type === 'unknown' && download_extensions.length > 0 && extension.length > 0 ) { /* If it's a download */
 			for ( index = 0, len = download_extensions.length; index < len; ++index ) {
-				if ( download_extensions[ index ].length > 0 && link.endsWith( download_extensions[ index ] ) ) {
+				if ( download_extensions[ index ].length > 0 && ( link.endsWith( download_extensions[ index ] ) || download_extensions[ index ]  == extension ) ) {
 					type = "download";
 					break;
 				}
