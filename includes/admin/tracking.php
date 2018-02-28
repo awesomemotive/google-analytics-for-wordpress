@@ -52,6 +52,15 @@ class MonsterInsights_Tracking {
 			$update_mode = 'none';
 		}
 
+		$count_b = 1;
+		if ( is_multisite() ) {
+			if ( function_exists( 'get_blog_count' ) ) {
+				$count_b = get_blog_count();
+			} else {
+				$count_b = 'Not Set';
+			}
+		}
+
 		$data['php_version']   = phpversion();
 		$data['mi_version']    = MONSTERINSIGHTS_VERSION;
 		$data['wp_version']    = get_bloginfo( 'version' );
@@ -69,9 +78,9 @@ class MonsterInsights_Tracking {
 		$data['events_mode']   = $events_mode;
 		$data['autoupdate']    = $update_mode;
 		$data['pro']           = (int) monsterinsights_is_pro_version();
-		$data['sites']         = is_multisite() ? (int) get_blog_count() : 1;
+		$data['sites']         = $count_b;
 		$data['usagetracking'] = get_option( 'monsterinsights_usage_tracking_config', $tracking );
-		$data['usercount']     = get_user_count();
+		$data['usercount']     = function_exists( 'get_user_count' ) ? get_user_count() : 'Not Set';
 
 		// Retrieve current plugin information
 		if( ! function_exists( 'get_plugins' ) ) {

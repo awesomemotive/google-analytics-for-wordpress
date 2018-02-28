@@ -204,8 +204,8 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 } ?>
 <?php if ( $ua ) { ?>
 <script type="text/javascript" data-cfasync="false">
-<?php if ( $this->should_do_optout() ) { ?>
 	var mi_track_user = <?php echo ( $track_user ? 'true' : 'false' ); ?>;
+<?php if ( $this->should_do_optout() ) { ?>
 	var disableStr = 'ga-disable-<?php echo monsterinsights_get_ua(); ?>';
 
 	/* Function to detect opted out users */
@@ -249,7 +249,8 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 	}
 	?>
 	} else {
-		console.log( '%c' + "<?php echo esc_js( $reason );?>", 'color:#F74C2F;font-size: 1.5em;font-weight:800;');
+<?php if ( $this->should_do_optout() ) { ?>
+		console.log( "<?php echo esc_js( $reason );?>" );
 		(function() {
 			/* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
 			var noopfn = function() {
@@ -291,6 +292,7 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 			__gaTracker.remove = noopfn;
 			window['__gaTracker'] = __gaTracker;
 		})();
+	<?php } ?>
 	}
 </script>
 <?php } else {  ?>
