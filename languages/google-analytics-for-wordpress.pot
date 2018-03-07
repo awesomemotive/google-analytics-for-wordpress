@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: MonsterInsights Lite\n"
 "Report-Msgid-Bugs-To: https://github.com/awesomemotive/monsterinsights/"
 "issues\n"
-"POT-Creation-Date: 2018-02-26 11:38-0500\n"
+"POT-Creation-Date: 2018-03-07 13:32-0500\n"
 "PO-Revision-Date: 2016-07-21 17:01-0400\n"
 "Last-Translator: Chris Christoff <support@monsterinsights.com>\n"
 "Language-Team: Chris Christoff <support@monsterinsights.com>\n"
@@ -35,18 +35,18 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-12: *.css\n"
 "X-Poedit-SearchPathExcluded-13: googleanalytics-premium.php\n"
 
-#: googleanalytics.php:264 googleanalytics.php:278
+#: googleanalytics.php:265 googleanalytics.php:279
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: googleanalytics.php:426
+#: googleanalytics.php:427
 msgid ""
 "The version of MonsterInsights eCommerce addon you have is not compatible "
 "with the version of MonsterInsights installed. Please update the eCommerce "
 "addon as soon as possible"
 msgstr ""
 
-#: googleanalytics.php:448
+#: googleanalytics.php:449
 #, php-format
 msgid ""
 "Sorry, but your version of WordPress does not meet MonsterInsights's "
@@ -54,7 +54,7 @@ msgid ""
 "activated. %3$sClick here to return to the Dashboard%4$s."
 msgstr ""
 
-#: googleanalytics.php:469
+#: googleanalytics.php:470
 #, php-format
 msgid ""
 "Please %1$suninstall%2$s the MonsterInsights Lite Plugin. Your Pro version "
@@ -62,7 +62,7 @@ msgid ""
 "uninstalled."
 msgstr ""
 
-#: googleanalytics.php:643
+#: googleanalytics.php:644
 #, php-format
 msgid ""
 "Sorry, but your version of WordPress does not meet MonsterInsight's required "
@@ -70,7 +70,7 @@ msgid ""
 "%3$sClick here to return to the Dashboard%4$s."
 msgstr ""
 
-#: googleanalytics.php:648
+#: googleanalytics.php:649
 #, php-format
 msgid ""
 "Please uninstall and remove MonsterInsights Pro before activating "
@@ -217,22 +217,7 @@ msgid ""
 "different key."
 msgstr ""
 
-#: includes/admin/admin.php:327
-msgid ""
-"Allow MonsterInsights to track plugin usage? Opt-in to tracking and our "
-"newsletter to stay informed of the latest changes to MonsterInsights and "
-"help us ensure compatibility."
-msgstr ""
-
-#: includes/admin/admin.php:328
-msgid "Allow"
-msgstr ""
-
-#: includes/admin/admin.php:329
-msgid "Do not allow"
-msgstr ""
-
-#: includes/admin/admin.php:354
+#: includes/admin/admin.php:352
 #, php-format
 msgid ""
 "Important: You are currently using manual UA code output. We highly "
@@ -240,14 +225,7 @@ msgid ""
 "our new reporting area and take advantage of new MonsterInsights features."
 msgstr ""
 
-#: includes/admin/admin.php:368
-#, php-format
-msgid ""
-"Important: Please %1$sconfigure the Automatic Updates Settings%2$s in "
-"MonsterInsights."
-msgstr ""
-
-#: includes/admin/admin.php:395 includes/admin/admin.php:424
+#: includes/admin/admin.php:394 includes/admin/admin.php:425
 #, php-format
 msgid "%1$sGet MonsterInsights Pro%2$s"
 msgstr ""
@@ -1027,12 +1005,12 @@ msgstr ""
 
 #: includes/admin/reports/overview.php:47
 #: includes/admin/reports/overview.php:81
-#: includes/admin/reports/overview.php:600
+#: includes/admin/reports/overview.php:626
 msgid "Sessions"
 msgstr ""
 
 #: includes/admin/reports/overview.php:52
-#: includes/admin/reports/overview.php:600
+#: includes/admin/reports/overview.php:626
 msgid "Page Views"
 msgstr ""
 
@@ -1173,40 +1151,40 @@ msgid ""
 "\"referral traffic\"."
 msgstr ""
 
-#: includes/admin/reports/overview.php:548
+#: includes/admin/reports/overview.php:559
 msgid "View All Referral Resources"
 msgstr ""
 
-#: includes/admin/reports/overview.php:558
-#: includes/admin/reports/overview.php:561
+#: includes/admin/reports/overview.php:569
+#: includes/admin/reports/overview.php:572
 msgid "Top Posts / Pages"
 msgstr ""
 
-#: includes/admin/reports/overview.php:561
+#: includes/admin/reports/overview.php:572
 msgid "This list shows the most viewed posts and pages on your website."
 msgstr ""
 
-#: includes/admin/reports/overview.php:578
+#: includes/admin/reports/overview.php:604
 msgid "Show"
 msgstr ""
 
-#: includes/admin/reports/overview.php:579
+#: includes/admin/reports/overview.php:605
 msgid "How many to show"
 msgstr ""
 
-#: includes/admin/reports/overview.php:584
+#: includes/admin/reports/overview.php:610
 msgid "View Full Post/Page Report"
 msgstr ""
 
-#: includes/admin/reports/overview.php:598
+#: includes/admin/reports/overview.php:624
 msgid "UP"
 msgstr ""
 
-#: includes/admin/reports/overview.php:599
+#: includes/admin/reports/overview.php:625
 msgid "DOWN"
 msgstr ""
 
-#: includes/admin/reports/overview.php:600
+#: includes/admin/reports/overview.php:626
 msgid "Unique"
 msgstr ""
 
@@ -1632,7 +1610,7 @@ msgid ""
 "Google AMP tracking, Performance optimization, and so much more!"
 msgstr ""
 
-#: includes/admin/tracking.php:216
+#: includes/admin/tracking.php:238
 msgid "Once Weekly"
 msgstr ""
 
@@ -1672,31 +1650,31 @@ msgstr ""
 msgid "%1$s is %3$sdeprecated%4$s since MonsterInsights version %2$s."
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-analytics.php:185
+#: includes/frontend/tracking/class-tracking-analytics.php:194
 msgid ""
 "Note: MonsterInsights is not currently configured on this site. The site "
 "owner needs to authenticate with Google Analytics in the MonsterInsights "
 "settings panel."
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-analytics.php:188
+#: includes/frontend/tracking/class-tracking-analytics.php:197
 msgid ""
 "Note: MonsterInsights does not track you as a logged in site administrator "
 "to prevent site owners from accidentally skewing their own Google Analytics "
 "data."
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-analytics.php:191
+#: includes/frontend/tracking/class-tracking-analytics.php:200
 msgid ""
 "Note: The site owner has disabled Google Analytics tracking for your user "
 "role."
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-analytics.php:266
+#: includes/frontend/tracking/class-tracking-analytics.php:276
 msgid "Not running function"
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-analytics.php:266
+#: includes/frontend/tracking/class-tracking-analytics.php:276
 #, php-format
 msgid "because you're not being tracked. %s"
 msgstr ""
