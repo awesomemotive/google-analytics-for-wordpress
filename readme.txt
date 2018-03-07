@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
 Tested up to: 4.9
-Stable tag: 7.0.3
+Stable tag: 7.0.4
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -134,6 +134,13 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.0.4: March 7, 2018 =
+- Note: We're planning on being a more actively developed plugin this year, as we built out and add more reporting and tracking features for our Lite plugin. MonsterInsights offers the ability to automatically update for minor versions (bugfix releases) and all versions (bugfix and feature releases) automatically via a setting in our Settings panel. We recommend using this option for most users (it uses the same system as WordPress core).
+- New: We've added links to the pages listed in the top pages part of the Overview report to make it easier to see which page each title belongs to.
+- New: We've added the UA code to the account selector to make it easier to determine which property to use.
+- Bugfix: We've corrected some missing closing li tags on the overview report.
+- Bugfix: We fixed an issue where get_current_screen might be undefined on some pages.
+- Bugfix: We fixed an issue where some unproperly set up servers might resolve symlinks that are not supposed to be resolved, leading to issues with loading asset files MonsterInsights uses.
 
 = 7.0.3: February 28, 2018 =
 - New: We added support for tracking download files that have a cache busting variable on the URL.
@@ -422,8 +429,14 @@ For all frequently asked questions, and their answers, check the [MonsterInsight
 
 == Screenshots ==
 
-1. Reporting area
-2. Google Authentication wizard
-3. Settings page
-4. Custom Dimensions (a Pro feature)
-5. eCommerce Tracking (a Pro feature)
+1. The overview report
+2. Top countries and referrals
+3. Top posts and pages
+4. Authentication with MonsterInsights
+5. Settings page
+6. File download tracking
+7. eCommerce tracking - no configuration required (Pro feature)
+8. eCommerce report (Pro feature)
+9. Search console report (Pro feature)
+10. Custom dimensions tracking (Pro feature)
+11. Custom Dimensions report (Pro feature)

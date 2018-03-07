@@ -6,7 +6,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/
  *
- * Version:             7.0.3
+ * Version:             7.0.4
  * Requires at least:   3.8.0
  * Tested up to:        4.9
  *
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '7.0.3';
+	public $version = '7.0.4';
 
 	/**
 	 * Plugin file.
@@ -78,7 +78,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $file PHP File constant for main file.
 	 */
-	public $file = __FILE__;
+	public $file;
 
 	/**
 	 * The name of the plugin.
@@ -174,6 +174,7 @@ final class MonsterInsights_Lite {
 
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof MonsterInsights_Lite ) ) {
 			self::$instance = new MonsterInsights_Lite();
+			self::$instance->file = __FILE__;
 
 			global $wp_version;
 

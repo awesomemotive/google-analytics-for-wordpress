@@ -241,7 +241,7 @@ class MonsterInsights_Report {
 			} else {
 				// Success
 				$data = array( 
-					'expires' => strtotime( "+1 day" ),
+					'expires' => $expiration,
 					'p'       => $p,
 					'data'    => $ret['data'],
 				);
@@ -346,6 +346,18 @@ class MonsterInsights_Report {
 		<?php
 		return ob_get_clean();
 	}
+
+    function get_ga_report_range( $data = array() ) {
+    	if ( empty( $data['reportcurrentrange'] ) || empty( $data['reportcurrentrange']['startDate'] ) || empty( $data['reportcurrentrange']['endDate'] ) ) {
+    		return '';
+    	} else {
+    		if ( ! empty( $data['reportprevrange'] ) && ! empty( $data['reportprevrange']['startDate'] ) && ! empty( $data['reportprevrange']['endDate'] ) ) {
+    			return '%3F_u.date00%3D' . str_replace( '-', '', $data['reportcurrentrange']['startDate'] ) .'%26_u.date01%3D' . str_replace( '-', '', $data['reportcurrentrange']['endDate'] ) . '%26_u.date10%3D' . str_replace( '-', '', $data['reportprevrange']['startDate'] ) .'%26_u.date11%3D' . str_replace( '-', '', $data['reportprevrange']['endDate'] ) . '/';
+    		} else {
+    			return '%3F_u.date00%3D' . str_replace( '-', '', $data['reportcurrentrange']['startDate'] ) .'%26_u.date01%3D' . str_replace( '-', '', $data['reportcurrentrange']['endDate'] ) . '/';
+    		}
+    	}
+    }
 }
 
 if ( ! class_exists( 'MonsterInsightsDateTime' ) ) {
