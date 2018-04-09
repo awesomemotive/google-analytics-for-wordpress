@@ -64,7 +64,7 @@ function monsterinsights_get_client_id( $payment_id = false ) {
 		$payment_id = $payment_id->ID;
 	}
 	$user_cid    = monsterinsights_get_uuid();
-	$saved_cid   = get_post_meta( $payment_id, '_yoast_gau_uuid', true );
+	$saved_cid   = ! empty( $payment_id ) ? get_post_meta( $payment_id, '_yoast_gau_uuid', true ) : false;
 
 	if ( ! empty( $payment_id ) && ! empty( $saved_cid ) ) {
 		return $saved_cid;

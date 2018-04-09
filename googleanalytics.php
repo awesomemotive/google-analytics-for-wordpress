@@ -6,7 +6,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/
  *
- * Version:             7.0.4
+ * Version:             7.0.5
  * Requires at least:   3.8.0
  * Tested up to:        4.9
  *
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '7.0.4';
+	public $version = '7.0.5';
 
 	/**
 	 * Plugin file.

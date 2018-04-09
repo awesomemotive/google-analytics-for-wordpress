@@ -180,12 +180,13 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 		if ( current_user_can( 'manage_options' ) && $is_debug_mode ) {
 			$src       = apply_filters( 'monsterinsights_frontend_output_analytics_src', '//www.google-analytics.com/analytics_debug.js' );
 		}
-		$compat     = monsterinsights_get_option( 'gatracker_compatibility_mode', false );
-		$compat     = $compat ? 'window.ga = __gaTracker;' : '';
-		$track_user = monsterinsights_track_user();
-		$ua         = monsterinsights_get_ua();
-		$output     = '';
-		$reason     = '';
+		$compat     	= monsterinsights_get_option( 'gatracker_compatibility_mode', false );
+		$compat    	 	= $compat ? 'window.ga = __gaTracker;' : '';
+		$track_user 	= monsterinsights_track_user();
+		$ua         	= monsterinsights_get_ua();
+		$output     	= '';
+		$reason     	= '';
+		$cookie_notice  = class_exists( 'Cookie_Notice' ) && monsterinsights_get_option( 'cookie_notice', false );
 		ob_start();
 		?>
 <!-- This site uses the Google Analytics by MonsterInsights plugin v<?php echo MONSTERINSIGHTS_VERSION; ?> - Using Analytics tracking - https://www.monsterinsights.com/ -->
@@ -196,6 +197,9 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 	} else if ( current_user_can( 'monsterinsights_save_settings' ) ) {
 		$reason = __( 'Note: MonsterInsights does not track you as a logged in site administrator to prevent site owners from accidentally skewing their own Google Analytics data.'. PHP_EOL . 'If you are testing Google Analytics code, please do so either logged out or in the private browsing/incognito mode of your web browser.', 'google-analytics-for-wordpress' );
 	    $output .=  '<!-- ' . esc_html( $reason ) . ' -->' . PHP_EOL;
+	} else if ( class_exist( 'Cookie_Notice' ) ) {
+		$reason = __( 'Note: You have not accepted the Cookie Notice.', 'google-analytics-for-wordpress' );
+	    $output .=  '<!-- ' . esc_html( $reason ) . ' -->' . PHP_EOL;
 	} else {
 		$reason = __( 'Note: The site owner has disabled Google Analytics tracking for your user role.', 'google-analytics-for-wordpress' );
 	    $output .=  '<!-- ' . esc_html( $reason ) . ' -->' . PHP_EOL;
@@ -205,6 +209,17 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 <?php if ( $ua ) { ?>
 <script type="text/javascript" data-cfasync="false">
 	var mi_track_user = <?php echo ( $track_user ? 'true' : 'false' ); ?>;
+	<?php if ( $cookie_notice ) { ?>
+	/* Compatibility with Cookie Notice */
+	if ( typeof setCookieNotice === 'function' ) {
+	  /* See if body has cookies-not-accepted */
+	    var mi_body_el = document.getElementsByTagName("BODY")[0];
+	   if ( (' ' + mi_body_el.className + ' ').indexOf(' ' + 'cookies-not-accepted' + ' ') > -1 ) {
+	        mi_track_user = false;
+	  }
+	}
+	<?php } ?>
+
 <?php if ( $this->should_do_optout() ) { ?>
 	var disableStr = 'ga-disable-<?php echo monsterinsights_get_ua(); ?>';
 
