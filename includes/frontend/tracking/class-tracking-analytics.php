@@ -197,7 +197,7 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 	} else if ( current_user_can( 'monsterinsights_save_settings' ) ) {
 		$reason = __( 'Note: MonsterInsights does not track you as a logged in site administrator to prevent site owners from accidentally skewing their own Google Analytics data.'. PHP_EOL . 'If you are testing Google Analytics code, please do so either logged out or in the private browsing/incognito mode of your web browser.', 'google-analytics-for-wordpress' );
 	    $output .=  '<!-- ' . esc_html( $reason ) . ' -->' . PHP_EOL;
-	} else if ( class_exist( 'Cookie_Notice' ) ) {
+	} else if ( class_exists( 'Cookie_Notice' ) ) {
 		$reason = __( 'Note: You have not accepted the Cookie Notice.', 'google-analytics-for-wordpress' );
 	    $output .=  '<!-- ' . esc_html( $reason ) . ' -->' . PHP_EOL;
 	} else {
