@@ -223,6 +223,8 @@ final class MonsterInsights_API_Request {
 			$body['time']   = time(); // just to avoid caching
 		}
 
+		$body['timezone'] = date('e');
+
 		$body['ip']   = ! empty( $_SERVER['SERVER_ADDR'] ) ? $_SERVER['SERVER_ADDR'] : '';
 
 		// This filter will be removed in the future.

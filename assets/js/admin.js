@@ -452,30 +452,6 @@ jQuery( document ).ready( function( $ ) {
 				}         
 		}
 
-		jQuery( document ).on( 'click', '#monsterinsights-shorten-url', function( e ) {
-			e.preventDefault();
-			jQuery("#monsterinsights-shorten-url").text( monsterinsights_admin.working );
-			var url = decodeURIComponent( jQuery('#monsterinsights-url-builer-url').val() );
-			var data = {
-				'action': 'monsterinsights_get_shortlink',
-				'url'   : url,
-				'nonce':  monsterinsights_admin.admin_nonce,
-
-			};
-			jQuery.post(ajaxurl, data, function(response) {
-				jQuery('#monsterinsights-url-builer-url').html(response.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"));
-				jQuery("#monsterinsights-shorten-url").text( monsterinsights_admin.shortened );
-				window.setTimeout(function() {
-					jQuery("#monsterinsights-shorten-url").text( monsterinsights_admin.shorten );
-				}, 2000);
-			}).fail( function(xhr, textStatus, errorThrown) {
-				jQuery("#monsterinsights-shorten-url").text( monsterinsights_admin.failed );
-				window.setTimeout(function() {
-					jQuery("#monsterinsights-shorten-url").text( monsterinsights_admin.shorten );
-				}, 2000);
-			});
-		} );
-
 		// Addons JS
 			// Addon background color
 				if ( jQuery( "#monsterinsights-addons" ).length !== 0 ) {
@@ -1063,8 +1039,8 @@ jQuery(document).ready(function($) {
 		// Which report?
 		var reportname = jQuery("#monsterinsights-reports-pages").find( "div.monsterinsights-main-nav-tab.monsterinsights-active" ).attr("id").replace("monsterinsights-main-tab-", "" );
 		var reportid   = jQuery("#monsterinsights-reports-pages").find( "div.monsterinsights-main-nav-tab.monsterinsights-active" ).attr("id");
-		var start      = moment( moment().subtract(30, 'days') ).utc().format('YYYY-MM-DD');
-		var end        = moment( moment().subtract( 1, 'days' ) ).utc().format('YYYY-MM-DD');
+		var start      = moment( moment().subtract(30, 'days') ).tz(monsterinsights_admin.timezone).format('YYYY-MM-DD');
+		var end        = moment( moment().subtract( 1, 'days' ) ).tz(monsterinsights_admin.timezone).format('YYYY-MM-DD');
 
 		swal({
 		  type: 'info',

@@ -98,7 +98,6 @@ function monsterinsights_admin_scripts() {
 		return;
 	}
 
-
 	// Tooltips
 		wp_enqueue_script( 'jquery-ui-tooltip' );
 
@@ -171,11 +170,12 @@ function monsterinsights_admin_scripts() {
 				'verify_success_text_text'  	=> esc_html__( "Your site is connected to MonsterInsights!" ,'google-analytics-for-wordpress'),
 				'ok_text' 						=> esc_html__( "OK" ,'google-analytics-for-wordpress'),
 				'force_deauth_button_text'  	=> esc_html__( "Force Deauthenticate" ,'google-analytics-for-wordpress'),
-				'refresh_report_title'          => esc_html__( 'Refreshing Report', 'ga-premium' ),
-				'refresh_report_text'           => esc_html__( 'Loading new report data...', 'ga-premium' ),
-				'refresh_report_success_text'   => esc_html__( 'Success', 'ga-premium' ),
-				'refresh_report_success_text'   => esc_html__( 'Retrieved the new report data successfully', 'ga-premium' ),
-				'refresh_report_failure_title'  => esc_html__( 'Error', 'ga-premium' ),
+				'refresh_report_title'          => esc_html__( 'Refreshing Report', 'google-analytics-for-wordpress' ),
+				'refresh_report_text'           => esc_html__( 'Loading new report data...', 'google-analytics-for-wordpress' ),
+				'refresh_report_success_text'   => esc_html__( 'Success', 'google-analytics-for-wordpress' ),
+				'refresh_report_success_text'   => esc_html__( 'Retrieved the new report data successfully', 'google-analytics-for-wordpress' ),
+				'refresh_report_failure_title'  => esc_html__( 'Error', 'google-analytics-for-wordpress' ),
+				'timezone'						=> date('e'),
 			)
 		);
 

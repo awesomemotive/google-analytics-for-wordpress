@@ -88,9 +88,12 @@ final class MonsterInsights_API_Auth {
 			wp_send_json_error( array(	'message' => __( "Cannot network authenticate. Please re-authenticate on the network settings panel.", 'google-analytics-for-wordpress' ) ) );
 		}
 
+		$sitei = $this->get_sitei();
+		//update_network_option(  get_current_network_id(), 'monsterinsights_network_sitei', $sitei );
+
 		$siteurl = add_query_arg( array(
 			'tt'        => $this->get_tt(),
-			'sitei'     => $this->get_sitei(),
+			'sitei'     => $sitei,
 			'miversion' => MONSTERINSIGHTS_VERSION,
 			'siteurl'   => is_network_admin() ? network_admin_url() : site_url(),
 			'return'    => is_network_admin() ? network_admin_url( 'admin.php?page=monsterinsights_network' ) : admin_url( 'admin.php?page=monsterinsights_settings' ),
@@ -149,6 +152,8 @@ final class MonsterInsights_API_Auth {
 			'a'        => sanitize_text_field( $_REQUEST['a'] ), // AccountID
 			'w'        => sanitize_text_field( $_REQUEST['w'] ), // PropertyID
 			'p'        => sanitize_text_field( $_REQUEST['p'] ), // View ID
+			'siteurl'  => site_url(),
+			'neturl'   => network_admin_url(),
 		);
 
 		$worked = $this->verify_auth( $profile );
@@ -269,6 +274,8 @@ final class MonsterInsights_API_Auth {
 			'a'        => sanitize_text_field( $_REQUEST['a'] ),
 			'w'        => sanitize_text_field( $_REQUEST['w'] ),
 			'p'        => sanitize_text_field( $_REQUEST['p'] ),
+			'siteurl'  => site_url(),
+			'neturl'   => network_admin_url(),
 		);
 
 		// Rotate tt
@@ -394,6 +401,21 @@ final class MonsterInsights_API_Auth {
 			return false;
 		}
 
+		// If we have a new siteurl enabled option and the profile site doesn't match the current site, deactivate anyways
+		if ( is_network_admin() ) {
+			$siteurl = network_admin_url();
+			if ( ! empty( $creds['neturl' ] ) && $creds['neturl'] !== $siteurl ) {
+				MonsterInsights()->auth->delete_network_analytics_profile( true );
+				return true;
+			}
+		} else {
+			$siteurl = site_url();
+			if ( ! empty( $creds['siteurl' ] ) && $creds['siteurl'] !== $siteurl ) {
+				MonsterInsights()->auth->delete_analytics_profile( true );
+				return true;
+			}
+		}
+
 		$api   = new MonsterInsights_API_Request( $this->get_route( 'auth/delete/{type}/' ), array( 'network' => $this->is_network_admin(), 'tt' => $this->get_tt(), 'key' => $creds['key'], 'token' => $creds['token'] ) );
 		$ret   = $api->request();
 
@@ -425,6 +447,11 @@ final class MonsterInsights_API_Auth {
 	}
 
 	public function get_sitei() {
+		// $sitei = get_network_option(  get_current_network_id(), 'monsterinsights_network_sitei', false );
+		// if ( ! empty( $sitei ) && strlen( $sitei ) >= 1 ) {
+		// 	return $sitei;
+		// }
+
 		$auth_key        = defined( 'AUTH_KEY' )        ? AUTH_KEY 		  : '';
 		$secure_auth_key = defined( 'SECURE_AUTH_KEY' ) ? SECURE_AUTH_KEY : '';
 		$logged_in_key   = defined( 'LOGGED_IN_KEY' )   ? LOGGED_IN_KEY   : '';

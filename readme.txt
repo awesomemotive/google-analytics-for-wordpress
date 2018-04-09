@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
 Tested up to: 4.9
-Stable tag: 7.0.4
+Stable tag: 7.0.5
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -134,26 +134,33 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.0.5: April 9, 2018 =
+- New: Introduced a system (behind-the-scenes) that automatically attempts to correct for improperly set timezones in the WordPress settings panel, server timezone settings and/or GA profile timezones. This should eliminate issues with timezones on Lite user accounts, as well as allow for more accurate date reporting.
+- New: Introduced a system (behind-the-scenes) to allow for deauthentication of profiles set on websites whose profiles were migrated (for example from a staging site to a production site)
+- Tweak: Made clientID retrieval more efficient.
+- Fixed: Several translation/textdomain and typo fixes.
+- Fixed: Undefined $num in the overview report.
+
 = 7.0.4: March 7, 2018 =
 - New: We've added links to the pages listed in the top pages part of the Overview report to make it easier to see which page each title belongs to.
 - New: We've added the UA code to the account selector to make it easier to determine which property to use.
 - New: Better compatibility with IE11.
 - New: The links to view more reporting data now default to the currently selected daterange when you go to analytics.google.com
-- Bugfix: We've corrected some missing closing li tags on the overview report.
-- Bugfix: We fixed an issue where get_current_screen might be undefined on some pages.
-- Bugfix: We fixed an issue where some improperly configured servers might resolve symlinks that are not supposed to be resolved, leading to issues with loading asset files MonsterInsights uses.
+- Fixed: We've corrected some missing closing li tags on the overview report.
+- Fixed: We fixed an issue where get_current_screen might be undefined on some pages.
+- Fixed: We fixed an issue where some improperly configured servers might resolve symlinks that are not supposed to be resolved, leading to issues with loading asset files MonsterInsights uses.
 
 = 7.0.3: February 28, 2018 =
 - New: We added support for tracking download files that have a cache busting variable on the URL.
 - New: We added support for the new UserID mode used in our AMP addon.
 - Tweak: We fixed a bug with the notices class, and drastically cut back on the number of them.
-- Bugfix: We fixed a bug with our Facebook Instant Articles addon that prevented some users from being tracked for downloads.
-- Bugfix: We fixed a bug in the usage tracking for some types of installs.
-- Bugfix: We've allowed the disabling of tracking for admininistrator role users on single sites.
+- Fixed: We fixed a bug with our Facebook Instant Articles addon that prevented some users from being tracked for downloads.
+- Fixed: We fixed a bug in the usage tracking for some types of installs.
+- Fixed: We've allowed the disabling of tracking for admininistrator role users on single sites.
 
 = 7.0.2: February 27, 2018 =
-- Bugfix: Fixed a bug with the analytics.js output where a UA code wasn't entered, the $reason variable could be undefined.
-- Bugfix: Fixed an issue where a notice might not be dismissable and we've also removed several of them.
+- Fixed: Fixed a bug with the analytics.js output where a UA code wasn't entered, the $reason variable could be undefined.
+- Fixed: Fixed an issue where a notice might not be dismissable and we've also removed several of them.
 
 = 7.0.1: February 26, 2018 =
 - New: Support for the updated version of MonsterInsights AMP plugin which switches from using a custom REST endpoint to using the now built in Google AMP ClientID synching feature. If you're using the AMP addon, you'll want to also update that addon as well.
@@ -161,9 +168,9 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 - New: We now output a notice in the console and output the GA code (though do not run it) when we're not tracking someone. This makes it easier to verify the Google code is indeed outputting, and also makes it more clear as to why a particular user isn't being tracked. Note, when testing Google Analytics code, always do it logged out, ideally in the private browsing/incognito mode of your web browser. We're going to keep working on improving the frontend system to simplify it and add new features for both Lite and Pro users now that we've jettisoned ga.js support in MonsterInsights 7.0. You'll see updates through the year that add new tracking features, particularly ones that we're tweaking in order to expand and refine our built-in reporting.
 - New: We added a "have a MonsterInsights license" link on the settings panel, to make it clearer the procedure for the quick and easy upgrade from MonsterInsights Lite to MonsterInsights Pro.
 - Tweak: We removed the phrase referencing the dashboard (removed in MonsterInsights 7.0) from the permissions settings.
-- Bugfix: Due to us forgetting to include our jQuery shim for disable() in the Lite, some users were unable to use the 10/25/50 expand feature on the reports page.
-- Bugfix: An accidental use of the PHP function date instead of the one called time meant that some users were unable to see updated reporting data each day in the Lite version.
-- Bugfix: In sitei() in the api-auth class, we used mb_strimwidth to trim the final string to 30 characters. While this is a great PHP function, not all servers have the mbstring (Multibyte String) PHP extension installed, from which all mb_* functions are provided, despite it being a "required" PHP extension to use WordPress core. This caused some servers to be unable to authenticate and thus get our amazing new reports (sad face). This usage has been replaced with a standard substr use, thus allowing for compatibility with all servers.
+- Fixed: Due to us forgetting to include our jQuery shim for disable() in the Lite, some users were unable to use the 10/25/50 expand feature on the reports page.
+- Fixed: An accidental use of the PHP function date instead of the one called time meant that some users were unable to see updated reporting data each day in the Lite version.
+- Fixed: In sitei() in the api-auth class, we used mb_strimwidth to trim the final string to 30 characters. While this is a great PHP function, not all servers have the mbstring (Multibyte String) PHP extension installed, from which all mb_* functions are provided, despite it being a "required" PHP extension to use WordPress core. This caused some servers to be unable to authenticate and thus get our amazing new reports (sad face). This usage has been replaced with a standard substr use, thus allowing for compatibility with all servers.
 
 = 7.0.0: February 20, 2018 =
 * New: Completely revamped reports with a new UI.
@@ -205,17 +212,17 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 
 = 6.2.2: August 16, 2017 =
 * Tweak: Adjusted order of setup/config notices
-* Fix: Fixed an issue with the sanitation of number fields. Solves an issue with the Google Optimize extension.
+* Fixed: Fixed an issue with the sanitation of number fields. Solves an issue with the Google Optimize extension.
 
 = 6.2.1: August 9, 2017 =
 * New: MonsterInsights now has the ability to automatically update itself and it's addons. You can set MonsterInsights to automatically update minor versions only or all new versions inside the MonsterInsights settings panel in Tracking -> Permissions.
 * Tweak: Introduce scrollbars on GA auth screen for users with many Google accounts
 * Tweak: Added notice to users still on deprecated GA.js tracking and PHP-based events tracking.
-* Fix: Issue with notices having multiple icons has been resolved.
-* Fix: Facebook Instant Articles can now properly handle the Automattic Facebook plugin transformation changes (requires FB IA addon version 1.0.1 or newer)
-* Fix: Conflict with wp_head output for some themes.
-* Fix: Correct level for Forms and Google Optimize addons.
-* Fix: License key errors will no longer show to lite users.
+* Fixed: Issue with notices having multiple icons has been resolved.
+* Fixed: Facebook Instant Articles can now properly handle the Automattic Facebook plugin transformation changes (requires FB IA addon version 1.0.1 or newer)
+* Fixed: Conflict with wp_head output for some themes.
+* Fixed: Correct level for Forms and Google Optimize addons.
+* Fixed: License key errors will no longer show to lite users.
 
 = 6.2.0: June 6, 2017 =
 * New: Form Tracking addon
@@ -226,15 +233,15 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 * New: Measurement protocol functions
 * New: Tweaks for the settings pages to get ready for a speed improvement release upcoming along with some coming soon addons.
 * Tweaks: Spelling corrections.
-* Fix: Internet Explorer tracking fix.
-* Fix: Issue with initialization of settings on certain installs.
+* Fixed: Internet Explorer tracking fix.
+* Fixed: Issue with initialization of settings on certain installs.
 
 
 = 6.1.11: May 31, 2017 =
 * Tweak: Renamed the tools tab for settings import/export
-* Bugfix: Issue with saving of manual UA codes
-* Bugfix: Fixed a couple display issues in the admin
-* Bugfix: Issue for undefined index when the settings array hasn't been initialized.
+* Fixed: Issue with saving of manual UA codes
+* Fixed: Fixed a couple display issues in the admin
+* Fixed: Issue for undefined index when the settings array hasn't been initialized.
 
 = 6.1.10, May 18, 2017 =
 * New: Performance improvement in tracking.
@@ -242,14 +249,14 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 = 6.1.9, May 15, 2017 =
 * New: Plugin has been tested for compatibility with WordPress 4.8-beta1. We'll continue to test through the beta and release candidates, but MonsterInsights is 4.8 ready as-is.
 * Tweak: Deleting lite plugin will no longer delete license key of installed pro version.
-* Bugfix: Import/export settings page has been fixed so that on sites with a ton of plugins installed that make lots of admin bar items, the admin bar will have relative positioning now to allow it to be scrollable.
-* Bugfix: Users with more than 1 property for the same domain name can now use any of the views for those properties.
-* Bugfix: For Pro users, sometimes all available addons for your license level didn't show, requiring you to download them from our site. This has been corrected.
+* Fixed: Import/export settings page has been fixed so that on sites with a ton of plugins installed that make lots of admin bar items, the admin bar will have relative positioning now to allow it to be scrollable.
+* Fixed: Users with more than 1 property for the same domain name can now use any of the views for those properties.
+* Fixed: For Pro users, sometimes all available addons for your license level didn't show, requiring you to download them from our site. This has been corrected.
 
 = 6.1.8, May 11, 2017 =
 * New: Functions needed to support future features including enhanced eCommerce
-* Bugfix: Compatibility with Firefox for link tracking.
-* Bugfix: Issue saving certain fields.
+* Fixed: Compatibility with Firefox for link tracking.
+* Fixed: Issue saving certain fields.
 
 = 6.1.7, April 10, 2017 =
 * New: Changes needed to support new addons, including the Google AMP addon, available as of today.
@@ -267,10 +274,10 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 
 = 6.1.4, March 23, 2017 =
 * Tweak: JS events tracking for click events.
-* Bugfix: Edge case where JS events tracking won't turn on if the main tracking setting was disabled (such as faulty import).
+* Fixed: Edge case where JS events tracking won't turn on if the main tracking setting was disabled (such as faulty import).
 
 = 6.1.1 - 6.1.3 (depending on which version of MI you have), March 22, 2017 =
-* Bugfix: (pro users) Issue with JS events throwing an error for array on non-set settings.
+* Fixed: (pro users) Issue with JS events throwing an error for array on non-set settings.
 
 = 6.1.0, March 22, 2017 =
 * New: Campaign URL building tool with shortlink capability.
@@ -289,8 +296,8 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 * Tweak: More countries now shown in the country map in the overview report.
 * Tweak: License key field is no longer shown on lite installs.
 * Tweak: Frontend JS file has been refactored to make it more unit testable.
-* Bugfix: Download events now correctly include data in all cases not just some.
-* Bugfix: A syntax error involving the manual UA code input has been resolved that could have affected some users under a rare circumstance.
+* Fixed: Download events now correctly include data in all cases not just some.
+* Fixed: A syntax error involving the manual UA code input has been resolved that could have affected some users under a rare circumstance.
 
 = 6.0.16, March 7, 2017 =
 * Fixed: Issues related to link tracking.
@@ -387,32 +394,32 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 * Tweak: Minified admin css and js
 * Tweak: Uses latest version of Google PHP API now.
 * Tweak: The system for creating reports and getting Google Analytics reports have changed. If you've hardcoded into Yoast functions previously not designed for frontend output this could cause problems. We'll introduce an API intended for this type of use after we update to use the v4 reporting API.
-* Fix: Fixed an issue with HostEurope and other hosts modifying the default PHP arg seperator.
-* Fix: Prevents an issue where users with a plugin like Airplane Mode active will get a better error message than "code invalid" on the GA token auth screen (and also fixes how that detection is done in other parts of the plugin). 
+* Fixed: Fixed an issue with HostEurope and other hosts modifying the default PHP arg seperator.
+* Fixed: Prevents an issue where users with a plugin like Airplane Mode active will get a better error message than "code invalid" on the GA token auth screen (and also fixes how that detection is done in other parts of the plugin). 
 * Removed: unused track_full_url setting
 
 = 5.5.3, October 3rd, 2016 =
 * New: Announces MI 6.0 beta.
-* Fix: Compatibility with PHP compatibility scanner's bug
+* Fixed: Compatibility with PHP compatibility scanner's bug
 
 = 5.5.2, July 7, 2016 =
 * Tweak: Updates license manager to have more reliable update information including better compatibility with Yoast SEO products.
-* Fix: Compatibility with upcoming Shiny Updates v2 in WP core
+* Fixed: Compatibility with upcoming Shiny Updates v2 in WP core
 
 = 5.5.0, May 1, 2016 =
 * New: Added new System Info tab for faster support.
-* Fix: Issue with changelog missing some deployed versions.
+* Fixed: Issue with changelog missing some deployed versions.
 
 = 5.4.9, April 15, 2016 =
 * New: Font based dashboard icon
 * Tweak: The "MonsterInsights" menu item name has been renamed to just "Insights"
-* Fix: Issue with eCommerce addon (also requires user to update eCommerce addon)
-* Fix: Issue with 2 dashboard links
-* Fix: A bug in pre-existing code caused the menu of the plugin to skyrocket unintentionally. This has been corrected.
+* Fixed: Issue with eCommerce addon (also requires user to update eCommerce addon)
+* Fixed: Issue with 2 dashboard links
+* Fixed: A bug in pre-existing code caused the menu of the plugin to skyrocket unintentionally. This has been corrected.
 
 = 5.4.8, April 14, 2016 =
 * New: Google Analytics by Yoast is now MonsterInsights.
-* Fix: Compatibility issue with WordPress 4.5
+* Fixed: Compatibility issue with WordPress 4.5
 
 == Upgrade Notice ==
 

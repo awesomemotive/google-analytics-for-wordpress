@@ -161,7 +161,7 @@ function monsterinsights_get_registered_settings() {
 				'events_mode' => array(
 					'id'          => 'events_mode',
 					'name'        => __( 'Enable MonsterInsights events tracking:', 'google-analytics-for-wordpress' ),
-					'desc'        => __( 'This turns on our Javascript based tracking system which among other things tracks clicks on outbound, affiliate, mail, telephone, hashed and download links.', 'google-analytics-for-wordpress', 'google-analytics-for-wordpress' ),
+					'desc'        => __( 'This turns on our Javascript based tracking system which among other things tracks clicks on outbound, affiliate, mail, telephone, hashed and download links.', 'google-analytics-for-wordpress' ),
 					'type' 		  => 'radio',
 					'std'  		  => 'js',
 					'options'     => array(
