@@ -105,6 +105,10 @@ function monsterinsights_get_settings_tabs() {
 			'title' => esc_html__( 'Compatibility', 'google-analytics-for-wordpress' ),
 			'level' => 'lite'
 		),
+		'eucompliance' => array( 
+			'title' => esc_html__( 'EU Compliance', 'google-analytics-for-wordpress' ),
+			'level' => 'basic'
+		),
 		'permissions' => array( 
 			'title' => esc_html__( 'Permissions', 'google-analytics-for-wordpress' ),
 			'level' => 'lite'
@@ -342,6 +346,10 @@ function monsterinsights_get_registered_settings() {
 					'type' 		  => 'checkbox',
 				),
 			)
+		),
+		/** EU Compliance Tracking Settings */
+		'eucompliance' => apply_filters('monsterinsights_settings_eucompliance',
+			array()
 		),
 		/** Permissions Tracking Settings */
 		'permissions' => apply_filters('monsterinsights_settings_permissions',

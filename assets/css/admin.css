@@ -140,6 +140,7 @@
 
 	/** Defined Icons **/
 		.monstericon-ads:before{content:'\0041'}
+		.monstericon-eucompliance:before{content:'\004f'}
 		.monstericon-affiliates:before{content:'\0042'}
 		.monstericon-compatibility:before{content:'\0043'}
 		.monstericon-demographics:before{content:'\0044'}

@@ -16,6 +16,15 @@ function monsterinsights_registered_settings_filter( $settings ) {
 				'desc' => esc_html__( "By upgrading to MonsterInsights Pro, you can add Social tracking to see who's clicking on your social share links, so you can track and maximize your social sharing exposure.", 'google-analytics-for-wordpress' )
 			);
 
+		// EU Compatibility 
+			$settings['eucompliance']['eucompliance_notice'] = array( 
+				'id' => 'eucompliance_notice',
+				'no_label' => true,
+				'name' => __( 'Google Analytics EU Compliance', 'google-analytics-for-wordpress'),
+				'type' => 'upgrade_notice',
+				'desc' => esc_html__( "The MonsterInsights EU Compliance addon allows you to improve compliance with GDPR and other privacy regulations.", 'google-analytics-for-wordpress' )
+			);
+
 		// Ads
 			$settings['ads']['ads_notice'] = array( 
 				'id' => 'ads_notice',

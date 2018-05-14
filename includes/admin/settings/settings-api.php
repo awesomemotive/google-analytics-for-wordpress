@@ -983,8 +983,13 @@ function monsterinsights_render_field( $args ) {
 			$output .= '<th scope="row">';
 				$output .='<label for="monsterinsights_settings[' . monsterinsights_sanitize_key( $args['id'] ) . ']">' . esc_html( $args["name"] ) . '</label>';
 			$output .= '</th>';
+		} 
+
+		if ( empty( $args['no_label'] ) ) {
+			$output .= '<td>';
+		} else {
+			$output .= '<td colspan="2">';
 		}
-		$output .= '<td>';
 			$render  = ! empty( $args['type'] ) && function_exists( 'monsterinsights_' . $args['type'] . '_callback' ) ? 'monsterinsights_' . $args['type'] . '_callback' : 'monsterinsights_missing_callback';
 			$output .= call_user_func( $render, $args );
 		$output .= '</td>';

@@ -217,7 +217,13 @@ function monsterinsights_remove_conflicting_asset_files() {
 		'imagify-sweetalert', // Imagify 
 		'smls-backend-style', // Smart Logo Showcase Lite
 		'wp-reactjs-starter', // wp-real-media-library
+		'control-panel-modal-plugin', // Ken Theme
+		'theme-admin-css', // Vitrine Theme
+		'qi-framework-styles', //  Artisan Nayma Theme
+		'artisan-pages-style', // Artisan Pages Plugin
 		'control-panel-modal-plugin', // Ken Theme 
+		'sweetalert', //  Church Suite Theme by Webnus
+		'woo_stock_alerts_admin_css', // WooCommerce bolder product alerts
 	);
 	
 	$scripts = array(
@@ -229,25 +235,45 @@ function monsterinsights_remove_conflicting_asset_files() {
 		'tweeetshare_custom_script', // TweetShare - Click To Tweet
 		'imagify-promise-polyfill', // Imagify 
 		'imagify-sweetalert', // Imagify 
-	    'imagify-chart', // Imagify
+		'imagify-chart', // Imagify
 		'chartjs', // Comet Cache Pro
 		'wp-reactjs-starter', // wp-real-media-library
 		'jquery-tooltipster', // WP Real Media Library
-    	'jquery-nested-sortable', // WP Real Media Library
+		'jquery-nested-sortable', // WP Real Media Library
 		'jquery-aio-tree', // WP Real Media Library
 		'wp-media-picker', // WP Real Media Library
 		'rml-general', // WP Real Media Library
 		'rml-library', // WP Real Media Library
 		'rml-grid', // WP Real Media Library
-        'rml-list', // WP Real Media Library
-        'rml-modal', // WP Real Media Library
-        'rml-order', // WP Real Media Library
-        'rml-meta', // WP Real Media Library
-        'rml-uploader',  // WP Real Media Library
-        'rml-options',  // WP Real Media Library
-        'rml-usersettings',  // WP Real Media Library
-        'rml-main', // WP Real Media Library
-        'control-panel-sweet-alert', // Ken Theme
+		'rml-list', // WP Real Media Library
+		'rml-modal', // WP Real Media Library
+		'rml-order', // WP Real Media Library
+		'rml-meta', // WP Real Media Library
+		'rml-uploader',  // WP Real Media Library
+		'rml-options',  // WP Real Media Library
+		'rml-usersettings',  // WP Real Media Library
+		'rml-main', // WP Real Media Library
+		'control-panel-sweet-alert', // Ken Theme
+		'sweet-alert-js', // Vitrine Theme
+		'theme-admin-script', // Vitrine Theme
+		'sweetalert', //  Church Suite Theme by Webnus
+		'be_alerts_charts', //  WooCommerce bolder product alerts
+ 		'magayo-lottery-results',  //  Magayo Lottery Results
+		'control-panel-sweet-alert', // Ken Theme
+		'cpm_chart', // WP Project Manager
+		'adminscripts', //  Artisan Nayma Theme
+		'artisan-pages-script', // Artisan Pages Plugin
+		'tooltipster', // Grand News Theme
+		'fancybox', // Grand News Theme
+		'grandnews-admin-cript', // Grand News Theme
+		'colorpicker', // Grand News Theme
+		'eye', // Grand News Theme
+		'utils', // Grand News Theme
+		'icheck', // Grand News Theme
+		'learn-press-chart', //  LearnPress
+		'theme-script-main', //  My Listing Theme by 27collective
+		'selz ', //   Selz eCommerce
+		'tie-admin-scripts', //   Tie Theme
 	);
 
 	if ( ! empty( $styles ) ) {
