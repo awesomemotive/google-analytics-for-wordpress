@@ -11,7 +11,7 @@
  * @since 6.0.12
  */
 var MonsterInsights = function(){
-	// MonsterInsights JS  events tracking works on all major browsers, including IE starting at IE 7, via polyfills for any major JS fucntion used that
+	// MonsterInsights JS  events tracking works on all major browsers, including IE starting at IE 7, via polyfills for any major JS function used that
 	// is not supported by at least  95% of the global and/or US browser marketshare. Currently, IE 7 & 8 which as of 2/14/17 have under 0.25% global marketshare, require
 	// us to polyfill Array.prototype.lastIndexOf, and if they continue to drop, we might remove this polyfill at some point. In that case note that events tracking
 	// for IE 7/8 will continue to work, with the exception of events tracking of downloads.
@@ -82,6 +82,7 @@ var MonsterInsights = function(){
 	}
 
 	function __gaTrackerGetExtension( extension ) {
+		extension = extension.toString();
 		extension = extension.substring( 0, (extension.indexOf( "#" ) == -1 ) ? extension.length : extension.indexOf( "#" ) ); /* Remove the anchor at the end, if there is one */
 		extension = extension.substring( 0, (extension.indexOf( "?" ) == -1 ) ? extension.length : extension.indexOf( "?" ) ); /* Remove the query after the file name, if there is one */
 		extension = extension.substring( extension.lastIndexOf( "/" ) + 1, extension.length ); /* Remove everything before the last slash in the path */
@@ -94,7 +95,7 @@ var MonsterInsights = function(){
 	}
 
 	function __gaTrackerLoaded() {
-		return __gaTracker.hasOwnProperty( "loaded" ) && __gaTracker.loaded == true; // jshint ignore:line
+		return typeof(__gaTracker) !== 'undefined' && __gaTracker && __gaTracker.hasOwnProperty( "loaded" ) && __gaTracker.loaded == true; // jshint ignore:line
 	}
 
 	function __gaTrackerTrackedClick( event ) {
@@ -145,17 +146,18 @@ var MonsterInsights = function(){
 		var hostname            = el.hostname;
 		var protocol            = el.protocol;
 		var pathname       		= el.pathname;
+		link 					= link.toString();
 		var index, len;
 
 		if ( link.match( /^javascript\:/i ) ) {
 			type = 'internal'; // if it's a JS link, it's internal
-		} else if ( __gaTrackerStringTrim( protocol ) == 'tel' || __gaTrackerStringTrim( protocol ) == 'tel:' ) { /* If it's a telephone link */
+		} else if ( protocol && protocol.length > 0 && ( __gaTrackerStringTrim( protocol ) == 'tel' || __gaTrackerStringTrim( protocol ) == 'tel:' ) ) { /* If it's a telephone link */
 			type = "tel"; 
-		} else if ( __gaTrackerStringTrim( protocol ) == 'mailto' ||  __gaTrackerStringTrim( protocol ) == 'mailto:' ) { /* If it's a email */
+		} else if ( protocol && protocol.length > 0 && ( __gaTrackerStringTrim( protocol ) == 'mailto' ||  __gaTrackerStringTrim( protocol ) == 'mailto:' ) ) { /* If it's a email */
 			type = "mailto"; 
-		} else if ( hostname.length > 0 && currentdomain.length > 0 && ! hostname.endsWith( currentdomain ) ) { /* If it's a outbound */
+		} else if ( hostname && currentdomain && hostname.length > 0 && currentdomain.length > 0 && ! hostname.endsWith( currentdomain ) ) { /* If it's a outbound */
 			type = "external"; 
-		} else if ( inbound_paths.length > 0 && pathname.length > 0 ) { /* If it's an internal as outbound */
+		} else if ( pathname && inbound_paths.length > 0 && pathname.length > 0 ) { /* If it's an internal as outbound */
 			for ( index = 0, len = inbound_paths.length; index < len; ++index ) {
 				if ( inbound_paths[ index ].length > 0 && pathname.startsWith( inbound_paths[ index ] ) ) {
 					type = "internal-as-outbound";
@@ -163,11 +165,11 @@ var MonsterInsights = function(){
 				}
 			}
 		/* Enable window.monsterinsights_experimental_mode at your own risk. We might eventually remove it. Also you may/can/will burn through GA quota for your property quickly. */
-		} else if ( window.monsterinsights_experimental_mode && hostname.length > 0 && document.domain.length > 0 && hostname !== document.domain ) { /* If it's a cross-hostname link */
+		} else if ( hostname && window.monsterinsights_experimental_mode && hostname.length > 0 && document.domain.length > 0 && hostname !== document.domain ) { /* If it's a cross-hostname link */
 			type = "cross-hostname";
 		} 
 
-		if ( type === 'unknown' && download_extensions.length > 0 && extension.length > 0 ) { /* If it's a download */
+		if ( extension && type === 'unknown' && download_extensions.length > 0 && extension.length > 0 ) { /* If it's a download */
 			for ( index = 0, len = download_extensions.length; index < len; ++index ) {
 				if ( download_extensions[ index ].length > 0 && ( link.endsWith( download_extensions[ index ] ) || download_extensions[ index ]  == extension ) ) {
 					type = "download";
@@ -183,6 +185,7 @@ var MonsterInsights = function(){
 	}
 
 	function __gaTrackerLinkTarget( el, event ) {
+
 		/* Is actual target set and not _(self|parent|top)? */
 		var target = ( el.target && !el.target.match( /^_(self|parent|top)$/i ) ) ? el.target : false;
 
@@ -216,7 +219,7 @@ var MonsterInsights = function(){
 		}
 
 		/* if a link with valid href has been clicked */
-		if ( el && el.href ) {
+		if ( el && el.href && ! el.hasAttribute('xlink:href') ) {
 			var link                		= el.href;														/* What link are we tracking */
 			var extension           		= __gaTrackerGetExtension( el.href );							/* What extension is this link */
 			var download_extensions 		= __gaTrackerGetDownloadExtensions(); 							/* Let's get the extensions to track */

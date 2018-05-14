@@ -72,6 +72,10 @@ final class MonsterInsights_Report_Overview extends MonsterInsights_Report {
 			$up2x       = MONSTERINSIGHTS_PLUGIN_URL . 'assets/images/up@2x.png';
 			$down       = MONSTERINSIGHTS_PLUGIN_URL . 'assets/images/down.png';
 			$down2x     = MONSTERINSIGHTS_PLUGIN_URL . 'assets/images/down@2x.png';
+			$upred      = MONSTERINSIGHTS_PLUGIN_URL . 'assets/images/up-red.png';
+			$upred2x    = MONSTERINSIGHTS_PLUGIN_URL . 'assets/images/up-red@2x.png';
+			$downgrn    = MONSTERINSIGHTS_PLUGIN_URL . 'assets/images/down-green.png';
+			$downgrn2x  = MONSTERINSIGHTS_PLUGIN_URL . 'assets/images/down-green@2x.png';
 			$uplabel    = esc_attr__( 'Up', 'google-analytics-for-wordpress' );
 			$downlabel  = esc_attr__( 'Down', 'google-analytics-for-wordpress' );
 			?>
@@ -171,12 +175,12 @@ final class MonsterInsights_Report_Overview extends MonsterInsights_Report {
 				</div>
 				<?php } else if ( $data['infobox']['bounce']['prev'] > 0 ) { ?>
 				<div class="monsterinsights-reports-infobox-prev">
-					<img src="<?php echo $up; ?>" srcset="<?php echo $up2x; ?> 2x" alt="<?php echo $uplabel; ?>"/>
+					<img src="<?php echo $upred; ?>" srcset="<?php echo $upred2x; ?> 2x" alt="<?php echo $uplabel; ?>"/>
 					<?php echo esc_html( $data['infobox']['bounce']['prev'] ) . '%'; ?>
 				</div>
 				<?php } else  { ?>
 				<div class="monsterinsights-reports-infobox-prev">
-					<img src="<?php echo $down; ?>" srcset="<?php echo $down2x; ?> 2x" alt="<?php echo $downlabel; ?>"/>
+					<img src="<?php echo $downgrn; ?>" srcset="<?php echo $downgrn2x; ?> 2x" alt="<?php echo $downlabel; ?>"/>
 					<?php echo esc_html( absint( $data['infobox']['bounce']['prev'] ) ) . '%'; ?>
 				</div>
 				<?php } ?>

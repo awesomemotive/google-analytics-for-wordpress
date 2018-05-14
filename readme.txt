@@ -134,6 +134,17 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.0.6: May 14, 2018 =
+- Tweak: Better handling of link tracking for links embedded as anchor tags inside of an SVG image.
+- Tweak: Link tracking has been updated to enforce more strict type checks on variables.
+- Tweak: Plugin conflict notice has been updated to use the actual name of the plugin.
+- Tweak: Compatibility fixes for users of the Ken, Vitrine, Artisian Nayma,Grand News, Tie and Church Suite Themes along with the WooCommerce bolder product alerts, Selz eCommerce and Artisian Pages plugin.
+- Tweak: Fixed "you you" typo on the Reports page notice.
+- Tweak: On the overview report the indicator icon colors for bounce rate have been flipped to more accurately describe the impact (ie green = bounce rate going down = good).
+- Fixed: Undefined $tracking variable error.
+- Fixed: Better type checking before converting number strings to human readable dates on reprots.
+- Fixed: If GA didn't load and link tracking was enabled, an undefined Javascript error could occur if the fallback object didn't get set (edgecase).
+
 = 7.0.5: April 9, 2018 =
 - New: Introduced a system (behind-the-scenes) that automatically attempts to correct for improperly set timezones in the WordPress settings panel, server timezone settings and/or GA profile timezones. This should eliminate issues with timezones on Lite user accounts, as well as allow for more accurate date reporting.
 - New: Introduced a system (behind-the-scenes) to allow for deauthentication of profiles set on websites whose profiles were migrated (for example from a staging site to a production site)

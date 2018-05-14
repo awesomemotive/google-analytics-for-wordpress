@@ -2,7 +2,7 @@
 
 require_once MONSTERINSIGHTS_PLUGIN_DIR . 'lite/includes/admin/settings.php';
 
-if ( is_admin() ) {		
+if ( is_admin() ) {
 	require_once MONSTERINSIGHTS_PLUGIN_DIR . 'lite/includes/admin/tools.php';
 
 	//require_once MONSTERINSIGHTS_PLUGIN_DIR . 'lite/includes/admin/tab-support.php';
@@ -25,4 +25,8 @@ if ( is_admin() ) {
 	require_once MONSTERINSIGHTS_PLUGIN_DIR . 'lite/includes/admin/reports/report-dimensions.php';
 	$dimensions_report = new MonsterInsights_Lite_Report_Dimensions();
 	MonsterInsights()->reporting->add_report( $dimensions_report );
+
+	require_once MONSTERINSIGHTS_PLUGIN_DIR . 'lite/includes/admin/reports/report-forms.php';
+	$forms_report = new MonsterInsights_Lite_Report_Forms();
+	MonsterInsights()->reporting->add_report( $forms_report );
 }

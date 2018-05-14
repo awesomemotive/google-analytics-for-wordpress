@@ -49,7 +49,7 @@ function monsterinsights_track_user() {
 	if ( $track_super_admin === false && is_multisite() && is_super_admin() ) {
 		$track_user = false;
 	}
-	
+
 	// or if UA code is not entered
 	$ua_code = monsterinsights_get_ua();
 	if ( empty( $ua_code ) ) {

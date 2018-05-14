@@ -6,7 +6,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/
  *
- * Version:             7.0.5
+ * Version:             7.0.6
  * Requires at least:   3.8.0
  * Tested up to:        4.9
  *
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '7.0.5';
+	public $version = '7.0.6';
 
 	/**
 	 * Plugin file.
@@ -646,7 +646,7 @@ function monsterinsights_lite_activation_hook( $network_wide ) {
 	
 	if ( class_exists( 'MonsterInsights' ) ) {
 		deactivate_plugins( plugin_basename( __FILE__ ) );
-		wp_die( sprintf( esc_html__( 'Please uninstall and remove MonsterInsights Pro before activating MonsterInsights Lite. The Lite version has not been activated. %1$sClick here to return to the Dashboard%2$s.', 'google-analytics-by-wordpress' ), '<a href="' . $url . '">', '</a>' ) );
+		wp_die( sprintf( esc_html__( 'Please uninstall and remove MonsterInsights Pro before activating Google Analytics for WordPress by MonsterInsights. The Lite version has not been activated. %1$sClick here to return to the Dashboard%2$s.', 'google-analytics-by-wordpress' ), '<a href="' . $url . '">', '</a>' ) );
 	}
 }
 register_activation_hook( __FILE__, 'monsterinsights_lite_activation_hook' );
