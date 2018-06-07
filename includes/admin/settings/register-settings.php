@@ -391,6 +391,12 @@ function monsterinsights_get_registered_settings() {
 					'desc'        => __( 'By allowing us to track usage data we can better help you, because we know with which WordPress configurations, themes and plugins we should test.', 'google-analytics-for-wordpress' ),
 					'type' 		  => 'checkbox',
 				),
+				'hide_am_notices' => array(
+					'id'          => 'hide_am_notices',
+					'name'        => __( 'Hide Announcements', 'google-analytics-for-wordpress' ),
+					'desc'        => __( 'Hides plugin announcements and update details. This includes critical notices we use to inform about deprecations and important required configuration changes.', 'google-analytics-for-wordpress' ),
+					'type' 		  => 'checkbox',
+				),
 			)
 		),
 	);

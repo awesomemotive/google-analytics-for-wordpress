@@ -272,8 +272,9 @@ function monsterinsights_remove_conflicting_asset_files() {
 		'icheck', // Grand News Theme
 		'learn-press-chart', //  LearnPress
 		'theme-script-main', //  My Listing Theme by 27collective
-		'selz ', //   Selz eCommerce
+		'selz', //  Selz eCommerce
 		'tie-admin-scripts', //   Tie Theme
+		'td-wp-admin-js', // Newspaper by tagDiv
 	);
 
 	if ( ! empty( $styles ) ) {
@@ -348,6 +349,16 @@ function monsterinsights_remove_conflicting_asset_files() {
 			}
 		}
 	}
+
+	// Remove actions from themes that are not following best practices and break the admin doing so
+		// Theme: Newspaper by tagDiv
+			remove_action('admin_enqueue_scripts', 'load_wp_admin_js');
+			remove_action('admin_enqueue_scripts', 'load_wp_admin_css');
+			remove_action('admin_print_scripts-widgets.php', 'td_on_admin_print_scripts_farbtastic');
+			remove_action('admin_print_styles-widgets.php', 'td_on_admin_print_styles_farbtastic');
+			remove_action('admin_print_footer_scripts', 'check_if_media_uploads_is_loaded', 9999);
+			remove_action('print_media_templates', 'td_custom_gallery_settings_hook');
+			remove_action('print_media_templates', 'td_change_backbone_js_hook');
 }
 add_action( 'admin_enqueue_scripts', 'monsterinsights_remove_conflicting_asset_files', 9999 );
 

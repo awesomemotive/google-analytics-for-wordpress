@@ -548,6 +548,7 @@ final class MonsterInsights_Lite {
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/capabilities.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/licensing/license-actions.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/licensing/autoupdate.php';
+				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/review.php';
 
 			// Pages
 				// Multisite

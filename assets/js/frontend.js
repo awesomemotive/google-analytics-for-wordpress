@@ -281,7 +281,11 @@ var MonsterInsights = function(){
 					valuesArray.exit = 'internal-as-outbound';
 					__gaTrackerNotSend( valuesArray );
 				};
-				
+				var __gaTrackerNoRedirectCrossHostname = function() {
+					valuesArray.exit = 'cross-hostname';
+					__gaTrackerNotSend( valuesArray );
+				};
+
 				if ( target || type == 'mailto' || type == 'tel' ) { /* If target opens a new window then just track */
 					if ( type == 'download' ) {
 						if ( track_download_as == 'pageview' ) {
@@ -289,7 +293,7 @@ var MonsterInsights = function(){
 								hitType : 'pageview',
 								page    : link,
 							};
-							
+
 							__gaTrackerSend( valuesArray, fieldsArray );
 						} else {
 							fieldsArray = {
@@ -462,12 +466,14 @@ var MonsterInsights = function(){
 						__gaTrackerNotSend( valuesArray );
 					}
 
-					if ( type != 'external' && type != 'internal-as-outbound' ) {
+					if ( type != 'external' && type != 'cross-hostname' && type != 'internal-as-outbound' ) {
 						/* Run hitCallback again if GA takes longer than 1 second */
 						setTimeout( __gaTrackerHitBack, 1000 );
 					} else {
 						if ( type == 'external' ) {
 							setTimeout( __gaTrackerNoRedirectExternal, 1100 );
+						} else if ( type == 'cross-hostname' ) {
+							setTimeout( __gaTrackerNoRedirectCrossHostname, 1100 );
 						} else {
 							setTimeout( __gaTrackerNoRedirectInboundAsExternal, 1100 );
 						}
