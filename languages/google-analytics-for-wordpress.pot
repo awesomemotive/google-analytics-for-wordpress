@@ -4,14 +4,14 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: MonsterInsights Lite\n"
 "Report-Msgid-Bugs-To: https://github.com/awesomemotive/monsterinsights/issues\n"
-"POT-Creation-Date: 2018-05-14 07:49-0400\n"
+"POT-Creation-Date: 2018-06-07 12:53-0400\n"
 "PO-Revision-Date: 2016-07-21 17:01-0400\n"
 "Last-Translator: Chris Christoff <support@monsterinsights.com>\n"
 "Language-Team: Chris Christoff <support@monsterinsights.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.0.8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: googleanalytics.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -50,12 +50,12 @@ msgstr ""
 msgid "Please %1$suninstall%2$s the MonsterInsights Lite Plugin. Your Pro version of MonsterInsights may not work as expected until the Lite version is uninstalled."
 msgstr ""
 
-#: googleanalytics.php:644
+#: googleanalytics.php:645
 #, php-format
 msgid "Sorry, but your version of WordPress does not meet MonsterInsight's required version of %1$s3.8%2$s to run properly. The plugin not been activated. %3$sClick here to return to the Dashboard%4$s."
 msgstr ""
 
-#: googleanalytics.php:649
+#: googleanalytics.php:650
 #, php-format
 msgid "Please uninstall and remove MonsterInsights Pro before activating Google Analytics for WordPress by MonsterInsights. The Lite version has not been activated. %1$sClick here to return to the Dashboard%2$s."
 msgstr ""
@@ -438,7 +438,7 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: includes/admin/common.php:499
+#: includes/admin/common.php:510
 #, php-format
 msgid "MonsterInsights has detected that it's files are being blocked. This is usually caused by a adblock browser plugin (particularly uBlock Origin), or a conflicting WordPress theme or plugin. This issue only affects the admin side of MonsterInsights. To solve this, ensure MonsterInsights is whitelisted for your website URL in any adblock browser plugin you use. For step by step directions on how to do this, %1$sclick here%2$s. If this doesn't solve the issue (rare), send us a ticket %3$shere%2$s and we'll be happy to help diagnose the issue."
 msgstr ""
@@ -673,6 +673,16 @@ msgstr ""
 #: includes/admin/settings/tab-general.php:183
 #, php-format
 msgid "Don't yet have a Pro license? %sVisit our website%s to upgrade and learn more about all the amazing features, expanded report and powerful addons you unlock when you go Pro."
+msgstr ""
+
+#: includes/admin/pages/network-settings.php:169
+#: includes/admin/settings/register-settings.php:396
+msgid "Hide Announcements"
+msgstr ""
+
+#: includes/admin/pages/network-settings.php:170
+#: includes/admin/settings/register-settings.php:397
+msgid "Hides plugin announcements and update details. This includes critical notices we use to inform about deprecations and important required configuration changes."
 msgstr ""
 
 #: includes/admin/pages/reports.php:93
@@ -1049,6 +1059,26 @@ msgstr ""
 
 #: includes/admin/reports/overview.php:630
 msgid "Unique"
+msgstr ""
+
+#: includes/admin/review.php:100
+msgid "Hey, I noticed you created a contact form with MonsterInsights - that’s awesome! Could you please do me a BIG favor and give it a 5-star rating on WordPress to help us spread the word and boost our motivation?"
+msgstr ""
+
+#: includes/admin/review.php:101
+msgid "~ Syed Balkhi<br>Co-Founder of MonsterInsights"
+msgstr ""
+
+#: includes/admin/review.php:103
+msgid "Ok, you deserve it"
+msgstr ""
+
+#: includes/admin/review.php:104
+msgid "Nope, maybe later"
+msgstr ""
+
+#: includes/admin/review.php:105
+msgid "I already did"
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:23
@@ -1447,23 +1477,23 @@ msgstr ""
 msgid "%1$s is %3$sdeprecated%4$s since MonsterInsights version %2$s."
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-analytics.php:206
+#: includes/frontend/tracking/class-tracking-analytics.php:205
 msgid "Note: MonsterInsights is not currently configured on this site. The site owner needs to authenticate with Google Analytics in the MonsterInsights settings panel."
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-analytics.php:209
+#: includes/frontend/tracking/class-tracking-analytics.php:208
 msgid "Note: MonsterInsights does not track you as a logged in site administrator to prevent site owners from accidentally skewing their own Google Analytics data."
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-analytics.php:212
+#: includes/frontend/tracking/class-tracking-analytics.php:211
 msgid "Note: The site owner has disabled Google Analytics tracking for your user role."
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-analytics.php:291
+#: includes/frontend/tracking/class-tracking-analytics.php:290
 msgid "Not running function"
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-analytics.php:291
+#: includes/frontend/tracking/class-tracking-analytics.php:290
 msgid "because you are not being tracked."
 msgstr ""
 

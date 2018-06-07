@@ -231,7 +231,7 @@ function monsterinsights_welcome_redirect() {
 //add_action( 'admin_init', 'monsterinsights_welcome_redirect', 11 ); @todo: Investigate
 
 /**
- * When user is on a WPForms related admin page, display footer text
+ * When user is on a MonsterInsights related admin page, display footer text
  * that graciously asks them to rate us.
  *
  * @since 6.0.0
@@ -434,3 +434,13 @@ function monsterinsights_admin_setup_notices() {
 }
 add_action( 'admin_notices', 'monsterinsights_admin_setup_notices' );
 add_action( 'network_admin_notices', 'monsterinsights_admin_setup_notices' );
+
+
+// AM Notices
+function monsterinsights_am_notice_optout( $super_admin ) {
+    if ( monsterinsights_get_option( 'hide_am_notices', false ) || monsterinsights_get_option( 'network_hide_am_notices', false ) ) {
+        return false;
+    }
+    return $super_admin;
+}
+add_filter( "am_notifications_display", 'monsterinsights_am_notice_optout', 10, 1 );

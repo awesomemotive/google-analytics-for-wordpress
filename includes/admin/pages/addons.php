@@ -116,7 +116,7 @@ function monsterinsights_addons_page() {
 function monsterinsights_addons_content() {
 
     // If error(s) occurred during license key verification, display them and exit now.
-    if ( ! MonsterInsights()->license->get_valid_license_key() ) {
+    if ( monsterinsights_is_pro_version() && ! MonsterInsights()->license->get_valid_license_key() ) {
         ?>
         <div class="error below-h2">
             <p>

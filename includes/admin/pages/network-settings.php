@@ -165,6 +165,11 @@ function monsterinsights_network_page() {
                                 </td>
                             </tr>
                             <?php } ?>
+                            <?php
+                            $title       = esc_html__( 'Hide Announcements', 'google-analytics-for-wordpress' );
+                            $description = esc_html__( 'Hides plugin announcements and update details. This includes critical notices we use to inform about deprecations and important required configuration changes.', 'google-analytics-for-wordpress' );
+                            echo monsterinsights_make_checkbox( 'network_hide_am_notices', $title, $description );
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -219,6 +224,13 @@ function monsterinsights_network_settings_save_general() {
     } else {
         // Not UA before or after
             // Do nothing
+    }
+
+    $network_hide_am_notices     = isset( $_POST['network_hide_am_notices'] ) ? 1 : 0;
+    $network_hide_am_notices_old = monsterinsights_get_option( 'network_hide_am_notices', false );
+    if ( $network_hide_am_notices != $network_hide_am_notices_old ) {
+    monsterinsights_update_option( 'network_hide_am_notices', $network_hide_am_notices );
+       $throw_notice = true;
     }
 
     // Output an admin notice so the user knows what happened
