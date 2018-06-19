@@ -106,7 +106,7 @@ function monsterinsights_settings_tracking_tab() {
                             <div class="monsterinsights-upsell-under-box">
                                 <h2><?php esc_html_e( "Want even more fine tuned control over your website analytics?", 'google-analytics-for-wordpress' ); ?></h2>
                                 <p class="monsterinsights-upsell-lite-text"><?php esc_html_e( "By upgrading to MonsterInsights Pro, you get access to numerous addons and tools that help you better understand what people are doing on your website, so you can keep doing more of what's working. Some of the features include: Ecommerce tracking, Author tracking, Post Type tracking, Ads tracking, Google AMP tracking, Performance optimization, and so much more!", 'google-analytics-for-wordpress' ); ?></p>
-                                <p class="monsterinsights-upsell-button-par"><a href="https://www.monsterinsights.com/lite/" class="button button-primary"><?php esc_html_e( "Click here to Upgrade", 'google-analytics-for-wordpress' ); ?></a></p></div>
+                                <p class="monsterinsights-upsell-button-par"><a href="<?php echo monsterinsights_get_upgrade_link( 'settings-page', 'settings-page-bottom-cta' );?>" class="button button-primary"><?php esc_html_e( "Click here to Upgrade", 'google-analytics-for-wordpress' ); ?></a></p></div>
                         <?php } ?>
                     </form>
                 </div>

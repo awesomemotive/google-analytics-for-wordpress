@@ -118,22 +118,22 @@ add_filter( 'admin_body_class', 'monsterinsights_add_admin_body_class', 10, 1 );
  * @return array $links
  */
 function monsterinsights_add_action_links( $links ) {
-    $docs = '<a title="' . esc_html__( 'MonsterInsights Knowledge Base', 'google-analytics-for-wordpress' ) . '" href="https://www.monsterinsights.com/docs/">' . esc_html__( 'Documentation', 'google-analytics-for-wordpress' ) . '</a>';
+    $docs = '<a title="' . esc_html__( 'MonsterInsights Knowledge Base', 'google-analytics-for-wordpress' ) . '" href="'. monsterinsights_get_url( 'all-plugins', 'kb-link', "https://www.monsterinsights.com/docs/" ) .'"">' . esc_html__( 'Documentation', 'google-analytics-for-wordpress' ) . '</a>';
     array_unshift( $links, $docs );
 
     // If lite, show a link where they can get pro from
     if ( ! monsterinsights_is_pro_version() ) {
-        $get_pro = '<a title="' . esc_html__( 'Get MonsterInsights Pro', 'google-analytics-for-wordpress' ) .'" href="https://www.monsterinsights.com/lite/">' . esc_html__( 'Get MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a>';
+        $get_pro = '<a title="' . esc_html__( 'Get MonsterInsights Pro', 'google-analytics-for-wordpress' ) .'" href="'. monsterinsights_get_upgrade_link( 'all-plugins', 'upgrade-link', "https://www.monsterinsights.com/docs/" ) .'">' . esc_html__( 'Get MonsterInsights Pro', 'google-analytics-for-wordpress' ) . '</a>';
         array_unshift( $links, $get_pro );
-    }   
-    
+    }
+
     // If Lite, support goes to forum. If pro, it goes to our website
     if ( monsterinsights_is_pro_version() ) {
-        $support = '<a title="MonsterInsights Pro Support" href="https://www.monsterinsights.com/my-account/support/">' . esc_html__( 'Support', 'google-analytics-for-wordpress' ) . '</a>';
+        $support = '<a title="MonsterInsights Pro Support" href="'. monsterinsights_get_url( 'all-plugins', 'pro-support-link', "https://www.monsterinsights.com/my-account/support/" ) .'">' . esc_html__( 'Support', 'google-analytics-for-wordpress' ) . '</a>';
         array_unshift( $links, $support );
     } else {
-        $support = '<a title="MonsterInsights Lite Support" href="https://wordpress.org/support/plugin/google-analytics-for-wordpress">' . esc_html__( 'Support', 'google-analytics-for-wordpress' ) . '</a>';
-        array_unshift( $links, $support );      
+        $support = '<a title="MonsterInsights Lite Support" href="'. monsterinsights_get_url( 'all-plugins', 'lite-support-link', "https://wordpress.org/support/plugin/google-analytics-for-wordpress" ) .'">' . esc_html__( 'Support', 'google-analytics-for-wordpress' ) . '</a>';
+        array_unshift( $links, $support );
     }
 
     $settings_link = '<a href="' . esc_url( admin_url( 'admin.php?page=monsterinsights_settings' ) ) . '">' . esc_html__( 'Settings', 'google-analytics-for-wordpress' ) . '</a>';
@@ -291,7 +291,7 @@ function monsterinsights_admin_setup_notices() {
         $message = '';
         if ( MonsterInsights()->license->get_site_license_key() ){
             if ( MonsterInsights()->license->site_license_expired() ) {
-                $message = sprintf( esc_html__( 'Your license key for MonsterInsights has expired. %1$sPlease click here to renew your license key.%2$s', 'google-analytics-for-wordpress' ), '<a href="https://www.monsterinsights.com/login/" target="_blank" rel="noopener noreferrer" referrer="no-referrer">', '</a>' );
+                $message = sprintf( esc_html__( 'Your license key for MonsterInsights has expired. %1$sPlease click here to renew your license key.%2$s', 'google-analytics-for-wordpress' ), '<a href="'. monsterinsights_get_url( 'admin-notices', 'expired-license', "https://www.monsterinsights.com/login/" ) .'" target="_blank" rel="noopener noreferrer" referrer="no-referrer">', '</a>' );
             } else if ( MonsterInsights()->license->site_license_disabled() ) {
                 $message = esc_html__( 'Your license key for MonsterInsights has been disabled. Please use a different key.', 'google-analytics-for-wordpress' );
             } else if ( MonsterInsights()->license->site_license_invalid() ) {
@@ -299,7 +299,7 @@ function monsterinsights_admin_setup_notices() {
             }
         } else if ( MonsterInsights()->license->get_network_license_key() ) {
             if ( MonsterInsights()->license->network_license_expired() ) {
-                $message = sprintf( esc_html__( 'Your network license key for MonsterInsights has expired. %1$sPlease click here to renew your license key.%2$s', 'google-analytics-for-wordpress' ), '<a href="https://www.monsterinsights.com/login/" target="_blank" rel="noopener noreferrer" referrer="no-referrer">', '</a>' );
+                $message = sprintf( esc_html__( 'Your network license key for MonsterInsights has expired. %1$sPlease click here to renew your license key.%2$s', 'google-analytics-for-wordpress' ), '<a href="'. monsterinsights_get_url( 'admin-notices', 'expired-license', "https://www.monsterinsights.com/login/" ) .'" target="_blank" rel="noopener noreferrer" referrer="no-referrer">', '</a>' );
             } else if ( MonsterInsights()->license->network_license_disabled() ) {
                 $message = esc_html__( 'Your network license key for MonsterInsights has been disabled. Please use a different key.', 'google-analytics-for-wordpress' );
             } else if ( MonsterInsights()->license->network_license_invalid() ) {
@@ -391,7 +391,7 @@ function monsterinsights_admin_setup_notices() {
                     echo '<p>';
                     echo esc_html( 'Start making data-driven decisions to grow your business.', 'google-analytics-for-wordpress' );
                     echo '</p>';
-                    echo sprintf( esc_html__( '%1$sGet MonsterInsights Pro%2$s', 'google-analytics-for-wordpress' ), '<a class="button button-primary button-hero" href="https://www.monsterinsights.com/lite/?utm_source=wpdashboard&utm_campaign=woocommercelite">', ' &raquo;</a>' ); 
+                    echo sprintf( esc_html__( '%1$sGet MonsterInsights Pro%2$s', 'google-analytics-for-wordpress' ), '<a class="button button-primary button-hero" href="'. monsterinsights_get_upgrade_link( 'admin-notices', 'woocommerce-upgrade' ) .'">', ' &raquo;</a>' ); 
                     echo '</p>';
                 echo '</div><div class="monsterinsights-wooedd-upsell-right">';
                     echo '<img class="monsterinsights-wooedd-upsell-image monsterinsights-wooedd-upsell-image-large" src="' . trailingslashit( MONSTERINSIGHTS_PLUGIN_URL ) . 'assets/images/upsell/woo-edd-upsell.png">';
@@ -422,7 +422,7 @@ function monsterinsights_admin_setup_notices() {
                     echo '<p>';
                     echo esc_html( 'Start making data-driven decisions to grow your business.', 'google-analytics-for-wordpress' );
                     echo '</p>';
-                    echo sprintf( esc_html__( '%1$sGet MonsterInsights Pro%2$s', 'google-analytics-for-wordpress' ), '<a class="button button-primary button-hero" href="https://www.monsterinsights.com/lite/?utm_source=wpdashboard&utm_campaign=eddlite">', ' &raquo;</a>' ); 
+                    echo sprintf( esc_html__( '%1$sGet MonsterInsights Pro%2$s', 'google-analytics-for-wordpress' ), '<a class="button button-primary button-hero" href="'. monsterinsights_get_upgrade_link( 'admin-notices', 'edd-upgrade' ) .'">', ' &raquo;</a>' ); 
                     echo '</p>';
                 echo '</div><div class="monsterinsights-wooedd-upsell-right">';
                     echo '<img class="monsterinsights-wooedd-upsell-image monsterinsights-wooedd-upsell-image-large" src="' . trailingslashit( MONSTERINSIGHTS_PLUGIN_URL ) . 'assets/images/upsell/woo-edd-upsell.png">';

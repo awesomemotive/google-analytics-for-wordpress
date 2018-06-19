@@ -181,7 +181,7 @@ function monsterinsights_get_registered_settings() {
 				'demographics' => array(
 					'id'          => 'demographics',
 					'name'        => __( 'Enable Demographics and Interests Reports for Remarketing and Advertising', 'google-analytics-for-wordpress' ),
-					'desc'        => sprintf( esc_html__( 'Check this setting to add the Demographics and Remarketing features to your Google Analytics tracking code. Make sure to enable Demographics and Remarketing in your Google Analytics account. We have a guide for how to do that in our %1$sknowledge base%2$s. For more information about Remarketing, we refer you to %3$sGoogle\'s documentation%2$s. Note that usage of this function is affected by privacy and cookie laws around the world. Be sure to follow the laws that affect your target audience.', 'google-analytics-for-wordpress' ), '<a href="https://www.monsterinsights.com/docs/enable-demographics-and-interests-report-in-google-analytics/#utm_medium=kb-link&amp;utm_source=gawp-config&amp;utm_campaign=wpgaplugin" target="_blank" rel="noopener noreferrer" referrer="no-referrer">',
+					'desc'        => sprintf( esc_html__( 'Check this setting to add the Demographics and Remarketing features to your Google Analytics tracking code. Make sure to enable Demographics and Remarketing in your Google Analytics account. We have a guide for how to do that in our %1$sknowledge base%2$s. For more information about Remarketing, we refer you to %3$sGoogle\'s documentation%2$s. Note that usage of this function is affected by privacy and cookie laws around the world. Be sure to follow the laws that affect your target audience.', 'google-analytics-for-wordpress' ), '<a href="'. monsterinsights_get_url( 'settings-page', 'demographics-setting-doc-link', 'https://www.monsterinsights.com/docs/enable-demographics-and-interests-report-in-google-analytics/' ) .'" target="_blank" rel="noopener noreferrer" referrer="no-referrer">',
 									'</a>','<a href="https://support.google.com/analytics/answer/2444872?hl=' . get_locale() . '" target="_blank" rel="noopener noreferrer" referrer="no-referrer">'
 					),
 					'type' 		  => 'checkbox',
@@ -189,7 +189,7 @@ function monsterinsights_get_registered_settings() {
 				'anonymize_ips' => array(
 					'id'          => 'anonymize_ips',
 					'name'        => __( 'Anonymize IP addresses?', 'google-analytics-for-wordpress' ),
-					'desc'        => sprintf( esc_html__( 'This adds %1$s, telling Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApi_gat?csw=1#_gat._anonymizeIp" target="_blank" rel="noopener noreferrer" referrer="no-referrer"><code>_anonymizeIp</code></a>' ),
+					'desc'        => sprintf( esc_html__( 'This adds %1$s, telling Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/ip-anonymization" target="_blank" rel="noopener noreferrer" referrer="no-referrer"><code>_anonymizeIp</code></a>' ),
 					'type' 		  => 'checkbox',
 				),
 			)

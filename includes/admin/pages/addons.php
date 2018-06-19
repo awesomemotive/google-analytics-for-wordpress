@@ -345,7 +345,7 @@ function monsterinsights_get_addon_card( $addon, $counter = 0, $is_licensed = fa
 
     // Link user to doc to install MI pro to install addons
     if ( ! monsterinsights_is_pro_version() && $is_licensed && ! isset( $installed_plugins[ $plugin_basename ] ) ) {
-        $addon->url = 'https://www.monsterinsights.com/docs/install-monsterinsights-pro-to-use-addons';
+        $addon->url = monsterinsights_get_url( 'addons-page', 'install-addons-link', "https://www.monsterinsights.com/docs/install-monsterinsights-pro-to-use-addons" );
     }
 
     // Output the card
