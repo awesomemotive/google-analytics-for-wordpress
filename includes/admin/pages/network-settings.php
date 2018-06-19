@@ -157,10 +157,10 @@ function monsterinsights_network_page() {
                                 </th>
                                 <td>
                                     <p>
-                                        <?php echo sprintf( esc_html__( 'Already purchased an upgrade to MonsterInsights Pro? To unlock your Pro features and addons, %sfollow our upgrade guide%s to install MonsterInsights Pro.' ), '<a href="https://www.monsterinsights.com/docs/go-lite-pro/?utm_source=wpdashboard&utm_campaign=upgradedocinstall">', '</a>' ); ?>
+                                        <?php echo sprintf( esc_html__( 'Already purchased an upgrade to MonsterInsights Pro? To unlock your Pro features and addons, %sfollow our upgrade guide%s to install MonsterInsights Pro.' ), '<a href="'. monsterinsights_get_url( 'network-settings-page', 'go-lite-pro-link', "https://www.monsterinsights.com/docs/go-lite-pro" ) .'">', '</a>' ); ?>
                                     </p>
                                     <p>
-                                        <?php echo sprintf( esc_html__( "Don't yet have a Pro license? %sVisit our website%s to upgrade and learn more about all the amazing features, expanded report and powerful addons you unlock when you go Pro." ), '<a href="https://www.monsterinsights.com/lite/?utm_source=wpdashboard&utm_campaign=upgradedocbuy">', '</a>' ); ?>
+                                        <?php echo sprintf( esc_html__( "Don't yet have a Pro license? %sVisit our website%s to upgrade and learn more about all the amazing features, expanded report and powerful addons you unlock when you go Pro." ), '<a href="'. monsterinsights_get_upgrade_link( 'network-settings-page', 'upgrade-to-pro-link' ) .'">', '</a>' ); ?>
                                     </p>
                                 </td>
                             </tr>

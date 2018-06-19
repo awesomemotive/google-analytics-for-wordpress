@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
 Tested up to: 4.9
-Stable tag: 7.0.6
+Stable tag: 7.0.8
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -134,9 +134,12 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.0.8: June 19, 2018 =
+- Tweak: Fixes some links to our documentation site.
+
 = 7.0.7: June 7, 2018 =
 - Tweak: Compatibility with Selz plugin.
-- Tweak: Issue where some settings would remain hidden inadvertainly.
+- Tweak: Issue where some settings would remain hidden inadvertently.
 - Fixed: Issue where some lite users would see an error regarding a license key.
 
 = 7.0.6: May 14, 2018 =

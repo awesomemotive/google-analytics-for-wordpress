@@ -97,7 +97,7 @@ class MonsterInsights_Review {
 		// We have a candidate! Output a review message.
 		?>
 		<div class="notice notice-info is-dismissible monsterinsights-review-notice">
-			<p><?php esc_html_e( 'Hey, I noticed you created a contact form with MonsterInsights - that’s awesome! Could you please do me a BIG favor and give it a 5-star rating on WordPress to help us spread the word and boost our motivation?', 'google-analytics-for-wordpress' ); ?></p>
+			<p><?php esc_html_e( 'Hey, I noticed you\'ve been using MonsterInsights for a while - that’s awesome! Could you please do me a BIG favor and give it a 5-star rating on WordPress to help us spread the word and boost our motivation?', 'google-analytics-for-wordpress' ); ?></p>
 			<p><strong><?php echo wp_kses( __( '~ Syed Balkhi<br>Co-Founder of MonsterInsights', 'google-analytics-for-wordpress' ), array( 'br' => array() ) ); ?></strong></p>
 			<p>
 				<a href="https://wordpress.org/support/plugin/google-analytics-for-wordpress/reviews/?filter=5#new-post" class="monsterinsights-dismiss-review-notice monsterinsights-review-out" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Ok, you deserve it', 'google-analytics-for-wordpress' ); ?></a><br>

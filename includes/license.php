@@ -275,7 +275,7 @@ final class MonsterInsights_License {
 	}
 	public function get_site_license_error(){
 		if ( $this->site_license_expired() ) {
-			return sprintf( esc_html__( 'Your license key for MonsterInsights has expired. %1$sPlease click here to renew your license key.%2$s', 'google-analytics-for-wordpress' ), '<a href="https://www.monsterinsights.com/login/" target="_blank" rel="noopener noreferrer" referrer="no-referrer">', '</a>' );
+			return sprintf( esc_html__( 'Your license key for MonsterInsights has expired. %1$sPlease click here to renew your license key.%2$s', 'google-analytics-for-wordpress' ), '<a href="'. monsterinsights_get_url( 'license-error', 'expired-license', 'https://www.monsterinsights.com/login/' ) .'" target="_blank" rel="noopener noreferrer" referrer="no-referrer">', '</a>' );
 		} else if ( $this->site_license_disabled() ) {
 			return esc_html__( 'Your license key for MonsterInsights has been disabled. Please use a different key.', 'google-analytics-for-wordpress' );
 		} else if ( $this->site_license_invalid() ) {
@@ -286,7 +286,7 @@ final class MonsterInsights_License {
 
 	public function get_network_license_error(){
 		if ( $this->site_license_expired() ) {
-			return sprintf( esc_html__( 'Your license key for MonsterInsights has expired. %1$sPlease click here to renew your license key.%2$s', 'google-analytics-for-wordpress' ), '<a href="https://www.monsterinsights.com/login/" target="_blank" rel="noopener noreferrer" referrer="no-referrer">', '</a>' );
+			return sprintf( esc_html__( 'Your license key for MonsterInsights has expired. %1$sPlease click here to renew your license key.%2$s', 'google-analytics-for-wordpress' ), '<a href="'. monsterinsights_get_url( 'license-error', 'expired-license', 'https://www.monsterinsights.com/login/' ) .'" target="_blank" rel="noopener noreferrer" referrer="no-referrer">', '</a>' );
 		} else if ( $this->site_license_disabled() ) {
 			return esc_html__( 'Your license key for MonsterInsights has been disabled. Please use a different key.', 'google-analytics-for-wordpress' );
 		} else if ( $this->site_license_invalid() ) {

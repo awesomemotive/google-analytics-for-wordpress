@@ -123,7 +123,7 @@ function monsterinsights_settings_general_tab() {
                                 <?php } else { ?>
                                     <?php wp_nonce_field( 'monsterinsights-google-authenticate-nonce', 'monsterinsights-google-authenticate-nonce' ); ?>
                                     <?php submit_button( esc_html__( 'Authenticate with your Google account', 'google-analytics-for-wordpress' ), 'button-action', 'monsterinsights-google-authenticate-submit', false ); ?>
-                                    <p class="description"><?php printf( esc_html__( 'Already have a Google Account, but don’t know if you’ve setup Google Analytics? %s Click here to login and find out%s.', 'google-analytics-for-wordpress' ), '<a href="https://www.monsterinsights.com/docs/find-out-if-you-already-have-a-google-analytics-account/?utm_source=monsterinsights-settings&utm_medium=alert&utm_campaign=authenticate">', '</a>' ); ?>
+                                    <p class="description"><?php printf( esc_html__( 'Already have a Google Account, but don’t know if you’ve setup Google Analytics? %s Click here to login and find out%s.', 'google-analytics-for-wordpress' ), '<a href="'. monsterinsights_get_url( 'settings-page', 'already-have-ga-account-doc-link', 'https://www.monsterinsights.com/docs/find-out-if-you-already-have-a-google-analytics-account/?utm_source=monsterinsights-settings' ) .'">', '</a>' ); ?>
                                     <br />
                                     <?php printf( esc_html__( 'Having issues automatically authenticating? %s Click here to authenticate manually%s.', 'google-analytics-for-wordpress' ), '<a href="javascript:monsterinsights_show_manual()" data-action="show-manual-ua-box">', '</a>' ); ?></p>
                                 <?php } ?>
@@ -177,10 +177,10 @@ function monsterinsights_settings_general_tab() {
                         </th>
                         <td>
                             <p>
-                                <?php echo sprintf( esc_html__( 'Already purchased an upgrade to MonsterInsights Pro? To unlock your Pro features and addons, %sfollow our upgrade guide%s to install MonsterInsights Pro.' ), '<a href="https://www.monsterinsights.com/docs/go-lite-pro/?utm_source=wpdashboard&utm_campaign=upgradedocinstall">', '</a>' ); ?>
+                                <?php echo sprintf( esc_html__( 'Already purchased an upgrade to MonsterInsights Pro? To unlock your Pro features and addons, %sfollow our upgrade guide%s to install MonsterInsights Pro.' ), '<a href="'. monsterinsights_get_url( 'settings-page', 'general-tab-upgrade-link', 'https://www.monsterinsights.com/docs/go-lite-pro/' ) .'">', '</a>' ); ?>
                             </p>
                             <p>
-                                <?php echo sprintf( esc_html__( "Don't yet have a Pro license? %sVisit our website%s to upgrade and learn more about all the amazing features, expanded report and powerful addons you unlock when you go Pro." ), '<a href="https://www.monsterinsights.com/lite/?utm_source=wpdashboard&utm_campaign=upgradedocbuy">', '</a>' ); ?>
+                                <?php echo sprintf( esc_html__( "Don't yet have a Pro license? %sVisit our website%s to upgrade and learn more about all the amazing features, expanded report and powerful addons you unlock when you go Pro." ), '<a href="'. monsterinsights_get_upgrade_link( 'settings-page', 'general-tab-upgrade-link' ) .'">', '</a>' ); ?>
                             </p>
                         </td>
                     </tr>

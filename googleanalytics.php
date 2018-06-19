@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name:         Google Analytics for WordPress by MonsterInsights
- * Plugin URI:          https://www.monsterinsights.com/?utm_source=wordpress&utm_medium=plugin&utm_campaign=wpmipluginpro&utm_content=v700
+ * Plugin URI:          https://www.monsterinsights.com/?utm_source=liteplugin&utm_medium=pluginheader&utm_campaign=pluginurl&utm_content=7%2E0%2E0
  * Description:         The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
  * Author:              MonsterInsights
- * Author URI:          https://www.monsterinsights.com/
+ * Author URI:          https://www.monsterinsights.com/?utm_source=liteplugin&utm_medium=pluginheader&utm_campaign=authoruri&utm_content=7%2E0%2E0
  *
- * Version:             7.0.6
+ * Version:             7.0.8
  * Requires at least:   3.8.0
  * Tested up to:        4.9
  *
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '7.0.6';
+	public $version = '7.0.8';
 
 	/**
 	 * Plugin file.

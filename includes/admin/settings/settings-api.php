@@ -904,7 +904,7 @@ function monsterinsights_notice_callback( $args ) {
 function monsterinsights_upgrade_notice_callback( $args ) {
 	$html =   '<div class="monsterinsights-upsell-box"><h2>' . esc_html( $args['name' ] ) . '</h2>'
 			. '<p class="monsterinsights-upsell-lite-text">' . $args['desc'] . '</p>'
-			. '<p class="monsterinsights-upsell-button-par"><a href="https://www.monsterinsights.com/lite/" class="monsterinsights-upsell-box-button button button-primary">' . __( 'Click here to Upgrade', 'google-analytics-for-wordpress' ) . '</a></p>'
+			. '<p class="monsterinsights-upsell-button-par"><a href="'. monsterinsights_get_upgrade_link( 'settings-page', 'settings-page-upgrade-cta' ) .'" class="monsterinsights-upsell-box-button button button-primary">' . __( 'Click here to Upgrade', 'google-analytics-for-wordpress' ) . '</a></p>'
 			. '</div>';
 	return apply_filters( 'monsterinsights_after_setting_output', $html, $args ); 
 }
