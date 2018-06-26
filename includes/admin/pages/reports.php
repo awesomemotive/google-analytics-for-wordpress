@@ -193,7 +193,7 @@ function monsterinsights_refresh_reports_data() {
 		);
 		wp_send_json_success( array( 'html' => $data  ) );
 	} else {
-		wp_send_json_error( array( 'message' => $data['error'] ) );
+		wp_send_json_error( array( 'message' => $data['error'], 'data' => $data['data'] ) );
 	}
 }
 add_action( 'wp_ajax_monsterinsights_refresh_reports', 'monsterinsights_refresh_reports_data' );

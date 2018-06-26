@@ -132,7 +132,7 @@ function monsterinsights_add_action_links( $links ) {
         $support = '<a title="MonsterInsights Pro Support" href="'. monsterinsights_get_url( 'all-plugins', 'pro-support-link', "https://www.monsterinsights.com/my-account/support/" ) .'">' . esc_html__( 'Support', 'google-analytics-for-wordpress' ) . '</a>';
         array_unshift( $links, $support );
     } else {
-        $support = '<a title="MonsterInsights Lite Support" href="'. monsterinsights_get_url( 'all-plugins', 'lite-support-link', "https://wordpress.org/support/plugin/google-analytics-for-wordpress" ) .'">' . esc_html__( 'Support', 'google-analytics-for-wordpress' ) . '</a>';
+        $support = '<a title="MonsterInsights Lite Support" href="'. monsterinsights_get_url( 'all-plugins', 'lite-support-link', "https://www.monsterinsights.com/lite-support/" ) .'">' . esc_html__( 'Support', 'google-analytics-for-wordpress' ) . '</a>';
         array_unshift( $links, $support );
     }
 
