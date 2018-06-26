@@ -4,7 +4,7 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: MonsterInsights Lite\n"
 "Report-Msgid-Bugs-To: https://github.com/awesomemotive/monsterinsights/issues\n"
-"POT-Creation-Date: 2018-06-08 21:38-0400\n"
+"POT-Creation-Date: 2018-06-26 09:08-0400\n"
 "PO-Revision-Date: 2016-07-21 17:01-0400\n"
 "Last-Translator: Chris Christoff <support@monsterinsights.com>\n"
 "Language-Team: Chris Christoff <support@monsterinsights.com>\n"
@@ -438,7 +438,7 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: includes/admin/common.php:518
+#: includes/admin/common.php:565
 #, php-format
 msgid "MonsterInsights has detected that it's files are being blocked. This is usually caused by a adblock browser plugin (particularly uBlock Origin), or a conflicting WordPress theme or plugin. This issue only affects the admin side of MonsterInsights. To solve this, ensure MonsterInsights is whitelisted for your website URL in any adblock browser plugin you use. For step by step directions on how to do this, %1$sclick here%2$s. If this doesn't solve the issue (rare), send us a ticket %3$shere%2$s and we'll be happy to help diagnose the issue."
 msgstr ""
@@ -882,6 +882,10 @@ msgstr ""
 #: includes/admin/reports/abstract-report.php:329
 #, php-format
 msgid "Upgrading is easy! To upgrade, navigate to %sour pricing page%s, purchase the required license, and then follow the %sinstructions in the email receipt%s to upgrade. It only takes a few minutes to unlock the most powerful, yet easy to use analytics tracking system for WordPress."
+msgstr ""
+
+#: includes/admin/reports/abstract-report.php:369
+msgid "Visit addons page"
 msgstr ""
 
 #: includes/admin/reports/overview.php:34
@@ -2618,7 +2622,7 @@ msgid "Google Analytics for WordPress by MonsterInsights"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "https://www.monsterinsights.com/?utm_source=wordpress&utm_medium=plugin&utm_campaign=wpmipluginpro&utm_content=v700"
+msgid "https://www.monsterinsights.com/?utm_source=liteplugin&utm_medium=pluginheader&utm_campaign=pluginurl&utm_content=7%2E0%2E0"
 msgstr ""
 
 #. Description of the plugin/theme
@@ -2626,5 +2630,5 @@ msgid "The best Google Analytics plugin for WordPress. See how visitors find and
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://www.monsterinsights.com/"
+msgid "https://www.monsterinsights.com/?utm_source=liteplugin&utm_medium=pluginheader&utm_campaign=authoruri&utm_content=7%2E0%2E0"
 msgstr ""

@@ -175,11 +175,11 @@ class MonsterInsights_Report {
 
 		$error = apply_filters( 'monsterinsights_reports_abstract_get_data_pre_cache', false, $args, $this->name );
 		if ( $error ) {
-			return array(
+			return apply_filters( 'monsterinsights_reports_handle_error_message', array(
 				'success' => false,
 				'error'   => $error,
 				'data'    => array(),
-			);
+			) );
 		}
 
 		$check_cache = ( $start === $this->default_start_date() && $end === $this->default_end_date() );
@@ -347,17 +347,39 @@ class MonsterInsights_Report {
 		return ob_get_clean();
 	}
 
-    function get_ga_report_range( $data = array() ) {
-    	if ( empty( $data['reportcurrentrange'] ) || empty( $data['reportcurrentrange']['startDate'] ) || empty( $data['reportcurrentrange']['endDate'] ) ) {
-    		return '';
-    	} else {
-    		if ( ! empty( $data['reportprevrange'] ) && ! empty( $data['reportprevrange']['startDate'] ) && ! empty( $data['reportprevrange']['endDate'] ) ) {
-    			return '%3F_u.date00%3D' . str_replace( '-', '', $data['reportcurrentrange']['startDate'] ) .'%26_u.date01%3D' . str_replace( '-', '', $data['reportcurrentrange']['endDate'] ) . '%26_u.date10%3D' . str_replace( '-', '', $data['reportprevrange']['startDate'] ) .'%26_u.date11%3D' . str_replace( '-', '', $data['reportprevrange']['endDate'] ) . '/';
-    		} else {
-    			return '%3F_u.date00%3D' . str_replace( '-', '', $data['reportcurrentrange']['startDate'] ) .'%26_u.date01%3D' . str_replace( '-', '', $data['reportcurrentrange']['endDate'] ) . '/';
-    		}
-    	}
-    }
+	function get_ga_report_range( $data = array() ) {
+		if ( empty( $data['reportcurrentrange'] ) || empty( $data['reportcurrentrange']['startDate'] ) || empty( $data['reportcurrentrange']['endDate'] ) ) {
+			return '';
+		} else {
+			if ( ! empty( $data['reportprevrange'] ) && ! empty( $data['reportprevrange']['startDate'] ) && ! empty( $data['reportprevrange']['endDate'] ) ) {
+				return urlencode( '_u.date00=' . str_replace( '-', '', $data['reportcurrentrange']['startDate'] ) . '&_u.date01=' . str_replace( '-', '', $data['reportcurrentrange']['endDate'] ) . '&_u.date10=' . str_replace( '-', '', $data['reportprevrange']['startDate'] ) . '&_u.date11=' . str_replace( '-', '', $data['reportprevrange']['endDate'] ) );
+			} else {
+				return urlencode( '_u.date00=' . str_replace( '-', '', $data['reportcurrentrange']['startDate'] ) . '&_u.date01=' . str_replace( '-', '', $data['reportcurrentrange']['endDate'] ) );
+			}
+		}
+	}
+
+	/**
+	 * Grab the link to the addons page used in each report's error message.
+	 *
+	 * @return string
+	 */
+	public function get_addons_page_link() {
+		$addons_url    = add_query_arg( 'page', 'monsterinsights_addons', admin_url( 'admin.php' ) );
+		return sprintf( '<a href="%1$s">%2$s</a>', $addons_url, esc_html__( 'Visit addons page', 'google-analytics-for-wordpress' ) );
+	}
+
+	/**
+	 * When called will add the footer link to be displayed in the error popup.
+	 *
+	 * @param array $data The data sent as error response to the ajax call.
+	 *
+	 * @return array
+	 */
+	public function add_error_addon_link( $data ) {
+		$data['data']['footer'] = $this->get_addons_page_link();
+		return $data;
+	}
 }
 
 if ( ! class_exists( 'MonsterInsightsDateTime' ) ) {

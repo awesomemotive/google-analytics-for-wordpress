@@ -1071,11 +1071,15 @@ jQuery(document).ready(function($) {
 					monsterinsights_equalheight2column();
 					swal.close();
 				} else {
-					swal({
+					var swal_settings = {
 						type: 'error',
-						  title: monsterinsights_admin.refresh_report_failure_title,
-						  text: response.data.message,
-					  }).catch(swal.noop);
+						title: monsterinsights_admin.refresh_report_failure_title,
+						html: response.data.message,
+					};
+					if ( response.data.data.footer ) {
+						swal_settings.footer = response.data.data.footer;
+					}
+					swal(swal_settings).catch(swal.noop);
 				}
 			}).then(function (result) {
 				// Unblur reports

@@ -568,3 +568,53 @@ function monsterinsights_ublock_notice() {
 	<?php
 	return ob_get_clean();
 }
+
+/**
+ * Some themes/plugins don't add proper checks and load JS code in all admin pages causing conflicts.
+ */
+function monsterinsights_remove_unnecessary_footer_hooks() {
+
+	$screen = get_current_screen();
+	// Bail if we're not on a MonsterInsights screen.
+	if ( empty( $screen->id ) || strpos( $screen->id, 'monsterinsights' ) === false ) {
+		return;
+	}
+
+	// Remove js code added by Newspaper theme - version 8.8.0.
+	remove_action( 'print_media_templates', 'td_custom_gallery_settings_hook' );
+	remove_action( 'print_media_templates', 'td_change_backbone_js_hook' );
+
+	// Remove js code added by WordPress Book List Plugin - version 5.8.1.
+	remove_action( 'admin_footer', 'wpbooklist_jre_dismiss_prem_notice_forever_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_dashboard_add_book_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_edit_book_show_form_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_show_book_in_colorbox_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_new_lib_shortcode_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_dashboard_save_library_display_options_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_dashboard_save_post_display_options_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_dashboard_save_page_display_options_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_update_display_options_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_edit_book_pagination_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_edit_book_switch_lib_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_edit_book_search_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_edit_book_actual_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_delete_book_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_user_apis_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_upload_new_stylepak_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_upload_new_post_template_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_upload_new_page_template_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_create_db_library_backup_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_restore_db_library_backup_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_create_csv_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_amazon_localization_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_delete_book_bulk_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_reorder_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_exit_results_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_storytime_select_category_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_storytime_get_story_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_storytime_expand_browse_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_storytime_save_settings_action_javascript' );
+	remove_action( 'admin_footer', 'wpbooklist_delete_story_action_javascript' );
+}
+
+add_action( 'admin_head', 'monsterinsights_remove_unnecessary_footer_hooks', 15 );
