@@ -134,7 +134,7 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
-= 7.1.0: August 7, 2018 =
+= 7.1.0: August 8, 2018 =
 - New: Comprehensive review of the plugin to ensure styles are correct when utilizing a right to left language.
 - Tweak: Compatibility for the WP Media Folder plugin, TagDiv Composer plugin, Ali Dropship plugin, Affiliate Boxes plugin, Impreza theme, GT3 Photo & Video Gallery plugin, WP Booklist plugin, Houzez theme, Prowess theme, and Add Social Share plugin.
 - Tweak: Standardized capitalization and spelling of various strings.
