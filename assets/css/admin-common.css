@@ -1,48 +1,56 @@
 #toplevel_page_monsterinsights_reports .wp-menu-image img,
 #toplevel_page_monsterinsights_settings .wp-menu-image img,
-#toplevel_page_monsterinsights_network .wp-menu-image img { 
-	width: 18px; 
+#toplevel_page_monsterinsights_network .wp-menu-image img {
+	width: 18px;
 	height: 18px;
 	padding-top: 7px;
 }
 
 .monsterinsights-wooedd-upsell-left {
-	width:  50%;
-    display: table-cell;
-    float: left;
+	width: 50%;
+	display: table-cell;
+	float: left;
 }
+
 .monsterinsights-wooedd-upsell-right {
-	width:  50%;
-    display: table-cell;
-    float: left;
+	width: 50%;
+	display: table-cell;
+	float: left;
 }
-.monsterinsights-wooedd-upsell-image{
+
+.monsterinsights-wooedd-upsell-image {
 	width: 100%;
 	height: auto;
 	padding: 20px;
 }
-.monsterinsights-wooedd-upsell-image-small{
+
+.monsterinsights-wooedd-upsell-image-small {
 	display: none;
 }
-.monsterinsights-wooedd-upsell-row{
+
+.monsterinsights-wooedd-upsell-row {
 	display: table;
 }
+
 .monsterinsights-wooedd-upsell-left p {
-	margin:  1em 0;
-	font-size:  16px;
-	
+	margin: 1em 0;
+	font-size: 16px;
 }
-@media (max-width: 900px) {	
+
+@media (max-width: 900px) {
 	.monsterinsights-wooedd-upsell-left {
-		width:  100%;
+		width: 100%;
 	}
+
 	.monsterinsights-wooedd-upsell-right {
 		display: none;
 	}
-	.monsterinsights-wooedd-upsell-image-small{
+
+	.monsterinsights-wooedd-upsell-image-small {
 		display: block;
 	}
-	.monsterinsights-wooedd-upsell-image-large{
+
+	.monsterinsights-wooedd-upsell-image-large {
 		display: none;
 	}
 }

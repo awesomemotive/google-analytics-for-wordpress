@@ -94,7 +94,7 @@ function monsterinsights_get_ua() {
  * @return string The UA to use.
  */
 function monsterinsights_get_network_ua() {
-	if ( is_multisite() ) {	
+	if ( ! is_multisite() ) {
 		return '';
 	}
 	

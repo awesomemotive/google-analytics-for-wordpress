@@ -1076,7 +1076,7 @@ jQuery(document).ready(function($) {
 						title: monsterinsights_admin.refresh_report_failure_title,
 						html: response.data.message,
 					};
-					if ( response.data.data.footer ) {
+					if ( response.data.data && response.data.data.footer ) {
 						swal_settings.footer = response.data.data.footer;
 					}
 					swal(swal_settings).catch(swal.noop);

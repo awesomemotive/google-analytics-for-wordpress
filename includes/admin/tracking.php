@@ -82,6 +82,7 @@ class MonsterInsights_Tracking {
 		$data['url']           = home_url();
 		$data['themename']     = $theme_data->Name;
 		$data['themeversion']  = $theme_data->Version;
+		$data['email']         = get_bloginfo( 'admin_email' );
 		$data['key']           = monsterinsights_get_license_key();
 		$data['sas']           = monsterinsights_get_shareasale_id();
 		$data['settings']      = monsterinsights_get_options();
@@ -94,6 +95,8 @@ class MonsterInsights_Tracking {
 		$data['usercount']     = function_exists( 'get_user_count' ) ? get_user_count() : 'Not Set';
 		$data['usesauth']      = $usesauth;
 		$data['timezoneoffset']= date('P');
+		$data['installed_lite']= get_option( 'monsterinsights_installed_lite', array() );
+		$data['installed_pro'] = get_option( 'monsterinsights_installed_pro', array() );
 
 
 
