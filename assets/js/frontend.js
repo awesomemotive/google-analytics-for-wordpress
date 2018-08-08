@@ -167,9 +167,9 @@ var MonsterInsights = function(){
 		/* Enable window.monsterinsights_experimental_mode at your own risk. We might eventually remove it. Also you may/can/will burn through GA quota for your property quickly. */
 		} else if ( hostname && window.monsterinsights_experimental_mode && hostname.length > 0 && document.domain.length > 0 && hostname !== document.domain ) { /* If it's a cross-hostname link */
 			type = "cross-hostname";
-		} 
+		}
 
-		if ( extension && type === 'unknown' && download_extensions.length > 0 && extension.length > 0 ) { /* If it's a download */
+		if ( extension && ( type === 'unknown' || 'external' === type ) && download_extensions.length > 0 && extension.length > 0 ) { /* If it's a download */
 			for ( index = 0, len = download_extensions.length; index < len; ++index ) {
 				if ( download_extensions[ index ].length > 0 && ( link.endsWith( download_extensions[ index ] ) || download_extensions[ index ]  == extension ) ) {
 					type = "download";

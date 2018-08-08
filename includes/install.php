@@ -780,7 +780,7 @@ class MonsterInsights_Install {
 
 	}
 
-	public function v710_upgrades() {
+	public function v720_upgrades() {
 		// 1. remove old API keys from MI settings & manual UA code
 		// 2. Comprehensively review old settings and meta keys from pre-relay and consider removing them
 		// 3. Consider removing all install back compat to yoast.

@@ -212,13 +212,13 @@ function monsterinsights_get_registered_settings() {
 				'allow_anchor' => array(
 					'id'          => 'allow_anchor',
 					'name'        => __( 'Turn on allowAnchor', 'google-analytics-for-wordpress' ),
-					'desc'        => sprintf( esc_html__( 'This adds a %1$s call to your tracking code, and makes RSS link tagging use a %2$s as well.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiCampaignTracking?csw=1#_gat.GA_Tracker_._setAllowAnchor" target="_blank" rel="noopener noreferrer" referrer="no-referrer"><code>_setAllowAnchor</code></a>', '<code>#</code>' ),
+					'desc'        => sprintf( esc_html__( 'This adds a %1$s call to your tracking code, and makes RSS link tagging use a %2$s as well.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#allowAnchor" target="_blank" rel="noopener noreferrer" referrer="no-referrer"><code>_setAllowAnchor</code></a>', '<code>#</code>' ),
 					'type' 		  => 'checkbox',
 				),
 				'add_allow_linker' => array(
 					'id'          => 'add_allow_linker',
 					'name'        => __( 'Turn on allowLinker', 'google-analytics-for-wordpress' ),
-					'desc'        => sprintf( esc_html__( 'This adds a %1$s call to your tracking code, allowing you to use %2$s and related functions.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory?csw=1#_gat.GA_Tracker_._setAllowLinker" target="_blank" rel="noopener noreferrer" referrer="no-referrer"><code>_setAllowLinker</code></a>', ' <code>_link</code>' ),
+					'desc'        => sprintf( esc_html__( 'This adds a %1$s call to your tracking code, allowing you to use %2$s and related functions.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/linker#configuring_a_site_to_accept_linker_parameters" target="_blank" rel="noopener noreferrer" referrer="no-referrer"><code>_setAllowLinker</code></a>', ' <code>_link</code>' ),
 					'type' 		  => 'checkbox',
 				),
 				'tag_links_in_rss' => array(
@@ -336,7 +336,7 @@ function monsterinsights_get_registered_settings() {
 				'custom_code' => array(
 					'id'          => 'custom_code',
 					'name'        => __( 'Custom code', 'google-analytics-for-wordpress' ),
-					'desc'        => sprintf( esc_html__( 'Not for the average user: this allows you to add a line of code, to be added before the %1$s call.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview" target="_blank" rel="noopener noreferrer" referrer="no-referrer"><code>_trackPageview</code></a>' ),
+					'desc'        => sprintf( esc_html__( 'Not for the average user: this allows you to add a line of code, to be added before the %1$s call.', 'google-analytics-for-wordpress' ), '<a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/pages#implementation" target="_blank" rel="noopener noreferrer" referrer="no-referrer"><code>_trackPageview</code></a>' ),
 					'type' 		  => 'unfiltered_textarea',
 				),
 				'debug_mode' => array(

@@ -523,7 +523,7 @@
 				body.monsterinsights-reporting-page .monsterinsights-reports-infobox:nth-of-type(3) {border-left: 0;}
 				body.monsterinsights-reporting-page .monsterinsights-reports-infobox:nth-of-type(n+3) {border-top: 1px solid #d4e2ef;}
 			}
-			
+
 			@media only screen and (max-width: 480px) {
 				body.monsterinsights-reporting-page .monsterinsights-reports-infobox {
 					padding: 15px;
@@ -534,8 +534,8 @@
 					border-top: 0;
 				  }
 				body.monsterinsights-reporting-page .monsterinsights-reports-infobox:nth-of-type(even) {
-					  border-left: 0;}
-				}				
+					  border-left: 0;
+				}
 			}
 
 		

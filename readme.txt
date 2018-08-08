@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
 Tested up to: 4.9
-Stable tag: 7.0.9
+Stable tag: 7.1.0
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -134,6 +134,18 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.1.0: August 7, 2018 =
+- New: Comprehensive review of the plugin to ensure styles are correct when utilizing a right to left language.
+- Tweak: Compatibility for the WP Media Folder plugin, TagDiv Composer plugin, Ali Dropship plugin, Affiliate Boxes plugin, Impreza theme, GT3 Photo & Video Gallery plugin, WP Booklist plugin, Houzez theme, Prowess theme, and Add Social Share plugin.
+- Tweak: Standardized capitalization and spelling of various strings.
+- Tweak: External download links will not be marked as downloads.
+- Tweak: Updated SweetAlert2 to the latest version.
+- Tweak: Tweaked erorr messages returned on the reports page to include more details and be more specific whenever possible.
+- Tweak: Documentation links will always open in a new tab now to ensure you don't lose your place.
+- Fixed: Condition which caused the network UA code to not properly fallback in some instances.
+- Fixed: Some plugin links to our documentation have been corrected
+- Fixed: Sometimes error strings might be over-escaped. We've corrected some cases of this.
+
 = 7.0.9: June 26, 2018 =
 - Tweak: The link to support for Lite now goes directly to the Lite support form.
 - Tweak: Compatibility fixes for the Newspaper theme and the WordPress Book List plugin.

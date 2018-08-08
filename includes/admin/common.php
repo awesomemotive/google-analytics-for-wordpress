@@ -63,6 +63,11 @@ function monsterinsights_admin_styles() {
 	// Load necessary admin styles.
 	wp_register_style( 'monsterinsights-admin-style', plugins_url( 'assets/css/admin' . $suffix . '.css', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version() );
 	wp_enqueue_style( 'monsterinsights-admin-style' );
+
+	// Load LTR stylesheet where needed.
+	if ( is_rtl() ) {
+		wp_enqueue_style( 'monsterinsights-admin-style-rtl', plugins_url( 'assets/css/admin-rtl' . $suffix . '.css', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version() );
+	}
 }
 add_action( 'admin_enqueue_scripts', 'monsterinsights_admin_styles' );
 
@@ -224,6 +229,13 @@ function monsterinsights_remove_conflicting_asset_files() {
 		'control-panel-modal-plugin', // Ken Theme 
 		'sweetalert', //  Church Suite Theme by Webnus
 		'woo_stock_alerts_admin_css', // WooCommerce bolder product alerts
+		'custom_wp_admin_css', // Fix for Add Social Share
+		'fo_css', // Fix for Add Social Share
+		'font_css', // Fix for Add Social Share
+		'font2_css', // Fix for Add Social Share
+		'font3_css', // Fix for Add Social Share
+		'hover_css', // Fix for Add Social Share
+		'fontend_styling' // Fix for Add Social Share
 	);
 	
 	$scripts = array(
@@ -283,6 +295,23 @@ function monsterinsights_remove_conflicting_asset_files() {
 		'ecwid-admin-js', // Fixes Conflict for Ecwid Shopping Cart
 		'td-wp-admin-js', // Newspaper by tagDiv
 		'moment', // Screets Live Chat
+		'wpmf-base', //  WP Media Folder Fix
+		'wpmf-media-filters', //  WP Media Folder Fix
+		'wpmf-folder-tree', //  WP Media Folder Fix
+		'wpmf-assign-tree', //  WP Media Folder Fix
+		'js_files_for_wp_admin', //  TagDiv Composer Fix
+		'tdb_js_files_for_wp_admin_last', //  TagDiv Composer Fix
+		'tdb_js_files_for_wp_admin', //  TagDiv Composer Fix
+		'wd-functions', //  affiliate boxes
+		'ellk-aliExpansion', // Ali Dropship Plugin
+		'ftmetajs', // Houzez Theme
+		'qode_admin_default', //  Fix For Stockholm Theme
+		'qodef-tax-js', // Fix for Prowess Theme
+		'qodef-user-js', // Fix for Prowess Theme
+		'qodef-ui-admin', // Fix for Prowess Theme
+		'ssi_script', // Fix for Add Social Share
+		'live_templates', // Fix for Add Social Share
+		'default', // Fix for Add Social Share
 	);
 
 	if ( ! empty( $styles ) ) {
@@ -367,6 +396,40 @@ function monsterinsights_remove_conflicting_asset_files() {
 			remove_action('admin_print_footer_scripts', 'check_if_media_uploads_is_loaded', 9999);
 			remove_action('print_media_templates', 'td_custom_gallery_settings_hook');
 			remove_action('print_media_templates', 'td_change_backbone_js_hook');
+			remove_action('admin_head', 'tdc_on_admin_head'); //  TagDiv Composer Fix
+			remove_action('print_media_templates', 'us_media_templates'); // Impreza Theme Fix
+			remove_action('admin_footer', 'gt3pg_add_gallery_template'); // GT3 Photo & Video Gallery By GT3 Themes Plugin Fix
+		// Plugin WP Booklist:
+			remove_action('admin_footer', 'wpbooklist_jre_dismiss_prem_notice_forever_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_dashboard_add_book_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_edit_book_show_form_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_show_book_in_colorbox_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_new_lib_shortcode_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_dashboard_save_library_display_options_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_dashboard_save_post_display_options_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_dashboard_save_page_display_options_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_update_display_options_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_edit_book_pagination_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_edit_book_switch_lib_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_edit_book_search_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_edit_book_actual_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_delete_book_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_user_apis_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_upload_new_stylepak_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_upload_new_post_template_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_upload_new_page_template_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_create_db_library_backup_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_restore_db_library_backup_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_create_csv_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_amazon_localization_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_delete_book_bulk_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_reorder_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_exit_results_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_storytime_select_category_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_storytime_get_story_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_storytime_expand_browse_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_storytime_save_settings_action_javascript');
+			remove_action('admin_footer', 'wpbooklist_delete_story_action_javascript');
 }
 add_action( 'admin_enqueue_scripts', 'monsterinsights_remove_conflicting_asset_files', 9999 );
 
