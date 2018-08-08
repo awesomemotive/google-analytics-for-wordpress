@@ -140,7 +140,7 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 - Tweak: Standardized capitalization and spelling of various strings.
 - Tweak: External download links will not be marked as downloads.
 - Tweak: Updated SweetAlert2 to the latest version.
-- Tweak: Tweaked erorr messages returned on the reports page to include more details and be more specific whenever possible.
+- Tweak: Tweaked error messages returned on the reports page to include more details and be more specific whenever possible.
 - Tweak: Documentation links will always open in a new tab now to ensure you don't lose your place.
 - Fixed: Condition which caused the network UA code to not properly fallback in some instances.
 - Fixed: Some plugin links to our documentation have been corrected
