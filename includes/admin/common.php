@@ -312,6 +312,13 @@ function monsterinsights_remove_conflicting_asset_files() {
 		'ssi_script', // Fix for Add Social Share
 		'live_templates', // Fix for Add Social Share
 		'default', // Fix for Add Social Share
+		'handsontable', // Fix WP Tables
+		'moment-js', // Magee Shortcodes
+		'postbox', // Scripts from wp-admin enqueued everywhere by WP Posts Filter
+		'link', // Scripts from wp-admin enqueued everywhere by WP Posts Filter
+		'wpvr_scripts', // WP Video Robot
+		'wpvr_scripts_loaded', // WP Video Robot
+		'wpvr_scripts_assets' // WP Video Robot
 	);
 
 	if ( ! empty( $styles ) ) {
@@ -500,6 +507,7 @@ function hide_non_monsterinsights_warnings () {
 	}
 }
 add_action('admin_print_scripts', 'hide_non_monsterinsights_warnings');  
+add_action('admin_head', 'hide_non_monsterinsights_warnings', PHP_INT_MAX  );  
 
 /**
  * Called whenever an upgrade button / link is displayed in Lite, this function will
@@ -646,6 +654,8 @@ function monsterinsights_remove_unnecessary_footer_hooks() {
 	// Remove js code added by Newspaper theme - version 8.8.0.
 	remove_action( 'print_media_templates', 'td_custom_gallery_settings_hook' );
 	remove_action( 'print_media_templates', 'td_change_backbone_js_hook' );
+	// Remove js code added by the Brooklyn theme - version 4.5.3.1.
+	remove_action( 'print_media_templates', 'ut_create_gallery_options' );
 
 	// Remove js code added by WordPress Book List Plugin - version 5.8.1.
 	remove_action( 'admin_footer', 'wpbooklist_jre_dismiss_prem_notice_forever_action_javascript' );

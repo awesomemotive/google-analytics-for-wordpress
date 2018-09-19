@@ -246,7 +246,7 @@ function monsterinsights_get_registered_settings() {
 				'extensions_of_files' => array( 		/* @todo: Select2 extensions of files */
 					'id'          => 'extensions_of_files',
 					'name'        => __( 'Extensions of files to track as downloads:', 'google-analytics-for-wordpress' ),
-					'desc'        => __( 'If you have enabled event tracking, MonsterInsights will send an event/pageview to GA if a link to a local file has one of the above extensions.', 'google-analytics-for-wordpress' ),
+					'desc'        => __( 'If you have enabled event tracking, MonsterInsights will send an event/pageview to GA if a link to a file has one of the above extensions.', 'google-analytics-for-wordpress' ),
 					'type' 		  => 'text',
 				),
 			)
