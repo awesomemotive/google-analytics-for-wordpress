@@ -983,3 +983,27 @@ if ( ! function_exists ( 'remove_class_action' ) ) {
 		remove_class_filter( $tag, $class_name, $method_name, $priority );
 	}
 } // End function exists
+
+/**
+ * Format a big number, instead of 1000000 you get 1.0M, works with billions also.
+ *
+ * @param int $number
+ * @param int $precision
+ *
+ * @return string
+ */
+function monsterinsights_round_number( $number, $precision = 2 ) {
+
+	if ( $number < 1000000 ) {
+		// Anything less than a million
+		$number = number_format_i18n( $number );
+	} else if ( $number < 1000000000 ) {
+		// Anything less than a billion
+		$number = number_format_i18n( $number / 1000000, $precision ) . 'M';
+	} else {
+		// At least a billion
+		$number = number_format_i18n( $number / 1000000000, $precision ) . 'B';
+	}
+
+	return $number;
+}

@@ -16,7 +16,7 @@ final class MonsterInsights_API_Request {
 	 *
 	 * @var string
 	 */
-	public $base = 'www.monsterinsights.com/v1/';
+	public $base = 'api.monsterinsights.com/v2/';
 
 	/**
 	 * Current API route.
@@ -44,6 +44,15 @@ final class MonsterInsights_API_Request {
 	 * @var bool|string
 	 */
 	public $method = false;
+
+	/**
+	 * Is a network request.
+	 *
+	 * @since 7.2.0
+	 *
+	 * @var bool
+	 */
+	public $network = false;
 
 	/**
 	 * API token.
@@ -134,11 +143,11 @@ final class MonsterInsights_API_Request {
 		$this->protocol  = 'https://';
 		$this->url       = trailingslashit( $this->protocol . $this->base . $this->route );
 		$this->method    = $method;
+		$this->network   = is_network_admin() || ! empty( $args['network'] );
 
-		$default_token   = ! empty( $args['network'] ) && $args['network'] ? MonsterInsights()->auth->get_network_token() : MonsterInsights()->auth->get_token();
-		$default_key     = ! empty( $args['network'] ) && $args['network'] ? MonsterInsights()->auth->get_network_key()   : MonsterInsights()->auth->get_key();
-		
-		
+		$default_token   = $this->network ? MonsterInsights()->auth->get_network_token() : MonsterInsights()->auth->get_token();
+		$default_key     = $this->network ? MonsterInsights()->auth->get_network_key()   : MonsterInsights()->auth->get_key();
+
 		$this->token     = ! empty( $args['token'] )     ? $args['token']  : $default_token;
 		$this->key       = ! empty( $args['key'] ) 	     ? $args['key']    : $default_key;
 		$this->tt        = ! empty( $args['tt'] ) 		 ? $args['tt']     : '';
@@ -150,12 +159,11 @@ final class MonsterInsights_API_Request {
 		$this->site_url  = is_network_admin() ? network_admin_url() : site_url();
 
 		if ( monsterinsights_is_pro_version() ) {
-			$this->license   = is_network_admin() || ( ! empty( $args['network'] ) && $args['network'] ) ? MonsterInsights()->license->get_network_license_key() : MonsterInsights()->license->get_site_license_key();
+			$this->license   = $this->network ? MonsterInsights()->license->get_network_license_key() : MonsterInsights()->license->get_site_license_key();
 		}
 		$this->plugin    = MonsterInsights()->plugin_slug;
 		$this->miversion = MONSTERINSIGHTS_VERSION;
 		$this->sitei     = ! empty( $args['sitei'] ) ? $args['sitei'] : '';
-
 	}
 
 	/**
@@ -181,7 +189,7 @@ final class MonsterInsights_API_Request {
 		if ( ! empty( $this->key ) ) {
 			$body['key'] = $this->key;
 		}
-		
+
 		if ( ! empty( $this->tt ) ) {
 			$body['tt'] = $this->tt;
 		}
@@ -224,6 +232,8 @@ final class MonsterInsights_API_Request {
 		}
 
 		$body['timezone'] = date('e');
+
+		$body['network']  = $this->network ? 'network' : 'site';
 
 		$body['ip']   = ! empty( $_SERVER['SERVER_ADDR'] ) ? $_SERVER['SERVER_ADDR'] : '';
 

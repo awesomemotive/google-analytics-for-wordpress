@@ -4,7 +4,7 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: MonsterInsights Lite\n"
 "Report-Msgid-Bugs-To: https://github.com/awesomemotive/monsterinsights/issues\n"
-"POT-Creation-Date: 2018-08-07 22:35-0400\n"
+"POT-Creation-Date: 2018-09-19 11:07-0400\n"
 "PO-Revision-Date: 2016-07-21 17:01-0400\n"
 "Last-Translator: Chris Christoff <support@monsterinsights.com>\n"
 "Language-Team: Chris Christoff <support@monsterinsights.com>\n"
@@ -50,12 +50,12 @@ msgstr ""
 msgid "Please %1$suninstall%2$s the MonsterInsights Lite Plugin. Your Pro version of MonsterInsights may not work as expected until the Lite version is uninstalled."
 msgstr ""
 
-#: googleanalytics.php:645
+#: googleanalytics.php:646
 #, php-format
 msgid "Sorry, but your version of WordPress does not meet MonsterInsight's required version of %1$s3.8%2$s to run properly. The plugin not been activated. %3$sClick here to return to the Dashboard%4$s."
 msgstr ""
 
-#: googleanalytics.php:650
+#: googleanalytics.php:651
 #, php-format
 msgid "Please uninstall and remove MonsterInsights Pro before activating Google Analytics for WordPress by MonsterInsights. The Lite version has not been activated. %1$sClick here to return to the Dashboard%2$s."
 msgstr ""
@@ -190,79 +190,79 @@ msgstr ""
 msgid "%1$sGet MonsterInsights Pro%2$s"
 msgstr ""
 
-#: includes/admin/api-auth.php:71
+#: includes/admin/api-auth.php:83
 msgid "You don't have permission to authenticate MonsterInsights."
 msgstr ""
 
-#: includes/admin/api-auth.php:81
+#: includes/admin/api-auth.php:93
 msgid "Cannot authenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings."
 msgstr ""
 
-#: includes/admin/api-auth.php:86
+#: includes/admin/api-auth.php:98
 msgid "Cannot authenticate. Please re-authenticate."
 msgstr ""
 
-#: includes/admin/api-auth.php:88
+#: includes/admin/api-auth.php:100
 msgid "Cannot network authenticate. Please re-authenticate on the network settings panel."
 msgstr ""
 
-#: includes/admin/api-auth.php:190
+#: includes/admin/api-auth.php:284
 msgid "You don't have permission to re-authenticate MonsterInsights."
 msgstr ""
 
-#: includes/admin/api-auth.php:200
+#: includes/admin/api-auth.php:294
 msgid "Cannot re-authenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings."
 msgstr ""
 
-#: includes/admin/api-auth.php:205
+#: includes/admin/api-auth.php:299
 msgid "Cannot re-authenticate. Please authenticate."
 msgstr ""
 
-#: includes/admin/api-auth.php:207
+#: includes/admin/api-auth.php:301
 msgid "Cannot re-authenticate the network. Please authenticate on the network settings panel."
 msgstr ""
 
-#: includes/admin/api-auth.php:307
+#: includes/admin/api-auth.php:403
 msgid "You don't have permission to verify MonsterInsights."
 msgstr ""
 
-#: includes/admin/api-auth.php:316 includes/admin/api-auth.php:318
+#: includes/admin/api-auth.php:412 includes/admin/api-auth.php:414
 msgid "Cannot verify. Please authenticate."
 msgstr ""
 
-#: includes/admin/api-auth.php:323
+#: includes/admin/api-auth.php:419
 msgid "Cannot verify. Please enter a valid, active license key for MonsterInsights Pro into the settings."
 msgstr ""
 
-#: includes/admin/api-auth.php:328
+#: includes/admin/api-auth.php:424
 msgid "Successfully verified."
 msgstr ""
 
-#: includes/admin/api-auth.php:330
+#: includes/admin/api-auth.php:426
 msgid "Could not verify."
 msgstr ""
 
-#: includes/admin/api-auth.php:358
+#: includes/admin/api-auth.php:454
 msgid "You don't have permission to deauthenticate MonsterInsights."
 msgstr ""
 
-#: includes/admin/api-auth.php:367 includes/admin/api-auth.php:369
+#: includes/admin/api-auth.php:463 includes/admin/api-auth.php:465
 msgid "Cannot deauthenticate. You are not currently authed."
 msgstr ""
 
-#: includes/admin/api-auth.php:374
+#: includes/admin/api-auth.php:470
 msgid "Cannot deauthenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings."
 msgstr ""
 
-#: includes/admin/api-auth.php:381
+#: includes/admin/api-auth.php:477
 msgid "Successfully deauthenticated."
 msgstr ""
 
-#: includes/admin/api-auth.php:384
+#: includes/admin/api-auth.php:480
 msgid "Successfully force deauthenticated."
 msgstr ""
 
-#: includes/admin/api-auth.php:386
+#: includes/admin/api-auth.php:482
 msgid "Could not deauthenticate."
 msgstr ""
 
@@ -439,7 +439,7 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: includes/admin/common.php:628
+#: includes/admin/common.php:636
 #, php-format
 msgid "MonsterInsights has detected that it's files are being blocked. This is usually caused by a adblock browser plugin (particularly uBlock Origin), or a conflicting WordPress theme or plugin. This issue only affects the admin side of MonsterInsights. To solve this, ensure MonsterInsights is whitelisted for your website URL in any adblock browser plugin you use. For step by step directions on how to do this, %1$sclick here%2$s. If this doesn't solve the issue (rare), send us a ticket %3$shere%2$s and we'll be happy to help diagnose the issue."
 msgstr ""
@@ -1281,7 +1281,7 @@ msgid "Extensions of files to track as downloads:"
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:249
-msgid "If you have enabled event tracking, MonsterInsights will send an event/pageview to GA if a link to a local file has one of the above extensions."
+msgid "If you have enabled event tracking, MonsterInsights will send an event/pageview to GA if a link to a file has one of the above extensions."
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:259
@@ -1448,25 +1448,25 @@ msgstr ""
 msgid "Once Weekly"
 msgstr ""
 
-#: includes/api-request.php:171
+#: includes/api-request.php:179
 msgid "The firewall of your server is blocking outbound calls. Please contact your hosting provider to fix this issue."
 msgstr ""
 
-#: includes/api-request.php:275
+#: includes/api-request.php:285
 msgid "The API was unreachable."
 msgstr ""
 
-#: includes/api-request.php:279
+#: includes/api-request.php:289
 #, php-format
 msgid "The API returned a <strong>%s</strong> response"
 msgstr ""
 
-#: includes/api-request.php:283 includes/api-request.php:287
+#: includes/api-request.php:293 includes/api-request.php:297
 #, php-format
 msgid "The API returned a <strong>%d</strong> response with this message: <strong>%s</strong>"
 msgstr ""
 
-#: includes/api-request.php:295
+#: includes/api-request.php:305
 msgid "Improper API request."
 msgstr ""
 

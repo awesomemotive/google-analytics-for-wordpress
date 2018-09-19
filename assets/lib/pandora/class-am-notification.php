@@ -11,7 +11,7 @@ if ( ! class_exists( 'AM_Notification' ) ) {
 	 * @author     AwesomeMotive Team
 	 * @license    GPL-2.0+
 	 * @copyright  Copyright (c) 2018, Awesome Motive LLC
-	 * @version    1.0.4
+	 * @version    1.0.6
 	 */
 	class AM_Notification {
 
@@ -203,15 +203,15 @@ if ( ! class_exists( 'AM_Notification' ) ) {
 					$dismissable = get_post_meta( $notification->ID, 'dismissable', true );
 					$type        = get_post_meta( $notification->ID, 'type', true );
 					?>
-					<div class="am-notification am-notification-<?php echo $notification->ID; ?> notice notice-<?php echo $type; ?><?php echo $dismissable ? ' is-dismissible' : ''; ?>">
-						<?php echo $notification->post_content; ?>
+					<div class="am-notification am-notification-<?php echo absint( $notification->ID ); ?> notice notice-<?php echo esc_attr( $type ); ?><?php echo $dismissable ? ' is-dismissible' : ''; ?>">
+						<?php echo wp_kses_post( $notification->post_content ); ?>
 					</div>
 					<script type="text/javascript">
 						jQuery( document ).ready( function ( $ ) {
-							$( document ).on( 'click', '.am-notification-<?php echo $notification->ID; ?> button.notice-dismiss', function ( event ) {
+							$( document ).on( 'click', '.am-notification-<?php echo absint( $notification->ID ); ?> button.notice-dismiss', function ( event ) {
 								$.post( ajaxurl, {
 									action: 'am_notification_dismiss',
-									notification_id: '<?php echo $notification->ID; ?>'
+									notification_id: '<?php echo absint( $notification->ID ); ?>'
 								} );
 							} );
 						} );
