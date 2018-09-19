@@ -845,7 +845,7 @@ function monsterinsights_get_country_list( $translated = false ) {
 }
 
 function monsterinsights_get_api_url(){
-	return apply_filters( 'monsterinsights_get_api_url', 'www.monsterinsights.com/v1/' );
+	return apply_filters( 'monsterinsights_get_api_url', 'api.monsterinsights.com/v2/' );
 }
 
 function monsterinsights_get_licensing_url(){
