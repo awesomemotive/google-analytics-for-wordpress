@@ -11,10 +11,10 @@
  * @since 6.0.12
  */
 var MonsterInsights = function(){
-	// MonsterInsights JS  events tracking works on all major browsers, including IE starting at IE 7, via polyfills for any major JS function used that
-	// is not supported by at least  95% of the global and/or US browser marketshare. Currently, IE 7 & 8 which as of 2/14/17 have under 0.25% global marketshare, require
-	// us to polyfill Array.prototype.lastIndexOf, and if they continue to drop, we might remove this polyfill at some point. In that case note that events tracking
-	// for IE 7/8 will continue to work, with the exception of events tracking of downloads.
+	/* MonsterInsights JS  events tracking works on all major browsers, including IE starting at IE 7, via polyfills for any major JS function used that
+	   is not supported by at least  95% of the global and/or US browser marketshare. Currently, IE 7 & 8 which as of 2/14/17 have under 0.25% global marketshare, require
+	   us to polyfill Array.prototype.lastIndexOf, and if they continue to drop, we might remove this polyfill at some point. In that case note that events tracking
+	   for IE 7/8 will continue to work, with the exception of events tracking of downloads. */
 	var lastClicked = [];
 	
 	this.setLastClicked = function(valuesArray,fieldsArray,tracked){ 
@@ -86,7 +86,7 @@ var MonsterInsights = function(){
 		extension = extension.substring( 0, (extension.indexOf( "#" ) == -1 ) ? extension.length : extension.indexOf( "#" ) ); /* Remove the anchor at the end, if there is one */
 		extension = extension.substring( 0, (extension.indexOf( "?" ) == -1 ) ? extension.length : extension.indexOf( "?" ) ); /* Remove the query after the file name, if there is one */
 		extension = extension.substring( extension.lastIndexOf( "/" ) + 1, extension.length ); /* Remove everything before the last slash in the path */
-		if ( extension.length > 0 && extension.indexOf('.') !== -1 ) { // If there's a period left in the URL, then there's a extension. Else it is not a extension.
+		if ( extension.length > 0 && extension.indexOf('.') !== -1 ) { /* If there's a period left in the URL, then there's a extension. Else it is not a extension. */
 			extension = extension.substring( extension.indexOf( "." ) + 1 ); /* Remove everything but what's after the first period */
 			return extension;
 		} else {
@@ -95,7 +95,7 @@ var MonsterInsights = function(){
 	}
 
 	function __gaTrackerLoaded() {
-		return typeof(__gaTracker) !== 'undefined' && __gaTracker && __gaTracker.hasOwnProperty( "loaded" ) && __gaTracker.loaded == true; // jshint ignore:line
+		return typeof(__gaTracker) !== 'undefined' && __gaTracker && __gaTracker.hasOwnProperty( "loaded" ) && __gaTracker.loaded == true; /* jshint ignore:line */
 	}
 
 	function __gaTrackerTrackedClick( event ) {
@@ -148,9 +148,14 @@ var MonsterInsights = function(){
 		var pathname       		= el.pathname;
 		link 					= link.toString();
 		var index, len;
+		var category 			=  el.getAttribute("data-vars-ga-category");
+
+		if ( category ) {
+			return category;
+		}
 
 		if ( link.match( /^javascript\:/i ) ) {
-			type = 'internal'; // if it's a JS link, it's internal
+			type = 'internal'; /* if it's a JS link, it's internal */
 		} else if ( protocol && protocol.length > 0 && ( __gaTrackerStringTrim( protocol ) == 'tel' || __gaTrackerStringTrim( protocol ) == 'tel:' ) ) { /* If it's a telephone link */
 			type = "tel"; 
 		} else if ( protocol && protocol.length > 0 && ( __gaTrackerStringTrim( protocol ) == 'mailto' ||  __gaTrackerStringTrim( protocol ) == 'mailto:' ) ) { /* If it's a email */
@@ -176,7 +181,7 @@ var MonsterInsights = function(){
 					break;
 				}
 			}
-		} 
+		}
 
 		if ( type === 'unknown' ) {
 			type = 'internal';
@@ -201,7 +206,7 @@ var MonsterInsights = function(){
 		var valuesArray   = [];
 		var fieldsArray;
 
-		// Start Values Array
+		/* Start Values Array */
 		valuesArray.el         = el;
 		valuesArray.ga_loaded  = __gaTrackerLoaded();
 		valuesArray.click_type = __gaTrackerTrackedClickType( event );
@@ -230,6 +235,8 @@ var MonsterInsights = function(){
 			var currentdomain       		= __gaTrackerGetDomain();										/* What domain are we on? */
 			var type                		= __gaTrackerLinkType( el ); 									/* What type of link is this? */
 			var target 						= __gaTrackerLinkTarget( el, event );							/* Is a new tab/window being opened? */
+			var action 						= el.getAttribute("data-vars-ga-action");
+			var label 						= el.getAttribute("data-vars-ga-label");
 
 			/* Element */
 			valuesArray.el                  = el;					/* el is an a element so we can parse it */
@@ -299,8 +306,8 @@ var MonsterInsights = function(){
 							fieldsArray = {
 								hitType       : 'event',
 								eventCategory : 'download',
-								eventAction   : link,
-								eventLabel    : valuesArray.title,
+								eventAction   : action || link,
+								eventLabel    : label  || valuesArray.title,
 							};
 
 							__gaTrackerSend( valuesArray, fieldsArray );
@@ -309,8 +316,8 @@ var MonsterInsights = function(){
 						fieldsArray = {
 							hitType       : 'event',
 							eventCategory : 'tel',
-							eventAction   : link,
-							eventLabel    : valuesArray.title.replace('tel:', ''),
+							eventAction   : action || link,
+							eventLabel    : label  || valuesArray.title.replace('tel:', ''),
 						};
 
 						__gaTrackerSend( valuesArray, fieldsArray );
@@ -318,8 +325,8 @@ var MonsterInsights = function(){
 						fieldsArray = {
 							hitType       : 'event',
 							eventCategory : 'mailto',
-							eventAction   : link,
-							eventLabel    : valuesArray.title.replace('mailto:', ''),
+							eventAction   : action || link,
+							eventLabel    : label  || valuesArray.title.replace('mailto:', ''),
 						};
 
 						__gaTrackerSend( valuesArray, fieldsArray );
@@ -327,8 +334,8 @@ var MonsterInsights = function(){
 						fieldsArray = {
 							hitType       : 'event',
 							eventCategory : internal_label,
-							eventAction   : link,
-							eventLabel    : valuesArray.title,
+							eventAction   : action || link,
+							eventLabel    : label  || valuesArray.title,
 						};
 
 						__gaTrackerSend( valuesArray, fieldsArray );
@@ -336,8 +343,8 @@ var MonsterInsights = function(){
 						fieldsArray = {
 							hitType: 'event',
 							eventCategory:'outbound-link',
-							eventAction: link,
-							eventLabel: valuesArray.title,
+							eventAction: action || link,
+							eventLabel:  label  || valuesArray.title,
 						};
 
 						__gaTrackerSend( valuesArray, fieldsArray );
@@ -345,14 +352,25 @@ var MonsterInsights = function(){
 						fieldsArray = {
 							hitType: 'event',
 							eventCategory:'cross-hostname',
-							eventAction: link,
-							eventLabel: valuesArray.title,
+							eventAction: action || link,
+							eventLabel:  label  || valuesArray.title,
 						};
 
 						__gaTrackerSend( valuesArray, fieldsArray );
 					} else {
-						valuesArray.exit = 'type';
-						__gaTrackerNotSend( valuesArray );
+						if ( type && type != 'internal' ) {
+							fieldsArray = {
+								hitType: 'event',
+								eventCategory: type,
+								eventAction:   action || link,
+								eventLabel:    label  || valuesArray.title,
+							};
+
+							__gaTrackerSend( valuesArray, fieldsArray );
+						} else {
+							valuesArray.exit = 'type';
+							__gaTrackerNotSend( valuesArray );
+						}
 					}
 				} else { 
 					/* Prevent standard click, track then open */
@@ -365,7 +383,7 @@ var MonsterInsights = function(){
 							}
 						}
 					}
-					
+
 					if ( type == 'download' ) {
 						if ( track_download_as == 'pageview' ) {
 							fieldsArray = {
@@ -379,8 +397,8 @@ var MonsterInsights = function(){
 							fieldsArray = {
 								hitType       : 'event',
 								eventCategory : 'download',
-								eventAction   : link,
-								eventLabel    : valuesArray.title,
+								eventAction   : action || link,
+								eventLabel    : label  || valuesArray.title,
 								hitCallback   : __gaTrackerHitBack,
 							};
 
@@ -399,8 +417,8 @@ var MonsterInsights = function(){
 							fieldsArray = {
 								hitType       : 'event',
 								eventCategory : internal_label,
-								eventAction   : link,
-								eventLabel    : valuesArray.title,
+								eventAction   : action || link,
+								eventLabel    : label  || valuesArray.title,
 								hitCallback   : __gaTrackerHitBack,
 							};
 
@@ -420,12 +438,12 @@ var MonsterInsights = function(){
 									event.returnValue = false;
 								}
 							}
-							
+
 							fieldsArray = {
 								hitType       : 'event',
 								eventCategory : 'outbound-link',
-								eventAction   : link,
-								eventLabel    : valuesArray.title,
+								eventAction   : action || link,
+								eventLabel    : label  || valuesArray.title,
 								hitCallback   : __gaTrackerHitBack,
 							};
 
@@ -435,7 +453,7 @@ var MonsterInsights = function(){
 
 							__gaTrackerSend( valuesArray, fieldsArray );
 							setTimeout( __gaTrackerHitBack, 1000 );
-						};						
+						};
 					} else if ( type == 'cross-hostname' ) {
 						window.onbeforeunload = function(e) {
 							if (! event.defaultPrevented ) {
@@ -449,8 +467,8 @@ var MonsterInsights = function(){
 							fieldsArray = {
 								hitType       : 'event',
 								eventCategory : 'cross-hostname',
-								eventAction   : link,
-								eventLabel    : valuesArray.title,
+								eventAction   : action || link,
+								eventLabel    : label  || valuesArray.title,
 								hitCallback   : __gaTrackerHitBack,
 							};
 
@@ -462,8 +480,20 @@ var MonsterInsights = function(){
 							setTimeout( __gaTrackerHitBack, 1000 );
 						};						
 					} else {
-						valuesArray.exit = 'type';
-						__gaTrackerNotSend( valuesArray );
+						if ( type && type !== 'internal' ) {
+							fieldsArray = {
+								hitType: 'event',
+								eventCategory: type,
+								eventAction:   action || link,
+								eventLabel:    label  || valuesArray.title,
+								hitCallback   : __gaTrackerHitBack,
+							};
+
+							__gaTrackerSend( valuesArray, fieldsArray );
+						} else {
+							valuesArray.exit = 'type';
+							__gaTrackerNotSend( valuesArray );
+						}
 					}
 
 					if ( type != 'external' && type != 'cross-hostname' && type != 'internal-as-outbound' ) {
@@ -490,7 +520,7 @@ var MonsterInsights = function(){
 	}
 	var prevHash = window.location.hash;
 	function __gaTrackerHashChangeEvent() {
-		// Todo: Ready this section for JS unit testing
+		/* Todo: Ready this section for JS unit testing */
 		if ( monsterinsights_frontend.hash_tracking === "true" && prevHash != window.location.hash ) {
 			prevHash = window.location.hash;
 			__gaTracker('set', 'page', location.pathname + location.search + location.hash );
@@ -549,7 +579,7 @@ var MonsterInsights = function(){
 
 		var n, k,
 		  t = Object(this),
-		  len = t.length >>> 0; // jshint ignore:line
+		  len = t.length >>> 0; /* jshint ignore:line */
 		if (len === 0) {
 		  return -1;
 		}
@@ -560,7 +590,7 @@ var MonsterInsights = function(){
 		  if (n != n) {
 			n = 0;
 		  }
-		  else if (n != 0 && n != (1 / 0) && n != -(1 / 0)) { // jshint ignore:line
+		  else if (n != 0 && n != (1 / 0) && n != -(1 / 0)) { /* jshint ignore:line */
 			n = (n > 0 || -1) * Math.floor(Math.abs(n));
 		  }
 		}

@@ -4,14 +4,14 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: MonsterInsights Lite\n"
 "Report-Msgid-Bugs-To: https://github.com/awesomemotive/monsterinsights/issues\n"
-"POT-Creation-Date: 2018-09-19 11:07-0400\n"
+"POT-Creation-Date: 2018-10-30 09:26-0400\n"
 "PO-Revision-Date: 2016-07-21 17:01-0400\n"
 "Last-Translator: Chris Christoff <support@monsterinsights.com>\n"
 "Language-Team: Chris Christoff <support@monsterinsights.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: googleanalytics.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -50,12 +50,12 @@ msgstr ""
 msgid "Please %1$suninstall%2$s the MonsterInsights Lite Plugin. Your Pro version of MonsterInsights may not work as expected until the Lite version is uninstalled."
 msgstr ""
 
-#: googleanalytics.php:646
+#: googleanalytics.php:647
 #, php-format
 msgid "Sorry, but your version of WordPress does not meet MonsterInsight's required version of %1$s3.8%2$s to run properly. The plugin not been activated. %3$sClick here to return to the Dashboard%4$s."
 msgstr ""
 
-#: googleanalytics.php:651
+#: googleanalytics.php:652
 #, php-format
 msgid "Please uninstall and remove MonsterInsights Pro before activating Google Analytics for WordPress by MonsterInsights. The Lite version has not been activated. %1$sClick here to return to the Dashboard%2$s."
 msgstr ""
@@ -206,63 +206,67 @@ msgstr ""
 msgid "Cannot network authenticate. Please re-authenticate on the network settings panel."
 msgstr ""
 
-#: includes/admin/api-auth.php:284
+#: includes/admin/api-auth.php:285
 msgid "You don't have permission to re-authenticate MonsterInsights."
 msgstr ""
 
-#: includes/admin/api-auth.php:294
+#: includes/admin/api-auth.php:295
 msgid "Cannot re-authenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings."
 msgstr ""
 
-#: includes/admin/api-auth.php:299
+#: includes/admin/api-auth.php:300
 msgid "Cannot re-authenticate. Please authenticate."
 msgstr ""
 
-#: includes/admin/api-auth.php:301
+#: includes/admin/api-auth.php:302
 msgid "Cannot re-authenticate the network. Please authenticate on the network settings panel."
 msgstr ""
 
-#: includes/admin/api-auth.php:403
+#: includes/admin/api-auth.php:404
 msgid "You don't have permission to verify MonsterInsights."
 msgstr ""
 
-#: includes/admin/api-auth.php:412 includes/admin/api-auth.php:414
+#: includes/admin/api-auth.php:413 includes/admin/api-auth.php:415
 msgid "Cannot verify. Please authenticate."
 msgstr ""
 
-#: includes/admin/api-auth.php:419
+#: includes/admin/api-auth.php:420
 msgid "Cannot verify. Please enter a valid, active license key for MonsterInsights Pro into the settings."
 msgstr ""
 
-#: includes/admin/api-auth.php:424
+#: includes/admin/api-auth.php:425
 msgid "Successfully verified."
 msgstr ""
 
-#: includes/admin/api-auth.php:426
+#: includes/admin/api-auth.php:427
 msgid "Could not verify."
 msgstr ""
 
-#: includes/admin/api-auth.php:454
+#: includes/admin/api-auth.php:435
+msgid "Verify auth key not passed"
+msgstr ""
+
+#: includes/admin/api-auth.php:456
 msgid "You don't have permission to deauthenticate MonsterInsights."
 msgstr ""
 
-#: includes/admin/api-auth.php:463 includes/admin/api-auth.php:465
+#: includes/admin/api-auth.php:465 includes/admin/api-auth.php:467
 msgid "Cannot deauthenticate. You are not currently authed."
 msgstr ""
 
-#: includes/admin/api-auth.php:470
+#: includes/admin/api-auth.php:472
 msgid "Cannot deauthenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings."
 msgstr ""
 
-#: includes/admin/api-auth.php:477
+#: includes/admin/api-auth.php:479
 msgid "Successfully deauthenticated."
 msgstr ""
 
-#: includes/admin/api-auth.php:480
+#: includes/admin/api-auth.php:482
 msgid "Successfully force deauthenticated."
 msgstr ""
 
-#: includes/admin/api-auth.php:482
+#: includes/admin/api-auth.php:484
 msgid "Could not deauthenticate."
 msgstr ""
 
@@ -439,7 +443,15 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: includes/admin/common.php:636
+#: includes/admin/common.php:184
+msgid "Real-Time Report Paused"
+msgstr ""
+
+#: includes/admin/common.php:185
+msgid "The Real-Time Report automatically paused due to inactivity. Please refresh the page to resume the Real-Time Report."
+msgstr ""
+
+#: includes/admin/common.php:644
 #, php-format
 msgid "MonsterInsights has detected that it's files are being blocked. This is usually caused by a adblock browser plugin (particularly uBlock Origin), or a conflicting WordPress theme or plugin. This issue only affects the admin side of MonsterInsights. To solve this, ensure MonsterInsights is whitelisted for your website URL in any adblock browser plugin you use. For step by step directions on how to do this, %1$sclick here%2$s. If this doesn't solve the issue (rare), send us a ticket %3$shere%2$s and we'll be happy to help diagnose the issue."
 msgstr ""
@@ -894,173 +906,173 @@ msgstr ""
 msgid "Overview"
 msgstr ""
 
-#: includes/admin/reports/overview.php:81
+#: includes/admin/reports/overview.php:80
 msgid "UP"
 msgstr ""
 
-#: includes/admin/reports/overview.php:82
+#: includes/admin/reports/overview.php:81
 msgid "DOWN"
 msgstr ""
 
-#: includes/admin/reports/overview.php:83
+#: includes/admin/reports/overview.php:82
 msgid "Unique"
 msgstr ""
 
-#: includes/admin/reports/overview.php:83
-#: includes/admin/reports/overview.php:355
-#: includes/admin/reports/overview.php:395
+#: includes/admin/reports/overview.php:82
+#: includes/admin/reports/overview.php:354
+#: includes/admin/reports/overview.php:394
 msgid "Sessions"
 msgstr ""
 
-#: includes/admin/reports/overview.php:83
-#: includes/admin/reports/overview.php:360
-#: includes/admin/reports/overview.php:422
-#: includes/admin/reports/overview.php:424
+#: includes/admin/reports/overview.php:82
+#: includes/admin/reports/overview.php:359
+#: includes/admin/reports/overview.php:421
+#: includes/admin/reports/overview.php:423
 msgid "Pageviews"
 msgstr ""
 
-#: includes/admin/reports/overview.php:389
+#: includes/admin/reports/overview.php:388
 msgid "Up"
 msgstr ""
 
-#: includes/admin/reports/overview.php:390
+#: includes/admin/reports/overview.php:389
 msgid "Down"
 msgstr ""
 
-#: includes/admin/reports/overview.php:397
+#: includes/admin/reports/overview.php:396
 msgid "Session"
 msgstr ""
 
-#: includes/admin/reports/overview.php:397
+#: includes/admin/reports/overview.php:396
 msgid "A session is the browsing session of a single user to your site."
 msgstr ""
 
-#: includes/admin/reports/overview.php:403
-#: includes/admin/reports/overview.php:430
-#: includes/admin/reports/overview.php:457
-#: includes/admin/reports/overview.php:484
+#: includes/admin/reports/overview.php:402
+#: includes/admin/reports/overview.php:429
+#: includes/admin/reports/overview.php:456
+#: includes/admin/reports/overview.php:483
 msgid "No change"
 msgstr ""
 
-#: includes/admin/reports/overview.php:417
-#: includes/admin/reports/overview.php:444
-#: includes/admin/reports/overview.php:471
-#: includes/admin/reports/overview.php:498
+#: includes/admin/reports/overview.php:416
+#: includes/admin/reports/overview.php:443
+#: includes/admin/reports/overview.php:470
+#: includes/admin/reports/overview.php:497
 #, php-format
 msgid "vs. Previous %s Days"
 msgstr ""
 
-#: includes/admin/reports/overview.php:424
+#: includes/admin/reports/overview.php:423
 msgid "A pageview is defined as a view of a page on your site that is being tracked by the Analytics tracking code. Each refresh of a page is also a new pageview."
 msgstr ""
 
-#: includes/admin/reports/overview.php:449
+#: includes/admin/reports/overview.php:448
 msgid "Avg. Session Duration"
 msgstr ""
 
-#: includes/admin/reports/overview.php:451
+#: includes/admin/reports/overview.php:450
 msgid "Average Session Duration"
 msgstr ""
 
-#: includes/admin/reports/overview.php:451
+#: includes/admin/reports/overview.php:450
 msgid "Total duration of all sessions (in seconds) / number of sessions."
 msgstr ""
 
-#: includes/admin/reports/overview.php:476
-#: includes/admin/reports/overview.php:478
+#: includes/admin/reports/overview.php:475
+#: includes/admin/reports/overview.php:477
 msgid "Bounce Rate"
 msgstr ""
 
-#: includes/admin/reports/overview.php:478
+#: includes/admin/reports/overview.php:477
 msgid "Percentage of single page visits (or web sessions). It is the number of visits in which a person leaves your website from the landing page without browsing any further."
 msgstr ""
 
-#: includes/admin/reports/overview.php:510
-#: includes/admin/reports/overview.php:512
+#: includes/admin/reports/overview.php:509
+#: includes/admin/reports/overview.php:511
 msgid "New vs. Returning Visitors"
 msgstr ""
 
-#: includes/admin/reports/overview.php:512
+#: includes/admin/reports/overview.php:511
 msgid "This graph shows what percent of your user sessions come from new versus repeat visitors."
 msgstr ""
 
-#: includes/admin/reports/overview.php:604
+#: includes/admin/reports/overview.php:603
 msgid "New"
 msgstr ""
 
-#: includes/admin/reports/overview.php:605
+#: includes/admin/reports/overview.php:604
 msgid "Returning"
 msgstr ""
 
-#: includes/admin/reports/overview.php:684
-#: includes/admin/reports/overview.php:686
+#: includes/admin/reports/overview.php:683
+#: includes/admin/reports/overview.php:685
 msgid "Device Breakdown"
 msgstr ""
 
-#: includes/admin/reports/overview.php:686
+#: includes/admin/reports/overview.php:685
 msgid "This graph shows what percent of your visitor sessions are done using a traditional computer or laptop, tablet or mobile device to view your site."
 msgstr ""
 
-#: includes/admin/reports/overview.php:780
+#: includes/admin/reports/overview.php:779
 msgid "Desktop"
 msgstr ""
 
-#: includes/admin/reports/overview.php:781
+#: includes/admin/reports/overview.php:780
 msgid "Tablet"
 msgstr ""
 
-#: includes/admin/reports/overview.php:782
+#: includes/admin/reports/overview.php:781
 msgid "Mobile"
 msgstr ""
 
-#: includes/admin/reports/overview.php:861
-#: includes/admin/reports/overview.php:863
+#: includes/admin/reports/overview.php:860
+#: includes/admin/reports/overview.php:862
 msgid "Top 10 Countries"
 msgstr ""
 
-#: includes/admin/reports/overview.php:863
+#: includes/admin/reports/overview.php:862
 msgid "This list shows the top countries your website visitors are from."
 msgstr ""
 
-#: includes/admin/reports/overview.php:884
+#: includes/admin/reports/overview.php:883
 msgid "View Full Countries Report"
 msgstr ""
 
-#: includes/admin/reports/overview.php:884
+#: includes/admin/reports/overview.php:883
 msgid "View All Countries Report"
 msgstr ""
 
-#: includes/admin/reports/overview.php:896
-#: includes/admin/reports/overview.php:898
+#: includes/admin/reports/overview.php:895
+#: includes/admin/reports/overview.php:897
 msgid "Referrals"
 msgstr ""
 
-#: includes/admin/reports/overview.php:898
+#: includes/admin/reports/overview.php:897
 msgid "This list shows the top websites that send your website traffic, known as \"referral traffic\"."
 msgstr ""
 
-#: includes/admin/reports/overview.php:925
+#: includes/admin/reports/overview.php:924
 msgid "View All Referral Sources"
 msgstr ""
 
-#: includes/admin/reports/overview.php:936
-#: includes/admin/reports/overview.php:939
+#: includes/admin/reports/overview.php:935
+#: includes/admin/reports/overview.php:938
 msgid "Top Posts / Pages"
 msgstr ""
 
-#: includes/admin/reports/overview.php:939
+#: includes/admin/reports/overview.php:938
 msgid "This list shows the most viewed posts and pages on your website."
 msgstr ""
 
-#: includes/admin/reports/overview.php:971
+#: includes/admin/reports/overview.php:970
 msgid "Show"
 msgstr ""
 
-#: includes/admin/reports/overview.php:972
+#: includes/admin/reports/overview.php:971
 msgid "How many to show"
 msgstr ""
 
-#: includes/admin/reports/overview.php:983
+#: includes/admin/reports/overview.php:982
 msgid "View Full Post/Page Report"
 msgstr ""
 
@@ -1448,26 +1460,47 @@ msgstr ""
 msgid "Once Weekly"
 msgstr ""
 
-#: includes/api-request.php:179
+#: includes/api-request.php:181
+#, php-format
+msgid "The firewall of your server is blocking outbound calls. Please contact your hosting provider to fix this issue. %s"
+msgstr ""
+
+#: includes/api-request.php:183
 msgid "The firewall of your server is blocking outbound calls. Please contact your hosting provider to fix this issue."
 msgstr ""
 
-#: includes/api-request.php:285
+#: includes/api-request.php:290
 msgid "The API was unreachable."
 msgstr ""
 
-#: includes/api-request.php:289
+#: includes/api-request.php:294
 #, php-format
 msgid "The API returned a <strong>%s</strong> response"
 msgstr ""
 
-#: includes/api-request.php:293 includes/api-request.php:297
+#: includes/api-request.php:298 includes/api-request.php:302
 #, php-format
 msgid "The API returned a <strong>%d</strong> response with this message: <strong>%s</strong>"
 msgstr ""
 
-#: includes/api-request.php:305
+#: includes/api-request.php:310
 msgid "Improper API request."
+msgstr ""
+
+#: includes/api-request.php:370
+msgid "Reason: The API was unreachable because the Airplane Mode plugin is active."
+msgstr ""
+
+#: includes/api-request.php:383
+msgid "Reason: The API was unreachable because the API url is on the WP HTTP blocklist."
+msgstr ""
+
+#: includes/api-request.php:398 includes/api-request.php:420
+msgid "Reason: The API was unreachable because the call to Google failed."
+msgstr ""
+
+#: includes/api-request.php:403
+msgid "Reason: The API was unreachable because no external hosts are allowed on this site."
 msgstr ""
 
 #: includes/deprecated.php:126
@@ -2033,7 +2066,7 @@ msgid "Macau"
 msgstr ""
 
 #: includes/helpers.php:466
-msgid "Macedonia"
+msgid "Macedonia (FYROM)"
 msgstr ""
 
 #: includes/helpers.php:467
@@ -2556,6 +2589,10 @@ msgstr ""
 
 #: lite/includes/admin/reports/report-queries.php:22
 msgid "Search Console"
+msgstr ""
+
+#: lite/includes/admin/reports/report-realtime.php:22
+msgid "Real Time"
 msgstr ""
 
 #: lite/includes/admin/settings.php:14 lite/includes/admin/settings.php:32

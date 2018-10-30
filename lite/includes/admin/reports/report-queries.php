@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 final class MonsterInsights_Lite_Report_Queries extends MonsterInsights_Report {
 
 	public $title;
-	public $class   = 'MonsterInsights_Report_Queries';
+	public $class   = 'MonsterInsights_Lite_Report_Queries';
 	public $name    = 'queries';
 	public $version = '1.0.0';
 	public $level   = 'plus';

@@ -1032,15 +1032,19 @@ jQuery(document).ready(function($) {
 		if ( attrName != 'class' ){
 			return;
 		}
-	
-		// Blur report shown
-		jQuery( "#monsterinsights-reports-pages" ).addClass( "monsterinsights-mega-blur" );
 
 		// Which report?
 		var reportname = jQuery("#monsterinsights-reports-pages").find( "div.monsterinsights-main-nav-tab.monsterinsights-active" ).attr("id").replace("monsterinsights-main-tab-", "" );
 		var reportid   = jQuery("#monsterinsights-reports-pages").find( "div.monsterinsights-main-nav-tab.monsterinsights-active" ).attr("id");
 		var start      = moment( moment().subtract(30, 'days') ).tz(monsterinsights_admin.timezone).format('YYYY-MM-DD');
 		var end        = moment( moment().subtract( 1, 'days' ) ).tz(monsterinsights_admin.timezone).format('YYYY-MM-DD');
+
+		if ( reportname === 'realtime' ) {
+			return;
+		}
+
+		// Blur report shown
+		jQuery( "#monsterinsights-reports-pages" ).addClass( "monsterinsights-mega-blur" );
 
 		swal({
 		  type: 'info',
@@ -1060,7 +1064,7 @@ jQuery(document).ready(function($) {
 				'end'      :  end,
 				'report'   :  reportname,
 			};
-			
+
 			jQuery.post(ajaxurl, data, function( response ) {
 
 				if ( response.success && response.data.html ) {

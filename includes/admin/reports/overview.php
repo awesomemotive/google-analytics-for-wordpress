@@ -38,7 +38,6 @@ final class MonsterInsights_Report_Overview extends MonsterInsights_Report {
 	// Outputs the report.
 	protected function get_report_html( $data = array() ) {
 		ob_start();
-
 		$this->get_overview_top( $data );
 
 		if ( ! empty( $data['newvsreturn'] ) && ! empty( $data['devices'] ) ) { ?>
@@ -904,7 +903,7 @@ final class MonsterInsights_Report_Overview extends MonsterInsights_Report {
 							echo '<li class="list-group-item">' .
 							     '<span class="monsterinsights-reports-list-count">'
 							     . $i .
-							     '</span>' .
+							     '.</span>' .
 							     '<img class="monsterinsights-reports-referral-icon"  src="https://www.google.com/s2/favicons?domain=' . $referralsdata['url'] . '" width="16px" height="16px" />' .
 							     '<span class="monsterinsights-reports-list-text">'
 							     . $referralsdata['url'] .

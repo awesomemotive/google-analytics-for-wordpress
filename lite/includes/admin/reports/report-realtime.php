@@ -4,13 +4,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-final class MonsterInsights_Lite_Report_Dimensions extends MonsterInsights_Report {
+final class MonsterInsights_Lite_Report_Realtime extends MonsterInsights_Report {
 
 	public $title;
-	public $class   = 'MonsterInsights_Lite_Report_Dimensions';
-	public $name    = 'dimensions';
+	public $class   = 'MonsterInsights_Lite_Report_Realtime';
+	public $name    = 'queries';
 	public $version = '1.0.0';
-	public $level   = 'pro';
+	public $level   = 'plus';
 
 	/**
 	 * Primary class constructor.
@@ -19,7 +19,7 @@ final class MonsterInsights_Lite_Report_Dimensions extends MonsterInsights_Repor
 	 * @since 6.0.0
 	 */
 	public function __construct() {
-		$this->title = __( 'Dimensions', 'google-analytics-for-wordpress' );
+		$this->title = __( 'Real Time', 'google-analytics-for-wordpress' );
 		parent::__construct();
 	}
 
