@@ -137,7 +137,7 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 = 7.2.0: September 19, 2018 =
 - Tweak: Sites with large traffic will see numbers larger than 1 million abbreviated so the numbers will no longer overflow out of the report container boxes.
 - Tweak: We've clarified the download tracking setting to point out that externally hosted downloads are now tracked as downloads, not external links.
-- Tweak: Compatibility for the Fix WP Tables and Magee Shortcodes
+- Tweak: Compatibility for the Fix WP Tables and Magee Shortcodes plugins.
 - Fixed: We've fixed issues where sites that were recreated/migrated sometimes could not re-authenticate with MonsterInsights.
 
 = 7.1.0: August 8, 2018 =
