@@ -182,12 +182,12 @@ class MonsterInsights_Report {
 			) );
 		}
 
-		$check_cache = ( $start === $this->default_start_date() && $end === $this->default_end_date() );
+		$check_cache = ( $start === $this->default_start_date() && $end === $this->default_end_date() ) || apply_filters( 'monsterinsights_report_use_cache', false, $this->name );
 		$site_auth   = MonsterInsights()->auth->get_viewname();
 		$ms_auth     = is_multisite() && MonsterInsights()->auth->get_network_viewname();
 		$transient   = 'monsterinsights_report_' . $this->name . '_' . $start . '_' . $end;
 		// Set to same time as MI cache. MI caches same day to 15 and others to 1 day, so there's no point pinging MI before then.
-		$expiration  = $end === date( 'Y-m-d' ) ? 15 * MINUTE_IN_SECONDS : DAY_IN_SECONDS;
+		$expiration  = $end === date( 'Y-m-d' ) ? apply_filters( 'monsterinsights_report_transient_expiration', 15 * MINUTE_IN_SECONDS, $this->name ) : DAY_IN_SECONDS;
 
 		// Default date range, check
 		if ( $site_auth || $ms_auth ) {

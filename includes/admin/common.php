@@ -181,6 +181,8 @@ function monsterinsights_admin_scripts() {
 				'refresh_report_success_text'   => esc_html__( 'Retrieved the new report data successfully', 'google-analytics-for-wordpress' ),
 				'refresh_report_failure_title'  => esc_html__( 'Error', 'google-analytics-for-wordpress' ),
 				'timezone'						=> date('e'),
+				'resume_report_title'			=> esc_html__( 'Real-Time Report Paused', 'google-analytics-for-wordpress' ),
+				'resume_report_text'			=> esc_html__( 'The Real-Time Report automatically paused due to inactivity. Please refresh the page to resume the Real-Time Report.', 'google-analytics-for-wordpress' ),
 			)
 		);
 
@@ -280,7 +282,6 @@ function monsterinsights_remove_conflicting_asset_files() {
 		'grandnews-admin-cript', // Grand News Theme
 		'colorpicker', // Grand News Theme
 		'eye', // Grand News Theme
-		'utils', // Grand News Theme
 		'icheck', // Grand News Theme
 		'learn-press-chart', //  LearnPress
 		'theme-script-main', //  My Listing Theme by 27collective
@@ -318,7 +319,14 @@ function monsterinsights_remove_conflicting_asset_files() {
 		'link', // Scripts from wp-admin enqueued everywhere by WP Posts Filter
 		'wpvr_scripts', // WP Video Robot
 		'wpvr_scripts_loaded', // WP Video Robot
-		'wpvr_scripts_assets' // WP Video Robot
+		'wpvr_scripts_assets', // WP Video Robot
+		'writee_widget_admin', // Fix for the Writtee theme
+		'__ytprefs_admin__', // Fix for YouTube by EmbedPlus plugin
+		'momentjs', // Fix for Blog Time plugin
+		'c2c_BlogTime', //  Fix for Blog Time plugin
+		'material-wp', // Fix for MaterialWP plugin
+		'wp-color-picker-alpha', // Fix for MaterialWP plugin
+		'swifty-img-widget-admin-script', // Fix for Swifty Image Widget.
 	);
 
 	if ( ! empty( $styles ) ) {

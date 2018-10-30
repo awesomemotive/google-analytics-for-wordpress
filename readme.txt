@@ -134,10 +134,19 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.3.0: October 30, 2018 =
+- New: We've added new custom link attribution, so now you can easily set custom link categories, actions, and labels, which MonsterInsights will use with precedence over our comprehensive automatic link detection, and is compatible with our AMP addon. For usage instructions, see our documentation on <a href="https://www.monsterinsights.com/docs/custom-link-attribution/">custom link attribution</a>.
+- Tweak: Better error handling for reports.
+- Fixed: Issue where on MonsterInsights pages, the dropdowns on the WP admin menu might not work.
+- Fixed: Compatibility for Writee theme, YouTube by EmbedPlus plugin, Blog Time plugin, MaterialWP plugin and Swifty Image Widget plugin.
+- Fixed: Issue where on a network install of multisite, all sites might not de-authenticate on removal.
+- Fixed: Compatibility issue with Microsoft Edge and IE browsers where the table on overview report might overflow.
+- Fixed: On certain browsers when the browser screen width is small the graph tooltips might have appeared off-center.
+
 = 7.2.0: September 19, 2018 =
 - Tweak: Sites with large traffic will see numbers larger than 1 million abbreviated so the numbers will no longer overflow out of the report container boxes.
 - Tweak: We've clarified the download tracking setting to point out that externally hosted downloads are now tracked as downloads, not external links.
-- Tweak: Compatibility for the Fix WP Tables and Magee Shortcodes plugins.
+- Tweak: Compatibility for the Fix WP Tables and Magee Shortcodes
 - Fixed: We've fixed issues where sites that were recreated/migrated sometimes could not re-authenticate with MonsterInsights.
 
 = 7.1.0: August 8, 2018 =

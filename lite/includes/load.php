@@ -30,6 +30,10 @@ if ( is_admin() ) {
 	$forms_report = new MonsterInsights_Lite_Report_Forms();
 	MonsterInsights()->reporting->add_report( $forms_report );
 
+	require_once MONSTERINSIGHTS_PLUGIN_DIR . 'lite/includes/admin/reports/report-realtime.php';
+	$realtime_report = new MonsterInsights_Lite_Report_RealTime();
+	MonsterInsights()->reporting->add_report( $realtime_report );
+
 	require_once MONSTERINSIGHTS_PLUGIN_DIR . 'lite/includes/admin/dashboard-widget.php';
 	new MonsterInsights_Dashboard_Widget();
 }

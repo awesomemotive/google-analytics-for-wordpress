@@ -100,7 +100,7 @@ function monsterinsights_reports_page() {
 								 * not be used by other developers. This hook's behavior may be modified
 								 * or the hook may be removed at any time, without warning.
 								 */
-								do_action( 'monsterinsights_tab_reports_actions' ); 
+								do_action( 'monsterinsights_tab_reports_actions', $report->name ); 
 								?> 
 							</div>
 						</div>

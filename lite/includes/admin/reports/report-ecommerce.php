@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 final class MonsterInsights_Lite_Report_eCommerce extends MonsterInsights_Report {
 
 	public $title;
-	public $class   = 'MonsterInsights_Report_eCommerce';
+	public $class   = 'MonsterInsights_Lite_Report_eCommerce';
 	public $name    = 'ecommerce';
 	public $version = '1.0.0';
 	public $level   = 'pro';

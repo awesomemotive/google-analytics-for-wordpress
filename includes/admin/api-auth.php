@@ -175,13 +175,14 @@ final class MonsterInsights_API_Auth {
 		);
 
 		$worked = $this->verify_auth( $profile );
-		if ( ! $worked ) {
+		if ( ! $worked || is_wp_error( $worked ) ) {
 			wp_send_json_error(
 				array(
 					'error'     => 'authenticate_auth_verification_failed',
 					'message'   => 'Authenticate verification failed',
 					'version'   => MONSTERINSIGHTS_VERSION,
 					'pro'   	=> monsterinsights_is_pro_version(),
+					'payload'   => is_wp_error( $worked ) ? $worked->get_error_messages() : false,
 				)
 			);
 		}
@@ -251,7 +252,7 @@ final class MonsterInsights_API_Auth {
 		);
 
 		$worked = $this->verify_auth( $profile );
-		if ( ! $worked ) {
+		if ( ! $worked || is_wp_error( $worked ) ) {
 			return;
 		}
 
@@ -431,14 +432,15 @@ final class MonsterInsights_API_Auth {
 		$creds = ! empty( $credentials ) ? $credentials : ( $this->is_network_admin() ? MonsterInsights()->auth->get_network_analytics_profile( true ) : MonsterInsights()->auth->get_analytics_profile( true ) );
 
 		if ( empty( $creds['key'] ) ) {
-			return false;
+			return new WP_Error( 'validation-error', sprintf( __( 'Verify auth key not passed', 'google-analytics-for-wordpress' ) ) );
 		}
-		
-		$api   = new MonsterInsights_API_Request( $this->get_route( 'auth/verify/{type}/' ), array( 'network' => $this->is_network_admin(), 'tt' => $this->get_tt(), 'key' => $creds['key'], 'token' => $creds['token'] ) );
+
+		$network = ! empty( $_REQUEST['network'] ) ? $_REQUEST['network'] === 'network' : $this->is_network_admin();
+		$api   = new MonsterInsights_API_Request( $this->get_route( 'auth/verify/{type}/' ), array( 'network' => $network, 'tt' => $this->get_tt(), 'key' => $creds['key'], 'token' => $creds['token'] ) );
 		$ret   = $api->request();
 		
 		if ( is_wp_error( $ret ) ) {
-			return false;
+			return $ret;
 		} else {
 			return true;
 		}
@@ -524,6 +526,36 @@ final class MonsterInsights_API_Auth {
 				MonsterInsights()->auth->delete_analytics_profile( true );
 
 			}
+			return true;
+		}
+	}
+
+	/**
+	 * Function to delete network auth in the uninstall process where we can't check if is network admin.
+	 *
+	 * @return bool
+	 */
+	public function uninstall_network_auth() {
+
+		if ( ! MonsterInsights()->auth->is_network_authed() ) {
+			return false;
+		}
+
+		$creds = MonsterInsights()->auth->get_network_analytics_profile( true );
+
+		$api = new MonsterInsights_API_Request( $this->get_route( 'auth/delete/{type}/' ), array(
+			'network' => true,
+			'tt'      => $this->get_tt(),
+			'key'     => $creds['key'],
+			'token'   => $creds['token']
+		) );
+		// Force the network admin url otherwise this will fail not finding the url in relay.
+		$api->site_url = network_admin_url();
+		$ret = $api->request();
+		if ( is_wp_error( $ret ) ) {
+			return false;
+		} else {
+			MonsterInsights()->auth->delete_network_analytics_profile( true );
 			return true;
 		}
 	}
