@@ -1,99 +1,228 @@
-﻿=== Google Analytics for WordPress by MonsterInsights ===
+﻿=== Google Analytics Dashboard Plugin for WordPress by MonsterInsights ===
 Contributors: chriscct7, smub
 Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
-Tags: analytics, analytics dashboard, google analytics, google analytics dashboard, google analytics widget, universal google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
+Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, WooCommerce stats, analytics dashboard, universal google analytics, statistics, tracking, stats, google, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
-Tested up to: 4.9
-Stable tag: 7.2.0
+Tested up to: 5.0
+Stable tag: 7.3.2
 License: GPL v3
 
-The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
+The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back. 
 
 == Description ==
 
 = Google Analytics Plugin for WordPress =
 
-We believe that you shouldn't have to hire a developer to add Google Analytics to your website. That's why we built <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend" title="MonsterInsights">MonsterInsights</a>, a complete Google Analytics for WordPress plugin that's EASY and POWERFUL.
+We believe that it's easy to double your traffic and sales when you know exactly how people find and use your website. <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend" title="MonsterInsights">MonsterInsights</a> shows you the stats that matter, so you can grow your business with confidence. 
 
-MonsterInsights allow you to connect your WordPress website with Google Analytics, so you can see how visitors find and use your website, so you can keep them coming back. Simply put, we show you the stats that matter.
+With over 2 million active installs, MonsterInsights is the most popular Google Analytics plugin for WordPress.
 
-With almost 15 million downloads, MonsterInsights is the most popular Google Analytics plugin for WordPress.
+At MonsterInsights, we make it "effortless" to properly connect your WordPress site with Google Analytics, so you can start making data-driven decisions to grow your business. 
 
-At MonsterInsights, user experience is our #1 priority. That's why we make it extremely easy for you to connect and view your Google Analytics reports from inside your WordPress dashboard. Our tracking settings and workflows make MonsterInsights the most beginner friendly google analytics plugin in the market.
+Unlike other Google Analytics plugins, MonsterInsights allow you to enable all advanced Google analytics tracking features with just a few clicks (no need to hire a developer). 
+
+The best part is that MonsterInsights comes with a Google Analytics Dashboard for WordPress that shows you actionable analytics reports right inside your WordPress dashboard. We have created customized reports that eliminates the fluff and only show you the stats that matter, so you can see exactly what's working and what's not!
+
+Simply put, MonsterInsights is the most complete Google Analytics plugin for WordPress that's both EASY and POWERFUL.
+
+That's why millions of small businesses and top companies like Microsoft, Bloomberg, FedEx, Yelp, Subway, etc. use MonsterInsights to setup Google Analytics on their WordPress sites.
 
 > <strong>MonsterInsights Pro</strong><br />
-> This plugin is the lite version of the MonsterInsights Pro plugin that comes with all the analytics features you will ever need including ads tracking, ecommerce tracking, custom dimensions tracking, popular post tracing, events tracking, and tons more. <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend" title="MonsterInsights">Click here to purchase the best Google Analytics plugin for WordPress now!</a>
+> This plugin is the lite version of MonsterInsights Pro plugin that comes with all the Google analytics tracking features you will ever need including events tracking, ecommerce tracking, custom dimensions tracking, popular post tracing, affiliate link tracking, and tons more. <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend" title="MonsterInsights">Click here to purchase the best premium Google Analytics plugin for WordPress now!</a>
 
-We took the pain out of connecting with Google Analytics and made it easy. Here's why over 1 million smart business owners, designers, and developers love MonsterInsights, and you will too!
+We took the pain out of installing Google Analytics in WordPress and made it easy. Here's why over 2 million smart business owners, designers, and developers love MonsterInsights, and you will too!
 
 https://www.youtube.com/watch?v=nHZBUDceRt0
 
 = Quick & Easy Google Analytics Setup =
 
-Easily setup Google Analytics on your site without touching any code. If you can point-and-click, then you can use MonsterInsights.
+The old way of "properly" setting up Google Analytics was complicated. You had to either hire a developer or learn to add Google Analtyics code in various different areas of your WordPress theme. The setup time would take days to weeks if you wanted to add powerful features like events tracking, eCommerce tracking, etc.
 
-Google Analytics for WordPress plugin by MonsterInsights allows you to track your blog visitors easily and always stays up to date with the newest features in Google Analytics.
+With MonsterInsights, we made it "effortless" to properly setup Google Analytics in WordPress. Yes, you can enable all advanced Google Analytics features with just a few clicks. 
 
+If you can point-and-click, then you can setup WordPress analytics and start seeing insights in under 15 minutes (no code necessary).
+
+We keep up with all Google Analytics updates, so you can sleep well at night knowing that your website will always stay up to date with the newest features in Google Analytics.
+
+See what one business owner is saying about MonsterInsights:
 
 >It just works. Really easy way to insert Google Analytics tracking code and keep it there when switching themes. No need to copy/paste code anywhere. This is the best way to handle Google Analytics in WordPress.<br>
 > Steven Gliebe
 
-
 = Google Analytics Dashboard + Real Time Stats =
 
-MonsterInsights makes analytics easy. You can see your site’s performance at a glance with our Google Analytics Dashboard right inside your WordPress admin area.
+Our goal at MonsterInsights is to make analytics easy and accessible for everyone.
 
-With Google Analytics, there's no need to wait till the next day to find out about traffic spikes or potential problems. You can get real time stats, so you can unlock the maximum potential revenue for each customer.
+We understand that Google Analytics has a steep learning curve which often prevents small business owners from making informed decisions to grow their business.
 
->Works everytime! This plugin has worked with every version of WordPress I’ve ever used. Very reliable.<br>
->Vineeta
+That's why MonsterInsights comes with a built-in Google Analytics Dashboard for your WordPress site, so you can see all the useful information about your visitors right inside your WordPress dashboard.
 
-= Universal Tracking + Page Level Analytics = 
+We have created customized Google Analytics reports to help you filter through the noise and see the stats that really matter!
 
-MonsterInsights uses universal tracking, so you can track your users across devices and platforms. With demographics and interest reports, you also get a better understanding of your audience.
+* **Audience Report** helps you get to know your visitors in a whole new way. It shows you detailed insights like which country your visitors are coming from, what are they most interested in, which device are they using, their age, gender, and a whole lot more. You can use this demographics report and audience clues to tweak your website design and content accordingly.
 
-The page level analytics show you exactly which pages and sections on your website are the most popular. 
+* **Behavior Report** shows you exactly how people find your website, which keywords did they search for, who referred them, what did they click on your site, and more. You can use these useful stats to identify low-hanging fruits, new partnership opportunities, and promotional areas to focus on.
 
-You can also see how the users are finding your website, so you can better focus your marketing efforts.
+* **Content Report** shows you stats on exactly which content gets the most visits, so you can stop guessing and start creating content that gets more traffic and conversion.
+
+* **Ecommerce Report** shows you important store stats like total revenue, conversion rate, average order value, top referral sources, and more (all in one place).
+
+* **Forms Report** shows you conversion stats for various contact forms and lead forms on your website, so you can improve the conversions to grow your business.
+
+* **Search Console Report** shows you exactly how well your website is ranking in Google, so you can further optimize your SEO to grow your organic traffic.
+
+* **Custom Dimensions Report** helps you dig deeper by showing you useful stats like who are your most popular authors, what are the best publication times, which are your most popular categories or tags, how well are your Yoast focus keywords and SEO score performing, and more. 
+
+Our custom Google Analytics Dashboard reports are based on over 12+ years of online business experience. We built MonsterInsights to be the Google Analytics plugin that we wish we had.  
+
+We currently use MonsterInsights on all our portfolio companies which include both media sites generating tens of millions of pageviews and eCommerce sites generating millions in sales.
+
+That's why we can confidently say that MonsterInsights is the ultimate Google Analytics Shortcut for seeing the stats that matter and making data-driven decisions to grow your business.
+
+>I love being able to drill down into the analytics via the reporting feature. I have the PRO version and it makes a big difference what you can analyze. I’m glad that I can integrate with Pretty Links too!<br>
+>Kim Beasley - MonsterInsights user
+
+= Google Analytics Enhanced Ecommerce Tracking Made Easy = 
+
+Google Analytics Enhanced Ecommerce tracking is a powerful feature that lets you track user behavior across your <a href="https://www.wpbeginner.com/wp-tutorials/how-to-start-an-online-store/" rel="friend">online store</a> starting from product views to checkout page to thank you page and beyond. 
+
+With MonsterInsights' easy WooCommerce Google Analytics integration, you can setup WooCommerce analytics with literally 1-click.
+
+Once you have enabled WooCommerce tracking, MonsterInsights will show you all important WooCommerce metrics in a single dashboard including WooCommerce conversion rate, top products in your WooCommerce store, total transactions, total revenue, average order value, top referral sourecs, and more.
+
+Our WooCommerce analytics report also include other detailed WooCommerce event tracking data like total add to carts, total removed from cart, time to purchase, and sessions to purchase.
+
+For those who want to go beyond our WooCommerce stats dashboard, you can easily open up the Google Analytics dashboard to combine WooCommerce Google Analytics data with other secondary dimensions and filters to find exactly what you're looking for. 
+
+Aside from WooCommerce Google Analytics integration, MonsterInsights' Ecommerce addon also offers seamless integration for the Easy Digital Downloads plugin.
+
+Our Easy Digital Downloads Google Analytics integration allows you to setup Enhanced Ecommerce Tracking on your store with just 1-click.
+
+Simply put, MonsterInsights' Enhanced Ecommerce for WordPress feature is by far the easiest and most powerful in the market.
+
+= Google Analytics + GDPR Compliance =
+
+MonsterInsights helps make Google Analytics GDPR compliance easier for business owners. 
+
+Our EU compliance addon allows you to:
+
+* Anonymyze IP in Google Analytics
+* Disable the Demographics and Interest Reports for Remarketing and Advertising
+* Disable UserID and author name tracking
+* Enable the ga() compatibility mode
+* Integrate with Cookie Notice and CookieBot plugins to collect user consent before tracking
+* Integrate with Google AMP Consent Box before enable tracking
+* Integrate with Google Analytic's Chrome browser opt-out extension and built-in cookie opt-out system
+* Offer Easy Opt Out link for Google Analytics tracking
+
+While no single plugin can guarantee 100% GDPR compliance in WordPress, MonsterInsights goes to great length in helping business owners with Google Analytics GDPR compliance.
+
+For more details, see: <a href="https://www.monsterinsights.com/gdpr-and-monsterinsights-everything-you-need-to-know/" rel="friend">GDPR and MonsterInsights - Everything You Need to Know</a>.
+
+
+= Universal Tracking + Google Analytics for AMP and Instant Articles = 
+
+MonsterInsights uses Google Analytics universal tracking, so you can track your users across devices and platforms. 
+
+Accelerated Mobile Pages (AMP) is a project by Google that helps you speed up your website. However if you don't set it up properly, Google AMP can cause you to lose your website analytics. Our Google Analytics AMP integration allows you to have accurate Google Analytics tracking on all AMP enabled pages. It works seamlessly with AMP for WordPress plugin.
+
+We also offer 1-click Google Analytics integration with Facebook Instant Articles.
+
+At MonsterInsights, we always stay ahead of the curve in helping you integrate WordPress with the latest Google Analytics tracking features.
 
 >Analytics for PROs! This plugin brings it all, great features and helpful info to easily see what you are doing.<br>
 > Frank van der Sluijs
 
-= eCommerce and Ads Tracking = 
+= Google AdSense Tracking and Affiliate Link Tracking = 
 
-MonsterInsights Ecommerce addon helps you add Google Analytics Ecommerce tracking to your WordPress WooCommerce and Easy Digital Downloads store.
+With MonsterInsights Ads tracking addon, publishers can easily track the performance of their Google AdSense Ads inside their Google Analytics dashboard.
 
-You can add eCommerce tracking with literally 1 click, and start tracking popular products, average order value, ecommerce conversion rate, and more.
+Our affiliate link tracking makes it easy for bloggers and affiliate marketers to track their affiliate links with Google Analytics. 
 
-With our Ads tracking addon, publishers can easily track the performance of their Google Adsense inside their Google Analytics dashboard.
+MonsterInsights uses event tracking for all WordPress outbound link tracking which is far more accurate than any built-in WordPress analytics solution.
 
-= Custom Dimensions, Events Tracking, and More =
+Unlike other WordPress analytics plugin, our Google Analytics affiliate link tracking does NOT slow down your website because all events are recorded via JavaScript and sent straight to your Google Analytics account.
 
-MonsterInsights allow you to take full advantage of all the powerful Google Analytics features such as custom dimensions, file download tracking, outbound link tracking, events tracking, performance tracking, and more.
+Most other WordPress stats plugin track data on your <a href="https://www.wpbeginner.com/wordpress-hosting/" rel="friend">WordPress hosting server</a> which slows down your website and does not scale for larger websites. 
+
+Since our affiliate link tracking use Google Analytics' powerful servers, we can skip WordPress entirely and send data directly to Google Analytics.
+
+MonsterInsights' affiliate link tracking feature works with all WordPress affiliate link management plugins including Pretty Links, Thirsty Affiliates, and others.
+
+= Custom Dimensions Tracking, Custom Google Analytics Event Tracking, and More = 
+
+Our Google Analytics event tracking feature for WordPress doesn't just stop at affiliate link tracking.
+
+You can use MonsterInsights custom Google analytics event tracking feature to easily add outbound-link tracking, file downloads tracking, call-to-action button tracking, hashmark tracking, telephone link tracking, and more.
+
+Our powerful Forms Tracking addon uses Google Analytics custom event tracking feature to enable form analytics in WordPress. With just 1-click, you can enable form conversion tracking for your contact forms, lead generation forms, registration forms, surveys, and any other type of form in WordPress. 
+
+MonsterInsights' Custom Dimensions addon allows you to push WordPress analytics even further. You can use Google Analytics custom dimensions to generate helpful WordPress stats for:
+
+* Author Tracking - see stats for each author to find which author's posts generate the most traffic. 
+* Post Type Tracking - see stats for WordPress post types to find out which sections are performing the best.
+* Category Tracking - see stats for your WordPress categories to find out which sections of your sites are the most popular.
+* Tags Tracking - see stats for your WordPress tags to find out which tags are the most popular.
+* SEO Score Tracking - see stats for your Yoast SEO score and see how it impacts your traffic.
+* Focus Keyword Tracking - see stats for Yoast focus keyword and see how it correlates with your traffic.
+* Logged-in User Tracking - see WordPress stats for what percentage of your users are logged-in.
+* User ID Tracking - see stats for each individual logged-in user's activity through User ID custom dimension - great for Ecommerce and membership sites.
+* Published Time Tracking - track the performance of your posts based on their published time in Google Analytics. 
+
+Simply put, MonsterInsights allow you to take full advantage of all the powerful Google Analytics features.
 
 >I like how simple it is for client users and how I can turn on the advanced features for myself to get all the details right.<br>
 > Skip Shean
+
+= Google Analytics Dashboard Plugin for WordPress Multisite Networks =
+
+MonsterInsights is the most popular analytics plugin for adding Google Analytics to WordPress multisite. 
+We have built-in all permissions and controls that you would need to successfully run Google Analytics on a WordPress multi-site.
+
+You can control who has access to view the Google Analytics Dashboard report in WordPress. Our permissions setting allows you to hide Google analytics reports for specific user roles.
+
+Similarly, we undrestand that some sites may want to exclude logged-in users from Google Analytics tracking. MonsterInsights gives you granular control to exclude admin in Google Analytics as well as other user roles.
+
+Our performance addon allows you to adjust sample rate and site speed sample rates for Google Analytics.
+
+By now you can probably see why MonsterInsights has become the most popular Google Analytics plugin for WordPress. 
+
+We understand Google Analytics better than any other analytics plugin for WordPress.
 
 = Full MonsterInsights Feature List =
 
 * Quick and Easy Setup - Easily setup Google Analytics for WordPress with just a few clicks (no coding needed)
 * Real Time Stats - See real time stats inside your Google Analytics dashboard.
 * Universal Tracking - Get better insights with Google Analytics' universal tracking.
-* Google Analytics Dashboard - See the stats that matter from right inside your WordPress dashboard.
-* Ecommerce Tracking - Add Google Analytics tracking for WooCommerce and Easy Digital Downloads store.
+* Google Analytics Dashboard - See the stats that matter from right inside your WordPress dashboard with custom Publisher Report, Ecommerce report, and Search Console report.
+* Ecommerce Tracking - Add Google Analytics Ecommerce tracking to WordPress.
+* WooCommerce Google Analytics - Add Enhanced Ecommerce Tracking to your WooCommerce store.
+* Easy Digital Downloads Google Analytics - Add Enhanced Ecommerce Tracking to your EDD store.
 * Ads Tracking - Track your Google Adsense ads with Google Analytics.
+* Affiliate Link Tracking - Track your affiliate links and get stats that matter.
 * File Download Tracking - Enable file download stats with just a click.
-* Link Tracking - Track your outbound link clicks with Google Analytics.
+* Custom Link Tracking - Track your outbound link clicks with Google Analytics.
 * Events Tracking - Track custom button and banner clicks with Google Analytics.
 * Custom Dimensions Tracking - Enable Google analytics custom dimensions tracking for WordPress.
-* Author Tracking - See who's the most popular author with Author tracking.
+* Author Tracking - See author stats and discover who's the most popular author on your site.
 * Popular Post Tracking - See which blog post and section is the most popular.
 * Custom Post Type Tracking - Track the performance of your custom post types.
 * Referral Tracking - See how visitors are finding your website to better focus your marketing efforts.
 * Performance Tracking - Control the performance rate and sample rate for your Google Analytics report.
 * Enhanced Link Attribution - Get better analytics with enhanced link attribution.
-* Google Analytics Tools - Helpful tools for Google analytics.
+* Google Analytics for AMP - Add proper Google Analytics tracking for Google AMP.
+* Google Analytics for Facebook Instant Articles - Add proper Google Analytics tracking for Facebook Analytics.
+* Google Analytics GDPR Compliance - EU compliance addon helps you improve Google Analytics GDPR compliance by adding adding anonymize IP, cookie consent for Google Analytics, opt-out tracking, and more.
+* Form Conversion Tracking - Track conversions for your WordPress forms. Works with all popular plugins including WPForms, Contact Form 7, Gravity Forms, Formidable Forms, and more.
+* Google Optimize Tracking - Enable Google Analytics support for Google Optimize A/B Testing.
+* Google Analytics Tools - Helpful tools for Google analytics such as UTM link tracking builder.
 * Want us to add something else? Suggest a feature and we'll get it added!
+
+After reading this exhaustive feature list, you can probably imagine why MonsterInsights is the best Google Analytics plugin for WordPress.
+
+Give MonsterInsights a try.
+
+Want to unlock more features? <a href="?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend">Upgrade to our Pro version</a>.
 
 >Simple, yet powerful. Amazing piece of plugin, does exactly what expected and even more.<br>
 > Matt Jaworski
@@ -114,12 +243,22 @@ For more details, see this infographic on <a href="http://www.wpbeginner.com/beg
 
 This plugin is created by <a href="https://twitter.com/chriscct7" rel="friend" title="Chris Christoff">Chris Christoff</a> and <a href="https://syedbalkhi.com/" rel="friend" title="Syed Balkhi">Syed Balkhi</a> with sponsorship from <a href="http://www.wpbeginner.com/" rel="friend" title="WPBeginner">WPBeginner</a>.
 
+= Branding Guidelines = 
+
+MonsterInsights&reg; is a registered trademark of MonsterInsights LLC. When writing about the Google Analytics for WordPress plugin by MonsterInsights, please make sure to uppercase the first letters of both word.
+
+* MonsterInsights (correct)
+* Monster Insights (incorrect)
+* monsterinsights (incorrect)
+* monsterinsight (incorrect)
+
 = What's Next =
 
 If you like this plugin, then consider checking out our other projects:
 
 * <a href="http://optinmonster.com/" rel="friend" title="OptinMonster">OptinMonster</a> - Get More Email Subscribers
 * <a href="https://wpforms.com/" rel="friend" title="WPForms">WPForms</a> - Best WordPress Contact Form Plugin
+* <a href="https://www.seedprod.com/" rel="friend">SeedProd</a> - Most popular coming soon & maintenance mode plugin for WordPress
 
 This plugin would not be possible without the help and support of <a href="http://www.wpbeginner.com/" rel="friend" title="WPBeginner">WPBeginner</a>, the largest WordPress resource site. You can learn from our <a href="http://www.wpbeginner.com/category/wp-tutorials/" rel="friend" title="WordPress Tutorials">free WordPress Tutorials</a> like <a href="http://www.wpbeginner.com/how-to-install-wordpress/" rel="friend" title="How to Install WordPress - Step by Step">how to install WordPress</a>, <a href="http://www.wpbeginner.com/wordpress-hosting/" rel="friend" title="How to choose the best WordPress hosting">choose the best WordPress hosting</a>, <a href="http://www.wpbeginner.com/glossary/" rel="friend" title="WordPress Glossary Terms for Beginners">WordPress glossary</a>, and more.
 
@@ -134,6 +273,10 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.3.2: November 27, 2018 =
+- Fixed: Issue on some Lite installs where timezone differences caused users to see an error related to custom date ranges.
+- Fixed: Issue where some users were unable to reauthenticate their site.
+
 = 7.3.0: October 30, 2018 =
 - New: We've added new custom link attribution, so now you can easily set custom link categories, actions, and labels, which MonsterInsights will use with precedence over our comprehensive automatic link detection, and is compatible with our AMP addon. For usage instructions, see our documentation on <a href="https://www.monsterinsights.com/docs/custom-link-attribution/">custom link attribution</a>.
 - Tweak: Better error handling for reports.
@@ -485,6 +628,59 @@ This is a major release. Please back up your site before upgrading.
 == Frequently Asked Questions ==
 
 For all frequently asked questions, and their answers, check the [MonsterInsights Knowledge base](https://www.monsterinsights.com/docs/).
+
+= Why use Google Analytics vs WordPress stats? =
+
+Native WordPress stats plugin will always slow down your website because they rely on your WordPress hosting server. Most of them do not provide accurate WordPress analytics either.
+
+Some WordPress stats plugin use third-party servers to mitigate this issue, but they all lack powerful features that Google Analytics can offer.
+
+Google Analytics is the #1 analytics solution in the world. It comes with all the powerful features that you can ever ask for. MonsterInsights makes it easy for you to use all advanced Google Analytics features in WordPress.
+
+= Can I use MonsterInsights together with another Google Analytics plugin? =
+
+No. You should only use one Google Analytics plugin on your WordPress site. If you use multiple Google Analytics plugins, then you will compromise your data integrity. It will skew your data and you might see inflated stats.
+
+We recommend uninstalling other Google Analytics plugins before you install MonsterInsights.
+
+= Why does MonsterInsights load Google Analytics in WordPress header section? =
+
+Some people believe that loading Google Analytics in WordPress header will slow down your website. That's a myth. Google Analytics loads asynchronously which means that it does not impact your website speed at all. 
+
+MonsterInsights load Google Analytics code in WordPress header because it makes sure that you have the most accurate tracking.  
+
+= How does MonsterInsights help with Google Analytics GDPR compliance? =
+
+MonsterInsights helps make Google Analytics GDPR compliance easier for business owners. 
+
+Our EU compliance addon allows you to:
+
+* Anonymyze IP in Google Analytics
+* Disable the Demographics and Interest Reports for Remarketing and Advertising
+* Disable UserID and author name tracking
+* Enable the ga() compatibility mode
+* Integrate with Cookie Notice and CookieBot plugins to collect user consent before tracking
+* Integrate with Google AMP Consent Box before enable tracking
+* Integrate with Google Analytic's Chrome browser opt-out extension and built-in cookie opt-out system
+* Offer Easy Opt Out link for Google Analytics tracking
+
+While no single plugin can guarantee 100% GDPR compliance in WordPress, MonsterInsights goes to great length in helping business owners with Google Analytics GDPR compliance.
+
+For more details, see: <a href="https://www.monsterinsights.com/gdpr-and-monsterinsights-everything-you-need-to-know/" rel="friend">GDPR and MonsterInsights - Everything You Need to Know</a>.
+
+= Which eCommerce plugins are compatible with MonsterInsights Enhanced Ecommerce Tracking feature? =
+
+If you are looking to enable Google Analytics Ecommerce tracking in WordPress, then MonsterInsights is the best solution to do that.
+
+MonsterInsights Enhanced Ecommerce Tracking works with both WooCommerce and Easy Digital Downloads.
+
+With just 1-click, you can enable Google Analytics Enhanced Ecommerce Tracking for WooCommerce and see useful WooCommerce analytics report right inside your WordPress dashboard.
+
+= Does MonsterInsights work on WordPress multisite? =
+
+Yes. MonsterInsights offers the most comprehensive Google Analytics solution for WordPress multi-site. 
+
+It comes with advanced permission control, sample rate control, and other options that you need to properly enable Google Analytics on WordPress multisite.
 
 == Screenshots ==
 

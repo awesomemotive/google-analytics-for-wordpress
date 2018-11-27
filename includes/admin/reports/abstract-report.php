@@ -166,11 +166,13 @@ class MonsterInsights_Report {
 		}
 
 		if ( ( $start !== $this->default_start_date() || $end !== $this->default_end_date() ) && ! monsterinsights_is_pro_version() ) {
-			return array(
-				'success' => false,
-				'error'   => __( 'Please upgrade to MonsterInsights Pro to use custom date ranges.', 'google-analytics-for-wordpress' ),
-				'data'    => array(),
-			);
+			$start   = $this->default_start_date();
+			$end     = $this->default_end_date();
+			// return array(
+			// 	'success' => false,
+			// 	'error'   => __( 'Please upgrade to MonsterInsights Pro to use custom date ranges.', 'google-analytics-for-wordpress' ),
+			// 	'data'    => array(),
+			// );
 		}
 
 		$error = apply_filters( 'monsterinsights_reports_abstract_get_data_pre_cache', false, $args, $this->name );
