@@ -1,6 +1,6 @@
 <?php
 
-if ( ! class_exists( 'AM_Notification' ) ) {
+if ( ! class_exists( 'AM_Notification', false ) ) {
 	/**
 	 * Awesome Motive Notifications
 	 *
@@ -11,7 +11,7 @@ if ( ! class_exists( 'AM_Notification' ) ) {
 	 * @author     AwesomeMotive Team
 	 * @license    GPL-2.0+
 	 * @copyright  Copyright (c) 2018, Awesome Motive LLC
-	 * @version    1.0.6
+	 * @version    1.0.7
 	 */
 	class AM_Notification {
 
@@ -77,9 +77,10 @@ if ( ! class_exists( 'AM_Notification' ) ) {
 		 */
 		public function custom_post_type() {
 			register_post_type( 'amn_' . $this->plugin, array(
-				'label'      => $this->plugin . ' Announcements',
-				'can_export' => false,
-				'supports'   => false,
+				'label'           => $this->plugin . ' Announcements',
+				'can_export'      => false,
+				'supports'        => false,
+				'capability_type' => 'manage_options',
 			) );
 		}
 
