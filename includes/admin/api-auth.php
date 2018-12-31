@@ -111,6 +111,7 @@ final class MonsterInsights_API_Auth {
 			'network'   => is_network_admin() ? 'network' : 'site',
 			'siteurl'   => is_network_admin() ? network_admin_url() : site_url(),
 			'return'    => is_network_admin() ? network_admin_url( 'admin.php?page=monsterinsights_network' ) : admin_url( 'admin.php?page=monsterinsights_settings' ),
+			'testurl'   => 'https://api.monsterinsights.com/v2/test/',
 		 ), $this->get_route( 'https://' . monsterinsights_get_api_url() . 'auth/new/{type}' ) );
 
 		if ( monsterinsights_is_pro_version() ) {
@@ -260,6 +261,7 @@ final class MonsterInsights_API_Auth {
 			'key'       => MonsterInsights()->auth->get_key(),
 			'token'     => MonsterInsights()->auth->get_token(),
 			'return'    => is_network_admin() ? network_admin_url( 'admin.php?page=monsterinsights_network' ) : admin_url( 'admin.php?page=monsterinsights_settings' ),
+			'testurl'   => 'https://api.monsterinsights.com/v2/test/',
 		 ), $this->get_route( 'https://' . monsterinsights_get_api_url() . 'auth/reauth/{type}' ) );
 
 		if ( monsterinsights_is_pro_version() ) {
@@ -384,7 +386,7 @@ final class MonsterInsights_API_Auth {
 		}
 
 		$network = ! empty( $_REQUEST['network'] ) ? $_REQUEST['network'] === 'network' : $this->is_network_admin();
-		$api   = new MonsterInsights_API_Request( $this->get_route( 'auth/verify/{type}/' ), array( 'network' => $network, 'tt' => $this->get_tt(), 'key' => $creds['key'], 'token' => $creds['token'] ) );
+		$api   = new MonsterInsights_API_Request( $this->get_route( 'auth/verify/{type}/' ), array( 'network' => $network, 'tt' => $this->get_tt(), 'key' => $creds['key'], 'token' => $creds['token'], 'testurl'   => 'https://api.monsterinsights.com/v2/test/' ) );
 		$ret   = $api->request();
 
 		if ( is_wp_error( $ret ) ) {
@@ -462,7 +464,7 @@ final class MonsterInsights_API_Auth {
 			}
 		}
 
-		$api   = new MonsterInsights_API_Request( $this->get_route( 'auth/delete/{type}/' ), array( 'network' => $this->is_network_admin(), 'tt' => $this->get_tt(), 'key' => $creds['key'], 'token' => $creds['token'] ) );
+		$api   = new MonsterInsights_API_Request( $this->get_route( 'auth/delete/{type}/' ), array( 'network' => $this->is_network_admin(), 'tt' => $this->get_tt(), 'key' => $creds['key'], 'token' => $creds['token'], 'testurl'   => 'https://api.monsterinsights.com/v2/test/' ) );
 		$ret   = $api->request();
 
 		if ( is_wp_error( $ret ) && ! $force ) {
@@ -495,7 +497,8 @@ final class MonsterInsights_API_Auth {
 			'network' => true,
 			'tt'      => $this->get_tt(),
 			'key'     => $creds['key'],
-			'token'   => $creds['token']
+			'token'   => $creds['token'],
+			'testurl'   => 'https://api.monsterinsights.com/v2/test/'
 		) );
 		// Force the network admin url otherwise this will fail not finding the url in relay.
 		$api->site_url = network_admin_url();

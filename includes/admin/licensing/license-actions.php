@@ -128,6 +128,8 @@ final class MonsterInsights_License_Actions {
         is_network_admin() ? MonsterInsights()->license->set_network_license( $option ) : MonsterInsights()->license->set_site_license( $option );
         delete_transient( '_monsterinsights_addons' );
         monsterinsights_get_addons_data( $option['key'] );
+        // Make sure users can now update their plugins if they previously an expired key.
+	    wp_clean_plugins_cache( true );
     }
 
     /**
