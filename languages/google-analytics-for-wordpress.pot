@@ -4,7 +4,7 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: MonsterInsights Lite\n"
 "Report-Msgid-Bugs-To: https://github.com/awesomemotive/monsterinsights/issues\n"
-"POT-Creation-Date: 2018-10-30 09:26-0400\n"
+"POT-Creation-Date: 2018-12-28 09:19-0500\n"
 "PO-Revision-Date: 2016-07-21 17:01-0400\n"
 "Last-Translator: Chris Christoff <support@monsterinsights.com>\n"
 "Language-Team: Chris Christoff <support@monsterinsights.com>\n"
@@ -127,7 +127,7 @@ msgstr ""
 msgid "Documentation"
 msgstr ""
 
-#: includes/admin/admin.php:126 includes/admin/reports/abstract-report.php:337
+#: includes/admin/admin.php:126 includes/admin/reports/abstract-report.php:339
 #: lite/includes/admin/dashboard-widget.php:115
 msgid "Get MonsterInsights Pro"
 msgstr ""
@@ -206,67 +206,67 @@ msgstr ""
 msgid "Cannot network authenticate. Please re-authenticate on the network settings panel."
 msgstr ""
 
-#: includes/admin/api-auth.php:285
+#: includes/admin/api-auth.php:234
 msgid "You don't have permission to re-authenticate MonsterInsights."
 msgstr ""
 
-#: includes/admin/api-auth.php:295
+#: includes/admin/api-auth.php:244
 msgid "Cannot re-authenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings."
 msgstr ""
 
-#: includes/admin/api-auth.php:300
+#: includes/admin/api-auth.php:249
 msgid "Cannot re-authenticate. Please authenticate."
 msgstr ""
 
-#: includes/admin/api-auth.php:302
+#: includes/admin/api-auth.php:251
 msgid "Cannot re-authenticate the network. Please authenticate on the network settings panel."
 msgstr ""
 
-#: includes/admin/api-auth.php:404
+#: includes/admin/api-auth.php:354
 msgid "You don't have permission to verify MonsterInsights."
 msgstr ""
 
-#: includes/admin/api-auth.php:413 includes/admin/api-auth.php:415
+#: includes/admin/api-auth.php:363 includes/admin/api-auth.php:365
 msgid "Cannot verify. Please authenticate."
 msgstr ""
 
-#: includes/admin/api-auth.php:420
+#: includes/admin/api-auth.php:370
 msgid "Cannot verify. Please enter a valid, active license key for MonsterInsights Pro into the settings."
 msgstr ""
 
-#: includes/admin/api-auth.php:425
+#: includes/admin/api-auth.php:375
 msgid "Successfully verified."
 msgstr ""
 
-#: includes/admin/api-auth.php:427
+#: includes/admin/api-auth.php:377
 msgid "Could not verify."
 msgstr ""
 
-#: includes/admin/api-auth.php:435
+#: includes/admin/api-auth.php:385
 msgid "Verify auth key not passed"
 msgstr ""
 
-#: includes/admin/api-auth.php:456
+#: includes/admin/api-auth.php:406
 msgid "You don't have permission to deauthenticate MonsterInsights."
 msgstr ""
 
-#: includes/admin/api-auth.php:465 includes/admin/api-auth.php:467
+#: includes/admin/api-auth.php:415 includes/admin/api-auth.php:417
 msgid "Cannot deauthenticate. You are not currently authed."
 msgstr ""
 
-#: includes/admin/api-auth.php:472
+#: includes/admin/api-auth.php:422
 msgid "Cannot deauthenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings."
 msgstr ""
 
-#: includes/admin/api-auth.php:479
+#: includes/admin/api-auth.php:429
 msgid "Successfully deauthenticated."
 msgstr ""
 
-#: includes/admin/api-auth.php:482
+#: includes/admin/api-auth.php:432
 msgid "Successfully force deauthenticated."
 msgstr ""
 
-#: includes/admin/api-auth.php:484
+#: includes/admin/api-auth.php:434
 msgid "Could not deauthenticate."
 msgstr ""
 
@@ -451,14 +451,14 @@ msgstr ""
 msgid "The Real-Time Report automatically paused due to inactivity. Please refresh the page to resume the Real-Time Report."
 msgstr ""
 
-#: includes/admin/common.php:644
+#: includes/admin/common.php:653
 #, php-format
 msgid "MonsterInsights has detected that it's files are being blocked. This is usually caused by a adblock browser plugin (particularly uBlock Origin), or a conflicting WordPress theme or plugin. This issue only affects the admin side of MonsterInsights. To solve this, ensure MonsterInsights is whitelisted for your website URL in any adblock browser plugin you use. For step by step directions on how to do this, %1$sclick here%2$s. If this doesn't solve the issue (rare), send us a ticket %3$shere%2$s and we'll be happy to help diagnose the issue."
 msgstr ""
 
 #: includes/admin/licensing/license-actions.php:110
-#: includes/admin/licensing/license-actions.php:162
-#: includes/admin/licensing/license-actions.php:248
+#: includes/admin/licensing/license-actions.php:164
+#: includes/admin/licensing/license-actions.php:250
 msgid "There was an error connecting to the remote key API. Please try again later."
 msgstr ""
 
@@ -466,16 +466,21 @@ msgstr ""
 msgid "Congratulations! This site is now receiving automatic updates."
 msgstr ""
 
-#: includes/admin/licensing/license-actions.php:198
+#: includes/admin/licensing/license-actions.php:200
 msgid "Congratulations! Your key has been refreshed successfully."
 msgstr ""
 
-#: includes/admin/licensing/license-actions.php:259
+#: includes/admin/licensing/license-actions.php:261
 msgid "Congratulations! You have deactivated the key from this site successfully."
 msgstr ""
 
 #: includes/admin/licensing/skin.php:86
 msgid "There was an error installing the addon. Please try again."
+msgstr ""
+
+#: includes/admin/licensing/updater.php:151
+#, php-format
+msgid "In order to enable updates, you need to have a valid license key on the %1$ssettings page%2$s. If your license key is expired or you need a new key, then %3$sclick here to purchase MonsterInsights Pro%2$s."
 msgstr ""
 
 #: includes/admin/notice.php:225
@@ -524,7 +529,7 @@ msgid "%1$sWant even more addons?%2$sUpgrade your MonsterInsights account%3$s an
 msgstr ""
 
 #: includes/admin/pages/addons.php:373
-#: includes/admin/reports/abstract-report.php:335
+#: includes/admin/reports/abstract-report.php:337
 msgid "Upgrade Now"
 msgstr ""
 
@@ -561,141 +566,147 @@ msgstr ""
 msgid "Activate your MonsterInsights license key on this panel to hide the license key settings and addon pages for subsites."
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:65
+#: includes/admin/pages/network-settings.php:67
 #: includes/admin/settings/tab-general.php:54
 msgid "License Key"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:72
+#: includes/admin/pages/network-settings.php:74
 #: includes/admin/settings/tab-general.php:61
 msgid "Verify Key"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:73
+#: includes/admin/pages/network-settings.php:75
 #: includes/admin/settings/tab-general.php:62
 msgid "Deactivate Key"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:75
+#: includes/admin/pages/network-settings.php:77
 #: includes/admin/settings/tab-general.php:64
 msgid "Activate Key"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:77
+#: includes/admin/pages/network-settings.php:79
 #: includes/admin/settings/tab-general.php:69
 msgid "The license key is used to enable updates for MonsterInsights Pro & addons, as well enable the ability to view reports. Deactivate your license if you want to use it on another WordPress site."
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:86
+#: includes/admin/pages/network-settings.php:88
 #: includes/admin/settings/tab-general.php:79
 msgid "License Key Type"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:91
+#: includes/admin/pages/network-settings.php:93
 #: includes/admin/settings/tab-general.php:84
 #, php-format
 msgid "Your license key type for this site is %s."
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:93
+#: includes/admin/pages/network-settings.php:95
 #: includes/admin/settings/tab-general.php:89
 msgid "No license key activated."
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:97
+#: includes/admin/pages/network-settings.php:99
 #: includes/admin/settings/tab-general.php:94
 msgid "Refresh Key"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:98
+#: includes/admin/pages/network-settings.php:100
 #: includes/admin/settings/tab-general.php:95
 msgid "Click refresh if your license has been upgraded or the type is incorrect."
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:106
+#: includes/admin/pages/network-settings.php:108
 #: includes/admin/settings/tab-general.php:103
 msgid "Analytics Profile"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:108
+#: includes/admin/pages/network-settings.php:110
 #: includes/admin/settings/tab-general.php:105
 msgid "Google Authentication"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:115
-#: includes/admin/pages/network-settings.php:125
+#: includes/admin/pages/network-settings.php:117
+#: includes/admin/pages/network-settings.php:127
 #: includes/admin/settings/tab-general.php:112
 #: includes/admin/settings/tab-general.php:122
 msgid "Please activate MonsterInsights Pro with an active, valid license key in order to use MonsterInsights Pro."
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:117
+#: includes/admin/pages/network-settings.php:119
 #: includes/admin/settings/tab-general.php:114
 msgid "Profile Active: "
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:119
+#: includes/admin/pages/network-settings.php:121
 #: includes/admin/settings/tab-general.php:116
 msgid "Re-Authenticate with your Google Account"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:120
+#: includes/admin/pages/network-settings.php:122
 #: includes/admin/settings/tab-general.php:117
 msgid "Verify Credentials"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:121
+#: includes/admin/pages/network-settings.php:123
 #: includes/admin/settings/tab-general.php:118
 msgid "Deauthenticate"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:128
+#: includes/admin/pages/network-settings.php:130
 #: includes/admin/settings/tab-general.php:125
 msgid "Authenticate with your Google account"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:129
+#: includes/admin/pages/network-settings.php:131
 #, php-format
 msgid "This is the default Google profile to use for subsites of a network (can be overriden at the single site level). Having issues automatically authenticating? %s Click here to authenticate manually %s."
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:142
+#: includes/admin/pages/network-settings.php:143
 msgid "Network UA code"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:145
+#: includes/admin/pages/network-settings.php:146
 msgid "Save Network UA code"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:146
+#: includes/admin/pages/network-settings.php:147
 msgid "This is the default UA code to use for subsites of a network (can be overriden at the single site level)."
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:156
+#: includes/admin/pages/network-settings.php:155
 #: includes/admin/settings/tab-general.php:176
 msgid "Unlock MonsterInsights Pro"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:160
+#: includes/admin/pages/network-settings.php:159
 #: includes/admin/settings/tab-general.php:180
 #, php-format
 msgid "Already purchased an upgrade to MonsterInsights Pro? To unlock your Pro features and addons, %sfollow our upgrade guide%s to install MonsterInsights Pro."
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:163
+#: includes/admin/pages/network-settings.php:162
 #: includes/admin/settings/tab-general.php:183
 #, php-format
 msgid "Don't yet have a Pro license? %sVisit our website%s to upgrade and learn more about all the amazing features, expanded report and powerful addons you unlock when you go Pro."
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:169
+#: includes/admin/pages/network-settings.php:168
 #: includes/admin/settings/register-settings.php:396
 msgid "Hide Announcements"
 msgstr ""
 
-#: includes/admin/pages/network-settings.php:170
+#: includes/admin/pages/network-settings.php:169
 #: includes/admin/settings/register-settings.php:397
 msgid "Hides plugin announcements and update details. This includes critical notices we use to inform about deprecations and important required configuration changes."
+msgstr ""
+
+#: includes/admin/pages/network-settings.php:175
+#: includes/admin/settings/settings-api.php:969
+#: includes/admin/settings/tab-general.php:233
+msgid "Save Changes"
 msgstr ""
 
 #: includes/admin/pages/reports.php:93
@@ -838,67 +849,63 @@ msgstr ""
 msgid "Invalid date range."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:171
-msgid "Please upgrade to MonsterInsights Pro to use custom date ranges."
-msgstr ""
-
-#: includes/admin/reports/abstract-report.php:263
+#: includes/admin/reports/abstract-report.php:265
 msgid "You must authenticate with MonsterInsights to use reports."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:306
+#: includes/admin/reports/abstract-report.php:308
 #, php-format
 msgid "You currently have a %s level license, but this report requires at least a %s level license to view the %s. Please upgrade to view this report."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:315
+#: includes/admin/reports/abstract-report.php:317
 msgid "Ready to Get Analytics Super-Powers?"
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:316
+#: includes/admin/reports/abstract-report.php:318
 msgid "(And Crush Your Competition?)"
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:318
+#: includes/admin/reports/abstract-report.php:320
 #, php-format
 msgid ""
 "Hey there! It looks like you've got the %s license installed on your site.\n"
 "\t\t\t\t\t\t\t\t\t  That's awesome! %s"
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:321
+#: includes/admin/reports/abstract-report.php:323
 #, php-format
 msgid "Do you want to access to %s reporting right now%s in your WordPress Dashboard? That comes with the %s level%s of our paid packages. You'll need to upgrade your license to get instant access."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:322
+#: includes/admin/reports/abstract-report.php:324
 #, php-format
 msgid "It's easy! To upgrade, navigate to %sMy Account%s on MonsterInsights.com, go to the licenses tab, and click upgrade. We also have a %sstep by step guide%s with pictures of this process."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:323
-#: includes/admin/reports/abstract-report.php:330
+#: includes/admin/reports/abstract-report.php:325
+#: includes/admin/reports/abstract-report.php:332
 msgid "If you have any questions, don't hesitate to reach out. We're here to help."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:325
+#: includes/admin/reports/abstract-report.php:327
 #, php-format
 msgid ""
 "Hey there! %s It looks like you've got the free version of MonsterInsights installed on your site.\n"
 "\t\t\t\t\t\t\t\t\t  That's awesome!"
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:328
+#: includes/admin/reports/abstract-report.php:330
 #, php-format
 msgid "Do you you want to access to %s reporting right now%s in your WordPress Dashboard? That comes with %s level%s of our paid packages. To get instant access, you'll want to buy a MonsterInsights license, which also gives you access to powerful addons, expanded reporting (including the ability to use custom date ranges), comprehensive tracking features (like UserID tracking) and access to our world-class support team."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:329
+#: includes/admin/reports/abstract-report.php:331
 #, php-format
 msgid "Upgrading is easy! To upgrade, navigate to %sour pricing page%s, purchase the required license, and then follow the %sinstructions in the email receipt%s to upgrade. It only takes a few minutes to unlock the most powerful, yet easy to use analytics tracking system for WordPress."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:369
+#: includes/admin/reports/abstract-report.php:371
 msgid "Visit addons page"
 msgstr ""
 
@@ -1399,11 +1406,6 @@ msgstr ""
 msgid "The callback function used for the %s setting is missing."
 msgstr ""
 
-#: includes/admin/settings/settings-api.php:969
-#: includes/admin/settings/tab-general.php:233
-msgid "Save Changes"
-msgstr ""
-
 #: includes/admin/settings/tab-general.php:67
 msgid "Your website is network licensed for MonsterInsights. Enter a license above only if you want to use a different Google Analytics profile for the reports and tracking on this subsite."
 msgstr ""
@@ -1460,46 +1462,46 @@ msgstr ""
 msgid "Once Weekly"
 msgstr ""
 
-#: includes/api-request.php:181
+#: includes/api-request.php:191
 #, php-format
 msgid "The firewall of your server is blocking outbound calls. Please contact your hosting provider to fix this issue. %s"
 msgstr ""
 
-#: includes/api-request.php:183
+#: includes/api-request.php:193
 msgid "The firewall of your server is blocking outbound calls. Please contact your hosting provider to fix this issue."
 msgstr ""
 
-#: includes/api-request.php:290
+#: includes/api-request.php:305
 msgid "The API was unreachable."
 msgstr ""
 
-#: includes/api-request.php:294
+#: includes/api-request.php:309
 #, php-format
 msgid "The API returned a <strong>%s</strong> response"
 msgstr ""
 
-#: includes/api-request.php:298 includes/api-request.php:302
+#: includes/api-request.php:313 includes/api-request.php:317
 #, php-format
 msgid "The API returned a <strong>%d</strong> response with this message: <strong>%s</strong>"
 msgstr ""
 
-#: includes/api-request.php:310
+#: includes/api-request.php:325
 msgid "Improper API request."
 msgstr ""
 
-#: includes/api-request.php:370
+#: includes/api-request.php:385
 msgid "Reason: The API was unreachable because the Airplane Mode plugin is active."
 msgstr ""
 
-#: includes/api-request.php:383
+#: includes/api-request.php:398
 msgid "Reason: The API was unreachable because the API url is on the WP HTTP blocklist."
 msgstr ""
 
-#: includes/api-request.php:398 includes/api-request.php:420
+#: includes/api-request.php:413 includes/api-request.php:435
 msgid "Reason: The API was unreachable because the call to Google failed."
 msgstr ""
 
-#: includes/api-request.php:403
+#: includes/api-request.php:418
 msgid "Reason: The API was unreachable because no external hosts are allowed on this site."
 msgstr ""
 

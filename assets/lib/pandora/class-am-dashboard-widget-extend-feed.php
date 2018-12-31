@@ -111,7 +111,7 @@ if ( ! class_exists( 'AM_Dashboard_Widget_Extend_Feed' ) ) {
 			}
 
 			// Check if WPForms is active.
-			if ( class_exists( 'WPForms', false ) ) {
+			if ( function_exists( 'wpforms' ) ) {
 				$feed_urls[] = 'https://wpforms.com/feed/';
 			}
 

@@ -260,7 +260,7 @@
 		#monsterinsights-settings-pages{padding:20px 0}
 		.monsterinsights-main-nav-tabs label{margin-top:7px;display:block;color:#444851}
 		.monsterinsights-sub-nav-tabs label{margin-top:7px;display:block}
-		#monsterinsights-settings-pages #monsterinsights-settings-submit{margin:40px 0 0 0px}
+		#monsterinsights-settings-pages #monsterinsights-settings-submit, #monsterinsights-settings-pages #monsterinsights-network-settings-submit{margin:40px 0 0 0px}
 		#monsterinsights-settings-pages #monsterinsights-refresh-submit{margin-left:10px;vertical-align:baseline;}
 		input.monsterinsights-large-checkbox{zoom:1.5}
 		#monsterinsights-settings-pages input[type="text"],#monsterinsights-settings-pages input[type="number"],#monsterinsights-settings-pages input[type="password"],#monsterinsights-settings-pages input[type=email], #monsterinsights-settings-pages select,#monsterinsights-settings-pages textarea{width:350px;padding-right:0;font-size:13px;border-width:2px;border-radius:3px;border-color:#e4e9ee;box-shadow:none}

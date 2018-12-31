@@ -78,7 +78,7 @@ class MonsterInsights_Updater {
      * @var bool|string
      */
     public $key = false;
-    
+
     /**
      * Holds the update data returned from the API.
      *
@@ -87,7 +87,7 @@ class MonsterInsights_Updater {
      * @var bool|object
      */
     public $update = false;
-    
+
     /**
      * Holds the plugin info details for the update.
      *
@@ -138,7 +138,19 @@ class MonsterInsights_Updater {
         // ManageWP premium update filters
         //add_filter( 'mwp_premium_update_notification', array( $this, 'premium_update_push' ) );
         //add_filter( 'mwp_premium_perform_update', array( $this, 'premium_update' ) );
+
+	    // Add additional info if the license is expired.
+	    add_action( 'in_plugin_update_message-'. $this->plugin_path, array( $this, 'maybe_show_license_expired_message' ), 10, 2 );
     }
+
+	public function maybe_show_license_expired_message( $plugin_data, $response ) {
+		// If there's no download link but there is an update available there's an issue with the license.
+		if ( empty( $response->package ) ) {
+			$settings_url = is_network_admin() ? network_admin_url( 'admin.php?page=monsterinsights_network' ) : admin_url( 'admin.php?page=monsterinsights_settings' );
+			// Translators: First one is a link to the settings page, second one is closing tag, third is a link to MonsterInsights.com
+			echo '<br />' . sprintf( __( 'In order to enable updates, you need to have a valid license key on the %1$ssettings page%2$s. If your license key is expired or you need a new key, then %3$sclick here to purchase MonsterInsights Pro%2$s.', 'google-analytics-for-wordpress' ), '<a href="' . esc_url( $settings_url ) . '">', '</a>', '<a href="' . monsterinsights_get_url( 'Plugin update', $this->plugin_name ) . '">' );
+		}
+	}
 
     /**
      * Infuse plugin update details when WordPress runs its update checker.
@@ -269,7 +281,7 @@ class MonsterInsights_Updater {
             $api->sections['description'] = $description;
         } else {
             $api->sections = array();
-        }     
+        }
 
         $api->download_link         = isset( $this->info->download_link )  ? $this->info->download_link  : '';
 

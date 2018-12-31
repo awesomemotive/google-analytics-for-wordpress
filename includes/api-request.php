@@ -118,6 +118,15 @@ final class MonsterInsights_API_Request {
 	public $plugin = false;
 
 	/**
+	 * URL to test connection with.
+	 *
+	 * @since 7.3.2
+	 *
+	 * @var string
+	 */
+	public $testurl = '';
+
+	/**
 	 * Additional data to add to request body
 	 *
 	 * @since 7.0.0
@@ -163,7 +172,8 @@ final class MonsterInsights_API_Request {
 		}
 		$this->plugin    = MonsterInsights()->plugin_slug;
 		$this->miversion = MONSTERINSIGHTS_VERSION;
-		$this->sitei     = ! empty( $args['sitei'] ) ? $args['sitei'] : '';
+		$this->sitei     = ! empty( $args['sitei'] )   ? $args['sitei'] : '';
+		$this->testurl   = ! empty( $args['testurl'] ) ? $args['testurl']    : '';
 	}
 
 	/**
@@ -273,6 +283,11 @@ final class MonsterInsights_API_Request {
 		// Perform the query and retrieve the response.
 		$response      = 'GET' == $this->method ? wp_remote_get( esc_url_raw( $this->url ) . '?' . $string, $data ) : wp_remote_post( esc_url_raw( $this->url ), $data );
 		//return new WP_Error( 'debug', '<pre>' . var_export( $response, true ) . '</pre>' );
+
+		if ( is_wp_error( $response ) ) {
+			return $response;
+		}
+
 		$response_code = wp_remote_retrieve_response_code( $response );
 		$response_body = json_decode( wp_remote_retrieve_body( $response ), true );
 		//return new WP_Error( 'debug', '<pre>' . var_export( $response_body, true ) . '</pre>' );
@@ -374,7 +389,7 @@ final class MonsterInsights_API_Request {
 		// and for image linking purposes in Google Images. We use it to test outbound connections since it is run on google.com
 		// and is only a few bytes large. Plus on Google's main CDN so it loads in most places in 0.07 seconds or less. Perfect for our
 		// use case of quickly testing outbound connections. 
-		$testurl = 'http://www.google.com/blank.html';
+		$testurl = ! empty( $this->testurl ) ? $this->testurl :'http://www.google.com/blank.html';
 		if ( defined( 'WP_HTTP_BLOCK_EXTERNAL' ) && WP_HTTP_BLOCK_EXTERNAL ) {
 			if ( defined( 'WP_ACCESSIBLE_HOSTS' ) ) {
 				$wp_http      = new WP_Http();
@@ -410,7 +425,7 @@ final class MonsterInsights_API_Request {
 				'body'          => ''
 			);
 			$response = wp_remote_get( $testurl, $params );
-			
+
 			if( ! is_wp_error( $response ) && $response['response']['code'] >= 200 && $response['response']['code'] < 300 ) {
 				return false;
 			} else {

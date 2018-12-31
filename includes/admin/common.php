@@ -237,7 +237,11 @@ function monsterinsights_remove_conflicting_asset_files() {
 		'font2_css', // Fix for Add Social Share
 		'font3_css', // Fix for Add Social Share
 		'hover_css', // Fix for Add Social Share
-		'fontend_styling' // Fix for Add Social Share
+		'fontend_styling', // Fix for Add Social Share
+		'datatable', // WP Todo
+		'bootstrap', // WP Todo
+		'flipclock', // WP Todo
+		'repuso_css_admin', // Social testimonials and reviews by Repuso
 	);
 	
 	$scripts = array(
@@ -327,7 +331,11 @@ function monsterinsights_remove_conflicting_asset_files() {
 		'material-wp', // Fix for MaterialWP plugin
 		'wp-color-picker-alpha', // Fix for MaterialWP plugin
 		'grandtour-theme-script', // Grandtour Theme
-		'swifty-img-widget-admin-script', // Fix for Swifty Image Widget.
+		'swifty-img-widget-admin-script', // Fix for Swifty Image Widget
+		'datatable', // WP Todo
+		'flipclock', // WP Todo
+		'bootstrap', // WP Todo
+		'repuso_js_admin', // Social testimonials and reviews by Repuso
 	);
 
 	if ( ! empty( $styles ) ) {

@@ -50,6 +50,8 @@ function monsterinsights_network_page() {
                     ?>
                     <h1><?php esc_html_e( 'Network Settings', 'google-analytics-for-wordpress'); ?></h1>
                     <p><?php esc_html_e( 'Activate your MonsterInsights license key on this panel to hide the license key settings and addon pages for subsites.', 'google-analytics-for-wordpress'); ?></p>
+                    <form id="monsterinsights-network-general-tab" method="post">
+
                     <table class="form-table">
                         <tbody>
                             <?php if ( monsterinsights_is_pro_version() ) { 
@@ -137,16 +139,13 @@ function monsterinsights_network_page() {
                                 $network_ua = MonsterInsights()->auth->get_network_manual_ua();
                             ?>
                             <tr id="monsterinsights-google-ua-box" <?php echo (empty( $network_ua ) ? 'class="monsterinsights-hideme"' : ''); ?> >
-                                <form id="monsterinsights-network-general-tab" method="post">
-                                    <th scope="row">
+                                <th scope="row">
                                         <label for="monsterinsights-google-ua"><?php esc_html_e( 'Network UA code', 'google-analytics-for-wordpress' ); ?></label>
                                     </th>
                                     <td>
                                         <input type="text" id="monsterinsights-network-ua-code" name="network_manual_ua_code" value="<?php echo esc_html( MonsterInsights()->auth->get_network_manual_ua() ); ?>" /><?php submit_button( esc_html__( 'Save Network UA code', 'google-analytics-for-wordpress' ), 'button-action', 'monsterinsights-network-settings-submit', false ); ?>
                                         <p class="description"><?php esc_html_e( 'This is the default UA code to use for subsites of a network (can be overriden at the single site level).', 'google-analytics-for-wordpress' ); ?></p>
-                                        <?php wp_nonce_field( 'monsterinsights-network-settings-nonce', 'monsterinsights-network-settings-nonce' ); ?>
                                     </td>
-                                </form>
                             </tr>
                             <?php } ?>
                             <!-- Upgrade Doc -->
@@ -172,6 +171,9 @@ function monsterinsights_network_page() {
                             ?>
                         </tbody>
                     </table>
+                    <?php wp_nonce_field( 'monsterinsights-network-settings-nonce', 'monsterinsights-network-settings-nonce' ); ?>
+                    <?php submit_button( esc_html__( 'Save Changes', 'google-analytics-for-wordpress' ), 'primary', 'monsterinsights-network-settings-submit', false ); ?>
+                </form>
                 </div>
              </div>
          </div>
@@ -219,7 +221,7 @@ function monsterinsights_network_settings_save_general() {
     } else if ( empty( $manual_ua_code ) && $manual_ua_code_old ) {
         // Deleted manual
         MonsterInsights()->auth->delete_network_manual_ua();
-    } else if ( isset( $_POST['network_manual_ua_code'] ) && empty( $manual_ua_code ) ) {
+    } else if ( isset( $_POST['network_manual_ua_code'] ) && empty( $manual_ua_code ) && ! empty( $_POST['network_manual_ua_code'] ) ) {
         $throw_notice = true;
     } else {
         // Not UA before or after
@@ -229,8 +231,7 @@ function monsterinsights_network_settings_save_general() {
     $network_hide_am_notices     = isset( $_POST['network_hide_am_notices'] ) ? 1 : 0;
     $network_hide_am_notices_old = monsterinsights_get_option( 'network_hide_am_notices', false );
     if ( $network_hide_am_notices != $network_hide_am_notices_old ) {
-    monsterinsights_update_option( 'network_hide_am_notices', $network_hide_am_notices );
-       $throw_notice = true;
+        monsterinsights_update_option( 'network_hide_am_notices', $network_hide_am_notices );
     }
 
     // Output an admin notice so the user knows what happened
