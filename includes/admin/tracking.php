@@ -43,7 +43,6 @@ class MonsterInsights_Tracking {
 		if ( $tracking_mode === false ) {
 			$tracking_mode = 'analytics';
 		}
-
 		if ( $events_mode === false ) {
 			$events_mode = 'none';
 		}

@@ -6,7 +6,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/?utm_source=liteplugin&utm_medium=pluginheader&utm_campaign=authoruri&utm_content=7%2E0%2E0
  *
- * Version:             7.3.3
+ * Version:             7.4.0
  * Requires at least:   3.8.0
  * Tested up to:        5.0
  *
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '7.3.3';
+	public $version = '7.4.0';
 
 	/**
 	 * Plugin file.
@@ -153,6 +153,15 @@ final class MonsterInsights_Lite {
 	public $api_auth;
 
 	/**
+	 * Holds instance of MonsterInsights API Rest Routes class.
+	 *
+	 * @since 7.4.0
+	 * @access public
+	 * @var MonsterInsights_Rest_Routes $routes Instance of rest routes.
+	 */
+	public $routes;
+
+	/**
 	 * Primary class constructor.
 	 *
 	 * @since 6.0.0
@@ -185,13 +194,9 @@ final class MonsterInsights_Lite {
 			}
 
 			// Detect Pro version and return early
-			if ( class_exists( 'MonsterInsights' ) && defined( 'GAWP_VERSION' ) ) {
+			if ( defined( 'MONSTERINSIGHTS_PRO_VERSION' ) ) {
 				add_action( 'admin_notices', array( self::$instance, 'monsterinsights_pro_notice' ) );
 				return;
-			}
-
-			if ( defined( 'GAWP_ECOMMERCE_PATH' ) ) {
-				add_action( 'admin_notices', array( self::$instance, 'monsterinsights_old_ecommerce' ) );
 			}
 
 			// Define constants
@@ -211,13 +216,13 @@ final class MonsterInsights_Lite {
 
 			// This does the version to version background upgrade routines and initial install
 			$mi_version = get_option( 'monsterinsights_current_version', '5.5.3' );
-			if ( version_compare( $mi_version, '7.0.0', '<' ) ) {
+			if ( version_compare( $mi_version, '7.4.0', '<' ) ) {
 				monsterinsights_lite_call_install_and_upgrade();
 			}
 
 			if ( is_admin() ) {
 				new AM_Notification( 'mi-lite', self::$instance->version );
-				new AM_Deactivation_Survey( 'MonsterInsights', basename( __DIR__ ) );
+				new AM_Deactivation_Survey( 'MonsterInsights', basename( dirname( __FILE__ ) ) );
 			}
 
 			// Load the plugin textdomain.
@@ -234,6 +239,8 @@ final class MonsterInsights_Lite {
 				} else {
 					add_action( 'admin_init', array( self::$instance, 'require_updater' ) );
 				}
+
+				self::$instance->routes 		  = new MonsterInsights_Rest_Routes();
 			}
 
 			if ( monsterinsights_is_pro_version() ) {
@@ -331,10 +338,6 @@ final class MonsterInsights_Lite {
 			define( 'MONSTERINSIGHTS_LITE_VERSION', MONSTERINSIGHTS_VERSION );
 		}
 
-		if ( ! defined( 'GAWP_VERSION' ) ) {
-			define( 'GAWP_VERSION', MONSTERINSIGHTS_VERSION );
-		}
-
 		if ( ! defined( 'MONSTERINSIGHTS_PLUGIN_NAME' ) ) {
 			define( 'MONSTERINSIGHTS_PLUGIN_NAME', $this->plugin_name );
 		}
@@ -347,24 +350,12 @@ final class MonsterInsights_Lite {
 			define( 'MONSTERINSIGHTS_PLUGIN_FILE', $this->file );
 		}
 
-		if ( ! defined( 'GAWP_FILE' ) ) {
-			define( 'GAWP_FILE', MONSTERINSIGHTS_PLUGIN_FILE );
-		}
-
 		if ( ! defined( 'MONSTERINSIGHTS_PLUGIN_DIR' ) ) {
 			define( 'MONSTERINSIGHTS_PLUGIN_DIR', plugin_dir_path( $this->file )  );
 		}
 
-		if ( ! defined( 'GAWP_PATH' ) ) {
-			define( 'GAWP_PATH', MONSTERINSIGHTS_PLUGIN_DIR  );
-		}
-
 		if ( ! defined( 'MONSTERINSIGHTS_PLUGIN_URL' ) ) {
 			define( 'MONSTERINSIGHTS_PLUGIN_URL', plugin_dir_url( $this->file )  );
-		}
-
-		if ( ! defined( 'GAWP_URL' ) ) {
-			define( 'GAWP_URL', MONSTERINSIGHTS_PLUGIN_URL  );
 		}
 	}
 
@@ -409,24 +400,6 @@ final class MonsterInsights_Lite {
 		} else {
 			load_plugin_textdomain( 'google-analytics-for-wordpress', false, $mi_mofile4 );
 		}
-
-	}
-
-
-	/**
-	 * Output notice to update eCommerce
-	 *
-	 * @access public
-	 * @since 6.0.0
-	 *
-	 * @return 	void
-	 */
-	public function monsterinsights_old_ecommerce() {
-		?>
-		<div class="error">
-			<p><?php echo __( 'The version of MonsterInsights eCommerce addon you have is not compatible with the version of MonsterInsights installed. Please update the eCommerce addon as soon as possible', 'ga-premium' ); ?></p>
-		</div>
-		<?php
 
 	}
 
@@ -552,27 +525,10 @@ final class MonsterInsights_Lite {
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/review.php';
 
 			// Pages
-				// Multisite
-					require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/pages/network-settings.php';
-
-				// Single Site
-					require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/pages/settings.php';
-					require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/pages/tracking.php';
-					require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/pages/tools.php';
-					require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/pages/reports.php';
-
-				// Both
-					require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/pages/addons.php';
-
-			// Settings Tabs
-				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/settings/tab-general.php';
-				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/settings/tab-tracking.php';
-				//require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/settings/tab-status.php';
-				//require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/settings/tab-support.php';
-
-			// Register Settings + Settings API
-				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/settings/settings-api.php';
-				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/settings/register-settings.php';
+				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/pages/settings.php';
+				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/pages/tools.php';
+				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/pages/reports.php';
+				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/pages/addons.php';
 
 			require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/api-auth.php';
 
@@ -582,6 +538,9 @@ final class MonsterInsights_Lite {
 
 			// Reporting Functionality
 			require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/reporting.php';
+
+			// Routes used by Vue
+			require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/routes.php';
 		}
 
 		require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/api-request.php';
@@ -651,6 +610,9 @@ function monsterinsights_lite_activation_hook( $network_wide ) {
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 		wp_die( sprintf( esc_html__( 'Please uninstall and remove MonsterInsights Pro before activating Google Analytics for WordPress by MonsterInsights. The Lite version has not been activated. %1$sClick here to return to the Dashboard%2$s.', 'google-analytics-by-wordpress' ), '<a href="' . $url . '">', '</a>' ) );
 	}
+
+	// Add transient to trigger redirect.
+	set_transient( '_monsterinsights_activation_redirect', 1, 30 );
 }
 register_activation_hook( __FILE__, 'monsterinsights_lite_activation_hook' );
 
@@ -774,7 +736,6 @@ function monsterinsights_lite_install_and_upgrade() {
 
 	// Load upgrade file
 	require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/install.php';
-	require_once MONSTERINSIGHTS_PLUGIN_DIR . 'lite/includes/install.php'; // Lite only install stuff
 
 	// Run the MonsterInsights upgrade routines
 	$updates = new MonsterInsights_Install();

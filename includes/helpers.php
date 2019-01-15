@@ -14,10 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-function monsterinsights_debug_output( $var ) {
-	error_log( print_r( $var, true ) . "\n", 3, MONSTERINSIGHTS_PLUGIN_DIR . 'log.txt' );
-}
-
 function monsterinsights_is_page_reload() {
 	// Can't be a refresh without having a referrer
 	if ( ! isset( $_SERVER['HTTP_REFERER'] ) ) {
@@ -29,8 +25,13 @@ function monsterinsights_is_page_reload() {
 }
 
 
-function monsterinsights_track_user() {
-	$user        = wp_get_current_user();
+function monsterinsights_track_user( $user_id = -1 ) {
+	if ( $user_id === -1 ) {
+		$user = wp_get_current_user();
+	} else {
+		$user = new WP_User( $user_id );
+	}
+
 	$track_user  = true;
 	$roles     = monsterinsights_get_option( 'ignore_users', array() );
 
@@ -88,13 +89,13 @@ function monsterinsights_get_uuid() {
 	if ( empty( $_COOKIE['_ga'] ) ) {
 		return false;
 	}
-	
-	/** 
+
+	/**
 	 * Example cookie formats:
 	 *
 	 * GA1.2.XXXXXXX.YYYYY
 	 * _ga=1.2.XXXXXXX.YYYYYY -- We want the XXXXXXX.YYYYYY part
-	 * 
+	 *
 	 */
 
 	$ga_cookie    = $_COOKIE['_ga'];
@@ -155,7 +156,7 @@ function monsterinsights_get_cookie( $debug = false ) {
 	if ( empty( $_COOKIE['_ga'] ) ) {
 		return ( $debug ) ? 'FCE' : false;
 	}
-	
+
 	$ga_cookie    = $_COOKIE['_ga'];
 	$cookie_parts = explode('.', $ga_cookie );
 	if ( is_array( $cookie_parts ) && ! empty( $cookie_parts[2] ) && ! empty( $cookie_parts[3] ) ) {
@@ -174,7 +175,7 @@ function monsterinsights_get_cookie( $debug = false ) {
 function monsterinsights_generate_ga_client_id() {
 	return rand(100000000,999999999) . '.' . time();
 }
- 
+
 
 /**
  * Hours between two timestamps.
@@ -216,7 +217,7 @@ function monsterinsights_hours_between( $start, $stop = false ) {
  * for themselves that we're not feature locking anything inside the plugin + it would make it easier for our team to test stuff (both via
  * Travis-CI but also when installing addons to test with the Lite version). Also this would allow for a better user experience for users
  * who want that feature.
- * 
+ *
  * @since 6.0.0
  * @access public
  *
@@ -251,6 +252,33 @@ function monsterinsights_get_roles() {
 
 	foreach ( $editable_roles as $id => $name ) {
 		$roles[ $id ] = translate_user_role( $name['name'] );
+	}
+
+	return $roles;
+}
+
+/**
+ * Get the user roles which can manage options. Used to prevent these roles from getting unselected in the settings.
+ *
+ * @return array
+ */
+function monsterinsights_get_manage_options_roles() {
+	global $wp_roles;
+
+	$all_roles = $wp_roles->roles;
+	$roles     = array();
+
+	/**
+	 * Filter: 'editable_roles' - Allows filtering of the roles shown within the plugin (and elsewhere in WP as it's a WP filter)
+	 *
+	 * @api array $all_roles
+	 */
+	$editable_roles = apply_filters( 'editable_roles', $all_roles );
+
+	foreach ( $editable_roles as $id => $role ) {
+		if ( isset( $role['capabilities']['manage_options'] ) && $role['capabilities']['manage_options'] ) {
+			$roles[ $id ] = translate_user_role( $role['name'] );
+		}
 	}
 
 	return $roles;
@@ -292,7 +320,7 @@ function monsterinsights_is_dev_url( $url = '' ) {
 					$is_local_url = true;
 					continue;
 				}
-			
+
 		}
 		if ( substr_count( $host, '.' ) > 1 ) {
 			$subdomains_to_check =  array( 'dev.', '*.staging.', 'beta.', 'test.' );
@@ -839,7 +867,7 @@ function monsterinsights_get_country_list( $translated = false ) {
 			'YE' => 'Yemen',
 			'ZM' => 'Zambia',
 			'ZW' => 'Zimbabwe',
-		);		
+		);
 	}
 	return $countries;
 }
@@ -854,7 +882,7 @@ function monsterinsights_get_licensing_url(){
 
 function monsterinsights_is_wp_seo_active( ) {
 	$wp_seo_active = false; // @todo: improve this check. This is from old Yoast code.
-	
+
 	// Makes sure is_plugin_active is available when called from front end
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	if ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) || is_plugin_active( 'wordpress-seo-premium/wp-seo-premium.php' ) ) {
@@ -876,11 +904,7 @@ function monsterinsights_is_debug_mode() {
 	if ( defined( 'MONSTERINSIGHTS_DEBUG_MODE' ) && MONSTERINSIGHTS_DEBUG_MODE ) {
 		$debug_mode = true;
 	}
-	
-	if ( monsterinsights_get_option( 'debug_mode', false ) ) {
-		$debug_mode = true;
-	}
-	
+
 	return apply_filters( 'monsterinsights_is_debug_mode', $debug_mode );
 }
 
@@ -888,7 +912,7 @@ function monsterinsights_is_network_active() {
 	if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
 		require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 	}
-	 
+
 	if ( is_multisite() && is_plugin_active_for_network( plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ) ) ) {
 	   return true;
 	} else {
@@ -1006,4 +1030,44 @@ function monsterinsights_round_number( $number, $precision = 2 ) {
 	}
 
 	return $number;
+}
+
+if ( ! function_exists( 'wp_get_jed_locale_data' ) ) {
+	/**
+	 * Returns Jed-formatted localization data. Added for backwards-compatibility.
+	 *
+	 * @param  string $domain Translation domain.
+	 *
+	 * @return array
+	 */
+	function wp_get_jed_locale_data( $domain ) {
+		$translations = get_translations_for_domain( $domain );
+
+		$locale = array(
+			'' => array(
+				'domain' => $domain,
+				'lang'   => is_admin() && function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale(),
+			),
+		);
+
+		if ( ! empty( $translations->headers['Plural-Forms'] ) ) {
+			$locale['']['plural_forms'] = $translations->headers['Plural-Forms'];
+		}
+
+		foreach ( $translations->entries as $msgid => $entry ) {
+			$locale[ $msgid ] = $entry->translations;
+		}
+
+		return $locale;
+	}
+}
+
+function monsterinsights_get_inline_menu_icon() {
+	$scheme          = get_user_option( 'admin_color', get_current_user_id() );
+	$use_dark_scheme = $scheme === 'light';
+	if ( $use_dark_scheme ) {
+		return 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAFQUlEQVRYha2Yb2hXZRTHP+c3nc6pm07NF0KWWUtSo0wqzBdiZRItTKMaEZXSi0zRNAsqTBKKSFOa0B8Jigqz2lSwLMtqRURgRuCCLLNmselyZups2+/04pzbnt3de3eTDlzufc5znvN8n+ec55zzXFFV8pKITANOqmpTP3JTgIKq7sutPCJVzfUABeAb4DSwMENuKdABNObV3Wv8fwB0C6DAUX8/67sQ9Q8ANsVk5v5vgIDKWHsvcAgYCWzzCbc6kFJgh/PqgVHAb8DnWTpzA3LzHARmeXuqT/Zo0L/eeZuAV/x7fbRrwJPOu9Dbc4EDgJwNoMmurAt4Bljt7cmBjACvOl+BzTEdVzj/EWAj0O3tC84G0AIf3BRMeDz0GZcbBvzqKy+L9Q30A6AxXTdmARqQcPAAyv29CBjjO1RU1SKAiIwGFgLX+MrbgBnAh5ECVe0UkUMO6nHgFLA70J1McacD5gHbfTXzg77qwBeOBysPn830PnnVwXety7wL1AAV/ZoM+MIHdQCfAdfF+s8H/koBEz0rU9xgLtAInHG5j/KYrNWf8ap6OmFD7w+2/Cugwd/NmOkqgbIUS+wEdorIEOAwFqv6UBKgihQwANNc0b2quh1ARIZi/nUqZUycOrDDcCSps5AAaJBPkkStwNVAs4i8JiLHgBPASRFpFZEGEZktIpIBqBIoIWWH4nZegtl3fIofjAKeoyemfAe8hZnu64D/NjAsRcdEl1mcx6lvc+HLU6L3O97/JXBlgszF9KSVvXhswkxUC6wLdKzIA2iWC1+fMNlK72sASlMjrQHf4LIvAw8B7fScwmNAZ7DDs7MARSmjNsYf7oqak0wBjAXuBlb5Lo9wE0Yg6rHAOdjlR2KB9Qc384o0QOe4giUx/u3OX5oA5gEsCoexqBnYAxTTfMXHlvuOF4F5SYBKHPGaGH+jTzQxxefSnnVpYAIdg9x0PwEDkwSOAHUx3hafoDzGP5AB5gQ56h/XU+NjauJxCCxRjo7xOvw9ImKISBUwIWF8RLtVtT2jP6SdWBKe1QuQiCwDLsKcNKSoqJ8e8BJTREAHc4JBVTuBn4Gx/wISkflYndyNOXdI2/29OOAd7mfSIXkBOZUDxTACt2A78SLQnmDnBszOiwLeraT70Ld5/Mf1jPMxqyLGWqxcnYoFMqVvBTgOK9y7gOVAifMfdF4SqJk5Aa3FLFMNduxagQbvvJOUfIb51/f0lKSrsROyHCtlIyDtrrMJqOoHzAysRvrA28wmSBfAtd7uk6u8vwwr/JOqxm4sl01wvZ3AfhJyo+taAPyJhYi/gekCPIXdNitV9YyIXIIFqptVdVsf13MSkVJgJlZF4rvSqKq/BzJzgNexcPEp8LFPXAHcAFzqoKcAddjR5z2Cay/m4Arcl9cp+zFJFfA0dslMOwB1wD1AewGrTw4Ei2/zVcSP/lmRqrap6irs8gAwid7xDOAuzNwlgmXxF1T14ahXRPZjtU1k3+g5Tk8pkUUFzCwVWC003N/DgGVYIXheIF/EfmQcFczDW4DnsVtBCxbUtmIOPAAzY6MPLgMG+/dlDrIADHWlYL4QpZuZWLjYgp3SOb7QMbFFFLF6LDNB7sGcri7FP7qwWmcX9t8oSWaDA6zCqomXUuZ6U1UpYDXxH5jfgKWET/y7zXfolIgkJeJMEpES/xwMXKWq3aq6CLu9PAH8Eog/Fn2UYnlkDWa2c719E3Y/f8NX0AL8GHuianAXtuXx/lZ6brR9/npgcWgHcEfEkyg6ZqyyBrt1ptE+X9SkDJl6VX0/cyKnfwBb6gwNaZ8ExgAAAABJRU5ErkJggg';
+	} else {
+		return 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAB3RJTUUH4AoEBjcfBsDvpwAABQBJREFUWMO1mGmollUQgJ9z79Vc01LLH0GLWRqlUhYV5o+LbRIVbVQSUSn9qJTKsqDCoqCINKUbtBEUFbbeDGyz1SIiaCHIINu18KZ1bbkuV+/Tj+arw8v7fvdVcuDjvGdmzsycM3Nm5nywE6BOVSfW4JukTmF3gtqifqJuVmc34ZunblFX7W6DzvYf2BDjPWpLRm9T7y/wzPw/DRhZmH+sfq/urb4YCp8JQwaqLwXuBXW0+pP6XjOZO+ueb9X2mE8OZTdl9MWBu199NL4XN05NvT1wh8R8prpGTbti0BEhbLt6t7ow5kdkPEl9zP/gkYKMowN/o7pU3RHzg3fFoHNj8epM4aY8ZoJvuPpj7HxwgTYgLoAFWac1091WgR8a4xxgH2Ah0JdS6gtlY4DZwAnADmAjMA14vSEgpdSrfg9sBm4BeoCVmex6gayepS6P3ZyT0SZksbDJcnikcPMmZN+zgud59Qx1RB2D3o9FW9R31ZMK9IPUP20O11XInqmuUrcG3xt1XNYVvwNSSptL+K/IjvxDoDPGteG6kcDgMkUppRXACnUIsA7YUNegERXGAEwNQZellJbHzodFfPXUjIwtwHDglzJiS4lBe4SSMugCjgfWqo+rvwF/AH+pXWqnOqOfXDMSaK06oaKf54Z/D6igj1bvzXLK5+rTYchHGf5ZdXiFjPHBc2Udg84P5qMqsvdzQf9APbaEZ2JWVj5u5KbIV7PURZmM+XUMag/mk0to1wWtUx3YT9lZErwPq9er3dkt/E3tzU54Rp2SMauA3zMErS1zhTpWvURdEKe8V7jQrOBOUwcF/97qbPWrcPP8KoP2DQFzC/gLAj+vZM1Vak8hF61V31L7msWKOjROvE89q4yhNSy+rYBfGorGV8RcFSyqESZ7hOu+UQeUMfyidhRwy0LB0AJ+TRNj/qjb/0QpUT2jpYS+ERhTkswA9sqEjALGNdGzMqXUXTNZrogi3F5sJ64GDgXGFhasjvGYDDe4HyXf1i3qKaVe4DtgbF6ZzwHuiZq0b2HN8hjzAF3Xj9IhO9mGDQX68gy8PpqoB9XuEj93hp/nZLjzmsTQZzvR9uwXaxY0EHdEuzo5EpklHeB+0bhvV69RWwN/beDKYHpNg+6I2z2hce261M4gXlRVz9RD1S+zlnRh3JBropVtQHfIXB3B38yYadEjvdZAzMjLhXpizI+tEDA4Gv+yrnFH1LJxIbdX/aKsNma9+++RIrapxyT1TmAeMDKltFU9HPgcODOl9GKTnQ0EpgMHBaobWJVS+jnjOQV4ItLFO8CbwDZgBHAqMAXoBSYBHcBm1JfzZ28EuOrl/9ODc5R6Vzwyq6BDvVTtbgHGA2sKiXFbydXfJUgpbUwpLQAateqwQj4DuDjSTWuKru+BlNIN2a6+ACYCv0dH2PhtCtfYjx0t4ZYR0a7uGeNw4GpgLnBgxt8HfAJsSOpWYD1wH7AqvocAz0Q2bgNGB62RoQfF95FhZAswLIQSZaBRbqYDPwHLogqcEhvdp7CJPqC9vwL5VtyUjor42B69zqvqXxU8S+IFOyq6iYcqdD3VONqngV8jbhol4e0sntqAnuIzumZAt8bnIOC4lNKOlNKceL3cCvyQsd/87/WNRuk29T51/5ifHu/zJ2MH69WvCz+zE+oroXdlL9pUkYdeUi/89xLU6VWAZn88fQoMjNtTBS+klF6pc6p/A2ye4OCYzm1lAAAAAElFTkSuQmCC';
+	}
 }

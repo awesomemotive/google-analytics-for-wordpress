@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return void
  */
 function monsterinsights_tools_page() {
-	/** 
+	/**
 	 * Developer Alert:
 	 *
 	 * Per the README, this is considered an internal hook and should
@@ -26,15 +26,14 @@ function monsterinsights_tools_page() {
 
 	<!-- Tabs -->
 	<h1 id="monsterinsights-tools-page-main-nav" class="monsterinsights-main-nav-container monsterinsights-nav-container" data-container="#monsterinsights-tools-pages">
-		<a class="monsterinsights-main-nav-item monsterinsights-nav-item monsterinsights-spacing-item" href="#">&nbsp;</a>
-
-		<a class="monsterinsights-main-nav-item monsterinsights-nav-item monsterinsights-active" href="#monsterinsights-main-tab-settings" title="<?php echo esc_attr( __( 'Import/Export', 'google-analytics-for-wordpress' ) ); ?>">
-			<?php echo esc_html__( 'Import/Export', 'google-analytics-for-wordpress' ); ?>
-		</a>
-
-		<a class="monsterinsights-main-nav-item monsterinsights-nav-item" href="#monsterinsights-main-tab-url-builder" title="<?php echo esc_attr( __( 'Campaign URL Builder', 'google-analytics-for-wordpress' ) ); ?>">
-			<?php echo esc_html__( 'URL Builder', 'google-analytics-for-wordpress' ); ?>
-		</a>
+		<span class="monsterinsights-header-inner">
+			<a class="monsterinsights-main-nav-item monsterinsights-nav-item monsterinsights-active" href="#monsterinsights-main-tab-settings" title="<?php echo esc_attr( __( 'Import/Export', 'google-analytics-for-wordpress' ) ); ?>">
+				<?php echo esc_html__( 'Import/Export', 'google-analytics-for-wordpress' ); ?>
+			</a>
+			<a class="monsterinsights-main-nav-item monsterinsights-nav-item" href="#monsterinsights-main-tab-url-builder" title="<?php echo esc_attr( __( 'Campaign URL Builder', 'google-analytics-for-wordpress' ) ); ?>">
+				<?php echo esc_html__( 'URL Builder', 'google-analytics-for-wordpress' ); ?>
+			</a>
+		</span>
 	</h1>
 
 
@@ -57,6 +56,7 @@ function monsterinsights_tools_url_builder_tab(){
 
 function monsterinsights_tools_settings_tab() {
 	ob_start();?>
+	<div class="monsterinsights-tools-content-area">
 	<h2><?php echo esc_html__( 'Setting Tools', 'google-analytics-for-wordpress' );?></h2>
 	<p><?php echo esc_html__( 'You can use the below tools to import settings from other MonsterInsights websites or export settings to import into another MonsterInsights install.', 'google-analytics-for-wordpress' ); ?> </p>
 	<br />
@@ -69,7 +69,7 @@ function monsterinsights_tools_settings_tab() {
 					</label>
 				</th>
 				<td>
-					<?php 
+					<?php
 					if ( ! empty( $_REQUEST['action'] ) && ! empty( $_REQUEST['result'] ) && $_REQUEST['action'] === 'import' && $_REQUEST['result'] === 'success' ){
 						echo MonsterInsights()->notices->display_inline_notice( 'monsterinsights_standard_notice', '', __( 'Successfully imported settings!','google-analytics-for-wordpress'), 'success', false, array() );
 					}
@@ -79,7 +79,7 @@ function monsterinsights_tools_settings_tab() {
 							<input type="file" name="import_file"/>
 							<input type="hidden" name="monsterinsights_action" value="monsterinsights_import_settings" />
 						</p>
-						<p class="description"><?php echo esc_html__( 'Paste the import field content from another MonsterInsights site in above.', 'google-analytics-for-wordpress' );?></p>
+						<p class="description"><?php echo esc_html__( 'Use the filepicker above to select the settings export file from another site', 'google-analytics-for-wordpress' );?></p>
 						<p>
 							<?php wp_nonce_field( 'monsterinsights_import_settings', 'monsterinsights_import_settings' ); ?>
 						</p>
@@ -112,6 +112,7 @@ function monsterinsights_tools_settings_tab() {
 
 		</tbody>
 	</table>
+	</div>
 	<?php
 	echo ob_get_clean();
 }
@@ -140,7 +141,7 @@ function monsterinsights_process_export_settings() {
 	if ( empty( $_POST['monsterinsights_export_settings'] ) || ! wp_verify_nonce( $_POST['monsterinsights_export_settings'], 'monsterinsights_export_settings' ) ) {
 		return;
 	}
-	
+
 	$settings = monsterinsights_export_settings();
 	ignore_user_abort( true );
 
@@ -193,7 +194,7 @@ function monsterinsights_import_settings() {
 	// Retrieve the settings from the file and convert the json object to an array.
 	$new_settings = json_decode( wp_json_encode( json_decode( $file ) ), true );
 	$settings     = monsterinsights_get_options();
-	$exclude      = array( 
+	$exclude      = array(
 						'analytics_profile',
 						'analytics_profile_code',
 						'analytics_profile_name',

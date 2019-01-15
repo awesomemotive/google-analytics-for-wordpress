@@ -205,9 +205,6 @@ final class MonsterInsights_API_Auth {
 			return;
 		}
 
-		// Rotate tt
-		$this->rotate_tt();
-
 		// Save Profile
 		$this->is_network_admin() ? MonsterInsights()->auth->set_network_analytics_profile( $profile ) : MonsterInsights()->auth->set_analytics_profile( $profile );
 
@@ -220,6 +217,7 @@ final class MonsterInsights_API_Auth {
 			 'mi_action' => 'auth',
 			 'success'   => 'true',
 			), $url );
+		$url = apply_filters( 'monsterinsights_auth_success_redirect_url', $url );
 		wp_safe_redirect( $url );
 		exit;
 	}
@@ -325,9 +323,6 @@ final class MonsterInsights_API_Auth {
 			'neturl'   => network_admin_url(),
 		);
 
-		// Rotate tt
-		$this->rotate_tt();
-
 		// Save Profile
 		$this->is_network_admin() ? MonsterInsights()->auth->set_network_analytics_profile( $profile ) : MonsterInsights()->auth->set_analytics_profile( $profile );
 
@@ -340,6 +335,8 @@ final class MonsterInsights_API_Auth {
 			 'mi_action' => 'reauth',
 			 'success'   => 'true',
 			), $url );
+		$url = apply_filters( 'monsterinsights_reauth_success_redirect_url', $url );
+
 		wp_safe_redirect( $url );
 		exit;
 	}
@@ -389,6 +386,7 @@ final class MonsterInsights_API_Auth {
 		$api   = new MonsterInsights_API_Request( $this->get_route( 'auth/verify/{type}/' ), array( 'network' => $network, 'tt' => $this->get_tt(), 'key' => $creds['key'], 'token' => $creds['token'], 'testurl'   => 'https://api.monsterinsights.com/v2/test/' ) );
 		$ret   = $api->request();
 
+		$this->rotate_tt();
 		if ( is_wp_error( $ret ) ) {
 			return $ret;
 		} else {
@@ -467,6 +465,7 @@ final class MonsterInsights_API_Auth {
 		$api   = new MonsterInsights_API_Request( $this->get_route( 'auth/delete/{type}/' ), array( 'network' => $this->is_network_admin(), 'tt' => $this->get_tt(), 'key' => $creds['key'], 'token' => $creds['token'], 'testurl'   => 'https://api.monsterinsights.com/v2/test/' ) );
 		$ret   = $api->request();
 
+		$this->rotate_tt();
 		if ( is_wp_error( $ret ) && ! $force ) {
 			return false;
 		} else {
@@ -503,6 +502,8 @@ final class MonsterInsights_API_Auth {
 		// Force the network admin url otherwise this will fail not finding the url in relay.
 		$api->site_url = network_admin_url();
 		$ret = $api->request();
+
+		$this->rotate_tt();
 		if ( is_wp_error( $ret ) ) {
 			return false;
 		} else {
