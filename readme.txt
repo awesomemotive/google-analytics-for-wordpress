@@ -1,4 +1,4 @@
-﻿=== Google Analytics Dashboard Plugin for WordPress by MonsterInsights ===
+=== Google Analytics Dashboard Plugin for WordPress by MonsterInsights ===
 Contributors: chriscct7, smub
 Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, WooCommerce stats, analytics dashboard, universal google analytics, statistics, tracking, stats, google, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
@@ -546,7 +546,7 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 * New: Tracking is now enabled for the WordPress admin login page (wp-login.php).
 * Tweak: The Google class in the admin now only checks for blocking when the reauth is attempted. Expect to save a ton of external calls in the admin, and maybe a performance boost.
 * Tweak: The GA client object is now lazyloaded on the frontend, so it's loaded only when something (like another plugin) attempts to use it. In plain English, this will make a alot of sites load times significantly improve.
-* Tweak: The analytics.js output has been tweaked to be slightly more asthetically pleasing (its aligned correctly). We realize no one probably cares but we look at this code for every user we support, so it help us.
+* Tweak: The analytics.js output has been tweaked to be slightly more aesthetically pleasing (its aligned correctly). We realize no one probably cares but we look at this code for every user we support, so it help us.
 * Tweak: The config expired notice has been updated to reflect that it can also be shown if the server is blocking MonsterInsights's ability to connect to Google Analytics.
 * Tweak: The cron jobs for opt-in tracking and statistics have been combined into a single cron.
 * Tweak: Various performance improvements in the frontend output class.
