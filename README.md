@@ -122,10 +122,6 @@ The only official and maintained source of our plugin is on WordPress.org for th
 `cd assets`
 `npm update`
 
-or if you're a company employee, use the Robo checkout command:
-
-`robo devsetup`
-
 ## Constants ##
 
 The following constants can be defined in a wp-config file to allow for sections of MonsterInsights to be turned on and off across an installation base (and also for unit testing)
@@ -157,8 +153,6 @@ User defined:
 	- Don't use oAuth or the wizard, but hardcode to use UA. Note, this will not allow backend reports to work. You can also use the filter `monsterinsights_get_ua`.
 - `MONSTERINSIGHTS_MULTISITE_GA_UA`.
 	- You can use this constant to force the same the same UA for all subsites of an MS install. Note, this will not allow backend reports to work.
-- `MONSTERINSIGHTS_DEBUG_MODE`
-	- Enables analytics.js and events tracking debug mode. Sets asset version to time(). In future, turns on logging to file for logging class. Available to turn on in backend via debug_mode setting.
 
 ### Lite Only ###
 - `MONSTERINSIGHTS_LITE_VERSION`
@@ -167,18 +161,3 @@ User defined:
 ### Pro Only ###
 - `MONSTERINSIGHTS_PRO_VERSION`
 	- The version of pro installed
-
-### Legacy Constants ###
-
-We declare these for code that relies on old constants. Please upgrade your code to use the new constants.
-
-- `GA_YOAST_PREMIUM_VERSION`
-	- Use `MONSTERINSIGHTS_PRO_VERSION` instead.
-- `GAWP_VERSION`
-	- Use `MONSTERINSIGHTS_VERSION` instead.
-- `GAWP_FILE`
-	- Use `MONSTERINSIGHTS_PLUGIN_FILE` instead.
-- `GAWP_PATH`
-	- Use `MONSTERINSIGHTS_PLUGIN_DIR` instead.
-- `GAWP_URL`
-	- Use `MONSTERINSIGHTS_PLUGIN_URL` instead.

@@ -4,11 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function monsterinsights_get_mp_api_url( ) {
-	if ( monsterinsights_is_debug_mode() ) {
-		return 'https://www.google-analytics.com/debug/collect';
-	} else {
-		return 'https://www.google-analytics.com/collect';
-	}
+	return 'https://www.google-analytics.com/collect';
 }
 
 function monsterinsights_mp_api_call( $args = array() ) {
@@ -119,11 +115,6 @@ function monsterinsights_mp_api_call( $args = array() ) {
 
 	$response = wp_remote_post( monsterinsights_get_mp_api_url(), $args );
 
-	//
-	//if ( $debug_mode ) {
-	//	monsterinsights_debug_output( $body );
-	//	monsterinsights_debug_output( $response );
-	//}
 	return $response;
 }
 

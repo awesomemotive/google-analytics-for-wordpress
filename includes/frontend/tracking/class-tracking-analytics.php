@@ -106,11 +106,12 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 
 		$options['forceSSL'] = "'set', 'forceSSL', true";
 
-		if ( monsterinsights_get_option( 'custom_code', false ) ) {
+		$code = monsterinsights_get_option( 'custom_code', false );
+		if ( ! empty( $code ) ) {
 			// Add custom code to the view
 			$options['custom_code'] = array(
 				'type'  => 'custom_code',
-				'value' => stripslashes( monsterinsights_get_option( 'custom_code', '' ) ),
+				'value' => stripslashes( $code ),
 			);
 		}
 
@@ -126,10 +127,8 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 			$options['demographics'] = "'require', 'displayfeatures'";
 		}
 
-		// Check for Enhanced link attribution
-		if ( monsterinsights_get_option( 'enhanced_link_attribution', false ) ) {
-			$options['enhanced_link_attribution'] = "'require', 'linkid', 'linkid.js'";
-		}
+		// Add Enhanced link attribution
+		$options['enhanced_link_attribution'] = "'require', 'linkid', 'linkid.js'";
 
 		$options = apply_filters( 'monsterinsights_frontend_tracking_options_analytics_before_pageview', $options );
 		$options = apply_filters( 'monsterinsights_frontend_tracking_options_before_pageview', $options, $this->name, $this->version );
@@ -175,11 +174,7 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 	 */
 	public function frontend_output( ) {
 		$options        = $this->frontend_tracking_options();
-		$is_debug_mode  =  monsterinsights_is_debug_mode();
 		$src     	    = apply_filters( 'monsterinsights_frontend_output_analytics_src', '//www.google-analytics.com/analytics.js' );
-		if ( current_user_can( 'manage_options' ) && $is_debug_mode ) {
-			$src       = apply_filters( 'monsterinsights_frontend_output_analytics_src', '//www.google-analytics.com/analytics_debug.js' );
-		}
 		$compat     	= monsterinsights_get_option( 'gatracker_compatibility_mode', false );
 		$compat    	 	= $compat ? 'window.ga = __gaTracker;' : '';
 		$track_user 	= monsterinsights_track_user();
@@ -247,10 +242,6 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 		})(window,document,'script','<?php echo $src; ?>','__gaTracker');
 
 <?php
-	if ( current_user_can( 'manage_options' ) && $is_debug_mode ) {
-		echo 'window.ga_debug = {trace: true};';
-	}
-
 	echo $compat;
 
 	if ( count( $options ) >= 1 ) {

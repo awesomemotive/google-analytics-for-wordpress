@@ -1,13 +1,13 @@
-/** 
+/**
  * Developer's Notice:
- * 
+ *
  * Note: CSS in this file (and this file itself) is not guaranteed backwards compatibility. Rules can be added, changed or removed at any time without notice.
  * For more information see the `Backwards Compatibility Guidelines for Developers` section of the README.md file.
  **/
  /** Generic MonsterInsights Styles **/
 	/** Font from FortAwesome project. */
 		@font-face{font-family: 'Misettings';src: url('../fonts/icons.eot');src: url('../fonts/icons.eot?#iefix') format('embedded-opentype'), url('../fonts/icons.woff2') format('woff2'),url('../fonts/icons.woff') format('woff'),url('../fonts/icons.ttf') format('truetype'),url('../fonts/icons.otf') format('opentype');font-weight: 400;font-style: normal;}
-	
+
 	/** Hide other plugin's error messages on our pages */
 		body.monsterinsights_page div.wrap > div.error,body.monsterinsights_page div.wrap > div.notice,body.monsterinsights_page div.wrap > div.updated{margin-left:20px;margin-right:20px}
 		body.monsterinsights_page .update-nag{margin-left:20px;margin-bottom:20px}
@@ -16,10 +16,10 @@
 		body.monsterinsights_page #wpcontent{padding-left:0}
 		body.monsterinsights_page div.wrap{margin:0 20px}
 		body.monsterinsights_page #wpbody,body.monsterinsights_page #wpfooter,body.monsterinsights_page, body.monsterinsights_page #wpwrap{background-color:#fff}
-		@media (max-width: 599px) {	
+		@media (max-width: 599px) {
 			body.monsterinsights_page #wpbody {padding-top: 0;}
 		}
-		
+
 		.monsterinsights-grid{margin:0 0 50px}
 		.monsterinsights-grid:after{content:"";display:table;clear:both}
 		.monsterinsights-col-1-1{width:100%}
@@ -75,19 +75,15 @@
 	/* Page Header */
 		/* Banner + Background */
 			#monsterinsights-header-temp{position:relative;margin:0}
-			#monsterinsights-header{background-color:#f3f5ff;background-image:url(images/waves.png);background-repeat:no-repeat;margin:0;height:119px}
-			@media only screen and (min--moz-device-pixel-ratio: 2),only screen and (-o-min-device-pixel-ratio: 21),only screen and (-webkit-min-device-pixel-ratio: 2),only screen and (min-device-pixel-ratio: 2) {
-				#monsterinsights-header{background-image:url(images/waves@x2.png);background-size:1356px 119px}
-			}
-		
+			#monsterinsights-header{background-color:#f9fbff;background-repeat:no-repeat;margin:0;padding: 17px 20px;}
+
 		/* Title + Mascot */
-			.monsterinsights-header-title{padding-top:50px;padding-left:20px;margin:0}
+			.monsterinsights-header-title{margin: 0; display: block;}
 			.monsterinsights-header-mascot{float:right;position:absolute;top:0;right:0;margin-top:10px;margin-right:20px;z-index:100}
 
 		/* Media Queries */
 			@media (max-width: 610px) {
 				.monsterinsights-header-mascot{display:none}
-				.monsterinsights-header-title{padding-top:70px}
 				#monsterinsights-addon-heading form{margin-right:0}
 			}
 
@@ -161,6 +157,11 @@
 		.monstericon-goptimize:before{content:'\f002'}
 		.monstericon-fbia:before{content:'\f001'}
 		.monstericon-bounce:before{content:'\0051'} /* Todo: Update with icons from Jonathon */
+		.monstericon-times-circle:before{content:'\f01b'}
+		.monstericon-info-circle-btm:before{content:'\f01c'}
+		.monstericon-info-circle-regular:before{content:'\f01e'}
+		.monstericon-arrow-right:before{content:'\f01d'}
+		.monstericon-star:before{content: '\f025';}
 		.monsterinsights-upgrade-menu-icon{float:right;color:#7f8591;font-size:10px;font-weight:700;text-transform:uppercase;line-height:1;display:inline-block;padding:6px 12px;background-color:#fff;border-radius:3px;margin-right:18px;margin-top:15px}
 		.monsterinsights-main-nav-item.monsterinsights-active .monsterinsights-upgrade-menu-icon,.monsterinsights-main-nav-item:hover .monsterinsights-upgrade-menu-icon{background-color:#f7f8fa}
 
@@ -173,14 +174,11 @@
 /** Navigation Styles **/
 	/** Nav Container **/
 		/** Generic **/
-			.monsterinsights-nav-container{border:0;background-color:#615d9b;margin:0;display:table;width:100%}
+			.monsterinsights-nav-container{border:0;background-color:#fff;margin:0;display:table;width:100%}
 			h1.monsterinsights-nav-container { padding: 0px;}
 
 		/** Main Nav Container **/
 			.monsterinsights-main-nav-container{ height:50px;}
-
-		/** Sub Nav Container **/
-			.monsterinsights-sub-nav-container{display:table-cell;float:none;vertical-align:top;background-color:#f7f8fa;float:left;width:290px;margin:0;padding:0;border-left:1px solid #e4e9ee;border-top:1px solid #e4e9ee;border-bottom:1px solid #e4e9ee;border-right:1px solid #e4e9ee;border-collapse:collapse;border-top-left-radius:3px;border-bottom-left-radius:3px}
 
 	/** Nav Item **/
 		/** Generic **/
@@ -188,18 +186,12 @@
 			.monsterinsights-nav-item:focus,.monsterinsights-nav-item:active{box-shadow: none;}
 
 		/** Main Nav Item **/
-			.monsterinsights-main-nav-item{background-color:#615d9b;color:#d8d7e4;background:none;line-height:50px;font-size:13px;padding:0 15px;margin:0;width:100px;text-align:center}
+			.monsterinsights-main-nav-item{background-color:#fff;color:#d8d7e4;background:none;line-height:50px;font-size:13px;padding:0 15px;margin:0;width:100px;text-align:center}
 			.monsterinsights-main-nav-item.monsterinsights-spacing-item{width:5px;padding-left: 0;}
 			.monsterinsights-main-nav-item.monsterinsights-active{color:#434751;opacity:1;background-color:#fff}
 			#monsterinsights-settings-page-main-nav .monsterinsights-main-nav-item:hover:not(.monsterinsights-active),#monsterinsights-settings-page-main-nav .monsterinsights-main-nav-item:active:not(.monsterinsights-active){color:#fff;opacity:1}
-			.monsterinsights-main-nav-container > .monsterinsights-main-nav-item:not(.monsterinsights-active) + a.monsterinsights-main-nav-item:not(.monsterinsights-active) {border-left: 1px solid #8c8ab5;}
-			.monsterinsights-main-nav-container > .monsterinsights-main-nav-item:last-child:not(.monsterinsights-active) {border-right: 1px solid #8c8ab5;}
 			.monsterinsights-main-nav-item.monsterinsights-active{border:0 !important}
 			#monsterinsights-settings-page-main-nav .monsterinsights-main-nav-item:focus:not(.monsterinsights-active):not(.monsterinsights-spacing-item){color:#fff;}
-
-		/** Sub Nav Item **/
-			.monsterinsights-sub-nav-item{font-size:13px;background-color:#f7f8fa;font-weight:500;line-height:50px;width:100%;margin:0;padding:5px 15px 5px 15px;text-decoration:none;color:#7f8591;border-bottom:1px solid #e4e9ee;border-right:none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;transition:none;box-shadow:none;-webkit-box-shadow:none;-webkit-transition:none;}
-			.monsterinsights-sub-nav-item.monsterinsights-active,.monsterinsights-sub-nav-item:hover,.monsterinsights-sub-nav-item:active{border-right:1px solid #fff;background-color:#fff;color:#444851}
 
 	/** Nav Tab Container **/
 		/** Generic **/
@@ -208,9 +200,6 @@
 
 		/** Main Nav Tab Container **/
 			.monsterinsights-main-nav-tabs{}
-
-		/** Sub Nav Tab Container **/
-			.monsterinsights-sub-nav-tabs{float:left;display:table-cell;float:none;vertical-align:top;background-color:#f7f8fa;border-top:1px solid #e4e9ee;border-right:1px solid #e4e9ee;border-bottom:1px solid #e4e9ee;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;transition:none;box-shadow:none;-webkit-box-shadow:none;-webkit-transition:none;border-top-right-radius:3px;border-bottom-right-radius:3px;width:100%;}
 
 	/** Nav Tab **/
 		/** Generic **/
@@ -222,11 +211,6 @@
 			.monsterinsights-main-nav-tab{}
 			.monsterinsights-main-nav-tab .form-table tr{border-bottom:1px solid #ddd}
 			.monsterinsights-main-nav-tab .form-table tr.no-bottom-border{border-bottom:0}
-
-		/** Sub Nav Tab **/
-			.monsterinsights-sub-nav-tab{margin:15px 0 20px;}
-			.monsterinsights-sub-nav-tab .form-table tr{border-bottom:1px solid #ddd}
-			.monsterinsights-sub-nav-tab .form-table tr.no-bottom-border{border-bottom:0}
 
 	/** Nav Media Queries **/
 		.monsterinsights-main-nav-tabs .form-table th,.monsterinsights-main-nav-tabs .form-table td {padding-top: 40px;padding-bottom: 40px;}
@@ -247,57 +231,18 @@
 			h1.monsterinsights-nav-container { padding: 0px; min-width: 150px;}
 			.monsterinsights-sub-nav-tabs th{width:auto}
 		}
-		@media only screen and (max-width: 767px) {
-			.monsterinsights-sub-nav-container{width:100%}
-			.monsterinsights-sub-nav-item{padding:0;text-align:center;width:100%!important;padding:0;text-align:center}
-			.monsterinsights-sub-nav-tabs .form-table th,.monsterinsights-sub-nav-tabs .form-table td{padding:10px 0!important}
-			h1.monsterinsights-nav-container { padding: 0px;}
-		}
 
 /** Settings Page Styles **/
 	/** Generic Settings Page Styles **/
 		div#monsterinsights-settings-sub-pages{padding-left:20px;background-color:#FFF;padding-right:20px}
 		#monsterinsights-settings-pages{padding:20px 0}
 		.monsterinsights-main-nav-tabs label{margin-top:7px;display:block;color:#444851}
-		.monsterinsights-sub-nav-tabs label{margin-top:7px;display:block}
-		#monsterinsights-settings-pages #monsterinsights-settings-submit, #monsterinsights-settings-pages #monsterinsights-network-settings-submit{margin:40px 0 0 0px}
-		#monsterinsights-settings-pages #monsterinsights-refresh-submit{margin-left:10px;vertical-align:baseline;}
-		input.monsterinsights-large-checkbox{zoom:1.5}
-		#monsterinsights-settings-pages input[type="text"],#monsterinsights-settings-pages input[type="number"],#monsterinsights-settings-pages input[type="password"],#monsterinsights-settings-pages input[type=email], #monsterinsights-settings-pages select,#monsterinsights-settings-pages textarea{width:350px;padding-right:0;font-size:13px;border-width:2px;border-radius:3px;border-color:#e4e9ee;box-shadow:none}
-		#monsterinsights-settings-pages input[type="text"],#monsterinsights-settings-pages input[type="number"],#monsterinsights-settings-pages input[type="password"],#monsterinsights-settings-pages input[type=email]{height:32px;}
-		@media (max-width: 767px) {
-			#monsterinsights-settings-pages input[type="text"],#monsterinsights-settings-pages input[type="number"],#monsterinsights-settings-pages input[type="password"], #monsterinsights-settings-pages input[type=email], #monsterinsights-settings-pages select,#monsterinsights-settings-pages textarea{width:90%!important}
-			#monsterinsights-settings-pages input[type="text"],#monsterinsights-settings-pages input[type="number"],#monsterinsights-settings-pages input[type="password"], #monsterinsights-settings-pages input[type=email]{height:auto;}
-		}
-
-	/** General Tab Styles **/
-		/** License Key Styles */
-			@media (min-width: 768px) and (max-width: 991px) {
-				tr#monsterinsights-settings-key-box th{padding-top:20px}
-			}
-			@media (min-width: 600px) and (max-width: 767px) {
-				tr#monsterinsights-settings-key-box th{padding-top:20px}
-			}
-
-	/** Tracking Tab Styles **/
-		/** Upgrade CSS */
-			.monsterinsights-upsell-under-box{background-color:#f6fbff;border:1px solid #d6ecff;border-radius:3px;padding:10px 20px;margin-top:30px;}
-			.monsterinsights-upsell-box{background-color:#f6fbff;border:1px solid #d6ecff;border-radius:3px;padding:10px 20px}
-			a.monsterinsights-upsell-box-button.button.button-primary{margin-top:20px}
-			.monsterinsights-no-settings-shown td{ padding: 5px 0px 0px 0px !important}
-			.monsterinsights-no-settings-shown tr{ border:none !important}
-			#monsterinsights-settings-pages p.monsterinsights-upsell-button-par{margin-bottom: 1em}
-			.monsterinsights-upsell-lite-text{font-size: 14px; margin-bottom:2px;}
-			
-	/** Status Tab Styles **/
-
-	/** Support Tab Styles **/
-
-	/** Settings Page Media Queries **/
 
 /** Reports Page Styles **/
 	/** Page styles **/
-		body.monsterinsights-reporting-page #wpbody, body.monsterinsights-reporting-page #wpfooter, body.monsterinsights-reporting-page #wpcontent, body.monsterinsights-reporting-page #wpwrap{ background-color: #f3f6ff;}
+		body.monsterinsights-reporting-page #wpbody, body.monsterinsights-reporting-page #wpfooter, body.monsterinsights-reporting-page #wpcontent, body.monsterinsights-reporting-page #wpwrap,
+		body.insights_page_monsterinsights_tools #wpbody, body.insights_page_monsterinsights_tools #wpfooter, body.insights_page_monsterinsights_tools #wpcontent, body.insights_page_monsterinsights_tools #wpwrap,
+		body.insights_page_monsterinsights_addons #wpbody, body.insights_page_monsterinsights_addons #wpfooter, body.insights_page_monsterinsights_addons #wpcontent, body.insights_page_monsterinsights_addons #wpwrap { background-color: #f3f6ff;}
 		@media screen and (max-width: 772px) {
 			body.monsterinsights-reporting-page a.monsterinsights-main-nav-item.monsterinsights-nav-item, body.monsterinsights-reporting-page .monsterinsights-main-nav-container > .monsterinsights-main-nav-item:not(.monsterinsights-active) + a.monsterinsights-main-nav-item:not(.monsterinsights-active) { width:100%; margin:0px;border-bottom: 2px solid #fff;}
 			body.monsterinsights-reporting-page .monsterinsights-main-nav-container > .monsterinsights-main-nav-item:last-child:not(.monsterinsights-active) {border-bottom: 2px solid #fff;}
@@ -305,6 +250,9 @@
 			body.monsterinsights-reporting-page .monsterinsights-main-nav-item:hover:not(.monsterinsights-active):not(.monsterinsights-spacing-item), .monsterinsights-main-nav-item:active:not(.monsterinsights-active):not(.monsterinsights-spacing-item), body.monsterinsights-reporting-page .monsterinsights-main-nav-item.monsterinsights-active{ border:none !important;}
 		}
 
+		#wpfooter .monstericon-star {vertical-align: top;color:#fdb72c;}
+		#wpfooter .monstericon-star:hover:before { color:#fdb72c}
+		#wpfooter .monstericon-star:before {font-size: 14px;line-height: 1;padding: 0;margin-top: -4px}
 
 	/* Action bar styles */
 		.monsterinsights-reports-action-bar-title{font-size:24px;font-weight:700;float:left}
@@ -312,15 +260,21 @@
 		.monsterinsights-reports-action-bar-actions{float:right}
 
 	/** Nav bar styles */
-		body.monsterinsights-reporting-page .monsterinsights-nav-container {background-color: #FFF;}
-		body.monsterinsights-reporting-page .monsterinsights-main-nav-item {background-color: #FFF; padding:0px;margin:0px 20px 0px 20px;width: auto;color:#7f8388;font-size: 14px;font-weight: 600;}
-		body.monsterinsights-reporting-page .monsterinsights-main-nav-item.monsterinsights-active {border-bottom: 2px solid #489be8 !important;color:#489be8;}
-		body.monsterinsights-reporting-page .monsterinsights-main-nav-item.monsterinsights-spacing-item{width:20px;}
-		body.monsterinsights-reporting-page .monsterinsights-main-nav-container > .monsterinsights-main-nav-item:not(.monsterinsights-active) + a.monsterinsights-main-nav-item:not(.monsterinsights-active) {border:none;}
-		body.monsterinsights-reporting-page .monsterinsights-main-nav-container > .monsterinsights-main-nav-item:last-child:not(.monsterinsights-active){border:none;}	
-		body.monsterinsights-reporting-page .monsterinsights-main-nav-item:hover:not(.monsterinsights-active):not(.monsterinsights-spacing-item), body.monsterinsights-reporting-page .monsterinsights-main-nav-item:active:not(.monsterinsights-active):not(.monsterinsights-spacing-item) {border-bottom: 2px solid #489be8 !important;color:#489be8;}
-		body.monsterinsights-reporting-page .monsterinsights-main-nav-item:hover:not(.monsterinsights-active):not(.monsterinsights-spacing-item), body.monsterinsights-reporting-page .monsterinsights-main-nav-item:active:not(.monsterinsights-active):not(.monsterinsights-spacing-item) {border-bottom: 2px solid #489be8 !important;color:#489be8;}
-	
+		body.monsterinsights-reporting-page .monsterinsights-nav-container,
+		body.insights_page_monsterinsights_tools .monsterinsights-nav-container {background-color: #FFF;     border-top: 1px solid #d5e2ed; border-bottom: 1px solid #d5e2ed;}
+		body.monsterinsights-reporting-page .monsterinsights-main-nav-item,
+		body.insights_page_monsterinsights_tools .monsterinsights-main-nav-item {background-color: #FFF; padding:0px;margin:0px 0 0px 20px;width: auto;color:#7f8388;font-size: 14px;font-weight: 600;}
+		body.monsterinsights-reporting-page .monsterinsights-main-nav-item.monsterinsights-active,
+		body.insights_page_monsterinsights_tools .monsterinsights-main-nav-item.monsterinsights-active {border-bottom: 2px solid #489be8 !important;color:#489be8;}
+		body.monsterinsights-reporting-page .monsterinsights-main-nav-item.monsterinsights-spacing-item,
+		body.insights_page_monsterinsights_tools .monsterinsights-main-nav-item.monsterinsights-spacing-item{width:20px;}
+		body.monsterinsights-reporting-page .monsterinsights-main-nav-container > .monsterinsights-main-nav-item:not(.monsterinsights-active) + a.monsterinsights-main-nav-item:not(.monsterinsights-active),
+		body.insights_page_monsterinsights_tools .monsterinsights-main-nav-container > .monsterinsights-main-nav-item:not(.monsterinsights-active) + a.monsterinsights-main-nav-item:not(.monsterinsights-active) {border:none;}
+		body.monsterinsights-reporting-page .monsterinsights-main-nav-container > .monsterinsights-main-nav-item:last-child:not(.monsterinsights-active),
+		body.insights_page_monsterinsights_tools .monsterinsights-main-nav-container > .monsterinsights-main-nav-item:last-child:not(.monsterinsights-active){border:none;}
+		body.monsterinsights-reporting-page .monsterinsights-main-nav-item:hover:not(.monsterinsights-active):not(.monsterinsights-spacing-item), body.monsterinsights-reporting-page .monsterinsights-main-nav-item:active:not(.monsterinsights-active):not(.monsterinsights-spacing-item),
+		body.insights_page_monsterinsights_tools .monsterinsights-main-nav-item:hover:not(.monsterinsights-active):not(.monsterinsights-spacing-item), body.insights_page_monsterinsights_tools .monsterinsights-main-nav-item:active:not(.monsterinsights-active):not(.monsterinsights-spacing-item) {border-bottom: 2px solid #489be8 !important;color:#489be8;}
+
 
 	/** Container Styles */
 		body.monsterinsights-reporting-page .monsterinsights-bootstrap-container .container-fluid {padding:0px;}
@@ -485,7 +439,7 @@
 					border-top-left-radius: 4;border-top-right-radius: 0;border-left: 0;
 				}
 			}
-			
+
 			@media only screen and (max-width: 772px) {
 				body.monsterinsights-reporting-page a.monsterinsights-main-nav-item.monsterinsights-nav-item,
 				body.monsterinsights-reporting-page .monsterinsights-main-nav-container > .monsterinsights-main-nav-item:not(.monsterinsights-active) + a.monsterinsights-main-nav-item:not(.monsterinsights-active)  {
@@ -517,7 +471,7 @@
 			body.monsterinsights-reporting-page .monsterinsights-reports-infobox-number{color: #23282d;font-size: 30px;font-weight: 400;margin-top: 20px;}
 			body.monsterinsights-reporting-page .monsterinsights-reports-infobox-prev { float: left;font-size: 16px;font-weight: 700;margin-top: 20px;}
 			body.monsterinsights-reporting-page .monsterinsights-reports-infobox-compare { float:right;color: #a7d0f5;font-size: 14px;font-weight: 400;margin-top: 20px;}
-		
+
 			@media screen and (min-width: 992px) and (max-width: 1140px) {body.monsterinsights-reporting-page .monsterinsights-reports-infobox {height: 165px;}}
 			@media screen and (max-width: 991px) {
 				body.monsterinsights-reporting-page .monsterinsights-reports-infobox:nth-of-type(3) {border-left: 0;}
@@ -538,7 +492,7 @@
 				}
 			}
 
-		
+
 		/** 2 column row */
 			body.monsterinsights-reporting-page .monsterinsights-reports-2-column-container{ margin-top: 15px !important; }
 			body.monsterinsights-reporting-page .monsterinsights-reports-2-column-container .monsterinsights-reports-2-column-item .monsterinsights-reports-2-column-panel.panel{padding: 15px;background-color: #f7f9ff;}
@@ -562,29 +516,29 @@
 			body.monsterinsights-reporting-page .monsterinsights-pie-chart-panel .monsterinsights-reports-panel-title{margin-bottom: 15px;padding-bottom: 15px;}
 
 			@media only screen and (min-width: 992px) {
-			
-			
+
+
 				body.monsterinsights-reporting-page #monsterinsights-main-tab-ecommerce .monsterinsights-reports-2-column-container .monsterinsights-reports-2-column-item:nth-of-type(1) {
 					padding-left: 0;
 				}
-				
+
 				body.monsterinsights-reporting-page #monsterinsights-main-tab-ecommerce .monsterinsights-reports-2-column-container .monsterinsights-reports-2-column-item:nth-of-type(2) {
 					padding-right: 0;
 				}
-			
-			
-			
+
+
+
 			}
 
 			@media only screen and (min-width: 992px) and (max-width: 1165px) {body.monsterinsights-reporting-page .monsterinsights-reports-pie-graph-key, body.monsterinsights-reporting-page .monsterinsights-reports-pie-visitors-graph-key { display: block; position: inherit;	float: none; margin-top: 10px; bottom: 0; right: 0;}}
 			@media only screen and (max-width: 500px) {	body.monsterinsights-reporting-page .monsterinsights-reports-pie-graph-key,	body.monsterinsights-reporting-page .monsterinsights-reports-pie-visitors-graph-key {display: block;position: inherit; float: none; margin-top: 10px; bottom: 0; right: 0;} body.monsterinsights-reporting-page .monsterinsights-reports-pie-graph { margin: auto; float: none; display: block; }}
 			@media screen and (max-width: 992px) {.monsterinsights-reports-2-column-container .monsterinsights-reports-2-column-item:nth-of-type(2) {margin-top:15px;}}
-			
+
 		/** 1 column row */
 			body.monsterinsights-reporting-page .monsterinsights-reports-1-column-row{ margin-top: 15px !important }
 			body.monsterinsights-reporting-page .monsterinsights-reports-panel-title{ padding: 15px;border-top-left-radius: 4px;border-top-right-radius: 4px;}
-		
-		
+
+
 		/** Container styles */
 			body.monsterinsights-reporting-page .monsterinsights-reports-list-count{width:25px;color: #23282d;font-size: 14px;font-weight: 700;	display: inline-block;}
 			body.monsterinsights-reporting-page .monsterinsights-reports-list-text{color: #23282d;font-size: 14px;font-weight: 400;}
@@ -600,7 +554,7 @@
 		/** Top Page List */
 			#monsterinsights-report-top-page-list .monsterinsights-reports-list-count {display: inline-block;top: 10px;position: absolute;}
 			#monsterinsights-report-top-page-list .monsterinsights-reports-list-text {max-width: 85%;display: inline-block;margin-left: 25px;}
-			
+
 			@media only screen and (max-width: 480px) {
 				#monsterinsights-report-top-page-list .monsterinsights-reports-list-text {max-width: 80%;}
 			}
@@ -631,7 +585,7 @@
 			body.monsterinsights-reporting-page .monsterinsights-reports-data-table-tr:nth-child(2n+1) {background-color: #f7f9ff;}
 			body.monsterinsights-reporting-page .monsterinsights-bootstrap-container .table > thead > tr > th {border-bottom: 0px;}
 			body.monsterinsights-reporting-page .monsterinsights-bootstrap-container .table{margin-bottom: 0px;}
-		
+
 			body.monsterinsights-reporting-page .monsterinsights-reports-data-table-tr:nth-child(2n+2) {background-color: #fff;}
 			body.monsterinsights-reporting-page .monsterinsights-reports-2-column-container .monsterinsights-reports-2-column-item .monsterinsights-reports-2-column-panel.list-no-icons,
 			body.monsterinsights-reporting-page .monsterinsights-reports-2-column-container .monsterinsights-reports-2-column-item .monsterinsights-reports-2-column-panel.list-no-icons {background-color: #f7f9ff !important;}
@@ -655,7 +609,7 @@
 		body.monsterinsights-reporting-page .monsterinsights-bootstrap-container .monsterinsights-white-bg-panel{ background-color: #FFF !important;}
 		/* Real-Time Report */
 		body.monsterinsights-reporting-page .monsterinsights-reports-2-column-container .monsterinsights-reports-2-column-item .monsterinsights-reports-2-column-panel.list-no-icons.realtime-report-graph {background-color: #ffffff !important;}
-		
+
 	/** Reports Page Media Queries **/
 
 
@@ -663,15 +617,88 @@
 
 /** Tools Page Styles **/
 	/** Generic Tools Page Styles **/
-		#monsterinsights-tools-pages .monsterinsights-main-nav-tab { padding: 30px 5px;margin: 0px; }
-		#monsterinsights-tools-pages .monsterinsights-main-nav-tab .monsterinsights-upsell-under-box{ margin-top: 0px; }
-		
+#monsterinsights-tools-pages {
+	max-width: 750px;
+	margin: 0 auto;
+}
+		#monsterinsights-tools-pages .monsterinsights-tools-content-area { padding: 0 0 25px; margin-top: 25px; border: 1px solid #d6e2ed; background: #fff; box-sizing: border-box; }
+#monsterinsights-tools-pages .monsterinsights-tools-content-area .widefat {
+	width: auto;
+}
+		#monsterinsights-tools-pages .monsterinsights-main-nav-tab .monsterinsights-upsell-under-box{ margin-top: 0; }
+#monsterinsights-tools-pages .monsterinsights-tools-content-area > p,
+#monsterinsights-tools-pages .monsterinsights-tools-content-area > table,
+#monsterinsights-tools-pages .monsterinsights-tools-content-area > form {
+	margin-left: 25px;
+	margin-right: 25px;
+	margin-top: 25px;
+}
+
+#monsterinsights-tools-pages .monsterinsights-tools-content-area  p,
+#monsterinsights-tools-pages .monsterinsights-tools-content-area  ul {
+	color: #777;
+	font-size: 14px;
+}
+
+#monsterinsights-tools-pages .monsterinsights-tools-content-area  ul {
+	margin-top: 25px;
+	margin-bottom: 0;
+}
+
+#monsterinsights-tools-pages .monsterinsights-tools-content-area  a {
+	color: #509fe2;
+}
+
+#monsterinsights-tools-pages .monsterinsights-tools-content-area  a:hover,
+#monsterinsights-tools-pages .monsterinsights-tools-content-area  a:focus {
+	color: #393f4c;
+}
+
+#monsterinsights-tools-pages .monsterinsights-tools-content-area h2:first-child {
+	color: #444;
+	display: block;
+	margin: 0;
+	border-bottom: 1px solid #d6e2ed;
+	padding: 16px 25px;
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.insights_page_monsterinsights_tools .monsterinsights-header-inner {
+	max-width: 750px;
+	margin: 0 auto;
+	display: block;
+}
+
+body.insights_page_monsterinsights_tools .monsterinsights-main-nav-item {
+	margin-left: 0;
+	margin-right: 20px;
+}
+
 	/** URL Generator Tab Styles **/
 		.monsterinsights-main-nav-tabs label{margin-top:7px;display:block;color:#444851}
 		#monsterinsights-tools-pages .form-table th,#monsterinsights-tools-pages .form-table td,#monsterinsights-tools-pages .form-table tr{ padding: 0px 0px 20px 0px; border: none;}
+		#monsterinsights-tools-pages .form-table th{
+			padding-top: 4px;
+		}
 		#monsterinsights-tools-pages .monsterinsights-nav-tab .description { margin-top: 0px; }
-		#monsterinsights-tools-pages input[type="text"],#monsterinsights-tools-pages input[type=url],#monsterinsights-tools-pages textarea{width:350px;padding-right:0;font-size:13px;border-width:2px;border-radius:3px;border-color:#e4e9ee;box-shadow:none;}
-		#monsterinsights-tools-pages input[type="text"],#monsterinsights-tools-pages input[type=url]{height:32px;}
+		#monsterinsights-tools-pages input[type="text"],#monsterinsights-tools-pages input[type=url],#monsterinsights-tools-pages textarea{
+			border: 1px solid #b7c9d9;
+			border-radius: 3px;
+			font-size: 14px;
+			padding: 9px 15px;
+			width: 100%;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			margin: 0;
+			color: #444;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+		#monsterinsights-tools-pages input[type="text"],#monsterinsights-tools-pages input[type=url]{
+			height: 40px;
+		}
 		#monsterinsights-tools-pages textarea{ height: 100px;}
 		@media (max-width: 767px) {
 			#monsterinsights-tools-pages input[type="text"],#monsterinsights-tools-pages input[type="url"],#monsterinsights-tools-pages textarea{width:90%!important;}
@@ -719,14 +746,14 @@
 		#monsterinsights-addons .monsterinsights-check:before{content:'\0057'}
 
 	/** Generic Addons Page Styles **/
-		body.monsterinsights_page .monsterinsights-addons-subheading{background-color:#fff;height:45px;margin-left:-20px}
+		body.monsterinsights_page .monsterinsights-addons-subheading{background-color:#fff;height:45px;margin-left:-20px;     border-top: 1px solid #d5e2ed;border-bottom: 1px solid #d5e2ed;}
 		body.monsterinsights_page .monsterinsights-addons-subheading h1{font-size:20px;font-weight:400;line-height:45px;margin:0 0 0 20px;padding-left:20px}
 		@media (min-width: 600px) and (max-width: 767px) {
 			body.monsterinsights_page .monsterinsights-addons-subheading{height:auto;padding-bottom:20px}
 		}
 		#monsterinsights-addon-heading:after{content:"";display:table;clear:both}
 		#monsterinsights-addon-heading h1{float:left}
-		#monsterinsights-addon-heading form{float:right;margin-right:100px}
+		#monsterinsights-addon-heading form{float:right;}
 		@media (min-width: 600px) and (max-width: 767px) {
 			#monsterinsights-addon-heading h1{float:none}
 		}
@@ -743,7 +770,7 @@
 			#monsterinsights-addon-heading form{float:none;display:table;margin:10px auto 0}
 		}
 
-		#monsterinsights-addons{padding:0px;}
+		#monsterinsights-addons{padding:0 0 10px;}
 		#monsterinsights-addons .button,#monsterinsights-addons .button-primary{text-shadow:none;background-color:#f7f7f7;color:#23282d;font-weight:600;border:1px solid #ccc;line-height:inherit;height:inherit;padding:5px 15px;box-shadow:none;cursor:pointer}
 		#monsterinsights-addons .button:hover,#monsterinsights-addons .button-primary:hover{color:#23282d;background-color:#fafafa;border-color:#999}
 		#monsterinsights-addons .monsterinsights-addon-action-button{padding-left:20px;padding-right:20px}

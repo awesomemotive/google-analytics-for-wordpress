@@ -56,37 +56,29 @@ class MonsterInsights_Analytics_Events {
 	 * @return string
 	 */
 	public function output_javascript() {
-		// What should we track downloads as?
-		$track_download_as = monsterinsights_get_option( 'track_download_as', '' );
-		$track_download_as = $track_download_as === 'pageview' ? 'pageview' : 'event';
-
-		// What label should be used for internal links?
-		$internal_label = monsterinsights_get_option( 'track_internal_as_label', 'int' );
-		if ( ! empty( $internal_label ) && is_string( $internal_label ) ) {
-			$internal_label = trim( $internal_label, ',' );
-			$internal_label = trim( $internal_label );
-		}
-
-		// If the label is empty, set a default value
-		if ( empty( $internal_label ) ) {
-			$internal_label = 'int';
-		}
-
-		$internal_label = esc_js( $internal_label );
-
-		// Get inbound as outbound to track
-		$inbound_paths = monsterinsights_get_option( 'track_internal_as_outbound','' );
-		$inbound_paths = explode( ',', $inbound_paths );
+		// Affiliate Links
+		$inbound_paths = monsterinsights_get_option( 'affiliate_links', array() );
 		if ( ! is_array( $inbound_paths ) ) {
-			$inbound_paths = array( $inbound_paths );
-		}
-		$i = 0;
-		foreach ( $inbound_paths as $path ){
-			$inbound_paths[ $i ] = esc_js( trim( $path ) );
-			$i++;
+			$inbound_paths = array();
+		} else {
+			foreach( $inbound_paths as $index => $pair ) {
+				// if empty pair, unset and continue
+				if ( empty( $pair['path'] ) ) {
+					unset( $inbound_paths[$index] );
+					continue;
+				}
+
+				// if path does not start with a /, start it with that
+				$path                           = ! empty( $pair['path'] ) ? $pair['path'] : 'aff';
+				$inbound_paths[$index]['path']  = trim( $path );
+
+				// js escape the link label
+				$label                          = ! empty( $pair['label'] ) ? $pair['label'] : 'aff';
+				$inbound_paths[$index]['label'] = esc_js( trim( $label ) );
+			}
 		}
 
-		$inbound_paths = implode( ",", $inbound_paths );
+		$inbound_paths = wp_json_encode( $inbound_paths );
 
 		// Get download extensions to track
 		$download_extensions = monsterinsights_get_option( 'extensions_of_files', '' );
@@ -102,13 +94,6 @@ class MonsterInsights_Analytics_Events {
 
 		$download_extensions = implode( ",", $download_extensions );
 
-		$is_debug_mode     =  monsterinsights_is_debug_mode();
-		if ( current_user_can( 'manage_options' ) && $is_debug_mode ) {
-			$is_debug_mode = 'true';
-		} else {
-			$is_debug_mode = 'false';
-		}
-
 		$hash_tracking = monsterinsights_get_option( 'hash_tracking', false ) ? 'true' : 'false';
 
 		$suffix = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) || ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
@@ -121,12 +106,9 @@ class MonsterInsights_Analytics_Events {
 			'monsterinsights_frontend',
 			array(
 				'js_events_tracking'  => 'true',
-				'is_debug_mode' 	  => $is_debug_mode,
 				'download_extensions' => $download_extensions, /* Let's get the extensions to track */
 				'inbound_paths'       => $inbound_paths, /* Let's get the internal paths to track */
 				'home_url'            => home_url(), /* Let's get the url to compare for external/internal use */
-				'track_download_as'   => $track_download_as, /* should downloads be tracked as events or pageviews */
-				'internal_label'      => $internal_label, /* What is the prefix for internal-as-external links */
 				'hash_tracking'       => $hash_tracking, /* Should hash track */
 			)
 		);

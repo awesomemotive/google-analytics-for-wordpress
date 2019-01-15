@@ -1,6 +1,6 @@
-/** 
+/**
  * Developer's Notice:
- * 
+ *
  * Note: JS in this file (and this file itself) is not garunteed backwards compatibility. JS can be added, changed or removed at any time without notice.
  * For more information see the `Backwards Compatibility Guidelines for Developers` section of the README.md file.
  */
@@ -113,8 +113,8 @@ jQuery( document ).ready( function( $ ) {
 				actionMsg='No support :(';
 			} else if (/Mac/i.test(navigator.userAgent ) ) {
 				actionMsg='Press ⌘-'+ actionKey+' to '+ action;
-			} else { 
-				actionMsg='Press Ctrl-'+ actionKey+' to '+ action; 
+			} else {
+				actionMsg='Press Ctrl-'+ actionKey+' to '+ action;
 			}
 			return actionMsg;
 		}
@@ -180,29 +180,6 @@ jQuery( document ).ready( function( $ ) {
 		}
 
 
-	// Setup Select2
-		jQuery('.monsterinsights-select300').select300();
-
-		var fields_changed = false;
-		jQuery(document).on('change', '#monsterinsights-settings :input', function(){
-			fields_changed = true;
-		});
-		
-		jQuery(document).on('click', 'a:not(.monsterinsights-settings-click-excluded)', function( e ){ 
-
-			if ( fields_changed ) { 
-				var answer = confirm( monsterinsights_admin.settings_changed_confirm );
-				if ( answer ){
-				   fields_changed = false;
-				   return true;
-				} else {
-					e.preventDefault();
-					return false;
-				}
-			} 
-		});
-
-
 	// Auth Actions
 		// Auth and Reauth
 			jQuery('#monsterinsights-google-authenticate-submit').on( "click", function( e ) {
@@ -218,8 +195,8 @@ jQuery( document ).ready( function( $ ) {
 					swal.showLoading();
 				  }
 				}).catch(swal.noop);
-				var data = { 
-					'action': 'monsterinsights_maybe_authenticate', 
+				var data = {
+					'action': 'monsterinsights_maybe_authenticate',
 					'nonce':  monsterinsights_admin.admin_nonce,
 					'isnetwork': monsterinsights_admin.isnetwork
 				};
@@ -260,7 +237,7 @@ jQuery( document ).ready( function( $ ) {
 					swal.showLoading();
 				  }
 				}).catch(swal.noop);
-				var data = { 
+				var data = {
 					'action': 'monsterinsights_maybe_reauthenticate',
 					'nonce':  monsterinsights_admin.admin_nonce,
 					'isnetwork': monsterinsights_admin.isnetwork
@@ -302,7 +279,7 @@ jQuery( document ).ready( function( $ ) {
 					swal.showLoading();
 				  }
 				}).catch(swal.noop);
-				var data = { 
+				var data = {
 					'action': 'monsterinsights_maybe_verify',
 					'nonce':  monsterinsights_admin.admin_nonce,
 					'isnetwork': monsterinsights_admin.isnetwork
@@ -359,8 +336,8 @@ jQuery( document ).ready( function( $ ) {
 					swal.showLoading();
 				  }
 				}).catch(swal.noop);
-				var data = { 
-					'action': 'monsterinsights_maybe_delete', 
+				var data = {
+					'action': 'monsterinsights_maybe_delete',
 					'nonce':  monsterinsights_admin.admin_nonce,
 					'isnetwork': monsterinsights_admin.isnetwork,
 					'forcedelete' : force.toString(),
@@ -433,7 +410,7 @@ jQuery( document ).ready( function( $ ) {
 
 				if (medium) {
 					html = html + '&utm_medium=' + encodeURIComponent(medium);
-				}                
+				}
 				if (name) {
 					html = html + '&utm_campaign=' + encodeURIComponent(name);
 				}
@@ -449,15 +426,12 @@ jQuery( document ).ready( function( $ ) {
 					jQuery('#monsterinsights-url-builer-url').html(html.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"));
 				} else {
 					jQuery('#monsterinsights-url-builer-url').html('');
-				}         
+				}
 		}
 
 		// Addons JS
 			// Addon background color
 				if ( jQuery( "#monsterinsights-addons" ).length !== 0 ) {
-					jQuery( "#wpbody").css("background-color", "#f1f1f1");
-					jQuery( "body").css("background-color", "#f1f1f1");
-					jQuery( "#wpfooter").css("background-color", "#f1f1f1");
 					jQuery( "#wpbody-content").css("padding-bottom", "0px");
 				}
 
@@ -487,7 +461,7 @@ jQuery( document ).ready( function( $ ) {
 					return;
 				}
 
-				// Iterate through the Addons, showing or hiding them depending on whether they 
+				// Iterate through the Addons, showing or hiding them depending on whether they
 				// match the given search terms.
 				jQuery( 'div.monsterinsights-addon' ).each( function() {
 					if ( jQuery( 'h3.monsterinsights-addon-title', jQuery( this ) ).text().toLowerCase().search( search_terms ) >= 0 ) {
@@ -781,7 +755,7 @@ jQuery( document ).ready( function( $ ) {
 										jQuery(button).attr('rel', response.plugin);
 										jQuery(button).removeAttr('disabled');
 										jQuery(message).text(monsterinsights_admin.inactive);
-										
+
 										// Trick here to wrap a span around he last word of the status
 										var heading = jQuery(message), word_array, last_word, first_part;
 
@@ -892,93 +866,48 @@ jQuery( document ).ready( function( $ ) {
 		});
 
 		function MonsterInsightsTriggerTabs( init ) {
-			var window_hash         = window.location.hash;    
+			var window_hash         = window.location.hash;
 			var current_tab         = '';
 			var tab_nav             = '.monsterinsights-main-nav-container';
 			var tabs_section        = '.monsterinsights-main-nav-tabs';
-
-			var current_sub_tab     = '';
-			var sub_tabs_nav        = '.monsterinsights-sub-nav-container';
-			var sub_tabs_section    = '.monsterinsights-sub-nav-tabs';
-			var current_sub_tab_div = '';
 
 			// If there's no hash, then we're on the default, which the page will auto load first tab + subtab as active
 			if ( window_hash.indexOf( '#' ) > -1 ) {
 				if ( window_hash.indexOf( '?' ) < 1 ) {
 					 // No ?, but there is a #
 					current_tab         = window_hash;
-					var firstchildclick = jQuery( sub_tabs_nav );
-
-					// If there's no subtab defined, let's see if the page has subtabs, and if so select the first one.
-					if ( "0" in firstchildclick && "firstElementChild" in firstchildclick[0] && "hash" in firstchildclick[0].firstElementChild ) {
-						current_sub_tab     = firstchildclick[0].firstElementChild.hash;
-						current_sub_tab_div = '#' + ( firstchildclick[0].firstElementChild.hash ).split( '?' )[1];
-					}
 				} else {
 					// ? and a #
 					var tab_split       = window_hash.split( '?' );
 					current_tab         = tab_split[0];
-					current_sub_tab     = window_hash;
-					current_sub_tab_div = '#' + tab_split[1];
 				}
-				
-				// @todo: if the tab doesn't exist, we should fallback to finding the first tab and opening that
-				// If we fallback, we should clear the sub_tab so we ensure we land on the first subtab of the new
-				// tab, if that pages has subtabs.
 
 				jQuery( tab_nav ).find( '.monsterinsights-active' ).removeClass( 'monsterinsights-active' );
 				jQuery( tabs_section ).find( '.monsterinsights-active' ).removeClass( 'monsterinsights-active' );
-				jQuery( sub_tabs_nav ).find( '.monsterinsights-active' ).removeClass( 'monsterinsights-active' );
-				jQuery( sub_tabs_section ).find( '.monsterinsights-active' ).removeClass( 'monsterinsights-active' );
 
 				jQuery( tab_nav ).find( 'a[href="' + current_tab + '"]' ).addClass( 'monsterinsights-active' );
-				jQuery( tabs_section ).find( current_tab ).addClass( 'monsterinsights-active' );  
-
-				// Check to make sure the subtab given in the url exists, and then open it.
-				if ( jQuery( sub_tabs_nav ).find( 'a[href="' + current_sub_tab + '"]' ).length == 1 ) {
-					jQuery( sub_tabs_nav ).find( 'a[href="' + current_sub_tab + '"]' ).addClass( 'monsterinsights-active' );
-					jQuery( sub_tabs_section ).find( current_sub_tab_div ).addClass( 'monsterinsights-active' ); 
-				} else { 
-				   // If the subtab given in the URL doesn't exist, let's see if the page has subtabs, and if so select the first one. 
-					var firstchildclick = jQuery( sub_tabs_nav );
-					if ( "0" in firstchildclick && "firstElementChild" in firstchildclick[0] && "hash" in firstchildclick[0].firstElementChild ) {
-						jQuery( sub_tabs_nav ).find( 'a[href="#' + (firstchildclick[0].firstElementChild.hash).split( '?' )[1] + '"]' ).addClass( 'monsterinsights-active' );
-						jQuery( sub_tabs_section ).find( '#' + (firstchildclick[0].firstElementChild.hash).split( '?' )[1] ).addClass( 'monsterinsights-active' );
-					}
-				}
+				jQuery( tabs_section ).find( current_tab ).addClass( 'monsterinsights-active' );
 
 				if ( jQuery('.monsterinsights-main-nav-tabs .monsterinsights-main-nav-tab:not(".monsterinsights-active") .monsterinsights-tab-settings-notices .monsterinsights-notice' ).length > 0 ) {
 					jQuery('.monsterinsights-main-nav-tabs .monsterinsights-main-nav-tab:not(".monsterinsights-active") .monsterinsights-tab-settings-notices .monsterinsights-notice' ).remove();
 				}
 
-				if ( jQuery('.monsterinsights-sub-nav-tabs .monsterinsights-sub-nav-tab:not("' + current_sub_tab_div + '") .monsterinsights-subtab-settings-notices .monsterinsights-notice' ).length > 0 ) {
-					 jQuery('.monsterinsights-sub-nav-tabs .monsterinsights-sub-nav-tab:not("' + current_sub_tab_div + '") .monsterinsights-subtab-settings-notices .monsterinsights-notice' ).remove();
-				}
-
-				if ( current_tab !== '#monsterinsights-main-tab-tracking' ) {
-					if ( jQuery('.monsterinsights-sub-nav-tabs .monsterinsights-sub-nav-tab .monsterinsights-subtab-settings-notices .monsterinsights-notice' ).length > 0 ) {
-						 jQuery('.monsterinsights-sub-nav-tabs .monsterinsights-sub-nav-tab  .monsterinsights-subtab-settings-notices .monsterinsights-notice' ).remove();
-					} 
-				}
 				 // Is the window taller than the #adminmenuwrap?
 				  if (jQuery(window).height() > jQuery("#adminmenuwrap").height()) {
 					 // ...if so, make the #adminmenuwrap fixed
-					 jQuery('#adminmenuwrap').css('position', 'fixed'); 
-					
+					 jQuery('#adminmenuwrap').css('position', 'fixed');
 				  } else {
-					 //...otherwise, leave it relative        
-					 jQuery('#adminmenuwrap').css('position', 'relative'); 
+					 //...otherwise, leave it relative
+					 jQuery('#adminmenuwrap').css('position', 'relative');
 
 				  }
 			} else if ( init ) {
 				// If we have a default open, else open one
-				if ( jQuery(tab_nav + " .monsterinsights-active").length > 0 ){  
+				if ( jQuery(tab_nav + " .monsterinsights-active").length > 0 ){
 					return;
 				}
 				jQuery(tab_nav).find('a:first').addClass( 'monsterinsights-active' );
 				jQuery( tabs_section ).find('div:first').addClass( 'monsterinsights-active' );
-				jQuery(sub_tabs_nav).find('a:first').addClass( 'monsterinsights-active' );
-				jQuery( sub_tabs_section ).find('div:first').addClass( 'monsterinsights-active' );
 			}
 		}
 });
@@ -1027,7 +956,7 @@ jQuery(document).ready(function($) {
 			});
 		}
 	};
-	
+
 	jQuery('#monsterinsights-reports-page-main-nav .monsterinsights-main-nav-item.monsterinsights-nav-item').attrchange(function(attrName) {
 		if ( attrName != 'class' ){
 			return;
@@ -1056,8 +985,8 @@ jQuery(document).ready(function($) {
 		  onOpen: function () {
 			swal.showLoading();
 
-			var data = { 
-				'action'   : 'monsterinsights_refresh_reports', 
+			var data = {
+				'action'   : 'monsterinsights_refresh_reports',
 				'security' :  monsterinsights_admin.admin_nonce,
 				'isnetwork':  monsterinsights_admin.isnetwork,
 				'start'    :  start,

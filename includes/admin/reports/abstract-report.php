@@ -222,18 +222,17 @@ class MonsterInsights_Report {
 			if ( ! $site_auth && $ms_auth ) {
 				$api_options['network'] = true;
 			}
-			
+
 			$api   = new MonsterInsights_API_Request( 'analytics/reports/' . $this->name . '/', $api_options, 'GET' );
 
 			$additional_data = $this->additional_data();
-			
+
 			if ( ! empty( $additional_data ) ) {
 				$api->set_additional_data( $additional_data );
 			}
-			
+
 			$ret   = $api->request();
-			//echo print_r( $ret['data']);wp_die();
-			
+
 			if ( is_wp_error( $ret ) ) {
 				return array(
 					'success' => false,
@@ -252,7 +251,7 @@ class MonsterInsights_Report {
 				} else {
 					! $site_auth && $ms_auth ? set_site_transient( $option_name, $data, $expiration ) : set_transient( $option_name, $data, $expiration );
 				}
-				
+
 				return array(
 					'success' => true,
 					'data'    => $ret['data'],

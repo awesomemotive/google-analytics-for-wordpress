@@ -38,7 +38,7 @@ class MonsterInsights_Dashboard_Widget {
 
 		// Check if reports should be visible.
 		$dashboards_disabled = monsterinsights_get_option( 'dashboards_disabled', false );
-		if ( ! current_user_can( 'monsterinsights_view_dashboard' ) || $dashboards_disabled ) {
+		if ( ! current_user_can( 'monsterinsights_view_dashboard' ) || 'disabled' === $dashboards_disabled ) {
 			return false;
 		}
 
