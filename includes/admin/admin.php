@@ -35,10 +35,10 @@ function monsterinsights_admin_menu() {
 
     if ( $dashboards_disabled || ! $is_authed || ( current_user_can( 'monsterinsights_save_settings' ) && ! current_user_can( 'monsterinsights_view_dashboard' ) ) ) {
         // If dashboards disabled, first settings page
-        add_menu_page( __( 'Settings:', 'google-analytics-for-wordpress' ), __( 'Insights', 'google-analytics-for-wordpress' ), 'monsterinsights_save_settings', 'monsterinsights_settings', 'monsterinsights_settings_page',  $menu_icon_inline, '100.00013467543' );
+        add_menu_page( __( 'MonsterInsights', 'google-analytics-for-wordpress' ), __( 'Insights', 'google-analytics-for-wordpress' ), 'monsterinsights_save_settings', 'monsterinsights_settings', 'monsterinsights_settings_page',  $menu_icon_inline, '100.00013467543' );
         $hook = 'monsterinsights_settings';
 
-        add_submenu_page( $hook, __( 'Settings:', 'google-analytics-for-wordpress' ), __( 'Settings', 'google-analytics-for-wordpress' ), 'monsterinsights_save_settings', 'monsterinsights_settings' );
+        add_submenu_page( $hook, __( 'MonsterInsights', 'google-analytics-for-wordpress' ), __( 'Settings', 'google-analytics-for-wordpress' ), 'monsterinsights_save_settings', 'monsterinsights_settings' );
     } else {
         // if dashboards enabled, first dashboard
         add_menu_page( __( 'General:', 'google-analytics-for-wordpress' ), __( 'Insights', 'google-analytics-for-wordpress' ), 'monsterinsights_view_dashboard', 'monsterinsights_reports', 'monsterinsights_reports_page',  $menu_icon_inline, '100.00013467543' );
@@ -48,17 +48,25 @@ function monsterinsights_admin_menu() {
         add_submenu_page( $hook, __( 'General Reports:', 'google-analytics-for-wordpress' ), __( 'Reports', 'google-analytics-for-wordpress' ), 'monsterinsights_view_dashboard', 'monsterinsights_reports', 'monsterinsights_reports_page' );
 
         // then settings page
-        add_submenu_page( $hook, __( 'Settings:', 'google-analytics-for-wordpress' ), __( 'Settings', 'google-analytics-for-wordpress' ), 'monsterinsights_save_settings', 'monsterinsights_settings', 'monsterinsights_settings_page' );
+        add_submenu_page( $hook, __( 'MonsterInsights', 'google-analytics-for-wordpress' ), __( 'Settings', 'google-analytics-for-wordpress' ), 'monsterinsights_save_settings', 'monsterinsights_settings', 'monsterinsights_settings_page' );
+
+        // Add dashboard submenu.
+	    add_submenu_page( 'index.php', __( 'General Reports:', 'google-analytics-for-wordpress' ), __( 'Insights', 'google-analytics-for-wordpress' ), 'monsterinsights_view_dashboard', 'admin.php?page=monsterinsights_reports' );
     }
 
+    $submenu_base = add_query_arg( 'page', 'monsterinsights_settings', admin_url( 'admin.php' ) );
+
     // then tools
-    add_submenu_page( $hook, __( 'Tools:', 'google-analytics-for-wordpress' ), __( 'Tools', 'google-analytics-for-wordpress' ), 'manage_options', 'monsterinsights_tools', 'monsterinsights_tools_page' );
+    add_submenu_page( $hook, __( 'Tools:', 'google-analytics-for-wordpress' ), __( 'Tools', 'google-analytics-for-wordpress' ), 'manage_options', $submenu_base . '#/tools' );
 
     // then addons
     $network_key = MonsterInsights()->license->get_network_license_key();
     if ( ! monsterinsights_is_network_active() || ( monsterinsights_is_network_active() && empty( $network_key ) ) ) {
-        add_submenu_page( $hook, __( 'Addons:', 'google-analytics-for-wordpress' ), '<span style="color:#7cc048"> ' . __( 'Addons', 'google-analytics-for-wordpress' ) . '</span>', 'monsterinsights_save_settings', 'monsterinsights_addons', 'monsterinsights_addons_page' );
+        add_submenu_page( $hook, __( 'Addons:', 'google-analytics-for-wordpress' ), '<span style="color:#7cc048"> ' . __( 'Addons', 'google-analytics-for-wordpress' ) . '</span>', 'monsterinsights_save_settings', $submenu_base . '#/addons' );
     }
+
+	// Add About us page.
+	//	add_submenu_page( $hook, __( 'About Us:', 'google-analytics-for-wordpress' ), __( 'About Us', 'google-analytics-for-wordpress' ), 'manage_options', $submenu_base . '#/about' );
 }
 add_action( 'admin_menu', 'monsterinsights_admin_menu' );
 
@@ -81,6 +89,7 @@ function monsterinsights_network_admin_menu() {
 
 	$menu_icon_inline = monsterinsights_get_inline_menu_icon();
     $hook = 'monsterinsights_network';
+	$submenu_base = add_query_arg( 'page', 'monsterinsights_network', network_admin_url( 'admin.php' ) );
     add_menu_page( __( 'Network Settings:', 'google-analytics-for-wordpress' ), __( 'Insights', 'google-analytics-for-wordpress' ), 'monsterinsights_save_settings', 'monsterinsights_network', 'monsterinsights_network_page',  $menu_icon_inline, '100.00013467543' );
 
     add_submenu_page( $hook, __( 'Network Settings:', 'google-analytics-for-wordpress' ), __( 'Network Settings', 'google-analytics-for-wordpress' ), 'monsterinsights_save_settings', 'monsterinsights_network', 'monsterinsights_network_page' );
@@ -88,7 +97,7 @@ function monsterinsights_network_admin_menu() {
     add_submenu_page( $hook, __( 'General Reports:', 'google-analytics-for-wordpress' ), __( 'Reports', 'google-analytics-for-wordpress' ), 'monsterinsights_view_dashboard', 'monsterinsights_reports', 'monsterinsights_reports_page' );
 
     // then addons
-    add_submenu_page( $hook, __( 'Addons:', 'google-analytics-for-wordpress' ), '<span style="color:#7cc048"> ' . __( 'Addons', 'google-analytics-for-wordpress' ) . '</span>', 'monsterinsights_save_settings', 'monsterinsights_addons', 'monsterinsights_addons_page' );
+    add_submenu_page( $hook, __( 'Addons:', 'google-analytics-for-wordpress' ), '<span style="color:#7cc048"> ' . __( 'Addons', 'google-analytics-for-wordpress' ) . '</span>', 'monsterinsights_save_settings', $submenu_base . '#/addons' );
 }
 add_action( 'network_admin_menu', 'monsterinsights_network_admin_menu', 5 );
 
@@ -99,14 +108,47 @@ add_action( 'network_admin_menu', 'monsterinsights_network_admin_menu', 5 );
  * @return String          Altered body classes.
  */
 function monsterinsights_add_admin_body_class( $classes ) {
-    $screen = get_current_screen();
-    if ( empty( $screen->id ) || strpos( $screen->id, 'monsterinsights' ) === false ) {
+    $screen = function_exists( 'get_current_screen' ) ? get_current_screen() : false;
+    if ( empty( $screen ) || empty( $screen->id ) || strpos( $screen->id, 'monsterinsights' ) === false ) {
         return $classes;
     }
 
     return "$classes monsterinsights_page ";
 }
 add_filter( 'admin_body_class', 'monsterinsights_add_admin_body_class', 10, 1 );
+
+/**
+ * Adds one or more classes to the body tag in the dashboard.
+ *
+ * @param  String $classes Current body classes.
+ * @return String          Altered body classes.
+ */
+function monsterinsights_add_admin_body_class_tools_page( $classes ) {
+    $screen = function_exists( 'get_current_screen' ) ? get_current_screen() : false;
+
+    if ( empty( $screen ) || empty( $screen->id ) || strpos( $screen->id, 'monsterinsights_tools' ) === false || 'insights_page_monsterinsights_tools' === $screen->id  ) {
+        return $classes;
+    }
+
+    return "$classes insights_page_monsterinsights_tools ";
+}
+add_filter( 'admin_body_class', 'monsterinsights_add_admin_body_class_tools_page', 10, 1 );
+
+/**
+ * Adds one or more classes to the body tag in the dashboard.
+ *
+ * @param  String $classes Current body classes.
+ * @return String          Altered body classes.
+ */
+function monsterinsights_add_admin_body_class_addons_page( $classes ) {
+    $screen = function_exists( 'get_current_screen' ) ? get_current_screen() : false;
+    if ( empty( $screen ) || empty( $screen->id ) || strpos( $screen->id, 'monsterinsights_addons' ) === false || 'insights_page_monsterinsights_addons' === $screen->id  ) {
+        return $classes;
+    }
+
+    return "$classes insights_page_monsterinsights_addons ";
+}
+add_filter( 'admin_body_class', 'monsterinsights_add_admin_body_class_addons_page', 10, 1 );
 
 /**
  * Add a link to the settings page to the plugins list
@@ -180,38 +222,6 @@ function monsterinsights_load_admin_partial( $template, $data = array() ) {
 
     return false;
 }
-
-
-/**
- * Outputs the MonsterInsights Header.
- *
- * @since 6.0.0
- */
-function monsterinsights_admin_header() {
-    // Get the current screen, and check whether we're viewing a MonsterInsights screen;
-    $screen = get_current_screen();
-    if ( empty( $screen->id ) || strpos( $screen->id, 'monsterinsights' ) === false ) {
-        return;
-    }
-	if ( in_array( $screen->id, array(
-		'insights_page_monsterinsights_settings',
-		'toplevel_page_monsterinsights_settings',
-		'toplevel_page_monsterinsights_network-network',
-		'insights_page_monsterinsights_network',
-	), true ) ) {
-		// Prevent loading the header in the new settings page.
-		return false;
-	}
-
-    // If here, we're on an MonsterInsights screen, so output the header.
-    monsterinsights_load_admin_partial( 'header', array(
-        'mascot'   => plugins_url( 'assets/css/images/mascot.png', MonsterInsights()->file ),
-        'logo'     => plugins_url( 'assets/css/images/logo.png', MonsterInsights()->file ),
-        '2xmascot' => plugins_url( 'assets/css/images/mascot@2x.png', MonsterInsights()->file ),
-        '2xlogo'   => plugins_url( 'assets/css/images/logo@2x.png', MonsterInsights()->file ),
-    ) );
-}
-add_action( 'in_admin_header','monsterinsights_admin_header', 100 );
 
 /**
  * When user is on a MonsterInsights related admin page, display footer text
@@ -452,6 +462,14 @@ function monsterinsights_admin_setup_notices() {
             return;
         }
     }
+
+	if ( isset( $notices['monsterinsights_cross_domains_extracted'] ) && false === $notices['monsterinsights_cross_domains_extracted'] ) {
+		$page = is_network_admin() ? network_admin_url( 'admin.php?page=monsterinsights_network' ) : admin_url( 'admin.php?page=monsterinsights_settings' );
+		$page = $page . '#/advanced';
+		$message = sprintf( esc_html__( 'Warning: MonsterInsights found cross-domain settings in the custom code field and converted them to the new settings structure.  %1$sPlease click here to review and remove the code no longer needed.%2$s', 'google-analytics-for-wordpress' ), '<a href="'. esc_url( $page ) . '">', '</a>' );
+		echo '<div class="notice notice-success is-dismissible monsterinsights-notice" data-notice="monsterinsights_cross_domains_extracted"><p>'. $message.'</p></div>';
+		return;
+	}
 }
 add_action( 'admin_notices', 'monsterinsights_admin_setup_notices' );
 add_action( 'network_admin_notices', 'monsterinsights_admin_setup_notices' );

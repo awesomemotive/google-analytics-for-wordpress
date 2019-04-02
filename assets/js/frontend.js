@@ -1,6 +1,6 @@
-/** 
+/**
  * Developer's Notice:
- * 
+ *
  * Note: JS in this file (and this file itself) is not garunteed backwards compatibility. JS can be added, changed or removed at any time without notice.
  * For more information see the `Backwards Compatibility Guidelines for Developers` section of the README.md file.
  */
@@ -17,8 +17,8 @@ var MonsterInsights = function(){
 	   for IE 7/8 will continue to work, with the exception of events tracking of downloads. */
 	var lastClicked  = [];
 	var internalAsOutboundCategory = '';
-	
-	this.setLastClicked = function(valuesArray,fieldsArray,tracked){ 
+
+	this.setLastClicked = function(valuesArray,fieldsArray,tracked){
 		valuesArray = typeof valuesArray !== 'undefined' ? valuesArray : [];
 		fieldsArray = typeof fieldsArray !== 'undefined' ? fieldsArray : [];
 		tracked     = typeof tracked !== 'undefined' ? tracked : false;
@@ -37,6 +37,10 @@ var MonsterInsights = function(){
 
 	this.getInternalAsOutboundCategory = function () {
 		return internalAsOutboundCategory;
+	};
+
+	this.sendEvent = function ( fieldsArray ) {
+		__gaTrackerSend( [], fieldsArray );
 	};
 
 	function __gaTrackerIsDebug () {
@@ -167,16 +171,17 @@ var MonsterInsights = function(){
 		if ( link.match( /^javascript\:/i ) ) {
 			type = 'internal'; /* if it's a JS link, it's internal */
 		} else if ( protocol && protocol.length > 0 && ( __gaTrackerStringTrim( protocol ) == 'tel' || __gaTrackerStringTrim( protocol ) == 'tel:' ) ) { /* If it's a telephone link */
-			type = "tel"; 
+			type = "tel";
 		} else if ( protocol && protocol.length > 0 && ( __gaTrackerStringTrim( protocol ) == 'mailto' ||  __gaTrackerStringTrim( protocol ) == 'mailto:' ) ) { /* If it's a email */
-			type = "mailto"; 
+			type = "mailto";
 		} else if ( hostname && currentdomain && hostname.length > 0 && currentdomain.length > 0 && ! hostname.endsWith( currentdomain ) ) { /* If it's a outbound */
-			type = "external"; 
+			type = "external";
 		} else if ( pathname && JSON.stringify( inbound_paths ) != "{}" && pathname.length > 0 ) { /* If it's an internal as outbound */
-			for ( index in inbound_paths ) {
-			  if ( inbound_paths[ index ].path.length > 0 && inbound_paths[ index ].label.length > 0 && pathname.startsWith( inbound_paths[ index ].path ) ) {
+			var inbound_paths_length = inbound_paths.length;
+			for ( var inbound_paths_index = 0; inbound_paths_index < inbound_paths_length; inbound_paths_index ++ ) {
+				if ( inbound_paths[ inbound_paths_index ].path && inbound_paths[ inbound_paths_index ].label && inbound_paths[ inbound_paths_index ].path.length > 0 && inbound_paths[ inbound_paths_index ].label.length > 0 && pathname.startsWith( inbound_paths[ inbound_paths_index ].path ) ) {
 					type         				= "internal-as-outbound";
-					internalAsOutboundCategory  = "outbound-link-" + inbound_paths[ index ].label;
+					internalAsOutboundCategory  = "outbound-link-" + inbound_paths[ inbound_paths_index ].label;
 					break;
 				}
 			}
@@ -370,7 +375,7 @@ var MonsterInsights = function(){
 							__gaTrackerNotSend( valuesArray );
 						}
 					}
-				} else { 
+				} else {
 					/* Prevent standard click, track then open */
 					if ( type != 'cross-hostname' && type != 'external' && type != 'internal-as-outbound' ) {
 						if (! event.defaultPrevented ) {
@@ -451,7 +456,7 @@ var MonsterInsights = function(){
 									event.returnValue = false;
 								}
 							}
-							
+
 							fieldsArray = {
 								hitType       : 'event',
 								eventCategory : 'cross-hostname',
@@ -466,7 +471,7 @@ var MonsterInsights = function(){
 
 							__gaTrackerSend( valuesArray, fieldsArray );
 							setTimeout( __gaTrackerHitBack, 1000 );
-						};						
+						};
 					} else {
 						if ( type && type !== 'internal' ) {
 							fieldsArray = {
@@ -522,22 +527,22 @@ var MonsterInsights = function(){
 	/* Attach the event to all clicks in the document after page has loaded */
 	var __gaTrackerWindow    = window;
 	if ( __gaTrackerWindow.addEventListener ) {
-		__gaTrackerWindow.addEventListener( 
-			"load", 
-			function() { 
+		__gaTrackerWindow.addEventListener(
+			"load",
+			function() {
 				document.body.addEventListener(
-					"click", 
+					"click",
 					__gaTrackerClickEvent,
 					 false
 				);
-			}, 
+			},
 			false
 		);
 		window.addEventListener("hashchange", __gaTrackerHashChangeEvent, false	);
-	} else { 
+	} else {
 		if ( __gaTrackerWindow.attachEvent ) {
 			__gaTrackerWindow.attachEvent(
-				"onload", 
+				"onload",
 				function() {
 					document.body.attachEvent( "onclick", __gaTrackerClickEvent);
 				}

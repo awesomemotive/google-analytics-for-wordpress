@@ -166,9 +166,7 @@ class MonsterInsights_Onboarding_Wizard {
 	 * Outputs the content of the current step.
 	 */
 	public function onboarding_wizard_content() {
-		?>
-		<div id="monsterinsights-vue-onboarding-wizard"></div>
-		<?php
+		monsterinsights_settings_error_page( 'monsterinsights-vue-onboarding-wizard', '<a href="' . admin_url() . '">' . esc_html__( 'Return to Dashboard', 'google-analytics-for-wordpress' ) . '</a>' );
 	}
 
 	/**
@@ -343,7 +341,7 @@ class MonsterInsights_Onboarding_Wizard {
 					$errors[] = $cache_error;
 				}
 				// Grab all the UA codes from the page.
-				$pattern = '/UA-[^\s\;\']+/m';
+				$pattern = '/UA-[0-9]+/m';
 				preg_match_all( $pattern, $body, $matches );
 				// If more than twice ( because MI has a ga-disable-UA also ), let them know to remove the others.
 				if ( ! empty( $matches[0] ) && is_array( $matches[0] ) && count( $matches[0] ) > 2 ) {

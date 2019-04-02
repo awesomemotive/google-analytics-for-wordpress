@@ -38,7 +38,7 @@ function monsterinsights_track_user( $user_id = -1 ) {
 	if ( ! empty( $roles ) && is_array( $roles ) ) {
 		foreach ( $roles as $role ) {
 			if ( is_string( $role ) ) {
-				if ( current_user_can( $role ) ) {
+				if ( user_can( $user, $role ) ) {
 					$track_user = false;
 					break;
 				}
@@ -352,6 +352,10 @@ function monsterinsights_string_ends_with( $string, $ending ) {
 }
 
 function monsterinsights_string_starts_with( $string, $start ) {
+	if ( ! is_string( $string ) || ! is_string( $start ) ) {
+		return false;
+	}
+
 	return substr( $string, 0, strlen( $start ) ) === $start;
 }
 
@@ -1071,3 +1075,48 @@ function monsterinsights_get_inline_menu_icon() {
 		return 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAB3RJTUUH4AoEBjcfBsDvpwAABQBJREFUWMO1mGmollUQgJ9z79Vc01LLH0GLWRqlUhYV5o+LbRIVbVQSUSn9qJTKsqDCoqCINKUbtBEUFbbeDGyz1SIiaCHIINu18KZ1bbkuV+/Tj+arw8v7fvdVcuDjvGdmzsycM3Nm5nywE6BOVSfW4JukTmF3gtqifqJuVmc34ZunblFX7W6DzvYf2BDjPWpLRm9T7y/wzPw/DRhZmH+sfq/urb4YCp8JQwaqLwXuBXW0+pP6XjOZO+ueb9X2mE8OZTdl9MWBu199NL4XN05NvT1wh8R8prpGTbti0BEhbLt6t7ow5kdkPEl9zP/gkYKMowN/o7pU3RHzg3fFoHNj8epM4aY8ZoJvuPpj7HxwgTYgLoAFWac1091WgR8a4xxgH2Ah0JdS6gtlY4DZwAnADmAjMA14vSEgpdSrfg9sBm4BeoCVmex6gayepS6P3ZyT0SZksbDJcnikcPMmZN+zgud59Qx1RB2D3o9FW9R31ZMK9IPUP20O11XInqmuUrcG3xt1XNYVvwNSSptL+K/IjvxDoDPGteG6kcDgMkUppRXACnUIsA7YUNegERXGAEwNQZellJbHzodFfPXUjIwtwHDglzJiS4lBe4SSMugCjgfWqo+rvwF/AH+pXWqnOqOfXDMSaK06oaKf54Z/D6igj1bvzXLK5+rTYchHGf5ZdXiFjPHBc2Udg84P5qMqsvdzQf9APbaEZ2JWVj5u5KbIV7PURZmM+XUMag/mk0to1wWtUx3YT9lZErwPq9er3dkt/E3tzU54Rp2SMauA3zMErS1zhTpWvURdEKe8V7jQrOBOUwcF/97qbPWrcPP8KoP2DQFzC/gLAj+vZM1Vak8hF61V31L7msWKOjROvE89q4yhNSy+rYBfGorGV8RcFSyqESZ7hOu+UQeUMfyidhRwy0LB0AJ+TRNj/qjb/0QpUT2jpYS+ERhTkswA9sqEjALGNdGzMqXUXTNZrogi3F5sJ64GDgXGFhasjvGYDDe4HyXf1i3qKaVe4DtgbF6ZzwHuiZq0b2HN8hjzAF3Xj9IhO9mGDQX68gy8PpqoB9XuEj93hp/nZLjzmsTQZzvR9uwXaxY0EHdEuzo5EpklHeB+0bhvV69RWwN/beDKYHpNg+6I2z2hce261M4gXlRVz9RD1S+zlnRh3JBropVtQHfIXB3B38yYadEjvdZAzMjLhXpizI+tEDA4Gv+yrnFH1LJxIbdX/aKsNma9+++RIrapxyT1TmAeMDKltFU9HPgcODOl9GKTnQ0EpgMHBaobWJVS+jnjOQV4ItLFO8CbwDZgBHAqMAXoBSYBHcBm1JfzZ28EuOrl/9ODc5R6Vzwyq6BDvVTtbgHGA2sKiXFbydXfJUgpbUwpLQAateqwQj4DuDjSTWuKru+BlNIN2a6+ACYCv0dH2PhtCtfYjx0t4ZYR0a7uGeNw4GpgLnBgxt8HfAJsSOpWYD1wH7AqvocAz0Q2bgNGB62RoQfF95FhZAswLIQSZaBRbqYDPwHLogqcEhvdp7CJPqC9vwL5VtyUjor42B69zqvqXxU8S+IFOyq6iYcqdD3VONqngV8jbhol4e0sntqAnuIzumZAt8bnIOC4lNKOlNKceL3cCvyQsd/87/WNRuk29T51/5ifHu/zJ2MH69WvCz+zE+oroXdlL9pUkYdeUi/89xLU6VWAZn88fQoMjNtTBS+klF6pc6p/A2ye4OCYzm1lAAAAAElFTkSuQmCC';
 	}
 }
+
+
+function monsterinsights_get_shareasale_id() {
+	// Check if there's a constant.
+	$shareasale_id = '';
+	if ( defined( 'MONSTERINSIGHTS_SHAREASALE_ID' ) ) {
+		$shareasale_id = MONSTERINSIGHTS_SHAREASALE_ID;
+	}
+
+	// If there's no constant, check if there's an option.
+	if ( empty( $shareasale_id ) ) {
+		$shareasale_id = get_option( 'monsterinsights_shareasale_id', '' );
+	}
+
+	// Whether we have an ID or not, filter the ID.
+	$shareasale_id = apply_filters( 'monsterinsights_shareasale_id', $shareasale_id );
+
+	// Ensure it's a number
+	$shareasale_id = absint( $shareasale_id );
+
+	return $shareasale_id;
+}
+
+// Passed in with mandatory default redirect and shareasaleid from monsterinsights_get_upgrade_link
+function monsterinsights_get_shareasale_url( $shareasale_id, $shareasale_redirect ) {
+	// Check if there's a constant.
+	$custom = false;
+	if ( defined( 'MONSTERINSIGHTS_SHAREASALE_REDIRECT_URL' ) ) {
+		$shareasale_redirect = MONSTERINSIGHTS_SHAREASALE_REDIRECT_URL;
+		$custom              = true;
+	}
+
+	// If there's no constant, check if there's an option.
+	if ( empty( $custom ) ) {
+		$shareasale_redirect = get_option( 'monsterinsights_shareasale_redirect_url', '' );
+		$custom              = true;
+	}
+
+	// Whether we have an ID or not, filter the ID.
+	$shareasale_redirect = apply_filters( 'monsterinsights_shareasale_redirect_url', $shareasale_redirect, $custom );
+	$shareasale_url      = sprintf( 'http://www.shareasale.com/r.cfm?B=971799&U=%s&M=69975&urllink=%s', $shareasale_id, $shareasale_redirect );
+
+	return $shareasale_url;
+}
+

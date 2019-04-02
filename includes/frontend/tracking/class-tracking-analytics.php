@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstract {
-	
+
 	/**
 	 * Holds the name of the tracking type.
 	 *
@@ -42,14 +42,14 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 	 * @access public
 	 */
 	public function __construct() {
-		
+
 	}
 
 	/**
 	 * Get frontend tracking options.
 	 *
 	 * This function is used to return an array of parameters
-	 * for the frontend_output() function to output. These are 
+	 * for the frontend_output() function to output. These are
 	 * generally dimensions and turned on GA features.
 	 *
 	 * @since 6.0.0
@@ -77,8 +77,8 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 
 		$domain = esc_attr( monsterinsights_get_option( 'subdomain_tracking', 'auto' ) );
 
-		$allow_linker = monsterinsights_get_option( 'add_allow_linker', false );
-		$allow_anchor = monsterinsights_get_option( 'allow_anchor', false );
+		$cross_domains = monsterinsights_get_option( 'cross_domains', array() );
+		$allow_anchor  = monsterinsights_get_option( 'allow_anchor', false );
 
 
 		$create = array();
@@ -86,7 +86,7 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 			$create['allowAnchor'] = true;
 		}
 
-		if ( $allow_linker ) {
+		if ( is_array( $cross_domains ) && ! empty( $cross_domains ) ) {
 			$create['allowLinker'] = true;
 		}
 
@@ -129,6 +129,22 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 
 		// Add Enhanced link attribution
 		$options['enhanced_link_attribution'] = "'require', 'linkid', 'linkid.js'";
+
+		// Add cross-domain tracking.
+		if ( is_array( $cross_domains ) && ! empty( $cross_domains ) ) {
+			$options['cross_domain_tracking'] = "'require', 'linker'";
+			$cross_domains_strings = array();
+			foreach ( $cross_domains as $cross_domain ) {
+				if ( ! isset( $cross_domain['domain'] ) ) {
+					continue;
+				}
+				$cross_domains_strings[] = '\'' . $cross_domain['domain'] . '\'';
+			}
+			if ( ! empty( $cross_domains_strings ) ) {
+				$cross_domains_strings    = implode( ',', $cross_domains_strings );
+				$options['cross_domains'] = "'linker:autoLink', [$cross_domains_strings]";
+			}
+		}
 
 		$options = apply_filters( 'monsterinsights_frontend_tracking_options_analytics_before_pageview', $options );
 		$options = apply_filters( 'monsterinsights_frontend_tracking_options_before_pageview', $options, $this->name, $this->version );

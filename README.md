@@ -25,7 +25,7 @@ If you find an issue, let us know [here](https://github.com/awesomemotive/google
 ## Support ##
 This is a developer's portal for Google Analytics for WordPress by MonsterInsights and should not be used for support. 
 
-For the lite version please use the wordpress.org [support forums](http://wordpress.org/support/plugin/google-analytics-for-wordpress).
+For the lite version please use monsterinsights.com [Lite support](https://www.monsterinsights.com/lite-support/).
 
 For users of the pro version, please use the support form, located on the Support tab of the My Account page of our website (note: you must be logged in & have 
 an active license to use this form).

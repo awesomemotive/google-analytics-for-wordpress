@@ -379,7 +379,8 @@ final class MonsterInsights_API_Request {
 	}
 
 	private function is_blocked( $url = '' ) {
-		if ( defined( 'AIRMDE_VER' ) ) {
+		global $Airplane_Mode_Core;
+		if ( defined( 'AIRMDE_VER' ) && ! empty( $Airplane_Mode_Core ) && $Airplane_Mode_Core->enabled() ) {
 			return new WP_Error( 'api-error', __( 'Reason: The API was unreachable because the Airplane Mode plugin is active.', 'google-analytics-for-wordpress' ) );
 		}
 

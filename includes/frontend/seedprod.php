@@ -30,10 +30,9 @@ function monsterinsights_seedprod_tracking( $settings ) {
     do_action( 'monsterinsights_tracking_after_analytics' );
     do_action( 'monsterinsights_tracking_after', 'analytics' );
 
-    $events_mode   = monsterinsights_get_option( 'events_mode', false );
     $track_user    = monsterinsights_track_user();
 
-    if ( $track_user && ( $events_mode === 'js' || $events_mode === 'php' ) ) {
+    if ( $track_user ) {
         require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/events/class-analytics-events.php';
         new MonsterInsights_Analytics_Events();
 
