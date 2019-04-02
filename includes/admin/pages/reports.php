@@ -31,7 +31,7 @@ add_filter( 'admin_body_class', 'monsterinsights_reports_page_body_class' );
  * @return array Array of tab information.
  */
 function monsterinsights_get_reports() {
-	/** 
+	/**
 	 * Developer Alert:
 	 *
 	 * Per the README, this is considered an internal hook and should
@@ -51,7 +51,7 @@ function monsterinsights_get_reports() {
  * @return void
  */
 function monsterinsights_reports_page() {
-	/** 
+	/**
 	 * Developer Alert:
 	 *
 	 * Per the README, this is considered an internal hook and should
@@ -59,73 +59,8 @@ function monsterinsights_reports_page() {
 	 * or the hook may be removed at any time, without warning.
 	 */
 	do_action( 'monsterinsights_head' );
-	echo monsterinsights_ublock_notice(); ?>
-	
-	<!-- Tabs -->
-	<h1 id="monsterinsights-reports-page-main-nav" class="monsterinsights-main-nav-container monsterinsights-nav-container" data-container="#monsterinsights-reports-pages" data-update-hashbang="1">
-		<?php 
-		$i = 0;
-		?>
-		
-		<?php
-		foreach ( (array) MonsterInsights()->reporting->reports as $report ) {
-			?>
-			<a class="monsterinsights-main-nav-item monsterinsights-nav-item " href="#monsterinsights-main-tab-<?php echo esc_attr( $report->name ); ?>" title="<?php echo esc_attr( $report->title ); ?>"><?php echo esc_html( $report->title ); ?></a>
-			<?php 
-			$i++; 
-		}
-		?>
-	</h1>
-
-	<div id="monsterinsights-reports" class="wrap monsterinsights-bootstrap-container">
-		<div class="monsterinsights-clear">
-
-			<!-- Tab Panels -->
-			<div id="monsterinsights-reports-pages" class="monsterinsights-main-nav-tabs monsterinsights-nav-tabs" data-navigation="#monsterinsights-reports-page-main-nav">
-				
-				<?php 
-				$i = 0; 
-				foreach ( (array) MonsterInsights()->reporting->reports as $report ) {
-					?>
-					<div id="monsterinsights-main-tab-<?php echo esc_attr( $report->name ); ?>" class="monsterinsights-main-nav-tab monsterinsights-nav-tab">
-						<div class="monsterinsights-reports-action-bar monsterinsights-clear">
-							<div class="monsterinsights-reports-action-bar-title">
-								<?php echo esc_html( sprintf( __( '%s Report', 'google-analytics-for-wordpress' ), $report->title  ) ); ?>
-							</div>
-							<div class="monsterinsights-reports-action-bar-actions"><?php 
-								/** 
-								 * Developer Alert:
-								 *
-								 * Per the README, this is considered an internal hook and should
-								 * not be used by other developers. This hook's behavior may be modified
-								 * or the hook may be removed at any time, without warning.
-								 */
-								do_action( 'monsterinsights_tab_reports_actions', $report->name ); 
-								?> 
-							</div>
-						</div>
-						 <div class="monsterinsights-reports-wrap container-fluid">
-							<?php
-							/** 
-							 * Developer Alert:
-							 *
-							 * Per the README, this is considered an internal hook and should
-							 * not be used by other developers. This hook's behavior may be modified
-							 * or the hook may be removed at any time, without warning.
-							 */
-							?>
-							<?php do_action( 'monsterinsights_tab_reports_notices' ); ?>
-							<?php //echo $report->show_report(); @todo we don't need to init output them. ?>
-						</div>
-					</div>
-					<?php
-					$i++;
-				}
-				?>
-			</div>
-		</div>
-	</div>
-	<?php
+	echo monsterinsights_ublock_notice();
+	monsterinsights_settings_error_page( 'monsterinsights-reports');
 }
 
 function monsterinsights_refresh_reports_data() {
@@ -184,12 +119,12 @@ function monsterinsights_refresh_reports_data() {
 
 	$data  = $report->get_data( $args );
 	if ( ! empty( $data['success'] ) ) {
-		$data = $report->show_report( 
+		$data = $report->show_report(
 			array( 'start'   => $start,
 				   'end'     => $end,
 				   'data'    => $data['data'],
-				   'success' => true 
-			) 
+				   'success' => true
+			)
 		);
 		wp_send_json_success( array( 'html' => $data  ) );
 	} else {

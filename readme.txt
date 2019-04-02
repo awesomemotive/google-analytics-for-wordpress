@@ -3,8 +3,8 @@ Contributors: chriscct7, smub
 Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, WooCommerce stats, analytics dashboard, universal google analytics, statistics, tracking, stats, google, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
-Tested up to: 5.0
-Stable tag: 7.4.0
+Tested up to: 5.1.1
+Stable tag: 7.5.0
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -273,11 +273,35 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
-= 7.4.0: January 15, 2018 =
+= 7.5.0: April 2, 2019 =
+- New: Updated Reports area using VueJS for better loading times and more consistency.
+- New: Updated Dashboard widget which now shows overview reports and is powered by VueJS.
+- New: Updated Tools page, better integrated with the new, VueJS powered, settings panel.
+- New: Brand new Cross-Domain setting to make it easier to track across multiple domains without having to add any code.
+- New: Added an integration with the ThirstyAffiliates plugins for the affiliate links tracking.
+- Tweaked: Improved the frontend affiliate code to support frameworks which modify the JavaScript Array prototype ( for example MooTools )
+- Tweaked: Onboarding Wizard feedback if JavaScript needed to run does not load correctly
+- Tweaked: Improved airplane mode compatibility
+- Tweaked: Improved double UA code detection
+- Tweaked: The affiliate report will now show the url of the affiliate link being navigated to instead of the label.
+- Tweaked: The label for the file download setting has been adjusted to be more clear.
+- Fixed: Manual UA code insertion from the dashboard has been fixed
+- Fixed: Network installs reauthentication was not working properly in certain situations
+- Fixed: Conflict resolution for Video Mate Pro theme and the RedQ Reuse Form plugin
+
+= 7.4.2: January 29, 2019 =
+- Tweak: Added a filter to set the default value of events_mode and tracking_mode for compatibility with other plugins since we no longer use these options.
+- Tweak: Improved the Manual UA field for better feedback and compatibility.
+- Fixed: Missing image file added.
+
+= 7.4.1: January 16, 2019 =
+- Fixed: WordPress Core currently has a bug (18857) that affects a super small percentage of our userbase (under 3%) that we've patched our plugin for until WordPress can get a fix shipped in a release.
+
+= 7.4.0: January 15, 2019 =
 - New: Brand new settings panel written in VueJS! The new panel has been designed to simplify the process of setting up MonsterInsights and make MonsterInsights's powerful features more user friendly to use.
 - New: Brand new onboarding wizard that walks you through setting up MonsterInsights and automatically configures your MonsterInsights settings based on your website needs in just a few minutes.
 - New: Users using the affiliate link tracking feature will find they can now define a custom label for each link they want to track, and it's all validated in a new custom repeater field.
-- New: Signficant performance improvements on both the admin and frontend side of things. This is best exemplified by the new settings panel, which loads significantly faster than the previous one.
+- New: Significant performance improvements on both the admin and frontend side of things. This is best exemplified by the new settings panel, which loads significantly faster than the previous one.
 - New: MonsterInsights's support staff often sees users who have upgraded to using MonsterInsights from other Google Analytics plugins (or even worse hardcoded tracking code), and forget to turn off the old tracking code. MonsterInsights will now automatically detect most of those other tracking codes and let you know so you get the most accurate tracking numbers from the start.
 - Tweak: We've gone through the whole settings area and rewrote the labels for each setting to make them more clear as to what they do.
 - Tweak: Based on our opt-in usage tracking data (thank you by the way for those that opt into it), we've removed a couple of the settings that nearly all users had enabled/disabled to make the panel even more simple and useful.
@@ -546,7 +570,7 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 * New: Tracking is now enabled for the WordPress admin login page (wp-login.php).
 * Tweak: The Google class in the admin now only checks for blocking when the reauth is attempted. Expect to save a ton of external calls in the admin, and maybe a performance boost.
 * Tweak: The GA client object is now lazyloaded on the frontend, so it's loaded only when something (like another plugin) attempts to use it. In plain English, this will make a alot of sites load times significantly improve.
-* Tweak: The analytics.js output has been tweaked to be slightly more asthetically pleasing (its aligned correctly). We realize no one probably cares but we look at this code for every user we support, so it help us.
+* Tweak: The analytics.js output has been tweaked to be slightly more aesthetically pleasing (its aligned correctly). We realize no one probably cares but we look at this code for every user we support, so it help us.
 * Tweak: The config expired notice has been updated to reflect that it can also be shown if the server is blocking MonsterInsights's ability to connect to Google Analytics.
 * Tweak: The cron jobs for opt-in tracking and statistics have been combined into a single cron.
 * Tweak: Various performance improvements in the frontend output class.

@@ -17,6 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div id="monsterinsights-header-temp"></div>
 <div id="monsterinsights-header" class="monsterinsights-header">
 	<div class="monsterinsights-header-inner">
-		<img class="monsterinsights-header-title" src="<?php echo esc_attr( $data['logo'] ); ?>" srcset="<?php echo esc_attr( $data['2xlogo'] ); ?> 2x" alt="<?php esc_attr__( 'MonsterInsights', 'google-analytics-for-wordpress' ); ?>"/>
+		<img class="monsterinsights-header-title" src="<?php echo esc_attr( $data['logo'] ) . '?v=' . monsterinsights_get_asset_version(); ?>" srcset="<?php echo esc_attr( $data['2xlogo'] ) . '?v=' . monsterinsights_get_asset_version(); ?> 2x" alt="<?php esc_attr__( 'MonsterInsights', 'google-analytics-for-wordpress' ); ?>"/>
 	</div>
 </div>

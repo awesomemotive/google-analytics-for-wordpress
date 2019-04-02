@@ -6,9 +6,9 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/?utm_source=liteplugin&utm_medium=pluginheader&utm_campaign=authoruri&utm_content=7%2E0%2E0
  *
- * Version:             7.4.0
+ * Version:             7.5.0
  * Requires at least:   3.8.0
- * Tested up to:        5.0
+ * Tested up to:        5.1.1
  *
  * License:             GPL v3
  *
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '7.4.0';
+	public $version = '7.5.0';
 
 	/**
 	 * Plugin file.
@@ -632,6 +632,11 @@ function monsterinsights_lite_uninstall_hook() {
 	// both plugins. If it needs to be pro specific, then include a file that
 	// has that method.
 	$instance = MonsterInsights();
+
+	// Don't delete any data if the PRO version is already active.
+	if ( monsterinsights_is_pro_version() ) {
+		return;
+	}
 
 	if ( is_multisite() ) {
 		$site_list = get_sites();
