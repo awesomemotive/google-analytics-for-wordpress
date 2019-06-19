@@ -3,8 +3,8 @@ Contributors: chriscct7, smub
 Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, WooCommerce stats, analytics dashboard, universal google analytics, statistics, tracking, stats, google, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
-Tested up to: 5.1.1
-Stable tag: 7.5.0
+Tested up to: 5.3
+Stable tag: 7.7.0
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -32,7 +32,7 @@ That's why millions of small businesses and top companies like Microsoft, Bloomb
 
 We took the pain out of installing Google Analytics in WordPress and made it easy. Here's why over 2 million smart business owners, designers, and developers love MonsterInsights, and you will too!
 
-https://www.youtube.com/watch?v=nHZBUDceRt0
+https://www.youtube.com/watch?v=IbdKpSygp2U
 
 = Quick & Easy Google Analytics Setup =
 
@@ -273,6 +273,26 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.7.0: June 18, 2019 =
+- New: Admin bar insights now available in the WordPress admin.
+- New: We've added a custom integration with the WP Site Health Checks area so that you know your site is always properly configured for Google Analytics tracking.
+- Tweak: We've tweaked our settings panel a bit to accomodate our new eCommerce tracking for LifterLMS.
+- Fixed: We've fixed a bug that caused a compatibility issue with WP-CLI.
+
+= 7.6.0: April 24, 2019 =
+- New: Frontend admin bar reports for your website in the last 30 days.
+- New: Brand new About Us page which includes info on getting started and using MonsterInsights features.
+- Tweaked: Updated the link content priority and aria-label is now used if present.
+- Tweaked: Prevent adding another Google Analytics tracking script in the custom code box.
+- Tweaked: Added a check to prevent using the current domain in the cross-domain setting.
+- Tweaked: Improved overall VueJS compatibility with scripts loaded by other plugins.
+- Fixed: Link attribution option disable was no longer disabling frontend tracking.
+- Removed: No longer used php pages which were replaced with VueJS.
+
+= 7.5.1: April 9, 2019 =
+- Tweaked: Fix for Javascript error thrown by vendor min file causing breaking JS error on some hosting providers which breaks our plugin's VueJS app.
+- Tweaked: Fix a conflict with a date.js file loaded by another plugin.
+
 = 7.5.0: April 2, 2019 =
 - New: Updated Reports area using VueJS for better loading times and more consistency.
 - New: Updated Dashboard widget which now shows overview reports and is powered by VueJS.

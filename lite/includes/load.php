@@ -44,4 +44,8 @@ if ( is_admin() ) {
 		// Only load the Onboarding wizard if the required parameter is present.
 		require_once MONSTERINSIGHTS_PLUGIN_DIR . 'lite/includes/admin/onboarding-wizard.php';
 	}
+
+	// Site Health logic.
+	require_once MONSTERINSIGHTS_PLUGIN_DIR . 'lite/includes/admin/wp-site-health.php';
+
 }

@@ -94,9 +94,24 @@ if ( ! class_exists( 'AM_Notification', false ) ) {
 				return;
 			}
 
-			$last_checked = get_option( '_amn_' . $this->plugin . '_last_checked', strtotime( '-1 week' ) );
+			$to_check = get_option( '_amn_' . $this->plugin . '_to_check', false );
 
-			if ( $last_checked < strtotime( 'today midnight' ) ) {
+			if ( $to_check == false ) {
+				// Non load balanced. Start checking in in 7 days + 2-4 days.
+				$checktime = array();
+				$checktime['day']      = rand( 0, 6  );
+				$checktime['hour']     = rand( 0, 23 );
+				$checktime['minute']   = rand( 0, 59 );
+				$checktime['second']   = rand( 0, 59 );
+				$checktime['offset']   = ( $checktime['day']    * DAY_IN_SECONDS    ) +
+							( $checktime['hour']   * HOUR_IN_SECONDS   ) +
+							( $checktime['minute'] * MINUTE_IN_SECONDS ) +
+							$checktime['second'];
+				$to_check = strtotime("next sunday") + $checktime['offset'];
+				update_option( '_amn_' . $this->plugin . '_to_check', $to_check );
+			}
+
+			if ( $to_check < time() ) {
 				$plugin_notifications = $this->get_plugin_notifications( 1 );
 				$notification_id      = null;
 
@@ -158,7 +173,7 @@ if ( ! class_exists( 'AM_Notification', false ) ) {
 				}
 
 				// Set the option now so we can't run this again until after 24 hours.
-				update_option( '_amn_' . $this->plugin . '_last_checked', strtotime( 'today midnight' ) );
+				update_option( '_amn_' . $this->plugin . '_to_check', time() + 3 * DAY_IN_SECONDS );
 			}
 		}
 
@@ -355,7 +370,7 @@ if ( ! class_exists( 'AM_Notification', false ) ) {
 							$type = MonsterInsights()->license->get_network_license_type();
 						}
 
-						// Check key fallbacks
+						// Check key fallbacks.
 						if ( empty( $key ) ) {
 							$key = MonsterInsights()->license->get_license_key();
 						}
@@ -394,7 +409,7 @@ if ( ! class_exists( 'AM_Notification', false ) ) {
 			// Possibly set the level to 'unknown' if a key is entered, but no level can be determined (such as manually entered key)
 			if ( ! empty( $key ) && empty( $level ) ) {
 				$level = 'unknown';
-			}	
+			}
 
 			// Normalize the level.
 			switch ( $level ) {

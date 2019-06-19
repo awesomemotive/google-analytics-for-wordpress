@@ -66,7 +66,7 @@ function monsterinsights_admin_menu() {
     }
 
 	// Add About us page.
-	//	add_submenu_page( $hook, __( 'About Us:', 'google-analytics-for-wordpress' ), __( 'About Us', 'google-analytics-for-wordpress' ), 'manage_options', $submenu_base . '#/about' );
+	add_submenu_page( $hook, __( 'About Us:', 'google-analytics-for-wordpress' ), __( 'About Us', 'google-analytics-for-wordpress' ), 'manage_options', $submenu_base . '#/about' );
 }
 add_action( 'admin_menu', 'monsterinsights_admin_menu' );
 

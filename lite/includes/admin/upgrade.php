@@ -12,6 +12,12 @@ function monsterinsights_upgrade_license() {
 		wp_send_json_error( array( 'message' => esc_html__( 'You are not allowed to install plugins.', 'google-analytics-for-wordpress' ) ) );
 	}
 
+	if ( monsterinsights_is_dev_url( home_url() ) ) {
+		wp_send_json_success( array(
+			'url' => 'https://www.monsterinsights.com/docs/go-lite-pro/#manual-upgrade',
+		) );
+	}
+
 	// Check license key.
 	$license = monsterinsights_get_license_key();
 	if ( empty( $license ) ) {
@@ -55,7 +61,9 @@ function monsterinsights_upgrade_license() {
 	$updater = new MonsterInsights_Updater( $args );
 	$addons  = $updater->update_plugins_filter( $updater );
 	if ( empty( $addons->update->package ) ) {
-		wp_send_json_error();
+		wp_send_json_error( array(
+			'message' => esc_html__( 'We encountered a problem unlocking the PRO features. Please install the PRO version manually.', 'google-analytics-for-wordpress' ),
+		) );
 	}
 
 	// Redirect.
