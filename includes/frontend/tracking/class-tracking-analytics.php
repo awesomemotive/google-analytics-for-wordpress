@@ -127,8 +127,10 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 			$options['demographics'] = "'require', 'displayfeatures'";
 		}
 
-		// Add Enhanced link attribution
-		$options['enhanced_link_attribution'] = "'require', 'linkid', 'linkid.js'";
+		// Add Enhanced link attribution.
+		if ( monsterinsights_get_option( 'enhanced_link_attribution', false ) ) {
+			$options['enhanced_link_attribution'] = "'require', 'linkid', 'linkid.js'";
+		}
 
 		// Add cross-domain tracking.
 		if ( is_array( $cross_domains ) && ! empty( $cross_domains ) ) {

@@ -2,16 +2,16 @@
 # This file is distributed under the same license as the MonsterInsights Pro plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: MonsterInsights Pro 7.4.2\n"
+"Project-Id-Version: MonsterInsights Pro 7.7.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/monsterinsights\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-02-06T16:41:03+00:00\n"
+"POT-Creation-Date: 2019-06-18T15:41:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.1.0\n"
+"X-Generator: WP-CLI 2.2.0\n"
 "X-Domain: google-analytics-for-wordpress\n"
 
 #. Plugin Name of the plugin
@@ -27,11 +27,17 @@ msgid "The best Google Analytics plugin for WordPress. See how visitors find and
 msgstr ""
 
 #. Author of the plugin
-#: lite/includes/admin/dashboard-widget.php:58
 #: includes/admin/admin.php:38
 #: includes/admin/admin.php:41
 #: includes/admin/admin.php:51
-#: includes/admin/partials/header.php:20
+#: lite/includes/admin/dashboard-widget.php:90
+#: lite/includes/admin/wp-site-health.php:167
+#: lite/includes/admin/wp-site-health.php:219
+#: lite/includes/admin/wp-site-health.php:246
+#: lite/includes/admin/wp-site-health.php:284
+#: lite/includes/admin/wp-site-health.php:311
+#: lite/includes/admin/wp-site-health.php:338
+#: lite/includes/admin/wp-site-health.php:363
 msgid "MonsterInsights"
 msgstr ""
 
@@ -39,245 +45,257 @@ msgstr ""
 msgid "https://www.monsterinsights.com/?utm_source=proplugin&utm_medium=pluginheader&utm_campaign=authoruri&utm_content=7%2E0%2E0"
 msgstr ""
 
-#: lite/includes/admin/tools.php:10
-msgid "Want even more fine tuned control over your website analytics?"
+#: googleanalytics.php:272
+#: googleanalytics.php:286
+msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: lite/includes/admin/tools.php:11
-msgid "By upgrading to MonsterInsights Pro, you can unlock the MonsterInsights URL builder that helps you better track your advertising and email marketing campaigns."
+#: googleanalytics.php:422
+msgid "Sorry, but your version of WordPress does not meet MonsterInsights's required version of %1$s3.8%2$s to run properly. The plugin not been activated. %3$sClick here to return to the Dashboard%4$s."
 msgstr ""
 
-#: lite/includes/admin/tools.php:12
-msgid "Click here to Upgrade"
+#: googleanalytics.php:443
+msgid "Please %1$suninstall%2$s the MonsterInsights Lite Plugin. Your Pro version of MonsterInsights may not work as expected until the Lite version is uninstalled."
 msgstr ""
 
-#. Translators: %d is the number of days.
-#: lite/includes/admin/dashboard-widget.php:88
-#: lite/includes/admin/dashboard-widget.php:96
-msgid "Last %d days"
+#: includes/admin/admin.php:38
+#: includes/admin/admin.php:44
+#: includes/admin/admin.php:54
+#: includes/admin/admin.php:93
+#: languages/vue.php:167
+msgid "Insights"
 msgstr ""
 
-#: lite/includes/admin/dashboard-widget.php:102
-msgid "Show in full-width mode"
+#: includes/admin/admin.php:41
+#: includes/admin/admin.php:51
+#: includes/admin/admin.php:179
+msgid "Settings"
 msgstr ""
 
-#: lite/includes/admin/dashboard-widget.php:113
-msgid "View All Analytics on the WordPress Dashboard"
+#: includes/admin/admin.php:44
+msgid "General:"
 msgstr ""
 
-#: lite/includes/admin/dashboard-widget.php:114
-msgid "Once you upgrade to MonsterInsights Pro, you can see your analytics on the Dashboard"
+#: includes/admin/admin.php:48
+#: includes/admin/admin.php:54
+#: includes/admin/admin.php:97
+msgid "General Reports:"
 msgstr ""
 
-#: lite/includes/admin/dashboard-widget.php:115
-#: includes/admin/admin.php:160
-#: includes/admin/reports/abstract-report.php:338
+#: includes/admin/admin.php:48
+#: includes/admin/admin.php:97
+#: languages/vue.php:608
+msgid "Reports"
+msgstr ""
+
+#: includes/admin/admin.php:60
+msgid "Tools:"
+msgstr ""
+
+#: includes/admin/admin.php:60
+msgid "Tools"
+msgstr ""
+
+#: includes/admin/admin.php:65
+#: includes/admin/admin.php:100
+msgid "Addons:"
+msgstr ""
+
+#: includes/admin/admin.php:65
+#: includes/admin/admin.php:100
+msgid "Addons"
+msgstr ""
+
+#: includes/admin/admin.php:69
+msgid "About Us:"
+msgstr ""
+
+#: includes/admin/admin.php:69
+#: languages/vue.php:234
+msgid "About Us"
+msgstr ""
+
+#: includes/admin/admin.php:93
+#: includes/admin/admin.php:95
+msgid "Network Settings:"
+msgstr ""
+
+#: includes/admin/admin.php:95
+msgid "Network Settings"
+msgstr ""
+
+#: includes/admin/admin.php:161
+msgid "MonsterInsights Knowledge Base"
+msgstr ""
+
+#: includes/admin/admin.php:161
+msgid "Documentation"
+msgstr ""
+
+#: includes/admin/admin.php:166
+#: includes/admin/reports/abstract-report.php:358
 msgid "Get MonsterInsights Pro"
 msgstr ""
 
-#: lite/includes/admin/dashboard-widget.php:117
-msgid "Go to MonsterInsights Reports"
+#: includes/admin/admin.php:172
+#: includes/admin/admin.php:175
+#: languages/vue.php:945
+msgid "Support"
 msgstr ""
 
-#: lite/includes/admin/dashboard-widget.php:133
-msgid "Reports are not available"
+#: includes/admin/admin.php:238
+msgid "Please rate %sMonsterInsights%s %s on %sWordPress.org%s to help us spread the word. Thank you from the MonsterInsights team!"
 msgstr ""
 
-#: lite/includes/admin/dashboard-widget.php:134
-msgid "Please connect MonsterInsights to Google Analytics to see reports."
+#: includes/admin/admin.php:272
+msgid "Please configure your %1$sGoogle Analytics settings%2$s!"
 msgstr ""
 
-#: lite/includes/admin/dashboard-widget.php:135
-msgid "Configure MonsterInsights"
+#: includes/admin/admin.php:281
+msgid "Warning: No valid license key has been entered for MonsterInsights. You are currently not getting updates, and are not able to view reports. %1$sPlease click here to enter your license key and begin receiving updates and reports.%2$s"
 msgstr ""
 
-#: lite/includes/admin/onboarding-wizard.php:157
-msgid "MonsterInsights &rsaquo; Onboarding Wizard"
+#. Translators: The link to the MonsterInsights website.
+#: includes/admin/admin.php:291
+#: includes/admin/licensing/license-actions.php:298
+#: includes/license.php:278
+#: includes/license.php:289
+msgid "Your license key for MonsterInsights has expired. %1$sPlease click here to renew your license key.%2$s"
 msgstr ""
 
-#: lite/includes/admin/onboarding-wizard.php:236
-msgid "You are not allowed to install plugins"
+#: includes/admin/admin.php:293
+#: includes/admin/licensing/license-actions.php:307
+#: includes/license.php:280
+#: includes/license.php:291
+#: languages/vue.php:1242
+msgid "Your license key for MonsterInsights has been disabled. Please use a different key."
 msgstr ""
 
-#. Translators: The placeholders are for making the "We noticed you're using a caching plugin" text bold.
-#: lite/includes/admin/onboarding-wizard.php:332
-msgid "%1$sWe noticed you're using a caching plugin.%2$s Be sure to clear the cache to ensure the tracking appears on all pages and posts. %3$s(See this guide on how to clear cache)%4$s."
+#: includes/admin/admin.php:295
+#: includes/admin/licensing/license-actions.php:288
+#: includes/license.php:282
+#: includes/license.php:293
+#: languages/vue.php:1245
+msgid "Your license key for MonsterInsights is invalid. The key no longer exists or the user associated with the key has been deleted. Please use a different key."
 msgstr ""
 
-#: lite/includes/admin/reports/report-queries.php:22
-msgid "Search Console"
+#: includes/admin/admin.php:299
+msgid "Your network license key for MonsterInsights has expired. %1$sPlease click here to renew your license key.%2$s"
 msgstr ""
 
-#: lite/includes/admin/reports/report-ecommerce.php:22
-#: languages/vue.php:69
-msgid "eCommerce"
+#: includes/admin/admin.php:301
+msgid "Your network license key for MonsterInsights has been disabled. Please use a different key."
 msgstr ""
 
-#: lite/includes/admin/reports/report-realtime.php:22
-msgid "Real Time"
+#: includes/admin/admin.php:303
+msgid "Your network license key for MonsterInsights is invalid. The key no longer exists or the user associated with the key has been deleted. Please use a different key."
 msgstr ""
 
-#: lite/includes/admin/reports/report-publisher.php:22
-msgid "Publishers"
+#: includes/admin/admin.php:319
+msgid "Your site is running an outdated, insecure version of PHP (%1$s), which could be putting your site at risk for being hacked.%4$sWordPress will stop supporting your PHP version in April, 2019.%4$sUpdating PHP only takes a few minutes and will make your website significantly faster and more secure.%4$s%2$sLearn more about updating PHP%3$s"
 msgstr ""
 
-#: lite/includes/admin/reports/report-dimensions.php:22
-msgid "Dimensions"
+#: includes/admin/admin.php:326
+msgid "Your site is running an outdated version of WordPress (%1$s).%4$sMonsterInsights will stop supporting WordPress versions lower than 4.6 in April, 2019.%4$sUpdating WordPress takes just a few minutes and will also solve many bugs that exist in your WordPress install.%4$s%2$sLearn more about updating WordPress%3$s"
 msgstr ""
 
-#: lite/includes/admin/reports/report-forms.php:22
-msgid "Forms"
+#: includes/admin/admin.php:383
+msgid "Important: You are currently using manual UA code output. We highly recommend %1$sauthenticating with MonsterInsights%2$s so that you can access our new reporting area and take advantage of new MonsterInsights features."
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-preview.php:77
-msgid "You are currently in a preview window. MonsterInsights doesn't track preview window traffic to avoid false visit reports."
+#: includes/admin/admin.php:425
+#: includes/admin/admin.php:456
+msgid "%1$sGet MonsterInsights Pro%2$s"
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-analytics.php:200
-msgid "Note: MonsterInsights is not currently configured on this site. The site owner needs to authenticate with Google Analytics in the MonsterInsights settings panel."
+#: includes/admin/admin.php:469
+msgid "Warning: MonsterInsights found cross-domain settings in the custom code field and converted them to the new settings structure.  %1$sPlease click here to review and remove the code no longer needed.%2$s"
 msgstr ""
 
-#: includes/frontend/tracking/class-tracking-analytics.php:203
-msgid "Note: MonsterInsights does not track you as a logged in site administrator to prevent site owners from accidentally skewing their own Google Analytics data."
-msgstr ""
-
-#: includes/frontend/tracking/class-tracking-analytics.php:206
-msgid "Note: The site owner has disabled Google Analytics tracking for your user role."
-msgstr ""
-
-#: includes/frontend/tracking/class-tracking-analytics.php:282
-msgid "Not running function"
-msgstr ""
-
-#: includes/frontend/tracking/class-tracking-analytics.php:282
-msgid "because you are not being tracked."
-msgstr ""
-
-#: includes/admin/review.php:100
-msgid "Hey, I noticed you've been using MonsterInsights for a while - that’s awesome! Could you please do me a BIG favor and give it a 5-star rating on WordPress to help us spread the word and boost our motivation?"
-msgstr ""
-
-#: includes/admin/review.php:101
-msgid "~ Syed Balkhi<br>Co-Founder of MonsterInsights"
-msgstr ""
-
-#: includes/admin/review.php:103
-msgid "Ok, you deserve it"
-msgstr ""
-
-#: includes/admin/review.php:104
-msgid "Nope, maybe later"
-msgstr ""
-
-#: includes/admin/review.php:105
-msgid "I already did"
-msgstr ""
-
-#: includes/admin/tracking.php:242
-msgid "Once Weekly"
-msgstr ""
-
-#: includes/admin/routes.php:377
-msgid "Invalid UA code"
-msgstr ""
-
-#: includes/admin/routes.php:404
-msgid "Please upload a valid .json file"
-msgstr ""
-
-#: includes/admin/routes.php:413
-msgid "Please upload a file to import"
-msgstr ""
-
-#: includes/admin/api-auth.php:83
+#: includes/admin/api-auth.php:85
 msgid "You don't have permission to authenticate MonsterInsights."
 msgstr ""
 
-#: includes/admin/api-auth.php:93
+#: includes/admin/api-auth.php:95
 msgid "Cannot authenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings."
 msgstr ""
 
-#: includes/admin/api-auth.php:98
+#: includes/admin/api-auth.php:100
 msgid "Cannot authenticate. Please re-authenticate."
 msgstr ""
 
-#: includes/admin/api-auth.php:100
+#: includes/admin/api-auth.php:102
 msgid "Cannot network authenticate. Please re-authenticate on the network settings panel."
 msgstr ""
 
-#: includes/admin/api-auth.php:232
+#: includes/admin/api-auth.php:238
 msgid "You don't have permission to re-authenticate MonsterInsights."
 msgstr ""
 
-#: includes/admin/api-auth.php:242
+#: includes/admin/api-auth.php:248
 msgid "Cannot re-authenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings."
 msgstr ""
 
-#: includes/admin/api-auth.php:247
+#: includes/admin/api-auth.php:253
 msgid "Cannot re-authenticate. Please authenticate."
 msgstr ""
 
-#: includes/admin/api-auth.php:249
+#: includes/admin/api-auth.php:255
 msgid "Cannot re-authenticate the network. Please authenticate on the network settings panel."
 msgstr ""
 
-#: includes/admin/api-auth.php:351
+#: includes/admin/api-auth.php:357
 msgid "You don't have permission to verify MonsterInsights."
 msgstr ""
 
-#: includes/admin/api-auth.php:360
-#: includes/admin/api-auth.php:362
+#: includes/admin/api-auth.php:366
+#: includes/admin/api-auth.php:368
 msgid "Cannot verify. Please authenticate."
 msgstr ""
 
-#: includes/admin/api-auth.php:367
+#: includes/admin/api-auth.php:373
 msgid "Cannot verify. Please enter a valid, active license key for MonsterInsights Pro into the settings."
 msgstr ""
 
-#: includes/admin/api-auth.php:372
+#: includes/admin/api-auth.php:378
 msgid "Successfully verified."
 msgstr ""
 
-#: includes/admin/api-auth.php:374
+#: includes/admin/api-auth.php:380
 msgid "Could not verify."
 msgstr ""
 
-#: includes/admin/api-auth.php:382
+#: includes/admin/api-auth.php:388
 msgid "Verify auth key not passed"
 msgstr ""
 
-#: includes/admin/api-auth.php:404
+#: includes/admin/api-auth.php:410
 msgid "You don't have permission to deauthenticate MonsterInsights."
 msgstr ""
 
-#: includes/admin/api-auth.php:413
-#: includes/admin/api-auth.php:415
+#: includes/admin/api-auth.php:419
+#: includes/admin/api-auth.php:421
 msgid "Cannot deauthenticate. You are not currently authed."
 msgstr ""
 
-#: includes/admin/api-auth.php:420
+#: includes/admin/api-auth.php:426
 msgid "Cannot deauthenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings."
 msgstr ""
 
-#: includes/admin/api-auth.php:427
+#: includes/admin/api-auth.php:433
 msgid "Successfully deauthenticated."
 msgstr ""
 
-#: includes/admin/api-auth.php:430
+#: includes/admin/api-auth.php:436
 msgid "Successfully force deauthenticated."
 msgstr ""
 
-#: includes/admin/api-auth.php:432
+#: includes/admin/api-auth.php:438
 msgid "Could not deauthenticate."
 msgstr ""
 
-#: includes/admin/licensing/skin.php:86
-msgid "There was an error installing the addon. Please try again."
-msgstr ""
-
-#. Translators: First one is a link to the settings page, second one is closing tag, third is a link to MonsterInsights.com
-#: includes/admin/licensing/updater.php:151
-msgid "In order to enable updates, you need to have a valid license key on the %1$ssettings page%2$s. If your license key is expired or you need a new key, then %3$sclick here to purchase MonsterInsights Pro%2$s."
+#: includes/admin/common.php:754
+msgid "MonsterInsights has detected that it's files are being blocked. This is usually caused by a adblock browser plugin (particularly uBlock Origin), or a conflicting WordPress theme or plugin. This issue only affects the admin side of MonsterInsights. To solve this, ensure MonsterInsights is whitelisted for your website URL in any adblock browser plugin you use. For step by step directions on how to do this, %1$sclick here%2$s. If this doesn't solve the issue (rare), send us a ticket %3$shere%2$s and we'll be happy to help diagnose the issue."
 msgstr ""
 
 #: includes/admin/licensing/license-actions.php:117
@@ -301,30 +319,6 @@ msgstr ""
 msgid "Congratulations! This site is now receiving automatic updates."
 msgstr ""
 
-#: includes/admin/licensing/license-actions.php:288
-#: includes/admin/admin.php:316
-#: includes/license.php:282
-#: includes/license.php:293
-#: languages/vue.php:117
-msgid "Your license key for MonsterInsights is invalid. The key no longer exists or the user associated with the key has been deleted. Please use a different key."
-msgstr ""
-
-#. Translators: The link to the MonsterInsights website.
-#: includes/admin/licensing/license-actions.php:298
-#: includes/admin/admin.php:312
-#: includes/license.php:278
-#: includes/license.php:289
-msgid "Your license key for MonsterInsights has expired. %1$sPlease click here to renew your license key.%2$s"
-msgstr ""
-
-#: includes/admin/licensing/license-actions.php:307
-#: includes/admin/admin.php:314
-#: includes/license.php:280
-#: includes/license.php:291
-#: languages/vue.php:114
-msgid "Your license key for MonsterInsights has been disabled. Please use a different key."
-msgstr ""
-
 #: includes/admin/licensing/license-actions.php:317
 msgid "Congratulations! Your key has been refreshed successfully."
 msgstr ""
@@ -342,317 +336,13 @@ msgstr ""
 msgid "Congratulations! You have deactivated the key from this site successfully."
 msgstr ""
 
-#: includes/admin/common.php:257
-msgid "Loading..."
+#: includes/admin/licensing/skin.php:86
+msgid "There was an error installing the addon. Please try again."
 msgstr ""
 
-#: includes/admin/common.php:258
-msgid "Warning: You have unsaved setting changes. If you leave the settings page without saving your changes will be lost. Did you still want to leave the page?"
-msgstr ""
-
-#: includes/admin/common.php:260
-msgid "Status: Active"
-msgstr ""
-
-#: includes/admin/common.php:261
-#: languages/vue.php:99
-msgid "Activate"
-msgstr ""
-
-#: includes/admin/common.php:262
-msgid "Status: Network Activated"
-msgstr ""
-
-#: includes/admin/common.php:263
-msgid "Network activate"
-msgstr ""
-
-#: includes/admin/common.php:265
-#: languages/vue.php:913
-msgid "Activating..."
-msgstr ""
-
-#: includes/admin/common.php:266
-#: languages/vue.php:919
-msgid "Deactivate"
-msgstr ""
-
-#: includes/admin/common.php:267
-msgid "Network deactivate"
-msgstr ""
-
-#: includes/admin/common.php:269
-#: languages/vue.php:916
-msgid "Deactivating..."
-msgstr ""
-
-#: includes/admin/common.php:270
-msgid "Status: Inactive"
-msgstr ""
-
-#: includes/admin/common.php:271
-msgid "Status: Network inactive"
-msgstr ""
-
-#: includes/admin/common.php:272
-#: languages/vue.php:102
-msgid "Install"
-msgstr ""
-
-#: includes/admin/common.php:274
-#: languages/vue.php:497
-msgid "Installing..."
-msgstr ""
-
-#: includes/admin/common.php:275
-#: languages/vue.php:922
-msgid "Proceed"
-msgstr ""
-
-#: includes/admin/common.php:277
-msgid "Copied!"
-msgstr ""
-
-#: includes/admin/common.php:278
-msgid "Copy to Clipboard"
-msgstr ""
-
-#: includes/admin/common.php:279
-msgid "Failed!"
-msgstr ""
-
-#: includes/admin/common.php:281
-msgid "Shorten URL"
-msgstr ""
-
-#: includes/admin/common.php:282
-msgid "Shortened!"
-msgstr ""
-
-#: includes/admin/common.php:283
-msgid "Working..."
-msgstr ""
-
-#: includes/admin/common.php:284
-#: languages/vue.php:730
-msgid "Import"
-msgstr ""
-
-#: includes/admin/common.php:285
-msgid "Imported!"
-msgstr ""
-
-#: includes/admin/common.php:286
-msgid "Preparing to redirect:"
-msgstr ""
-
-#: includes/admin/common.php:287
-msgid "You'll be redirected momentarily to complete authentication. This may take a couple seconds."
-msgstr ""
-
-#: includes/admin/common.php:288
-msgid "Authentication Error:"
-msgstr ""
-
-#: includes/admin/common.php:289
-msgid "Deauthenticating...."
-msgstr ""
-
-#: includes/admin/common.php:290
-msgid "We're deactivating your site. This may take a couple seconds."
-msgstr ""
-
-#: includes/admin/common.php:291
-msgid "Deactivation Error:"
-msgstr ""
-
-#: includes/admin/common.php:292
-#: includes/admin/common.php:314
-msgid "Deactivated Successfully!"
-msgstr ""
-
-#: includes/admin/common.php:293
-#: languages/vue.php:135
-msgid "You've disconnected your site from MonsterInsights. Your site is no longer being tracked by Google Analytics and you won't see reports anymore."
-msgstr ""
-
-#: includes/admin/common.php:294
-#: includes/admin/common.php:307
-#: includes/admin/common.php:312
-msgid "Verifying...."
-msgstr ""
-
-#: includes/admin/common.php:295
-msgid "We're verifying your site. This may take a couple seconds."
-msgstr ""
-
-#: includes/admin/common.php:296
-#: includes/admin/common.php:309
-msgid "Verification Error:"
-msgstr ""
-
-#: includes/admin/common.php:297
-#: includes/admin/common.php:310
-msgid "Verified Successfully!"
-msgstr ""
-
-#: includes/admin/common.php:298
-#: languages/vue.php:129
-msgid "Your site is connected to MonsterInsights!"
-msgstr ""
-
-#: includes/admin/common.php:299
-msgid "OK"
-msgstr ""
-
-#: includes/admin/common.php:300
-#: languages/vue.php:171
-msgid "Force Deauthenticate"
-msgstr ""
-
-#: includes/admin/common.php:301
-msgid "Refreshing Report"
-msgstr ""
-
-#: includes/admin/common.php:302
-msgid "Loading new report data..."
-msgstr ""
-
-#: includes/admin/common.php:303
-msgid "Success"
-msgstr ""
-
-#: includes/admin/common.php:304
-msgid "Retrieved the new report data successfully"
-msgstr ""
-
-#: includes/admin/common.php:305
-#: languages/vue.php:138
-msgid "Error"
-msgstr ""
-
-#: includes/admin/common.php:308
-msgid "We're verifying your license. This may take a couple seconds."
-msgstr ""
-
-#: includes/admin/common.php:311
-msgid "Verify Key"
-msgstr ""
-
-#: includes/admin/common.php:313
-msgid "We're deactivating your license. This may take a couple seconds."
-msgstr ""
-
-#: includes/admin/common.php:788
-msgid "MonsterInsights has detected that it's files are being blocked. This is usually caused by a adblock browser plugin (particularly uBlock Origin), or a conflicting WordPress theme or plugin. This issue only affects the admin side of MonsterInsights. To solve this, ensure MonsterInsights is whitelisted for your website URL in any adblock browser plugin you use. For step by step directions on how to do this, %1$sclick here%2$s. If this doesn't solve the issue (rare), send us a ticket %3$shere%2$s and we'll be happy to help diagnose the issue."
-msgstr ""
-
-#: includes/admin/admin.php:38
-#: includes/admin/admin.php:44
-#: includes/admin/admin.php:87
-msgid "Insights"
-msgstr ""
-
-#: includes/admin/admin.php:41
-#: includes/admin/admin.php:51
-#: includes/admin/admin.php:173
-msgid "Settings"
-msgstr ""
-
-#: includes/admin/admin.php:44
-msgid "General:"
-msgstr ""
-
-#: includes/admin/admin.php:48
-#: includes/admin/admin.php:91
-msgid "General Reports:"
-msgstr ""
-
-#: includes/admin/admin.php:48
-#: includes/admin/admin.php:91
-#: languages/vue.php:400
-msgid "Reports"
-msgstr ""
-
-#: includes/admin/admin.php:57
-msgid "Tools:"
-msgstr ""
-
-#: includes/admin/admin.php:57
-msgid "Tools"
-msgstr ""
-
-#: includes/admin/admin.php:62
-#: includes/admin/admin.php:94
-msgid "Addons:"
-msgstr ""
-
-#: includes/admin/admin.php:62
-#: includes/admin/admin.php:94
-msgid "Addons"
-msgstr ""
-
-#: includes/admin/admin.php:87
-#: includes/admin/admin.php:89
-msgid "Network Settings:"
-msgstr ""
-
-#: includes/admin/admin.php:89
-msgid "Network Settings"
-msgstr ""
-
-#: includes/admin/admin.php:155
-msgid "MonsterInsights Knowledge Base"
-msgstr ""
-
-#: includes/admin/admin.php:155
-msgid "Documentation"
-msgstr ""
-
-#: includes/admin/admin.php:166
-#: includes/admin/admin.php:169
-msgid "Support"
-msgstr ""
-
-#: includes/admin/admin.php:259
-msgid "Please rate %sMonsterInsights%s %s on %sWordPress.org%s to help us spread the word. Thank you from the MonsterInsights team!"
-msgstr ""
-
-#: includes/admin/admin.php:293
-msgid "Please configure your %1$sGoogle Analytics settings%2$s!"
-msgstr ""
-
-#: includes/admin/admin.php:302
-msgid "Warning: No valid license key has been entered for MonsterInsights. You are currently not getting updates, and are not able to view reports. %1$sPlease click here to enter your license key and begin receiving updates and reports.%2$s"
-msgstr ""
-
-#: includes/admin/admin.php:320
-msgid "Your network license key for MonsterInsights has expired. %1$sPlease click here to renew your license key.%2$s"
-msgstr ""
-
-#: includes/admin/admin.php:322
-msgid "Your network license key for MonsterInsights has been disabled. Please use a different key."
-msgstr ""
-
-#: includes/admin/admin.php:324
-msgid "Your network license key for MonsterInsights is invalid. The key no longer exists or the user associated with the key has been deleted. Please use a different key."
-msgstr ""
-
-#: includes/admin/admin.php:340
-msgid "Your site is running an outdated, insecure version of PHP (%1$s), which could be putting your site at risk for being hacked.%4$sWordPress will stop supporting your PHP version in April, 2019.%4$sUpdating PHP only takes a few minutes and will make your website significantly faster and more secure.%4$s%2$sLearn more about updating PHP%3$s"
-msgstr ""
-
-#: includes/admin/admin.php:347
-msgid "Your site is running an outdated version of WordPress (%1$s).%4$sMonsterInsights will stop supporting WordPress versions lower than 4.6 in April, 2019.%4$sUpdating WordPress takes just a few minutes and will also solve many bugs that exist in your WordPress install.%4$s%2$sLearn more about updating WordPress%3$s"
-msgstr ""
-
-#: includes/admin/admin.php:404
-msgid "Important: You are currently using manual UA code output. We highly recommend %1$sauthenticating with MonsterInsights%2$s so that you can access our new reporting area and take advantage of new MonsterInsights features."
-msgstr ""
-
-#: includes/admin/admin.php:446
-#: includes/admin/admin.php:477
-msgid "%1$sGet MonsterInsights Pro%2$s"
+#. Translators: First one is a link to the settings page, second one is closing tag, third is a link to MonsterInsights.com
+#: includes/admin/licensing/updater.php:151
+msgid "In order to enable updates, you need to have a valid license key on the %1$ssettings page%2$s. If your license key is expired or you need a new key, then %3$sclick here to purchase MonsterInsights Pro%2$s."
 msgstr ""
 
 #: includes/admin/notice.php:225
@@ -687,292 +377,203 @@ msgstr ""
 msgid "View supported browsers"
 msgstr ""
 
-#: includes/admin/pages/reports.php:93
-msgid "%s Report"
-msgstr ""
-
-#: includes/admin/pages/reports.php:143
-msgid "You don't have permission to view MonsterInsights reports."
-msgstr ""
-
-#: includes/admin/pages/reports.php:153
-msgid "You can't view MonsterInsights reports because you are not licensed."
-msgstr ""
-
-#: includes/admin/pages/reports.php:159
-msgid "You can't view MonsterInsights reports due to license key errors."
-msgstr ""
-
-#: includes/admin/pages/reports.php:167
-msgid "You must authenticate with MonsterInsights before you can view reports."
-msgstr ""
-
-#: includes/admin/pages/reports.php:171
-#: includes/admin/pages/reports.php:177
-msgid "Unknown report. Try refreshing and retrying. Contact support if this issue persists."
-msgstr ""
-
-#: includes/admin/reports/overview.php:34
-msgid "Overview"
-msgstr ""
-
-#: includes/admin/reports/overview.php:80
-msgid "UP"
-msgstr ""
-
-#: includes/admin/reports/overview.php:81
-msgid "DOWN"
-msgstr ""
-
-#: includes/admin/reports/overview.php:82
-msgid "Unique"
-msgstr ""
-
-#: includes/admin/reports/overview.php:82
-#: includes/admin/reports/overview.php:354
-#: includes/admin/reports/overview.php:394
-msgid "Sessions"
-msgstr ""
-
-#: includes/admin/reports/overview.php:82
-#: includes/admin/reports/overview.php:359
-#: includes/admin/reports/overview.php:421
-#: includes/admin/reports/overview.php:423
-msgid "Pageviews"
-msgstr ""
-
-#: includes/admin/reports/overview.php:388
-msgid "Up"
-msgstr ""
-
-#: includes/admin/reports/overview.php:389
-msgid "Down"
-msgstr ""
-
-#: includes/admin/reports/overview.php:396
-msgid "Session"
-msgstr ""
-
-#: includes/admin/reports/overview.php:396
-msgid "A session is the browsing session of a single user to your site."
-msgstr ""
-
-#: includes/admin/reports/overview.php:402
-#: includes/admin/reports/overview.php:429
-#: includes/admin/reports/overview.php:456
-#: includes/admin/reports/overview.php:483
-msgid "No change"
-msgstr ""
-
-#: includes/admin/reports/overview.php:416
-#: includes/admin/reports/overview.php:443
-#: includes/admin/reports/overview.php:470
-#: includes/admin/reports/overview.php:497
-msgid "vs. Previous %s Days"
-msgstr ""
-
-#: includes/admin/reports/overview.php:423
-msgid "A pageview is defined as a view of a page on your site that is being tracked by the Analytics tracking code. Each refresh of a page is also a new pageview."
-msgstr ""
-
-#: includes/admin/reports/overview.php:448
-msgid "Avg. Session Duration"
-msgstr ""
-
-#: includes/admin/reports/overview.php:450
-msgid "Average Session Duration"
-msgstr ""
-
-#: includes/admin/reports/overview.php:450
-msgid "Total duration of all sessions (in seconds) / number of sessions."
-msgstr ""
-
-#: includes/admin/reports/overview.php:475
-#: includes/admin/reports/overview.php:477
-msgid "Bounce Rate"
-msgstr ""
-
-#: includes/admin/reports/overview.php:477
-msgid "Percentage of single page visits (or web sessions). It is the number of visits in which a person leaves your website from the landing page without browsing any further."
-msgstr ""
-
-#: includes/admin/reports/overview.php:509
-#: includes/admin/reports/overview.php:511
-msgid "New vs. Returning Visitors"
-msgstr ""
-
-#: includes/admin/reports/overview.php:511
-msgid "This graph shows what percent of your user sessions come from new versus repeat visitors."
-msgstr ""
-
-#: includes/admin/reports/overview.php:603
-msgid "New"
-msgstr ""
-
-#: includes/admin/reports/overview.php:604
-msgid "Returning"
-msgstr ""
-
-#: includes/admin/reports/overview.php:683
-#: includes/admin/reports/overview.php:685
-msgid "Device Breakdown"
-msgstr ""
-
-#: includes/admin/reports/overview.php:685
-msgid "This graph shows what percent of your visitor sessions are done using a traditional computer or laptop, tablet or mobile device to view your site."
-msgstr ""
-
-#: includes/admin/reports/overview.php:779
-msgid "Desktop"
-msgstr ""
-
-#: includes/admin/reports/overview.php:780
-msgid "Tablet"
-msgstr ""
-
-#: includes/admin/reports/overview.php:781
-msgid "Mobile"
-msgstr ""
-
-#: includes/admin/reports/overview.php:860
-#: includes/admin/reports/overview.php:862
-msgid "Top 10 Countries"
-msgstr ""
-
-#: includes/admin/reports/overview.php:862
-msgid "This list shows the top countries your website visitors are from."
-msgstr ""
-
-#: includes/admin/reports/overview.php:883
-msgid "View Full Countries Report"
-msgstr ""
-
-#: includes/admin/reports/overview.php:883
-msgid "View All Countries Report"
-msgstr ""
-
-#: includes/admin/reports/overview.php:895
-#: includes/admin/reports/overview.php:897
-msgid "Referrals"
-msgstr ""
-
-#: includes/admin/reports/overview.php:897
-msgid "This list shows the top websites that send your website traffic, known as \"referral traffic\"."
-msgstr ""
-
-#: includes/admin/reports/overview.php:924
-msgid "View All Referral Sources"
-msgstr ""
-
-#: includes/admin/reports/overview.php:935
-#: includes/admin/reports/overview.php:938
-msgid "Top Posts / Pages"
-msgstr ""
-
-#: includes/admin/reports/overview.php:938
-msgid "This list shows the most viewed posts and pages on your website."
-msgstr ""
-
-#: includes/admin/reports/overview.php:970
-msgid "Show"
-msgstr ""
-
-#: includes/admin/reports/overview.php:971
-msgid "How many to show"
-msgstr ""
-
-#: includes/admin/reports/overview.php:982
-msgid "View Full Post/Page Report"
-msgstr ""
-
 #: includes/admin/reports/abstract-report.php:54
 msgid "Access denied"
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:62
+#: includes/admin/reports/abstract-report.php:63
 msgid "Please %1$senable the dashboard%2$s to see report data."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:68
+#: includes/admin/reports/abstract-report.php:69
 msgid "The dashboard is disabled."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:75
+#: includes/admin/reports/abstract-report.php:77
 msgid "You do not have an active license. Please %1$scheck your license configuration.%2$s"
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:86
+#: includes/admin/reports/abstract-report.php:89
 msgid "Please %1$sauthenticate %2$swith Google Analytics to allow the plugin to fetch data."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:92
+#: includes/admin/reports/abstract-report.php:95
 msgid "The Google oAuth authentication needs to be re-authenticated to view data."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:117
+#: includes/admin/reports/abstract-report.php:120
 msgid "No data found"
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:163
+#: includes/admin/reports/abstract-report.php:166
 msgid "Invalid date range."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:264
+#: includes/admin/reports/abstract-report.php:267
 msgid "You must authenticate with MonsterInsights to use reports."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:307
+#: includes/admin/reports/abstract-report.php:316
 msgid "You currently have a %s level license, but this report requires at least a %s level license to view the %s. Please upgrade to view this report."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:316
+#: includes/admin/reports/abstract-report.php:328
 msgid "Ready to Get Analytics Super-Powers?"
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:317
+#: includes/admin/reports/abstract-report.php:330
 msgid "(And Crush Your Competition?)"
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:319
+#: includes/admin/reports/abstract-report.php:333
 msgid ""
-"Hey there! It looks like you've got the %s license installed on your site.\n"
+"Hey there! It looks like you've got the %s license installed on your site.\n"
 "\t\t\t\t\t\t\t\t\t  That's awesome! %s"
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:322
+#: includes/admin/reports/abstract-report.php:336
 msgid "Do you want to access to %s reporting right now%s in your WordPress Dashboard? That comes with the %s level%s of our paid packages. You'll need to upgrade your license to get instant access."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:323
+#: includes/admin/reports/abstract-report.php:338
 msgid "It's easy! To upgrade, navigate to %sMy Account%s on MonsterInsights.com, go to the licenses tab, and click upgrade. We also have a %sstep by step guide%s with pictures of this process."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:324
-#: includes/admin/reports/abstract-report.php:331
+#: includes/admin/reports/abstract-report.php:340
+#: includes/admin/reports/abstract-report.php:349
 msgid "If you have any questions, don't hesitate to reach out. We're here to help."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:326
+#: includes/admin/reports/abstract-report.php:342
 msgid ""
-"Hey there! %s It looks like you've got the free version of MonsterInsights installed on your site.\n"
+"Hey there! %s It looks like you've got the free version of MonsterInsights installed on your site.\n"
 "\t\t\t\t\t\t\t\t\t  That's awesome!"
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:329
+#: includes/admin/reports/abstract-report.php:345
 msgid "Do you you want to access to %s reporting right now%s in your WordPress Dashboard? That comes with %s level%s of our paid packages. To get instant access, you'll want to buy a MonsterInsights license, which also gives you access to powerful addons, expanded reporting (including the ability to use custom date ranges), comprehensive tracking features (like UserID tracking) and access to our world-class support team."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:330
+#: includes/admin/reports/abstract-report.php:347
 msgid "Upgrading is easy! To upgrade, navigate to %sour pricing page%s, purchase the required license, and then follow the %sinstructions in the email receipt%s to upgrade. It only takes a few minutes to unlock the most powerful, yet easy to use analytics tracking system for WordPress."
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:336
-#: languages/vue.php:901
+#: includes/admin/reports/abstract-report.php:355
+#: languages/vue.php:1323
 msgid "Upgrade Now"
 msgstr ""
 
-#: includes/admin/reports/abstract-report.php:370
+#: includes/admin/reports/abstract-report.php:391
 msgid "Visit addons page"
+msgstr ""
+
+#: includes/admin/reports/abstract-report.php:393
+msgid "Please ask your webmaster to enable this addon."
+msgstr ""
+
+#: includes/admin/reports/overview.php:34
+#: languages/vue.php:209
+msgid "Overview"
+msgstr ""
+
+#: includes/admin/review.php:98
+msgid "Are you enjoying MonsterInsights?"
+msgstr ""
+
+#: includes/admin/review.php:100
+msgid "Yes"
+msgstr ""
+
+#: includes/admin/review.php:101
+msgid "Not Really"
+msgstr ""
+
+#: includes/admin/review.php:105
+msgid "We're sorry to hear you aren't enjoying MonsterInsights. We would love a chance to improve. Could you take a minute and let us know what we can do better?"
+msgstr ""
+
+#: includes/admin/review.php:107
+msgid "Give Feedback"
+msgstr ""
+
+#: includes/admin/review.php:108
+msgid "No thanks"
+msgstr ""
+
+#: includes/admin/review.php:112
+msgid "That’s awesome! Could you please do me a BIG favor and give it a 5-star rating on WordPress to help us spread the word and boost our motivation?"
+msgstr ""
+
+#: includes/admin/review.php:113
+msgid "~ Syed Balkhi<br>Co-Founder of MonsterInsights"
+msgstr ""
+
+#: includes/admin/review.php:115
+msgid "Ok, you deserve it"
+msgstr ""
+
+#: includes/admin/review.php:116
+msgid "Nope, maybe later"
+msgstr ""
+
+#: includes/admin/review.php:117
+msgid "I already did"
+msgstr ""
+
+#: includes/admin/routes.php:270
+msgid "The most beginner friendly drag & drop WordPress forms plugin allowing you to create beautiful contact forms, subscription forms, payment forms, and more in minutes, not hours!"
+msgstr ""
+
+#: includes/admin/routes.php:279
+msgid "Our high-converting optin forms like Exit-Intent® popups, Fullscreen Welcome Mats, and Scroll boxes help you dramatically boost conversions and get more email subscribers."
+msgstr ""
+
+#: includes/admin/routes.php:289
+msgid "SMTP (Simple Mail Transfer Protocol) is an industry standard for sending emails. SMTP helps increase email deliverability by using proper authentication"
+msgstr ""
+
+#: includes/admin/routes.php:409
+msgid "Invalid UA code"
+msgstr ""
+
+#: includes/admin/routes.php:436
+msgid "Please upload a valid .json file"
+msgstr ""
+
+#: includes/admin/routes.php:445
+msgid "Please upload a file to import"
+msgstr ""
+
+#: includes/admin/routes.php:496
+msgid "You don't have permission to view MonsterInsights reports."
+msgstr ""
+
+#: includes/admin/routes.php:508
+msgid "You can't view MonsterInsights reports because you are not licensed."
+msgstr ""
+
+#: includes/admin/routes.php:509
+msgid "Add your license"
+msgstr ""
+
+#: includes/admin/routes.php:516
+msgid "You can't view MonsterInsights reports due to license key errors."
+msgstr ""
+
+#: includes/admin/routes.php:524
+msgid "You must authenticate with MonsterInsights before you can view reports."
+msgstr ""
+
+#: includes/admin/routes.php:530
+msgid "Unknown report. Try refreshing and retrying. Contact support if this issue persists."
+msgstr ""
+
+#: includes/admin/routes.php:566
+msgid "We encountered an error when fetching the report data."
+msgstr ""
+
+#: includes/admin/tracking.php:242
+msgid "Once Weekly"
 msgstr ""
 
 #: includes/api-request.php:191
@@ -1000,21 +601,53 @@ msgstr ""
 msgid "Improper API request."
 msgstr ""
 
-#: includes/api-request.php:383
+#: includes/api-request.php:384
 msgid "Reason: The API was unreachable because the Airplane Mode plugin is active."
 msgstr ""
 
-#: includes/api-request.php:396
+#: includes/api-request.php:397
 msgid "Reason: The API was unreachable because the API url is on the WP HTTP blocklist."
 msgstr ""
 
-#: includes/api-request.php:411
-#: includes/api-request.php:433
+#: includes/api-request.php:412
+#: includes/api-request.php:434
 msgid "Reason: The API was unreachable because the call to Google failed."
 msgstr ""
 
-#: includes/api-request.php:416
+#: includes/api-request.php:417
 msgid "Reason: The API was unreachable because no external hosts are allowed on this site."
+msgstr ""
+
+#: includes/deprecated.php:126
+msgid "%1$s is %3$sdeprecated%4$s since MonsterInsights version %2$s!"
+msgstr ""
+
+#: includes/deprecated.php:179
+msgid "%1$s is %3$sdeprecated%4$s since MonsterInsights version %2$s."
+msgstr ""
+
+#: includes/frontend/tracking/class-tracking-analytics.php:218
+msgid "Note: MonsterInsights is not currently configured on this site. The site owner needs to authenticate with Google Analytics in the MonsterInsights settings panel."
+msgstr ""
+
+#: includes/frontend/tracking/class-tracking-analytics.php:221
+msgid "Note: MonsterInsights does not track you as a logged in site administrator to prevent site owners from accidentally skewing their own Google Analytics data."
+msgstr ""
+
+#: includes/frontend/tracking/class-tracking-analytics.php:224
+msgid "Note: The site owner has disabled Google Analytics tracking for your user role."
+msgstr ""
+
+#: includes/frontend/tracking/class-tracking-analytics.php:300
+msgid "Not running function"
+msgstr ""
+
+#: includes/frontend/tracking/class-tracking-analytics.php:300
+msgid "because you are not being tracked."
+msgstr ""
+
+#: includes/frontend/tracking/class-tracking-preview.php:77
+msgid "You are currently in a preview window. MonsterInsights doesn't track preview window traffic to avoid false visit reports."
 msgstr ""
 
 #: includes/helpers.php:366
@@ -2025,1278 +1658,2489 @@ msgstr ""
 msgid "Zimbabwe"
 msgstr ""
 
-#: includes/deprecated.php:126
-msgid "%1$s is %3$sdeprecated%4$s since MonsterInsights version %2$s!"
-msgstr ""
-
-#: includes/deprecated.php:179
-msgid "%1$s is %3$sdeprecated%4$s since MonsterInsights version %2$s."
-msgstr ""
-
 #: languages/vue.php:5
-msgid "Loading settings"
+msgid "Refreshing Report"
 msgstr ""
 
 #: languages/vue.php:8
-msgid "Saving Changes..."
+msgid "Loading new report data..."
 msgstr ""
 
 #: languages/vue.php:11
-msgid "Settings Updated"
+msgid "Error"
 msgstr ""
 
 #: languages/vue.php:14
-msgid "Could Not Save Changes"
+msgid "Please try again."
 msgstr ""
 
 #: languages/vue.php:17
+msgid "Unlock the Publishers Report and Focus on the Content that Matters"
+msgstr ""
+
+#: languages/vue.php:20
+msgid "Stop guessing about what content your visitors are interested in. MonsterInsights Publisher Report shows you exactly which content gets the most visits, so you can analyze and optimize it for higher conversions."
+msgstr ""
+
+#: languages/vue.php:23
+msgid "Unlock the Publishers Report and Focus on the Content That Matters"
+msgstr ""
+
+#: languages/vue.php:26
+msgid "Stop guessing about what content your visitors are interested in. The Publisher Report shows you exactly which content gets the most traffic, so you can analyze and optimize it for higher conversions."
+msgstr ""
+
+#: languages/vue.php:29
+msgid "See Your Top Landing Pages to Improve Enagement"
+msgstr ""
+
+#: languages/vue.php:32
+msgid "See Your Top Exit Pages to Reduce Abandonment"
+msgstr ""
+
+#: languages/vue.php:35
+msgid "See Your Top Outbound Links to Find New Revenue Opportunities"
+msgstr ""
+
+#: languages/vue.php:38
+msgid "See Your Top Affiliate Links and Focus on what's working"
+msgstr ""
+
+#: languages/vue.php:41
+msgid "See Your Top Downloads and Improve Conversions"
+msgstr ""
+
+#: languages/vue.php:44
+msgid "See Audience Demographic Report ( Age / Gender / Interests )"
+msgstr ""
+
+#: languages/vue.php:47
+msgid "Unlock the eCommerce Report and See Your Important Store Metrics"
+msgstr ""
+
+#: languages/vue.php:50
+msgid "Increase your sales & revenue with insights. MonsterInsights answers all your top eCommerce questions using metrics like total revenue, conversion rate, average order value, top products, top referral sources and more."
+msgstr ""
+
+#: languages/vue.php:53
+msgid "See Your Conversion Rate to Improve Funnel"
+msgstr ""
+
+#: languages/vue.php:56
+msgid "See The Number of Transactions and make data-driven decisions"
+msgstr ""
+
+#: languages/vue.php:59
+msgid "See The Total Revenue to Track Growth"
+msgstr ""
+
+#: languages/vue.php:62
+msgid "See Average Order Value to Find Offer Opportunities"
+msgstr ""
+
+#: languages/vue.php:65
+msgid "See Your Top Products to See Individual Performance"
+msgstr ""
+
+#: languages/vue.php:68
+msgid "See Your Top Conversion Sources and Focus on what's working"
+msgstr ""
+
+#: languages/vue.php:71
+msgid "See The Time it takes for Customers to Purchase"
+msgstr ""
+
+#: languages/vue.php:74
+msgid "See How Many Sessions are needed for a Purchase"
+msgstr ""
+
+#: languages/vue.php:77
+msgid "Unlock the Dimensions Report and Track Your Own Custom Data"
+msgstr ""
+
+#: languages/vue.php:80
+msgid "Decide what data is important using your own custom tracking parameters. The Dimensions report allows you to easily see what's working right inside your WordPress dashboard."
+msgstr ""
+
+#: languages/vue.php:83
+msgid "See Which Authors Generate the Most Traffic"
+msgstr ""
+
+#: languages/vue.php:86
+msgid "See Which Post Types Perform Better"
+msgstr ""
+
+#: languages/vue.php:89
+msgid "See Which Categories are the Most Popular"
+msgstr ""
+
+#: languages/vue.php:92
+msgid "See Your Blog's most populare SEO Scores"
+msgstr ""
+
+#: languages/vue.php:95
+msgid "See Which Focus Keyword is Performing Better in Search Engines"
+msgstr ""
+
+#: languages/vue.php:98
+msgid "Unlock the Forms Report and Improve Conversions"
+msgstr ""
+
+#: languages/vue.php:101
+msgid "Easily track your form views and conversions. The Forms Report allows you to see which forms are performing better and which forms have lower conversion rates so you can optimize using real data."
+msgstr ""
+
+#: languages/vue.php:104
+msgid "See Reports for Any Contact Form Plugin or Sign-up Form"
+msgstr ""
+
+#: languages/vue.php:107
+msgid "See Your Top Converting Forms and Optimize"
+msgstr ""
+
+#: languages/vue.php:110
+msgid "See Your Forms Impressions Count to Find the Best Placement"
+msgstr ""
+
+#: languages/vue.php:113
+msgid "Unlock the Search Console Report and See How People Find Your Website"
+msgstr ""
+
+#: languages/vue.php:116
+msgid "See exactly how people find your website, which keywords they searched for, how many times the results were viewed, and more."
+msgstr ""
+
+#: languages/vue.php:119
+msgid "See Your Top Google Search Terms and Optimize Content"
+msgstr ""
+
+#: languages/vue.php:122
+msgid "See The Number of Clicks and Track Interests"
+msgstr ""
+
+#: languages/vue.php:125
+msgid "See The Click-Through-Ratio and Improve SEO"
+msgstr ""
+
+#: languages/vue.php:128
+msgid "See The Average Results Position and Focus on what works"
+msgstr ""
+
+#: languages/vue.php:131
+msgid "Unlock the Real-Time Report and Track the Visitors on Your Site in Real-Time"
+msgstr ""
+
+#: languages/vue.php:134
+msgid "Track the results of your marketing efforts and product launches as-it-happens right from your WordPress site. The Real-Time report allows you to view your traffic sources and visitors activity when you need it."
+msgstr ""
+
+#: languages/vue.php:137
+msgid "See Your Active Visitors and Track Their Behaviour to Optimize"
+msgstr ""
+
+#: languages/vue.php:140
+msgid "See Your Top Pages Immediately After Making Changes"
+msgstr ""
+
+#: languages/vue.php:143
+msgid "See Your Top Referral Sources and Adapt Faster"
+msgstr ""
+
+#: languages/vue.php:146
+msgid "See Your Traffic Demographics and "
+msgstr ""
+
+#: languages/vue.php:149
+msgid "Get Fresh Reports Data Every 60 Seconds"
+msgstr ""
+
+#: languages/vue.php:152
+msgid "Overview Report"
+msgstr ""
+
+#: languages/vue.php:155
 msgid "Loading Settings"
 msgstr ""
 
-#: languages/vue.php:21
-msgid "License Key"
+#: languages/vue.php:158
+msgid "Saving Changes..."
 msgstr ""
 
-#: languages/vue.php:24
-msgid "Add your MonsterInsights license key from the email receipt or account area. %sRetrieve your license key%s."
+#: languages/vue.php:161
+msgid "Settings Updated"
 msgstr ""
 
-#: languages/vue.php:27
-msgid "Google Authentication"
+#: languages/vue.php:164
+msgid "Could Not Save Changes"
 msgstr ""
 
-#: languages/vue.php:30
-msgid "Connect Google Analytics + WordPress"
+#: languages/vue.php:170
+msgid "Congratulations! "
 msgstr ""
 
-#: languages/vue.php:33
-msgid "You will be taken to the MonsterInsights website where you'll need to connect your Analytics account."
+#: languages/vue.php:173
+msgid "You Successfully Unlocked the most powerful Analytics plugin"
 msgstr ""
 
-#: languages/vue.php:36
-msgid "Miscellaneous"
+#: languages/vue.php:176
+msgid "Publishers Report"
 msgstr ""
 
-#: languages/vue.php:39
-msgid "Hides plugin announcements and update details. This includes critical notices we use to inform about deprecations and important required configuration changes."
+#: languages/vue.php:179
+msgid "eCommerce Report"
 msgstr ""
 
-#: languages/vue.php:42
-msgid "Hide Announcements"
+#: languages/vue.php:182
+msgid "Search Console Report"
 msgstr ""
 
-#: languages/vue.php:45
-msgid "Yikes! PHP Update Required"
+#: languages/vue.php:185
+msgid "Dimensions Report"
 msgstr ""
 
-#: languages/vue.php:48
-msgid "MonsterInsights has detected that your site is running an outdated, insecure version of PHP (%s), which could be putting your site at risk for being hacked. WordPress itself will stop supporting your PHP version in April, 2019. Updating to the recommended version (PHP %s) only takes a few minutes and will make your website significantly faster and more secure."
+#: languages/vue.php:188
+msgid "Forms Report"
 msgstr ""
 
-#: languages/vue.php:51
-msgid "Learn more about updating PHP"
+#: languages/vue.php:191
+msgid "Real-Time Report"
 msgstr ""
 
-#: languages/vue.php:54
-msgid "Yikes! WordPress Update Required"
-msgstr ""
-
-#: languages/vue.php:57
-msgid "MonsterInsights has detected that your site is running an outdated version of WordPress (%s). MonsterInsights will stop supporting WordPress versions lower than 4.6 in April, 2019.  Updating WordPress takes just a few minutes and will also solve many bugs that exist in your WordPress install."
-msgstr ""
-
-#: languages/vue.php:60
-msgid "Learn more about updating WordPress"
-msgstr ""
-
-#: languages/vue.php:63
-msgid "General"
-msgstr ""
-
-#: languages/vue.php:66
-msgid "Engagement"
-msgstr ""
-
-#: languages/vue.php:72
-msgid "Publisher"
-msgstr ""
-
-#: languages/vue.php:75
-msgid "Conversions"
-msgstr ""
-
-#: languages/vue.php:78
-msgid "Advanced"
-msgstr ""
-
-#: languages/vue.php:81
-msgid "Exit Setup"
-msgstr ""
-
-#: languages/vue.php:84
-msgid "You're using %sMonsterInsights Lite%s - no license needed. Enjoy!"
-msgstr ""
-
-#: languages/vue.php:87
-msgid "To unlock more features consider %supgrading to PRO%s."
-msgstr ""
-
-#: languages/vue.php:90
-msgid "As a valued MonsterInsights Lite user you %sreceive 50%% off%s, automatically applied at checkout!"
-msgstr ""
-
-#: languages/vue.php:93
-msgid "In order for the MonsterInsights Google AMP addon to work properly, please ask your webmaster to install the WordPress AMP plugin by Automattic. %sLearn More%s"
-msgstr ""
-
-#: languages/vue.php:96
-msgid "In order for the MonsterInsights Google AMP addon to work properly, you need to install the WordPress AMP plugin by Automattic. %s%s Plugin%s | %sLearn More%s"
-msgstr ""
-
-#: languages/vue.php:105
-msgid "In order for the MonsterInsights Instant Articles addon to work properly, please ask your webmaster to install the Instant Articles for WP plugin by Automattic version 3.3.5 or newer. %sLearn More%s"
-msgstr ""
-
-#: languages/vue.php:108
-msgid "In order for the MonsterInsights Instant Articles addon to work properly, you need to install the Instant Articles for WP plugin by Automattic version 3.3.5 or newer. %s%s Plugin%s | %sLearn More%s"
-msgstr ""
-
-#: languages/vue.php:111
-msgid "Your license key for MonsterInsights has expired. %sPlease click here to renew your license key.%s"
-msgstr ""
-
-#: languages/vue.php:120
-msgid "Save Changes"
-msgstr ""
-
-#: languages/vue.php:123
-msgid "Re-Authenticating"
-msgstr ""
-
-#: languages/vue.php:126
-msgid "Verifying Credentials"
-msgstr ""
-
-#: languages/vue.php:132
-msgid "Deauthenticating"
-msgstr ""
-
-#: languages/vue.php:141
-msgid "Ok"
-msgstr ""
-
-#: languages/vue.php:144
-msgid "Connect MonsterInsights"
-msgstr ""
-
-#: languages/vue.php:147
-msgid "Verify Credentials"
-msgstr ""
-
-#: languages/vue.php:150
-msgid "Reconnect MonsterInsights"
-msgstr ""
-
-#: languages/vue.php:153
-msgid "Website Profile"
-msgstr ""
-
-#: languages/vue.php:156
-msgid "Active Profile"
-msgstr ""
-
-#: languages/vue.php:159
-msgid "Your website profile has been set at the network level of your WordPress Multisite."
-msgstr ""
-
-#: languages/vue.php:162
-msgid "If you would like to use a different profile for this subsite, you can authenticate below."
-msgstr ""
-
-#: languages/vue.php:165
-msgid "Manually enter your UA code"
-msgstr ""
-
-#: languages/vue.php:168
-msgid "Warning: If you use a manual UA code, you won't be able to use the reports."
-msgstr ""
-
-#: languages/vue.php:174
-msgid "Disconnect MonsterInsights"
-msgstr ""
-
-#: languages/vue.php:177
-msgid "Authenticating"
-msgstr ""
-
-#: languages/vue.php:180
-msgid "See All Your Important Store Metrics in One Place"
-msgstr ""
-
-#: languages/vue.php:183
-msgid "Get an Answer to All Your Top Ecommerce Questions From a Single Report"
-msgstr ""
-
-#: languages/vue.php:186
-msgid "ONE-CLICK INTEGRATIONS"
-msgstr ""
-
-#: languages/vue.php:189
-msgid "Upgrade to MonsterInsights Pro"
-msgstr ""
-
-#: languages/vue.php:192
-msgid "Enable Ecommerce Tracking and Grow Your Business with Confidence"
-msgstr ""
-
-#: languages/vue.php:195
-msgid "MonsterInsights Ecommerce Addon makes it easy to setup enhanced eCommerce tracking, so you can see all your important eCommerce metrics like total revenue, conversion rate, average order value, top products, top referral sources, and more in a single report right inside your WordPress dashboard."
+#: languages/vue.php:194
+msgid "Recommended Plugin: %s"
 msgstr ""
 
 #: languages/vue.php:198
-msgid "Demographics"
+msgid "Install"
 msgstr ""
 
-#: languages/vue.php:201
-msgid "Enable Demographics and Interests Reports for Remarketing and Advertising"
+#: languages/vue.php:202
+msgid "Activate"
 msgstr ""
 
-#: languages/vue.php:204
-msgid "Anonymize IP Addresses"
+#: languages/vue.php:206
+msgid "Learn More"
 msgstr ""
 
-#: languages/vue.php:207
-msgid "Link Attribution"
-msgstr ""
-
-#: languages/vue.php:210
-msgid "Enable Enhanced Link Attribution"
-msgstr ""
-
-#: languages/vue.php:213
-msgid "Enable Anchor Tracking"
+#: languages/vue.php:212
+#: lite/includes/admin/reports/report-publisher.php:22
+msgid "Publishers"
 msgstr ""
 
 #: languages/vue.php:216
-msgid "Enable allowAnchor"
+#: lite/includes/admin/reports/report-ecommerce.php:22
+msgid "eCommerce"
 msgstr ""
 
 #: languages/vue.php:219
-msgid "Enable allowLinker"
+#: lite/includes/admin/reports/report-queries.php:22
+msgid "Search Console"
 msgstr ""
 
 #: languages/vue.php:222
-msgid "Enable Tag Links in RSS"
+#: lite/includes/admin/reports/report-dimensions.php:22
+msgid "Dimensions"
 msgstr ""
 
 #: languages/vue.php:225
-msgid "File Downloads"
+#: lite/includes/admin/reports/report-forms.php:22
+msgid "Forms"
 msgstr ""
 
 #: languages/vue.php:228
-msgid "Extensions of Files to Track as Downloads"
+msgid "Real-Time"
 msgstr ""
 
 #: languages/vue.php:231
-msgid "If you have enabled event tracking, MonsterInsights will send an event/pageview to GA if a link to a file has one of the above extensions."
-msgstr ""
-
-#: languages/vue.php:234
-msgid "Enable this setting to add the Demographics and Remarketing features to your Google Analytics tracking code. Make sure to enable Demographics and Remarketing in your Google Analytics account. We have a guide for how to do that in our %sknowledge base%s. For more information about Remarketing, we refer you to %sGoogle's documentation%s. Note that usage of this function is affected by privacy and cookie laws around the world. Be sure to follow the laws that affect your target audience."
+msgid "Loading settings"
 msgstr ""
 
 #: languages/vue.php:237
-msgid "This adds %sanonymizeIp%s, telling Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage."
+msgid "Getting Started"
 msgstr ""
 
 #: languages/vue.php:240
-msgid "Add %sEnhanced Link Attribution%s to your tracking code."
+msgid "Lite vs Pro"
 msgstr ""
 
-#: languages/vue.php:243
-msgid "Many WordPress \"1-page\" style themes rely on anchor tags for navigation to show virtual pages. The problem is that to Google Analytics, these are all just a single page, and it makes it hard to get meaningful statistics about pages viewed. This feature allows proper tracking in those themes."
+#: languages/vue.php:244
+msgid "General"
 msgstr ""
 
-#: languages/vue.php:246
-msgid "This adds %sallowAnchor%s to the create command of the pageview hit tracking code, and makes RSS link tagging use a # as well."
-msgstr ""
-
-#: languages/vue.php:249
-msgid "Enabling %scross-domain tracking (additional setup required)%s allows you to track users across multiple properties you own (such as example-1.com and example-2.com as a single session. It also allows you fix an issue so that when a user has to go to an off-site hosted payment gateway to finish a purchase it doesn't count it as referral traffic from that gateway but maintains the visit as part of the same session.) It is required that the other site includes a Google Analytics tracker with the same UA Code."
+#: languages/vue.php:248
+msgid "Engagement"
 msgstr ""
 
 #: languages/vue.php:252
-msgid "Do not use this feature if you use FeedBurner, as FeedBurner can do this automatically and better than this plugin can. Check this %shelp page%s for info on how to enable this feature in FeedBurner."
+msgid "Publisher"
 msgstr ""
 
-#: languages/vue.php:255
-msgid "Forms Tracking"
+#: languages/vue.php:256
+msgid "Conversions"
 msgstr ""
 
-#: languages/vue.php:258
-msgid "See who's viewing and submitting your forms, so you can increase your conversion rate."
+#: languages/vue.php:260
+msgid "Advanced"
 msgstr ""
 
-#: languages/vue.php:261
-msgid "Google Optimize"
+#: languages/vue.php:263
+msgid "URL Builder"
 msgstr ""
 
-#: languages/vue.php:264
-msgid "Permissions"
+#: languages/vue.php:266
+msgid "Import Export"
 msgstr ""
 
-#: languages/vue.php:267
-msgid "Allow These User Roles to See Reports"
+#: languages/vue.php:269
+msgid "Time to Purchase"
 msgstr ""
 
-#: languages/vue.php:270
-msgid "Users that have at least one of these roles will be able to view the reports."
+#: languages/vue.php:272
+msgid "This list shows how many days from first visit it took users to purchase products from your site."
 msgstr ""
 
-#: languages/vue.php:273
-msgid ""
-"Users that have atngs/components/tabs/SettingsTabAdvanced.vue:69\n"
-"msgid "
+#: languages/vue.php:275
+msgid "Sessions to Purchase"
 msgstr ""
 
-#: languages/vue.php:277
-msgid "Use Google Optimize to retarget your website visitors and perform A/B split tests with ease."
+#: languages/vue.php:278
+msgid "This list shows the number of sessions it took users before they purchased a product from your website."
 msgstr ""
 
-#: languages/vue.php:280
-msgid "Custom Dimensions"
+#: languages/vue.php:281
+msgid "Top Posts/Pages"
 msgstr ""
 
-#: languages/vue.php:283
-msgid "Add Custom Dimensions and track who's the most popular author on your site, which post types get the most traffic, and more"
+#: languages/vue.php:284
+msgid "This list shows the most viewed posts and pages on your website."
 msgstr ""
 
-#: languages/vue.php:286
+#: languages/vue.php:287
+msgid "New vs. Returning Visitors"
+msgstr ""
+
+#: languages/vue.php:290
+msgid "This graph shows what percent of your user sessions come from new versus repeat visitors."
+msgstr ""
+
+#: languages/vue.php:293
+msgid "Device Breakdown"
+msgstr ""
+
+#: languages/vue.php:296
+msgid "This graph shows what percent of your visitor sessions are done using a traditional computer or laptop, tablet or mobile device to view your site."
+msgstr ""
+
+#: languages/vue.php:299
+msgid "Top Landing Pages"
+msgstr ""
+
+#: languages/vue.php:302
+msgid "This list shows the top pages users first land on when visiting your website."
+msgstr ""
+
+#: languages/vue.php:305
+msgid "Top Exit Pages"
+msgstr ""
+
+#: languages/vue.php:308
+msgid "This list shows the top pages users exit your website from."
+msgstr ""
+
+#: languages/vue.php:311
+msgid "Top Outbound Links"
+msgstr ""
+
+#: languages/vue.php:314
+msgid "This list shows the top links clicked on your website that go to another website."
+msgstr ""
+
+#: languages/vue.php:317
+msgid "Top Affiliate Links"
+msgstr ""
+
+#: languages/vue.php:320
+msgid "This list shows the top affiliate links your visitors clicked on."
+msgstr ""
+
+#: languages/vue.php:323
+msgid "Top Download Links"
+msgstr ""
+
+#: languages/vue.php:326
+msgid "This list shows the download links your visitors clicked the most."
+msgstr ""
+
+#: languages/vue.php:329
+msgid "Top Products"
+msgstr ""
+
+#: languages/vue.php:332
+msgid "This list shows the top selling products on your website."
+msgstr ""
+
+#: languages/vue.php:335
+msgid "Top Conversion Sources"
+msgstr ""
+
+#: languages/vue.php:338
+msgid "This list shows the top referral websites in terms of product revenue."
+msgstr ""
+
+#: languages/vue.php:341
+msgid "Total Add/Remove"
+msgstr ""
+
+#: languages/vue.php:344
+msgid "Exit Setup"
+msgstr ""
+
+#: languages/vue.php:347
+msgid "Yikes! PHP Update Required"
+msgstr ""
+
+#: languages/vue.php:350
+msgid "MonsterInsights has detected that your site is running an outdated, insecure version of PHP (%s), which could be putting your site at risk for being hacked. WordPress itself will stop supporting your PHP version in April, 2019. Updating to the recommended version (PHP %s) only takes a few minutes and will make your website significantly faster and more secure."
+msgstr ""
+
+#: languages/vue.php:353
+msgid "Learn more about updating PHP"
+msgstr ""
+
+#: languages/vue.php:356
+msgid "Yikes! WordPress Update Required"
+msgstr ""
+
+#: languages/vue.php:359
+msgid "MonsterInsights has detected that your site is running an outdated version of WordPress (%s). MonsterInsights will stop supporting WordPress versions lower than 4.6 in April, 2019.  Updating WordPress takes just a few minutes and will also solve many bugs that exist in your WordPress install."
+msgstr ""
+
+#: languages/vue.php:362
+msgid "Learn more about updating WordPress"
+msgstr ""
+
+#: languages/vue.php:365
+msgid "Powered by MonsterInsights"
+msgstr ""
+
+#: languages/vue.php:368
+msgid "Save Changes"
+msgstr ""
+
+#: languages/vue.php:371
+msgid "New"
+msgstr ""
+
+#: languages/vue.php:374
+msgid "Returning"
+msgstr ""
+
+#: languages/vue.php:377
+msgid "Desktop"
+msgstr ""
+
+#: languages/vue.php:380
+msgid "Tablet"
+msgstr ""
+
+#: languages/vue.php:383
+msgid "Mobile"
+msgstr ""
+
+#: languages/vue.php:386
+msgid "Sessions"
+msgstr ""
+
+#: languages/vue.php:389
+msgid "Unique %s Sessions"
+msgstr ""
+
+#: languages/vue.php:392
+msgid "Pageviews"
+msgstr ""
+
+#: languages/vue.php:395
+msgid "Unique %s Pageviews"
+msgstr ""
+
+#: languages/vue.php:398
+msgid "Avg. Session Duration"
+msgstr ""
+
+#: languages/vue.php:401
+msgid "Bounce Rate"
+msgstr ""
+
+#: languages/vue.php:404
+msgid "Top 10 Countries"
+msgstr ""
+
+#: languages/vue.php:407
+msgid "View Countries Report"
+msgstr ""
+
+#: languages/vue.php:410
+msgid "Top 10 Referrals"
+msgstr ""
+
+#: languages/vue.php:413
+msgid "View All Referral Sources"
+msgstr ""
+
+#: languages/vue.php:416
+msgid "View Full Posts/Pages Report"
+msgstr ""
+
+#: languages/vue.php:419
+msgid "A session is the browsing session of a single user to your site."
+msgstr ""
+
+#: languages/vue.php:422
+msgid "A pageview is defined as a view of a page on your site that is being tracked by the Analytics tracking code. Each refresh of a page is also a new pageview."
+msgstr ""
+
+#: languages/vue.php:425
+msgid "Total duration of all sessions (in seconds) / number of sessions."
+msgstr ""
+
+#: languages/vue.php:428
+msgid "Percentage of single-page visits (or web sessions). It is the number of visits in which a person leaves your website from the landing page without browsing any further."
+msgstr ""
+
+#: languages/vue.php:431
+msgid "This list shows the top countries your website visitors are from."
+msgstr ""
+
+#: languages/vue.php:434
+msgid "This list shows the top websites that send your website traffic, known as referral traffic."
+msgstr ""
+
+#: languages/vue.php:437
+msgid "MonsterInsights Addons"
+msgstr ""
+
+#: languages/vue.php:440
+msgid "Search Addons"
+msgstr ""
+
+#: languages/vue.php:443
 msgid "Yes (recommended) %s- Get the latest features, bugfixes, and security updates as they are released.%s"
 msgstr ""
 
-#: languages/vue.php:289
+#: languages/vue.php:446
 msgid "Minor only %s- Get bugfixes and security updates, but not major features.%s"
 msgstr ""
 
-#: languages/vue.php:292
+#: languages/vue.php:449
 msgid "None %s- Manually update everything.%s"
 msgstr ""
 
-#: languages/vue.php:295
+#: languages/vue.php:452
+msgid "License Key"
+msgstr ""
+
+#: languages/vue.php:455
+msgid "Google Authentication"
+msgstr ""
+
+#: languages/vue.php:458
+msgid "Connect Google Analytics + WordPress"
+msgstr ""
+
+#: languages/vue.php:461
+msgid "You will be taken to the MonsterInsights website where you'll need to connect your Analytics account."
+msgstr ""
+
+#: languages/vue.php:464
 msgid "Automatic Updates"
 msgstr ""
 
-#: languages/vue.php:298
+#: languages/vue.php:467
 msgid "Setup Wizard"
 msgstr ""
 
-#: languages/vue.php:301
+#: languages/vue.php:470
 msgid "Use our configuration wizard to properly setup Google Analytics with WordPress (with just a few clicks)."
 msgstr ""
 
-#: languages/vue.php:304
+#: languages/vue.php:473
 msgid "Launch Setup Wizard"
 msgstr ""
 
-#: languages/vue.php:307
-msgid "Connect MonsterInsights to Your Website"
-msgstr ""
-
-#: languages/vue.php:310
-msgid "MonsterInsights connects Google Analytics to WordPress and shows you stats that matter."
-msgstr ""
-
-#: languages/vue.php:313
+#: languages/vue.php:476
 msgid "Path (example: %s)"
 msgstr ""
 
-#: languages/vue.php:316
+#: languages/vue.php:479
 msgid "Path has to start with a / and have no spaces"
 msgstr ""
 
-#: languages/vue.php:319
+#: languages/vue.php:482
 msgid "Label (example: %s)"
 msgstr ""
 
-#: languages/vue.php:322
+#: languages/vue.php:485
 msgid "Label can't contain any spaces"
 msgstr ""
 
-#: languages/vue.php:325
+#: languages/vue.php:488
 msgid "Affiliate Links"
 msgstr ""
 
-#: languages/vue.php:328
-msgid "This allows you to track custom affiliate links. A path of /go/ would match urls that start with that. The label is appended onto the end of the string \"outbound-link-\", to provide unique labels for these links in Google Analytics. Complete documentation on Affiliate links is available %shere%s."
+#: languages/vue.php:491
+msgid "This allows you to track custom affiliate links. A path of /go/ would match urls that start with that. The label is appended onto the end of the string \"outbound-link-\", to provide unique labels for these links in Google Analytics. Complete documentation on affiliate links is available %shere%s."
 msgstr ""
 
-#: languages/vue.php:331
+#: languages/vue.php:494
 msgid "Our affiliate link tracking works by setting path for internal links to track as outbound links."
 msgstr ""
 
-#: languages/vue.php:334
-msgid "Welcome to MonsterInsights!"
-msgstr ""
-
-#: languages/vue.php:337
-msgid "Letâs get you set up."
-msgstr ""
-
-#: languages/vue.php:340
-msgid "Save and Continue"
-msgstr ""
-
-#: languages/vue.php:343
-msgid "Which category best describes your website?"
-msgstr ""
-
-#: languages/vue.php:346
-msgid "We will recommend the optimal settings for MonsterInsights based on your choice."
-msgstr ""
-
-#: languages/vue.php:349
-msgid "Business Website"
-msgstr ""
-
-#: languages/vue.php:352
-msgid "Publisher %s(Blog)%s"
-msgstr ""
-
-#: languages/vue.php:355
-msgid "Ecommerce"
-msgstr ""
-
-#: languages/vue.php:358
-msgid "Recommended Addons"
-msgstr ""
-
-#: languages/vue.php:361
-msgid "To unlock more features consider upgrading to PRO. As a valued MonsterInsights Lite user you receive 50% off, automatically applied at checkout!"
-msgstr ""
-
-#: languages/vue.php:364
-msgid "Other Addons"
-msgstr ""
-
-#: languages/vue.php:367
-msgid "View all MonsterInsights addons"
-msgstr ""
-
-#: languages/vue.php:370
-msgid "Save and continue"
-msgstr ""
-
-#: languages/vue.php:373
-msgid "Users that have at least one of these roles will be able to view the reports, along with any user with the manage_options capability."
-msgstr ""
-
-#: languages/vue.php:376
-msgid "Allow These User Roles to Save Settings"
-msgstr ""
-
-#: languages/vue.php:379
-msgid "Users that have at least one of these roles will be able to view and save the settings panel."
-msgstr ""
-
-#: languages/vue.php:382
-msgid "Users that have at least one of these roles will be able to view and save the settings panel, along with any user with the manage_options capability."
-msgstr ""
-
-#: languages/vue.php:385
-msgid "Exclude These User Roles From Tracking"
-msgstr ""
-
-#: languages/vue.php:388
-msgid "Users that have at least one of these roles will not be tracked into Google Analytics."
-msgstr ""
-
-#: languages/vue.php:391
-msgid "Performance"
-msgstr ""
-
-#: languages/vue.php:394
-msgid "Custom code"
-msgstr ""
-
-#: languages/vue.php:397
-msgid "Not for the average user: this allows you to add a line of code, to be added before the %spageview is sent%s."
-msgstr ""
-
-#: languages/vue.php:403
-msgid "You must have the \"unfiltered_html\" capability to view/edit this setting."
-msgstr ""
-
-#: languages/vue.php:406
-msgid "Enabled %s- Show reports and dashboard widget.%s"
-msgstr ""
-
-#: languages/vue.php:409
-msgid "Dashboard Widget Only %s- Disable reports, but show dashboard widget.%s"
-msgstr ""
-
-#: languages/vue.php:412
-msgid "Disabled %s- Hide reports and dashboard widget.%s"
-msgstr ""
-
-#: languages/vue.php:415
-msgid "Recommended Settings"
-msgstr ""
-
-#: languages/vue.php:418
-msgid "MonsterInsights recommends the following settings based on your configuration."
-msgstr ""
-
-#: languages/vue.php:421
-msgid "Events Tracking"
-msgstr ""
-
-#: languages/vue.php:424
-msgid "Must have for all click tracking on site."
-msgstr ""
-
-#: languages/vue.php:427
-msgid "MonsterInsights uses an advanced system to automatically detect all outbound links, download links, affiliate links, telephone links, mail links, and more automatically. We do all the work for you so you don't have to write any code."
-msgstr ""
-
-#: languages/vue.php:430
-msgid "Enhanced Link Attribution"
-msgstr ""
-
-#: languages/vue.php:433
-msgid "Improves the accuracy of your In-Page Analytics."
-msgstr ""
-
-#: languages/vue.php:436
-msgid "MonsterInsights will automatically help Google determine which links are unique and where they are on your site so that your In-Page Analytics reporting will be more accurate."
-msgstr ""
-
-#: languages/vue.php:439
-msgid "Install Updates Automatically"
-msgstr ""
-
-#: languages/vue.php:442
-msgid "Get the latest features, bug fixes, and security updates as they are released."
-msgstr ""
-
-#: languages/vue.php:445
-msgid "To ensure you get the latest bugfixes and security updates and avoid needing to spend time logging into your WordPress site to update MonsterInsights, we offer the ability to automatically have MonsterInsights update itself."
-msgstr ""
-
-#: languages/vue.php:448
-msgid "File Download Tracking"
-msgstr ""
-
-#: languages/vue.php:451
-msgid "Helps you see file downloads data."
-msgstr ""
-
-#: languages/vue.php:454
-msgid "MonsterInsights will automatically track downloads of common file types from links you have inserted onto your website. For example: want to know how many of your site's visitors have downloaded a PDF or other file you offer your visitors to download on your site? MonsterInsights makes this both easy, and code-free! You can customize the file types to track at any time from our settings panel."
-msgstr ""
-
-#: languages/vue.php:457
-msgid "Helps you increase affiliate revenue."
-msgstr ""
-
-#: languages/vue.php:460
-msgid "MonsterInsights will automatically help you track affiliate links that use internal looking urls like example.com/go/ or example.com/refer/. You can add custom affiliate patterns on our settings panel when you finish the onboarding wizard."
-msgstr ""
-
-#: languages/vue.php:463
-msgid "Affiliate Link Tracking"
-msgstr ""
-
-#: languages/vue.php:466
-msgid "Who Can See Reports"
-msgstr ""
-
-#: languages/vue.php:469
-msgid "These user roles will be able to access MonsterInsights's reports in the WordPress admin area."
-msgstr ""
-
-#: languages/vue.php:472
-msgid "Events Tracking is enabled the moment you set up MonsterInsights"
-msgstr ""
-
-#: languages/vue.php:475
-msgid "Enhanced Link Attribution is enabled the moment you set up MonsterInsights"
-msgstr ""
-
-#: languages/vue.php:478
-msgid "MonsterInsights Recommends WPForms"
-msgstr ""
-
-#: languages/vue.php:481
-msgid "Built by the folks behind MonsterInsights, WPForms is the most beginner friendly form plugin in the market."
-msgstr ""
-
-#: languages/vue.php:484
-msgid "Used on over 1,000,000 websites!"
-msgstr ""
-
-#: languages/vue.php:487
-msgid "WPForms allow you to create beautiful contact forms, subscription forms, payment forms, and other types of forms for your site in minutes, not hours!"
-msgstr ""
-
-#: languages/vue.php:490
-msgid "Skip this Step"
-msgstr ""
-
-#: languages/vue.php:493
-msgid "Continue & Install WPForms"
+#: languages/vue.php:497
+msgid "Demographics"
 msgstr ""
 
 #: languages/vue.php:500
-msgid "You appear to be offline. Addon not activated."
+msgid "Enable Demographics and Interests Reports for Remarketing and Advertising"
 msgstr ""
 
 #: languages/vue.php:503
-msgid "Can't install addon. Error: %s, %s"
+msgid "Anonymize IP Addresses"
 msgstr ""
 
 #: languages/vue.php:506
-msgid "You appear to be offline. Addon not installed."
+msgid "Link Attribution"
 msgstr ""
 
 #: languages/vue.php:509
-msgid "Can't install WPForms. Error: %s, %s"
+msgid "Enable Enhanced Link Attribution"
 msgstr ""
 
 #: languages/vue.php:512
-msgid "You appear to be offline. WPForms not installed."
+msgid "Enable Anchor Tracking"
 msgstr ""
 
 #: languages/vue.php:515
-msgid "Can't activate addon. Error: %s, %s"
+msgid "Enable allowAnchor"
 msgstr ""
 
 #: languages/vue.php:518
-msgid "Can't deactivate the license. Error: %s, %s"
+msgid "Enable allowLinker"
 msgstr ""
 
-#: languages/vue.php:523
-msgid "You appear to be offline."
+#: languages/vue.php:521
+msgid "Enable Tag Links in RSS"
 msgstr ""
 
-#: languages/vue.php:526
-msgid "Can't load license details. Error: %s, %s"
+#: languages/vue.php:524
+msgid "File Downloads"
 msgstr ""
 
-#: languages/vue.php:529
-msgid "Can't verify the license. Error: %s, %s"
+#: languages/vue.php:527
+msgid "Extensions of Files to Track as Downloads"
 msgstr ""
 
-#: languages/vue.php:532
-msgid "Can't validate the license. Error: %s, %s"
+#: languages/vue.php:530
+msgid "MonsterInsights will send an event to Google Analytics if a link to a file has one of the above extensions."
 msgstr ""
 
-#: languages/vue.php:535
-msgid "Can't load errors. Error: %s, %s"
+#: languages/vue.php:533
+msgid "Enable this setting to add the Demographics and Remarketing features to your Google Analytics tracking code. Make sure to enable Demographics and Remarketing in your Google Analytics account. We have a guide for how to do that in our %sknowledge base%s. For more information about Remarketing, we refer you to %sGoogle's documentation%s. Note that usage of this function is affected by privacy and cookie laws around the world. Be sure to follow the laws that affect your target audience."
 msgstr ""
 
-#: languages/vue.php:538
-msgid "You're using %sMonsterInsights Lite%s - no license needed. Enjoy! %s"
+#: languages/vue.php:536
+msgid "This adds %sanonymizeIp%s, telling Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage."
 msgstr ""
 
-#: languages/vue.php:541
-msgid "Usage Tracking"
+#: languages/vue.php:539
+msgid "Add %sEnhanced Link Attribution%s to your tracking code."
 msgstr ""
 
-#: languages/vue.php:544
-msgid "Allow Usage Tracking"
+#: languages/vue.php:542
+msgid "Many WordPress \"1-page\" style themes rely on anchor tags for navigation to show virtual pages. The problem is that to Google Analytics, these are all just a single page, and it makes it hard to get meaningful statistics about pages viewed. This feature allows proper tracking in those themes."
 msgstr ""
 
-#: languages/vue.php:547
-msgid "By allowing us to track usage data we can better help you because we know with which WordPress configurations, themes and plugins we should test."
+#: languages/vue.php:545
+msgid "This adds %sallowAnchor%s to the create command of the pageview hit tracking code, and makes RSS link tagging use a # as well."
 msgstr ""
 
-#: languages/vue.php:550
-msgid "Complete documentation on usage tracking is available %shere%s."
+#: languages/vue.php:548
+msgid "Enabling %scross-domain tracking (additional setup required)%s allows you to track users across multiple properties you own (such as example-1.com and example-2.com as a single session. It also allows you fix an issue so that when a user has to go to an off-site hosted payment gateway to finish a purchase it doesn't count it as referral traffic from that gateway but maintains the visit as part of the same session.) It is required that the other site includes a Google Analytics tracker with the same UA Code."
 msgstr ""
 
-#: languages/vue.php:553
-msgid "Upgrade"
+#: languages/vue.php:551
+msgid "Do not use this feature if you use FeedBurner, as FeedBurner can do this automatically and better than this plugin can. Check this %shelp page%s for info on how to enable this feature in FeedBurner."
 msgstr ""
 
-#: languages/vue.php:556
-msgid "Can't load settings. Error: %s, %s"
+#: languages/vue.php:554
+msgid "Add domain"
 msgstr ""
 
-#: languages/vue.php:559
-msgid "Can't save settings. Error: %s, %s"
+#: languages/vue.php:557
+msgid "Domain (example: %s)"
 msgstr ""
 
-#: languages/vue.php:562
-msgid "You appear to be offline. Settings not saved."
+#: languages/vue.php:560
+msgid "Please enter domain names only ( example: example.com not http://example.com ) and not current site domain ( %s )."
 msgstr ""
 
-#: languages/vue.php:565
-msgid "Add Another Link Path"
+#: languages/vue.php:563
+msgid "Cross Domain Tracking"
 msgstr ""
 
-#: languages/vue.php:568
-msgid "Remove row"
+#: languages/vue.php:566
+msgid "Cross domain tracking makes it possible for Analytics to see sessions on two related sites as a single session. More info on specific setup steps can be found in our %sknowledge base%s."
 msgstr ""
 
-#: languages/vue.php:571
-msgid "%s%s%s can't be empty."
+#: languages/vue.php:569
+msgid "It looks like you added a Google Analytics tracking code in the custom code area, this can potentially prevent proper tracking. If you want to use a manual UA please use the setting in the %sGeneral%s tab."
 msgstr ""
 
-#: languages/vue.php:574
-msgid "No options available"
+#: languages/vue.php:572
+msgid "Permissions"
 msgstr ""
 
-#: languages/vue.php:577
-msgid "Awesome, Youâre All Set!"
+#: languages/vue.php:575
+msgid "Allow These User Roles to See Reports"
 msgstr ""
 
-#: languages/vue.php:580
-msgid "MonsterInsights is all set up and ready to use. Weâve verified that the tracking code is deployed properly and collecting data."
+#: languages/vue.php:578
+msgid "Users that have at least one of these roles will be able to view the reports."
 msgstr ""
 
-#: languages/vue.php:583
+#: languages/vue.php:581
+msgid "Users that have at least one of these roles will be able to view the reports, along with any user with the manage_options capability."
+msgstr ""
+
+#: languages/vue.php:584
+msgid "Allow These User Roles to Save Settings"
+msgstr ""
+
+#: languages/vue.php:587
+msgid "Users that have at least one of these roles will be able to view and save the settings panel."
+msgstr ""
+
+#: languages/vue.php:590
+msgid "Users that have at least one of these roles will be able to view and save the settings panel, along with any user with the manage_options capability."
+msgstr ""
+
+#: languages/vue.php:593
+msgid "Exclude These User Roles From Tracking"
+msgstr ""
+
+#: languages/vue.php:596
+msgid "Users that have at least one of these roles will not be tracked into Google Analytics."
+msgstr ""
+
+#: languages/vue.php:599
+msgid "Performance"
+msgstr ""
+
+#: languages/vue.php:602
+msgid "Custom code"
+msgstr ""
+
+#: languages/vue.php:605
+msgid "Not for the average user: this allows you to add a line of code, to be added before the %spageview is sent%s."
+msgstr ""
+
+#: languages/vue.php:611
+msgid "You must have the \"unfiltered_html\" capability to view/edit this setting."
+msgstr ""
+
+#: languages/vue.php:614
+msgid "Hide Admin Bar Reports"
+msgstr ""
+
+#: languages/vue.php:617
+msgid "Enabled %s- Show reports and dashboard widget.%s"
+msgstr ""
+
+#: languages/vue.php:620
+msgid "Dashboard Widget Only %s- Disable reports, but show dashboard widget.%s"
+msgstr ""
+
+#: languages/vue.php:623
+msgid "Disabled %s- Hide reports and dashboard widget.%s"
+msgstr ""
+
+#: languages/vue.php:626
+msgid "Hello and welcome to MonsterInsights, the best Google Analytics plugin for WordPress. MonsterInsights shows you exactly which content gets the most visit, so you can analyze and optimize it for higher conversions."
+msgstr ""
+
+#: languages/vue.php:629
+msgid "Over the years, we found that in order to get the most out of Google Analytics, you needed a full time developer who could implement custom tracking, so that Google Analytics would integrate with things like WooCommerce, and track things which Google doesn't by default, like outbound links."
+msgstr ""
+
+#: languages/vue.php:632
+msgid "Our goal is to take the pain out of analytics, making it simple and easy, by eliminating the need to have to worry about code, putting the best reports directly into the area you already go to (your WordPress dashboard), and adding the most advanced insights and features without complicating our plugin with tons of settings. Quite simply, it should \"just work\"."
+msgstr ""
+
+#: languages/vue.php:635
+msgid "MonsterInsights is brought to you by the same team that's behind the largest WordPress resource site, WPBeginner, the most popular lead-generation software, OptinMonster, and the best WordPress forms plugin, WPForms."
+msgstr ""
+
+#: languages/vue.php:638
+msgid "Yup, we know a thing or two about building awesome products that customer love."
+msgstr ""
+
+#: languages/vue.php:641
+msgid "The MonsterInsights Team: Syed, Chris, Jay, Mircea, Sunita and Basanta"
+msgstr ""
+
+#: languages/vue.php:644
+msgid "Import/Export"
+msgstr ""
+
+#: languages/vue.php:647
+msgid "Import"
+msgstr ""
+
+#: languages/vue.php:650
+msgid "Import settings from another MonsterInsights website."
+msgstr ""
+
+#: languages/vue.php:653
+msgid "Export"
+msgstr ""
+
+#: languages/vue.php:656
+msgid "Export settings to import into another MonsterInsights install."
+msgstr ""
+
+#: languages/vue.php:659
+msgid "Import Settings"
+msgstr ""
+
+#: languages/vue.php:662
+msgid "Export Settings"
+msgstr ""
+
+#: languages/vue.php:665
+msgid "Please choose a file to import"
+msgstr ""
+
+#: languages/vue.php:668
+msgid "Use the filepicker below to select the settings export file from another site."
+msgstr ""
+
+#: languages/vue.php:671
+msgid "Use the button below to export a file with your MonsterInsights settings."
+msgstr ""
+
+#: languages/vue.php:674
+msgid "Uploading file..."
+msgstr ""
+
+#: languages/vue.php:677
+msgid "File imported"
+msgstr ""
+
+#: languages/vue.php:680
+msgid "Settings successfully updated!"
+msgstr ""
+
+#: languages/vue.php:683
+msgid "Error importing settings"
+msgstr ""
+
+#: languages/vue.php:686
+msgid "Please choose a .json file generated by a MonsterInsights settings export."
+msgstr ""
+
+#: languages/vue.php:689
+msgid "Ok"
+msgstr ""
+
+#: languages/vue.php:692
+msgid "Custom Campaign Parameters"
+msgstr ""
+
+#: languages/vue.php:695
+msgid "The URL builder helps you add parameters to your URLs you use in custom web or email ad campaigns."
+msgstr ""
+
+#: languages/vue.php:698
+msgid "A custom campaign is any ad campaign not using the AdWords auto-tagging feature. When users click one of the custom links, the unique parameters are sent to your Analytics account, so you can identify the urls that are the most effective in attracting users to your content."
+msgstr ""
+
+#: languages/vue.php:701
+msgid "Website URL %s"
+msgstr ""
+
+#: languages/vue.php:704
+msgid "The full website URL (e.g. %s %s%s)"
+msgstr ""
+
+#: languages/vue.php:707
+msgid "Campaign Source %s"
+msgstr ""
+
+#: languages/vue.php:710
+msgid "Enter a referrer (e.g. %sfacebook, newsletter, google%s)"
+msgstr ""
+
+#: languages/vue.php:713
+msgid "Enter a marketing medium (e.g. %scpc, banner, email%s)"
+msgstr ""
+
+#: languages/vue.php:716
+msgid "Enter a name to easily identify (e.g. %sspring_sale%s)"
+msgstr ""
+
+#: languages/vue.php:719
+msgid "Enter the paid keyword"
+msgstr ""
+
+#: languages/vue.php:722
+msgid "Enter something to differentiate ads"
+msgstr ""
+
+#: languages/vue.php:725
+msgid "Use Fragment"
+msgstr ""
+
+#: languages/vue.php:728
+msgid "Set the parameters in the fragment portion of the URL %s(not recommended)%s"
+msgstr ""
+
+#: languages/vue.php:731
+msgid "URL to use"
+msgstr ""
+
+#: languages/vue.php:734
+msgid "Updates automatically"
+msgstr ""
+
+#: languages/vue.php:737
+msgid "Copy to clipboard"
+msgstr ""
+
+#: languages/vue.php:740
+msgid "More Information & Examples"
+msgstr ""
+
+#: languages/vue.php:743
+msgid "The following table gives a detailed explanation and example of each of the campaign parameters."
+msgstr ""
+
+#: languages/vue.php:746
+msgid "Campaign Source"
+msgstr ""
+
+#: languages/vue.php:749
+msgid "Required. Use utm_source to identify a search engine, newsletter name, or other source."
+msgstr ""
+
+#: languages/vue.php:752
+msgid "Campaign Medium"
+msgstr ""
+
+#: languages/vue.php:755
+msgid "Use utm_medium to identify a medium such as email or cost-per-click."
+msgstr ""
+
+#: languages/vue.php:758
+msgid "Campaign Name"
+msgstr ""
+
+#: languages/vue.php:761
+msgid "Used for keyword analysis. Use utm_campaign to identify a specific product promotion or strategic campaign."
+msgstr ""
+
+#: languages/vue.php:764
+msgid "Campaign Term"
+msgstr ""
+
+#: languages/vue.php:767
+msgid "Used for paid search. Use utm_term to note the keywords for this ad."
+msgstr ""
+
+#: languages/vue.php:770
+msgid "Campaign Content"
+msgstr ""
+
+#: languages/vue.php:773
+msgid "Used for A/B testing and content-targeted ads. Use utm_content to differentiate ads or links that point to the same URL."
+msgstr ""
+
+#: languages/vue.php:776
+msgid "Example: %s"
+msgstr ""
+
+#: languages/vue.php:779
+msgid "Examples: %s"
+msgstr ""
+
+#: languages/vue.php:782
+msgid "About Campaigns"
+msgstr ""
+
+#: languages/vue.php:785
+msgid "About Custom Campaigns"
+msgstr ""
+
+#: languages/vue.php:788
+msgid "Best practices for creating Custom Campaigns"
+msgstr ""
+
+#: languages/vue.php:791
+msgid "About the Referral Traffic report"
+msgstr ""
+
+#: languages/vue.php:794
+msgid "About traffic source dimensions"
+msgstr ""
+
+#: languages/vue.php:797
+msgid "AdWords Auto-Tagging"
+msgstr ""
+
+#: languages/vue.php:800
+msgid "Additional Information"
+msgstr ""
+
+#: languages/vue.php:803
+msgid "GDPR Guide"
+msgstr ""
+
+#: languages/vue.php:806
+msgid "Compliance with European data laws including GDPR can be confusing and time-consuming. In order to help MonsterInsights users comply with these laws, we’ve created an addon that automates a lot of the necessary configuration changes for you. "
+msgstr ""
+
+#: languages/vue.php:809
+msgid "How to install and activate MonsterInsights addons"
+msgstr ""
+
+#: languages/vue.php:812
+msgid "The process for installing and activating addons is quick and easy after you install the MonsterInsights plugin. In this guide we’ll walk you through the process, step by step."
+msgstr ""
+
+#: languages/vue.php:815
+msgid "Enabling eCommerce Tracking and Reports"
+msgstr ""
+
+#: languages/vue.php:818
+msgid "Want to track your eCommerce sales data for your WooCommerce, MemberPress, or Easy Digital Downloads store with MonsterInsights? In this guide, we’ll show you how to enable eCommerce tracking in Google Analytics in just a few clicks."
+msgstr ""
+
+#: languages/vue.php:821
+msgid "Read Documentation"
+msgstr ""
+
+#: languages/vue.php:824
+msgid "Getting Started with MonsterInsights"
+msgstr ""
+
+#: languages/vue.php:827
+msgid "MonsterInsights is the easiest analytics solution on the market to get started with, as we walk you through exactly what you need to do, in plain english, using our 3 minute setup wizard."
+msgstr ""
+
+#: languages/vue.php:830
+msgid "To begin with, we’ll get your site authorized with Google Analytics, so we can start tracking and generating reports for you right away."
+msgstr ""
+
+#: languages/vue.php:833
+msgid "In no time at all, and after just a few clicks, you'll have setup the most powerful Google Analytics tracking available for WordPress. It's easy to double your traffic and sales when you know exactly how people find and use your website. Let's get started!."
+msgstr ""
+
+#: languages/vue.php:836
+msgid "Launch the wizard!"
+msgstr ""
+
+#: languages/vue.php:839
+msgid "Get MonsterInsights Pro and Unlock all the Powerful Features"
+msgstr ""
+
+#: languages/vue.php:842
+msgid "Thanks for being a loyal MonsterInsights Lite user. %sUpgrade to MonsterInsights Pro%s to unlock all the awesome features and experience why MonsterInsights is consistently rated the best Google Analytics solution for WordPress."
+msgstr ""
+
+#: languages/vue.php:845
+msgid "Universal Tracking across devices and campaigns with just a few clicks."
+msgstr ""
+
+#: languages/vue.php:848
+msgid "See your website analytics reports inside the WordPress dashboard"
+msgstr ""
+
+#: languages/vue.php:851
+msgid "Get real-time stats right inside WordPress"
+msgstr ""
+
+#: languages/vue.php:854
+msgid "1-click Google Analytics Enhanced Ecommerce tracking"
+msgstr ""
+
+#: languages/vue.php:857
+msgid "Get detailed stats for each post and page."
+msgstr ""
+
+#: languages/vue.php:860
+msgid "Automatically track clicks on your affiliate links and ads."
+msgstr ""
+
+#: languages/vue.php:863
+msgid "Make Google Analytics GDPR compliant automatically"
+msgstr ""
+
+#: languages/vue.php:866
+msgid "Setup tracking for authors, categories, tags, custom post types, users and more"
+msgstr ""
+
+#: languages/vue.php:869
+msgid "Enable Google Optimize for A/B testing, adjust sample speed & sample rate."
+msgstr ""
+
+#: languages/vue.php:872
+msgid "More advanced features"
+msgstr ""
+
+#: languages/vue.php:875
+msgid "Get MonsterInsights Pro Today and Unlock all the Powerful Features"
+msgstr ""
+
+#: languages/vue.php:878
+msgid "Bonus: MonsterInsights Lite users get %s50%% off regular price%s, automatically applied at checkout."
+msgstr ""
+
+#: languages/vue.php:881
+msgid "How to Connect to Google Analytics"
+msgstr ""
+
+#: languages/vue.php:884
+msgid "After you install MonsterInsights, you’ll need to connect your WordPress site with your Google Analytics account. MonsterInsights makes the process easy, with no coding required."
+msgstr ""
+
+#: languages/vue.php:887
+msgid "Guide and Checklist for Advanced Insights"
+msgstr ""
+
+#: languages/vue.php:890
+msgid "Our goal is to make it as easy as possible for you to measure and track your stats so you can grow your business. This easy-to-follow guide and checklist will get you set up with MonsterInsights’ advanced tracking."
+msgstr ""
+
+#: languages/vue.php:893
+msgid "WordPress Admin Area Reports"
+msgstr ""
+
+#: languages/vue.php:896
+msgid "Standard Reports"
+msgstr ""
+
+#: languages/vue.php:899
+msgid "Overview Reports for the last 30 days."
+msgstr ""
+
+#: languages/vue.php:902
+msgid "Advanced Reports"
+msgstr ""
+
+#: languages/vue.php:905
+msgid "Publisher, eCommerce, Search Console, Custom Dimensions, Forms and Real-Time with custom date period selection"
+msgstr ""
+
+#: languages/vue.php:908
+msgid "Dashboard Widget"
+msgstr ""
+
+#: languages/vue.php:911
+msgid "Basic Widget"
+msgstr ""
+
+#: languages/vue.php:914
+msgid "Overview Report Synopsis"
+msgstr ""
+
+#: languages/vue.php:917
+msgid "Advanced Dashboard Widget"
+msgstr ""
+
+#: languages/vue.php:920
+msgid "Includes the complete Overview report, Publisher reports and 6 different eCommerce reports"
+msgstr ""
+
+#: languages/vue.php:923
+msgid "Publisher Reports"
+msgstr ""
+
+#: languages/vue.php:926
+msgid "Advanced Publisher Reports & Tracking"
+msgstr ""
+
+#: languages/vue.php:929
+msgid "View Top Landing/Exit Pages, Top Links, Demographics & Interests data and more"
+msgstr ""
+
+#: languages/vue.php:933
+msgid "Custom Dimensions"
+msgstr ""
+
+#: languages/vue.php:936
+msgid "Not Available"
+msgstr ""
+
+#: languages/vue.php:939
+msgid "Complete Custom Dimensions Tracking"
+msgstr ""
+
+#: languages/vue.php:942
+msgid "Track and measure by the Author, Post Type, Category, Tags, SEO Score, Focus Keyword, Logged-in User, User ID and Published Time of each post and page"
+msgstr ""
+
+#: languages/vue.php:948
+msgid "Limited support"
+msgstr ""
+
+#: languages/vue.php:951
+msgid "Priority Support"
+msgstr ""
+
+#: languages/vue.php:954
+msgid "Get the most out of MonsterInsights by upgrading to Pro and unlocking all of the powerful features."
+msgstr ""
+
+#: languages/vue.php:957
+msgid "Feature"
+msgstr ""
+
+#: languages/vue.php:960
+msgid "Lite"
+msgstr ""
+
+#: languages/vue.php:963
+msgid "Pro"
+msgstr ""
+
+#: languages/vue.php:966
+msgid "Universal Tracking"
+msgstr ""
+
+#: languages/vue.php:969
+msgid "Included"
+msgstr ""
+
+#: languages/vue.php:972
+msgid "Custom Google Analytics Link Tracking"
+msgstr ""
+
+#: languages/vue.php:975
+msgid "Standard Tracking"
+msgstr ""
+
+#: languages/vue.php:978
+msgid "Advanced Tracking"
+msgstr ""
+
+#: languages/vue.php:981
+msgid "Automatic tracking of outbound/external, file download, affiliate, email and telephone links and our simple Custom Link Attribution markup for custom link tracking"
+msgstr ""
+
+#: languages/vue.php:984
+msgid "Scroll tracking as well as tracking on Google Accelerated Mobile Pages (AMP) and Facebook Instant Articles for Publishers"
+msgstr ""
+
+#: languages/vue.php:987
+msgid "No-Code-Needed Tracking Features"
+msgstr ""
+
+#: languages/vue.php:990
+msgid "Basic Tracking Options"
+msgstr ""
+
+#: languages/vue.php:993
+msgid "Cross-domain tracking, anonymization of IP addresses, and automatic exclusion of administrators from tracking"
+msgstr ""
+
+#: languages/vue.php:996
+msgid "Advanced Tracking Options"
+msgstr ""
+
+#: languages/vue.php:999
+msgid "Easily integrate Google Optimize as well as adjust recordings of site speed and the sample rate of visitors"
+msgstr ""
+
+#: languages/vue.php:1002
+msgid "eCommerce Tracking"
+msgstr ""
+
+#: languages/vue.php:1005
+msgid "One-click Complete eCommerce tracking"
+msgstr ""
+
+#: languages/vue.php:1008
+msgid "Complete eCommerce tracking for WooCommerce, Easy Digital Downloads and MemberPress stores with no code or settings required"
+msgstr ""
+
+#: languages/vue.php:1011
+msgid "Forms Tracking"
+msgstr ""
+
+#: languages/vue.php:1014
+msgid "One-click Form Events Tracking"
+msgstr ""
+
+#: languages/vue.php:1017
+msgid "WPForms, Ninja Forms, Contact Form 7, Gravity Forms and any other WordPress form plugin"
+msgstr ""
+
+#: languages/vue.php:1020
+msgid "MonsterInsights Recommends WPForms"
+msgstr ""
+
+#: languages/vue.php:1023
+msgid "Built by the folks behind MonsterInsights, WPForms is the most beginner friendly form plugin in the market."
+msgstr ""
+
+#: languages/vue.php:1026
+msgid "Used on over 1,000,000 websites!"
+msgstr ""
+
+#: languages/vue.php:1029
+msgid "WPForms allow you to create beautiful contact forms, subscription forms, payment forms, and other types of forms for your site in minutes, not hours!"
+msgstr ""
+
+#: languages/vue.php:1032
+msgid "Skip this Step"
+msgstr ""
+
+#: languages/vue.php:1035
+msgid "Continue & Install WPForms"
+msgstr ""
+
+#: languages/vue.php:1038
+msgid "Installing..."
+msgstr ""
+
+#: languages/vue.php:1041
+msgid "Awesome, You're All Set!"
+msgstr ""
+
+#: languages/vue.php:1044
+msgid "MonsterInsights is all set up and ready to use. We've verified that the tracking code is deployed properly and collecting data."
+msgstr ""
+
+#: languages/vue.php:1047
 msgid "%sPlease Note:%s While Google Analytics is properly setup and tracking everything, it does not send the data back to WordPress immediately. Depending on the size of your website, it can take between a few hours to 24 hours for reports to populate."
 msgstr ""
 
-#: languages/vue.php:586
+#: languages/vue.php:1050
 msgid "%sSubscribe to the MonsterInsights blog%s for tips on how to get more traffic and grow your business."
 msgstr ""
 
-#: languages/vue.php:589
+#: languages/vue.php:1053
 msgid "Finish Setup & Exit Wizard"
 msgstr ""
 
-#: languages/vue.php:592
+#: languages/vue.php:1056
 msgid "Checking your website..."
 msgstr ""
 
-#: languages/vue.php:595
+#: languages/vue.php:1059
+msgid "Recommended Settings"
+msgstr ""
+
+#: languages/vue.php:1062
+msgid "MonsterInsights recommends the following settings based on your configuration."
+msgstr ""
+
+#: languages/vue.php:1065
+msgid "Events Tracking"
+msgstr ""
+
+#: languages/vue.php:1068
+msgid "Must have for all click tracking on site."
+msgstr ""
+
+#: languages/vue.php:1071
+msgid "MonsterInsights uses an advanced system to automatically detect all outbound links, download links, affiliate links, telephone links, mail links, and more automatically. We do all the work for you so you don't have to write any code."
+msgstr ""
+
+#: languages/vue.php:1074
+msgid "Enhanced Link Attribution"
+msgstr ""
+
+#: languages/vue.php:1077
+msgid "Improves the accuracy of your In-Page Analytics."
+msgstr ""
+
+#: languages/vue.php:1080
+msgid "MonsterInsights will automatically help Google determine which links are unique and where they are on your site so that your In-Page Analytics reporting will be more accurate."
+msgstr ""
+
+#: languages/vue.php:1083
+msgid "Install Updates Automatically"
+msgstr ""
+
+#: languages/vue.php:1086
+msgid "Get the latest features, bug fixes, and security updates as they are released."
+msgstr ""
+
+#: languages/vue.php:1089
+msgid "To ensure you get the latest bugfixes and security updates and avoid needing to spend time logging into your WordPress site to update MonsterInsights, we offer the ability to automatically have MonsterInsights update itself."
+msgstr ""
+
+#: languages/vue.php:1092
+msgid "File Download Tracking"
+msgstr ""
+
+#: languages/vue.php:1095
+msgid "Helps you see file downloads data."
+msgstr ""
+
+#: languages/vue.php:1098
+msgid "MonsterInsights will automatically track downloads of common file types from links you have inserted onto your website. For example: want to know how many of your site's visitors have downloaded a PDF or other file you offer your visitors to download on your site? MonsterInsights makes this both easy, and code-free! You can customize the file types to track at any time from our settings panel."
+msgstr ""
+
+#: languages/vue.php:1101
+msgid "Helps you increase affiliate revenue."
+msgstr ""
+
+#: languages/vue.php:1104
+msgid "MonsterInsights will automatically help you track affiliate links that use internal looking urls like example.com/go/ or example.com/refer/. You can add custom affiliate patterns on our settings panel when you finish the onboarding wizard."
+msgstr ""
+
+#: languages/vue.php:1107
+msgid "Affiliate Link Tracking"
+msgstr ""
+
+#: languages/vue.php:1110
+msgid "Who Can See Reports"
+msgstr ""
+
+#: languages/vue.php:1113
+msgid "These user roles will be able to access MonsterInsights's reports in the WordPress admin area."
+msgstr ""
+
+#: languages/vue.php:1116
+msgid "Save and continue"
+msgstr ""
+
+#: languages/vue.php:1119
+msgid "Events Tracking is enabled the moment you set up MonsterInsights"
+msgstr ""
+
+#: languages/vue.php:1122
+msgid "Enhanced Link Attribution is enabled the moment you set up MonsterInsights"
+msgstr ""
+
+#: languages/vue.php:1125
+msgid "Connect MonsterInsights to Your Website"
+msgstr ""
+
+#: languages/vue.php:1128
+msgid "MonsterInsights connects Google Analytics to WordPress and shows you stats that matter."
+msgstr ""
+
+#: languages/vue.php:1131
+msgid "vs. Previous Day"
+msgstr ""
+
+#: languages/vue.php:1134
+msgid "No change"
+msgstr ""
+
+#: languages/vue.php:1137
+msgid "Show"
+msgstr ""
+
+#: languages/vue.php:1140
+msgid "Right Now"
+msgstr ""
+
+#: languages/vue.php:1143
+msgid "Active users on site"
+msgstr ""
+
+#: languages/vue.php:1146
+msgid "The real-time graph of visitors over time is not currently available for this site. Please try again later."
+msgstr ""
+
+#: languages/vue.php:1149
+msgid "Important: this only includes users who are tracked in real-time. Not all users are tracked in real-time including (but not limited to) logged in site administrators, certain mobile users, and users who match a Google Analytics filter."
+msgstr ""
+
+#: languages/vue.php:1152
+msgid "The real-time report automatically updates approximately every 60 seconds."
+msgstr ""
+
+#: languages/vue.php:1155
+msgid "The real-time report was last updated %s seconds ago."
+msgstr ""
+
+#: languages/vue.php:1158
+msgid "The latest data will be automatically shown on this page when it becomes available."
+msgstr ""
+
+#: languages/vue.php:1161
+msgid "There is no need to refresh the browser (doing so won't have any effect)."
+msgstr ""
+
+#: languages/vue.php:1164
+msgid "Pageviews Per Minute"
+msgstr ""
+
+#: languages/vue.php:1167
+msgid "Top Pages"
+msgstr ""
+
+#: languages/vue.php:1170
+msgid "No pageviews currently."
+msgstr ""
+
+#: languages/vue.php:1173
+msgid "Page"
+msgstr ""
+
+#: languages/vue.php:1176
+msgid "Pageview Count"
+msgstr ""
+
+#: languages/vue.php:1179
+msgid "Percent of Total"
+msgstr ""
+
+#: languages/vue.php:1182
+msgid "This is the number of active users currently on your site."
+msgstr ""
+
+#: languages/vue.php:1185
+msgid "This graph shows the number of pageviews for each of the last 30 minutes."
+msgstr ""
+
+#: languages/vue.php:1188
+msgid "This list shows the top pages users are currently viewing on your site."
+msgstr ""
+
+#: languages/vue.php:1191
+msgid "View All Real-Time Pageviews"
+msgstr ""
+
+#: languages/vue.php:1194
+msgid "View All Real-Time Traffic Sources"
+msgstr ""
+
+#: languages/vue.php:1197
+msgid "View All Real-Time Traffic by Country"
+msgstr ""
+
+#: languages/vue.php:1200
+msgid "View All Real-Time Traffic by City"
+msgstr ""
+
+#: languages/vue.php:1203
+msgid "Welcome to MonsterInsights!"
+msgstr ""
+
+#: languages/vue.php:1206
+msgid "Let's get you set up."
+msgstr ""
+
+#: languages/vue.php:1209
+msgid "Save and Continue"
+msgstr ""
+
+#: languages/vue.php:1212
+msgid "Which category best describes your website?"
+msgstr ""
+
+#: languages/vue.php:1215
+msgid "We will recommend the optimal settings for MonsterInsights based on your choice."
+msgstr ""
+
+#: languages/vue.php:1218
+msgid "Business Website"
+msgstr ""
+
+#: languages/vue.php:1221
+msgid "Publisher %s(Blog)%s"
+msgstr ""
+
+#: languages/vue.php:1224
+msgid "Ecommerce"
+msgstr ""
+
+#: languages/vue.php:1227
+msgid "See who's viewing and submitting your forms, so you can increase your conversion rate."
+msgstr ""
+
+#: languages/vue.php:1230
+msgid "Google Optimize"
+msgstr ""
+
+#: languages/vue.php:1233
+msgid "Use Google Optimize to retarget your website visitors and perform A/B split tests with ease."
+msgstr ""
+
+#: languages/vue.php:1236
+msgid "Add Custom Dimensions and track who's the most popular author on your site, which post types get the most traffic, and more"
+msgstr ""
+
+#: languages/vue.php:1239
+msgid "Your license key for MonsterInsights has expired. %sPlease click here to renew your license key.%s"
+msgstr ""
+
+#: languages/vue.php:1248
+msgid "Upgrade to MonsterInsights Pro"
+msgstr ""
+
+#: languages/vue.php:1251
+msgid "Show in widget mode"
+msgstr ""
+
+#: languages/vue.php:1254
+msgid "Show in full-width mode"
+msgstr ""
+
+#: languages/vue.php:1257
+msgid "Last 30 Days Insights for:"
+msgstr ""
+
+#: languages/vue.php:1260
+msgid "Your Website"
+msgstr ""
+
+#: languages/vue.php:1263
+msgid "Avg. Duration"
+msgstr ""
+
+#: languages/vue.php:1266
+msgid "More data is available"
+msgstr ""
+
+#: languages/vue.php:1269
+msgid "Want to see page-specific stats?"
+msgstr ""
+
+#: languages/vue.php:1272
+msgid "Can't load settings. Error: %s, %s"
+msgstr ""
+
+#: languages/vue.php:1275
+msgid "You appear to be offline."
+msgstr ""
+
+#: languages/vue.php:1278
+msgid "In order for the MonsterInsights Google AMP addon to work properly, please ask your webmaster to install the WordPress AMP plugin by Automattic. %sLearn More%s"
+msgstr ""
+
+#: languages/vue.php:1281
+msgid "In order for the MonsterInsights Google AMP addon to work properly, you need to install the WordPress AMP plugin by Automattic. %s%s Plugin%s | %sLearn More%s"
+msgstr ""
+
+#: languages/vue.php:1284
+msgid "In order for the MonsterInsights Instant Articles addon to work properly, please ask your webmaster to install the Instant Articles for WP plugin by Automattic version 3.3.5 or newer. %sLearn More%s"
+msgstr ""
+
+#: languages/vue.php:1287
+msgid "In order for the MonsterInsights Instant Articles addon to work properly, you need to install the Instant Articles for WP plugin by Automattic version 3.3.5 or newer. %s%s Plugin%s | %sLearn More%s"
+msgstr ""
+
+#: languages/vue.php:1290
+msgid "Recommended Addons"
+msgstr ""
+
+#: languages/vue.php:1293
+msgid "To unlock more features consider upgrading to PRO. As a valued MonsterInsights Lite user you receive 50% off, automatically applied at checkout!"
+msgstr ""
+
+#: languages/vue.php:1296
+msgid "Other Addons"
+msgstr ""
+
+#: languages/vue.php:1299
+msgid "View all MonsterInsights addons"
+msgstr ""
+
+#: languages/vue.php:1302
+msgid "Deactivating..."
+msgstr ""
+
+#: languages/vue.php:1305
+msgid "Deactivate"
+msgstr ""
+
+#: languages/vue.php:1308
+msgid "Status: %s"
+msgstr ""
+
+#: languages/vue.php:1311
+msgid "Not Installed"
+msgstr ""
+
+#: languages/vue.php:1314
+msgid "Network Active"
+msgstr ""
+
+#: languages/vue.php:1317
+msgid "Active"
+msgstr ""
+
+#: languages/vue.php:1320
+msgid "Inactive"
+msgstr ""
+
+#: languages/vue.php:1326
+msgid "Activating..."
+msgstr ""
+
+#: languages/vue.php:1329
+msgid "There was an issue retrieving the addons for this site. Please click on the button below the refresh the addons data."
+msgstr ""
+
+#: languages/vue.php:1332
+msgid "No addons found."
+msgstr ""
+
+#: languages/vue.php:1335
+msgid "Refresh Addons"
+msgstr ""
+
+#: languages/vue.php:1338
+msgid "Refreshing Addons"
+msgstr ""
+
+#: languages/vue.php:1341
+msgid "Upgrade to Pro to unlock addons and other great features. As a valued MonsterInsights Lite user you %sreceive 50%% off%s, automatically applied at checkout!"
+msgstr ""
+
+#: languages/vue.php:1344
+msgid "See All Your Important Store Metrics in One Place"
+msgstr ""
+
+#: languages/vue.php:1347
+msgid "Get an Answer to All Your Top Ecommerce Questions From a Single Report"
+msgstr ""
+
+#: languages/vue.php:1350
+msgid "ONE-CLICK INTEGRATIONS"
+msgstr ""
+
+#: languages/vue.php:1353
+msgid "Enable Ecommerce Tracking and Grow Your Business with Confidence"
+msgstr ""
+
+#: languages/vue.php:1356
+msgid "MonsterInsights Ecommerce Addon makes it easy to setup enhanced eCommerce tracking, so you can see all your important eCommerce metrics like total revenue, conversion rate, average order value, top products, top referral sources, and more in a single report right inside your WordPress dashboard."
+msgstr ""
+
+#: languages/vue.php:1359
+msgid "Upgrade to Pro and unlock addons and other great features. %sSave 50%% automatically!%s"
+msgstr ""
+
+#: languages/vue.php:1362
+msgid "Add your MonsterInsights license key from the email receipt or account area. %sRetrieve your license key%s."
+msgstr ""
+
+#: languages/vue.php:1365
+msgid "Miscellaneous"
+msgstr ""
+
+#: languages/vue.php:1368
+msgid "Hides plugin announcements and update details. This includes critical notices we use to inform about deprecations and important required configuration changes."
+msgstr ""
+
+#: languages/vue.php:1371
+msgid "Hide Announcements"
+msgstr ""
+
+#: languages/vue.php:1374
+msgid "Show Overview Reports"
+msgstr ""
+
+#: languages/vue.php:1377
+msgid "Show Publishers Reports"
+msgstr ""
+
+#: languages/vue.php:1380
+msgid "Show eCommerce Reports"
+msgstr ""
+
+#: languages/vue.php:1383
+msgid "Available in PRO version"
+msgstr ""
+
+#: languages/vue.php:1386
+msgid "No options available"
+msgstr ""
+
+#: languages/vue.php:1389
+msgid "Reset to default"
+msgstr ""
+
+#: languages/vue.php:1392
+msgid "The value entered does not match the required format"
+msgstr ""
+
+#: languages/vue.php:1395
+msgid "%s can't be empty."
+msgstr ""
+
+#: languages/vue.php:1398
+msgid "Duplicate values are not allowed."
+msgstr ""
+
+#: languages/vue.php:1401
+msgid "Add Another Link Path"
+msgstr ""
+
+#: languages/vue.php:1404
+msgid "Remove row"
+msgstr ""
+
+#: languages/vue.php:1407
+msgid "Upgrade to MonsterInsights Pro to Unlock More Actionable Insights"
+msgstr ""
+
+#: languages/vue.php:1410
+msgid "It's easy to double your traffic and sales when you know exactly how people find and use your website. MonsterInsights Pro shows you the stats that matter!"
+msgstr ""
+
+#: languages/vue.php:1413
+msgid "Upgrade to MonsterInsights Pro and Save 50% OFF!"
+msgstr ""
+
+#: languages/vue.php:1416
+msgid "Use coupon code %sLITEUPGRADE%s"
+msgstr ""
+
+#: languages/vue.php:1419
+msgid "Facebook Instant Articles"
+msgstr ""
+
+#: languages/vue.php:1422
+msgid "Want to expand your website audience beyond your website with Facebook Instant Articles? Upgrade to MonsterInsights Pro."
+msgstr ""
+
+#: languages/vue.php:1425
+msgid "Scroll Tracking"
+msgstr ""
+
+#: languages/vue.php:1428
+msgid "Scroll depth tracking in web analytics is one of those things you simply must do, especially if you have a content-heavy site."
+msgstr ""
+
+#: languages/vue.php:1431
+msgid "Can't save settings. Error: %s, %s"
+msgstr ""
+
+#: languages/vue.php:1434
+msgid "You appear to be offline. Settings not saved."
+msgstr ""
+
+#: languages/vue.php:1437
+msgid "Authenticating"
+msgstr ""
+
+#: languages/vue.php:1440
+msgid "Re-Authenticating"
+msgstr ""
+
+#: languages/vue.php:1443
+msgid "Verifying Credentials"
+msgstr ""
+
+#: languages/vue.php:1446
+msgid "Your site is connected to MonsterInsights!"
+msgstr ""
+
+#: languages/vue.php:1449
+msgid "Deauthenticating"
+msgstr ""
+
+#: languages/vue.php:1452
+msgid "You've disconnected your site from MonsterInsights. Your site is no longer being tracked by Google Analytics and you won't see reports anymore."
+msgstr ""
+
+#: languages/vue.php:1455
+msgid "Connect MonsterInsights"
+msgstr ""
+
+#: languages/vue.php:1458
+msgid "Verify Credentials"
+msgstr ""
+
+#: languages/vue.php:1461
+msgid "Reconnect MonsterInsights"
+msgstr ""
+
+#: languages/vue.php:1464
+msgid "Website Profile"
+msgstr ""
+
+#: languages/vue.php:1467
+msgid "Active Profile"
+msgstr ""
+
+#: languages/vue.php:1470
+msgid "Your website profile has been set at the network level of your WordPress Multisite."
+msgstr ""
+
+#: languages/vue.php:1473
+msgid "If you would like to use a different profile for this subsite, you can authenticate below."
+msgstr ""
+
+#: languages/vue.php:1476
+msgid "Manually enter your UA code"
+msgstr ""
+
+#: languages/vue.php:1479
+msgid "Warning: If you use a manual UA code, you won't be able to use any of the reporting and some of the tracking features. Your UA code should look like UA-XXXXXX-XX where the X's are numbers."
+msgstr ""
+
+#: languages/vue.php:1482
+msgid "Or manually enter UA code (limited functionality)"
+msgstr ""
+
+#: languages/vue.php:1485
+msgid "Force Deauthenticate"
+msgstr ""
+
+#: languages/vue.php:1488
+msgid "Disconnect MonsterInsights"
+msgstr ""
+
+#: languages/vue.php:1491
+msgid "Can't load errors. Error: %s, %s"
+msgstr ""
+
+#: languages/vue.php:1495
+msgid "Google AMP"
+msgstr ""
+
+#: languages/vue.php:1498
+msgid "Want to use track users visiting your AMP pages? By upgrading to MonsterInsights Pro, you can enable AMP page tracking."
+msgstr ""
+
+#: languages/vue.php:1502
+msgid "Upgrade"
+msgstr ""
+
+#: languages/vue.php:1505
 msgid ""
 "The EU Compliance addon allows you to improve compliance with GDPR\n"
 " and other privacy regulations."
 msgstr ""
 
-#: languages/vue.php:599
+#: languages/vue.php:1509
 msgid "EU Compliance"
 msgstr ""
 
-#: languages/vue.php:602
-msgid "Ads Tracking"
-msgstr ""
-
-#: languages/vue.php:605
-msgid "Add Ads tracking to see who's clicking on your Google Ads, so you can increase your revenue."
-msgstr ""
-
-#: languages/vue.php:608
-msgid "Facebook Instant Articles"
-msgstr ""
-
-#: languages/vue.php:611
-msgid ""
-"Want to expand your website audience beyond your website with Face#: src/modules/settings/components/input/tab-advanced/SettingsInputPerformance-Lite.vue:18\n"
-"msgid \n"
-""
-msgstr ""
-
-#: languages/vue.php:616
-msgid "Reset to default"
-msgstr ""
-
-#: languages/vue.php:619
-msgid "The value entered does not match the required format"
-msgstr ""
-
-#: languages/vue.php:622
-msgid "Allow usage tracking"
-msgstr ""
-
-#: languages/vue.php:625
-msgid "Thank you for being a loyal MonsterInsights Lite user."
-msgstr ""
-
-#: languages/vue.php:628
-msgid "Upgrade to MonsterInsights Pro and unlock all the awesome features."
-msgstr ""
-
-#: languages/vue.php:631
-msgid "Use coupon code %s to get 50%% off."
-msgstr ""
-
-#: languages/vue.php:634
-msgid "Dashboard widget"
-msgstr ""
-
-#: languages/vue.php:637
-msgid "Enhanced Ecommerce"
-msgstr ""
-
-#: languages/vue.php:640
-msgid "Banner Ads"
-msgstr ""
-
-#: languages/vue.php:643
-msgid "Author Tracking"
-msgstr ""
-
-#: languages/vue.php:646
-msgid "Form Conversions"
-msgstr ""
-
-#: languages/vue.php:649
-msgid "Google AMP"
-msgstr ""
-
-#: languages/vue.php:652
-msgid "SEO Score Tracking"
-msgstr ""
-
-#: languages/vue.php:655
-msgid "Help Us Improve"
-msgstr ""
-
-#: languages/vue.php:658
-msgid "Help us better understand our users and their website needs."
-msgstr ""
-
-#: languages/vue.php:661
-msgid "If enabled MonsterInsights will send some information about your WordPress site like what plugins and themes you use and which MonsterInsights settings you use to us so that we can improve our product. For a complete list of what we send and what we use it for, %svisit our website.%s"
-msgstr ""
-
-#: languages/vue.php:664
-msgid "Can't deauthenticate. Error: %s, %s"
-msgstr ""
-
-#: languages/vue.php:667
-msgid "Can't load authentication details. Error: %s, %s"
-msgstr ""
-
-#: languages/vue.php:670
-msgid "Can't authenticate. Error: %s, %s"
-msgstr ""
-
-#: languages/vue.php:673
-msgid "Can't reauthenticate. Error: %s, %s"
-msgstr ""
-
-#: languages/vue.php:676
-msgid "Can't verify credentials. Error: %s, %s"
-msgstr ""
-
-#: languages/vue.php:679
+#: languages/vue.php:1512
 msgid "Adjust the sample rate so you don't exceed Google Analytics' processing limit. Can also be used to enable Google Optimize for A/B testing and personalization."
 msgstr ""
 
-#: languages/vue.php:682
-msgid "Learn More"
+#: languages/vue.php:1515
+msgid "Usage Tracking"
 msgstr ""
 
-#: languages/vue.php:685
-msgid "Upgrade to Pro"
+#: languages/vue.php:1518
+msgid "By allowing us to track usage data we can better help you because we know with which WordPress configurations, themes and plugins we should test."
 msgstr ""
 
-#: languages/vue.php:688
-msgid "Website profile"
+#: languages/vue.php:1521
+msgid "Allow usage tracking"
 msgstr ""
 
-#: languages/vue.php:691
-msgid "Active profile"
+#: languages/vue.php:1524
+msgid "Complete documentation on usage tracking is available %shere%s."
 msgstr ""
 
-#: languages/vue.php:694
-msgid "Skip and Keep Connection"
+#: languages/vue.php:1527
+msgid "Thank you for being a loyal MonsterInsights Lite user."
 msgstr ""
 
-#: languages/vue.php:697
-msgid "Want to use track users visiting your AMP pages? By upgrading to MonsterInsights Pro, you can enable AMP page tracking."
+#: languages/vue.php:1530
+msgid "Upgrade to MonsterInsights Pro and unlock all the awesome features."
 msgstr ""
 
-#: languages/vue.php:700
-msgid "Want to expand your website audience beyond your website with Facebook Instant Articles? Upgrade to MonsterInsights Pro."
+#: languages/vue.php:1533
+msgid "Use coupon code %s to get 50%% off."
 msgstr ""
 
-#: languages/vue.php:703
-msgid "Addons: "
+#: languages/vue.php:1536
+msgid "Dashboard widget"
 msgstr ""
 
-#: languages/vue.php:706
-msgid "Tools: "
+#: languages/vue.php:1539
+msgid "Enhanced Ecommerce"
 msgstr ""
 
-#: languages/vue.php:709
-msgid "Settings: "
+#: languages/vue.php:1542
+msgid "Banner Ads"
 msgstr ""
 
-#: languages/vue.php:712
-msgid "Can't deactivate addon. Error: %s, %s"
+#: languages/vue.php:1545
+msgid "Author Tracking"
 msgstr ""
 
-#: languages/vue.php:715
-msgid "You appear to be offline. Addon not deactivated."
+#: languages/vue.php:1548
+msgid "Form Conversions"
 msgstr ""
 
-#: languages/vue.php:718
-msgid "Available Addons:"
+#: languages/vue.php:1551
+msgid "SEO Score Tracking"
 msgstr ""
 
-#: languages/vue.php:721
-msgid "Unlock More Addons"
+#: languages/vue.php:1554
+msgid "Ads Tracking"
 msgstr ""
 
-#: languages/vue.php:724
-msgid "%sWant even more addons?%s %sUpgrade your MonsterInsights account%s and unlock the following addons:"
+#: languages/vue.php:1557
+msgid "Add Ads tracking to see who's clicking on your Google Ads, so you can increase your revenue."
 msgstr ""
 
-#: languages/vue.php:727
-msgid "Import/Export"
+#: languages/vue.php:1560
+msgid "Can't deactivate the license. Error: %s, %s"
 msgstr ""
 
-#: languages/vue.php:733
-msgid "Import settings from another MonsterInsights website."
+#: languages/vue.php:1563
+msgid "Can't upgrade to PRO please try again. Error: %s, %s"
 msgstr ""
 
-#: languages/vue.php:736
-msgid "Export"
+#: languages/vue.php:1566
+msgid "Can't load license details. Error: %s, %s"
 msgstr ""
 
-#: languages/vue.php:739
-msgid "Export settings to import into another MonsterInsights install."
+#: languages/vue.php:1569
+msgid "Can't verify the license. Error: %s, %s"
 msgstr ""
 
-#: languages/vue.php:742
-msgid "Import Settings"
+#: languages/vue.php:1572
+msgid "Can't validate the license. Error: %s, %s"
 msgstr ""
 
-#: languages/vue.php:745
-msgid "Export Settings"
+#: languages/vue.php:1575
+msgid "Proceed"
 msgstr ""
 
-#: languages/vue.php:748
-msgid "Please choose a file to import"
-msgstr ""
-
-#: languages/vue.php:751
-msgid "Use the filepicker below to select the settings export file from another site."
-msgstr ""
-
-#: languages/vue.php:754
-msgid "Use the button below to export a file with your MonsterInsights settings."
-msgstr ""
-
-#: languages/vue.php:757
-msgid "Uploading file..."
-msgstr ""
-
-#: languages/vue.php:760
-msgid "File imported"
-msgstr ""
-
-#: languages/vue.php:763
-msgid "Settings successfully updated!"
-msgstr ""
-
-#: languages/vue.php:766
-msgid "Error importing settings"
-msgstr ""
-
-#: languages/vue.php:769
-msgid "Please choose a .json file generated by a MonsterInsights settings export."
-msgstr ""
-
-#: languages/vue.php:772
-msgid "Custom Campaign Parameters"
-msgstr ""
-
-#: languages/vue.php:775
-msgid "The URL builder helps you add parameters to your URLs you use in custom web-based or email ad campaigns."
-msgstr ""
-
-#: languages/vue.php:778
-msgid "A custom campaign is any ad campaign not using the AdWords auto-tagging feature. When users click one of the custom links, the unique parameters are sent to your Analytics account, so you can identify the urls that are the most effective in attracting users to your content."
-msgstr ""
-
-#: languages/vue.php:781
-msgid "Website URL %s"
-msgstr ""
-
-#: languages/vue.php:784
-msgid "The full website URL (e.g. http://monsterinsights.test)"
-msgstr ""
-
-#: languages/vue.php:787
-msgid "Campaign Source %s"
-msgstr ""
-
-#: languages/vue.php:790
-msgid "Enter a referrer (e.g. facebook, newsletter, google)"
-msgstr ""
-
-#: languages/vue.php:793
-msgid "Enter a marketing medium (e.g. cpc, banner, email)"
-msgstr ""
-
-#: languages/vue.php:796
-msgid "Enter a name to easily identify (e.g. spring_sale)"
-msgstr ""
-
-#: languages/vue.php:799
-msgid "Enter the paid keyword"
-msgstr ""
-
-#: languages/vue.php:802
-msgid "Enter something to differentiate ads"
-msgstr ""
-
-#: languages/vue.php:805
-msgid "Use Fragment"
-msgstr ""
-
-#: languages/vue.php:808
-msgid "Set the parameters in the fragment portion of the URL %s(not recommended)%s"
-msgstr ""
-
-#: languages/vue.php:811
-msgid "URL to use"
-msgstr ""
-
-#: languages/vue.php:814
-msgid "Updates automatically"
-msgstr ""
-
-#: languages/vue.php:817
-msgid "Copy to clipboard"
-msgstr ""
-
-#: languages/vue.php:820
-msgid "More Information & Examples"
-msgstr ""
-
-#: languages/vue.php:823
-msgid "The following table gives a detailed explanation and example of each of the campaign parameters."
-msgstr ""
-
-#: languages/vue.php:826
-msgid "Campaign Source"
-msgstr ""
-
-#: languages/vue.php:829
-msgid "Required. Use utm_source to identify a search engine, newsletter name, or other source."
-msgstr ""
-
-#: languages/vue.php:832
-msgid "Campaign Medium"
-msgstr ""
-
-#: languages/vue.php:835
-msgid "Use utm_medium to identify a medium such as email or cost-per-click."
-msgstr ""
-
-#: languages/vue.php:838
-msgid "Campaign Name"
-msgstr ""
-
-#: languages/vue.php:841
-msgid "Used for keyword analysis. Use utm_campaign to identify a specific product promotion or strategic campaign."
-msgstr ""
-
-#: languages/vue.php:844
-msgid "Campaign Term"
-msgstr ""
-
-#: languages/vue.php:847
-msgid "Used for paid search. Use utm_term to note the keywords for this ad."
-msgstr ""
-
-#: languages/vue.php:850
-msgid "Campaign Content"
-msgstr ""
-
-#: languages/vue.php:853
-msgid "Used for A/B testing and content-targeted ads. Use utm_content to differentiate ads or links that point to the same URL."
-msgstr ""
-
-#: languages/vue.php:856
-msgid "Example: %s"
-msgstr ""
-
-#: languages/vue.php:859
-msgid "Examples: %s"
-msgstr ""
-
-#: languages/vue.php:862
-msgid "About Campaigns"
-msgstr ""
-
-#: languages/vue.php:865
-msgid "About Custom Campaigns"
-msgstr ""
-
-#: languages/vue.php:868
-msgid "Best practices for creating Custom Campaigns"
-msgstr ""
-
-#: languages/vue.php:871
-msgid "About the Referral Traffic report"
-msgstr ""
-
-#: languages/vue.php:874
-msgid "About traffic source dimensions"
-msgstr ""
-
-#: languages/vue.php:877
-msgid "AdWords Auto-Tagging"
-msgstr ""
-
-#: languages/vue.php:880
-msgid "Additional Information"
-msgstr ""
-
-#: languages/vue.php:883
-msgid "Url Builder"
-msgstr ""
-
-#: languages/vue.php:886
-msgid "MonsterInsights Addons"
-msgstr ""
-
-#: languages/vue.php:889
-msgid "Search Addons"
-msgstr ""
-
-#: languages/vue.php:892
-msgid "Sort Ascending (A-Z)"
-msgstr ""
-
-#: languages/vue.php:895
-msgid "Sort Descending (Z-A)"
-msgstr ""
-
-#: languages/vue.php:898
-msgid "Status: %s"
-msgstr ""
-
-#: languages/vue.php:904
-msgid "Not Installed"
-msgstr ""
-
-#: languages/vue.php:907
-msgid "Active"
-msgstr ""
-
-#: languages/vue.php:910
-msgid "Inactive"
-msgstr ""
-
-#: languages/vue.php:925
+#: languages/vue.php:1578
 msgid "Please wait..."
 msgstr ""
 
-#: languages/vue.php:928
+#: languages/vue.php:1581
 msgid "Connection Information"
 msgstr ""
 
-#: languages/vue.php:931
+#: languages/vue.php:1584
 msgid "To perform the requested action, WordPress needs to access your web server. Please enter your FTP credentials to proceed. If you do not remember your credentials, you should contact your web host."
 msgstr ""
 
-#: languages/vue.php:934
+#: languages/vue.php:1587
 msgid "Hostname"
 msgstr ""
 
-#: languages/vue.php:937
+#: languages/vue.php:1590
 msgid "FTP Username"
 msgstr ""
 
-#: languages/vue.php:940
+#: languages/vue.php:1593
 msgid "FTP Password"
 msgstr ""
 
-#: languages/vue.php:943
+#: languages/vue.php:1596
 msgid "This password will not be stored on the server."
 msgstr ""
 
-#: languages/vue.php:946
+#: languages/vue.php:1599
 msgid "Connection Type"
 msgstr ""
 
-#: languages/vue.php:949
+#: languages/vue.php:1602
 msgid "Cancel"
 msgstr ""
 
-#: languages/vue.php:952
-msgid "Upgrade to Pro to unlock addons and other great features. As a valued MonsterInsights Lite user you %sreceive 50%% off%s, automatically applied at checkout!"
+#: languages/vue.php:1605
+msgid "Can't deauthenticate. Error: %s, %s"
 msgstr ""
 
-#: languages/vue.php:955
-msgid "There was an issue retrieving the addons for this site. Please click on the button below the refresh the addons data."
+#: languages/vue.php:1608
+msgid "Can't load authentication details. Error: %s, %s"
 msgstr ""
 
-#: languages/vue.php:958
-msgid "No addons found."
+#: languages/vue.php:1611
+msgid "Can't authenticate. Error: %s, %s"
 msgstr ""
 
-#: languages/vue.php:961
-msgid "Refresh Addons"
+#: languages/vue.php:1614
+msgid "Can't reauthenticate. Error: %s, %s"
 msgstr ""
 
-#: languages/vue.php:964
-msgid "Refreshing Addons"
+#: languages/vue.php:1617
+msgid "Can't verify credentials. Error: %s, %s"
 msgstr ""
 
-#: languages/vue.php:967
-msgid "Not Available"
+#: languages/vue.php:1620
+msgid "Help Us Improve"
 msgstr ""
 
-#: languages/vue.php:970
-msgid "Network Active"
+#: languages/vue.php:1623
+msgid "Help us better understand our users and their website needs."
 msgstr ""
 
-#: languages/vue.php:973
-msgid "Let's get you set up."
+#: languages/vue.php:1626
+msgid "If enabled MonsterInsights will send some information about your WordPress site like what plugins and themes you use and which MonsterInsights settings you use to us so that we can improve our product. For a complete list of what we send and what we use it for, %svisit our website.%s"
 msgstr ""
 
-#: languages/vue.php:976
-msgid "Awesome, You're All Set!"
+#: languages/vue.php:1629
+msgid "Website profile"
 msgstr ""
 
-#: languages/vue.php:979
-msgid "MonsterInsights is all set up and ready to use. We've verified that the tracking code is deployed properly and collecting data."
+#: languages/vue.php:1632
+msgid "Active profile"
 msgstr ""
 
-#: languages/vue.php:982
-msgid "The URL builder helps you add parameters to your URLs you use in custom web or email ad campaigns."
+#: languages/vue.php:1635
+msgid "Skip and Keep Connection"
 msgstr ""
 
-#: languages/vue.php:985
-msgid "The full website URL (e.g. %shttp://monsterinsights.test)%s"
+#: languages/vue.php:1638
+msgid "Can't activate addon. Error: %s, %s"
 msgstr ""
 
-#: languages/vue.php:988
-msgid "Enter a referrer (e.g. %sfacebook, newsletter, google%s)"
+#: languages/vue.php:1641
+msgid "You appear to be offline. Addon not activated."
 msgstr ""
 
-#: languages/vue.php:991
-msgid "Enter a marketing medium (e.g. %scpc, banner, email%s)"
+#: languages/vue.php:1644
+msgid "Can't deactivate addon. Error: %s, %s"
 msgstr ""
 
-#: languages/vue.php:994
-msgid "Import Export"
+#: languages/vue.php:1647
+msgid "You appear to be offline. Addon not deactivated."
 msgstr ""
 
-#: languages/vue.php:997
-msgid "URL Builder"
+#: languages/vue.php:1650
+msgid "Can't install plugin. Error: %s, %s"
 msgstr ""
 
-#: googleanalytics.php:272
-#: googleanalytics.php:286
-msgid "Cheatin&#8217; huh?"
+#: languages/vue.php:1653
+msgid "You appear to be offline. Plugin not installed."
 msgstr ""
 
-#: googleanalytics.php:422
-msgid "Sorry, but your version of WordPress does not meet MonsterInsights's required version of %1$s3.8%2$s to run properly. The plugin not been activated. %3$sClick here to return to the Dashboard%4$s."
+#: languages/vue.php:1656
+msgid "Can't install addon. Error: %s, %s"
 msgstr ""
 
-#: googleanalytics.php:443
-msgid "Please %1$suninstall%2$s the MonsterInsights Lite Plugin. Your Pro version of MonsterInsights may not work as expected until the Lite version is uninstalled."
+#: languages/vue.php:1659
+msgid "You appear to be offline. Addon not installed."
+msgstr ""
+
+#: languages/vue.php:1662
+msgid "Can't install WPForms. Error: %s, %s"
+msgstr ""
+
+#: languages/vue.php:1665
+msgid "You appear to be offline. WPForms not installed."
+msgstr ""
+
+#: languages/vue.php:1668
+msgid "Allow Usage Tracking"
+msgstr ""
+
+#: languages/vue.php:1671
+msgid "Verifying License"
+msgstr ""
+
+#: languages/vue.php:1674
+msgid "Success"
+msgstr ""
+
+#: languages/vue.php:1677
+msgid "There was an error verifying your license"
+msgstr ""
+
+#: languages/vue.php:1680
+msgid "There was an error unlocking MonsterInsights PRO please try again or install manually."
+msgstr ""
+
+#: languages/vue.php:1683
+msgid "You're using %sMonsterInsights Lite%s - no license needed. Enjoy! %s"
+msgstr ""
+
+#: languages/vue.php:1686
+msgid "To unlock more features consider %supgrading to PRO%s."
+msgstr ""
+
+#: languages/vue.php:1689
+msgid "As a valued MonsterInsights Lite user you %sreceive 50%% off%s, automatically applied at checkout!"
+msgstr ""
+
+#: languages/vue.php:1692
+msgid "Unlock PRO Features Now"
+msgstr ""
+
+#: languages/vue.php:1695
+msgid "Paste your license key here"
+msgstr ""
+
+#: languages/vue.php:1698
+msgid "Verify"
+msgstr ""
+
+#: languages/vue.php:1701
+msgid "If you already have a License key add it below to unlock MonsterInsights PRO. %sRetrieve your license key%s."
+msgstr ""
+
+#: languages/vue.php:1704
+msgid "Almost Done"
+msgstr ""
+
+#: languages/vue.php:1707
+msgid "MonsterInsights can automatically upgrade the installed version to the paid version"
+msgstr ""
+
+#: languages/vue.php:1710
+msgid "Complete Upgrade"
+msgstr ""
+
+#: languages/vue.php:1713
+msgid "Do Upgrade Later"
+msgstr ""
+
+#: languages/vue.php:1716
+msgid "Upgrade to PRO"
+msgstr ""
+
+#: languages/vue.php:1719
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: languages/vue.php:1722
+msgid "Percentage of single page visits (or web sessions). It is the number of visits in which a person leaves your website from the landing page without browsing any further."
+msgstr ""
+
+#: languages/vue.php:1725
+msgid "You're using %sMonsterInsights Lite%s - no license needed. Enjoy!"
+msgstr ""
+
+#: lite/includes/admin/dashboard-widget.php:124
+msgid "Reports are not available"
+msgstr ""
+
+#: lite/includes/admin/dashboard-widget.php:125
+msgid "Please connect MonsterInsights to Google Analytics to see reports."
+msgstr ""
+
+#: lite/includes/admin/dashboard-widget.php:126
+msgid "Configure MonsterInsights"
+msgstr ""
+
+#: lite/includes/admin/onboarding-wizard.php:160
+msgid "MonsterInsights &rsaquo; Onboarding Wizard"
+msgstr ""
+
+#: lite/includes/admin/onboarding-wizard.php:172
+msgid "Return to Dashboard"
+msgstr ""
+
+#: lite/includes/admin/onboarding-wizard.php:237
+msgid "You are not allowed to install plugins"
+msgstr ""
+
+#. Translators: The placeholders are for making the "We noticed you're using a caching plugin" text bold.
+#: lite/includes/admin/onboarding-wizard.php:333
+msgid "%1$sWe noticed you're using a caching plugin.%2$s Be sure to clear the cache to ensure the tracking appears on all pages and posts. %3$s(See this guide on how to clear cache)%4$s."
+msgstr ""
+
+#: lite/includes/admin/reports/report-realtime.php:22
+msgid "Real Time"
+msgstr ""
+
+#: lite/includes/admin/tools.php:10
+msgid "Want even more fine tuned control over your website analytics?"
+msgstr ""
+
+#: lite/includes/admin/tools.php:11
+msgid "By upgrading to MonsterInsights Pro, you can unlock the MonsterInsights URL builder that helps you better track your advertising and email marketing campaigns."
+msgstr ""
+
+#: lite/includes/admin/tools.php:12
+msgid "Click here to Upgrade"
+msgstr ""
+
+#: lite/includes/admin/upgrade.php:12
+msgid "You are not allowed to install plugins."
+msgstr ""
+
+#: lite/includes/admin/upgrade.php:24
+#: lite/includes/admin/upgrade.php:162
+msgid "You are not licensed."
+msgstr ""
+
+#: lite/includes/admin/upgrade.php:28
+msgid "Only the Lite version can upgrade."
+msgstr ""
+
+#: lite/includes/admin/upgrade.php:46
+msgid "Pro version is already installed."
+msgstr ""
+
+#: lite/includes/admin/upgrade.php:65
+msgid "We encountered a problem unlocking the PRO features. Please install the PRO version manually."
+msgstr ""
+
+#: lite/includes/admin/upgrade.php:100
+msgid "Could not install upgrade. Please download from monsterinsights.com and install manually."
+msgstr ""
+
+#: lite/includes/admin/upgrade.php:131
+#: lite/includes/admin/upgrade.php:192
+msgid "Plugin installed & activated."
+msgstr ""
+
+#: lite/includes/admin/upgrade.php:196
+msgid "Pro version installed but needs to be activated from the Plugins page inside your WordPress admin."
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:52
+msgid "MonsterInsights License"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:58
+msgid "MonsterInsights Authentication"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:63
+msgid "MonsterInsights Automatic Updates"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:69
+msgid "MonsterInsights eCommerce"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:76
+msgid "MonsterInsights AMP"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:83
+msgid "MonsterInsights FBIA"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:89
+msgid "MonsterInsights Connection"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:164
+msgid "Your website is authenticated with MonsterInsights"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:170
+msgid "MonsterInsights integrates your WordPress website with Google Analytics."
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:174
+msgid "View Reports"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:185
+msgid "You are using Manual UA code output"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:186
+msgid "We highly recommend authenticating with MonsterInsights so that you can access our new reporting area and take advantage of new MonsterInsights features."
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:190
+#: lite/includes/admin/wp-site-health.php:201
+msgid "Authenticate now"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:196
+msgid "Please configure your Google Analytics settings"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:197
+msgid "Your traffic is not being tracked by MonsterInsights at the moment and you are losing data. Authenticate and get access to the reporting area and advanced tracking features."
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:223
+msgid "MonsterInsights Upgrade not applied"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:224
+msgid "A valid license has been added to MonsterInsights but you are still using the Lite version."
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:228
+msgid "Go to License Settings"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:243
+msgid "Your website is receiving automatic updates"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:249
+msgid "MonsterInsights automatic updates are enabled and you are getting the latest features, bugfixes, and security updates as they are released."
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:256
+msgid "Your website is receiving minor updates"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:257
+msgid "MonsterInsights minor updates are enabled and you are getting the latest bugfixes and security updates, but not major features."
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:261
+msgid "Automatic updates are disabled"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:262
+msgid "MonsterInsights automatic updates are disabled. We recommend enabling automatic updates so you can get access to the latest features, bugfixes, and security updates as they are released."
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:266
+msgid "Update Settings"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:281
+msgid "eCommerce data is not being tracked"
+msgstr ""
+
+#. Translators: The eCommerce store currently active.
+#: lite/includes/admin/wp-site-health.php:288
+msgid "You are using %s but the MonsterInsights eCommerce addon is not active, please Install & Activate it to start tracking eCommerce data."
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:293
+#: lite/includes/admin/wp-site-health.php:319
+#: lite/includes/admin/wp-site-health.php:346
+msgid "View Addons"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:308
+msgid "AMP pages are not being tracked"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:314
+msgid "Your website has Google AMP-enabled pages set up but they are not tracked by Google Analytics at the moment. You need to Install & Activate the MonsterInsights AMP Addon."
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:335
+msgid "Facebook Instant Articles pages are not being tracked"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:341
+msgid "Your website has Facebook Instant Articles pages set up but they are not tracked by Google Analytics at the moment. You need to Install & Activate the MonsterInsights Facebook Instant Articles Addon."
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:360
+msgid "Can connect to MonsterInsights.com correctly"
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:366
+msgid "The MonsterInsights API is reachable and no connection issues have been detected."
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:381
+msgid "The MonsterInsights server is not reachable."
+msgstr ""
+
+#: lite/includes/admin/wp-site-health.php:382
+msgid "Your server is blocking external requests to monsterinsights.com, please check your firewall settings or contact your host for more details."
+msgstr ""
+
+#. Translators: The error message received.
+#: lite/includes/admin/wp-site-health.php:386
+msgid "Error message: %s"
 msgstr ""

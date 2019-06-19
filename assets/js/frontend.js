@@ -274,7 +274,7 @@ var MonsterInsights = function(){
 			valuesArray.extension           = extension; 			/* What extension is this link */
 			valuesArray.type                = type; 				/* What type of link is this */
 			valuesArray.target              = target;				/* Is a new tab/window being opened? */
-			valuesArray.title 				= el.title || el.textContent || el.innerText; /* Try link title, then text content */
+			valuesArray.title 				= el.title || el.innerText || el.getAttribute('aria-label') || el.textContent; /* Try link title, then text content */
 
 			/* Let's track everything but internals (that aren't internal-as-externals) and javascript */
 			if ( type !== 'internal' && type !== 'javascript' ) {

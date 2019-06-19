@@ -108,7 +108,7 @@ class MonsterInsights_Dashboard_Widget {
 		if ( ! $is_authed ) {
 			$this->widget_content_no_auth();
 		} else {
-			monsterinsights_settings_error_page( 'monsterinsights-dashboard-widget' );
+			monsterinsights_settings_error_page( 'monsterinsights-dashboard-widget', '', '0' );
 		}
 
 	}
@@ -180,8 +180,8 @@ class MonsterInsights_Dashboard_Widget {
 					// Used to add notices for future deprecations.
 					'versions'          => array(
 						'php_version'          => phpversion(),
-						'php_version_below_54' => version_compare( phpversion(), '5.4', '<' ),
-						'php_version_below_56' => version_compare( phpversion(), '5.6', '<' ),
+						'php_version_below_54' => apply_filters( 'monsterinsights_temporarily_hide_php_52_and_53_upgrade_warnings', version_compare( phpversion(), '5.4', '<' ) ),
+						'php_version_below_56' => apply_filters( 'monsterinsights_temporarily_hide_php_54_and_55_upgrade_warnings', version_compare( phpversion(), '5.6', '<' ) ),
 						'php_update_link'      => monsterinsights_get_url( 'settings-notice', 'settings-page', 'https://www.monsterinsights.com/docs/update-php/' ),
 						'wp_version'           => $wp_version,
 						'wp_version_below_46'  => version_compare( $wp_version, '4.6', '<' ),
@@ -189,8 +189,28 @@ class MonsterInsights_Dashboard_Widget {
 						'wp_update_link'       => monsterinsights_get_url( 'settings-notice', 'settings-page', 'https://www.monsterinsights.com/docs/update-wordpress/' ),
 					),
 					'plugin_version'    => MONSTERINSIGHTS_VERSION,
+					'is_admin'          => true,
+					'reports_url'       => add_query_arg( 'page', 'monsterinsights_reports', admin_url( 'admin.php' ) ),
 				)
 			);
+
+			$this->remove_conflicting_asset_files();
+		}
+	}
+
+	/**
+	 * Remove assets added by other plugins which conflict.
+	 */
+	public function remove_conflicting_asset_files() {
+		$scripts = array(
+			'jetpack-onboarding-vendor', // Jetpack Onboarding Bluehost.
+		);
+
+		if ( ! empty( $scripts ) ) {
+			foreach ( $scripts as $script ) {
+				wp_dequeue_script( $script ); // Remove JS file.
+				wp_deregister_script( $script );
+			}
 		}
 	}
 
@@ -206,7 +226,9 @@ class MonsterInsights_Dashboard_Widget {
 		$reports = $default['reports'];
 		if ( isset( $_POST['reports'] ) ) {
 			$reports = json_decode( sanitize_text_field( wp_unslash( $_POST['reports'] ) ), true );
-			array_walk( $reports, 'boolval' );
+			foreach ( $reports as $report => $reports_sections ) {
+				$reports[ $report ] = array_map( 'boolval', $reports_sections );
+			}
 		}
 
 		$options = array(

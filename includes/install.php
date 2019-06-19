@@ -57,7 +57,6 @@ class MonsterInsights_Install {
 		// Get a copy of the current MI settings.
 		$this->new_settings = get_option( monsterinsights_get_option_name() );
 
-
 		$version = get_option( 'monsterinsights_current_version', false );
 		$cachec  = false; // have we forced an object cache to be cleared already (so we don't clear it unnecessarily)
 
@@ -107,6 +106,10 @@ class MonsterInsights_Install {
 
 			if ( version_compare( $version, '7.5.0', '<' ) ) {
 				$this->v750_upgrades();
+			}
+
+			if ( version_compare( $version, '7.6.0', '<' ) ) {
+				$this->v760_upgrades();
 			}
 
 			// Do not use. See monsterinsights_after_install_routine comment below.
@@ -511,5 +514,31 @@ class MonsterInsights_Install {
 				update_option( 'monsterinsights_notices', $notices );
 			}
 		}
+	}
+
+	/**
+	 * Upgrade routine for version 7.6.0
+	 */
+	public function v760_upgrades() {
+
+		$cross_domains = isset( $this->new_settings['cross_domains'] ) ? $this->new_settings['cross_domains'] : array();
+
+		if ( ! empty( $cross_domains ) && is_array( $cross_domains ) ) {
+			$current_domain = wp_parse_url( home_url() );
+			$current_domain = isset( $current_domain['host'] ) ? $current_domain['host'] : '';
+			if ( ! empty( $current_domain ) ) {
+				$regex = '/^(?:' . $current_domain . '|(?:.+)\.' . $current_domain . ')$/m';
+				foreach ( $cross_domains as $key => $cross_domain ) {
+					if ( ! isset( $cross_domain['domain'] ) ) {
+						continue;
+					}
+					preg_match( $regex, $cross_domain['domain'], $matches );
+					if ( count( $matches ) > 0 ) {
+						unset( $this->new_settings['cross_domains'][ $key ] );
+					}
+				}
+			}
+		}
+
 	}
 }

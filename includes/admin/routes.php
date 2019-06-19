@@ -242,6 +242,10 @@ class MonsterInsights_Rest_Routes {
 		$parsed_addons['memberpress'] = array(
 			'active' => defined( 'MEPR_VERSION' ) && version_compare( MEPR_VERSION, '1.3.43', '>' ),
 		);
+		// LifterLMS.
+		$parsed_addons['lifterlms'] = array(
+			'active' => function_exists( 'LLMS' ) && version_compare( LLMS()->version, '3.32.0', '>=' ),
+		);
 		// Cookiebot.
 		$parsed_addons['cookiebot'] = array(
 			'active' => function_exists( 'cookiebot_active' ) && cookiebot_active(),
