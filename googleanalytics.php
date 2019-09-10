@@ -6,7 +6,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/?utm_source=liteplugin&utm_medium=pluginheader&utm_campaign=authoruri&utm_content=7%2E0%2E0
  *
- * Version:             7.7.0
+ * Version:             7.8.0
  * Requires at least:   3.8.0
  * Tested up to:        5.1.1
  *
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '7.7.0';
+	public $version = '7.8.0';
 
 	/**
 	 * Plugin file.
@@ -106,15 +106,6 @@ final class MonsterInsights_Lite {
 	 * @var MonsterInsights_License $license Instance of License class.
 	 */
 	protected $license;
-
-	/**
-	 * Holds instance of MonsterInsights License Actions class.
-	 *
-	 * @since 6.0.0
-	 * @access public
-	 * @var MonsterInsights_License_Actions $license_actions Instance of License Actions class.
-	 */
-	public $license_actions;
 
 	/**
 	 * Holds instance of MonsterInsights Admin Notice class.
@@ -231,15 +222,8 @@ final class MonsterInsights_Lite {
 			// Load admin only components.
 			if ( is_admin() || ( defined( 'DOING_CRON' ) && DOING_CRON ) ) {
 				self::$instance->notices          = new MonsterInsights_Notice_Admin();
-				self::$instance->license_actions  = new MonsterInsights_License_Actions();
 				self::$instance->reporting 	      = new MonsterInsights_Reporting();
 				self::$instance->api_auth    	  = new MonsterInsights_API_Auth();
-				if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
-					self::$instance->require_updater();
-				} else {
-					add_action( 'admin_init', array( self::$instance, 'require_updater' ) );
-				}
-
 				self::$instance->routes 		  = new MonsterInsights_Rest_Routes();
 			}
 
@@ -304,13 +288,6 @@ final class MonsterInsights_Lite {
 				// LazyLoad Auth for Frontend
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/auth.php';
 				self::$instance->auth = new MonsterInsights_Auth();
-			}
-			return self::$instance->$key;
-		} else if ( $key === 'license' ) {
-			if ( empty( self::$instance->license ) ) {
-				// LazyLoad Licensing for Frontend
-				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/license.php';
-				self::$instance->license = new MonsterInsights_License();
 			}
 			return self::$instance->$key;
 		} else {
@@ -477,8 +454,8 @@ final class MonsterInsights_Lite {
 	 */
 	public function load_licensing(){
 		if ( is_admin() || ( defined( 'DOING_CRON' ) && DOING_CRON ) ) {
-			require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/license.php';
-			self::$instance->license = new MonsterInsights_License();
+			require_once MONSTERINSIGHTS_PLUGIN_DIR . 'lite/includes/license-compat.php';
+			self::$instance->license = new MonsterInsights_License_Compat();
 		}
 	}
 
@@ -520,7 +497,6 @@ final class MonsterInsights_Lite {
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/common.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/notice.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/capabilities.php';
-				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/licensing/license-actions.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/licensing/autoupdate.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/review.php';
 
@@ -553,29 +529,6 @@ final class MonsterInsights_Lite {
 		require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/frontend/frontend.php';
 		require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/frontend/seedprod.php';
 		require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/measurement-protocol.php';
-	}
-
-	/**
-	 * Loads all updater related files and functions into scope.
-	 *
-	 * @access public
-	 * @since 6.0.0
-	 *
-	 * @return null Return early if the license key is not set or there are key errors.
-	 */
-	public function require_updater() {
-
-		// Retrieve the license key. If it is not set or if there are issues, return early.
-		$key = self::$instance->license->get_valid_license_key();
-		if ( ! $key ) {
-			return;
-		}
-
-		// Load the updater class.
-		require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/licensing/updater.php';
-
-		// Fire a hook for Addons to register their updater since we know the key is present.
-		do_action( 'monsterinsights_updater', $key );
 	}
 }
 
@@ -638,9 +591,7 @@ function monsterinsights_lite_uninstall_hook() {
 		define( 'WP_ADMIN', true );
 		$instance->require_files();
 		$instance->load_auth();
-		$instance->load_licensing();
 		$instance->notices         = new MonsterInsights_Notice_Admin();
-		$instance->license_actions = new MonsterInsights_License_Actions();
 		$instance->reporting       = new MonsterInsights_Reporting();
 		$instance->api_auth        = new MonsterInsights_API_Auth();
 	}
@@ -661,9 +612,6 @@ function monsterinsights_lite_uninstall_hook() {
 			// Delete data
 			$instance->reporting->delete_aggregate_data('site');
 
-			// Delete license
-			$instance->license->delete_site_license();
-
 			restore_current_blog();
 		}
 		// Delete network auth using a custom function as some variables are not initiated.
@@ -671,18 +619,12 @@ function monsterinsights_lite_uninstall_hook() {
 
 		// Delete network data
 		$instance->reporting->delete_aggregate_data('network');
-
-		// Delete network license
-		$instance->license->delete_network_license();
 	} else {
 		// Delete auth
 		$instance->api_auth->delete_auth();
 
 		// Delete data
 		$instance->reporting->delete_aggregate_data('site');
-
-		// Delete license
-		$instance->license->delete_site_license();
 	}
 
 }
@@ -744,9 +686,6 @@ function monsterinsights_lite_install_and_upgrade() {
 	// Load settings and globals (so we can use/set them during the upgrade process)
 	MonsterInsights_Lite()->define_globals();
 	MonsterInsights_Lite()->load_settings();
-
-	// Load in Licensing
-	MonsterInsights()->load_licensing();
 
 	// Load in Auth
 	MonsterInsights()->load_auth();

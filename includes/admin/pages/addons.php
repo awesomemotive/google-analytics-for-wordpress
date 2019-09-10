@@ -35,9 +35,13 @@ function monsterinsights_addons_page() {
 function monsterinsights_get_addons() {
 
     // Get license key and type.
-    $key  = is_network_admin() ? MonsterInsights()->license->get_network_license_key() : MonsterInsights()->license->get_site_license_key();
-    $type = is_network_admin() ? MonsterInsights()->license->get_network_license_type() : MonsterInsights()->license->get_site_license_type();
-    
+	$key = '';
+	$type = 'lite';
+	if ( monsterinsights_is_pro_version() ) {
+		$key  = is_network_admin() ? MonsterInsights()->license->get_network_license_key() : MonsterInsights()->license->get_site_license_key();
+		$type = is_network_admin() ? MonsterInsights()->license->get_network_license_type() : MonsterInsights()->license->get_site_license_type();
+	}
+
     // Get addons data from transient or perform API query if no transient.
     if ( false === ( $addons = get_transient( '_monsterinsights_addons' ) ) ) {
         $addons = monsterinsights_get_addons_data( $key );
@@ -48,7 +52,7 @@ function monsterinsights_get_addons() {
         return false;
     }
 
-    // Iterate through Addons, to build two arrays: 
+    // Iterate through Addons, to build two arrays:
     // - Addons the user is licensed to use,
     // - Addons the user isn't licensed to use.
     $results = array(
@@ -58,7 +62,7 @@ function monsterinsights_get_addons() {
     foreach ( (array) $addons as $i => $addon ) {
 
         // Determine whether the user is licensed to use this Addon or not.
-        if ( 
+        if (
             empty( $type ) ||
             ( in_array( 'Pro', $addon->categories ) && ( $type != 'pro' && $type != 'master' ) ) ||
             ( in_array( 'Plus', $addon->categories ) && $type != 'plus' && $type != 'pro' && $type != 'master' ) ||
@@ -88,16 +92,14 @@ function monsterinsights_get_addons() {
  * @return  array               Array of addon data otherwise.
  */
 function monsterinsights_get_addons_data( $key ) {
-    $type = is_network_admin() ? MonsterInsights()->license->get_network_license_type() : MonsterInsights()->license->get_site_license_type();
-    
     // Get Addons
     // If the key is valid, we'll get personalised upgrade URLs for each Addon (if necessary) and plugin update information.
-    if ( $key ) {
-        $addons = MonsterInsights()->license_actions->perform_remote_request( 'get-addons-data-v600', array( 'tgm-updater-key' => $key ) ); 
+    if ( monsterinsights_is_pro_version() && $key ) {
+        $addons = MonsterInsights()->license_actions->perform_remote_request( 'get-addons-data-v600', array( 'tgm-updater-key' => $key ) );
     } else {
-        $addons = MonsterInsights()->license_actions->perform_remote_request( 'get-all-addons-data', array() ); 
+        $addons = monsterinsights_get_all_addons_data();
     }
-    
+
     // If there was an API error, set transient for only 10 minutes.
     if ( ! $addons ) {
         set_transient( '_monsterinsights_addons', false, 10 * MINUTE_IN_SECONDS );
@@ -114,6 +116,49 @@ function monsterinsights_get_addons_data( $key ) {
     set_transient( '_monsterinsights_addons', $addons, 4 * HOUR_IN_SECONDS );
     return $addons;
 
+}
+
+/**
+ * Get all addons without a license, for lite users.
+ *
+ * @return array|bool|mixed|object
+ */
+function monsterinsights_get_all_addons_data() {
+	// Build the body of the request.
+	$body = array(
+		'tgm-updater-action'     => 'get-all-addons-data',
+		'tgm-updater-key'        => '',
+		'tgm-updater-wp-version' => get_bloginfo( 'version' ),
+		'tgm-updater-referer'    => site_url(),
+		'tgm-updater-mi-version' => MONSTERINSIGHTS_VERSION,
+		'tgm-updater-is-pro'     => false,
+	);
+	$body = http_build_query( $body, '', '&' );
+
+	// Build the headers of the request.
+	$headers = array(
+		'Content-Type'   => 'application/x-www-form-urlencoded',
+		'Content-Length' => strlen( $body ),
+	);
+
+	// Setup variable for wp_remote_post.
+	$post = array(
+		'headers' => $headers,
+		'body'    => $body,
+	);
+
+	// Perform the query and retrieve the response.
+	$response      = wp_remote_post( monsterinsights_get_licensing_url(), $post );
+	$response_code = wp_remote_retrieve_response_code( $response );
+	$response_body = wp_remote_retrieve_body( $response );
+
+	// Bail out early if there are any errors.
+	if ( 200 !== $response_code || is_wp_error( $response_body ) ) {
+		return false;
+	}
+
+	// Return the json decoded content.
+	return json_decode( $response_body );
 }
 
 /**

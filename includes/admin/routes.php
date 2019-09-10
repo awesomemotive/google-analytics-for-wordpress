@@ -27,6 +27,8 @@ class MonsterInsights_Rest_Routes {
 		add_action( 'wp_ajax_monsterinsights_handle_settings_import', array( $this, 'handle_settings_import' ) );
 
 		add_action( 'admin_notices', array( $this, 'hide_old_notices' ), 0 );
+
+		add_action( 'wp_ajax_monsterinsights_vue_dismiss_first_time_notice', array( $this, 'dismiss_first_time_notice' ) );
 	}
 
 	/**
@@ -36,7 +38,7 @@ class MonsterInsights_Rest_Routes {
 
 		check_ajax_referer( 'mi-admin-nonce', 'nonce' );
 
-		if ( ! current_user_can( 'monsterinsights_view_dashboard' ) ) {
+		if ( ! current_user_can( 'monsterinsights_view_dashboard' ) || ! monsterinsights_is_pro_version() ) {
 			return;
 		}
 
@@ -63,7 +65,7 @@ class MonsterInsights_Rest_Routes {
 	}
 
 	/**
-	 * Ajax handler for grabbing the license
+	 * Ajax handler for grabbing the current authenticated profile.
 	 */
 	public function get_profile() {
 
@@ -85,7 +87,7 @@ class MonsterInsights_Rest_Routes {
 	}
 
 	/**
-	 * Ajax handler for grabbing the license
+	 * Ajax handler for grabbing the settings.
 	 */
 	public function get_settings() {
 
@@ -113,7 +115,7 @@ class MonsterInsights_Rest_Routes {
 	}
 
 	/**
-	 * Ajax handler for grabbing the license
+	 * Ajax handler for updating the settings.
 	 */
 	public function update_settings() {
 
@@ -316,8 +318,6 @@ class MonsterInsights_Rest_Routes {
 
 		if ( isset( $installed_plugins[ $plugin_basename ] ) ) {
 			$installed = true;
-			$ms_active = is_plugin_active_for_network( $plugin_basename );
-			$ss_active = is_plugin_active( $plugin_basename );
 
 			if ( is_multisite() && is_network_admin() ) {
 				$active = is_plugin_active_for_network( $plugin_basename );
@@ -543,7 +543,7 @@ class MonsterInsights_Rest_Routes {
 			$args['network'] = true;
 		}
 
-		if ( ! MonsterInsights()->license->license_can( $report->level ) ) {
+		if ( monsterinsights_is_pro_version() && ! MonsterInsights()->license->license_can( $report->level ) ) {
 			$data = array(
 				'success' => false,
 				'error'   => 'license_level',
@@ -555,6 +555,16 @@ class MonsterInsights_Rest_Routes {
 		if ( ! empty( $data['success'] ) && ! empty( $data['data'] ) ) {
 			wp_send_json_success( $data['data'] );
 		} else if ( isset( $data['success'] ) && false === $data['success'] && ! empty( $data['error'] ) ) {
+			// Use a custom handler for invalid_grant errors.
+			if ( strpos( $data['error'], 'invalid_grant' ) > 0 ) {
+				wp_send_json_error(
+					array(
+						'message' => 'invalid_grant',
+						'footer'  => '',
+					)
+				);
+			}
+
 			wp_send_json_error(
 				array(
 					'message' => $data['error'],
@@ -653,5 +663,15 @@ class MonsterInsights_Rest_Routes {
 		wp_send_json_success();
 
 		wp_die();
+	}
+
+	/**
+	 * Store that the first run notice has been dismissed so it doesn't show up again.
+	 */
+	public function dismiss_first_time_notice() {
+
+		monsterinsights_update_option( 'monsterinsights_first_run_notice', true );
+
+		wp_send_json_success();
 	}
 }
