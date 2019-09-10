@@ -33,7 +33,7 @@ function monsterinsights_admin_menu() {
     $hook = 'monsterinsights_settings';
     $menu_icon_inline = monsterinsights_get_inline_menu_icon();
 
-    if ( $dashboards_disabled || ! $is_authed || ( current_user_can( 'monsterinsights_save_settings' ) && ! current_user_can( 'monsterinsights_view_dashboard' ) ) ) {
+    if ( $dashboards_disabled || ( current_user_can( 'monsterinsights_save_settings' ) && ! current_user_can( 'monsterinsights_view_dashboard' ) ) ) {
         // If dashboards disabled, first settings page
         add_menu_page( __( 'MonsterInsights', 'google-analytics-for-wordpress' ), __( 'Insights', 'google-analytics-for-wordpress' ), 'monsterinsights_save_settings', 'monsterinsights_settings', 'monsterinsights_settings_page',  $menu_icon_inline, '100.00013467543' );
         $hook = 'monsterinsights_settings';
@@ -60,17 +60,15 @@ function monsterinsights_admin_menu() {
     add_submenu_page( $hook, __( 'Tools:', 'google-analytics-for-wordpress' ), __( 'Tools', 'google-analytics-for-wordpress' ), 'manage_options', $submenu_base . '#/tools' );
 
     // then addons
-    $network_key = MonsterInsights()->license->get_network_license_key();
+    $network_key = monsterinsights_is_pro_version() ? MonsterInsights()->license->get_network_license_key() : '';
     if ( ! monsterinsights_is_network_active() || ( monsterinsights_is_network_active() && empty( $network_key ) ) ) {
-        add_submenu_page( $hook, __( 'Addons:', 'google-analytics-for-wordpress' ), '<span style="color:#7cc048"> ' . __( 'Addons', 'google-analytics-for-wordpress' ) . '</span>', 'monsterinsights_save_settings', $submenu_base . '#/addons' );
+	    add_submenu_page( $hook, __( 'Addons:', 'google-analytics-for-wordpress' ), '<span style="color:' . monsterinsights_menu_highlight_color() . '"> ' . __( 'Addons', 'google-analytics-for-wordpress' ) . '</span>', 'monsterinsights_save_settings', $submenu_base . '#/addons' );
     }
 
 	// Add About us page.
 	add_submenu_page( $hook, __( 'About Us:', 'google-analytics-for-wordpress' ), __( 'About Us', 'google-analytics-for-wordpress' ), 'manage_options', $submenu_base . '#/about' );
 }
 add_action( 'admin_menu', 'monsterinsights_admin_menu' );
-
-
 
 function monsterinsights_network_admin_menu() {
     // Get the base class object.
@@ -97,7 +95,7 @@ function monsterinsights_network_admin_menu() {
     add_submenu_page( $hook, __( 'General Reports:', 'google-analytics-for-wordpress' ), __( 'Reports', 'google-analytics-for-wordpress' ), 'monsterinsights_view_dashboard', 'monsterinsights_reports', 'monsterinsights_reports_page' );
 
     // then addons
-    add_submenu_page( $hook, __( 'Addons:', 'google-analytics-for-wordpress' ), '<span style="color:#7cc048"> ' . __( 'Addons', 'google-analytics-for-wordpress' ) . '</span>', 'monsterinsights_save_settings', $submenu_base . '#/addons' );
+	add_submenu_page( $hook, __( 'Addons:', 'google-analytics-for-wordpress' ), '<span style="color:' . monsterinsights_menu_highlight_color() . '"> ' . __( 'Addons', 'google-analytics-for-wordpress' ) . '</span>', 'monsterinsights_save_settings', $submenu_base . '#/addons' );
 }
 add_action( 'network_admin_menu', 'monsterinsights_network_admin_menu', 5 );
 

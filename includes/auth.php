@@ -1,6 +1,6 @@
 <?php
 /**
- * Auth class.  
+ * Auth class.
  *
  * Helper for auth.
  *
@@ -42,7 +42,7 @@ final class MonsterInsights_Auth {
 	public function is_authed() {
 		return ! empty( $this->profile['key'] );
 	}
-	
+
 	public function is_network_authed() {
 		return ! empty( $this->network['key'] );
 	}
@@ -70,6 +70,13 @@ final class MonsterInsights_Auth {
 	public function set_analytics_profile( $data = array() ){
 		update_option( 'monsterinsights_site_profile', $data );
 		$this->profile      = $data;
+
+		// If this is the first time, save the date when they connected.
+		$over_time = get_option( 'monsterinsights_over_time', array() );
+		if ( empty( $over_time['connected_date'] ) ) {
+			$over_time['connected_date'] = time();
+			update_option( 'monsterinsights_over_time', $over_time );
+		}
 	}
 
 	public function set_network_analytics_profile( $data = array() ){
@@ -121,7 +128,7 @@ final class MonsterInsights_Auth {
 			$data           = $this->profile;
 			$data['manual'] = $ua;
 		}
-		
+
 		do_action( 'monsterinsights_reports_delete_aggregate_data' );
 
 		$this->profile      = $data;
@@ -144,7 +151,7 @@ final class MonsterInsights_Auth {
 			$data           = $this->network;
 			$data['manual'] = $ua;
 		}
-		
+
 		do_action( 'monsterinsights_reports_delete_network_aggregate_data' );
 
 		$this->network = $data;

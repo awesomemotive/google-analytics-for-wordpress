@@ -69,9 +69,11 @@ class MonsterInsights_Review {
 	public function review() {
 		// Fetch when plugin was initially installed.
 		$activated = get_option( 'monsterinsights_over_time', array() );
-		if ( ! empty( $activated['installed_date'] ) ) {
-			// Only continue if plugin has been installed for at least 14 days.
-			if ( ( $activated['installed_date'] + ( DAY_IN_SECONDS * 14 ) ) > time() ) {
+		$ua_code   = monsterinsights_get_ua();
+
+		if ( ! empty( $activated['connected_date'] ) ) {
+			// Only continue if plugin has been tracking for at least 14 days.
+			if ( ( $activated['connected_date'] + ( DAY_IN_SECONDS * 14 ) ) > time() ) {
 				return;
 			}
 		} else {
@@ -80,17 +82,27 @@ class MonsterInsights_Review {
 				'installed_date'    => time(),
 				'installed_pro'     => monsterinsights_is_pro_version(),
 			);
+			// If already has a UA code mark as connected now.
+			if ( ! empty( $ua_code ) ) {
+				$data['connected_date'] = time();
+			}
 
 			update_option( 'monsterinsights_over_time', $data );
 			return;
 		}
+
 		// Only proceed with displaying if the user is tracking.
-		$ua_code = monsterinsights_get_ua_to_output();
 		if ( empty( $ua_code ) ) {
 			return;
 		}
 
-		$feedback_url = monsterinsights_get_url( 'review-notice', 'feedback', add_query_arg( 'wpf192157_24', untrailingslashit( home_url() ), 'https://www.monsterinsights.com/plugin-feedback/' ) );
+		$feedback_url = add_query_arg( array(
+			'wpf192157_24' => untrailingslashit( home_url() ),
+			'wpf192157_26' => monsterinsights_get_license_key(),
+			'wpf192157_27' => monsterinsights_is_pro_version() ? 'pro' : 'lite',
+			'wpf192157_28' => MONSTERINSIGHTS_VERSION,
+		), 'https://www.monsterinsights.com/plugin-feedback/' );
+		$feedback_url = monsterinsights_get_url( 'review-notice', 'feedback', $feedback_url );
 		// We have a candidate! Output a review message.
 		?>
 		<div class="notice notice-info is-dismissible monsterinsights-review-notice">
@@ -157,7 +169,20 @@ class MonsterInsights_Review {
 		$review['time']      = time();
 		$review['dismissed'] = true;
 		update_option( 'monsterinsights_review', $review );
+
+		if ( is_super_admin() && is_multisite() ) {
+			$site_list = get_sites();
+			foreach ( (array) $site_list as $site ) {
+				switch_to_blog( $site->blog_id );
+
+				update_option( 'monsterinsights_review', $review );
+
+				restore_current_blog();
+			}
+		}
+
 		die;
 	}
 }
-new MonsterInsights_Review;
+
+new MonsterInsights_Review();

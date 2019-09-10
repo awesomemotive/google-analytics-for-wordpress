@@ -90,9 +90,11 @@ final class MonsterInsights_API_Auth {
 		}
 
 		// Only for Pro users, require a license key to be entered first so we can link to things.
-		$valid = is_network_admin() ? MonsterInsights()->license->is_network_licensed() : MonsterInsights()->license->is_site_licensed();
-		if ( monsterinsights_is_pro_version() && ! $valid ) {
-			wp_send_json_error( array(	'message' => __( "Cannot authenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings.", 'google-analytics-for-wordpress' ) ) );
+		if ( monsterinsights_is_pro_version() ) {
+			$valid = is_network_admin() ? MonsterInsights()->license->is_network_licensed() : MonsterInsights()->license->is_site_licensed();
+			if ( ! $valid ) {
+				wp_send_json_error( array( 'message' => __( "Cannot authenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings.", 'google-analytics-for-wordpress' ) ) );
+			}
 		}
 
 		// we do not have a current auth
@@ -243,9 +245,11 @@ final class MonsterInsights_API_Auth {
 		}
 
 		// Only for Pro users, require a license key to be entered first so we can link to things.
-		$valid = is_network_admin() ? MonsterInsights()->license->is_network_licensed() : MonsterInsights()->license->is_site_licensed();
-		if ( monsterinsights_is_pro_version() && ! $valid ) {
-			wp_send_json_error( array(	'message' => __( "Cannot re-authenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings.", 'google-analytics-for-wordpress' ) ) );
+		if ( monsterinsights_is_pro_version() ) {
+			$valid = is_network_admin() ? MonsterInsights()->license->is_network_licensed() : MonsterInsights()->license->is_site_licensed();
+			if ( monsterinsights_is_pro_version() && ! $valid ) {
+				wp_send_json_error( array( 'message' => __( "Cannot re-authenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings.", 'google-analytics-for-wordpress' ) ) );
+			}
 		}
 
 		// we do have a current auth
@@ -368,9 +372,11 @@ final class MonsterInsights_API_Auth {
 			wp_send_json_error( array(	'message' => __( "Cannot verify. Please authenticate.", 'google-analytics-for-wordpress' ) ) );
 		}
 
-		$valid = is_network_admin() ? MonsterInsights()->license->is_network_licensed() : MonsterInsights()->license->is_site_licensed();
-		if ( monsterinsights_is_pro_version() && ! $valid ) {
-			wp_send_json_error( array(	'message' => __( "Cannot verify. Please enter a valid, active license key for MonsterInsights Pro into the settings.", 'google-analytics-for-wordpress' ) ) );
+		if ( monsterinsights_is_pro_version() ) {
+			$valid = is_network_admin() ? MonsterInsights()->license->is_network_licensed() : MonsterInsights()->license->is_site_licensed();
+			if ( ! $valid ) {
+				wp_send_json_error( array( 'message' => __( "Cannot verify. Please enter a valid, active license key for MonsterInsights Pro into the settings.", 'google-analytics-for-wordpress' ) ) );
+			}
 		}
 
 		$worked = $this->verify_auth();
@@ -421,9 +427,11 @@ final class MonsterInsights_API_Auth {
 			wp_send_json_error( array(	'message' => __( "Cannot deauthenticate. You are not currently authed.", 'google-analytics-for-wordpress' ) ) );
 		}
 
-		$valid = is_network_admin() ? MonsterInsights()->license->is_network_licensed() : MonsterInsights()->license->is_site_licensed();
-		if ( monsterinsights_is_pro_version() && ! $valid ) {
-			wp_send_json_error( array(	'message' => __( "Cannot deauthenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings.", 'google-analytics-for-wordpress' ) ) );
+		if ( monsterinsights_is_pro_version() ) {
+			$valid = is_network_admin() ? MonsterInsights()->license->is_network_licensed() : MonsterInsights()->license->is_site_licensed();
+			if ( ! $valid ) {
+				wp_send_json_error( array( 'message' => __( "Cannot deauthenticate. Please enter a valid, active license key for MonsterInsights Pro into the settings.", 'google-analytics-for-wordpress' ) ) );
+			}
 		}
 
 		$force = ! empty( $_REQUEST['forcedelete'] ) && $_REQUEST['forcedelete'] === 'true';

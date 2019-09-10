@@ -36,6 +36,8 @@ class MonsterInsights_WP_Site_Health_Lite {
 
 		add_action( 'wp_ajax_health-check-monsterinsights-test_connection', array( $this, 'test_check_connection' ) );
 
+		add_action( 'wp_ajax_health-check-monsterinsights-test_tracking_code', array( $this, 'test_check_tracking_code' ) );
+
 	}
 
 	/**
@@ -46,13 +48,6 @@ class MonsterInsights_WP_Site_Health_Lite {
 	 * @return array
 	 */
 	public function add_tests( $tests ) {
-
-		if ( $this->is_licensed() ) {
-			$tests['direct']['monsterinsights_license'] = array(
-				'label' => __( 'MonsterInsights License', 'google-analytics-for-wordpress' ),
-				'test'  => array( $this, 'test_check_license' ),
-			);
-		}
 
 		$tests['direct']['monsterinsights_auth'] = array(
 			'label' => __( 'MonsterInsights Authentication', 'google-analytics-for-wordpress' ),
@@ -90,21 +85,28 @@ class MonsterInsights_WP_Site_Health_Lite {
 			'test'  => 'monsterinsights_test_connection',
 		);
 
+		if ( $this->is_tracking() ) {
+			$tests['async']['monsterinsights_tracking_code'] = array(
+				'label' => __( 'MonsterInsights Tracking Code', 'ga-premium' ),
+				'test'  => 'monsterinsights_test_tracking_code',
+			);
+		}
+
 		return $tests;
 	}
 
 	/**
-	 * Checke if the website is licensed.
+	 * Checks if the website is being tracked.
 	 *
 	 * @return bool
 	 */
-	public function is_licensed() {
+	public function is_tracking() {
 
-		if ( ! isset( $this->is_licensed ) ) {
-			$this->is_licensed = is_network_admin() ? MonsterInsights()->license->is_network_licensed() : MonsterInsights()->license->is_site_licensed();
+		if ( ! isset( $this->is_tracking ) ) {
+			$this->is_tracking = ! empty( monsterinsights_get_ua() );
 		}
 
-		return $this->is_licensed;
+		return $this->is_tracking;
 
 	}
 
@@ -127,6 +129,8 @@ class MonsterInsights_WP_Site_Health_Lite {
 			$this->ecommerce = 'Easy Digital Downloads';
 		} else if ( defined( 'MEPR_VERSION' ) && version_compare( MEPR_VERSION, '1.3.43', '>' ) ) {
 			$this->ecommerce = 'MemberPress';
+		} else if ( function_exists( 'LLMS' ) && version_compare( LLMS()->version, '3.32.0', '>=' ) ) {
+			$this->ecommerce = 'LifterLMS';
 		}
 
 		return $this->ecommerce;
@@ -385,6 +389,33 @@ class MonsterInsights_WP_Site_Health_Lite {
 				// Translators: The error message received.
 				$result['description'] .= ' ' . sprintf( __( 'Error message: %s', 'google-analytics-for-wordpress' ), $response->get_error_message() );
 			}
+		}
+
+		wp_send_json_success( $result );
+	}
+
+	/**
+	 * Checks if there is a duplicate tracker.
+	 */
+	public function test_check_tracking_code() {
+
+		$result = array(
+			'label'       => __( 'Tracking code is properly being output.', 'google-analytics-for-wordpress' ),
+			'status'      => 'good',
+			'badge'       => array(
+				'label' => __( 'MonsterInsights', 'google-analytics-for-wordpress' ),
+				'color' => 'blue',
+			),
+			'description' => __( 'The Google Analytics tracking code is being output correctly, and no duplicate Google Analytics scripts have been detected.', 'google-analytics-for-wordpress' ),
+			'test'        => 'monsterinsights_tracking_code',
+		);
+
+		$errors = monsterinsights_is_code_installed_frontend();
+
+		if ( ! empty( $errors ) && is_array( $errors ) && ! empty( $errors[0] ) ) {
+			$result['status']      = 'critical';
+			$result['label']       = __( 'MonsterInsights has automatically detected an issue with your tracking setup', 'google-analytics-for-wordpress' );
+			$result['description'] = $errors[0];
 		}
 
 		wp_send_json_success( $result );

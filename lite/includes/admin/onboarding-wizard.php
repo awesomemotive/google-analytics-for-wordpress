@@ -61,6 +61,8 @@ class MonsterInsights_Onboarding_Wizard {
 			return;
 		}
 
+		set_current_screen();
+
 		// Remove an action in the Gutenberg plugin ( not core Gutenberg ) which throws an error.
 		remove_action( 'admin_print_styles', 'gutenberg_block_editor_admin_print_styles' );
 
@@ -170,6 +172,7 @@ class MonsterInsights_Onboarding_Wizard {
 	 */
 	public function onboarding_wizard_content() {
 		monsterinsights_settings_error_page( 'monsterinsights-vue-onboarding-wizard', '<a href="' . admin_url() . '">' . esc_html__( 'Return to Dashboard', 'google-analytics-for-wordpress' ) . '</a>' );
+		monsterinsights_settings_inline_js();
 	}
 
 	/**
@@ -313,51 +316,6 @@ class MonsterInsights_Onboarding_Wizard {
 	}
 
 	/**
-	 * Make a request to the front page and check if the tracking code is present.
-	 *
-	 * @return array
-	 */
-	public function is_code_installed_frontend() {
-
-		// Grab the front page html.
-		$request = wp_remote_request( home_url(), array(
-			'sslverify' => false,
-		) );
-		$errors  = array();
-
-		if ( 200 === wp_remote_retrieve_response_code( $request ) ) {
-
-			$body            = wp_remote_retrieve_body( $request );
-			$current_ua_code = monsterinsights_get_ua_to_output();
-			// Translators: The placeholders are for making the "We noticed you're using a caching plugin" text bold.
-			$cache_error = sprintf( esc_html__( '%1$sWe noticed you\'re using a caching plugin.%2$s Be sure to clear the cache to ensure the tracking appears on all pages and posts. %3$s(See this guide on how to clear cache)%4$s.', 'google-analytics-for-wordpress' ), '<b>', '</b>', ' <a href="https://www.wpbeginner.com/beginners-guide/how-to-clear-your-cache-in-wordpress/" target="_blank">', '</a>' );
-			// Translators: The placeholders are for making the "We have detected multiple tracking codes" text bold & adding a link to support.
-			$multiple_ua_error = sprintf( esc_html__( '%1$sWe have detected multiple tracking codes%2$s, you should remove non-MonsterInsights ones, if you need help finding them please %3$sread this article%4$s.', 'ga-premium' ), '<b>', '</b>', '<a href="https://www.monsterinsights.com/docs/how-to-find-duplicate-google-analytics-tracking-codes-in-wordpress/" target="_blank">', '</a>' );
-
-			// First, check if the tracking frontend code is present.
-			if ( false === strpos( $body, '__gaTracker' ) ) {
-				$errors[] = $cache_error;
-			} else {
-				// Check if the current UA code is actually present.
-				if ( $current_ua_code && false === strpos( $body, $current_ua_code ) ) {
-					// We have the tracking code but using another UA, so it's cached.
-					$errors[] = $cache_error;
-				}
-				// Grab all the UA codes from the page.
-				$pattern = '/UA-[0-9]+/m';
-				preg_match_all( $pattern, $body, $matches );
-				// If more than twice ( because MI has a ga-disable-UA also ), let them know to remove the others.
-				if ( ! empty( $matches[0] ) && is_array( $matches[0] ) && count( $matches[0] ) > 2 ) {
-					$errors[] = $multiple_ua_error;
-				}
-			}
-		}
-
-		return $errors;
-
-	}
-
-	/**
 	 * Update the redirect url so the user returns to the Onboarding Wizard after auth.
 	 *
 	 * @param string $siteurl The url to which the user is redirected for auth.
@@ -475,7 +433,7 @@ class MonsterInsights_Onboarding_Wizard {
 	 */
 	public function get_install_errors() {
 
-		wp_send_json( $this->is_code_installed_frontend() );
+		wp_send_json( monsterinsights_is_code_installed_frontend() );
 
 	}
 

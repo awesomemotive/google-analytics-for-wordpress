@@ -1177,3 +1177,66 @@ function monsterinsights_get_page_title() {
 	return $title;
 
 }
+
+/**
+ * Make a request to the front page and check if the tracking code is present. Moved here from onboarding wizard
+ * to be used in the site health check.
+ *
+ * @return array
+ */
+function monsterinsights_is_code_installed_frontend() {
+		// Grab the front page html.
+	$request = wp_remote_request( home_url(), array(
+		'sslverify' => false,
+	) );
+	$errors  = array();
+
+	if ( 200 === wp_remote_retrieve_response_code( $request ) ) {
+
+		$body            = wp_remote_retrieve_body( $request );
+		$current_ua_code = monsterinsights_get_ua_to_output();
+		$ua_limit        = 2;
+		// If the ads addon is installed another UA is added to the page.
+		if ( class_exists( 'MonsterInsights_Ads' ) ) {
+			$ua_limit = 3;
+		}
+		// Translators: The placeholders are for making the "We noticed you're using a caching plugin" text bold.
+		$cache_error = sprintf( esc_html__( '%1$sWe noticed you\'re using a caching plugin or caching from your hosting provider.%2$s Be sure to clear the cache to ensure the tracking appears on all pages and posts. %3$s(See this guide on how to clear cache)%4$s.', 'google-analytics-for-wordpress' ), '<b>', '</b>', ' <a href="https://www.wpbeginner.com/beginners-guide/how-to-clear-your-cache-in-wordpress/" target="_blank">', '</a>' );
+		// Translators: The placeholders are for making the "We have detected multiple tracking codes" text bold & adding a link to support.
+		$multiple_ua_error = sprintf( esc_html__( '%1$sWe have detected multiple tracking codes%2$s! You should remove non-MonsterInsights ones. If you need help finding them please %3$sread this article%4$s.', 'google-analytics-for-wordpress' ), '<b>', '</b>', '<a href="https://www.monsterinsights.com/docs/how-to-find-duplicate-google-analytics-tracking-codes-in-wordpress/" target="_blank">', '</a>' );
+
+		// First, check if the tracking frontend code is present.
+		if ( false === strpos( $body, '__gaTracker' ) ) {
+			$errors[] = $cache_error;
+		} else {
+			// Check if the current UA code is actually present.
+			if ( $current_ua_code && false === strpos( $body, $current_ua_code ) ) {
+				// We have the tracking code but using another UA, so it's cached.
+				$errors[] = $cache_error;
+			}
+			// Grab all the UA codes from the page.
+			$pattern = '/UA-[0-9]+/m';
+			preg_match_all( $pattern, $body, $matches );
+			// If more than twice ( because MI has a ga-disable-UA also ), let them know to remove the others.
+			if ( ! empty( $matches[0] ) && is_array( $matches[0] ) && count( $matches[0] ) > $ua_limit ) {
+				$errors[] = $multiple_ua_error;
+			}
+		}
+	}
+
+	return $errors;
+}
+
+/**
+ * Returns a HEX color to highlight menu items based on the admin color scheme.
+ */
+function monsterinsights_menu_highlight_color() {
+
+	$color_scheme = get_user_option( 'admin_color' );
+	$color        = '#7cc048';
+	if ( 'light' === $color_scheme || 'blue' === $color_scheme ) {
+		$color = '#5f3ea7';
+	}
+
+	return $color;
+}

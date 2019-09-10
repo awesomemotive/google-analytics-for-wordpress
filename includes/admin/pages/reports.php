@@ -61,4 +61,5 @@ function monsterinsights_reports_page() {
 	do_action( 'monsterinsights_head' );
 	echo monsterinsights_ublock_notice();
 	monsterinsights_settings_error_page( 'monsterinsights-reports');
+	monsterinsights_settings_inline_js();
 }

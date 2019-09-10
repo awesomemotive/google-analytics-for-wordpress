@@ -96,8 +96,10 @@ class MonsterInsights_Report {
 			}
 		}
 
-		if ( ! MonsterInsights()->license->license_can( $this->level ) ) {
-			return $this->get_upsell_notice();
+		if ( monsterinsights_is_pro_version() ) {
+			if ( ! MonsterInsights()->license->license_can( $this->level ) ) {
+				return $this->get_upsell_notice();
+			}
 		}
 
 		$error = $this->requirements( false, array(), $this->name );
@@ -152,7 +154,7 @@ class MonsterInsights_Report {
 		$start = ! empty( $args['start'] ) && $this->is_valid_date( $args['start'] ) ? $args['start'] : '';
 		$end   = ! empty( $args['end'] ) && $this->is_valid_date( $args['end'] ) ? $args['end'] : '';
 
-		if ( ! MonsterInsights()->license->license_can( $this->level ) ) {
+		if ( monsterinsights_is_pro_version() && ! MonsterInsights()->license->license_can( $this->level ) ) {
 			return array(
 				'success' => true,
 				'upgrade' => true,
@@ -311,7 +313,7 @@ class MonsterInsights_Report {
 	}
 
 	public function get_upsell_notice() {
-		$has_level = MonsterInsights()->license->get_license_type();
+		$has_level = monsterinsights_is_pro_version() ? MonsterInsights()->license->get_license_type() : false;
 		$has_level = $has_level ? $has_level : 'lite';
 		$message   = sprintf( __( 'You currently have a %s level license, but this report requires at least a %s level license to view the %s. Please upgrade to view this report.', 'google-analytics-for-wordpress' ), $has_level, $this->level, $this->title );
 		ob_start(); ?>

@@ -103,6 +103,14 @@ function monsterinsights_rss_link_tagger( $guid ) {
 }
 add_filter( 'the_permalink_rss', 'monsterinsights_rss_link_tagger', 99 );
 
+
+/**
+ * Checks used for loading the frontend scripts/admin bar button.
+ */
+function monsterinsights_prevent_loading_frontend_reports() {
+	return ! current_user_can( 'monsterinsights_view_dashboard' ) || monsterinsights_get_option( 'hide_admin_bar_reports' ) || function_exists( 'monsterinsights_is_reports_page' ) && monsterinsights_is_reports_page();
+}
+
 /**
  * Add an admin bar menu item on the frontend.
  *
@@ -111,7 +119,7 @@ add_filter( 'the_permalink_rss', 'monsterinsights_rss_link_tagger', 99 );
  * @return void
  */
 function monsterinsights_add_admin_bar_menu() {
-	if ( monsterinsights_get_option( 'hide_admin_bar_reports' ) || function_exists( 'monsterinsights_is_reports_page' ) && monsterinsights_is_reports_page() ) {
+	if ( monsterinsights_prevent_loading_frontend_reports() ) {
 		return;
 	}
 
@@ -138,7 +146,7 @@ add_action( 'admin_bar_menu', 'monsterinsights_add_admin_bar_menu', 999 );
  * @return void
  */
 function monsterinsights_frontend_admin_bar_scripts() {
-	if ( ! is_admin_bar_showing() || monsterinsights_get_option( 'hide_admin_bar_reports' ) || function_exists( 'monsterinsights_is_reports_page' ) && monsterinsights_is_reports_page() ) {
+	if ( monsterinsights_prevent_loading_frontend_reports() ) {
 		return;
 	}
 
