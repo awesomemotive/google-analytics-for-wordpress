@@ -273,6 +273,10 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.8.1: September 17, 2019 =
+- Tweak: Admin bar reports were no longer in the frontend.
+- Fixed: One of our Site Health integrations was triggering an error on PHP versions lower than PHP 5.5.
+
 = 7.8.0: September 10, 2019 =
 - New: Welcome to Project Delight Phase 1! Over this and the next several major releases, we're going to be focusing on polishing MonsterInsights and it's addons. You can learn more about our Project Delight initative on our blog at monsterinsights.com/blog/.
 - New: We've added a new welcome screen for first time MonsterInsights users that makes it easier than ever to get started with our plugin.

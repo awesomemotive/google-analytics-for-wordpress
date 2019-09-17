@@ -184,6 +184,7 @@ function monsterinsights_frontend_admin_bar_scripts() {
 				'shareasale_url' => monsterinsights_get_shareasale_url( monsterinsights_get_shareasale_id(), '' ),
 				'is_admin'       => is_admin(),
 				'reports_url'    => add_query_arg( 'page', 'monsterinsights_reports', admin_url( 'admin.php' ) ),
+				'authed'         => true, // Used to allow triggering the reports loading ajax call.
 			)
 		);
 	}

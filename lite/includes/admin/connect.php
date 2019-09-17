@@ -138,7 +138,7 @@ class MonsterInsights_Connect {
 		$active = activate_plugin( 'google-analytics-premium/googleanalytics-premium.php', $url, false, true );
 		if ( ! is_wp_error( $active ) ) {
 			deactivate_plugins( plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ) );
-			wp_send_json_success( esc_html__( 'Plugin installed & activated.', 'wpforms-lite' ) );
+			wp_send_json_success( esc_html__( 'Plugin installed & activated.', 'google-analytics-for-wordpress' ) );
 		}
 		$creds = request_filesystem_credentials( $url, '', false, false, null );
 		// Check for file system permissions.
