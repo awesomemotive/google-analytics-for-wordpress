@@ -6,7 +6,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/?utm_source=liteplugin&utm_medium=pluginheader&utm_campaign=authoruri&utm_content=7%2E0%2E0
  *
- * Version:             7.8.0
+ * Version:             7.8.1
  * Requires at least:   3.8.0
  * Tested up to:        5.1.1
  *
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '7.8.0';
+	public $version = '7.8.1';
 
 	/**
 	 * Plugin file.
@@ -486,6 +486,8 @@ final class MonsterInsights_Lite {
 	 */
 	public function require_files() {
 
+		require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/capabilities.php';
+
 		if ( is_admin() || ( defined( 'DOING_CRON' ) && DOING_CRON ) ) {
 
 			// Lite and Pro files
@@ -496,7 +498,6 @@ final class MonsterInsights_Lite {
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/admin.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/common.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/notice.php';
-				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/capabilities.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/licensing/autoupdate.php';
 				require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/review.php';
 

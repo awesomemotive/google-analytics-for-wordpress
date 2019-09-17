@@ -103,7 +103,8 @@ class MonsterInsights_WP_Site_Health_Lite {
 	public function is_tracking() {
 
 		if ( ! isset( $this->is_tracking ) ) {
-			$this->is_tracking = ! empty( monsterinsights_get_ua() );
+			$ua                = monsterinsights_get_ua();
+			$this->is_tracking = ! empty( $ua );
 		}
 
 		return $this->is_tracking;
