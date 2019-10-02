@@ -123,7 +123,7 @@ class MonsterInsights_Report {
 				}
 
 				if ( ! empty( $args['error'] ) ) {
-					return monsterinsights_get_message( 'error', $data['error'] );
+					return monsterinsights_get_message( 'error', $args['error'] );
 				}
 			}
 		}
@@ -389,8 +389,7 @@ class MonsterInsights_Report {
 	 */
 	public function get_addons_page_link() {
 		if ( current_user_can( 'install_plugins' ) ) {
-			$addons_url  = is_multisite() ? network_admin_url( 'admin.php?page=monsterinsights_network#/addons' ) : admin_url( 'admin.php?page=monsterinsights_settings#/addons' );
-			$addons_link = sprintf( '<a href="%1$s">%2$s</a>', $addons_url, esc_html__( 'Visit addons page', 'google-analytics-for-wordpress' ) );
+			$addons_link = 'install_addon';
 		} else {
 			$addons_link = esc_html__( 'Please ask your webmaster to enable this addon.', 'google-analytics-for-wordpress' );
 		}

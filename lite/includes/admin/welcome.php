@@ -10,12 +10,31 @@ class MonsterInsights_Welcome {
 	 */
 	public function __construct() {
 
+		// If we are not in admin or admin ajax, return
+		if ( ! is_admin() ) {
+			return;
+		}
+
+		// If user is in admin ajax or doing cron, return
+		if ( ( defined( 'DOING_AJAX' ) && DOING_AJAX  ) || ( defined( 'DOING_CRON' ) && DOING_CRON ) ) {
+			return;
+		}
+
+		// If user is not logged in, return
+		if ( ! is_user_logged_in() ) {
+			return;
+		}
+
+		// If user cannot manage_options, return
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
 		add_action( 'admin_init', array( $this, 'maybe_redirect' ), 9999 );
 		add_action( 'admin_menu', array( $this, 'register' ) );
 		add_action( 'admin_head', array( $this, 'hide_menu' ) );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'welcome_scripts' ) );
-
 	}
 
 	/**
@@ -104,6 +123,8 @@ class MonsterInsights_Welcome {
 		}
 		wp_enqueue_script( 'monsterinsights-vue-welcome-script' );
 
+		$user_data = wp_get_current_user();
+
 		wp_localize_script(
 			'monsterinsights-vue-welcome-script',
 			'monsterinsights',
@@ -130,6 +151,7 @@ class MonsterInsights_Welcome {
 					'wp_update_link'       => monsterinsights_get_url( 'settings-notice', 'settings-page', 'https://www.monsterinsights.com/docs/update-wordpress/' ),
 				),
 				'plugin_version'       => MONSTERINSIGHTS_VERSION,
+				'first_name'           => ! empty( $user_data->first_name ) ? $user_data->first_name : '',
 			)
 		);
 	}

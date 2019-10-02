@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Stores a user setting for the logged in WordPress User
+ * Stores a user setting for the logged-in WordPress User
  *
  * @access public
  * @since 6.0.0

@@ -62,7 +62,7 @@ class MonsterInsights_Connect {
 		$active = activate_plugin( 'google-analytics-premium/googleanalytics-premium.php', false, false, true );
 		if ( ! is_wp_error( $active ) ) {
 			// Deactivate plugin.
-			deactivate_plugins( plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ) );
+			deactivate_plugins( plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ), false, false );
 			wp_send_json_error( array(
 				'message' => esc_html__( 'Pro version is already installed.', 'google-analytics-for-wordpress' ),
 				'reload'  => true,
@@ -137,7 +137,7 @@ class MonsterInsights_Connect {
 		// Verify pro not installed.
 		$active = activate_plugin( 'google-analytics-premium/googleanalytics-premium.php', $url, false, true );
 		if ( ! is_wp_error( $active ) ) {
-			deactivate_plugins( plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ) );
+			deactivate_plugins( plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ), false, false );
 			wp_send_json_success( esc_html__( 'Plugin installed & activated.', 'google-analytics-for-wordpress' ) );
 		}
 		$creds = request_filesystem_credentials( $url, '', false, false, null );
@@ -174,7 +174,7 @@ class MonsterInsights_Connect {
 			$plugin_basename = $installer->plugin_info();
 
 			// Deactivate the lite version first.
-			deactivate_plugins( plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ) );
+			deactivate_plugins( plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ), false, false );
 
 			// Activate the plugin silently.
 			$activated = activate_plugin( $plugin_basename, '', false, true );

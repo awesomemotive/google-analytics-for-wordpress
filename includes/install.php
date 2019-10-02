@@ -120,6 +120,10 @@ class MonsterInsights_Install {
 				$this->v780_upgrades();
 			}
 
+			if ( version_compare( $version, '7.9.0', '<' ) ) {
+				$this->v790_upgrades();
+			}
+
 			// Do not use. See monsterinsights_after_install_routine comment below.
 			do_action( 'monsterinsights_after_existing_upgrade_routine', $version );
 			$version = get_option( 'monsterinsights_current_version', $version );
@@ -570,7 +574,7 @@ class MonsterInsights_Install {
 	}
 
 	/**
-	 * Upgrade routine for version 7.7.2
+	 * Upgrade routine for version 7.8.0
 	 */
 	public function v780_upgrades() {
 
@@ -579,6 +583,26 @@ class MonsterInsights_Install {
 			monsterinsights_update_option( 'monsterinsights_first_run_notice', true );
 
 			// If they are already tracking when they upgrade, mark connected time as now.
+			$over_time = get_option( 'monsterinsights_over_time', array() );
+			if ( empty( $over_time['connected_date'] ) ) {
+				$over_time['connected_date'] = time();
+				update_option( 'monsterinsights_over_time', $over_time );
+			}
+		}
+
+	}
+
+	/**
+	 * Upgrade routine for version 7.9.0
+	 */
+	public function v790_upgrades() {
+
+		// If they are already tracking, don't show the notice.
+		if ( monsterinsights_get_ua() ) {
+			update_option( 'monsterinsights_frontend_tracking_notice_viewed', true );
+
+			// If they are already tracking when they upgrade & not already marked mark connected time as now.
+			// Adding this here again as 7.8.0 upgrade didn't run for all users.
 			$over_time = get_option( 'monsterinsights_over_time', array() );
 			if ( empty( $over_time['connected_date'] ) ) {
 				$over_time['connected_date'] = time();

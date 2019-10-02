@@ -77,11 +77,15 @@ class MonsterInsights_Review {
 				return;
 			}
 		} else {
-			$data = array(
-				'installed_version' => MONSTERINSIGHTS_VERSION,
-				'installed_date'    => time(),
-				'installed_pro'     => monsterinsights_is_pro_version(),
-			);
+			if ( empty( $activated ) ) {
+				$data = array(
+					'installed_version' => MONSTERINSIGHTS_VERSION,
+					'installed_date'    => time(),
+					'installed_pro'     => monsterinsights_is_pro_version(),
+				);
+			} else {
+				$data = $activated;
+			}
 			// If already has a UA code mark as connected now.
 			if ( ! empty( $ua_code ) ) {
 				$data['connected_date'] = time();
