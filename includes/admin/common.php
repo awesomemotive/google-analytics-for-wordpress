@@ -42,7 +42,6 @@ function monsterinsights_is_settings_page() {
 	if ( ! empty( $current_screen->base ) && strpos( $current_screen->base, 'monsterinsights_network' ) !== false ) {
 		$settings_page = true;
 	}
-
 	return $settings_page;
 }
 
@@ -210,6 +209,7 @@ function monsterinsights_admin_scripts() {
 				$prepared_dimensions[] = $dimension;
 			}
 		}
+		$is_authed = ( MonsterInsights()->auth->is_authed() || MonsterInsights()->auth->is_network_authed() );
 
 		wp_localize_script(
 			'monsterinsights-vue-script',
@@ -249,6 +249,8 @@ function monsterinsights_admin_scripts() {
 				'is_admin'             => true,
 				'reports_url'          => add_query_arg( 'page', 'monsterinsights_reports', admin_url( 'admin.php' ) ),
 				'first_run_notice'     => apply_filters( 'monsterinsights_settings_first_time_notice_hide', monsterinsights_get_option( 'monsterinsights_first_run_notice' ) ),
+				'getting_started_url'  => is_multisite() ? network_admin_url( 'admin.php?page=monsterinsights_network#/about/getting-started' ) : admin_url( 'admin.php?page=monsterinsights_settings#/about/getting-started' ),
+				'authed'               => $is_authed,
 			)
 		);
 
@@ -298,7 +300,9 @@ function monsterinsights_admin_scripts() {
 				),
 				'plugin_version' => MONSTERINSIGHTS_VERSION,
 				'is_admin'       => true,
-				'wizard_url'           => admin_url( 'index.php?page=monsterinsights-onboarding' ),
+				'wizard_url'     => admin_url( 'index.php?page=monsterinsights-onboarding' ),
+				'install_nonce'  => wp_create_nonce( 'monsterinsights-install' ),
+				'activate_nonce' => wp_create_nonce( 'monsterinsights-activate' ),
 			)
 		);
 
