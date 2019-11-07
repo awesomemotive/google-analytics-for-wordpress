@@ -6,7 +6,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/?utm_source=liteplugin&utm_medium=pluginheader&utm_campaign=authoruri&utm_content=7%2E0%2E0
  *
- * Version:             7.9.0
+ * Version:             7.10.0
  * Requires at least:   3.8.0
  *
  * License:             GPL v3
@@ -68,7 +68,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '7.9.0';
+	public $version = '7.10.0';
 
 	/**
 	 * Plugin file.
@@ -206,7 +206,7 @@ final class MonsterInsights_Lite {
 
 			// This does the version to version background upgrade routines and initial install
 			$mi_version = get_option( 'monsterinsights_current_version', '5.5.3' );
-			if ( version_compare( $mi_version, '7.9.0', '<' ) ) {
+			if ( version_compare( $mi_version, '7.10.0', '<' ) ) {
 				monsterinsights_lite_call_install_and_upgrade();
 			}
 

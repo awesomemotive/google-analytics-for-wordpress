@@ -3,8 +3,8 @@ Contributors: chriscct7, smub
 Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, WooCommerce stats, analytics dashboard, universal google analytics, statistics, tracking, stats, google, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
-Tested up to: 5.3
-Stable tag: 7.9.0
+Tested up to: 5.4
+Stable tag: 7.10.0
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -273,6 +273,18 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+
+= 7.10.0: November 7, 2019 =
+- New: Welcome to Project Delight Phase 3! Over this and the next several major releases, we're going to be focusing on polishing MonsterInsights and it's addons. You can learn more about our Project Delight initative on our blog at monsterinsights.com/blog/.
+- New: We've added .docx, .pptx, and .xlsx to our file tracking feature as these are uploadable by WordPress by default and are commonly uploaded filetypes (and complement the existing .doc, .ppt, and .xls tracking we already have). We removed .exe, .js, and .tgz as they cannot be uploaded in WordPress by default and were not commonly used (however these can be added if desired on the file download tracking setting).
+- New: Previously in MonsterInsights we did not track administrators, and on multisite super administrators, by default. Starting with this release, editors will also now be excluded from tracking, to prevent them from skewing the analytics data for a site.
+- New: You can now change the roles able to adjust MonsterInsights settings prior to authenticating. This allows agencies flexibility in workflow if they do not give clients access to the administrator role to be able to authenticate their site.
+- Tweak: We've adjusted the error messages some users were getting revolving around SSL certificates to make them more clear on the action they need to perform to fix it.
+- Fixed: We've fixed a bug in the Safari web browser where there was some unintented padding on the Charlie overlay.
+- Fixed: We've adjusted the dashboard widget so that if a user cannot save settings, it won't suggest they go to the setup wizard but rather to contact a site administrator.
+- Fixed: We've fixed an edge case on multisite that would have prevented some users who saved a manual UA code from being able to remove (rather than replace) it.
+- Fixed: We've fixed an extreme edge case in link tracking where if a user is linking to a different domain B from domain A, if domain B's name is in domain A (such as monsterinsights.com and getmonsterinsights.com) this will now be correctly determined to be an outbound link instead of an internal link.
+
 = 7.9.0: October 2, 2019 =
 - New: Welcome to Project Delight Phase 2! Over this and the next several major releases, we're going to be focusing on polishing MonsterInsights and it's addons. You can learn more about our Project Delight initative on our blog at monsterinsights.com/blog/.
 - New: We added a Quick Links menu so you can suggest features and find help easier

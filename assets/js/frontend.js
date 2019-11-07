@@ -174,7 +174,7 @@ var MonsterInsights = function(){
 			type = "tel";
 		} else if ( protocol && protocol.length > 0 && ( __gaTrackerStringTrim( protocol ) == 'mailto' ||  __gaTrackerStringTrim( protocol ) == 'mailto:' ) ) { /* If it's a email */
 			type = "mailto";
-		} else if ( hostname && currentdomain && hostname.length > 0 && currentdomain.length > 0 && ! hostname.endsWith( currentdomain ) ) { /* If it's a outbound */
+		} else if ( hostname && currentdomain && hostname.length > 0 && currentdomain.length > 0 && ! hostname.endsWith( '.' + currentdomain)  && hostname !== currentdomain ) { /* If it's a outbound */
 			type = "external";
 		} else if ( pathname && JSON.stringify( inbound_paths ) != "{}" && pathname.length > 0 ) { /* If it's an internal as outbound */
 			var inbound_paths_length = inbound_paths.length;
