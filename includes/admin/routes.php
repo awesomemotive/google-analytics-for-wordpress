@@ -372,12 +372,12 @@ class MonsterInsights_Rest_Routes {
 			return;
 		}
 
-		$manual_ua_code     = isset( $_POST['manual_ua_code'] ) ? sanitize_text_field( wp_unslash( $_POST['manual_ua_code'] ) ) : '';
-		$manual_ua_code     = monsterinsights_is_valid_ua( $manual_ua_code ); // Also sanitizes the string.
-		$manual_ua_code_old = MonsterInsights()->auth->get_manual_ua();
+		$manual_ua_code = isset( $_POST['manual_ua_code'] ) ? sanitize_text_field( wp_unslash( $_POST['manual_ua_code'] ) ) : '';
+		$manual_ua_code = monsterinsights_is_valid_ua( $manual_ua_code ); // Also sanitizes the string.
 		if ( ! empty( $_REQUEST['isnetwork'] ) && sanitize_text_field( wp_unslash( $_REQUEST['isnetwork'] ) ) ) {
 			define( 'WP_NETWORK_ADMIN', true );
 		}
+		$manual_ua_code_old = is_network_admin() ? MonsterInsights()->auth->get_network_manual_ua() : MonsterInsights()->auth->get_manual_ua();
 
 		if ( $manual_ua_code && $manual_ua_code_old && $manual_ua_code_old === $manual_ua_code ) {
 			// Same code we had before
@@ -533,8 +533,8 @@ class MonsterInsights_Rest_Routes {
 		$report = MonsterInsights()->reporting->get_report( $report_name );
 
 		$isnetwork = ! empty( $_REQUEST['isnetwork'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['isnetwork'] ) ) : '';
-		$start     = ! empty( $_POST['start'] ) ? sanitize_text_field( wp_unslash( $_POST['start'] ) ) : '';
-		$end       = ! empty( $_POST['end'] ) ? sanitize_text_field( wp_unslash( $_POST['end'] ) ) : '';
+		$start     = ! empty( $_POST['start'] ) ? sanitize_text_field( wp_unslash( $_POST['start'] ) ) : date( 'Y-m-d', strtotime( '-30 days' ) );
+		$end       = ! empty( $_POST['end'] ) ? sanitize_text_field( wp_unslash( $_POST['end'] ) ) : date( 'Y-m-d', strtotime( '-1 day' ) );;
 		$args      = array(
 			'start' => $start,
 			'end'   => $end,

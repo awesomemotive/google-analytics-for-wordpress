@@ -110,7 +110,12 @@ class MonsterInsights_Onboarding_Wizard {
 				'monsterinsights-vue-common',
 			), monsterinsights_get_asset_version(), true );
 		} else {
-			wp_register_script( 'monsterinsights-vue-script', MONSTERINSIGHTS_LOCAL_WIZARD_JS_URL, array(), monsterinsights_get_asset_version(), true );
+			wp_enqueue_script( 'monsterinsights-vue-vendors', MONSTERINSIGHTS_LOCAL_VENDORS_JS_URL, array(), monsterinsights_get_asset_version(), true );
+			wp_enqueue_script( 'monsterinsights-vue-common', MONSTERINSIGHTS_LOCAL_COMMON_JS_URL, array(), monsterinsights_get_asset_version(), true );
+			wp_register_script( 'monsterinsights-vue-script', MONSTERINSIGHTS_LOCAL_WIZARD_JS_URL, array(
+				'monsterinsights-vue-vendors',
+				'monsterinsights-vue-common',
+			), monsterinsights_get_asset_version(), true );
 		}
 		wp_enqueue_script( 'monsterinsights-vue-script' );
 

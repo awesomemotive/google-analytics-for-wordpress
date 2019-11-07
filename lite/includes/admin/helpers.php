@@ -214,6 +214,10 @@ function monsterinsights_get_admin_menu_tooltip() {
 						tooltip_top = menuitem_pos.top - 250;
 						$tooltip.addClass( 'monsterinsights-tooltip-arrow-top' );
 					}
+					// Don't let the tooltip go outside of the screen and make the close button not visible.
+					if ( tooltip_top < 40 ) {
+						tooltip_top = 40;
+					}
 					$tooltip.css( {
 						top: tooltip_top + 'px'
 					} );
