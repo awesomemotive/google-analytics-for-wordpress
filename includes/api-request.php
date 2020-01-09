@@ -387,7 +387,7 @@ final class MonsterInsights_API_Request {
 		// The below page is a testing empty content HTML page used for firewall/router login detection
 		// and for image linking purposes in Google Images. We use it to test outbound connections since it is run on google.com
 		// and is only a few bytes large. Plus on Google's main CDN so it loads in most places in 0.07 seconds or less. Perfect for our
-		// use case of quickly testing outbound connections. 
+		// use case of quickly testing outbound connections.
 		$testurl = ! empty( $this->testurl ) ? $this->testurl :'http://www.google.com/blank.html';
 		if ( defined( 'WP_HTTP_BLOCK_EXTERNAL' ) && WP_HTTP_BLOCK_EXTERNAL ) {
 			if ( defined( 'WP_ACCESSIBLE_HOSTS' ) ) {

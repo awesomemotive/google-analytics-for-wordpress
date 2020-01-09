@@ -212,7 +212,7 @@ function monsterinsights_administrator_tracking_notice() {
 	}
 
 	// Only show this to users who are not tracked.
-	if ( ! monsterinsights_track_user() ) {
+	if ( monsterinsights_track_user() ) {
 		return;
 	}
 

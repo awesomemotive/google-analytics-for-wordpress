@@ -251,6 +251,7 @@ class MonsterInsights_Report {
 					'p'       => $p,
 					'data'    => $ret['data'],
 				);
+
 				if ( $check_cache ) {
 					! $site_auth && $ms_auth ? update_site_option( $option_name, $data ) : update_option( $option_name, $data );
 				} else {

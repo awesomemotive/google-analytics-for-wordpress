@@ -46,7 +46,7 @@ add_action( 'wp_ajax_monsterinsights_install_addon', 'monsterinsights_ajax_insta
  * @since 6.0.0
  */
 function monsterinsights_ajax_install_addon() {
-    
+
     // Run a security check first.
     check_ajax_referer( 'monsterinsights-install', 'nonce' );
 
@@ -93,7 +93,7 @@ function monsterinsights_ajax_install_addon() {
         require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
         $base = MonsterInsights();
         require_once plugin_dir_path( $base->file ) . '/includes/admin/licensing/skin.php';
-        
+
         // Create the plugin upgrader with our custom skin.
         $installer = new Plugin_Upgrader( $skin = new MonsterInsights_Skin() );
         $installer->install( $download_url );
@@ -166,7 +166,7 @@ function monsterinsights_ajax_deactivate_addon() {
 
     // Deactivate the addon.
     if ( isset( $_POST['plugin'] ) ) {
-        if ( isset( $_POST['isnetwork'] ) && $_POST['isnetwork'] ) { 
+        if ( isset( $_POST['isnetwork'] ) && $_POST['isnetwork'] ) {
             $deactivate = deactivate_plugins( $_POST['plugin'], false, true );
         } else {
             $deactivate = deactivate_plugins( $_POST['plugin'] );

@@ -1116,7 +1116,7 @@ function monsterinsights_get_shareasale_url( $shareasale_id, $shareasale_redirec
 	// Whether we have an ID or not, filter the ID.
 	$shareasale_redirect = apply_filters( 'monsterinsights_shareasale_redirect_url', $shareasale_redirect, $custom );
 	$shareasale_url      = sprintf( 'https://www.shareasale.com/r.cfm?B=971799&U=%s&M=69975&urllink=%s', $shareasale_id, $shareasale_redirect );
-
+	$shareasale_url      = apply_filters( 'monsterinsights_shareasale_redirect_entire_url', $shareasale_url, $shareasale_id, $shareasale_redirect );
 	return $shareasale_url;
 }
 
@@ -1240,3 +1240,58 @@ function monsterinsights_menu_highlight_color() {
 
 	return $color;
 }
+
+/**
+ * Track Pretty Links redirects with MonsterInsights.
+ *
+ * @param string $url The url to which users get redirected.
+ */
+function monsterinsights_custom_track_pretty_links_redirect( $url ) {
+	if ( ! function_exists( 'monsterinsights_mp_track_event_call' ) ) {
+		return;
+	}
+	// Try to determine if click originated on the same site.
+	$referer = ! empty( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : '';
+	if ( ! empty( $referer ) ) {
+		$current_site_url    = get_bloginfo( 'url' );
+		$current_site_parsed = wp_parse_url( $current_site_url );
+		$parsed_referer      = wp_parse_url( $referer );
+		if ( ! empty( $parsed_referer['host'] ) && ! empty( $current_site_parsed['host'] ) && $current_site_parsed['host'] === $parsed_referer['host'] ) {
+			// Don't track clicks originating from same site as those are tracked with JS.
+			return;
+		}
+	}
+	// Check if this is an affiliate link and use the appropriate category.
+	$ec            = 'outbound-link';
+	$inbound_paths = monsterinsights_get_option( 'affiliate_links', array() );
+	$path          = empty( $_SERVER['REQUEST_URI'] ) ? '' : $_SERVER['REQUEST_URI'];
+	if ( ! empty( $inbound_paths ) && is_array( $inbound_paths ) && ! empty( $path ) ) {
+		$found = false;
+		foreach ( $inbound_paths as $inbound_path ) {
+			if ( empty( $inbound_path['path'] ) ) {
+				continue;
+			}
+			if ( 0 === strpos( $path, trim( $inbound_path['path'] ) ) ) {
+				$label = ! empty( $inbound_path['label'] ) ? trim( $inbound_path['label'] ) : 'aff';
+				$ec   .= '-' . $label;
+				$found = true;
+				break;
+			}
+		}
+		if ( ! $found ) {
+			return;
+		}
+	} else {
+		// no paths setup in MonsterInsights settings
+		return;
+	}
+
+	$track_args = array(
+		't'  => 'event',
+		'ec' => $ec,
+		'ea' => $url,
+		'el' => 'external-redirect',
+	);
+	monsterinsights_mp_track_event_call( $track_args );
+}
+add_action( 'prli_before_redirect', 'monsterinsights_custom_track_pretty_links_redirect' );
