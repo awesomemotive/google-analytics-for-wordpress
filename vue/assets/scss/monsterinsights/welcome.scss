@@ -1,0 +1,356 @@
+.monsterinsights-welcome-container {
+  width: 750px;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.monsterinsights-welcome {
+  padding-top: 110px;
+
+  @media (max-width: 782px) {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+.monsterinsights-welcome-block {
+  background: #fff;
+  border: 1px solid $color_layout_border;
+  margin: 25px 0;
+  position: relative;
+  text-align: center;
+
+  &.monsterinsights-welcome-block-first {
+    padding-top: 50px;
+  }
+}
+
+.monsterinsights-welcome-logo:after {
+  width: 82px;
+  padding-top: 68%;
+  background-image: url('~@/assets/img/welcome/welcome-mascot.png');
+  margin: 15px 19px 19px;
+}
+
+.monsterinsights-welcome-logo-container {
+  position: absolute;
+  top: -60px;
+  width: 120px;
+  height: 120px;
+  left: 50%;
+  margin-left: -60px;
+  background: #fff;
+  border-radius: 50%;
+  border: 1px solid $color_layout_border;
+}
+
+.monsterinsights-welcome-block-inner {
+  padding: 25px;
+
+  h3 {
+    color: $color_link_hover;
+    font-size: 24px;
+    margin: 0 0 20px;
+    line-height: 1.4;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+
+.monsterinsights-welcome-video {
+  iframe {
+    width: 100%;
+  }
+}
+
+.monsterinsights-button-wrap {
+  margin: 20px auto 0;
+  max-width: 590px;
+
+  .monsterinsights-button {
+    width: 100%;
+  }
+
+  &:after {
+    content: " ";
+    clear: both;
+    display: table;
+  }
+}
+
+.monsterinsights-button {
+  &:hover,
+  &:focus {
+    background-color: $color_button_background_hover;
+    border-color: $color_button_border_hover;
+    color: $color_button_text;
+  }
+
+  &.monsterinsights-button-large {
+    font-size: 16px;
+    padding: 14px 27px;
+  }
+}
+
+.monsterinsights-welcome-left {
+  padding-right: 20px;
+}
+
+.monsterinsights-welcome-right {
+  padding-left: 20px;
+
+  @media (max-width: 782px) {
+    padding-top: 25px;
+  }
+}
+
+.monsterinsights-welcome-left,
+.monsterinsights-welcome-right {
+  width: 50%;
+  float: left;
+
+  @media (max-width: 782px) {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.monsterinsights-button.monsterinsights-button-alt {
+  background: $color_header_background;
+  border-color: $color_button_disabled_border;
+  color: $color_button_disabled_text;
+}
+
+.monsterinsights-welcome-features {
+  padding-bottom: 0;
+}
+
+.monsterinsights-welcome-feature {
+  text-align: left;
+  width: 50%;
+  float: left;
+  display: flex;
+  padding-right: 10px;
+  margin-bottom: 25px;
+
+  @media (max-width: 782px) {
+    width: 100%;
+  }
+
+  &:nth-child(2n) {
+    padding-left: 15px;
+    padding-right: 0;
+
+    @media (max-width: 782px) {
+      padding-left: 0;
+    }
+  }
+
+  @media (max-width: 782px) {
+    padding-right: 0;
+  }
+
+  .monsterinsights-welcome-feature-img {
+    width: 46px;
+    flex-shrink: 0;
+    margin-right: 15px;
+
+    svg {
+      width: 100%;
+    }
+  }
+
+  .monsterinsights-welcome-feature-text {
+    h4 {
+      font-size: 16px;
+      color: $color_link_hover;
+      margin: 0;
+    }
+
+    p {
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  }
+}
+
+.monsterinsights-welcome-block-inner {
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.monsterinsights-welcome-block-footer {
+  padding-bottom: 50px;
+}
+
+.monsterinsights-upgrade-cta {
+  text-align: left;
+  background: #f7f9fd;
+  padding: 15px;
+
+  h2 {
+    font-size: 20px;
+    margin: 0 0 30px 0;
+
+    @media (max-width: 767px) {
+      text-align: center;
+    }
+
+    span {
+      display: inline-block;
+      border-bottom: 1px solid #555;
+      padding: 0 15px 12px;
+    }
+  }
+
+  .monstericon-check {
+    color: $color_button_green_background;
+    margin-right: 4px;
+  }
+
+  .monsterinsights-welcome-left {
+    width: 70%;
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+
+  .monsterinsights-welcome-right {
+    width: 30%;
+    text-align: center;
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: block;
+      width: 50%;
+      margin: 0 0 10px 0;
+      padding: 0;
+
+      @media (max-width: 767px) {
+        width: 100%;
+      }
+    }
+  }
+
+  .monsterinsights-amount {
+    font-size: 48px;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+
+    &:before {
+      content: '$';
+      position: absolute;
+      top: -8px;
+      left: -16px;
+      font-size: 18px;
+    }
+  }
+
+  .monsterinsights-term {
+    font-size: 12px;
+    display: inline-block;
+  }
+
+  .monsterinsights-price {
+    padding: 0 0 26px;
+  }
+}
+
+#footer-left {
+  color: $color_navigation_link;
+
+  .monsterinsights-no-text-decoration {
+    text-decoration: none;
+    color: #fdb72c;
+    font-size: 14px
+  }
+
+  a {
+    color: #509fe1;
+  }
+}
+
+.monsterinsights-welcome-testimonials {
+
+  .monsterinsights-welcome-testimonial {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 25px;
+
+    @media (max-width: 782px) {
+      align-items: flex-start;
+    }
+  }
+
+  .monsterinsights-welcome-testimonial-text {
+    padding-left: 25px;
+  }
+}
+
+.monsterinsights-welcome-testimonial-image {
+  width: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  flex-grow: 0;
+
+  @media (max-width: 782px) {
+    margin-top: 24px;
+  }
+
+  .monsterinsights-bg-img {
+    padding-top: 100%;
+    background-size: 100px;
+    background-repeat: no-repeat;
+  }
+}
+
+.monsterinsights-testimonial-one {
+  background-image: url('~@/assets/img/welcome/testimonial-avatar.jpeg');
+}
+
+.monsterinsights-testimonial-two {
+  background-image: url('~@/assets/img/welcome/testimonial-avatar-2.png');
+}
+
+.monsterinsights-welcome-footer-upsell {
+  background-color: $color_header_background;
+  border-top: 1px solid $color_layout_border;
+}
+
+.dashboard_page_monsterinsights-getting-started {
+  &.auto-fold {
+    #wpcontent {
+      padding-left: 0;
+    }
+  }
+}
+
+.monsterinsights-welcome-video-image {
+  padding-top: 57%;
+
+  &:after {
+    background-image: url('~@/assets/img/welcome/welcome-video-image.jpg');
+  }
+}

@@ -1,0 +1,89 @@
+/** Reminder **/
+.monsterinsights-tracking-notice {
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  font-family: Arial, Helvetica, "Trebuchet MS", sans-serif;
+  background: #fff;
+  box-shadow: 0 0 10px 0 #dedede;
+  padding: 6px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 380px;
+  max-width: calc(100% - 30px);
+  border-radius: 6px;
+  z-index: 10000;
+
+  h3 {
+    font-size: 13px;
+    color: #222;
+    font-weight: 700;
+    margin: 0 0 8px;
+    padding: 0;
+    line-height: 1;
+    border: none;
+  }
+
+  p {
+    font-size: 13px;
+    color: #7f7f7f;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+    border: none;
+
+    a {
+      color: $color_button_background;
+      font-size: 13px;
+      line-height: 1.2;
+      margin: 0;
+      padding: 0;
+      text-decoration: underline;
+      font-weight: 400;
+
+      &:hover {
+        color: $color_button_background_hover;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .monsterinsights-tracking-notice-icon {
+    padding: 14px;
+    background-color: #f2f6ff;
+    border-radius: 6px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-right: 12px;
+  }
+
+  .monsterinsights-tracking-notice-close {
+    padding: 0;
+    margin: 0 3px 0 0;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    color: #7f7f7f;
+    background: transparent;
+    line-height: 1;
+    align-self: flex-start;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .monsterinsights-fullwidth-mascot {
+    position: relative;
+    left: auto;
+    top: auto;
+  }
+}
+
+.monsterinsights-slide-up-enter-active, .monsterinsights-slide-up-leave-active {
+  transition: bottom 700ms ease;
+}
+.monsterinsights-slide-up-enter, .monsterinsights-slide-up-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  bottom: -200px;
+}

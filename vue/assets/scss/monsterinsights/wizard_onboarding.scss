@@ -1,0 +1,1147 @@
+@import "components/tooltip";
+@import "variables/fonts";
+@import "components/select";
+@import "components/icons";
+
+* {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+body {
+	background: #f3f6ff;
+	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	margin: 0;
+}
+
+.monsterinsights-onboarding-header {
+	text-align: center;
+}
+
+.monsterinsights-header-navigation {
+	border-top: 4px solid #5f6197;
+	padding: 0 20px;
+	position: relative;
+	text-align: right;
+}
+
+@media (min-width: 782px) {
+	.monsterinsights-header-navigation {
+		padding: 0 125px;
+	}
+}
+
+.monsterinsights-exit-button {
+	background: #5f6197;
+	border-radius: 0 0 5px 5px;
+	color: #d7d7e5;
+	display: inline-block;
+	font-size: 14px;
+	line-height: 1;
+	padding: 9px 20px 12px;
+	text-decoration: none;
+	transition: color 100ms ease;
+	-moz-transition: color 100ms ease;
+	-ms-transition: color 100ms ease;
+	-o-transition: color 100ms ease;
+	-webkit-transition: color 100ms ease;
+}
+
+.monsterinsights-exit-button span {
+	margin-left: 2px;
+	font-weight: 500;
+}
+
+.monsterinsights-exit-button span,
+.monsterinsights-exit-button i {
+	vertical-align: middle;
+}
+
+.monsterinsights-exit-button i {
+	color: #afb0cb;
+	display: inline-block;
+	font-size: 16px;
+	margin-right: 4px;
+}
+
+.monsterinsights-exit-button:hover {
+	color: #afb0cb;
+}
+
+.monsterinsights-onboarding-header h1 {
+	margin: 10px 0;
+	padding: 0 20px;
+}
+
+img {
+	max-width: 100%;
+}
+
+a {
+	color: #509fe1;
+}
+
+a:hover,
+a:focus {
+	text-decoration: none;
+}
+
+.monsterinsights-onboarding-wizard-container {
+	margin: 0 auto;
+	width: 750px;
+}
+
+.monsterinsights-onboarding-wizard-steps {
+	align-items: center;
+	display: flex;
+	margin-top: 45px;
+}
+
+.monsterinsights-onboarding-wizard-step-line {
+	background: #d6e2ed;
+	height: 3px;
+	margin: 0 2px;
+	width: 100%;
+}
+
+.monsterinsights-onboarding-wizard-step-line.monsterinsights-onboarding-wizard-line-active {
+	background: #5cc0a5;
+}
+
+.monsterinsights-onboarding-wizard-step {
+	border: 2px solid #b6c9da;
+	border-radius: 50%;
+	flex-shrink: 0;
+	height: 16px;
+	width: 16px;
+}
+
+.monsterinsights-onboarding-wizard-step.monsterinsights-onboarding-wizard-step-active,
+.monsterinsights-onboarding-wizard-step.monsterinsights-onboarding-wizard-step-completed {
+	background-color: #5cc0a5;
+	border-color: #5cc0a5;
+	position: relative;
+}
+
+.monsterinsights-onboarding-wizard-step.monsterinsights-onboarding-wizard-step-completed:after {
+	color: #fff;
+	content: '\f015';
+	display: block;
+	font-family: 'Misettings';
+	font-size: 8px;
+	font-weight: 400;
+	left: 0;
+	position: absolute;
+	text-align: center;
+	top: 2px;
+	width: 100%;
+}
+
+.monsterinsights-onboarding-wizard-content {
+	background: #fff;
+	border: 1px solid #d6e2ed;
+	color: #777;
+	font-size: 14px;
+	margin: 50px 0;
+	padding: 45px 50px 50px;
+}
+
+.monsterinsights-onboarding-wizard-content h2 {
+	color: #393f4a;
+	font-size: 24px;
+	font-weight: 500;
+	margin: 0 0 5px;
+}
+
+.monsterinsights-onboarding-wizard-content .subtitle {
+	font-size: 16px;
+	line-height: 1.5;
+	margin-top: 0;
+}
+
+.monsterinsights-onboarding-wizard-content .monsterinsights-separator {
+	border-top: 1px solid #d6e2ed;
+	clear: both;
+	margin: 26px 0 26px;
+}
+
+.monsterinsights-icon-info {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.monsterinsights-icon-info svg {
+	height: 16px;
+	width: 16px;
+}
+
+.monsterinsights-onboarding-wizard-form label {
+	color: #393f4a;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.monsterinsights-description {
+	margin-top: 6px;
+}
+
+.monsterinsights-form-input {
+	margin: 5px 0 0;
+	position: relative;
+}
+
+.monsterinsights-form-input input[type="radio"] {
+	opacity: 0;
+	position: absolute;
+}
+
+.monsterinsights-settings-input-radio {
+	input {
+		opacity: 0;
+		position: absolute;
+	}
+
+	label {
+		color: #393f4a;
+		font-size: 16px;
+		display: block;
+		margin-bottom: 18px;
+
+		small {
+			font-size: 16px;
+			color: #393f4a;
+			font-weight: 400;
+		}
+
+		& > span {
+			vertical-align: middle;
+			font-weight: 500;
+			line-height: 1;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.monsterinsights-styled-radio {
+		width: 20px;
+		height: 20px;
+		border: 1px solid #b2c1cd;
+		position: relative;
+		display: inline-block;
+		border-radius: 50%;
+		margin-right: 19px;
+
+		&.monsterinsights-styled-radio-checked {
+			border-color: #5cc0a5;
+
+			&:after {
+				left: 2px;
+				right: 2px;
+				top: 2px;
+				bottom: 2px;
+				position: absolute;
+				content: '';
+				background: #5cc0a5;
+				display: block;
+				border-radius: 50%;
+			}
+		}
+	}
+}
+
+.monsterinsights-form-input input:focus ~ .monsterinsights-styled-checkbox-status {
+	box-shadow: 0 0 5px 2px rgb(77, 144, 254);
+}
+
+
+.monsterinsights-form-input .monsterinsights-form-input-label {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.monsterinsights-form-input .monsterinsights-form-input-label span {
+	font-weight: 400;
+}
+
+.monsterinsights-onboarding-button,
+.request-filesystem-credentials-action-buttons .button,
+.request-filesystem-credentials-action-buttons input[type="submit"] {
+	border: 1px solid;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1;
+	padding: 10px 18px;
+	text-decoration: none;
+}
+
+.monsterinsights-onboarding-button.monsterinsights-onboarding-button-large {
+	background-color: $color_button_background;
+	border-color: $color_button_border;
+	font-size: 16px;
+	padding: 16px 32px;
+}
+
+.monsterinsights-onboarding-button.monsterinsights-onboarding-button-large:hover,
+.monsterinsights-onboarding-button.monsterinsights-onboarding-button-large:focus {
+	background-color: $color_button_background_hover;
+	border-color: $color_button_border_hover;
+}
+
+.monsterinsights-onboarding-button.monsterinsights-button-disabled,
+.monsterinsights-onboarding-button.monsterinsights-button-disabled:hover,
+.monsterinsights-onboarding-button.monsterinsights-button-disabled:focus {
+	background-color: #f3f6ff;
+	border-color: #b7c9d9;
+	color: #8aa4b8;
+	cursor: initial;
+	outline: none;
+}
+
+.monsterinsights-onboarding-button.monsterinsights-onboarding-button-regular,
+.request-filesystem-credentials-action-buttons .button,
+.request-filesystem-credentials-action-buttons input[type="submit"] {
+	background-color: $color_button_green_background;
+	border-color: $color_button_green_border;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 10px 16px;
+}
+
+.monsterinsights-onboarding-button.monsterinsights-onboarding-button-regular:hover,
+.monsterinsights-onboarding-button.monsterinsights-onboarding-button-regular:focus,
+.request-filesystem-credentials-action-buttons .button:hover,
+.request-filesystem-credentials-action-buttons .button:focus,
+.request-filesystem-credentials-action-buttons input[type="submit"]:hover,
+.request-filesystem-credentials-action-buttons input[type="submit"]:focus {
+	background-color: $color_button_green_background_hover;
+	border-color: $color_button_green_border_hover;
+}
+
+.monsterinsights-onboarding-button.monsterinsights-button-disabled,
+.monsterinsights-onboarding-button.monsterinsights-button-disabled:hover,
+.monsterinsights-onboarding-button.monsterinsights-button-disabled:focus {
+	background-color: #f3f6ff;
+	border-color: #b7c9d9;
+	color: #8aa4b8;
+	cursor: initial;
+	outline: none;
+}
+
+.monsterinsights-onboarding-button.monsterinsights-button-activated,
+.monsterinsights-onboarding-button.monsterinsights-button-activated:hover,
+.monsterinsights-onboarding-button.monsterinsights-button-activated:focus {
+	background-color: #fff;
+	border-color: #8aa4b8;
+	color: #8aa4b8;
+	cursor: initial;
+	outline: none;
+}
+
+.monsterinsights-onboarding-wizard-form input[type="text"],
+.monsterinsights-onboarding-wizard-form input[type="email"]{
+	border: 1px solid $color_input_border;
+	border-radius: 5px;
+	color: #444;
+	display: block;
+	font-size: 16px;
+	padding: 14px;
+	width: 100%;
+}
+
+.monsterinsights-onboarding-wizard-form input[type="text"]:focus,
+.monsterinsights-onboarding-wizard-form input[type="email"]:focus {
+	border-color: $color_button_background;
+	outline: none;
+}
+
+.monsterinsights-form-input.valid input[type="text"],
+.monsterinsights-form-input.valid input[type="email"] {
+	border-color: $color_text_highlight;
+}
+
+.monsterinsights-form-input.error input[type="text"],
+.monsterinsights-form-input.error input[type="email"] {
+	border-color: $color_delete;
+}
+
+.monsterinsights-form-input select {
+	width: 100%;
+}
+
+.monsterinsights-form-input.valid:after,
+.monsterinsights-form-input.error:after {
+	display: none;
+	font-family: 'Misettings';
+	font-size: 20px;
+	font-weight: 400;
+	position: absolute;
+	right: 12px;
+	top: 13px;
+}
+
+.monsterinsights-form-input.valid:after {
+	color: #64bfa5;
+	content: '\f015';
+	display: block;
+}
+
+.monsterinsights-form-input.error:after {
+	color: #d83638;
+	content: '\f014';
+	display: block;
+}
+
+.monsterinsights-error-message {
+	color: #d83638;
+	font-weight: 500;
+}
+
+::-webkit-input-placeholder {
+	color: #b7c9d8;
+}
+
+::-moz-placeholder {
+	color: #b7c9d8;
+}
+
+:-ms-input-placeholder {
+	color: #b7c9d8;
+}
+
+:-moz-placeholder {
+	color: #b7c9d8;
+}
+
+.monsterinsights-notice {
+	background-color: #f3f6ff;
+	border: 1px solid #b7c9d9;
+	border-radius: 5px;
+	color: #8aa4b8;
+	font-size: 16px;
+	line-height: 1.4;
+	margin: 30px 0;
+	padding: 16px 20px;
+}
+
+.monsterinsights-notice.monsterinsights-notice-error {
+	background-color: #fff4f3;
+	border-color: #d83638;
+	color: #d83638;
+}
+
+.monsterinsights-text-button {
+	background: none;
+	border: none;
+	border-bottom: 1px solid;
+	color: #89a4b9;
+	cursor: pointer;
+	font-size: 16px;
+	padding: 0;
+
+	i {
+		margin-left: 4px;
+	}
+}
+
+.monsterinsights-text-button:hover {
+	border-bottom-color: transparent;
+}
+
+.monsterinsights-pull-right {
+	float: right;
+}
+
+.monsterinsights-text-button.monsterinsights-pull-right {
+	margin-top: 15px;
+}
+
+.monsterinsights-form-inline .monsterinsights-form-label,
+.monsterinsights-form-inline .monsterinsights-form-input {
+	float: left;
+	width: 80%;
+}
+
+.monsterinsights-form-inline .monsterinsights-form-input {
+	float: right;
+	text-align: right;
+	width: 20%;
+}
+
+.monsterinsights-form-inline:after {
+	clear: both;
+	content: '';
+	display: table;
+}
+
+.monsterinsights-form-inline p.monsterinsights-description {
+	margin-bottom: 0;
+}
+
+.monsterinsights-form-inline .monsterinsights-separator {
+	float: left;
+	margin-top: 27px;
+	width: 100%;
+}
+
+.monsterinsights-settings-input-checkbox {
+	// Because of the collapsible content which is flexible we need to be specific.
+	& > label {
+		color: $color_text_dark;
+		font-size: 14px;
+		margin: 0;
+
+		&.monsterinsights-styled-checkbox-faux {
+			cursor: default;
+
+			.monsterinsights-styled-checkbox {
+				cursor: default;
+				background-color: $color_checkbox_background_faux;
+
+				&.monsterinsights-styled-checkbox-checked {
+					background-color: $color_button_background_faux;
+				}
+			}
+		}
+
+		input {
+			display: none;
+		}
+
+		& > span {
+			vertical-align: middle;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.monsterinsights-styled-checkbox {
+		width: 27px;
+		height: 18px;
+		position: relative;
+		display: inline-block;
+		border-radius: 10px;
+		background-color: #d83638;
+		float: right;
+		cursor: pointer;
+
+
+		&.monsterinsights-styled-checkbox-checked {
+			background-color: $color_button_background;
+
+			&:after {
+				right: 2px;
+				left: auto;
+			}
+		}
+
+		&:after {
+			left: 2px;
+			top: 2px;
+			bottom: 2px;
+			width: 14px;
+			position: absolute;
+			content: '';
+			background: #fff;
+			display: block;
+			border-radius: 50%;
+		}
+	}
+
+	.monsterinsights-checkbox-label {
+		display: block;
+		font-weight: 500;
+		font-size: 16px;
+		color: #393f4a;
+	}
+
+	.monsterinsights-checkbox-description {
+		font-weight: 400;
+		color: #777;
+		display: inline-block;
+		margin-top: 7px;
+	}
+
+	.monsterinsights-info {
+		margin-top: 6px;
+		margin-left: 4px;
+		display: inline-block;
+	}
+}
+
+.monsterinsights-addon-row {
+	align-items: center;
+	display: flex;
+}
+
+.monsterinsights-addon-icon {
+	align-items: center;
+	border: 1px solid #d5e2ed;
+	display: flex;
+	flex-shrink: 0;
+	height: 70px;
+	justify-content: center;
+	text-align: center;
+	width: 70px;
+}
+
+.monsterinsights-addon-icon img {
+	display: block;
+	vertical-align: middle;
+}
+
+.monsterinsights-addon-text {
+	padding: 0 20px;
+	width: 100%;
+}
+
+.monsterinsights-addon-text label {
+	line-height: 1;
+}
+
+.monsterinsights-addon-text p {
+	margin: 6px 0 4px;
+}
+
+.monsterinsights-addon-text a {
+	color: #777;
+}
+
+.monsterinsights-green-text {
+	color: #5cc0a5;
+	font-weight: 700;
+}
+
+.monsterinsights-green-link {
+	color: #5cc0a5;
+	font-size: 16px;
+}
+
+.monsterinsights-addon-button {
+	align-items: center;
+	display: flex;
+	flex-shrink: 0;
+}
+
+.monsterinsights-addon-button .monsterinsights-onboarding-button {
+	min-width: 134px;
+	text-align: center;
+}
+
+/** WPForms row **/
+.monsterinsights-wpforms-row .monsterinsights-addon-icon {
+	height: 100px;
+	line-height: 98px;
+	width: 100px;
+}
+
+.monsterinsights-wpforms-row .monsterinsights-addon-text label {
+	font-size: 18px;
+	font-weight: 900;
+}
+
+.monsterinsights-wpforms-row .monsterinsights-addon-text p {
+	font-size: 16px;
+	line-height: 1.4;
+	margin-bottom: 0;
+}
+
+/** Icons */
+[class*='monstericon-']:before {
+	display: inline-block;
+	font-family: 'Misettings';
+	font-style: normal;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.monstericon-times-circle:before {
+	content: '\f01b'
+}
+
+.monstericon-info-circle-regular:before {
+	color: #b6c9da;
+	content: '\f01e';
+	font-size: 16px;
+}
+
+.monstericon-arrow-right:before {
+	content: '\f01d'
+}
+
+.monstericon-check:before {
+	content: '\f015'
+}
+
+.monsterinsights-loader-animated {
+	animation: monsterinsights-rotate-loading 1.5s linear 0s infinite normal;
+	-webkit-animation: monsterinsights-rotate-loading 1.5s linear 0s infinite normal;
+	background-color: transparent !important;
+	border: .25em solid #4b9ce4;
+	border-bottom-color: transparent;
+	border-radius: 100%;
+	border-top-color: transparent;
+	box-sizing: border-box;
+	color: transparent;
+	cursor: default;
+	height: 2em;
+	left: 0;
+	opacity: 0;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	width: 2em;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@-webkit-keyframes monsterinsights-rotate-loading {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes monsterinsights-rotate-loading {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+.settings-input-text,
+.monsterinsights-settings-input-select {
+
+	label > span {
+		font-weight: 400;
+		color: #777;
+		display: inline-block;
+		margin-top: 7px;
+		font-size: 14px;
+	}
+
+	.monsterinsights-reset-default {
+		font-size: 14px;
+		margin-top: 7px;
+		float: right;
+		font-weight: 400;
+	}
+
+	label > span.monsterinsights-dark {
+		display: block;
+		font-weight: 500;
+		font-size: 16px;
+		color: $color_link_hover;
+	}
+
+	.monsterinsights-info {
+		margin-left: 4px;
+	}
+
+	.settings-input-text-input {
+		margin-top: 18px;
+	}
+}
+
+.monsterinsights-settings-input-authenticate {
+
+	.monsterinsights-dark {
+		display: block;
+		font-weight: 500;
+		font-size: 16px;
+		color: #393f4a;
+	}
+
+	p {
+		font-weight: 400;
+		color: #777;
+		display: inline-block;
+		margin-top: 7px;
+		font-size: 14px;
+	}
+}
+
+.monsterinsights-settings-input-select-input {
+	margin-top: 18px;
+}
+
+/** FTP Form when installing addon **/
+
+.monsterinsights-onboarding-wizard-form .field-title {
+	display: block;
+	margin: 15px 0;
+}
+
+.monsterinsights-onboarding-wizard-form fieldset {
+	border: none;
+	padding: 0;
+	margin: 0;
+	box-shadow: none;
+}
+
+.monsterinsights-onboarding-wizard-form .ftp-password {
+	margin-bottom: 15px;
+}
+
+.monsterinsights-onboarding-wizard-form ol {
+	padding-left: 20px;
+}
+
+.monsterinsights-onboarding-wizard-form ol li {
+	color: #393f4b;
+	line-height: 1.5;
+	margin-bottom: 30px;
+	padding-left: 15px;
+}
+
+.monsterinsights-hidden {
+	display: none;
+}
+
+.monsterinsights-small {
+	font-size: 12px;
+}
+
+.monsterinsights-auth-info {
+
+	.monsterinsights-dark {
+		color: #393f4a;
+		font-size: 16px;
+		font-weight: 500;
+	}
+
+	p {
+		margin-top: 6px;
+	}
+}
+
+.settings-input-license {
+	label {
+		font-size: 14px;
+		color: #777;
+		font-weight: 400;
+		margin-bottom: 18px;
+		margin-top: 8px;
+		display: block;
+	}
+}
+
+.monsterinsights-onboarding-wizard-form {
+
+
+	.monsterinsights-settings-input-repeater {
+
+		label {
+			font-size: 14px;
+			margin-bottom: 0;
+		}
+
+
+
+		.monsterinsights-error {
+			margin-top: 0;
+			margin-bottom: 18px;
+			display: block;
+			font-weight: 400;
+		}
+	}
+
+	.monsterinsights-error {
+		margin: 18px 0 0;
+		color: $color_error_red;
+		cursor: default;
+		display: inline-block;
+
+		i {
+			margin-right: 10px;
+		}
+	}
+
+}
+p {
+	& > label {
+		display: block;
+	}
+
+	.monsterinsights-info {
+		margin-left: 4px;
+	}
+}
+
+
+.monsterinsights-sublabel {
+	font-weight: 400;
+	color: #777;
+	display: inline-block;
+	margin-top: 7px;
+	font-size: 14px;
+}
+
+
+.monsterinsights-settings-input-repeater-labels {
+
+	label {
+		color: $color_navigation_link;
+		font-weight: 700;
+		margin-bottom: 6px;
+		display: block;
+		width: calc( 50% - 8px );
+	}
+}
+
+.monsterinsights-settings-input-repeater-row {
+	align-items: center;
+	display: flex;
+	margin-bottom: 18px;
+
+	&:first-child {
+		margin-bottom: 14px;
+	}
+
+	& > input[type="text"] {
+		width: 50%;
+	}
+
+	input,
+	select {
+		margin-right: 18px;
+	}
+
+	button {
+		padding: 0;
+		border: none;
+		background: transparent;
+		color: $color_delete;
+		cursor: pointer;
+		font-size: 14px;
+	}
+
+	input[type="number"] {
+		width: 30%;
+	}
+
+	select {
+		width: 70%;
+	}
+
+	&.monsterinsights-disabled-row {
+		opacity: 0.5;
+	}
+}
+
+.monsterinsights-button {
+	background: $color_button_background;
+	border-style: solid;
+	border-color: $color_button_border;
+	border-width: 1px 1px 2px 1px;
+	border-radius: 3px;
+	color: $color_button_text;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 400;
+	padding: 10px 20px;
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		background-color: $color_button_background_hover;
+		border-color: $color_button_border_hover;
+	}
+}
+
+.monsterinsights-bg-img {
+	width: 100%;
+	padding-top: 66%;
+	position: relative;
+
+	&:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background-repeat: no-repeat;
+		background-size: contain;
+
+	}
+}
+
+.monsterinsights-logo {
+	display: inline-block;
+	width: 400px;
+	max-width: 100%;
+
+	.monsterinsights-bg-img {
+		padding-top: 21%;
+
+		&:after {
+			background-image: url('~@/assets/img/wizard-onboarding/mi-onboarding-logo.png');
+		}
+	}
+}
+
+.settings-input-license {
+	p {
+		color: $color_text_dark;
+
+		a {
+			color: $color_button_background;
+		}
+	}
+
+
+}
+
+.monsterinsights-smile {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	vertical-align: middle;
+
+	&:after {
+		background-image: url('~@/assets/img/icon-smile.png');
+	}
+}
+
+.monsterinsights-onboarding-license-lite {
+
+	p {
+		color: #777;
+
+		a {
+			font-weight: 700;
+		}
+
+		.monsterinsights-highlighted-text {
+			font-weight: 700;
+			color: #64bfa5;
+		}
+	}
+
+	.monsterinsights-settings-license-lite {
+		display: none;
+	}
+}
+
+@media (max-width: 767px) {
+
+	.monsterinsights-onboarding-wizard-container {
+		max-width: 100%;
+		width: auto;
+		margin: 0 10px;
+	}
+
+	.monsterinsights-onboarding-wizard-content {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.monsterinsights-addon-row {
+		flex-flow: wrap;
+		justify-content: center;
+	}
+
+	.monsterinsights-addon-text {
+		width: calc(100% - 80px);
+		padding-right: 0;
+	}
+
+	.monsterinsights-addon-button {
+		margin-top: 20px;
+	}
+
+	.monsterinsights-addon-icon {
+		align-self: flex-start;
+	}
+
+	.monsterinsights-wpforms-row .monsterinsights-addon-text {
+		width: calc(100% - 100px);
+	}
+
+	.monsterinsights-text-button.monsterinsights-pull-right {
+		float: none;
+	}
+
+	.monsterinsights-form-buttons {
+		text-align: center;
+	}
+
+}
+
+.monsterinsights-addon-icon {
+	& > div {
+		display: inline-block;
+		width: 50px;
+		height: 50px;
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+
+	.monsterinsights-addon-icon-ads {
+		background-image: url('~@/assets/img/wizard-onboarding/addon-icon-ads.png');
+	}
+
+	.monsterinsights-addon-icon-amp {
+		background-image: url('~@/assets/img/wizard-onboarding/addon-icon-amp.png');
+	}
+
+	.monsterinsights-addon-icon-dimensions {
+		background-image: url('~@/assets/img/wizard-onboarding/addon-icon-dimensions.png');
+	}
+
+	.monsterinsights-addon-icon-ecommerce {
+		background-image: url('~@/assets/img/wizard-onboarding/addon-icon-ecommerce.png');
+	}
+
+	.monsterinsights-addon-icon-eu-compliance {
+		background-image: url('~@/assets/img/wizard-onboarding/addon-icon-eu-compliance.png');
+	}
+
+	.monsterinsights-addon-icon-facebook-instant-articles {
+		background-image: url('~@/assets/img/wizard-onboarding/addon-icon-facebook-instant-articles.png');
+	}
+
+	.monsterinsights-addon-icon-forms {
+		background-image: url('~@/assets/img/wizard-onboarding/addon-icon-forms.png');
+	}
+
+	.monsterinsights-addon-icon-google-optimize {
+		background-image: url('~@/assets/img/wizard-onboarding/addon-icon-google-optimize.png');
+	}
+
+	.monsterinsights-addon-icon-page-insights {
+		background-image: url('~@/assets/img/wizard-onboarding/addon-icon-page-insights.png');
+	}
+
+	.monsterinsights-addon-icon-performance {
+		background-image: url('~@/assets/img/wizard-onboarding/addon-icon-performance.png');
+	}
+
+	.monsterinsights-addon-wpforms {
+		width: 76px;
+		height: 59px;
+		background-image: url('~@/assets/img/wizard-onboarding/wpforms.png');
+	}
+}

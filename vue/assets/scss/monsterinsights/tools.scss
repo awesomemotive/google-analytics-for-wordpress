@@ -1,0 +1,73 @@
+.monsterinsights-file-input {
+  margin-bottom: 20px;
+}
+
+.monsterinsights-tools {
+
+  .monsterinsights-dark {
+    margin-bottom: 5px;
+    display: block;
+  }
+}
+
+.monsterinsights-tools-url-builder {
+  p {
+    .monsterinsights-info {
+      margin-left: 0;
+    }
+  }
+
+  .monsterinsights-input-text {
+    margin-bottom: 20px;
+  }
+}
+
+.monsterinsights-required {
+  color: #d4393d;
+}
+
+textarea:read-only {
+  background-color: $color_header_background;
+}
+
+.monsterinsights-admin-page .monsterinsights-settings-block .monsterinsights-settings-block-content .monsterinsights-tools-info-row p {
+  margin-top: 0;
+}
+
+.monsterinsights-tools-info-row {
+  display: flex;
+
+  .monsterinsights-tools-info-label {
+    width: 230px;
+    flex-shrink: 0;
+  }
+
+  .monsterinsights-tools-info-description {
+    p {
+      margin-bottom: 5px;
+    }
+  }
+
+  @media (max-width: 782px) {
+    flex-direction: column;
+  }
+}
+
+
+.monsterinsights-admin-page .monsterinsights-settings-block {
+  .monsterinsights-toolsadditional-info {
+    a {
+      color: $color_label_text;
+
+      &:hover,
+      &:focus {
+        color: $color_link_hover;
+      }
+    }
+
+    i {
+      margin-right: 10px;
+      color: $color_info_icon;
+    }
+  }
+}

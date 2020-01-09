@@ -1,0 +1,115 @@
+.monsterinsights-quick-links {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  box-shadow: 0 0 10px 0 #ababab;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #fff;
+  z-index: 1000;
+  padding: 5px 10px;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 15px 2px #ababab;
+  }
+}
+
+$miqll_space: 2px;
+
+.monsterinsights-quick-links-label {
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid rgba(147, 120, 207, 0.21);
+  position: absolute;
+  left: $miqll_space;
+  right: $miqll_space;
+  top: $miqll_space;
+  bottom: $miqll_space;
+  padding: 6px 6px 6px 8px;
+  display: block;
+  width: 56px;
+  height: 56px;
+  outline: none;
+  cursor: pointer;
+
+  .monsterinsights-quick-links-open & {
+
+    .monsterinsights-quick-link-title {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}
+
+.monsterinsights-bg-img.monsterinsights-quick-links-mascot {
+  transform: rotate(-15deg);
+  transform-origin: center center;
+  padding-top: 100%;
+  transition: transform 300ms ease;
+  display: block;
+
+  &:after {
+    background-image: url('~@/assets/img/mascot.png');
+  }
+
+  .monsterinsights-quick-links-open & {
+    transform: rotate(15deg);
+  }
+}
+
+.monsterinsights-quick-links-menu {
+  position: absolute;
+  bottom: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  right: 6px;
+  margin-bottom: 10px;
+
+  .monsterinsights-quick-links-menu-item {
+    display: block;
+    width: 48px;
+    height: 48px;
+    background: #509fe2;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 200ms;
+    position: relative;
+    box-shadow: 0 0 10px 0 #ababab;
+    margin-bottom: 6px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+    line-height: 48px;
+
+    &:hover {
+      color: #fff;
+      background: #50abee;
+      box-shadow: 0 0 15px 2px #ababab;
+    }
+
+    &.monsterinsights-show {
+      transform: scale(1);
+    }
+  }
+}
+
+.monsterinsights-quick-link-title {
+  position: absolute;
+  right: 100%;
+  margin-right: 10px;
+  font-size: 13px;
+  color: #fff;
+  background: #595959;
+  border-radius: 5px;
+  white-space: nowrap;
+  padding: 6px 8px;
+  display: block;
+  top: 50%;
+  margin-top: -12px;
+  line-height: 1;
+  transition: opacity 200ms ease;
+  outline: none;
+}

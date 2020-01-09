@@ -31,6 +31,10 @@ if ( is_admin() ) {
 	$realtime_report = new MonsterInsights_Lite_Report_RealTime();
 	MonsterInsights()->reporting->add_report( $realtime_report );
 
+	require_once MONSTERINSIGHTS_PLUGIN_DIR . 'lite/includes/admin/reports/report-year-in-review.php';
+	$year_in_review = new MonsterInsights_Lite_Report_YearInReview();
+	MonsterInsights()->reporting->add_report( $year_in_review );
+
 	require_once MONSTERINSIGHTS_PLUGIN_DIR . 'lite/includes/admin/dashboard-widget.php';
 	new MonsterInsights_Dashboard_Widget();
 

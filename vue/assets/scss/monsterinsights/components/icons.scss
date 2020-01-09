@@ -1,0 +1,100 @@
+@font-face {
+	font-family: 'Misettings';
+	src: url('../../fonts/icons.woff2?v=7.5.0') format('woff2'),
+	url('../../fonts/icons.woff?v=7.5.0') format('woff'),
+	url('../../fonts/icons.ttf?v=7.5.0') format('truetype'),
+	url('../../fonts/icons.otf?v=7.5.0') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+}
+
+[class*='monstericon-']:before {
+	display: inline-block;
+	font-family: 'Misettings';
+	font-style: normal;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.monstericon-times-circle:before {
+	content: '\f01b'
+}
+
+.monstericon-times:before {
+	content: '\f021'
+}
+
+.monstericon-info-circle-regular:before {
+	content: '\f01e';
+}
+
+.monstericon-arrow {
+	transition: transform 500ms ease;
+	transform: rotate(180deg);
+	display: inline-block;
+
+	&.monstericon-down {
+		transform: rotate(0);
+	}
+
+	&:before {
+		content: '\f01f';
+	}
+}
+
+.monstericon-check:before {
+	content: '\f015'
+}
+
+.monstericon-warning-triangle:before {
+	content: '\f020'
+}
+
+.monstericon-star:before {
+	content: '\f025'
+}
+
+.monstericon-files:before {
+	content: '\f028'
+}
+
+.monstericon-search:before {
+	content: '\f029'
+}
+
+.monstericon-user:before {
+	content: '\f02a'
+}
+
+.monstericon-eye:before {
+	content: '\f02b'
+}
+
+.monstericon-cog:before {
+	content: '\f02c'
+}
+
+.monstericon-expand:before {
+	content: '\f02d'
+}
+
+.monstericon-compress:before {
+	content: '\f02f'
+}
+
+.monstericon-life-ring:before {
+	content: '\f030';
+}
+
+.monstericon-wpbeginner:before {
+	content: '\f031';
+}
+
+.monstericon-lightbulb:before {
+	content: '\f032';
+}
+
+.monstericon-shopping-cart:before {
+	content: '\f033';
+}

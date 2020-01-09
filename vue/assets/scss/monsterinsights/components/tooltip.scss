@@ -1,0 +1,115 @@
+.monsterinsights-tooltip {
+	display: block !important;
+	z-index: 10000;
+	max-width: 350px;
+
+	.monsterinsights-tooltip-inner {
+		background: $color_tooltip_background;
+		color: #fff;
+		border-radius: 5px;
+		padding: 16px 20px;
+		font-size: 14px;
+		font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+		a {
+			color: #fff;
+			font-weight: 700;
+		}
+	}
+
+	.monsterinsights-tooltip-arrow {
+		width: 0;
+		height: 0;
+		border-style: solid;
+		position: absolute;
+		margin: 5px;
+		border-color: $color_tooltip_background;
+		z-index: 1;
+	}
+
+	&[x-placement^="top"] {
+		padding-bottom: 5px;
+
+		.monsterinsights-tooltip-arrow {
+			border-width: 5px 5px 0 5px;
+			border-left-color: transparent !important;
+			border-right-color: transparent !important;
+			border-bottom-color: transparent !important;
+			bottom: 0;
+			left: calc(50% - 5px);
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
+
+	&[x-placement^="bottom"] {
+		padding-top: 5px;
+
+		.monsterinsights-tooltip-arrow {
+			border-width: 0 5px 5px 5px;
+			border-left-color: transparent !important;
+			border-right-color: transparent !important;
+			border-top-color: transparent !important;
+			top: 0;
+			left: calc(50% - 5px);
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
+
+	&[x-placement^="right"] {
+		padding-left: 5px;
+
+		.monsterinsights-tooltip-arrow {
+			border-width: 5px 5px 5px 0;
+			border-left-color: transparent !important;
+			border-top-color: transparent !important;
+			border-bottom-color: transparent !important;
+			left: 0px;
+			top: calc(50% - 5px);
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+
+	&[x-placement^="left"] {
+		padding-right: 5px;
+
+		.monsterinsights-tooltip-arrow {
+			border-width: 5px 0 5px 5px;
+			border-top-color: transparent !important;
+			border-right-color: transparent !important;
+			border-bottom-color: transparent !important;
+			right: 0;
+			top: calc(50% - 5px);
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+
+	&.popover {
+		.popover-inner {
+			background: #fff;
+			color: $color_tooltip_background;
+			padding: 24px;
+			border-radius: 5px;
+			box-shadow: 0 5px 30px rgba(black, .1);
+		}
+
+		.popover-arrow {
+			border-color: #fff;
+		}
+	}
+
+	&[aria-hidden='true'] {
+		visibility: hidden;
+		opacity: 0;
+		transition: opacity .15s, visibility .15s;
+	}
+
+	&[aria-hidden='false'] {
+		visibility: visible;
+		opacity: 1;
+		transition: opacity .15s;
+	}
+}

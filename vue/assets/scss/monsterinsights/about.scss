@@ -1,0 +1,290 @@
+.monsterinsights-about-block {
+  padding: 25px;
+  background: #fff;
+  border: 1px solid $color_layout_border;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  h3 {
+    color: $color_link_hover;
+    font-size: 18px;
+    margin: 0 0 20px;
+    line-height: 1.4;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+div[class^="monsterinsights-path-about-"], div[class*=" monsterinsights-path-about-"] {
+  .monsterinsights-container {
+    width: 100%;
+  }
+
+  .monsterinsights-navigation-bar, .monsterinsights-header {
+    padding-left: 20px;
+    padding-right: 20px;
+
+    @media (max-width: 782px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  .monsterinsights-addons-list {
+    padding: 0 20px;
+
+    .monsterinsights-addon {
+      width: calc(33.3333% - 12.5px);
+
+      @media (max-width: 782px) {
+        width: 100%;
+      }
+    }
+  }
+
+  .monsterinsights-addon-image {
+    min-height: 74px;
+    padding: 5px;
+    display: flex;
+    height: 74px;
+    align-items: center;
+  }
+
+  .monstericon-star:before {
+    color: #fdb72c;
+  }
+}
+
+.monsterinsights-lite-vs-pro-table {
+  padding: 0;
+
+  .monsterinsights-lite-vs-pro-footer {
+    background: #f0f0f0;
+  }
+}
+
+.monsterinsights-lite-vs-pro-header {
+  text-align: center;
+  padding: 40px 0 22px;
+
+  h1 {
+    font-size: 22px;
+    margin: 0 0 22px;
+  }
+}
+
+.monsterinsights-features-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 1px solid $color_layout_border;
+  border-bottom: 1px solid $color_layout_border;
+
+  td, th {
+    width: 33.33333%;
+    border-bottom: 1px solid $color_layout_border;
+    padding: 30px;
+    vertical-align: top;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  th {
+    background: #f0f0f0;
+    text-align: left;
+    border-right: none;
+  }
+
+  td p > span {
+    display: block;
+    margin-left: 30px;
+  }
+}
+
+.monsterinsights-features-none,
+.monsterinsights-features-full,
+.monsterinsights-features-partial {
+  &:before {
+    display: inline-block;
+    font-family: 'Misettings';
+    font-style: normal;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: '\f021';
+    font-size: 20px;
+    margin-right: 10px;
+    color: #d4393d;
+    position: relative;
+    top: 2px;
+  }
+}
+
+.monsterinsights-features-partial:before {
+  content: '';
+  background: url('~@/assets/img/about-icon-check.svg') no-repeat center;
+  background-size: 19px auto;
+  width: 19px;
+  height: 19px;
+  top: 6px;
+}
+
+.monsterinsights-features-full:before {
+  content: '\f015';
+  color: $color_button_green_background_hover;
+}
+
+.monsterinsights-lite-vs-pro-footer {
+  padding: 50px 20px 30px;
+  text-align: center;
+
+  h3 {
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  a {
+    color: $color_link;
+
+    &:focus,
+    &:hover {
+      color: $color_link_hover;
+    }
+  }
+
+  &.monsterinsights-small {
+    padding: 0;
+    text-align: left;
+
+    h3 {
+      margin-bottom: 5px;
+    }
+
+    p {
+      margin-top: 0;
+    }
+  }
+}
+
+.monsterinsights-two-column {
+  display: flex;
+
+  & > div {
+    width: 50%;
+  }
+}
+
+.monsterinsights-list-check {
+
+  ul {
+    margin: 0;
+  }
+
+  li {
+    font-size: 16px;
+    margin-top: 10px;
+    padding-left: 30px;
+    position: relative;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:before {
+      display: inline-block;
+      font-family: 'Misettings';
+      font-style: normal;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      content: '\f015';
+      font-size: 20px;
+      margin-right: 10px;
+      color: $color_button_green_background;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}
+
+.monsterinsights-about-docs-row {
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+}
+
+.monsterinsights-about-docs-image {
+  width: 270px;
+  float: left;
+  margin-right: 20px;
+}
+
+.monsterinsights-about-docs-1:after {
+  background-image: url('~@/assets/img/about-icon-connect.png');
+}
+
+.monsterinsights-about-docs-2:after {
+  background-image: url('~@/assets/img/about-icon-guide.png');
+}
+
+.monsterinsights-about-docs-3:after {
+  background-image: url('~@/assets/img/about-icon-gdpr.png');
+}
+
+.monsterinsights-about-docs-4:after {
+  background-image: url('~@/assets/img/about-icon-addons.png');
+}
+
+.monsterinsights-about-docs-5:after {
+  background-image: url('~@/assets/img/about-icon-ecommerce.png');
+}
+
+.monsterinsights-bg-img.monsterinsights-about-team {
+  padding-top: 59%;
+
+  &:after {
+    background-image: url('~@/assets/img/about-team.jpg');
+  }
+}
+
+.monsterinsights-about-page-right-image {
+  float: right;
+  width: 40%;
+  text-align: center;
+  margin: 0 0 0 20px;
+
+  @media (max-width: 782px) {
+    width: 100%;
+    float: none;
+    margin: 0 0 20px;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  figcaption {
+    color: $color_text_grey;
+    margin-top: 5px;
+  }
+
+  iframe {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,231 @@
+.monsterinsights-addons-navbar {
+
+  h1 {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 48px;
+    font-weight: 400;
+    margin: 0;
+    color: $color_button_disabled_text;
+  }
+
+  .monsterinsights-addons-filters {
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    width: 258px;
+    position: relative;
+
+    @media (max-width: 750px) {
+      width: calc(100vw - 200px);
+    }
+
+    input[type="text"] {
+      height: 28px;
+      margin-right: 0;
+      padding-left: 10px;
+      padding-right: 28px;
+      font-size: 14px;
+      border-color: $color_layout_border;
+
+      &::-webkit-input-placeholder {
+        color: $color_button_disabled_text;
+      }
+
+      &:-moz-placeholder {
+        color: $color_button_disabled_text;
+      }
+
+      &::-moz-placeholder {
+        color: $color_button_disabled_text;
+      }
+
+      &:-ms-input-placeholder {
+        color: $color_button_disabled_text;
+      }
+    }
+
+    & > i {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      z-index: 10;
+      color: $color_input_border;
+    }
+  }
+}
+
+.monsterinsights-addon-not-installed,
+.monsterinsights-addon-not-available {
+
+  .monsterinsights-addon-status span {
+    color: $color_label_text;
+  }
+}
+
+.monsterinsights-addon-inactive {
+
+  .monsterinsights-addon-status span {
+    color: #d4393d;
+  }
+}
+
+.monsterinsights-addon-active {
+
+  .monsterinsights-addon-status span {
+    color: $color_text_highlight;
+  }
+}
+
+#monsterinsights-addons {
+  width: 770px;
+
+  @media ( max-width: 782px ) {
+    width: 100%;
+  }
+
+  .monsterinsights-addons-area {
+    margin: 0 10px;
+  }
+
+  .monsterinsights-addon-inactive,
+  .monsterinsights-addon-active,
+  .monsterinsights-addon-not-available {
+
+    .monsterinsights-button {
+      background: $color_header_background;
+      border-color: $color_button_disabled_border;
+      color: $color_button_disabled_text;
+
+      &:hover,
+      &:focus {
+        background: #fff;
+        border-color: #c4d6e2
+      }
+    }
+  }
+
+  .monsterinsights-addons-no-results {
+    margin-top: 25px;
+    padding: 0 10px;
+
+    p {
+      font-size: 16px;
+    }
+
+    & > div {
+      visibility: hidden;
+      animation: loadMonsterInsightsSettingsNoJSView 0s 2s forwards;
+    }
+  }
+}
+
+.monsterinsights-path-addons {
+  .monsterinsights-navigation-bar {
+    padding-left: 10px;
+    padding-right: 10px;
+    background: #fff;
+    border-top: 1px solid $color_layout_border;
+    border-bottom: 1px solid $color_layout_border;
+
+    .monsterinsights-main-navigation.monsterinsights-main-navigation-open {
+      padding: 0;
+    }
+
+    .monsterinsights-container {
+      padding: 0;
+    }
+  }
+}
+
+.monsterinsights-addons-list {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  margin-top: 25px;
+
+  .monsterinsights-addon {
+    width: calc(50% - 12.5px);
+    border: 1px solid $color_layout_border;
+    position: relative;
+    background: #fff;
+    padding: 0 0 72px;
+    margin-bottom: 25px;
+
+    @media (max-width: 782px) {
+      width: 100%;
+    }
+
+    h3 {
+      color: $color_link_hover;
+      margin: 0 0 -5px;
+      font-size: 15px;
+    }
+
+    .monsterinsights-addon-excerpt {
+      color: $color_label_text;
+      font-weight: 400;
+      margin: 10px 0 0;
+      font-size: 14px;
+    }
+  }
+
+  .monsterinsights-addon-top {
+    padding: 20px 24px;
+    display: flex;
+  }
+
+  .monsterinsights-addon-image {
+    border: 1px solid $color_layout_border;
+    width: 74px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    align-self: start;
+    margin-right: 20px;
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+  }
+
+  .monsterinsights-addon-message {
+    position: absolute;
+    bottom: 0;
+    background: $color_header_background;
+    border-top: 1px solid $color_layout_border;
+    left: 0;
+    right: 0;
+
+    .monsterinsights-interior {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .monsterinsights-addon-status {
+      font-weight: 700;
+      font-size: 13px;
+      color: $color_link_hover;
+    }
+
+    .monsterinsights-addon-action {
+      align-self: flex-end;
+    }
+
+    .monsterinsights-button {
+      padding-bottom: 7px;
+      padding-top: 9px;
+      min-width: 120px;
+      line-height: 1;
+    }
+  }
+
+  .monsterinsights-addon-upgrade {
+    text-align: center;
+    width: 100%;
+  }
+}

@@ -1,0 +1,301 @@
+.monsterinsights-admin-page {
+
+	.woocommerce-logo,
+	.edd-logo,
+	.memberpress-logo {
+		background: url('~@/assets/img/woocommerce.png') no-repeat;
+		background-size: contain;
+		width: 156px;
+		height: 31px;
+
+		@media( max-width: 767px ) {
+			margin-top: 18px;
+		}
+	}
+
+	.edd-logo {
+		background-image: url('~@/assets/img/easy-digital-downloads.png');
+		width: 194px;
+	}
+
+	.memberpress-logo {
+		background-image: url('~@/assets/img/memberpress.png');
+	}
+
+	.monsterinsights-logos-row {
+		display: flex;
+		position: relative;
+		border: 1px solid $color_layout_border;
+		margin: 40px 50px 60px;
+		padding: 25px;
+		justify-content: space-between;
+
+		@media( max-width: 767px ) {
+			flex-flow: column;
+			align-items: center;
+			justify-content: center;
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+
+		.monsterinsights-box-title {
+			font-size: 13px;
+			font-weight: 700;
+			color: #8aa4b8;
+			position: absolute;
+			background: #fff;
+			padding: 0 10px;
+			top: 0;
+			transform: translate(-50%, -50%);
+			left: 50%;
+		}
+	}
+
+
+	.monsterinsights-upsell {
+		background: #fff;
+		border: 1px solid $color_layout_border;
+		text-align: center;
+		margin-top: 25px;
+
+		@media (max-width: 767px) {
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+
+		h2 {
+			font-size: 20px;
+			color: $color_navigation_link;
+			margin: 36px 0 14px;
+		}
+
+		h3 {
+			font-size: 18px;
+			color: $color_navigation_link;
+			margin: 0 0 14px;
+		}
+
+		h4 {
+			font-size: 18px;
+			color: #4c6577;
+			font-weight: 400;
+			margin: 0;
+			line-height: 2;
+		}
+
+		p {
+			font-size: 14px;
+			color: #4c6577;
+		}
+
+		.monsterinsights-upsell-top {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	}
+
+	.monsterinsights-upsell-bottom {
+		background: #f7f9fd;
+		border-top: 1px solid $color_layout_border;
+		padding: 36px 50px 30px;
+		position: relative;
+
+		@media( max-width: 767px ) {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+
+		.monsterinsights-button-top {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translate(-50%, -50%);
+
+			@media (max-width: 767px) {
+				min-width: 288px;
+			}
+		}
+
+		img {
+			max-width: 100%;
+		}
+	}
+
+	.monsterinsights-report-ecommerce {
+
+		&:after {
+			background-image: url('~@/assets/img/monsterinsights-report-ecommerce.png');
+		}
+	}
+
+	.monsterinsights-addon-eu-compliance,
+	.monsterinsights-addon-amp,
+	.monsterinsights-addon-ads,
+	.monsterinsights-addon-instant-articles,
+	.monsterinsights-addon-forms,
+	.monsterinsights-addon-optimize,
+	.monsterinsights-addon-dimensions,
+	.monsterinsights-addon-performance,
+	.monsterinsights-addon-scroll {
+		width: 48px;
+		padding-top: 110%;
+	}
+
+	.monsterinsights-addon-eu-compliance {
+		padding-top: 100%;
+
+		&:after {
+			background-image: url('~@/assets/img/icon-addon-eu-compliance.png');
+		}
+	}
+
+	.monsterinsights-addon-ads {
+
+		&:after {
+			background-image: url('~@/assets/img/icon-addon-ads.png');
+		}
+	}
+
+	.monsterinsights-addon-amp {
+
+		&:after {
+			background-image: url('~@/assets/img/icon-addon-amp.png');
+		}
+	}
+
+	.monsterinsights-addon-instant-articles {
+
+		&:after {
+			background-image: url('~@/assets/img/icon-addon-instant-articles.png');
+		}
+	}
+
+	.monsterinsights-addon-forms {
+
+		&:after {
+			background-image: url('~@/assets/img/icon-addon-forms.png');
+		}
+	}
+
+	.monsterinsights-addon-optimize {
+		padding-top: 100%;
+
+		&:after {
+			background-image: url('~@/assets/img/icon-addon-optimize.png');
+		}
+	}
+
+	.monsterinsights-addon-dimensions {
+		padding-top: 105%;
+
+		&:after {
+			background-image: url('~@/assets/img/icon-addon-dimensions.png');
+		}
+	}
+
+	.monsterinsights-addon-performance {
+		padding-top: 105%;
+
+		&:after {
+			background-image: url('~@/assets/img/icon-addon-performance.png');
+		}
+	}
+
+	.monsterinsights-addon-scroll {
+		padding-top: 105%;
+
+		&:after {
+			background-image: url('~@/assets/img/icon-scroll-tracking.png');
+		}
+	}
+
+		.monsterinsights-upsell-large {
+			padding-bottom: 35px;
+
+			@media( max-width: 767px ) {
+				padding-left: 10px;
+				padding-right: 10px;
+				line-height: 1.2;
+			}
+
+			h3 {
+				color: #4c6577;
+				font-size: 18px;
+				font-weight: 400;
+				margin-top: 33px;
+				margin-bottom: 14px;
+			}
+
+			h2 {
+				font-size: 18px;
+				margin-top: 0;
+			}
+
+			.monsterinsights-coupon {
+				color: $color_button_background;
+				border: 1px dashed $color_button_background;
+				padding: 7px;
+				margin: 0 7px;
+				vertical-align: middle;
+				line-height: 1;
+			}
+
+			.monsterinsights-features {
+				display: flex;
+				justify-content: space-between;
+				flex-flow: wrap;
+				margin: 30px auto 25px;
+				max-width: 525px;
+
+				span {
+					display: block;
+					width: 33%;
+					color: #393f4a;
+					font-size: 14px;
+					text-align: left;
+					margin: 10px 0;
+
+					&:before {
+						content: '';
+						background-image: url('~@/assets/img/icon-plus.png');
+						width: 11px;
+						height: 11px;
+						background-size: contain;
+						display: inline-block;
+						margin-right: 12px;
+					}
+				}
+			}
+		}
+
+	.monsterinsights-settings-block .monsterinsights-settings-block-content {
+		.settings-input-license {
+			p {
+				color: $color_text_dark;
+
+				a {
+					color: $color_button_background;
+				}
+			}
+
+
+		}
+
+		.monsterinsights-smile {
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			padding: 0;
+			vertical-align: middle;
+
+			&:after {
+				background-image: url('~@/assets/img/icon-smile.png');
+			}
+		}
+
+	}
+
+	.monsterinsights-settings-license-lite {
+
+	}
+}

@@ -1,0 +1,473 @@
+@import "variables/fonts";
+@import "components/icons";
+@import "components/notices";
+@import "components/notifications";
+@import "components/tooltip";
+@import "components/conditional_logic";
+
+body {
+  background: $color_body_background;
+  margin: 0;
+}
+
+.monsterinsights-admin-page,
+.monsterinsights-admin-page * {
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+#wpcontent {
+  padding-left: 0;
+}
+
+.auto-fold #wpcontent {
+  padding-left: 0;
+}
+
+.monsterinsights-highlighted-text {
+  color: $color_text_highlight;
+  font-weight: 700;
+}
+
+.monsterinsights-bold {
+  font-weight: 700;
+}
+
+.monsterinsights-bg-img {
+  width: 100%;
+  padding-top: 66%;
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+  }
+}
+
+.monsterinsights-header {
+  padding: 20px 10px;
+  background-color: $color_header_background;
+
+  .monsterinsights-settings-panel-network > & {
+    background-color: transparent;
+  }
+
+}
+
+.monsterinsights-logo-area {
+  float: left;
+  max-width: calc(100vw - 170px);
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  @media(max-width: 782px) {
+    text-align: center;
+    margin: 0 auto;
+    float: none;
+
+    img {
+      display: inline-block;
+      max-height: 35px;
+    }
+  }
+}
+
+
+.monsterinsights-header .monsterinsights-container,
+.monsterinsights-navigation-bar .monsterinsights-container {
+
+  @media (max-width: 782px) {
+    padding: 0;
+    width: 100%;
+  }
+}
+
+.monsterinsights-navigation-bar {
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #d5e2ed;
+  border-bottom: 1px solid #d5e2ed;
+  padding: 0 10px;
+
+  @media (max-width: 782px) {
+    padding: 0;
+    border: 0;
+  }
+
+  @media (max-width: 750px) {
+    background: none;
+  }
+}
+
+.monsterinsights-admin-page {
+  position: relative;
+
+  .monsterinsights-blocked {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 999;
+  }
+
+
+  @media (max-width: 782px) {
+    .monsterinsights-header {
+      padding-top: 10px;
+      padding-bottom: 5px;
+
+      .monsterinsights-button {
+        display: none;
+      }
+    }
+  }
+}
+
+.swal2-popup .swal2-title {
+  line-height: 1.2;
+}
+
+#footer-left {
+  color: $color_navigation_link;
+
+  .monsterinsights-no-text-decoration {
+    text-decoration: none;
+    color: #fdb72c;
+    font-size: 14px
+  }
+
+  a {
+    color: #509fe1;
+  }
+}
+
+#wpfooter {
+  position: relative;
+
+  &:before {
+    left: 20px;
+    right: 20px;
+    height: 1px;
+    background: $color_layout_border;
+    content: '';
+    position: absolute;
+    top: -12px;
+  }
+}
+
+.monsterinsights-container {
+  margin: 0 auto;
+  max-width: 100%;
+  width: 750px;
+}
+
+.monsterinsights-admin-page {
+
+  .monsterinsights-navigation-tab-link {
+    text-decoration: none;
+    padding: 17px 0 15px;
+    border-bottom: 2px solid #fff;
+    font-size: 14px;
+    color: $color_navigation_link;
+    display: inline-block;
+    margin-right: 25px;
+    line-height: 1;
+    outline: none;
+    font-family: 'Lato', sans-serif;
+
+    &.router-link-exact-active,
+    &:hover,
+    &:focus {
+      color: $color_button_background;
+      border-bottom-color: $color_button_background;
+      outline: none;
+      box-shadow: none;
+    }
+
+    &.router-link-exact-active {
+      font-weight: 700;
+    }
+
+    &.monsterinsights-navigation-tab-disabled {
+
+      &:hover,
+      &:focus {
+        border-bottom-color: transparent;
+        color: $color_navigation_link;
+        cursor: default;
+      }
+    }
+
+    &.year-in-review {
+      background-image: url('~@/assets/img/icon-celebrate-small.png');
+      background-repeat: no-repeat;
+      background-position: 0 50%;
+      padding-left: 18px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 782px) {
+      width: 100%;
+      text-align: center;
+      padding: 10px 10px;
+      color: $color_button_background;
+      font-size: 16px;
+      background: #fff;
+      border: none;
+
+      &.router-link-exact-active {
+        display: none;
+      }
+
+      &:focus {
+        color: $color_navigation_link;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .monsterinsights-button {
+    background: $color_button_background;
+    border-style: solid;
+    border-color: $color_button_border;
+    border-width: 1px 1px 2px 1px;
+    border-radius: 3px;
+    color: $color_button_text;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 10px 20px;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      background-color: $color_button_background_hover;
+      border-color: $color_button_border_hover;
+      color: $color_button_text;
+    }
+
+    &.monsterinsights-button-disabled {
+      background: $color_button_disabled_background;
+      border-color: $color_button_disabled_border;
+      color: $color_button_disabled_text;
+    }
+
+    &.monsterinsights-button-secondary {
+      background: $color_button_secondary_background;
+      border-color: $color_button_secondary_border;
+      color: $color_button_secondary_text;
+
+      &:hover,
+      &:focus {
+        background-color: $color_button_secondary_background_hover;
+        border-color: $color_button_secondary_border_hover;
+        color: $color_button_secondary_text;
+      }
+    }
+
+    &.monsterinsights-button-green {
+      background: $color_button_green_background;
+      border-color: $color_button_green_border;
+      color: $color_button_green_text;
+
+      &:hover,
+      &:focus {
+        background-color: $color_button_green_background_hover;
+        border-color: $color_button_green_border_hover;
+        color: $color_button_green_text;
+      }
+    }
+
+    &.monsterinsights-button-text {
+      background: transparent;
+      border: none;
+      color: $color_link;
+      padding: 0;
+      border-radius: 0;
+      text-decoration: underline;
+
+      &:hover,
+      &:focus {
+        background: transparent;
+        color: $color_link_hover;
+      }
+    }
+
+    &.monsterinsights-button-red {
+      background: $color_button_red_background;
+      border-color: $color_button_red_border;
+      color: $color_button_red_text;
+    }
+
+    &.monsterinsights-button-large {
+      font-size: 16px;
+      padding: 14px 27px;
+    }
+  }
+}
+
+.monsterinsights-green-text {
+  color: #5cc0a5;
+  font-weight: 700;
+}
+
+// To match the core media query.
+@media (max-width: 782px) {
+  .wp-responsive-open #wpbody {
+    margin-left: -18px;
+  }
+}
+
+.monsterinsights-mobile-nav-trigger {
+  color: $color_link_hover;
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+  display: block;
+  border-width: 1px 0 1px;
+  border-style: solid;
+  border-color: $color_layout_border;
+  background: #fff;
+  padding: 15px 10px;
+  line-height: 1;
+  margin: 0;
+
+  @media (min-width: 783px) {
+    display: none;
+  }
+
+  i {
+    color: $color_checkbox_background;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+}
+
+@media (max-width: 782px) {
+  .monsterinsights-main-navigation {
+    background: #fff;
+    height: 0;
+    overflow: hidden;
+
+    &.monsterinsights-main-navigation-open {
+      padding: 10px 0;
+      height: auto;
+      border-bottom: 1px solid $color_layout_border;
+    }
+  }
+}
+
+.monsterinsights-swal {
+
+  @media( min-width: 782px ) {
+    margin-left: 160px;
+
+    .auto-fold & {
+      margin-left: 36px;
+    }
+  }
+
+  @media (min-width: 961px) {
+    .auto-fold & {
+      margin-left: 160px;
+    }
+
+    .folded & {
+      margin-left: 36px;
+    }
+  }
+}
+
+.monsterinsights-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba( 0,0,0,0.8 );
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .monsterinsights-modal-inner {
+    background: #fff;
+    padding: 50px;
+    border: 1px solid $color_layout_border;
+    text-align: center;
+    width: 750px;
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 0;
+      line-height: 1.4;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+
+    .monsterinsights-modal-buttons {
+      margin-top: 50px;
+    }
+
+    .monsterinsights-button {
+      margin: 0 10px;
+    }
+  }
+}
+
+.monsterinsights-welcome-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999999;
+  font-family: inherit;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  .monsterinsights-welcome-overlay-inner {
+    background: #fff;
+    padding: 30px;
+    width: 70%;
+    margin: 0 auto;
+    position: relative;
+    top: 10%;
+    height: 80%;
+  }
+
+  .monsterinsights-overlay-close {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 5px;
+    right: 7px;
+    padding: 0;
+    color: $color_label_text;
+  }
+
+  .monsterinsights-welcome-overlay-content {
+    height: 100%;
+
+    iframe {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+

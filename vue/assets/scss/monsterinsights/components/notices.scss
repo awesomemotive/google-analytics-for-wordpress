@@ -1,0 +1,131 @@
+.monsterinsights-notices-area {
+
+  @media ( max-width: 782px ) {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+.monsterinsights-notice {
+  position: relative;
+  color: $color_text_dark;
+
+  .monsterinsights-notice-inner {
+    margin-top: 25px;
+    padding: 20px;
+    background: #fff;
+    border-left: 3px solid;
+    line-height: 1.5;
+    font-size: 14px;
+
+    .notice-title {
+      color: $color_navigation_link;
+      font-weight: 700;
+      display: block;
+      margin: 0 0 6px;
+      padding: 0;
+    }
+
+    @media( max-width: 782px ) {
+      padding: 10px;
+    }
+  }
+
+  &.monsterinsights-notice-error .monsterinsights-notice-inner {
+    border-left-color: $color_error;
+  }
+
+  &.monsterinsights-notice-warning .monsterinsights-notice-inner {
+    border-left-color: $color_warning;
+  }
+
+  &.monsterinsights-notice-info .monsterinsights-notice-inner {
+    border-left-color: $color_info;
+  }
+
+  &.monsterinsights-notice-info-xl .monsterinsights-notice-inner {
+    border-width: 1px 1px 1px 3px;
+    border-style: solid;
+    border-color: $color_info;
+    color: $color_label_text;
+
+    .monsterinsights-button {
+      color: #fff;
+      margin: 15px 0 0;
+    }
+  }
+
+  &.monsterinsights-notice-success .monsterinsights-notice-inner {
+    border-left-color: $color_success;
+  }
+
+  .notice-content {
+    margin-right: 20px;
+
+    a {
+      color: $color_text_dark;
+    }
+  }
+
+  .dismiss-notice {
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    cursor: pointer;
+    color: $color_checkbox_background;
+    position: relative;
+    float: right;
+
+    &:hover,
+    &:focus {
+      color: $color_text_dark;
+    }
+  }
+
+  // Handle button layout.
+  &.monsterinsights-notice-success,
+  &.monsterinsights-notice-info,
+  &.monsterinsights-notice-warning {
+    .notice-content {
+      display: flex;
+
+      @media( max-width: 425px ) {
+        flex-flow: column;
+      }
+    }
+
+    .monsterinsights-notice-button {
+      flex-shrink: 0;
+      flex-grow: 0;
+      margin-right: -20px;
+      margin-left: auto;
+
+      @media( max-width: 782px ) {
+        margin-left: 0;
+      }
+    }
+
+    .monsterinsights-button {
+      margin-top: 0;
+      padding: 10px 16px 8px;
+      line-height: 1;
+      font-size: 14px;
+      font-weight: 600;
+
+      @media( max-width: 782px ) {
+        margin-top: 10px;
+        margin-left: 0;
+      }
+    }
+  }
+
+  &.monsterinsights-notice-error {
+    .monsterinsights-button {
+      margin-top: 10px;
+      margin-left:0;
+      color: #fff;
+    }
+  }
+}

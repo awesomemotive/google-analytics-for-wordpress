@@ -1,0 +1,160 @@
+.monsterinsights-conditional-logic-container {
+
+   button {
+     &:focus {
+       outline: 0;
+     }
+   }
+
+   .monsterinsights-conditional-logic-header {
+     margin-bottom: 30px;
+
+     .monsterinsights-conditional-rule-sets-number {
+       float: right;
+     }
+   }
+
+   .monsterinsights-condition-rule-separator {
+     text-align: center;
+     font-weight: bold;
+     display: block;
+     margin: 0 auto;
+     margin-bottom: 20px;
+     position: relative;
+
+     &:before,
+     &:after {
+       content: "";
+       position: absolute;
+       top: 45%;
+       width: 45%;
+       height: 2px;
+       background: #d6e2ed;
+       margin-top: -1px;
+     }
+
+     &:before {
+       left: 0;
+     }
+
+     &:after {
+       right: 0;
+     }
+   }
+
+   .monsterinsights-conditional-logic-repeater-row {
+     -webkit-box-align: center;
+     -ms-flex-align: center;
+     align-items: center;
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: flex;
+     margin-bottom: 24px ;
+
+     .monsterinsights-settings-conditional-column {
+       width: 100%;
+       margin-right: 18px;
+
+       .monsterinsights-settings-conditional-input-field {
+         text-transform: capitalize;
+         width: 100%;
+         height: 38px;
+         min-height: 38px;
+         line-height: 38px;
+         box-sizing: border-box;
+         box-shadow: none;
+
+         &.text-input {
+           padding: 0 8px;
+           border-color: #ddd;
+           text-transform: none;
+           border-radius: 5px;
+           box-sizing: border-box;
+           height: 38px;
+           margin-top: 0;
+           line-height: 38px;
+         }
+
+         input[type="text"] {
+           padding-top: 5px;
+           padding-bottom: 5px;
+           height: inherit;
+         }
+
+         &.multiselect--active {
+           .multiselect__tags {
+             .multiselect__spinner {
+               z-index: 1;
+             }
+           }
+         }
+
+         .multiselect__tags {
+           padding: 0;
+           height: 38px;
+           min-height: 38px;
+           border-color: #ddd;
+           margin-top: 0;
+           box-sizing: border-box;
+
+           input[type="text"] {
+             border: 0;
+             height: 36px;
+           }
+
+           .multiselect__single {
+             margin-bottom: 0;
+             padding: 0 8px;
+             line-height: 36px;
+             font-size: 14px;
+           }
+
+           .multiselect__placeholder {
+             display: block;
+             margin-bottom: 0;
+             line-height: 36px;
+             padding: 0 8px;
+           }
+
+           .multiselect__spinner {
+             width: 35px;
+           }
+
+         }
+       }
+
+     }
+
+     .add-new-condition {
+       padding: 6px 12px;
+       margin: 0;
+
+       &:focus {
+         outline: 0;
+       }
+
+     }
+
+     .remove-condition {
+       border: 0;
+       padding: 0;
+       margin: 0;
+
+       &:focus{
+         outline: 0;
+       }
+
+       .monstericon-times-circle {
+         color: #dc3232;
+         cursor: pointer;
+         padding: 0;
+         margin: 0 15px;
+
+         &:focus {
+           outline: 0;
+         }
+       }
+     }
+   }
+
+}

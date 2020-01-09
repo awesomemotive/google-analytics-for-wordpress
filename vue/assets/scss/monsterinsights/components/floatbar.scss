@@ -1,0 +1,58 @@
+.monsterinsights-admin-page {
+  .monsterinsights-floating-bar {
+    background: #4e5c66;
+    color: #fff;
+    font-size: 13px;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    margin: -20px -10px 20px;
+
+    @media (max-width: 782px) {
+      margin-top: -10px;
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+
+    a {
+      text-decoration: underline;
+      color: #fff;
+
+      &:hover,
+      &:focus {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+
+    .monsterinsights-floating-bar-close {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font-size: 10px;
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      margin-top: -5px;
+    }
+  }
+
+  .monsterinsights-slide-enter-active,
+  .monsterinsights-slide-leave-active {
+    -moz-transition-duration: 500ms;
+    -webkit-transition-duration: 500ms;
+    -o-transition-duration: 500ms;
+    transition-duration: 500ms;
+  }
+
+  .monsterinsights-slide-enter-to, .monsterinsights-slide-leave {
+    max-height: 100px;
+    overflow: hidden;
+  }
+
+  .monsterinsights-slide-enter, .monsterinsights-slide-leave-to {
+    overflow: hidden;
+    max-height: 0;
+  }
+}

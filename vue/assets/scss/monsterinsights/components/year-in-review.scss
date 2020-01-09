@@ -1,0 +1,1944 @@
+.monsterinsights-report-year-in-review {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 960px;
+    background-color: #fff;
+    background-image: url('~@/assets/img/confetti-background.png');
+    background-repeat: no-repeat;
+    background-position: top left;
+    margin-bottom: 90px; 
+
+    &.monsterinsights-yir-report-calculating-row {
+    	width: 610px;
+    	margin-top: 50px;
+
+    	@media (max-width: 767px) {
+	    	width: 100%;
+	    	margin-top: 20px;
+	    }
+
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+	h5,
+    span,
+    p,
+    a{
+        font-family: 'Lato', sans-serif;
+        margin: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+	h5 {
+        font-weight: 900;
+    }
+
+    p {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    a {
+        text-decoration: none;
+        padding: 8px 30px;
+        border-radius: 5px;
+        color: #fff;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 24px;
+        text-align: center;
+    }
+
+	.monsterinsights-yir-separator {
+		border-color: #E0E0E0;
+        border-top-style: solid;
+        border-bottom-style: solid;
+        border-top-width: 1px;
+        border-bottom-width: 1px;
+	}
+
+    section,
+    .monsterinsights-yir-header,
+    .monsterinsights-yir-footer {
+        padding: 0 90px;
+		clear: both;
+		overflow: hidden;
+
+		@media (max-width: 767px) {
+			padding: 0 15px;
+	    }
+
+	    @media (min-width: 768px) and (max-width: 991px) {
+	    	padding: 0 30px;
+	    }
+
+    }
+
+    .monsterinsights-yir-text-right {
+        text-align: right;
+    }
+
+    .monsterinsights-yir-top-header {
+        padding: 90px 0 90px 90px;
+        background-image: url('~@/assets/img/charlie.png');
+        background-repeat: no-repeat;
+        background-position: bottom right;
+
+        @media (max-width: 767px) {
+        	padding-top: 50px;
+		    padding-right: 15px;
+		    padding-left: 15px;
+		    padding-bottom: 40px;
+		    background-image: none;
+	    }
+
+	    @media (min-width: 768px) and (max-width: 991px) {
+	    	padding-left: 30px;
+	    }
+
+	    &.monsterinsights-yir-report-calculating {
+        	padding: 90px 0 100px 60px;
+	    	background-image: url('~@/assets/img/charlie2x.png');
+	    	background-position: right top 60px;
+    		background-size: 173px 207px;
+
+	    	@media (max-width: 767px) {   
+	    		padding-left: 15px;
+	    		padding-right: 15px;
+	    		padding-top: 50px;
+	    		background-size: 140px 180px;
+		    }
+
+	    	.monsterinsights-yir-title {
+	    		font-size: 32px;
+				line-height: 37px;
+				color: #393F4C;
+				margin-top: 0;
+
+		    	@media (max-width: 767px) {   
+		    		font-size: 26px;
+			    }
+
+	    	}
+
+	    	.monsterinsights-yir-summary {
+	    		font-weight: normal;
+				font-size: 14px;
+				line-height: 20px;
+				color: #393F4C;
+				max-width: 385px;
+
+		    	@media (max-width: 767px) {
+		    		font-size: 12px;
+		    		max-width: 230px;
+			    }
+
+	    	}
+
+	    	.monsterinsights-navigation-tab-link {    
+		    	background: #4E9EE7;
+			    border-radius: 5px;
+			    font-weight: bold;
+			    font-size: 14px;
+			    line-height: 16px;
+			    text-align: center;
+			    color: #FFFFFF;
+			    border: 0;
+			    margin-right: 0;
+			    padding: 12px 20px;
+			    margin-top: 20px;
+
+		    	@media (max-width: 767px) {   
+		    		width: inherit;
+		    	}
+
+		    	@media (min-width: 768px) and (max-width: 991px) {
+			    	width: inherit;
+			    }
+
+			    &:hover, 
+			    &:focus,
+			    &:active {
+			     background: #2469B2;
+			     outline: none;
+			     box-shadow: none;
+			    }
+
+	    	}
+
+	    }
+
+        .monsterinsights-yir-subtitle {
+            font-size: 20px;
+            font-weight: 900;
+            background: #338EEF;
+            border-radius: 30px;
+            color: #fff;
+            padding: 14px 25px 14px 90px;
+            position: relative;
+            display: inline-block;
+
+            @media (max-width: 767px) {
+            	font-size: 14px;
+		    }
+
+            svg	{
+                position: absolute;
+                left: 5px;
+                bottom: -5px;
+            }
+        }
+
+        .monsterinsights-yir-title {
+            font-style: normal;
+            font-weight: 900;
+            font-size: 48px;
+            line-height: 58px;
+            color: #393F4C;
+            margin-bottom: 15px;
+            margin-top: 40px;
+
+            @media (max-width: 767px) {
+			    font-size: 20px;
+			    line-height: 20px;
+			    margin-bottom: 10px;
+			    margin-top: 30px;
+		    }
+
+		    @media (min-width: 768px) and (max-width: 991px) {
+		    	font-size: 32px;
+		    }
+        }
+
+        .monsterinsights-yir-summary {
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 32px;
+            color: #828282;
+            max-width: 480px;
+
+            @media (max-width: 767px) {
+			    font-size: 16px;
+			    line-height: 18px;
+		    }
+
+		    @media (min-width: 768px) and (max-width: 991px) {
+		    	font-size: 16px;
+		    	line-height: 20px;
+		    	max-width: 400px;
+		    }
+        }
+    }
+
+    .monsterinsights-reports-visitorbymonth-chart {
+        background: #FFFFFF;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 4.85258px;
+
+        .monsterinsights-reports-visitorbymonth-header {
+            display: flex;
+            padding: 20px 30px;
+            border-bottom: 2px solid #F2F2F2;
+            margin-bottom: 55px;
+
+            @media (max-width: 767px) {
+                margin-bottom: 20px;
+            }
+
+            div {
+                width: 100%;
+            }
+        }
+
+        .monsterinsights-report-title {
+            font-family: Lato;
+            font-style: normal;
+            font-weight: 900;
+            font-size: 20px;
+            line-height: 24px;
+            color: #393F4C;
+            margin: 0;
+
+            @media (max-width: 767px) {
+                font-size: 14px;
+            }
+        }
+
+        .monsterinsights-report-subtitle {
+            font-family: Lato;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 24px;
+            text-align: right;
+            color: #393F4C;
+            margin: 0;
+
+            @media (max-width: 767px) {
+                font-size: 10px;
+            }
+        }
+
+        .monsterinsights-reports-visitorbymonth-chart-content {
+            padding: 0 50px 15px 30px;
+
+            @media (max-width: 767px) {
+                padding: 0 15px 15px 15px;
+            }
+            .monsterinsights-reports-bar-chart-holder {
+                position: relative;
+
+                .monsterinsights-chart-tooltip {
+                    position: absolute;
+                    pointer-events: none;
+                }
+
+            }
+
+        }
+
+    }
+
+    .monsterinsights-year-in-review-table-box {
+		padding-top: 0;
+		position: relative;
+		border: 0;
+		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+		background: #ffffff61;
+
+		&.monsterinsights-year-in-review-table-box-blur-report 
+		.monsterinsights-year-in-review-table-box-list {
+			filter: blur(5px);
+		}
+
+		.monsterinsights-year-in-review-table-box-header {
+			padding: 20px 30px;
+			border-bottom: 2px solid #F2F2F2;
+			margin-bottom: 30px;
+
+			.monsterinsights-year-in-review-table-box-title {
+				display: inline-block;
+
+				.monsterinsights-report-title {
+					font-family: Lato;
+					font-style: normal;
+					font-weight: 900;
+					font-size: 20px;
+					line-height: 24px;
+					color: #393F4C;
+					margin: 0;
+
+					@media (max-width: 767px) {
+						font-size: 14px;
+				    }
+
+				}
+
+			}
+
+			.monsterinsights-year-in-review-table-box-subtitle {
+				display: inline-block;
+				float: right;
+
+				.monsterinsights-report-subtitle {
+					font-family: Lato;
+					font-style: normal;
+					font-weight: normal;
+					font-size: 14px;
+					line-height: 24px;
+					text-align: right;
+					color: #393F4C;
+					margin: 0;
+					text-transform: capitalize;
+				}
+
+			}
+
+		}
+
+		.monsterinsights-year-in-review-table-box-list {
+			padding-bottom: 30px;
+
+			.monsterinsights-table-list-item {
+				padding: 9px 30px;
+
+				.monsterinsights-reports-list-text {
+
+					a {
+						padding: 0;
+					    border-radius: 0;
+					    line-height: 37px;
+    					line-height: inherit;
+
+    					&:hover, 
+    					&:focus, 
+    					&:active {
+    						box-shadow: none;
+    						background: none;
+    					}
+					}
+
+				}
+
+			}
+
+		}
+
+		.monsterinsights-year-in-review-table-box-footer {
+			position: absolute;
+			bottom: -34px;
+			width: 100%;
+			left: 0;
+			text-align: center;
+
+			@media (max-width: 767px) {
+				bottom: -40px;
+		    }
+
+			.monsterinsights-yir-tooltip {
+				font-weight: normal;
+				font-size: 12px;
+				color: #828282;
+
+				span {
+					font-family: Lato;
+				}
+
+				.monsterinsights-yir-icon {
+					background: #DADADA;
+					border-radius: 50%;
+					padding: 0;
+					margin-right: 10px;
+					color: #fff;
+					width: 15px;
+					height: 15px;
+					display: inline-block;
+					line-height: 16px;
+				}
+
+			}
+
+		}
+
+	}
+
+	.monsterinsights-reports-year-in-review-pie-chart {
+		border: 0;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+
+		.monsterinsights-reports-pie-chart-holder {
+			display: inline-block;
+			float: left;
+
+			@media (max-width: 767px) {
+				display: block;
+				float: none;
+			}
+
+			.monsterinsights-pie-chart {
+				background-color: #fff;
+				background-image: url('~@/assets/img/icon-iphone.png');background-color: #fff;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+		}
+
+		.monsterinsights-yir-reports-pie-chart-content {
+			padding-left: 50px;
+			padding-top: 35px;
+			float: left;
+
+			@media (max-width: 767px) {
+				padding-left: 0;
+				padding-top: 20px;
+				float: none;
+			}
+
+			.monsterinsights-report-title {
+				font-family: Lato;
+				font-style: normal;
+				font-weight: 900;
+				font-size: 20px;
+				line-height: 24px;
+				color: #393F4C;
+				margin-bottom: 0;
+
+				@media (max-width: 767px) {
+					font-size: 16px;
+					line-height: 16px;
+				}
+
+			}
+
+			.monsterinsights-report-subtitle {
+				font-family: Lato;
+				font-style: normal;
+				font-weight: normal;
+				font-size: 18px;
+				line-height: 24px;
+				color: #393F4C;
+				margin-top: 10px;
+				margin-bottom: 0;
+
+				@media (max-width: 767px) {
+					font-size: 14px;
+					line-height: 14px;
+				}
+
+			}
+
+			.monsterinsights-pie-chart-legend {
+				position: relative;
+				left: inherit;
+				top: inherit;
+				-webkit-transform: inherit;
+				-ms-transform: inherit;
+				transform: inherit;
+				margin: 24px 0 0 0;
+
+				@media (max-width: 767px) {
+					margin: 10px 0 0 0;
+				}
+
+				li {
+					display: inline-block;
+					margin-right: 30px;
+
+					@media (max-width: 767px) {
+						margin-right: 10px;
+					}
+
+					.monsterinsights-pie-chart-legend-color {
+						border-radius: 0;
+						width: 16px;
+						height: 16px;
+						margin-bottom: -3px;
+						margin-right: 5px;
+					}
+
+                    .monsterinsights-pie-chart-legend-text,
+					.monsterinsights-pie-chart-legend-value {
+						font-family: Lato;
+						font-style: normal;
+						font-weight: bold;
+						font-size: 14px;
+						line-height: 24px;
+						color: #393F4C;
+						min-width: inherit;
+						margin-right: 0;
+
+						@media (max-width: 767px) {
+							font-size: 10px;
+						}
+
+					}
+
+				}
+			}
+
+		}
+	}
+
+    .monsterinsights-yir-year-in-review-tip {
+        border: 2px solid #E3F1FF;
+        border-radius: 5px;
+        padding-top: 45px;
+        padding-bottom: 45px;
+        overflow: hidden;
+        background: #F3F9FF;
+
+        @media (max-width: 767px) {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        h3,
+        p,
+        a {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+        }
+
+        .monsterinsights-yir-tip-icon {
+            float: left;
+            width: 144px;
+            text-align: center;
+
+            @media (max-width: 767px) {
+                width: 90px;
+            }
+
+            img {
+                background: #338EEF;
+                padding: 12px;
+                border-radius: 50%;
+                margin-top: 12px;
+            }
+
+        }
+
+        .monsterinsights-yir-tip-content {
+            float: left;
+            width: calc(100% - 144px );
+            padding-right: 40px;
+
+            @media (max-width: 767px) {
+                padding-right: 0;
+                width: calc(100% - 90px);
+            }
+
+            .monsterinsights-yir-tip-content-title {
+                font-weight: 900;
+                font-size: 18px;
+                line-height: 27px;
+                color: #333333;
+                margin-bottom: 5px;
+
+                @media (max-width: 767px) {
+                    font-size: 16px;
+                }
+            }
+
+            .monsterinsights-yir-tip-content-summary {
+                font-weight: normal;
+                font-size: 18px;
+                line-height: 27px;
+                color: #393F4C;
+                margin-bottom: 0;
+
+                @media (max-width: 767px) {
+                    font-size: 12px;
+                    line-height: 16px;
+                }
+
+            }
+
+            .monsterinsights-yir-tip-content-link-wrapper {
+                margin-top: 15px;
+
+                .monsterinsights-yir-tip-content-link {
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 27px;
+                    text-decoration-line: underline;
+                    color: #338EEF;
+                    margin-top: 15px;
+				    padding: 0;
+				    border-radius: 0;
+				    text-align: left;
+
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        color: #2469B2;
+                        box-shadow: none;
+                    }
+
+                    @media (max-width: 767px) {
+                        font-size: 14px;
+                    }
+
+                }
+
+            }
+
+        }
+    }
+
+	.monsterinsights-yir-year-in-review-upsell-overlay {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: calc(100% - 25px);
+	    height: 100%;
+
+	    .monsterinsights-yir-upsell-content {
+	    	margin-top: 66px;
+	    	text-align: center;
+	    	height: calc(100% - 66px);
+	    	padding-top: 80px;
+	    	padding-right: 25px;
+	    	padding-left: 25px;
+
+	    	.monsterinsights-yir-details {
+	    		font-size: 14px;
+				line-height: 20px;
+	    		font-family: Lato;
+	    	}
+
+	    	.monsterinsights-yir-btn-upsell-overlay {
+	    		display: inline-block;
+			    border-radius: 5px;
+			    font-size: 14px;
+			    line-height: 20px;
+			    color: #FFFFFF;
+			    padding: 10px 30px;
+			    text-decoration: none;
+			    font-family: Lato;
+			    background: #338EEF;
+			    margin-top: 10px;
+
+			    &.monsterinsights-yir-success {
+			    	background: #1EC185;;
+
+				    &:hover, 
+				    &:focus, 
+				    &:active {
+				    	opacity: .8;
+			    		background: #10ad73;
+				    }
+
+			    }
+
+			    &:hover, 
+			    &:focus, 
+			    &:active {
+			    	border: 0;
+			    	background: #2469B2;
+			    	outline: none;
+			    }
+
+	    	}
+
+	    }
+
+	}
+
+	.monsterinsights-yir-audience {
+		padding-bottom: 85px;
+
+		@media (max-width: 767px) {
+            padding-bottom: 30px;
+        }
+
+		.monsterinsights-yir-title {
+			font-size: 36px;
+			line-height: 105.2%;
+			color: #393F4C;
+			margin-bottom: 20px;
+
+			@media (max-width: 767px) {
+            	font-size: 24px;
+            	margin-bottom: 20px;
+		    }
+		}
+
+		.monsterinsights-yir-summary {
+			font-weight: normal;
+			font-size: 32px;
+			line-height: 44px;
+			color: #393F4C;
+			max-width: 685px;
+			margin-bottom: 80px;
+
+			@media (max-width: 767px) {
+			    font-size: 18px;
+			    line-height: 20px;
+			    margin-bottom: 30px;
+		    }
+		}
+
+		.monsterinsights-yir-total-visitors-sessions {
+			display: flex;
+
+			.monsterinsights-yir-visitors,
+			.monsterinsights-yir-sessions {
+				width: 100%;
+				margin-bottom: 70px;
+				padding-left: 70px;
+
+				@media (max-width: 767px) {
+				    margin-bottom: 20px;
+				    padding-left: 0;
+				    text-align: center;
+			    }
+
+				img {
+					margin-bottom: 15px;
+					max-height: 28px;
+				}
+
+				h4 {
+					font-size: 20px;
+					line-height: 24px;
+					color: #393F4C;
+
+					@media (max-width: 767px) {
+					    font-size: 16px;
+				    }
+				}
+
+				.monsterinsights-yir-number {
+					font-weight: 900;
+					font-size: 60px;
+					line-height: 72px;
+					color: #393F4C;
+
+					@media (max-width: 767px) {
+					    font-size: 40px;
+				    }
+				}
+			}
+		}
+
+		.monsterinsights-yir-visitor-by-chart {
+			margin-bottom: 60px;
+
+            @media (max-width: 767px) {
+                margin-bottom: 30px;
+            }
+		}
+
+	}
+
+	.monsterinsights-yir-demographics {
+		padding-top: 85px;
+		padding-bottom: 85px;
+		background-image: url('~@/assets/img/map-background.png');
+		background-repeat: no-repeat;
+		background-position: top center;
+
+		@media (max-width: 767px) {
+			padding-top: 30px;
+			padding-bottom: 30px;
+	    }
+
+		.monsterinsights-yir-title {
+			font-size: 36px;
+			line-height: 105.2%;
+			color: #393F4C;
+			margin-bottom: 20px;
+
+			@media (max-width: 767px) {
+            	font-size: 24px;
+            	margin-bottom: 20px;
+		    }
+
+		}
+
+		.monsterinsights-yir-summary {
+			font-weight: normal;
+			font-size: 32px;
+			line-height: 44px;
+			color: #393F4C;
+			max-width: 656px;
+			margin-bottom: 50px;
+
+			@media (max-width: 767px) {
+				font-size: 18px;
+			    line-height: 20px;
+			    margin-bottom: 24px;
+		    }
+
+		}
+
+		.monsterinsights-yir-countries {
+			display: flex;
+			margin-bottom: 40px;
+
+			@media (max-width: 767px) {
+				display: block;
+		    }
+
+			.monsterinsights-yir-top-country {
+				width: 50%;
+				margin-top: 40px;
+
+				@media (max-width: 767px) {
+					width: 100%;
+				    margin-top: 20px;
+				    margin-bottom: 20px;
+				    text-align: center;
+			    }
+
+                .monsterinsights-yir-number-one {
+					font-size: 24px;
+					line-height: 29px;
+					color: #FFFFFF;
+					background: #338EEF;
+					width: 50px;
+					height: 50px;
+					border-radius: 50%;
+					display: inline-block;
+					text-align: center;
+					line-height: 50px;
+					margin-bottom: 10px;
+				}
+
+				.monsterinsights-flag {
+					display: block;
+
+					@media (max-width: 767px) {
+						margin: 0 auto;
+				    }
+
+					&.monsterinsights-flag-zz {
+						display: none;
+					}
+
+				}
+
+				.monsterinsights-yir-top-country-name {
+					font-size: 32px;
+					line-height: 38px;
+					color: #393F4C;
+					margin-top: 0;
+					margin-bottom: 5px;
+
+					@media (max-width: 767px) {
+						font-size: 20px;
+				    }
+				}
+
+				.monsterinsights-yir-top-country-visitors {
+					font-weight: normal;
+					font-size: 24px;
+					line-height: 37px;
+					color: #393F4C;
+
+					@media (max-width: 767px) {
+						font-size: 16px;
+						line-height: 16px;
+				    }
+
+				}
+
+			}
+
+			.monsterinsights-yir-top-countries-graph {
+				width: 50%;
+
+				@media (max-width: 767px) {
+					width: 100%;
+			    }
+			}
+
+		}
+
+		.monsterinsights-yir-know-visitors {
+			font-size: 24px;
+			line-height: 37px;
+			color: #393F4C;
+
+			@media (max-width: 767px) {
+				font-size: 16px;
+		    }
+
+		}
+
+		.monsterinsights-yir-visitors-info {
+			display: flex;
+			margin-top: 50px;
+
+			@media (max-width: 767px) {
+				margin-top: 24px;
+		    }
+
+			.monsterinsights-yir-gender-info,
+			.monsterinsights-yir-age-info {
+				width: 100%;
+
+				span {
+					font-weight: 900;
+					font-size: 20px;
+					line-height: 24px;
+					color: #393F4C;
+
+					@media (max-width: 767px) {
+						font-size: 14px;
+				    }
+				}
+
+				h2 {
+					font-size: 48px;
+					line-height: 58px;
+					color: #338EEF;
+					margin-bottom: 10px;
+
+					@media (max-width: 767px) {
+						font-size: 30px;
+						line-height: 30px;
+				    }
+				}
+
+				p {
+					font-size: 16px;
+					line-height: 19px;
+					color: #393F4C;
+
+					@media (max-width: 767px) {
+						font-size: 10px;
+						line-height: 10px;
+				    }
+				}
+			}
+
+		}
+	}
+
+	.monsterinsights-yir-behavior {
+		padding-top: 85px;
+		padding-bottom: 85px;
+
+		@media (max-width: 767px) {
+			padding-top: 30px;
+			padding-bottom: 30px;
+	    }
+
+		.monsterinsights-yir-title {
+			font-size: 36px;
+			line-height: 105.2%;
+			color: #393F4C;
+			margin-bottom: 20px;
+
+			@media (max-width: 767px) {
+            	font-size: 24px;
+            	margin-bottom: 20px;
+		    }
+		}
+
+		.monsterinsights-yir-summary {
+			font-weight: normal;
+			font-size: 32px;
+			line-height: 44px;
+			color: #393F4C;
+			max-width: 585px;
+			margin-bottom: 50px;
+
+			@media (max-width: 767px) {
+				font-size: 18px;
+			    line-height: 28px;
+			    margin-bottom: 24px;
+		    }
+		}
+
+		.monsterinsights-yir-pages-data {
+			display: flex;
+			margin-bottom: 70px;
+
+			@media (max-width: 767px) {
+				display: block;
+				margin-bottom: 30px;
+		    }
+
+			.monsterinsights-yir-pages-summary {
+				width: 50%;
+				margin-top: 40px;
+
+				@media (max-width: 767px) {
+					width: 100%;
+					margin-top: 20px;
+					margin-bottom: 20px;
+					text-align: center;
+			    }
+
+				img {
+					width: 32px;
+					height: 32px;
+					margin-left: -3px;
+					margin-bottom: 5px;
+
+					@media (max-width: 767px) {
+						margin-left: 0;
+				    }
+
+				}
+
+				.monsterinsights-yir-time-spent {
+					font-weight: 900;
+					font-size: 20px;
+					line-height: 24px;
+					color: #393F4C;
+				}
+
+				.monsterinsights-yir-total-time-spent {
+					font-size: 32px;
+					line-height: 38px;
+					color: #393F4C;
+					margin-top: 15px;
+					margin-bottom: 5px;
+
+					@media (max-width: 767px) {
+						margin-top: 5px;
+						margin-bottom: 0;
+				    }
+
+					.monsterinsights-yir-number {
+						font-weight: 900;
+						font-size: 48px;
+						line-height: 58px;
+						color: #338EEF;
+						margin-right: 10px;
+						overflow-wrap: break-word;
+
+						@media (max-width: 767px) {
+							font-size: 30px;
+							line-height: 30px;
+					    }
+					}
+
+					.monsterinsights-yir-type {
+						font-weight: 900;
+						font-size: 16px;
+						line-height: 103.8%;
+						color: #393F4C;
+					}
+
+				}
+
+				.monsterinsights-yir-each-visitor-spent {
+					font-weight: normal;
+					font-size: 18px;
+					line-height: 24px;
+					color: #393F4C;
+					max-width: 330px;
+					margin-top: 15px;
+
+					@media (max-width: 767px) {
+						font-size: 14px;
+						max-width: 100%;
+						margin-top: 5px;
+				    }
+
+				}
+
+			}
+
+			.monsterinsights-yir-top-pages-graph {
+				width: 50%;
+
+				@media (max-width: 767px) {
+					width: 100%;
+			    }
+			}
+
+		}
+
+		.monsterinsights-yir-most-visitors-device {
+			font-weight: normal;
+			font-size: 32px;
+			line-height: 44px;
+			color: #393F4C;
+			max-width: 586px;
+
+			@media (max-width: 767px) {
+				font-size: 20px;
+				line-height: 20px;
+		    }
+		}
+
+		.monsterinsights-yir-visitors-info {
+			display: flex;
+			margin-top: 50px;
+
+			@media (max-width: 767px) {
+				margin-top: 20px;
+				text-align: center;
+		    }
+
+			.monsterinsights-yir-gender-info,
+			.monsterinsights-yir-age-info {
+				width: 100%;
+
+				span {
+					font-weight: 900;
+					font-size: 20px;
+					line-height: 24px;
+					color: #393F4C;
+				}
+
+				h2 {
+					font-size: 48px;
+					line-height: 58px;
+					color: #338EEF;
+					margin-bottom: 10px;
+				}
+
+				p {
+					font-size: 16px;
+					line-height: 19px;
+					color: #393F4C;
+				}
+			}
+
+		}
+
+		.monsterinsights-yir-grow-traffic-tip {
+			margin-top: 70px;
+
+			@media (max-width: 767px) {
+				margin-top: 0;
+			}
+
+		}
+
+		.monsterinsights-yir-visitors-come-from {
+			margin-top: 55px;
+			margin-bottom: 100px;
+
+			@media (max-width: 767px) {
+				margin-top: 20px;
+				margin-bottom: 60px;
+			}
+
+			.monsterinsights-yir-title {
+				font-size: 32px;
+				line-height: 44px;
+				color: #393F4C;
+				margin-bottom: 30px;
+
+				@media (max-width: 767px) {
+					font-size: 20px;
+					line-height: 20px;
+					margin-bottom: 15px;
+			    }
+
+			}
+
+			.monsterinsights-yir-keywords-referrals {
+				display: flex;
+
+				@media (max-width: 767px) {
+					display: block;
+			    }
+
+				.monsterinsights-yir-keywords,
+				.monsterinsights-yir-referrals {
+					width: 50%;
+                    position: relative;
+
+					@media (max-width: 767px) {
+						width: 100%;
+				    }
+
+				}
+
+				.monsterinsights-yir-keywords {
+					padding-right: 25px;
+
+					@media (max-width: 767px) {
+						padding-right: 0;
+						margin-bottom: 60px;
+				    }
+
+				}
+
+				.monsterinsights-yir-referrals {
+					padding-left: 25px;
+
+					@media (max-width: 767px) {
+						padding-left: 0;
+				    }
+				}
+
+			}
+
+		}
+
+	}
+
+	.monsterinsights-yir-ecommerce {
+		padding-top: 85px;
+		padding-bottom: 30px;
+
+		@media (max-width: 767px) {
+			padding-top: 30px;
+		}
+
+		.monsterinsights-yir-title {
+			font-size: 36px;
+			line-height: 105.2%;
+			color: #393F4C;
+			margin-bottom: 15px;
+
+			@media (max-width: 767px) {
+            	font-size: 24px;
+            	margin-bottom: 20px;
+		    }
+
+		}
+
+		.monsterinsights-yir-summary {
+			font-weight: normal;
+			font-size: 32px;
+			line-height: 44px;
+			color: #393F4C;
+			max-width: 586px;
+
+			@media (max-width: 767px) {
+				font-size: 18px;
+			    line-height: 28px;
+			    margin-bottom: 24px;
+		    }
+
+		}
+
+		.monsterinsights-yir-data {
+			display: flex;
+
+			.monsterinsights-yir-number {
+				width: 55%;
+
+				@media (max-width: 767px) {
+					width: 30%;
+			    }
+
+				.monsterinsights-yir-revenue,
+				.monsterinsights-yir-products-sold {
+					padding: 75px 0;
+				}
+
+				.monsterinsights-yir-title {
+					font-weight: 900;
+					font-size: 20px;
+					line-height: 24px;
+					color: #393F4C;
+
+					@media (max-width: 767px) {
+						font-size: 14px;
+						line-height: 24px;
+				    }
+
+				}
+
+				.monsterinsights-yir-amount {
+					font-size: 54px;
+					line-height: 65px;
+					color: #338EEF;
+					overflow-wrap: break-word;
+
+					@media (max-width: 767px) {
+						font-size: 24px;
+						line-height: 40px;
+				    }
+
+				}
+
+			}
+
+			.monsterinsights-yir-products {
+				width: 45%;
+
+				@media (max-width: 767px) {
+					width: 70%;
+			    }
+
+				.monsterinsights-yir-most-popular,
+				.monsterinsights-yir-highest-earning {
+					box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+					border-radius: 3.59813px;
+					padding-left: 30px;
+					padding-top: 30px;
+					padding-right: 30px;
+					padding-bottom: 30px;
+					margin-bottom: 30px;
+
+					img {
+						margin-bottom: 5px;
+					}
+
+					span {
+						font-weight: 900;
+						font-size: 20px;
+						line-height: 24px;
+						color: #393F4C;
+
+						@media (max-width: 767px) {
+							font-size: 14px;
+							line-height: 24px;
+					    }
+
+					}
+
+					.monsterinsights-yir-product-title {
+						font-weight: bold;
+						font-size: 28px;
+						line-height: 32px;
+						color: #338EEF;
+						margin-top: 10px;
+						margin-bottom: 20px;
+
+						@media (max-width: 767px) {
+							font-size: 16px;
+							line-height: 16px;
+							margin-bottom: 10px;
+					    }
+
+					}
+
+					.monsterinsights-yir-count {
+						font-weight: normal;
+						font-size: 16px;
+						line-height: 19px;
+						color: #828282;
+
+						@media (max-width: 767px) {
+							font-size: 12px;
+					    }
+
+					}
+				}
+
+			}
+
+		}
+
+		.monsterinsights-yir-revenue-by-month {
+			margin-bottom: 50px;
+		}
+	}
+
+	.monsterinsights-yir-thank-you {
+		padding-top: 90px;
+		background-color: #fff;
+		background-image: url('~@/assets/img/confetti-background.png');
+		background-position: top left;
+		padding-bottom: 85px;
+
+		@media (max-width: 767px) {
+			padding-top: 0;
+			padding-bottom: 30px;
+	    }
+
+		.monsterinsights-yir-title {
+			font-size: 54px;
+			line-height: 65px;
+			text-align: center;
+			color: #393F4C;
+			max-width: 588px;
+			margin: 0 auto;
+			margin-bottom: 10px;
+
+			@media (max-width: 767px) {
+				font-size: 30px;
+				line-height: 30px;
+		    }
+
+		}
+
+		.monsterinsights-yir-summary {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 28px;
+            text-align: center;
+            color: #393F4C;
+			max-width: 585px;
+			margin: 0 auto;
+			margin-bottom: 15px;
+
+			@media (max-width: 767px) {
+				font-size: 14px;
+				line-height: 16px;
+		    }
+
+		}
+
+		.monsterinsights-yir-amazing-year {
+			font-weight: bold;
+			font-size: 32px;
+			line-height: 37px;
+			text-align: center;
+			color: #393F4C;
+			font-style: italic;
+			margin-bottom: 35px;
+
+			@media (max-width: 767px) {
+				font-size: 24px;
+				line-height: 24px;
+				margin-bottom: 10px;
+		    }
+
+		}
+
+		.monsterinsights-yir-authors {
+			text-align: center;
+			margin-bottom: 70px;
+
+			@media (max-width: 767px) {
+				margin-bottom: 30px;
+		    }
+
+            .monsterinsights-yir-author {
+                display: inline-block;
+				padding: 0 45px;
+
+				@media (max-width: 767px) {
+					padding: 0 10px;
+			    }
+
+                .monsterinsights-yir-thumbnail {
+                    width: 96px;
+                    height: 96px;
+                    background-repeat: no-repeat;
+                    margin: 0 auto;
+                    margin-bottom: 10px;
+                    
+                    &.chris {
+                    	background-image: url('~@/assets/img/chris.png');
+                    }
+
+                    &.syed {
+                    	background-image: url('~@/assets/img/syed.png');
+                    } 
+
+                }
+
+                .monsterinsights-yir-name {
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 22px;
+                    text-align: center;
+                    color: #393F4C;
+
+					@media (max-width: 767px) {
+						font-size: 014px;
+				    }
+
+                }
+
+            }
+
+		}
+
+		.monsterinsights-yir-write-review {
+			background: #338EEF;
+			box-shadow: 0px 8px 8px rgba(30, 88, 150, 0.2);
+			border-radius: 5px;
+			padding: 24px;
+			display: flex;
+
+			@media (max-width: 767px) {
+				display: block;
+		    }
+
+			.monsterinsights-yir-content,
+			.monsterinsights-yir-rating,
+			.monsterinsights-yir-review-button{
+				width: 100%;
+			}
+
+			.monsterinsights-yir-content {
+
+				@media (max-width: 767px) {
+					text-align: center;
+			    }
+
+				span {
+					font-weight: 900;
+					font-size: 14px;
+					color: #FFFFFF;
+
+					@media (max-width: 767px) {
+						font-size: 12px;
+				    }
+
+				}
+
+				h3 {
+					font-weight: 900;
+					font-size: 20px;
+					line-height: 31px;
+					color: #FFFFFF;
+
+					@media (max-width: 767px) {
+						font-size: 18px;
+						line-height: 24px;
+				    }
+
+				}
+
+			}
+
+			.monsterinsights-yir-rating {
+
+				.monsterinsights-yir-five-star {
+					margin: 0;
+					padding: 12px 0 0 0;
+					text-align: center;
+
+					li {
+						list-style: none;
+						display: inline-block;
+						margin-right: 7px;
+
+						@media (max-width: 767px) {
+							margin-right: 0;
+					    }
+
+					}
+
+				}
+
+			}
+
+			.monsterinsights-yir-review-button {
+                text-align: center;
+				padding-top: 5px;
+
+				a {
+					background: #2469B3;
+					border-radius: 5px;
+					text-align: center;
+					height: 38px;
+					display: inline-block;
+
+					&:hover,
+					&:focus,
+					&:active {
+						background: #123C68;
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+	.monsterinsights-yir-year-in-review-plugins-block {
+
+		.monsterinsights-yir-title {
+			font-size: 36px;
+			line-height: 44px;
+			color: #393F4C;
+			margin-bottom: 20px;
+			max-width: 638px;
+
+			@media (max-width: 767px) {
+				font-size: 20px;
+				line-height: 20px;
+		    }
+		}
+
+		.monsterinsights-yir-summary {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 24px;
+            color: #393F4C;
+			max-width: 450px;
+
+			@media (max-width: 767px) {
+				font-size: 14px;
+				line-height: 14px;
+		    }
+
+		}
+
+	}
+
+	.monsterinsights-yir-year-in-review-plugins-block {
+
+		.monsterinsights-yir-plugins {
+			margin-top: 20px;
+			margin-left: -30px;
+			margin-right: -30px;
+
+			@media (max-width: 767px) {
+				margin-left: 0;
+				margin-right: 0;
+		    }
+
+			.monsterinsights-addon {
+				width: calc(50% - 60px);
+				float: left;
+				background: #F3F9FF;
+				border: 2px solid #E3F1FF;
+				border-radius: 5px;
+				position: relative;
+				min-height: 260px;
+				margin: 30px 30px 0 30px;
+
+				@media (max-width: 767px) {
+					width: 100%;
+				    margin: 30px 0;
+				    min-height: 300px;
+			    }
+
+				.monsterinsights-addon-top {
+					padding-top: 30px;
+
+					.monsterinsights-addon-image {
+						width: 104px;
+						float: left;
+						padding-left: 25px;
+
+						.monsterinsights-addon-thumb {
+							width: 32px;
+							height: 32px;
+							border: 2px solid #E3F1FF;
+							border-radius: 5px;
+							padding: 10px;
+							box-sizing: content-box;
+						}
+
+					}
+
+					.monsterinsights-addon-text {
+						width: calc(100% - 104px);
+						float: left;
+						padding-right: 25px;
+
+						.monsterinsights-addon-title {
+							font-size: 18px;
+							line-height: 24px;
+							margin-top: 0;
+							font-family: Lato;
+							margin-bottom: 5px;
+							color: #393F4C;
+							font-weight: 900;
+						}
+
+						.monsterinsights-addon-excerpt{
+							font-weight: normal;
+							font-size: 14px;
+							line-height: 18px;
+							color: #393F4C;
+							font-family: Lato;
+							margin: 0;
+						}
+
+					}
+
+				}
+
+				.monsterinsights-addon-message {
+					border-top: 2px solid #E3F1FF;
+					clear: both;
+					padding: 13px 0;
+					padding-left: 25px;
+					padding-right: 25px;
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					width: 100%;
+
+					.monsterinsights-addon-status {
+						float: right;
+						line-height: 32px;
+						font-weight: 900;
+						font-family: Lato;
+
+						span {
+							color: #d4393d;
+						}
+					}
+
+					.monsterinsights-button {
+						line-height: 32px;
+						background: #338EEF;
+						border-radius: 3px;
+						display: inline-block;
+						padding: 0 30px;
+						border: 0;
+						font-weight: bold;
+						font-family: Lato;
+
+						&:hover,
+						&:active,
+						&:focus {
+							background: #2469B2;
+							outline: none;
+							box-shadow: none;
+						}
+
+					}
+
+					&.monsterinsights-addon-active {
+
+						.monsterinsights-addon-status {
+
+							span {
+								color: #64bfa5;
+							}
+
+						}
+
+						.monsterinsights-button {
+							background: rgba(51, 142, 239, 0.5);
+
+							&:hover,
+							&:active,
+							&:focus {
+								background: rgba(51, 142, 239, 0.5);
+							}
+
+						}
+
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+    .monsterinsights-yir-join-communities {
+        background-color: #338EEF;
+        padding-top: 160px;
+		margin-top: -90px;
+        color: #fff;
+
+		@media (max-width: 767px) {
+        	padding-top: 100px;
+	    }
+
+        h2 {
+            font-size: 36px;
+            line-height: 43px;
+            color: #fff;
+            margin-bottom: 15px;
+
+			@media (max-width: 767px) {
+            	font-size: 24px;
+            	margin-bottom: 20px;
+		    }
+
+        }
+
+        h3 {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 24px;
+            color: #fff;
+            max-width: 575px;
+
+			@media (max-width: 767px) {
+            	font-size: 18px;
+		    }
+
+        }
+
+        .monsterinsights-yir-communities {
+            display: flex;
+            margin-left: -30px;
+            padding-top: 60px;
+            padding-bottom: 90px;
+
+			@media (max-width: 767px) {
+				display: block;
+            	margin-left: 0;
+            	padding-bottom: 0;
+		    }
+
+            .monsterinsights-yir-community {
+                width: 100%;
+                background-color: #2469B2;
+                border-radius: 5px;
+                margin-left: 30px;
+                padding: 24px;
+                position: relative;
+                min-height: 340px;
+
+				@media (max-width: 767px) {
+	            	margin-left: 0;
+	            	margin-bottom: 30px;
+			    }
+
+			    @media (min-width: 768px) and (max-width: 991px) {
+			    	min-height: 350px;
+			    }
+
+                .monsterinsights-yir-title {
+                    font-weight: 900;
+                    font-size: 20px;
+                    line-height: 24px;
+                    margin-bottom: 10px;
+                    margin-top: 5px;
+                }
+
+                .monsterinsights-yir-link,
+                .monsterinsights-yir-social-links {
+                    position: absolute;
+                    bottom: 15px;
+                    left: 24px;
+                    width: 80%;
+                    width: calc(100% - 48px);
+                }
+
+                .monsterinsights-yir-link {
+                    background-color: #123C68;
+                    display: block;
+
+				    @media (min-width: 768px) and (max-width: 991px) {
+				    	padding: 8px 10px;
+				    }
+
+                    &:hover,
+                    &:focus {
+                        background-color: #0D2E51;
+                        outline: none;
+                        box-shadow: none;
+                    }
+
+                }
+
+                .monsterinsights-yir-social-links {
+                    margin: 0;
+
+                    li {
+                        float: left;
+                        margin-right: 8px;
+                        margin-bottom: 0;
+
+                        a {
+                            background-color: #123C68;
+                            display: block;
+                            padding: 0;
+                            margin: 0;
+                            width: 40px;
+                            height: 40px;
+                            padding: 10px;
+
+                            &:hover,
+                            &:focus {
+                                background-color: #0D2E51;
+                                outline: none;
+                                box-shadow: none;
+                            }
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+    }
+
+    .monsterinsights-yir-footer {
+        height: 84px;
+        background: #2368B1;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: flex;
+
+		@media (max-width: 767px) {
+        	display: block;
+        	text-align: center;
+        	padding: 15px 0;
+        	line-height: 30px;
+	    }
+
+        div {
+            width: 100%;
+            font-weight: 500;
+            font-size: 16px;
+            color: #fff;
+            text-align: center;
+        }
+    }
+}
