@@ -45,6 +45,10 @@ function monsterinsights_get_admin_menu_tooltip() {
 		return;
 	}
 
+	if ( ! current_user_can( 'monsterinsights_save_settings' ) ) {
+		return;
+	}
+
 	if ( $show_tooltip && $show_tooltip + 30 * DAY_IN_SECONDS > time() ) {
 		// Dismissed less than 30 days ago.
 		return;
@@ -196,6 +200,12 @@ function monsterinsights_get_admin_menu_tooltip() {
 				var $menuitem = $( document.getElementById( 'toplevel_page_monsterinsights_reports' ) );
 				if ( 0 === $menuitem.length ) {
 					$menuitem = $( document.getElementById( 'toplevel_page_monsterinsights_network' ) );
+				}
+				if ( 0 === $menuitem.length ) {
+					$menuitem = $( document.getElementById( 'toplevel_page_monsterinsights_settings' ) );
+				}
+				if ( 0 === $menuitem.length ) {
+					return;
 				}
 
 				if ( $menuitem.length ) {
