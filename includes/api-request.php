@@ -188,6 +188,7 @@ final class MonsterInsights_API_Request {
 		$blocked = $this->is_blocked( $this->url );
 		if ( $blocked || is_wp_error( $blocked )  ) {
 			if ( is_wp_error( $blocked ) ) {
+				// Translators: Placeholder gets replaced with the error message.
 				return new WP_Error( 'api-error', sprintf( __( 'The firewall of your server is blocking outbound calls. Please contact your hosting provider to fix this issue. %s', 'google-analytics-for-wordpress' ), $blocked->get_error_message() ) );
 			} else {
 				return new WP_Error( 'api-error', __( 'The firewall of your server is blocking outbound calls. Please contact your hosting provider to fix this issue.', 'google-analytics-for-wordpress' ) );
@@ -307,15 +308,18 @@ final class MonsterInsights_API_Request {
 			}
 
 			if ( empty( $response_body ) || ( empty( $response_body['message'] ) && empty( $response_body['error'] ) ) ) {
+				// Translators: placeholder adds the response code.
 				return new WP_Error( $type, sprintf( __( 'The API returned a <strong>%s</strong> response', 'google-analytics-for-wordpress' ), $response_code ) );
 			}
 
 			if ( ! empty( $response_body['message'] ) ) {
-				return new WP_Error( $type, sprintf( __( 'The API returned a <strong>%d</strong> response with this message: <strong>%s</strong>', 'google-analytics-for-wordpress' ), $response_code, stripslashes( $response_body['message'] ) ) );
+				// Translators: placeholder adds the response code and response message.
+				return new WP_Error( $type, sprintf( __( 'The API returned a <strong>%1$d</strong> response with this message: <strong>%2$s</strong>', 'google-analytics-for-wordpress' ), $response_code, stripslashes( $response_body['message'] ) ) );
 			}
 
 			if ( ! empty( $response_body['error'] ) ) {
-				return new WP_Error( $type, sprintf( __( 'The API returned a <strong>%d</strong> response with this message: <strong>%s</strong>', 'google-analytics-for-wordpress' ), $response_code, stripslashes( $response_body['error'] ) ) );
+				// Translators: placeholder adds the response code and response message.
+				return new WP_Error( $type, sprintf( __( 'The API returned a <strong>%1$d</strong> response with this message: <strong>%2$s</strong>', 'google-analytics-for-wordpress' ), $response_code, stripslashes( $response_body['error'] ) ) );
 			}
 		}
 

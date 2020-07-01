@@ -16,7 +16,7 @@ class MonsterInsights_Welcome {
 		}
 
 		// If user is in admin ajax or doing cron, return
-		if ( ( defined( 'DOING_AJAX' ) && DOING_AJAX  ) || ( defined( 'DOING_CRON' ) && DOING_CRON ) ) {
+		if ( ( defined( 'DOING_AJAX' ) && DOING_AJAX ) || ( defined( 'DOING_CRON' ) && DOING_CRON ) ) {
 			return;
 		}
 
@@ -31,7 +31,11 @@ class MonsterInsights_Welcome {
 		}
 
 		add_action( 'admin_init', array( $this, 'maybe_redirect' ), 9999 );
+
 		add_action( 'admin_menu', array( $this, 'register' ) );
+		// Add the welcome screen to the network dashboard.
+		add_action( 'network_admin_menu', array( $this, 'register' ) );
+
 		add_action( 'admin_head', array( $this, 'hide_menu' ) );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'welcome_scripts' ) );
@@ -75,7 +79,7 @@ class MonsterInsights_Welcome {
 	public function maybe_redirect() {
 
 		// Bail if no activation redirect.
-		if ( ! get_transient( '_monsterinsights_activation_redirect' ) ) {
+		if ( ! get_transient( '_monsterinsights_activation_redirect' ) || isset( $_GET['monsterinsights-redirect'] ) ) {
 			return;
 		}
 
@@ -83,13 +87,15 @@ class MonsterInsights_Welcome {
 		delete_transient( '_monsterinsights_activation_redirect' );
 
 		// Bail if activating from network, or bulk.
-		if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) { // WPCS: CSRF ok, input var ok.
+		if ( isset( $_GET['activate-multi'] ) ) { // WPCS: CSRF ok, input var ok.
 			return;
 		}
 
 		$upgrade = get_option( 'monsterinsights_version_upgraded_from', false );
 		if ( apply_filters( 'monsterinsights_enable_onboarding_wizard', false === $upgrade ) ) {
-			$redirect = admin_url( 'index.php?page=monsterinsights-getting-started' );
+			$redirect = admin_url( 'index.php?page=monsterinsights-getting-started&monsterinsights-redirect=1' );
+			$path     = 'index.php?page=monsterinsights-getting-started&monsterinsights-redirect=1';
+			$redirect = is_network_admin() ? network_admin_url( $path ) : admin_url( $path );
 			wp_safe_redirect( $redirect );
 			exit;
 		}
@@ -101,8 +107,12 @@ class MonsterInsights_Welcome {
 	public function welcome_scripts() {
 
 		$current_screen = get_current_screen();
+		$screens        = array(
+			'dashboard_page_monsterinsights-getting-started',
+			'index_page_monsterinsights-getting-started-network',
+		);
 
-		if ( empty( $current_screen->id ) || 'dashboard_page_monsterinsights-getting-started' !== $current_screen->id ) {
+		if ( empty( $current_screen->id ) || ! in_array( $current_screen->id, $screens, true ) ) {
 			return;
 		}
 
@@ -141,7 +151,7 @@ class MonsterInsights_Welcome {
 				'assets'               => plugins_url( $version_path . '/assets/vue', MONSTERINSIGHTS_PLUGIN_FILE ),
 				'roles'                => monsterinsights_get_roles(),
 				'roles_manage_options' => monsterinsights_get_manage_options_roles(),
-				'wizard_url'           => admin_url( 'index.php?page=monsterinsights-onboarding' ),
+				'wizard_url'           => is_network_admin() ? network_admin_url( 'index.php?page=monsterinsights-onboarding' ) : admin_url( 'index.php?page=monsterinsights-onboarding' ),
 				'shareasale_id'        => monsterinsights_get_shareasale_id(),
 				'shareasale_url'       => monsterinsights_get_shareasale_url( monsterinsights_get_shareasale_id(), '' ),
 				// Used to add notices for future deprecations.
@@ -157,6 +167,8 @@ class MonsterInsights_Welcome {
 				),
 				'plugin_version'       => MONSTERINSIGHTS_VERSION,
 				'first_name'           => ! empty( $user_data->first_name ) ? $user_data->first_name : '',
+				'exit_url'             => add_query_arg( 'page', 'monsterinsights_settings', admin_url( 'admin.php' ) ),
+				'had_ecommerce'        => monsterinsights_get_option( 'gadwp_ecommerce', false ),
 			)
 		);
 	}
@@ -167,8 +179,26 @@ class MonsterInsights_Welcome {
 	public function welcome_screen() {
 		do_action( 'monsterinsights_head' );
 
-		monsterinsights_settings_error_page( 'monsterinsights-welcome' );
+		monsterinsights_settings_error_page( $this->get_screen_id() );
 		monsterinsights_settings_inline_js();
+	}
+
+	/**
+	 * Get the screen id to control which Vue component is loaded.
+	 *
+	 * @return string
+	 */
+	public function get_screen_id() {
+		$screen_id = 'monsterinsights-welcome';
+
+		if ( defined( 'EXACTMETRICS_VERSION' ) && function_exists( 'ExactMetrics' ) ) {
+			$migrated = monsterinsights_get_option( 'gadwp_migrated', 0 );
+			if ( time() - $migrated < HOUR_IN_SECONDS || isset( $_GET['monsterinsights-migration'] ) ) {
+				$screen_id = 'monsterinsights-migration-wizard';
+			}
+		}
+
+		return $screen_id;
 	}
 }
 

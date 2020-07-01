@@ -26,6 +26,7 @@ class MonsterInsights_Dashboard_Widget {
 	public static $default_options = array(
 		'width'    => 'regular',
 		'interval' => '30',
+		'compact'  => false,
 		'reports'  => array(
 			'overview'    => array(
 				'toppages'    => true,
@@ -125,7 +126,11 @@ class MonsterInsights_Dashboard_Widget {
 	 */
 	public function widget_content_no_auth() {
 
-		$url = is_network_admin() ? network_admin_url( 'admin.php?page=monsterinsights-onboarding' ) : admin_url( 'admin.php?page=monsterinsights-onboarding' );
+		$url      = is_network_admin() ? network_admin_url( 'admin.php?page=monsterinsights-onboarding' ) : admin_url( 'admin.php?page=monsterinsights-onboarding' );
+		$migrated = monsterinsights_get_option( 'gadwp_migrated', 0 );
+		if ( $migrated > 0 ) {
+			$url = admin_url( 'admin.php?page=monsterinsights-getting-started&monsterinsights-migration=1' );
+		}
 		?>
 		<div class="mi-dw-not-authed">
 			<h2><?php esc_html_e( 'Website Analytics is not Setup', 'google-analytics-for-wordpress' ); ?></h2>
@@ -253,6 +258,7 @@ class MonsterInsights_Dashboard_Widget {
 		$options = array(
 			'width'    => ! empty( $_POST['width'] ) ? sanitize_text_field( wp_unslash( $_POST['width'] ) ) : $default['width'],
 			'interval' => ! empty( $_POST['interval'] ) ? absint( wp_unslash( $_POST['interval'] ) ) : $default['interval'],
+			'compact'     => ! empty( $_POST['compact'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['compact'] ) ) : $default['compact'],
 			'reports'  => $reports,
 			'notice30day' => $current_options['notice30day'],
 		);

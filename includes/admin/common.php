@@ -58,24 +58,20 @@ function monsterinsights_is_reports_page() {
 		return false;
 	}
 
-	$settings_page = false;
+	$reports_page = false;
 	if ( ! empty( $admin_page_hooks['monsterinsights_reports'] ) && $current_screen->id === $admin_page_hooks['monsterinsights_reports'] ) {
-		$settings_page = true;
+		$reports_page = true;
 	}
 
 	if ( 'toplevel_page_monsterinsights_reports' === $current_screen->id ) {
-		$settings_page = true;
+		$reports_page = true;
 	}
 
 	if ( strpos( $current_screen->id, 'monsterinsights_reports' ) !== false ) {
-		$settings_page = true;
+		$reports_page = true;
 	}
 
-	if ( ! empty( $current_screen->base ) && strpos( $current_screen->base, 'monsterinsights_network' ) !== false ) {
-		$settings_page = true;
-	}
-
-	return $settings_page;
+	return $reports_page;
 }
 
 /**
@@ -148,6 +144,7 @@ function monsterinsights_admin_scripts() {
 
 	wp_register_script( 'monsterinsights-admin-common-script', plugins_url( 'assets/js/admin-common' . $suffix . '.js', MONSTERINSIGHTS_PLUGIN_FILE ), array( 'jquery' ), monsterinsights_get_asset_version() );
 	wp_enqueue_script( 'monsterinsights-admin-common-script' );
+
 	wp_localize_script(
 		'monsterinsights-admin-common-script',
 		'monsterinsights_admin_common',
@@ -227,10 +224,11 @@ function monsterinsights_admin_scripts() {
 				'shareasale_id'        => monsterinsights_get_shareasale_id(),
 				'shareasale_url'       => monsterinsights_get_shareasale_url( monsterinsights_get_shareasale_id(), '' ),
 				'addons_url'           => is_multisite() ? network_admin_url( 'admin.php?page=monsterinsights_network#/addons' ) : admin_url( 'admin.php?page=monsterinsights_settings#/addons' ),
+				'email_summary_url'    => admin_url( 'admin.php?monsterinsights_email_preview&monsterinsights_email_template=summary' ),
 				'install_amp_url'      => $install_amp_url,
 				'install_fbia_url'     => $install_fbia_url,
 				'dimensions'           => $prepared_dimensions,
-				'wizard_url'           => admin_url( 'index.php?page=monsterinsights-onboarding' ),
+				'wizard_url'           => is_network_admin() ? network_admin_url( 'index.php?page=monsterinsights-onboarding' ) : admin_url( 'index.php?page=monsterinsights-onboarding' ),
 				'install_plugins'      => current_user_can( 'install_plugins' ),
 				'unfiltered_html'      => current_user_can( 'unfiltered_html' ),
 				'activate_nonce'       => wp_create_nonce( 'monsterinsights-activate' ),
@@ -249,10 +247,14 @@ function monsterinsights_admin_scripts() {
 				),
 				'plugin_version'       => MONSTERINSIGHTS_VERSION,
 				'is_admin'             => true,
+				'admin_email'          => get_option( 'admin_email' ),
+				'site_url'             => get_site_url(),
 				'reports_url'          => add_query_arg( 'page', 'monsterinsights_reports', admin_url( 'admin.php' ) ),
 				'first_run_notice'     => apply_filters( 'monsterinsights_settings_first_time_notice_hide', monsterinsights_get_option( 'monsterinsights_first_run_notice' ) ),
-				'getting_started_url'  => is_multisite() ? network_admin_url( 'admin.php?page=monsterinsights_network#/about/getting-started' ) : admin_url( 'admin.php?page=monsterinsights_settings#/about/getting-started' ),
+				'getting_started_url'  => is_network_admin() ? network_admin_url( 'admin.php?page=monsterinsights_network#/about' ) : admin_url( 'admin.php?page=monsterinsights_settings#/about/getting-started' ),
 				'authed'               => $is_authed,
+				'new_pretty_link_url'  => admin_url( 'post-new.php?post_type=pretty-link' ),
+				'wpmailsmtp_admin_url' => admin_url( 'admin.php?page=wp-mail-smtp' ),
 			)
 		);
 
@@ -281,19 +283,19 @@ function monsterinsights_admin_scripts() {
 			'monsterinsights-vue-reports',
 			'monsterinsights',
 			array(
-				'ajax'            => admin_url( 'admin-ajax.php' ),
-				'nonce'           => wp_create_nonce( 'mi-admin-nonce' ),
-				'network'         => is_network_admin(),
-				'translations'    => wp_get_jed_locale_data( monsterinsights_is_pro_version() ? 'ga-premium' : 'google-analytics-for-wordpress' ),
-				'assets'          => plugins_url( $version_path . '/assets/vue', MONSTERINSIGHTS_PLUGIN_FILE ),
-				'shareasale_id'   => monsterinsights_get_shareasale_id(),
-				'shareasale_url'  => monsterinsights_get_shareasale_url( monsterinsights_get_shareasale_id(), '' ),
-				'addons_url'      => is_multisite() ? network_admin_url( 'admin.php?page=monsterinsights_network#/addons' ) : admin_url( 'admin.php?page=monsterinsights_settings#/addons' ),
-				'timezone'        => date( 'e' ),
-				'authed'          => $site_auth || $ms_auth,
-				'settings_url'    => add_query_arg( 'page', 'monsterinsights_settings', admin_url( 'admin.php' ) ),
+				'ajax'             => admin_url( 'admin-ajax.php' ),
+				'nonce'            => wp_create_nonce( 'mi-admin-nonce' ),
+				'network'          => is_network_admin(),
+				'translations'     => wp_get_jed_locale_data( monsterinsights_is_pro_version() ? 'ga-premium' : 'google-analytics-for-wordpress' ),
+				'assets'           => plugins_url( $version_path . '/assets/vue', MONSTERINSIGHTS_PLUGIN_FILE ),
+				'shareasale_id'    => monsterinsights_get_shareasale_id(),
+				'shareasale_url'   => monsterinsights_get_shareasale_url( monsterinsights_get_shareasale_id(), '' ),
+				'addons_url'       => is_multisite() ? network_admin_url( 'admin.php?page=monsterinsights_network#/addons' ) : admin_url( 'admin.php?page=monsterinsights_settings#/addons' ),
+				'timezone'         => date( 'e' ),
+				'authed'           => $site_auth || $ms_auth,
+				'settings_url'     => add_query_arg( 'page', 'monsterinsights_settings', admin_url( 'admin.php' ) ),
 				// Used to add notices for future deprecations.
-				'versions'        => array(
+				'versions'         => array(
 					'php_version'          => phpversion(),
 					'php_version_below_54' => apply_filters( 'monsterinsights_temporarily_hide_php_52_and_53_upgrade_warnings', version_compare( phpversion(), '5.4', '<' ) ),
 					'php_version_below_56' => apply_filters( 'monsterinsights_temporarily_hide_php_54_and_55_upgrade_warnings', version_compare( phpversion(), '5.6', '<' ) ),
@@ -303,13 +305,16 @@ function monsterinsights_admin_scripts() {
 					'wp_version_below_49'  => version_compare( $wp_version, '4.9', '<' ),
 					'wp_update_link'       => monsterinsights_get_url( 'settings-notice', 'settings-page', 'https://www.monsterinsights.com/docs/update-wordpress/' ),
 				),
-				'plugin_version'  => MONSTERINSIGHTS_VERSION,
-				'is_admin'        => true,
-				'wizard_url'      => admin_url( 'index.php?page=monsterinsights-onboarding' ),
-				'install_nonce'   => wp_create_nonce( 'monsterinsights-install' ),
-				'activate_nonce'  => wp_create_nonce( 'monsterinsights-activate' ),
-				'deactivate_nonce'=> wp_create_nonce( 'monsterinsights-deactivate' ),
-				'update_settings' => current_user_can( 'monsterinsights_save_settings' ),
+				'plugin_version'   => MONSTERINSIGHTS_VERSION,
+				'is_admin'         => true,
+				'admin_email'      => get_option( 'admin_email' ),
+				'site_url'         => get_site_url(),
+				'wizard_url'       => is_network_admin() ? network_admin_url( 'index.php?page=monsterinsights-onboarding' ) : admin_url( 'index.php?page=monsterinsights-onboarding' ),
+				'install_nonce'    => wp_create_nonce( 'monsterinsights-install' ),
+				'activate_nonce'   => wp_create_nonce( 'monsterinsights-activate' ),
+				'deactivate_nonce' => wp_create_nonce( 'monsterinsights-deactivate' ),
+				'update_settings'  => current_user_can( 'monsterinsights_save_settings' ),
+				'migrated'         => monsterinsights_get_option( 'gadwp_migrated', 0 ),
 			)
 		);
 
@@ -746,7 +751,9 @@ function monsterinsights_settings_ublock_error_js() {
 function monsterinsights_ublock_notice() {
 	ob_start(); ?>
 	<div id="monsterinsights-ublock-origin-error" class="error inline" style="display:none;">
-		<?php echo sprintf( esc_html__( 'MonsterInsights has detected that it\'s files are being blocked. This is usually caused by a adblock browser plugin (particularly uBlock Origin), or a conflicting WordPress theme or plugin. This issue only affects the admin side of MonsterInsights. To solve this, ensure MonsterInsights is whitelisted for your website URL in any adblock browser plugin you use. For step by step directions on how to do this, %1$sclick here%2$s. If this doesn\'t solve the issue (rare), send us a ticket %3$shere%2$s and we\'ll be happy to help diagnose the issue.', 'google-analytics-for-wordpress' ), '<a href="https://monsterinsights.com/docs/monsterinsights-asset-files-blocked/" target="_blank" rel="noopener noreferrer" referrer="no-referrer">', '</a>', '<a href="https://monsterinsights.com/contact/" target="_blank" rel="noopener noreferrer" referrer="no-referrer">' );
+		<?php
+		// Translators: Placeholders are for links to fix the issue.
+		echo sprintf( esc_html__( 'MonsterInsights has detected that it\'s files are being blocked. This is usually caused by a adblock browser plugin (particularly uBlock Origin), or a conflicting WordPress theme or plugin. This issue only affects the admin side of MonsterInsights. To solve this, ensure MonsterInsights is whitelisted for your website URL in any adblock browser plugin you use. For step by step directions on how to do this, %1$sclick here%2$s. If this doesn\'t solve the issue (rare), send us a ticket %3$shere%2$s and we\'ll be happy to help diagnose the issue.', 'google-analytics-for-wordpress' ), '<a href="https://monsterinsights.com/docs/monsterinsights-asset-files-blocked/" target="_blank" rel="noopener noreferrer" referrer="no-referrer">', '</a>', '<a href="https://monsterinsights.com/contact/" target="_blank" rel="noopener noreferrer" referrer="no-referrer">' );
 		?>
 	</div>
 	<?php
@@ -815,7 +822,7 @@ function monsterinsights_yearinreview_admin_menu_tooltip() {
 	$activated				= get_option( 'monsterinsights_over_time', array() );
 	$ua_code 				= monsterinsights_get_ua();
 	$dashboards_disabled 	= monsterinsights_get_option( 'dashboards_disabled', false );
-	
+
 	if ( $dashboards_disabled ) {
 		return;
 	}
@@ -834,14 +841,14 @@ function monsterinsights_yearinreview_admin_menu_tooltip() {
 
 	// equivalent to: 01/02/2020 @ 12:00am (UTC)
 	$start_time = '1577923200';
-	
+
 	// equivalent to: 01/13/2020 @ 12:00am (UTC)
 	$end_time = '1578873600';
 
 	if ( $dismiss_tooltip )  {
 		return;
 	}
-	
+
 	// don't show before January 02, 2020
 	if ( $start_time > time() ) {
 		return;
@@ -1064,3 +1071,29 @@ function monsterinsights_mark_yearinreview_tooltip_hidden() {
 }
 
 add_action( 'wp_ajax_monsterinsights_yearinreview_hide_admin_tooltip', 'monsterinsights_mark_yearinreview_tooltip_hidden' );
+
+/**
+ * Prevent plugins/themes from removing the version number from scripts loaded by our plugin.
+ * Ideally those plugins/themes would follow WordPress coding best practices, but in lieu of that
+ * we can at least attempt to prevent 99% of them from doing bad things.
+ *
+ * @param string $src The script source.
+ *
+ * @return string
+ */
+function monsterinsights_prevent_version_number_removal( $src ) {
+	// Apply this only to admin-side scripts.
+	if ( ! is_admin() ) {
+		return $src;
+	}
+
+	// Make sure are only changing our scripts and only if the version number is missing.
+	if ( ( false !== strpos( $src, 'monsterinsights' ) || false !== strpos( $src, 'google-analytics-for-wordpress' ) || false !== strpos( $src, 'google-analytics-premium' ) ) && false === strpos( $src, '?ver' ) ) {
+		$src = add_query_arg( 'ver', monsterinsights_get_asset_version(), $src );
+	}
+
+	return $src;
+}
+
+add_filter( 'script_loader_src', 'monsterinsights_prevent_version_number_removal', 9999, 1 );
+add_filter( 'style_loader_src', 'monsterinsights_prevent_version_number_removal', 9999, 1 );

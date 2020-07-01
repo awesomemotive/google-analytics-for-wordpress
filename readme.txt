@@ -3,8 +3,9 @@ Contributors: chriscct7, smub
 Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, WooCommerce stats, analytics dashboard, universal google analytics, statistics, tracking, stats, google, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
-Tested up to: 5.3
-Stable tag: 7.10.3
+Tested up to: 5.4
+Stable tag: 7.11.0
+Requires PHP: 5.2
 License: GPL v3
 
 The best Google Analytics plugin for WordPress. See how visitors find and use your website, so you can keep them coming back.
@@ -273,7 +274,17 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
-= 7.10.2: January 8, 2019 =
+= 7.11.0: June 30, 2020 =
+- New: We’ve added a new integration with PrettyLinks, allowing you to easily combine the power of our UTM builder in our Tools section with the pretty urls provided by PrettyLinks.
+- Tweak: We’ve refined the installation and setup process for MonsterInsights users who use MonsterInsights as a network activated plugin. New mutlisite users will find a new install wizard, updated settings panel, and further bugfixes and refinements to make the multisite experience as polished as possible.
+- Tweak: We’ve enhanced MonsterInsights’s automatic tracking code output checker to handle all of the most common coming soon plugins to ensure no false positives are detected.
+- Tweak: For users using our PHP constant to disable tracking on staging and other non-production sites, we’ve fixed a bug that caused the “tracking not working” error message to show.
+- Fixed: We fixed a bug that for some users caused the enhanced link attribution code to not output properly.
+
+= 7.10.4: January 29, 2020 =
+- Tweak: In rare cases, we had users who have installed badly coded plugins and themes which were not properly detecting admin side only scripts and styles when stripping version numbers. This causes problems when the browser cache should be cleared but is not because the query param is stripped, and results in users who get Javascript errors from mismatched dependencies. This release attempts to solve that problem for most affected users.
+
+= 7.10.3: January 9, 2020 =
 - New: The limited time (available until end of day Jan. 13) Year in Review report is now available in the admin, which shows how your site performed last year and offers suggestions for 2020.
 - New: Integration with PrettyLinks for hosted files so viewing of files directly accessed can now be tracked.
 

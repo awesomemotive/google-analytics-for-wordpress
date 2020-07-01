@@ -88,7 +88,12 @@ function monsterinsights_settings_error_page( $id = 'monsterinsights-vue-site-se
                     <div id="monsterinsights-error-js">
                         <h3 class="" style="font-size: 20px;color: #434343;font-weight: 500;line-height:1.4;"><?php esc_html_e( 'Ooops! It Appears JavaScript Didn’t Load', 'google-analytics-for-wordpress' ); ?></h3>
                         <p class="info" style="line-height: 1.5;margin: 1em 0;font-size: 16px;color: #434343;padding: 5px 20px 20px;"><?php esc_html_e( 'There seems to be an issue running JavaScript on your website, which MonsterInsights is crafted in to give you the best experience possible.', 'google-analytics-for-wordpress' ); ?></p>
-						<p class="info"style="line-height: 1.5;margin: 1em 0;font-size: 16px;color: #434343;padding: 5px 20px 20px;"><?php printf( esc_html__( 'If you are using an %sad blocker%s, please disable or whitelist the current page to load MonsterInsights correctly.', 'google-analytics-for-wordpress' ), '<strong>', '</strong>' ); ?></p>
+						<p class="info"style="line-height: 1.5;margin: 1em 0;font-size: 16px;color: #434343;padding: 5px 20px 20px;">
+							<?php
+							// Translators: Placeholders make the text bold.
+							printf( esc_html__( 'If you are using an %1$sad blocker%2$s, please disable or whitelist the current page to load MonsterInsights correctly.', 'google-analytics-for-wordpress' ), '<strong>', '</strong>' );
+							?>
+						</p>
                         <div style="display: none" id="monsterinsights-nojs-error-message">
                             <div class="" style="  border: 1px solid #E75066;
                                                                 border-left: 3px solid #E75066;

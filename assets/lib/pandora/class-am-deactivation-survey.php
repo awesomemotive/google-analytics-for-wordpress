@@ -58,7 +58,7 @@ if ( ! class_exists( 'AM_Deactivation_Survey' ) ) {
 			add_action( 'admin_print_scripts', array( $this, 'css'   )     );
 			add_action( 'admin_footer',        array( $this, 'modal' )     );
 		}
-	
+
 		/**
 		 * Checks if current site is a development one.
 		 *
@@ -70,13 +70,13 @@ if ( ! class_exists( 'AM_Deactivation_Survey' ) ) {
 			if ( defined ('AWESOMEMOTIVE_DEV_MODE' ) && AWESOMEMOTIVE_DEV_MODE ) {
 				return false;
 			}
-		
+
 			$url          = network_site_url( '/' );
 			$is_local_url = false;
-			
+
 			// Trim it up
 			$url = strtolower( trim( $url ) );
-			
+
 			// Need to get the host...so let's add the scheme so we can use parse_url
 			if ( false === strpos( $url, 'http://' ) && false === strpos( $url, 'https://' ) ) {
 				$url = 'http://' . $url;
@@ -316,7 +316,12 @@ if ( ! class_exists( 'AM_Deactivation_Survey' ) ) {
 				<div class="am-deactivate-survey-wrap">
 					<form class="am-deactivate-survey" method="post">
 						<span class="am-deactivate-survey-title"><span class="dashicons dashicons-testimonial"></span><?php echo ' ' . esc_html__( 'Quick Feedback', 'google-analytics-for-wordpress' ); ?></span>
-						<span class="am-deactivate-survey-desc"><?php echo sprintf( esc_html__('If you have a moment, please share why you are deactivating %s:', 'google-analytics-for-wordpress' ), $this->name ); ?></span>
+						<span class="am-deactivate-survey-desc">
+							<?php
+							// Translators: Placeholder for the plugin name.
+							echo sprintf( esc_html__('If you have a moment, please share why you are deactivating %s:', 'google-analytics-for-wordpress' ), $this->name );
+							?>
+						</span>
 						<div class="am-deactivate-survey-options">
 							<?php foreach ( $options as $id => $option ) : ?>
 							<div class="am-deactivate-survey-option">
@@ -331,8 +336,18 @@ if ( ! class_exists( 'AM_Deactivation_Survey' ) ) {
 							<?php endforeach; ?>
 						</div>
 						<div class="am-deactivate-survey-footer">
-							<button type="submit" class="am-deactivate-survey-submit button button-primary button-large"><?php echo sprintf( esc_html__('Submit %s Deactivate', 'google-analytics-for-wordpress' ), '&amp;' ); ?></button>
-							<a href="#" class="am-deactivate-survey-deactivate"><?php echo sprintf( esc_html__('Skip %s Deactivate', 'google-analytics-for-wordpress' ), '&amp;' ); ?></a>
+							<button type="submit" class="am-deactivate-survey-submit button button-primary button-large">
+								<?php
+								// Translators: Adds an ampersand.
+								echo sprintf( esc_html__('Submit %s Deactivate', 'google-analytics-for-wordpress' ), '&amp;' );
+								?>
+							</button>
+							<a href="#" class="am-deactivate-survey-deactivate">
+								<?php
+								// Translators: Adds an ampersand.
+								echo sprintf( esc_html__('Skip %s Deactivate', 'google-analytics-for-wordpress' ), '&amp;' );
+								?>
+							</a>
 						</div>
 					</form>
 				</div>

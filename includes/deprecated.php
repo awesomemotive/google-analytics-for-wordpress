@@ -5,7 +5,7 @@
  * Contains the functions used to deprecate functions and
  * hooks in MonsterInsights, as well as the deprecated functions
  * and hooks themselves, where possible.
- * 
+ *
  * @since 6.0.0
  *
  * @package MonsterInsights
@@ -112,7 +112,7 @@ function _monsterinsights_deprecated_hook( $hook, $version, $message = null ) {
 	 * @param string $message     A message regarding the change.
 	 */
 	do_action( 'deprecated_hook_run', $hook, $version, $message );
- 
+
 	/**
 	 * Filters whether to trigger deprecated hook errors.
 	 *
@@ -123,6 +123,7 @@ function _monsterinsights_deprecated_hook( $hook, $version, $message = null ) {
 	 */
 	if ( ( WP_DEBUG && apply_filters( 'deprecated_hook_trigger_error', true ) ) || monsterinsights_is_debug_mode() ) {
 		$message = empty( $message ) ? '' : ' ' . $message;
+		// Translators: Placeholders add the hook name, plugin version and bold text.
 		trigger_error( sprintf( esc_html__( '%1$s is %3$sdeprecated%4$s since MonsterInsights version %2$s!', 'google-analytics-for-wordpress' ), $hook, $version, '<strong>', '</strong>' ) . esc_html ( $message ) );
 	}
 }
@@ -145,7 +146,7 @@ function _monsterinsights_deprecated_hook( $hook, $version, $message = null ) {
  *   and the version the function was deprecated in.
  * @uses apply_filters() Calls 'monsterinsights_deprecated_function_trigger_error' and expects boolean value of true to do
  *   trigger or false to not trigger error.
- *   
+ *
  * @param string  $function    The function that was called
  * @param string  $version     The version of WordPress that deprecated the function
  * @param array   $backtrace   Optional. Contains stack backtrace of deprecated function
@@ -156,16 +157,16 @@ function _monsterinsights_deprecated_function( $function, $version, $backtrace =
 	/**
 	 * Deprecated Function Action.
 	 *
-	 * Allow plugin run an action on the use of a 
+	 * Allow plugin run an action on the use of a
 	 * deprecated function. This could be used to
 	 * feed into an error logging program or file.
 	 *
 	 * @since 6.0.0
-	 * 
+	 *
 	 * @param string  $function    The function that was called.
 	 * @param string  $version     The version of WordPress that deprecated the function.
 	 * @param array   $backtrace   Optional. Contains stack backtrace of deprecated function.
-	 */	
+	 */
 	do_action( 'deprecated_function_run', $function, $version, $backtrace );
 
 	/**
@@ -176,6 +177,7 @@ function _monsterinsights_deprecated_function( $function, $version, $backtrace =
 	 * @param bool $trigger Whether to trigger the error for deprecated functions. Default true.
 	 */
 	if ( ( WP_DEBUG && apply_filters( 'deprecated_function_trigger_error', true ) ) || monsterinsights_is_debug_mode() ) {
+		// Translators: Placeholders add the hook name, plugin version and bold text.
 		trigger_error( sprintf( esc_html__( '%1$s is %3$sdeprecated%4$s since MonsterInsights version %2$s.', 'google-analytics-for-wordpress' ), $function, $version, '<strong>', '</strong>' ) );
 		trigger_error( print_r( $backtrace, 1 ) );// Limited to previous 1028 characters, but since we only need to move back 1 in stack that should be fine.
 		// Alternatively we could dump this to a file.
@@ -204,9 +206,9 @@ function _monsterinsights_deprecated( $message ) {
 	 * Allow plugin to filter the deprecated message.
 	 *
 	 * @since 6.0.0
-	 * 
+	 *
 	 * @param string $message Error message.
-	 */	
+	 */
 	do_action( 'monsterinsights_deprecated_run', $message );
 
 	$show_errors = current_user_can( 'manage_options' );
@@ -217,7 +219,7 @@ function _monsterinsights_deprecated( $message ) {
 	 * Allow plugin to filter the output error trigger.
 	 *
 	 * @since 6.0.0
-	 * 
+	 *
 	 * @param bool $show_errors Whether to show errors.
 	 */
 	$show_errors = apply_filters( 'monsterinsights_deprecated_trigger_error', $show_errors );
@@ -228,7 +230,7 @@ function _monsterinsights_deprecated( $message ) {
 
 
 /**
- * Start Deprecated Actions & Filters. 
+ * Start Deprecated Actions & Filters.
  *
  * These backwards compatibility fixes may be removed at any time.
  * Users/Developers are encouraged to update their code as soon as possible.
