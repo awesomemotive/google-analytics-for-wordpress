@@ -23,6 +23,8 @@ class MonsterInsights_Rest_Routes {
 		add_action( 'wp_ajax_monsterinsights_update_manual_ua', array( $this, 'update_manual_ua' ) );
 		add_action( 'wp_ajax_monsterinsights_vue_get_report_data', array( $this, 'get_report_data' ) );
 		add_action( 'wp_ajax_monsterinsights_vue_install_plugin', array( $this, 'install_plugin' ) );
+		add_action( 'wp_ajax_monsterinsights_vue_notice_status', array( $this, 'get_notice_status' ) );
+		add_action( 'wp_ajax_monsterinsights_vue_notice_dismiss', array( $this, 'dismiss_notice' ) );
 
 		add_action( 'wp_ajax_monsterinsights_handle_settings_import', array( $this, 'handle_settings_import' ) );
 
@@ -110,6 +112,37 @@ class MonsterInsights_Rest_Routes {
 			$options['custom_code'] = stripslashes( $options['custom_code'] );
 		}
 
+		//add email summaries options
+		if ( monsterinsights_is_pro_version() ) {
+			$default_email = array(
+				'email' => get_option( 'admin_email' ),
+			);
+
+			if ( ! isset( $options['email_summaries'] ) ) {
+				$options['email_summaries'] = 'on';
+			}
+
+			if ( ! isset( $options['summaries_email_addresses'] ) ) {
+				$options['summaries_email_addresses'] = array(
+					$default_email,
+				);
+			}
+
+			if ( ! isset( $options['summaries_html_template'] ) ) {
+				$options['summaries_html_template'] = 'yes';
+			}
+
+
+			if ( ! isset( $options['summaries_carbon_copy'] ) ) {
+				$options['summaries_carbon_copy'] = 'no';
+			}
+
+
+			if ( ! isset( $options['summaries_header_image'] ) ) {
+				$options['summaries_header_image'] = '';
+			}
+		}
+
 		wp_send_json( $options );
 
 	}
@@ -130,8 +163,10 @@ class MonsterInsights_Rest_Routes {
 			if ( isset( $_POST['value'] ) ) {
 				$value = $this->handle_sanitization( $setting, $_POST['value'] );
 				monsterinsights_update_option( $setting, $value );
+				do_action( 'monsterinsights_after_update_settings', $setting, $value );
 			} else {
 				monsterinsights_update_option( $setting, false );
+				do_action( 'monsterinsights_after_update_settings', $setting, false );
 			}
 		}
 
@@ -265,12 +300,13 @@ class MonsterInsights_Rest_Routes {
 			'active' => defined( 'AMP__FILE__' ),
 		);
 		// WPForms.
-		$parsed_addons['wpforms'] = array(
+		$parsed_addons['wpforms-lite'] = array(
 			'active'    => function_exists( 'wpforms' ),
 			'icon'      => plugin_dir_url( MONSTERINSIGHTS_PLUGIN_FILE ) . 'assets/images/plugin-wpforms.png',
 			'title'     => 'WPForms',
 			'excerpt'   => __( 'The most beginner friendly drag & drop WordPress forms plugin allowing you to create beautiful contact forms, subscription forms, payment forms, and more in minutes, not hours!', 'google-analytics-for-wordpress' ),
 			'installed' => array_key_exists( 'wpforms-lite/wpforms.php', $installed_plugins ),
+			'basename'  => 'wpforms-lite/wpforms.php',
 			'slug'      => 'wpforms-lite',
 		);
 		// OptinMonster.
@@ -283,15 +319,25 @@ class MonsterInsights_Rest_Routes {
 			'basename'  => 'optinmonster/optin-monster-wp-api.php',
 			'slug'      => 'optinmonster',
 		);
-		// OptinMonster.
+		// WP Mail Smtp.
 		$parsed_addons['wp-mail-smtp'] = array(
 			'active'    => function_exists( 'wp_mail_smtp' ),
 			'icon'      => plugin_dir_url( MONSTERINSIGHTS_PLUGIN_FILE ) . 'assets/images/plugin-smtp.png',
 			'title'     => 'WP Mail SMTP',
-			'excerpt'   => __( 'SMTP (Simple Mail Transfer Protocol) is an industry standard for sending emails. SMTP helps increase email deliverability by using proper authentication', 'google-analytics-for-wordpress' ),
+			'excerpt'   => __( 'SMTP (Simple Mail Transfer Protocol) is an industry standard for sending emails. SMTP helps increase email deliverability by using proper authentication.', 'google-analytics-for-wordpress' ),
 			'installed' => array_key_exists( 'wp-mail-smtp/wp_mail_smtp.php', $installed_plugins ),
 			'basename'  => 'wp-mail-smtp/wp_mail_smtp.php',
 			'slug'      => 'wp-mail-smtp',
+		);
+		// Pretty Links
+		$parsed_addons['pretty-link'] = array(
+			'active'    => class_exists( 'PrliBaseController' ),
+			'icon'      => '',
+			'title'     => 'Pretty Links',
+			'excerpt'   => __( 'Pretty Links helps you shrink, beautify, track, manage and share any URL on or off of your WordPress website. Create links that look how you want using your own domain name!', 'google-analytics-for-wordpress' ),
+			'installed' => array_key_exists( 'pretty-link/pretty-link.php', $installed_plugins ),
+			'basename'  => 'pretty-link/pretty-link.php',
+			'slug'      => 'pretty-link',
 		);
 		// SeedProd.
 		$parsed_addons['coming-soon'] = array(
@@ -561,8 +607,8 @@ class MonsterInsights_Rest_Routes {
 		$report = MonsterInsights()->reporting->get_report( $report_name );
 
 		$isnetwork = ! empty( $_REQUEST['isnetwork'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['isnetwork'] ) ) : '';
-		$start     = ! empty( $_POST['start'] ) ? sanitize_text_field( wp_unslash( $_POST['start'] ) ) : date( 'Y-m-d', strtotime( '-30 days' ) );
-		$end       = ! empty( $_POST['end'] ) ? sanitize_text_field( wp_unslash( $_POST['end'] ) ) : date( 'Y-m-d', strtotime( '-1 day' ) );
+		$start     = ! empty( $_POST['start'] ) ? sanitize_text_field( wp_unslash( $_POST['start'] ) ) : $report->default_start_date();
+		$end       = ! empty( $_POST['end'] ) ? sanitize_text_field( wp_unslash( $_POST['end'] ) ) : $report->default_end_date();
 
 		$args      = array(
 			'start' => $start,
@@ -680,12 +726,14 @@ class MonsterInsights_Rest_Routes {
 		}
 
 		// We do not need any extra credentials if we have gotten this far, so let's install the plugin.
-		require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 		$base = MonsterInsights();
+		require_once plugin_dir_path( $base->file ) . '/includes/admin/licensing/plugin-upgrader.php';
 		require_once plugin_dir_path( $base->file ) . '/includes/admin/licensing/skin.php';
 
+		// Prevent language upgrade in ajax calls.
+		remove_action( 'upgrader_process_complete', array( 'Language_Pack_Upgrader', 'async_upgrade' ), 20 );
 		// Create the plugin upgrader with our custom skin.
-		$installer = new Plugin_Upgrader( new MonsterInsights_Skin() );
+		$installer = new MonsterInsights_Plugin_Upgrader( new MonsterInsights_Skin() );
 		$installer->install( $download_url );
 
 		// Flush the cache and return the newly installed plugin basename.
@@ -701,6 +749,40 @@ class MonsterInsights_Rest_Routes {
 	public function dismiss_first_time_notice() {
 
 		monsterinsights_update_option( 'monsterinsights_first_run_notice', true );
+
+		wp_send_json_success();
+	}
+
+	/**
+	 * Get the notice status by id.
+	 */
+	public function get_notice_status() {
+
+		check_ajax_referer( 'mi-admin-nonce', 'nonce' );
+
+		$notice_id = empty( $_POST['notice'] ) ? false : sanitize_text_field( wp_unslash( $_POST['notice'] ) );
+		if ( ! $notice_id ) {
+			wp_send_json_error();
+		}
+		$is_dismissed = MonsterInsights()->notices->is_dismissed( $notice_id );
+
+		wp_send_json_success( array(
+			'dismissed' => $is_dismissed,
+		) );
+	}
+
+	/**
+	 * Dismiss notices by id.
+	 */
+	public function dismiss_notice() {
+
+		check_ajax_referer( 'mi-admin-nonce', 'nonce' );
+
+		$notice_id = empty( $_POST['notice'] ) ? false : sanitize_text_field( wp_unslash( $_POST['notice'] ) );
+		if ( ! $notice_id ) {
+			wp_send_json_error();
+		}
+		MonsterInsights()->notices->dismiss( $notice_id );
 
 		wp_send_json_success();
 	}

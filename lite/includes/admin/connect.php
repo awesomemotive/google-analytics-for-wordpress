@@ -69,17 +69,21 @@ class MonsterInsights_Connect {
 			) );
 		}
 
+		// Network?
+		$network = ! empty( $_POST['network'] ) && $_POST['network'];
+
 		// Redirect.
 		$oth = hash( 'sha512', wp_rand() );
 		update_option( 'monsterinsights_connect', array(
-			'key'  => $key,
-			'time' => time(),
+			'key'     => $key,
+			'time'    => time(),
+			'network' => $network,
 		) );
 		update_option( 'monsterinsights_connect_token', $oth );
 		$version  = MonsterInsights()->version;
 		$siteurl  = admin_url();
 		$endpoint = admin_url( 'admin-ajax.php' );
-		$redirect = admin_url( 'admin.php?page=monsterinsights_settings' );
+		$redirect = $network ? network_admin_url( 'admin.php?page=monsterinsights_network' ) : admin_url( 'admin.php?page=monsterinsights_settings' );
 
 		$url = add_query_arg( array(
 			'key'      => $key,
@@ -106,6 +110,8 @@ class MonsterInsights_Connect {
 		// verify params present (oth & download link).
 		$post_oth = ! empty( $_REQUEST['oth'] ) ? sanitize_text_field( $_REQUEST['oth'] ) : '';
 		$post_url = ! empty( $_REQUEST['file'] ) ? $_REQUEST['file'] : '';
+		$license  = get_option( 'monsterinsights_connect', false );
+		$network  = ! empty( $license['network'] ) ? boolval( $license['network'] ) : false;
 		if ( empty( $post_oth ) || empty( $post_url ) ) {
 			wp_send_json_error( $error );
 		}
@@ -135,9 +141,9 @@ class MonsterInsights_Connect {
 			wp_send_json_success( esc_html__( 'Plugin installed & activated.', 'google-analytics-for-wordpress' ) );
 		}
 		// Verify pro not installed.
-		$active = activate_plugin( 'google-analytics-premium/googleanalytics-premium.php', $url, false, true );
+		$active = activate_plugin( 'google-analytics-premium/googleanalytics-premium.php', $url, $network, true );
 		if ( ! is_wp_error( $active ) ) {
-			deactivate_plugins( plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ), false, false );
+			deactivate_plugins( plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ), false, $network );
 			wp_send_json_success( esc_html__( 'Plugin installed & activated.', 'google-analytics-for-wordpress' ) );
 		}
 		$creds = request_filesystem_credentials( $url, '', false, false, null );
@@ -149,20 +155,19 @@ class MonsterInsights_Connect {
 			wp_send_json_error( $error );
 		}
 		// We do not need any extra credentials if we have gotten this far, so let's install the plugin.
-		require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+		require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/licensing/plugin-upgrader.php';
 		require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/licensing/skin.php';
 		// Do not allow WordPress to search/download translations, as this will break JS output.
 		remove_action( 'upgrader_process_complete', array( 'Language_Pack_Upgrader', 'async_upgrade' ), 20 );
 		// Create the plugin upgrader with our custom skin.
-		$installer = new Plugin_Upgrader( new MonsterInsights_Skin() );
+		$installer = new MonsterInsights_Plugin_Upgrader( new MonsterInsights_Skin() );
 		// Error check.
 		if ( ! method_exists( $installer, 'install' ) ) {
 			wp_send_json_error( $error );
 		}
 
 		// Check license key.
-		$license = get_option( 'monsterinsights_connect', false );
-		if ( empty( $license ) ) {
+		if ( empty( $license['key'] ) ) {
 			wp_send_json_error( new WP_Error( '403', esc_html__( 'You are not licensed.', 'google-analytics-for-wordpress' ) ) );
 		}
 
@@ -174,15 +179,15 @@ class MonsterInsights_Connect {
 			$plugin_basename = $installer->plugin_info();
 
 			// Deactivate the lite version first.
-			deactivate_plugins( plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ), false, false );
+			deactivate_plugins( plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ), false, $network );
 
 			// Activate the plugin silently.
-			$activated = activate_plugin( $plugin_basename, '', false, true );
+			$activated = activate_plugin( $plugin_basename, '', $network, true );
 			if ( ! is_wp_error( $activated ) ) {
 				wp_send_json_success( esc_html__( 'Plugin installed & activated.', 'google-analytics-for-wordpress' ) );
 			} else {
 				// Reactivate the lite plugin if pro activation failed.
-				activate_plugin( plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ), '', false, true );
+				activate_plugin( plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ), '', $network, true );
 				wp_send_json_error( esc_html__( 'Pro version installed but needs to be activated from the Plugins page inside your WordPress admin.', 'google-analytics-for-wordpress' ) );
 			}
 		}

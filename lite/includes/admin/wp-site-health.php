@@ -160,6 +160,80 @@ class MonsterInsights_WP_Site_Health_Lite {
 	}
 
 	/**
+	 * Is Coming Soon / Maintenance / Under Construction mode being activated by another plugin?
+	 *
+	 * @return bool
+	 */
+	private function is_coming_soon_active() {
+		if ( defined( 'SEED_CSP4_SHORTNAME' ) ) {
+			// SeedProd
+			// http://www.seedprod.com
+
+			$settings = get_option( 'seed_csp4_settings_content' );
+
+			// 0: Disabled
+			// 1: Coming soon mode
+			// 2: Maintenance mode
+			return ! empty( $settings['status'] );
+		} elseif ( defined( 'WPMM_PATH' ) ) {
+			// WP Maintenance Mode
+			// https://designmodo.com/
+
+			$settings = get_option( 'wpmm_settings', array() );
+
+			return isset( $settings['general']['status'] ) && 1 === $settings['general']['status'];
+		} elseif ( function_exists( 'csmm_get_options' ) ) {
+			// Minimal Coming Soon & Maintenance Mode
+			// https://comingsoonwp.com/
+
+			$settings = csmm_get_options();
+
+			return isset( $settings['status'] ) && 1 === $settings['status'];
+		} elseif ( defined( 'WPM_DIR' ) ) {
+			// WP Maintenance
+			// https://fr.wordpress.org/plugins/wp-maintenance/
+
+			return '1' === get_option( 'wp_maintenance_active' );
+		} elseif ( defined( 'ACX_CSMA_CURRENT_VERSION' ) ) {
+			// Under Construction / Maintenance Mode From Acurax
+			// http://www.acurax.com/products/under-construction-maintenance-mode-wordpress-plugin
+
+			return '1' === get_option( 'acx_csma_activation_status' );
+		} elseif ( defined( 'SAHU_SO_PLUGIN_URL' ) ) {
+			// Site Offline
+			// http://www.freehtmldesigns.com
+
+			$settings = maybe_unserialize( get_option( 'sahu_so_dashboard' ) );
+
+			return isset( $settings['sahu_so_status'] ) && '1' === $settings['sahu_so_status'];
+		} elseif ( defined( 'CSCS_GENEROPTION_PREFIX' ) ) {
+			// IgniteUp
+			// http://getigniteup.com
+
+			return '1' === get_option( CSCS_GENEROPTION_PREFIX . 'enable', '' );
+		} elseif ( method_exists( 'UCP', 'is_construction_mode_enabled' ) ) {
+			// Under Construction by WebFactory Ltd
+			// https://underconstructionpage.com/
+
+			return UCP::is_construction_mode_enabled( true );
+		} elseif ( function_exists( 'mtnc_get_plugin_options' ) ) {
+			// Maintenance by WP Maintenance
+			// http://wordpress.org/plugins/maintenance/
+
+			$settings = mtnc_get_plugin_options( true );
+
+			return 1 === $settings['state'];
+		} elseif ( class_exists( 'CMP_Coming_Soon_and_Maintenance' ) ) {
+			// CMP Coming Soon & Maintenance
+			// https://wordpress.org/plugins/cmp-coming-soon-maintenance/
+
+			return get_option( 'niteoCS_status' );
+		}
+
+		return false;
+	}
+
+	/**
 	 * Check if MonsterInsights is authenticated and display a specific message.
 	 *
 	 * @return array
@@ -414,9 +488,15 @@ class MonsterInsights_WP_Site_Health_Lite {
 		$errors = monsterinsights_is_code_installed_frontend();
 
 		if ( ! empty( $errors ) && is_array( $errors ) && ! empty( $errors[0] ) ) {
-			$result['status']      = 'critical';
-			$result['label']       = __( 'MonsterInsights has automatically detected an issue with your tracking setup', 'google-analytics-for-wordpress' );
-			$result['description'] = $errors[0];
+			if ( $this->is_coming_soon_active() ) {
+				$result['status']      = 'good';
+				$result['label']       = __( 'Tracking code disabled: coming soon/maintenance mode plugin present', 'ga-premium' );
+				$result['description'] = __( 'MonsterInsights has detected that you have a coming soon or maintenance mode plugin currently activated on your site. This plugin does not allow other plugins (like MonsterInsights) to output Javascript, and thus MonsterInsights is not currently tracking your users (expected). Once the coming soon/maintenance mode plugin is deactivated, tracking will resume automatically.', 'ga-premium' );
+			} else {
+				$result['status']      = 'critical';
+				$result['label']       = __( 'MonsterInsights has automatically detected an issue with your tracking setup', 'google-analytics-for-wordpress' );
+				$result['description'] = $errors[0];
+			}
 		}
 
 		wp_send_json_success( $result );

@@ -1,11 +1,3 @@
-#toplevel_page_monsterinsights_reports .wp-menu-image img,
-#toplevel_page_monsterinsights_settings .wp-menu-image img,
-#toplevel_page_monsterinsights_network .wp-menu-image img {
-	width: 18px;
-	height: auto;
-	padding-top: 7px;
-}
-
 .monsterinsights-wooedd-upsell-left {
 	width: 50%;
 	display: table-cell;
@@ -52,5 +44,23 @@
 
 	.monsterinsights-wooedd-upsell-image-large {
 		display: none;
+	}
+}
+
+#wpadminbar .monsterinsights-menu-notification-indicator,
+.monsterinsights-menu-notification-indicator {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: #C84B29;
+	display: inline-block;
+	margin-left: 8px;
+}
+
+@media (max-width: 782px) {
+	#wpadminbar .monsterinsights-menu-notification-indicator {
+		margin: 0 0 10px -13px;
+		z-index: 10;
+		position: relative;
 	}
 }

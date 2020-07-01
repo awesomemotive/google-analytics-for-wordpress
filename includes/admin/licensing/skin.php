@@ -91,6 +91,7 @@ class MonsterInsights_Skin extends WP_Upgrader_Skin {
 			    $message = $errors->get_error_message();
 
 			    if ( ! empty( $message ) ) {
+			    	// Translators: The name of the addon that can't be installed.
 				    $error_message = sprintf( esc_html__( 'There was an error installing the addon: %s', 'google-analytics-for-wordpress' ), esc_html( $message ) );
 			    }
 		    }

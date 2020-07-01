@@ -266,8 +266,8 @@ final class MonsterInsights_API_Auth {
 			'ajaxurl'   => admin_url( 'admin-ajax.php' ),
 			'network'   => is_network_admin() ? 'network' : 'site',
 			'siteurl'   => is_network_admin() ? network_admin_url() : site_url(),
-			'key'       => MonsterInsights()->auth->get_key(),
-			'token'     => MonsterInsights()->auth->get_token(),
+			'key'       => is_network_admin() ? MonsterInsights()->auth->get_network_key() : MonsterInsights()->auth->get_key(),
+			'token'     => is_network_admin() ? MonsterInsights()->auth->get_network_token() : MonsterInsights()->auth->get_token(),
 			'return'    => is_network_admin() ? network_admin_url( 'admin.php?page=monsterinsights_network' ) : admin_url( 'admin.php?page=monsterinsights_settings' ),
 			'testurl'   => 'https://' . monsterinsights_get_api_url() . 'test/',
 		 ), $this->get_route( 'https://' . monsterinsights_get_api_url() . 'auth/reauth/{type}' ) );

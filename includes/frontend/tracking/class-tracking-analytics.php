@@ -128,7 +128,7 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 		}
 
 		// Add Enhanced link attribution.
-		if ( monsterinsights_get_option( 'enhanced_link_attribution', false ) ) {
+		if ( monsterinsights_get_option( 'link_attribution', false ) ) {
 			$options['enhanced_link_attribution'] = "'require', 'linkid', 'linkid.js'";
 		}
 
@@ -250,6 +250,12 @@ class MonsterInsights_Tracking_Analytics extends MonsterInsights_Tracking_Abstra
 	function __gaTrackerOptout() {
 	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
 	  window[disableStr] = true;
+	}
+
+	if ( 'undefined' === typeof gaOptout ) {
+		function gaOptout() {
+			__gaTrackerOptout();
+		}
 	}
 	<?php } ?>
 

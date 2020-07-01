@@ -61,6 +61,11 @@ function monsterinsights_get_option( $key = '', $default = false ) {
  * @return string The UA to use.
  */
 function monsterinsights_get_ua() {
+	// Allow short circuiting (for staging sites)
+	if ( defined( 'MONSTERINSIGHTS_DISABLE_TRACKING' ) && MONSTERINSIGHTS_DISABLE_TRACKING ) {
+		return '';
+	}
+
 	// Try getting it from the auth UA
 	$ua = MonsterInsights()->auth->get_ua();
 
