@@ -132,6 +132,10 @@ class MonsterInsights_Install {
 				$this->v7110_upgrades();
 			}
 
+			if ( version_compare( $version, '7.12.0', '<' ) ) {
+				$this->v7120_upgrades();
+			}
+
 			// Do not use. See monsterinsights_after_install_routine comment below.
 			do_action( 'monsterinsights_after_existing_upgrade_routine', $version );
 			$version = get_option( 'monsterinsights_current_version', $version );
@@ -271,6 +275,7 @@ class MonsterInsights_Install {
 			'email_summaries'           => 'on',
 			'summaries_html_template'   => 'yes',
 			'summaries_email_addresses' => $admin_email_array,
+			'automatic_updates'         => 'none',
 		);
 	}
 
@@ -699,6 +704,18 @@ class MonsterInsights_Install {
 			$this->new_settings['email_summaries']           = 'on';
 			$this->new_settings['summaries_html_template']   = 'yes';
 			$this->new_settings['summaries_email_addresses'] = $admin_email_array; // Not using wp_json_encode for backwards compatibility.
+		}
+
+	}
+
+	/**
+	 * Upgrade routine for version 7.12.0
+	 */
+	public function v7120_upgrades() {
+
+		// Make sure the default for automatic updates is reflected correctly in the settings.
+		if ( empty( $this->new_settings['automatic_updates'] ) ) {
+			$this->new_settings['automatic_updates'] = 'none';
 		}
 
 	}

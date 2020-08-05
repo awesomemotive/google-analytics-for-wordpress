@@ -661,7 +661,7 @@ class MonsterInsights_Rest_Routes {
 
 		if ( ! current_user_can( 'install_plugins' ) ) {
 			wp_send_json( array(
-				'message' => esc_html__( 'You are not allowed to install plugins', 'ga-premium' ),
+				'message' => esc_html__( 'You are not allowed to install plugins', 'google-analytics-for-wordpress' ),
 			) );
 		}
 
@@ -669,7 +669,7 @@ class MonsterInsights_Rest_Routes {
 
 		if ( ! $slug ) {
 			wp_send_json( array(
-				'message' => esc_html__( 'Missing plugin name.', 'ga-premium' ),
+				'message' => esc_html__( 'Missing plugin name.', 'google-analytics-for-wordpress' ),
 			) );
 		}
 

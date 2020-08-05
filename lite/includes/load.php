@@ -54,5 +54,4 @@ if ( is_admin() ) {
 
 	// Helper functions specific to this version of the plugin.
 	require_once MONSTERINSIGHTS_PLUGIN_DIR . 'lite/includes/admin/helpers.php';
-
 }

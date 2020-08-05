@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, WooCommerce stats, analytics dashboard, universal google analytics, statistics, tracking, stats, google, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
 Tested up to: 5.4
-Stable tag: 7.11.0
+Stable tag: 7.12.0
 Requires PHP: 5.2
 License: GPL v3
 
@@ -274,6 +274,13 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.12.0: August 5, 2020 =
+- New: We’ve added a Headline Analyzer tool directly in the Gutenberg Editor that enables you to write irresistible SEO headlines that drive traffic, shares, and rank better in search results.
+- Tweak: We made some adjustments for improved compatibility with the upcoming WordPress 5.5 release.
+- Tweak: We improved formatting for large numbers across all reports so they are easier to read.
+- Tweak: We further improved the automatic tracking code output checker to avoid false positives.
+- Fixed: We fixed a bug that prevented loading custom translations from the plugin folder.
+
 = 7.11.0: June 30, 2020 =
 - New: We’ve added a new integration with PrettyLinks, allowing you to easily combine the power of our UTM builder in our Tools section with the pretty urls provided by PrettyLinks.
 - Tweak: We’ve refined the installation and setup process for MonsterInsights users who use MonsterInsights as a network activated plugin. New mutlisite users will find a new install wizard, updated settings panel, and further bugfixes and refinements to make the multisite experience as polished as possible.
