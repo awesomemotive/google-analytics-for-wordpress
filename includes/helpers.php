@@ -96,17 +96,23 @@ function monsterinsights_get_uuid() {
 	 * GA1.2.XXXXXXX.YYYYY
 	 * _ga=1.2.XXXXXXX.YYYYYY -- We want the XXXXXXX.YYYYYY part
 	 *
+	 * for AMP pages the format is sometimes GA1.3.amp-XXXXXXXXXXXXX-XXXXXXXX
+	 * if the first page visited is AMP, the cookie may be in the format amp-XXXXXXXXXXXXX-XXXXXXXX
+	 *
 	 */
 
 	$ga_cookie    = $_COOKIE['_ga'];
-	$cookie_parts = explode('.', $ga_cookie );
-	if ( is_array( $cookie_parts ) && ! empty( $cookie_parts[2] ) && ! empty( $cookie_parts[3] ) ) {
-		$uuid = (string) $cookie_parts[2] . '.' . (string) $cookie_parts[3];
+	$cookie_parts = explode( '.', $ga_cookie );
+	if ( is_array( $cookie_parts ) && ! empty( $cookie_parts[2] ) ) {
+		$cookie_parts = array_slice( $cookie_parts, 2 );
+		$uuid         = implode( '.', $cookie_parts );
 		if ( is_string( $uuid ) ) {
 			return $uuid;
 		} else {
 			return false;
 		}
+	} elseif ( 0 === strpos( $ga_cookie, 'amp-' ) ) {
+		return $ga_cookie;
 	} else {
 		return false;
 	}
@@ -158,14 +164,17 @@ function monsterinsights_get_cookie( $debug = false ) {
 	}
 
 	$ga_cookie    = $_COOKIE['_ga'];
-	$cookie_parts = explode('.', $ga_cookie );
-	if ( is_array( $cookie_parts ) && ! empty( $cookie_parts[2] ) && ! empty( $cookie_parts[3] ) ) {
-		$uuid = (string) $cookie_parts[2] . '.' . (string) $cookie_parts[3];
+	$cookie_parts = explode( '.', $ga_cookie );
+	if ( is_array( $cookie_parts ) && ! empty( $cookie_parts[2] ) ) {
+		$cookie_parts = array_slice( $cookie_parts, 2 );
+		$uuid         = implode( '.', $cookie_parts );
 		if ( is_string( $uuid ) ) {
 			return $ga_cookie;
 		} else {
 			return ( $debug ) ? 'FA' : false;
 		}
+	} elseif ( 0 === strpos( $ga_cookie, 'amp-' ) ) {
+		return $ga_cookie;
 	} else {
 		return ( $debug ) ? 'FAE' : false;
 	}
@@ -1181,6 +1190,48 @@ function monsterinsights_get_page_title() {
 }
 
 /**
+ * Count the number of occurrences of UA tags inserted by third-party plugins.
+ *
+ * @param $body
+ *
+ * @return int
+ */
+function monsterinsights_count_third_party_ua_codes( $body ) {
+	$count = 0;
+
+	// Grab all potential google site verification tags
+	$pattern = '/content="UA-[0-9-]+"/';
+	if ( preg_match_all( $pattern, $body, $matches ) ) {
+		// Raise the number of UA limits
+		$count += count( $matches[0] );
+	}
+
+	// Advanced Ads plugin (https://wpadvancedads.com)
+	// When `Ad blocker counter` setting is populated with an UA ID
+	if ( class_exists( 'Advanced_Ads' ) ) {
+		$options = Advanced_Ads::get_instance()->options();
+
+		$pattern = '/UA-[0-9-]+/';
+		if ( isset( $options['ga-UID'] ) && preg_match( $pattern, $options['ga-UID'] ) ) {
+			++ $count;
+		}
+	}
+
+	// WP Popups plugin (https://wppopups.com/)
+	// When `Google UA Code` setting is populated with an UA Id
+	if ( function_exists( 'wppopups_setting' ) ) {
+		$code = wppopups_setting( 'ua-code' );
+
+		$pattern = '/UA-[0-9-]+/';
+		if ( ! empty( $code ) && preg_match( $pattern, $code ) ) {
+			++ $count;
+		}
+	}
+
+	return $count;
+}
+
+/**
  * Make a request to the front page and check if the tracking code is present. Moved here from onboarding wizard
  * to be used in the site health check.
  *
@@ -1233,12 +1284,7 @@ function monsterinsights_is_code_installed_frontend() {
 				$errors[] = $cache_error;
 			}
 
-			// Grab all potential google site verification tags
-			$pattern = '/content="UA-[0-9-]+"/';
-			if ( preg_match_all( $pattern, $body, $matches ) ) {
-				// Raise the number of UA limits
-				$ua_limit += count( $matches[0] );
-			}
+			$ua_limit += monsterinsights_count_third_party_ua_codes( $body );
 
 			// Grab all the UA codes from the page.
 			$pattern = '/UA-[0-9]+/m';
@@ -1323,7 +1369,26 @@ function monsterinsights_custom_track_pretty_links_redirect( $url ) {
 add_action( 'prli_before_redirect', 'monsterinsights_custom_track_pretty_links_redirect' );
 
 /**
- * Decode special characters, both alpha- (<) and numeric-based (').
+ * Get post type in admin side
+ *
+ */
+function monsterinsights_get_current_post_type() {
+	global $post, $typenow, $current_screen;
+
+	if ( $post && $post->post_type ) {
+		return $post->post_type;
+	} elseif ( $typenow ) {
+		return $typenow;
+	} elseif ( $current_screen && $current_screen->post_type ) {
+		return $current_screen->post_type;
+	} elseif ( isset( $_REQUEST['post_type'] ) ) {
+		return sanitize_key( $_REQUEST['post_type'] );
+	}
+
+	return null;
+}
+
+ /** Decode special characters, both alpha- (<) and numeric-based (').
  *
  * @since 7.10.5
  *
@@ -1387,9 +1452,9 @@ function monsterinsights_trim_text( $text, $count ){
 		$trimed .= isset( $string[$wordCounter] ) ? $string[$wordCounter] : '';
 
 		if ( $wordCounter < $count ){
-			$trimed .= " "; 
+			$trimed .= " ";
 		} else {
-			$trimed .= "..."; 
+			$trimed .= "...";
 		}
 	}
 
@@ -1412,9 +1477,9 @@ function monsterinsights_tools_copy_url_to_prettylinks() {
         <script>
             let targetTitleField = document.querySelector("input[name='post_title']");
             let targetUrlField = document.querySelector("textarea[name='prli_url']");
-            let monsterInsightsUrl = JSON.parse(localStorage.getItem('MonsterInsightsURL'));
-            if ( 'undefined' !== typeof targetUrlField && 'undefined' !== typeof monsterInsightsUrl ) {
-                let url = monsterInsightsUrl.value;
+            let MonsterInsightsUrl = JSON.parse(localStorage.getItem('MonsterInsightsURL'));
+            if ( 'undefined' !== typeof targetUrlField && 'undefined' !== typeof MonsterInsightsUrl ) {
+                let url = MonsterInsightsUrl.value;
                 let postTitle = '';
                 let pathArray = url.split('?');
                 if ( pathArray.length <= 1 ) {

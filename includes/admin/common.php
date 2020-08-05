@@ -143,6 +143,7 @@ function monsterinsights_admin_scripts() {
 	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 	wp_register_script( 'monsterinsights-admin-common-script', plugins_url( 'assets/js/admin-common' . $suffix . '.js', MONSTERINSIGHTS_PLUGIN_FILE ), array( 'jquery' ), monsterinsights_get_asset_version() );
+
 	wp_enqueue_script( 'monsterinsights-admin-common-script' );
 
 	wp_localize_script(
@@ -166,8 +167,6 @@ function monsterinsights_admin_scripts() {
 
 	// For the settings page, load the Vue app.
 	if ( monsterinsights_is_settings_page() ) {
-		global $wp_version;
-
 		if ( ! defined( 'MONSTERINSIGHTS_LOCAL_VENDORS_JS_URL' ) ) {
 			wp_enqueue_script( 'monsterinsights-vue-vendors', plugins_url( $version_path . '/assets/vue/js/chunk-vendors.js', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version(), true );
 			wp_enqueue_script( 'monsterinsights-vue-common', plugins_url( $version_path . '/assets/vue/js/chunk-common.js', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version(), true );
@@ -235,16 +234,7 @@ function monsterinsights_admin_scripts() {
 				'deactivate_nonce'     => wp_create_nonce( 'monsterinsights-deactivate' ),
 				'install_nonce'        => wp_create_nonce( 'monsterinsights-install' ),
 				// Used to add notices for future deprecations.
-				'versions'             => array(
-					'php_version'          => phpversion(),
-					'php_version_below_54' => apply_filters( 'monsterinsights_temporarily_hide_php_52_and_53_upgrade_warnings', version_compare( phpversion(), '5.4', '<' ) ),
-					'php_version_below_56' => apply_filters( 'monsterinsights_temporarily_hide_php_54_and_55_upgrade_warnings', version_compare( phpversion(), '5.6', '<' ) ),
-					'php_update_link'      => monsterinsights_get_url( 'settings-notice', 'settings-page', 'https://www.monsterinsights.com/docs/update-php/' ),
-					'wp_version'           => $wp_version,
-					'wp_version_below_46'  => version_compare( $wp_version, '4.6', '<' ),
-					'wp_version_below_49'  => version_compare( $wp_version, '4.9', '<' ),
-					'wp_update_link'       => monsterinsights_get_url( 'settings-notice', 'settings-page', 'https://www.monsterinsights.com/docs/update-wordpress/' ),
-				),
+				'versions'             => monsterinsights_get_php_wp_version_warning_data(),
 				'plugin_version'       => MONSTERINSIGHTS_VERSION,
 				'is_admin'             => true,
 				'admin_email'          => get_option( 'admin_email' ),
@@ -295,16 +285,7 @@ function monsterinsights_admin_scripts() {
 				'authed'           => $site_auth || $ms_auth,
 				'settings_url'     => add_query_arg( 'page', 'monsterinsights_settings', admin_url( 'admin.php' ) ),
 				// Used to add notices for future deprecations.
-				'versions'         => array(
-					'php_version'          => phpversion(),
-					'php_version_below_54' => apply_filters( 'monsterinsights_temporarily_hide_php_52_and_53_upgrade_warnings', version_compare( phpversion(), '5.4', '<' ) ),
-					'php_version_below_56' => apply_filters( 'monsterinsights_temporarily_hide_php_54_and_55_upgrade_warnings', version_compare( phpversion(), '5.6', '<' ) ),
-					'php_update_link'      => monsterinsights_get_url( 'settings-notice', 'settings-page', 'https://www.monsterinsights.com/docs/update-php/' ),
-					'wp_version'           => $wp_version,
-					'wp_version_below_46'  => version_compare( $wp_version, '4.6', '<' ),
-					'wp_version_below_49'  => version_compare( $wp_version, '4.9', '<' ),
-					'wp_update_link'       => monsterinsights_get_url( 'settings-notice', 'settings-page', 'https://www.monsterinsights.com/docs/update-wordpress/' ),
-				),
+				'versions'         => monsterinsights_get_php_wp_version_warning_data(),
 				'plugin_version'   => MONSTERINSIGHTS_VERSION,
 				'is_admin'         => true,
 				'admin_email'      => get_option( 'admin_email' ),
@@ -1097,3 +1078,21 @@ function monsterinsights_prevent_version_number_removal( $src ) {
 
 add_filter( 'script_loader_src', 'monsterinsights_prevent_version_number_removal', 9999, 1 );
 add_filter( 'style_loader_src', 'monsterinsights_prevent_version_number_removal', 9999, 1 );
+
+/**
+ * Data used for the Vue scripts to display old PHP and WP versions warnings.
+ */
+function monsterinsights_get_php_wp_version_warning_data() {
+	global $wp_version;
+
+	return array(
+		'php_version'          => phpversion(),
+		'php_version_below_54' => apply_filters( 'monsterinsights_temporarily_hide_php_under_56_upgrade_warnings', version_compare( phpversion(), '5.6', '<' ) ),
+		'php_version_below_56' => apply_filters( 'monsterinsights_temporarily_hide_php_56_upgrade_warnings', version_compare( phpversion(), '5.6', '>=' ) && version_compare( phpversion(), '7', '<' ) ),
+		'php_update_link'      => monsterinsights_get_url( 'settings-notice', 'settings-page', 'https://www.monsterinsights.com/docs/update-php/' ),
+		'wp_version'           => $wp_version,
+		'wp_version_below_46'  => version_compare( $wp_version, '4.9', '<' ),
+		'wp_version_below_49'  => version_compare( $wp_version, '5.3', '<' ),
+		'wp_update_link'       => monsterinsights_get_url( 'settings-notice', 'settings-page', 'https://www.monsterinsights.com/docs/update-wordpress/' ),
+	);
+}

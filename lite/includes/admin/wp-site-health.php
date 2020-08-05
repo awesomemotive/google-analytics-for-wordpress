@@ -431,7 +431,7 @@ class MonsterInsights_WP_Site_Health_Lite {
 	}
 
 	/**
-	 * Checks if there are errors communicating with Monsterinsights.com.
+	 * Checks if there are errors communicating with monsterinsights.com.
 	 */
 	public function test_check_connection() {
 

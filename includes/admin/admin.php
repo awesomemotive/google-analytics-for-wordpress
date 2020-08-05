@@ -192,8 +192,6 @@ function monsterinsights_add_action_links( $links ) {
 add_filter( 'plugin_action_links_' . plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ), 'monsterinsights_add_action_links' );
 add_filter( 'network_admin_plugin_action_links_' . plugin_basename( MONSTERINSIGHTS_PLUGIN_FILE ), 'monsterinsights_add_action_links' );
 
-
-
 /**
  * Loads a partial view for the Administration screen
  *
@@ -332,19 +330,19 @@ function monsterinsights_admin_setup_notices() {
     if ( current_user_can( 'update_core' ) ) {
         global $wp_version;
 
-        // PHP 5.2/5.3
-        if ( version_compare( phpversion(), '5.4', '<' ) ) {
+        // PHP 5.2-5.5
+        if ( version_compare( phpversion(), '5.6', '<' ) ) {
             $url = monsterinsights_get_url( 'global-notice', 'settings-page', 'https://www.monsterinsights.com/docs/update-php/' );
             // Translators: Placeholders add the PHP version, a link to the MonsterInsights blog and a line break.
-            $message = sprintf( esc_html__( 'Your site is running an outdated, insecure version of PHP (%1$s), which could be putting your site at risk for being hacked.%4$sWordPress will stop supporting your PHP version in April, 2019.%4$sUpdating PHP only takes a few minutes and will make your website significantly faster and more secure.%4$s%2$sLearn more about updating PHP%3$s', 'google-analytics-for-wordpress' ), phpversion(), '<a href="' . $url . '" target="_blank">', '</a>', '<br>' );
+            $message = sprintf( esc_html__( 'Your site is running an outdated, insecure version of PHP (%1$s), which could be putting your site at risk for being hacked.%4$sWordPress stopped supporting your PHP version in April, 2019.%4$sUpdating PHP only takes a few minutes and will make your website significantly faster and more secure.%4$s%2$sLearn more about updating PHP%3$s', 'google-analytics-for-wordpress' ), phpversion(), '<a href="' . $url . '" target="_blank">', '</a>', '<br>' );
             echo '<div class="error"><p>'. $message.'</p></div>';
             return;
         }
         // WordPress 3.0 - 4.5
-        else if ( version_compare( $wp_version, '4.6', '<' ) ) {
+        else if ( version_compare( $wp_version, '4.9', '<' ) ) {
             $url = monsterinsights_get_url( 'global-notice', 'settings-page', 'https://www.monsterinsights.com/docs/update-wordpress/' );
             // Translators: Placeholders add the current WordPress version and links to the MonsterInsights blog
-            $message = sprintf( esc_html__( 'Your site is running an outdated version of WordPress (%1$s).%4$sMonsterInsights will stop supporting WordPress versions lower than 4.6 in April, 2019.%4$sUpdating WordPress takes just a few minutes and will also solve many bugs that exist in your WordPress install.%4$s%2$sLearn more about updating WordPress%3$s', 'google-analytics-for-wordpress' ), $wp_version, '<a href="' . $url . '" target="_blank">', '</a>', '<br>' );
+            $message = sprintf( esc_html__( 'Your site is running an outdated version of WordPress (%1$s).%4$sMonsterInsights will stop supporting WordPress versions lower than 4.9 in 2020.%4$sUpdating WordPress takes just a few minutes and will also solve many bugs that exist in your WordPress install.%4$s%2$sLearn more about updating WordPress%3$s', 'google-analytics-for-wordpress' ), $wp_version, '<a href="' . $url . '" target="_blank">', '</a>', '<br>' );
             echo '<div class="error"><p>'. $message.'</p></div>';
             return;
         }
