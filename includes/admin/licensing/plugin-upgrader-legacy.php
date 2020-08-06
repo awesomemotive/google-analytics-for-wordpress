@@ -269,11 +269,9 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 	 * @param string $package          The URI of the package. If this is the full path to an
 	 *                                 existing local file, it will be returned untouched.
 	 * @param bool   $check_signatures Whether to validate file signatures. Default false.
-	 * @param array  $hook_extra       Added in WP 5.5.
-	 *
 	 * @return string|WP_Error The full path to the downloaded package file, or a WP_Error object.
 	 */
-	public function download_package( $package, $check_signatures = false, $hook_extra = array() ) {
+	public function download_package( $package, $check_signatures = false ) {
 
 		/**
 		 * Filter whether to return the package.
