@@ -293,9 +293,7 @@ class MonsterInsights_Onboarding_Wizard {
 		}
 
 		// We do not need any extra credentials if we have gotten this far, so let's install the plugin.
-		require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-		$base = MonsterInsights();
-		require_once plugin_dir_path( $base->file ) . '/includes/admin/licensing/skin.php';
+		monsterinsights_require_upgrader( false );
 
 		// Create the plugin upgrader with our custom skin.
 		$installer = new Plugin_Upgrader( new MonsterInsights_Skin() );

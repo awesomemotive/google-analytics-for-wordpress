@@ -726,9 +726,7 @@ class MonsterInsights_Rest_Routes {
 		}
 
 		// We do not need any extra credentials if we have gotten this far, so let's install the plugin.
-		$base = MonsterInsights();
-		require_once plugin_dir_path( $base->file ) . '/includes/admin/licensing/plugin-upgrader.php';
-		require_once plugin_dir_path( $base->file ) . '/includes/admin/licensing/skin.php';
+		monsterinsights_require_upgrader();
 
 		// Prevent language upgrade in ajax calls.
 		remove_action( 'upgrader_process_complete', array( 'Language_Pack_Upgrader', 'async_upgrade' ), 20 );

@@ -1563,3 +1563,33 @@ function monsterinsights_restore_prettylinks_onboard_value() {
 	}
 }
 add_action( 'wp_loaded', 'monsterinsights_restore_prettylinks_onboard_value', 15 );
+
+/**
+ * Check WP version and include the compatible upgrader skin.
+ *
+ * @param bool $custom_upgrader If true it will include our custom upgrader, otherwise it will use the default WP one.
+ */
+function monsterinsights_require_upgrader( $custom_upgrader = true ) {
+
+	global $wp_version;
+
+	$base = MonsterInsights();
+
+	if ( ! $custom_upgrader ) {
+		require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+	}
+
+	// WP 5.3 changes the upgrader skin.
+	if ( version_compare( $wp_version, '5.3', '<' ) ) {
+		if ( $custom_upgrader ) {
+			require_once plugin_dir_path( $base->file ) . 'includes/admin/licensing/plugin-upgrader.php';
+		}
+		require_once plugin_dir_path( $base->file ) . '/includes/admin/licensing/skin-legacy.php';
+	} else {
+		if ( $custom_upgrader ) {
+			require_once plugin_dir_path( $base->file ) . 'includes/admin/licensing/plugin-upgrader.php';
+		}
+		require_once plugin_dir_path( $base->file ) . '/includes/admin/licensing/skin.php';
+	}
+
+}

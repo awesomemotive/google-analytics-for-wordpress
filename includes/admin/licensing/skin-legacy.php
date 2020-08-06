@@ -109,7 +109,7 @@ class MonsterInsights_Skin extends WP_Upgrader_Skin {
      *
      * @param string $string The feedback string.
      */
-    function feedback( $string, ...$args ) {
+    function feedback( $string ) {
 
     }
 
