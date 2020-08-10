@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, WooCommerce stats, analytics dashboard, universal google analytics, statistics, tracking, stats, google, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
 Tested up to: 5.5
-Stable tag: 7.12.0
+Stable tag: 7.12.2
 Requires PHP: 5.2
 License: GPL v3
 
@@ -274,6 +274,9 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.12.2: August 10, 2020 =
+- Tweak: We removed a dependency in our Headline Analyzer to improve compatibility with multiple site builders.
+
 = 7.12.0: August 6, 2020 =
 - New: We’ve added a Headline Analyzer tool directly in the Gutenberg Editor that enables you to write irresistible SEO headlines that drive traffic, shares, and rank better in search results.
 - Tweak: We made some adjustments for improved compatibility with the upcoming WordPress 5.5 release.
