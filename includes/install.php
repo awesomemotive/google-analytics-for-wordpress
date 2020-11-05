@@ -136,6 +136,10 @@ class MonsterInsights_Install {
 				$this->v7120_upgrades();
 			}
 
+			if ( version_compare( $version, '7.13.0', '<' ) ) {
+				$this->v7130_upgrades();
+			}
+
 			// Do not use. See monsterinsights_after_install_routine comment below.
 			do_action( 'monsterinsights_after_existing_upgrade_routine', $version );
 			$version = get_option( 'monsterinsights_current_version', $version );
@@ -238,16 +242,16 @@ class MonsterInsights_Install {
 
 	public function get_monsterinsights_default_values() {
 
-		$admin_email                                     = get_option( 'admin_email' );
-		$admin_email_array                               = array(
+		$admin_email       = get_option( 'admin_email' );
+		$admin_email_array = array(
 			array(
 				'email' => $admin_email,
 			),
 		);
 
 		return array(
-			'enable_affiliate_links'    => true,
-			'affiliate_links'           => array(
+			'enable_affiliate_links'                   => true,
+			'affiliate_links'                          => array(
 				array(
 					'path'  => '/go/',
 					'label' => 'affiliate',
@@ -257,25 +261,45 @@ class MonsterInsights_Install {
 					'label' => 'affiliate',
 				)
 			),
-			'demographics'              => 1,
-			'ignore_users'              => array( 'administrator', 'editor' ),
-			'dashboards_disabled'       => 0,
-			'anonymize_ips'             => 0,
-			'extensions_of_files'       => 'doc,pdf,ppt,zip,xls,docx,pptx,xlsx',
-			'subdomain_tracking'        => '',
-			'link_attribution'          => true,
-			'tag_links_in_rss'          => true,
-			'allow_anchor'              => 0,
-			'add_allow_linker'          => 0,
-			'custom_code'               => '',
-			'save_settings'             => array( 'administrator' ),
-			'view_reports'              => array( 'administrator', 'editor' ),
-			'events_mode'               => 'js',
-			'tracking_mode'             => 'analytics',
-			'email_summaries'           => 'on',
-			'summaries_html_template'   => 'yes',
-			'summaries_email_addresses' => $admin_email_array,
-			'automatic_updates'         => 'none',
+			'demographics'                             => 1,
+			'ignore_users'                             => array( 'administrator', 'editor' ),
+			'dashboards_disabled'                      => 0,
+			'anonymize_ips'                            => 0,
+			'extensions_of_files'                      => 'doc,pdf,ppt,zip,xls,docx,pptx,xlsx',
+			'subdomain_tracking'                       => '',
+			'link_attribution'                         => true,
+			'tag_links_in_rss'                         => true,
+			'allow_anchor'                             => 0,
+			'add_allow_linker'                         => 0,
+			'custom_code'                              => '',
+			'save_settings'                            => array( 'administrator' ),
+			'view_reports'                             => array( 'administrator', 'editor' ),
+			'events_mode'                              => 'js',
+			'tracking_mode'                            => 'analytics',
+			'email_summaries'                          => 'on',
+			'summaries_html_template'                  => 'yes',
+			'summaries_email_addresses'                => $admin_email_array,
+			'automatic_updates'                        => 'none',
+			'popular_posts_inline_theme'               => 'alpha',
+			'popular_posts_widget_theme'               => 'alpha',
+			'popular_posts_products_theme'             => 'alpha',
+			'popular_posts_inline_placement'           => 'manual',
+			'popular_posts_widget_theme_columns'       => '2',
+			'popular_posts_products_theme_columns'     => '2',
+			'popular_posts_widget_count'               => '4',
+			'popular_posts_products_count'             => '4',
+			'popular_posts_widget_theme_meta_author'   => 'on',
+			'popular_posts_widget_theme_meta_date'     => 'on',
+			'popular_posts_widget_theme_meta_comments' => 'on',
+			'popular_posts_products_theme_meta_price'  => 'on',
+			'popular_posts_products_theme_meta_rating' => 'on',
+			'popular_posts_products_theme_meta_image'  => 'on',
+			'popular_posts_inline_after_count'         => '150',
+			'popular_posts_inline_multiple_number'     => '3',
+			'popular_posts_inline_multiple_distance'   => '250',
+			'popular_posts_inline_multiple_min_words'  => '100',
+			'popular_posts_inline_post_types'          => array( 'post' ),
+			'popular_posts_widget_post_types'          => array( 'post' ),
 		);
 	}
 
@@ -718,5 +742,67 @@ class MonsterInsights_Install {
 			$this->new_settings['automatic_updates'] = 'none';
 		}
 
+	}
+
+	/**
+	 * Upgrade routine for version 7.13.0
+	 */
+	public function v7130_upgrades() {
+
+		// Set default values for popular posts.
+		$popular_posts_defaults = array(
+			'popular_posts_inline_theme'               => 'alpha',
+			'popular_posts_widget_theme'               => 'alpha',
+			'popular_posts_products_theme'             => 'alpha',
+			'popular_posts_inline_placement'           => 'manual',
+			'popular_posts_widget_theme_columns'       => '2',
+			'popular_posts_products_theme_columns'     => '2',
+			'popular_posts_widget_count'               => '4',
+			'popular_posts_products_count'             => '4',
+			'popular_posts_widget_theme_meta_author'   => 'on',
+			'popular_posts_widget_theme_meta_date'     => 'on',
+			'popular_posts_widget_theme_meta_comments' => 'on',
+			'popular_posts_products_theme_meta_price'  => 'on',
+			'popular_posts_products_theme_meta_rating' => 'on',
+			'popular_posts_products_theme_meta_image'  => 'on',
+			'popular_posts_inline_after_count'         => '150',
+			'popular_posts_inline_multiple_number'     => '3',
+			'popular_posts_inline_multiple_distance'   => '250',
+			'popular_posts_inline_multiple_min_words'  => '100',
+			'popular_posts_inline_post_types'          => array( 'post' ),
+			'popular_posts_widget_post_types'          => array( 'post' ),
+		);
+
+		foreach ( $popular_posts_defaults as $key => $value ) {
+			if ( empty( $this->new_settings[ $key ] ) ) {
+				$this->new_settings[ $key ] = $value;
+			}
+		}
+
+		// Contextual education cleanup.
+		$option_name             = 'monsterinsights_notifications';
+		$notifications           = get_option( $option_name, array() );
+		$dismissed_notifications = isset( $notifications['dismissed'] ) ? $notifications['dismissed'] : array();
+
+		if ( is_array( $dismissed_notifications ) && ! empty( $dismissed_notifications ) ) {
+			foreach ( $dismissed_notifications as $key => $dismiss_notification ) {
+				$title   = isset( $dismiss_notification['title'] ) ? $dismiss_notification['title'] : '';
+				$content = isset( $dismiss_notification['content'] ) ? $dismiss_notification['content'] : '';
+
+				if ( empty( $title ) || empty( $content ) ) {
+					unset( $dismissed_notifications[ $key ] );
+				}
+			}
+
+			update_option(
+				$option_name,
+				array(
+					'update'    => $notifications['update'],
+					'feed'      => $notifications['feed'],
+					'events'    => $notifications['events'],
+					'dismissed' => $dismissed_notifications,
+				)
+			);
+		}
 	}
 }

@@ -159,7 +159,14 @@ class MonsterInsights_Notifications {
 			}
 
 			// Ignore if license type does not match.
-			if ( ! in_array( MonsterInsights()->license->get_license_type(), $notification['type'] ) ) {
+			$license_type = MonsterInsights()->license->get_license_type() ? MonsterInsights()->license->get_license_type() : 'lite';
+
+			if ( ! in_array( $license_type, $notification['type'] ) ) {
+				continue;
+			}
+
+			// Ignore if notification is not ready to display(based on start time).
+			if ( ! empty( $notification['start'] ) && time() < strtotime( $notification['start'] ) ) {
 				continue;
 			}
 
@@ -169,7 +176,17 @@ class MonsterInsights_Notifications {
 			}
 
 			// Ignore if notification has already been dismissed.
-			if ( ! empty( $option['dismissed'] ) && in_array( $notification['id'], $option['dismissed'] ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
+			$notification_already_dismissed = false;
+			if ( is_array( $option['dismissed'] ) && ! empty( $option['dismissed'] ) ) {
+				foreach ( $option['dismissed'] as $dismiss_notification ) {
+					if ( $notification['id'] === $dismiss_notification['id'] ) {
+						$notification_already_dismissed = true;
+						break;
+					}
+				}
+			}
+
+			if ( true === $notification_already_dismissed ) {
 				continue;
 			}
 
@@ -206,11 +223,14 @@ class MonsterInsights_Notifications {
 			return array();
 		}
 
-		// Remove notifications that are not active.
+		$license_type = MonsterInsights()->license->get_license_type() ? MonsterInsights()->license->get_license_type() : 'lite';
+
+		// Remove notifications that are not active, or if the license type not exists
 		foreach ( $notifications as $key => $notification ) {
 			if (
 				( ! empty( $notification['start'] ) && time() < strtotime( $notification['start'] ) ) ||
-				( ! empty( $notification['end'] ) && time() > strtotime( $notification['end'] ) )
+				( ! empty( $notification['end'] ) && time() > strtotime( $notification['end'] ) ) ||
+				( ! empty( $notification['type'] ) && ! in_array( $license_type, $notification['type'] ) )
 			) {
 				unset( $notifications[ $key ] );
 			}
@@ -244,7 +264,62 @@ class MonsterInsights_Notifications {
 		$events = ! empty( $option['events'] ) ? $this->verify_active( $option['events'] ) : array();
 		$feed   = ! empty( $option['feed'] ) ? $this->verify_active( $option['feed'] ) : array();
 
-		return array_merge( $events, $feed );
+		$notifications              = array();
+		$notifications['active']    = array_merge( $events, $feed );
+		$notifications['active']    = $this->get_notifications_with_human_readeable_start_time( $notifications['active'] );
+		$notifications['dismissed'] = ! empty( $option['dismissed'] ) ? $option['dismissed'] : array();
+		$notifications['dismissed'] = $this->get_notifications_with_human_readeable_start_time( $notifications['dismissed'] );
+
+		return $notifications;
+	}
+
+	/**
+	 * Get notifications start time with human time difference
+	 *
+	 * @return array $notifications
+	 *
+	 * @since 7.12.3
+	 */
+	public function get_notifications_with_human_readeable_start_time( $notifications ) {
+		if ( ! is_array( $notifications ) || empty( $notifications ) ) {
+			return;
+		}
+
+		foreach ( $notifications as $key => $notification ) {
+			if ( ! isset( $notification['start'] ) || empty( $notification['start'] ) ) {
+				continue;
+			}
+
+			// Translators: Readable time to display
+			$modified_start_time            = sprintf( __( '%1$s ago', 'google-analytics-for-wordpress' ), human_time_diff( strtotime( $notification['start'] ), current_time( 'timestamp' ) ) );
+			$notifications[ $key ]['start'] = $modified_start_time;
+		}
+
+		return $notifications;
+	}
+
+	/**
+	 * Get active notifications.
+	 *
+	 * @return array $notifications['active'] active notifications
+	 *
+	 * @since 7.12.3
+	 */
+	public function get_active_notifications() {
+		$notifications = $this->get();
+		return isset( $notifications['active'] ) ? $notifications['active'] : array();
+	}
+
+	/**
+	 * Get dismissed notifications.
+	 *
+	 * @return array $notifications['dismissed'] dismissed notifications
+	 *
+	 * @since 7.12.3
+	 */
+	public function get_dismissed_notifications() {
+		$notifications = $this->get();
+		return isset( $notifications['dismissed'] ) ? $notifications['dismissed'] : array();
 	}
 
 	/**
@@ -256,7 +331,7 @@ class MonsterInsights_Notifications {
 	 */
 	public function get_count() {
 
-		return count( $this->get() );
+		return count( $this->get_active_notifications() );
 	}
 
 	/**
@@ -325,7 +400,6 @@ class MonsterInsights_Notifications {
 	 * @since {VERSION}
 	 */
 	public function dismiss() {
-
 		// Run a security check.
 		check_ajax_referer( 'mi-admin-nonce', 'nonce' );
 
@@ -336,15 +410,32 @@ class MonsterInsights_Notifications {
 
 		$id     = sanitize_text_field( wp_unslash( $_POST['id'] ) );
 		$option = $this->get_option();
+
+		// dismiss all notifications and add them to dissmiss array
+		if ( $id === 'all' ) {
+			if ( is_array( $option['feed'] ) && ! empty( $option['feed'] ) ) {
+				foreach ( $option['feed'] as $key => $notification ) {
+					array_unshift($option['dismissed'], $notification);
+					unset( $option['feed'][ $key ] );
+				}
+			}
+			if ( is_array( $option['events'] ) && ! empty( $option['events'] ) ) {
+				foreach ( $option['events'] as $key => $notification ) {
+					array_unshift($option['dismissed'], $notification);
+					unset( $option['events'][ $key ] );
+				}
+			}
+		}
+
 		$type   = is_numeric( $id ) ? 'feed' : 'events';
 
-		$option['dismissed'][] = $id;
-		$option['dismissed']   = array_unique( $option['dismissed'] );
-
-		// Remove notification.
+		// Remove notification and add in dismissed array.
 		if ( is_array( $option[ $type ] ) && ! empty( $option[ $type ] ) ) {
 			foreach ( $option[ $type ] as $key => $notification ) {
 				if ( $notification['id'] == $id ) { // phpcs:ignore WordPress.PHP.StrictComparisons
+					// add notification to dismissed array
+					array_unshift($option['dismissed'], $notification);
+					// remove notification from feed or events
 					unset( $option[ $type ][ $key ] );
 					break;
 				}
@@ -364,7 +455,7 @@ class MonsterInsights_Notifications {
 	public function get_menu_count() {
 
 		if ( $this->get_count() > 0 ) {
-			return '<span class="monsterinsights-menu-notification-indicator"></span>';
+			return '<span class="monsterinsights-menu-notification-indicator">'. $this->get_count() .'</span>';
 		}
 
 		return '';
@@ -380,8 +471,10 @@ class MonsterInsights_Notifications {
 		check_ajax_referer( 'mi-admin-nonce', 'nonce' );
 
 		$notifications_data = array(
-			'notifications' => $this->get(),
+			'notifications' => $this->get_active_notifications(),
+			'dismissed'     => $this->get_dismissed_notifications(),
 			'view_url'      => $this->get_view_url(),
+			'sidebar_url'   => $this->get_sidebar_url(),
 		);
 
 		wp_send_json_success( $notifications_data );
@@ -392,7 +485,7 @@ class MonsterInsights_Notifications {
 	 *
 	 * @return string
 	 */
-	public function get_view_url() {
+	public function get_view_url( ) {
 
 		$disabled = monsterinsights_get_option( 'dashboards_disabled', false );
 
@@ -404,5 +497,29 @@ class MonsterInsights_Notifications {
 
 		return $url;
 
+	}
+
+	/**
+	 * Get the notification sidebar URL for the page where users can see/read notifications.
+	 *
+	 * @return string
+	 */
+	public function get_sidebar_url() {
+
+		$disabled = monsterinsights_get_option( 'dashboards_disabled', false );
+
+		$url = add_query_arg(
+			array(
+				'page'    => 'monsterinsights_reports',
+				'open'    => 'monsterinsights_notification_sidebar',
+			),
+			admin_url( 'admin.php' )
+		);
+
+		if ( false !== $disabled ) {
+			$url = is_multisite() ? network_admin_url( 'admin.php?page=monsterinsights_network' ) : admin_url( 'admin.php?page=monsterinsights_settings' );
+		}
+
+		return $url;
 	}
 }

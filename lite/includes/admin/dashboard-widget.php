@@ -171,7 +171,7 @@ class MonsterInsights_Dashboard_Widget {
 			$plugins           = get_plugins();
 			$wp_forms_url      = false;
 			$wpforms_installed = false;
-			if ( current_user_can( 'install_plugins' ) ) {
+			if ( monsterinsights_can_install_plugins() ) {
 				$wpforms_key = 'wpforms-lite/wpforms.php';
 				if ( array_key_exists( $wpforms_key, $plugins ) ) {
 					$wp_forms_url      = wp_nonce_url( self_admin_url( 'plugins.php?action=activate&plugin=' . $wpforms_key ), 'activate-plugin_' . $wpforms_key );

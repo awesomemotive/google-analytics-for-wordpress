@@ -50,10 +50,10 @@ function monsterinsights_mp_api_call( $args = array() ) {
 	$default_body = array(
 		// Required: Version
 		'v'   => '1',
-		
+
 		// Required: UA code
 		'tid' => monsterinsights_get_ua_to_output( array( 'ecommerce' => $args ) ),
-		
+
 		// Required: User visitor ID
 		'cid' => monsterinsights_get_client_id( $payment_id ),
 
@@ -82,7 +82,10 @@ function monsterinsights_mp_api_call( $args = array() ) {
 		'ua'  => ! empty( $user_agent ) ?  $user_agent : $_SERVER['HTTP_USER_AGENT'],
 
 		// Optional: Time of the event
-		'z'   => time()
+		'z'   => time(),
+
+		// Developer id.
+		'did' => 'dZGIzZG',
 	);
 
 	$body = wp_parse_args( $body, $default_body );
@@ -125,7 +128,7 @@ function monsterinsights_mp_track_event_call( $args = array() ) {
 
 		// Required: Event Category
 		'ec' => '',
-		
+
 		// Required: Event Action
 		'ea' => '',
 

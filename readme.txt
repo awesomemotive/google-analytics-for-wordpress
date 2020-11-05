@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, WooCommerce stats, analytics dashboard, universal google analytics, statistics, tracking, stats, google, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
 Tested up to: 5.5
-Stable tag: 7.12.2
+Stable tag: 7.13.0
 Requires PHP: 5.2
 License: GPL v3
 
@@ -274,6 +274,18 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.13.0: November 5, 2020 =
+- New: Popular Posts - promote your top content across your website using automatic placement, sidebar widgets and Gutenberg Blocks. Choose themes and update styles directly visually in your WordPress admin.
+- New: Contextual Insights - Ever wondered how to use the analytics data you’re tracking? With our new Contextual Insights feature we’ll show you suggestions specific to your data directly in the MonsterInsights dashboard.
+- Tweak: Our Headline Analyzer options are now only visible for WordPress versions that support it.
+- Tweak: We added more exceptions to our duplicate tracker checks to avoid false positives.
+- Tweak: Our dashboard widget is now better integrated with the WP 5.5 changes.
+- Tweak: Reports with empty values are now properly displayed instead of staying hidden.
+
+= 7.12.3: September 28, 2020 =
+- Fix: We adjusted a check in our notifications class that would throw an error.
+- Fix: We added an extra check to prevent our WP 5.5 auto-updates compatibility code from throwing a notice in some cases.
+
 = 7.12.2: August 10, 2020 =
 - Tweak: We removed a dependency in our Headline Analyzer to improve compatibility with multiple site builders.
 

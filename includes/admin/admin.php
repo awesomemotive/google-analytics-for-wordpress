@@ -47,6 +47,9 @@ function monsterinsights_admin_menu() {
 
     $submenu_base = add_query_arg( 'page', 'monsterinsights_settings', admin_url( 'admin.php' ) );
 
+	// Add Popular Posts menu item.
+	add_submenu_page( $hook, __( 'Popular Posts:', 'google-analytics-for-wordpress' ), __( 'Popular Posts', 'google-analytics-for-wordpress' ), 'monsterinsights_save_settings', $submenu_base . '#/popular-posts' );
+
     // then tools
     add_submenu_page( $hook, __( 'Tools:', 'google-analytics-for-wordpress' ), __( 'Tools', 'google-analytics-for-wordpress' ), 'manage_options', $submenu_base . '#/tools' );
 
@@ -459,6 +462,7 @@ function monsterinsights_admin_setup_notices() {
                     echo '<img class="monsterinsights-wooedd-upsell-image monsterinsights-wooedd-upsell-image-large" src="' . trailingslashit( MONSTERINSIGHTS_PLUGIN_URL ) . 'assets/images/upsell/woo-edd-upsell.png">';
                 echo '</div>';
             echo '</div>';
+            echo '<style type="text/css">.monsterinsights-wooedd-upsell-left{width:50%;display:table-cell;float:left}.monsterinsights-wooedd-upsell-right{width:50%;display:table-cell;float:left}.monsterinsights-wooedd-upsell-image{width:100%;height:auto;padding:20px}.monsterinsights-wooedd-upsell-image-small{display:none}.monsterinsights-wooedd-upsell-row{display:table}.monsterinsights-wooedd-upsell-left p{margin:1em 0;font-size:16px}@media (max-width:900px){.monsterinsights-wooedd-upsell-left{width:100%}.monsterinsights-wooedd-upsell-right{display:none}.monsterinsights-wooedd-upsell-image-small{display:block}.monsterinsights-wooedd-upsell-image-large{display:none}}</style>';
             return;
         }
     }
@@ -533,4 +537,4 @@ function monsterinsights_admin_menu_inline_styles() {
 	<?php
 }
 
-add_action( 'admin_footer', 'monsterinsights_admin_menu_inline_styles', 300 );
+add_action( 'admin_head', 'monsterinsights_admin_menu_inline_styles', 300 );
