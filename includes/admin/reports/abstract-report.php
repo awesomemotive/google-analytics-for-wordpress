@@ -406,7 +406,7 @@ class MonsterInsights_Report {
 	 * @return string
 	 */
 	public function get_addons_page_link() {
-		if ( current_user_can( 'install_plugins' ) ) {
+		if ( monsterinsights_can_install_plugins() ) {
 			$addons_link = 'install_addon';
 		} else {
 			$addons_link = esc_html__( 'Please ask your webmaster to enable this addon.', 'google-analytics-for-wordpress' );

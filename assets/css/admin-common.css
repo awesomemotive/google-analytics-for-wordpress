@@ -49,12 +49,18 @@
 
 #wpadminbar .monsterinsights-menu-notification-indicator,
 .monsterinsights-menu-notification-indicator {
-	width: 12px;
-	height: 12px;
-	border-radius: 50%;
-	background: #C84B29;
+	min-width: 8px;
+	height: 18px;
+	border-radius: 9px;
+	background: #ca4a1f;
 	display: inline-block;
 	margin-left: 8px;
+	font-size: 11px;
+	font-weight: 400;
+	color: #fff;
+	text-align: center;
+	line-height: 1.6;
+	padding: 0 5px;
 }
 
 @media (max-width: 782px) {

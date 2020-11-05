@@ -239,7 +239,7 @@ class MonsterInsights_Onboarding_Wizard {
 
 		check_ajax_referer( 'monsterinsights-install', 'nonce' );
 
-		if ( ! current_user_can( 'install_plugins' ) ) {
+		if ( ! monsterinsights_can_install_plugins() ) {
 			wp_send_json( array(
 				'message' => esc_html__( 'You are not allowed to install plugins', 'google-analytics-for-wordpress' ),
 			) );
