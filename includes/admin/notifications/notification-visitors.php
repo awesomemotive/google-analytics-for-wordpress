@@ -26,6 +26,11 @@ final class MonsterInsights_Notification_Visitors extends MonsterInsights_Notifi
 	 * @since 7.12.3
 	 */
 	public function prepare_notification_data( $notification ) {
+		if ( ! monsterinsights_is_pro_version() ) {
+			// Improve performance for lite users by disabling external API calls they can’t access.
+			// Since lite users can’t access this feature return early.
+			return false;
+		}
 		$report = $this->get_report();
 
 		if ( ! is_array( $report ) || empty( $report ) ) {

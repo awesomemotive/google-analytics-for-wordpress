@@ -140,6 +140,10 @@ class MonsterInsights_Install {
 				$this->v7130_upgrades();
 			}
 
+			if ( version_compare( $version, '7.13.1', '<' ) ) {
+				$this->v7131_upgrades();
+			}
+
 			// Do not use. See monsterinsights_after_install_routine comment below.
 			do_action( 'monsterinsights_after_existing_upgrade_routine', $version );
 			$version = get_option( 'monsterinsights_current_version', $version );
@@ -804,5 +808,15 @@ class MonsterInsights_Install {
 				)
 			);
 		}
+	}
+
+	/**
+	 * Upgrade routine for version 7.13.1
+	 */
+	public function v7131_upgrades() {
+
+		// Delete transient for GA data with wrong expiration date.
+		delete_transient( 'monsterinsights_popular_posts_ga_data' );
+
 	}
 }

@@ -219,9 +219,9 @@ class MonsterInsights_Popular_Posts_Inline extends MonsterInsights_Popular_Posts
 			foreach ( $words as $index => $word ) {
 				$count ++;
 				if ( $count > $after_count ) {
-					$p_index = mb_strpos( $word, '</p>' );
+					$p_index = strpos( $word, '</p>' );
 					// Make sure the paragraph tag is not wrapped in another element like a blockquote.
-					if ( false !== $p_index && false === mb_strpos( $word, '</p></' ) ) {
+					if ( false !== $p_index && false === strpos( $word, '</p></' ) ) {
 						$words[ $index ] = substr_replace( $word, $this->shortcode_output( array() ), $p_index + 4, 0 );
 						$this->posts     = array();
 						break;

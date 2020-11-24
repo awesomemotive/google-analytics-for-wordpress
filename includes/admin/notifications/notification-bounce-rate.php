@@ -20,6 +20,11 @@ final class MonsterInsights_Notification_Bounce_Rate extends MonsterInsights_Not
 	 * @since 7.12.3
 	 */
 	public function prepare_notification_data( $notification ) {
+		if ( ! monsterinsights_is_pro_version() ) {
+			// Improve performance for lite users by disabling external API calls they can’t access.
+			// Since lite users can’t access this feature return early.
+			return false;
+		}
 		$data                = array();
 		$report              = $this->get_report( 'overview', $this->report_start_from, $this->report_end_to );
 		$data['bounce_rate'] = isset( $report['data']['infobox']['bounce']['value'] ) ? $report['data']['infobox']['bounce']['value'] : 0;
