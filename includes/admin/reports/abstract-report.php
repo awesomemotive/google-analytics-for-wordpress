@@ -22,6 +22,7 @@ class MonsterInsights_Report {
 	public $class;
 	public $name;
 	public $version = '1.0.0';
+	public $source  = 'reports';
 
 	/**
 	 * Primary class constructor.
@@ -217,6 +218,13 @@ class MonsterInsights_Report {
 			}
 
 			$api = new MonsterInsights_API_Request( 'analytics/reports/' . $this->name . '/', $api_options, 'GET' );
+
+			// Use a report source indicator for requests.
+			if ( ! empty( $this->source ) ) {
+				$api->set_additional_data( array(
+					'source' => $this->source,
+				) );
+			}
 
 			$additional_data = $this->additional_data();
 
@@ -437,6 +445,17 @@ class MonsterInsights_Report {
 	 */
 	public function prepare_report_data( $data ) {
 		return $data;
+	}
+
+	/**
+	 * Set a report source to be sent with the request.
+	 *
+	 * @param string $source The source where the report is called from, defaults to reports.
+	 */
+	public function set_report_source( $source ) {
+		if ( ! empty( $source ) && is_string( $source ) ) {
+			$this->source = $source;
+		}
 	}
 }
 

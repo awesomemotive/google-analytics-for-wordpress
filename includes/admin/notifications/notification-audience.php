@@ -18,6 +18,11 @@ final class MonsterInsights_Notification_Audience extends MonsterInsights_Notifi
 	 * @since 7.12.3
 	 */
 	public function get_notification_data() {
+		if ( ! monsterinsights_is_pro_version() ) {
+			// Improve performance for lite users by disabling external API calls they can’t access.
+			// Since lite users can’t access this feature return early.
+			return false;
+		}
 		require_once( ABSPATH . 'wp-admin/includes/translation-install.php' );
 
 		$data                       = array();

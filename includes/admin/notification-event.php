@@ -286,8 +286,12 @@ class MonsterInsights_Notification_Event {
 	 */
 	public function get_report( $report_name="overview", $report_start_from="-30 day", $report_end_to="-1 day" ) {
 		// get overview report data
-		$data      = array();
-		$report    = MonsterInsights()->reporting->get_report( $report_name );
+		$data   = array();
+		$report = MonsterInsights()->reporting->get_report( $report_name );
+		if ( $report ) {
+			// Mark the report request as coming from Notifications.
+			$report->set_report_source( 'notifications' );
+		}
 		$isnetwork = ! empty( $_REQUEST['isnetwork'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['isnetwork'] ) ) : '';
 		$args = array(
 			'start' => $this->get_formatted_date( $report_start_from ),
