@@ -40,7 +40,7 @@ class MonsterInsights_Popular_Posts_Ajax {
 				return current_user_can( 'edit_posts' );
 			},
 			'args'                => array(
-				'type',
+				'type' => array(),
 			),
 		) );
 
@@ -51,7 +51,7 @@ class MonsterInsights_Popular_Posts_Ajax {
 				return current_user_can( 'edit_posts' );
 			},
 			'args'                => array(
-				'slug',
+				'slug' => array(),
 			),
 		) );
 
@@ -62,7 +62,7 @@ class MonsterInsights_Popular_Posts_Ajax {
 				return current_user_can( 'edit_posts' );
 			},
 			'args'                => array(
-				'slug',
+				'slug' => array(),
 			),
 		) );
 	}
