@@ -144,6 +144,10 @@ class MonsterInsights_Install {
 				$this->v7131_upgrades();
 			}
 
+			if ( version_compare( $version, '7.14.0', '<' ) ) {
+				$this->v7140_upgrades();
+			}
+
 			// Do not use. See monsterinsights_after_install_routine comment below.
 			do_action( 'monsterinsights_after_existing_upgrade_routine', $version );
 			$version = get_option( 'monsterinsights_current_version', $version );
@@ -358,27 +362,27 @@ class MonsterInsights_Install {
 	 */
 	public function v700_upgrades() {
 		// 1. Default all event tracking and tracking to GA + JS respectively
-			// 3a Set tracking_mode to use analytics.js
-			$this->new_settings['tracking_mode' ] = 'analytics';
+		// 3a Set tracking_mode to use analytics.js
+		$this->new_settings['tracking_mode' ] = 'analytics';
 
 
-			// 3b Set events mode to use JS if the events mode is not set explicitly to none
-			if ( empty( $this->new_settings['events_mode' ] ) || $this->new_settings['events_mode' ] !== 'none' ) {
-				$this->new_settings['events_mode' ] = 'js';
-			}
+		// 3b Set events mode to use JS if the events mode is not set explicitly to none
+		if ( empty( $this->new_settings['events_mode' ] ) || $this->new_settings['events_mode' ] !== 'none' ) {
+			$this->new_settings['events_mode' ] = 'js';
+		}
 
 		// 2. Migrate manual UA codes
-			// 2a Manual UA has the lowest priority
-			if ( ! empty( $this->new_settings['manual_ua_code' ] ) ) {
-				// Set as manual UA code
-				is_network_admin() ? update_site_option( 'monsterinsights_network_profile', array( 'manual' => $this->new_settings['manual_ua_code' ] ) ) : update_option( 'monsterinsights_site_profile', array( 'manual' => $this->new_settings['manual_ua_code' ] ) );
-			}
+		// 2a Manual UA has the lowest priority
+		if ( ! empty( $this->new_settings['manual_ua_code' ] ) ) {
+			// Set as manual UA code
+			is_network_admin() ? update_site_option( 'monsterinsights_network_profile', array( 'manual' => $this->new_settings['manual_ua_code' ] ) ) : update_option( 'monsterinsights_site_profile', array( 'manual' => $this->new_settings['manual_ua_code' ] ) );
+		}
 
-			// 2b Then try the oAuth UA code
-			if ( ! empty( $this->new_settings['analytics_profile_code' ] ) ) {
-				// Set as manual UA code
-				is_network_admin() ? update_site_option( 'monsterinsights_network_profile', array( 'manual' => $this->new_settings['analytics_profile_code' ] ) ) : update_option( 'monsterinsights_site_profile', array( 'manual' => $this->new_settings['analytics_profile_code' ] ) );
-			}
+		// 2b Then try the oAuth UA code
+		if ( ! empty( $this->new_settings['analytics_profile_code' ] ) ) {
+			// Set as manual UA code
+			is_network_admin() ? update_site_option( 'monsterinsights_network_profile', array( 'manual' => $this->new_settings['analytics_profile_code' ] ) ) : update_option( 'monsterinsights_site_profile', array( 'manual' => $this->new_settings['analytics_profile_code' ] ) );
+		}
 
 		// 3. Migrate License keys
 		if ( is_multisite() ) {
@@ -396,144 +400,144 @@ class MonsterInsights_Install {
 	public function v740_upgrades() {
 
 		// 1. Settings Conversions:
-			// Convert affiliate field to repeater format
-			if ( ! empty( $this->new_settings['track_internal_as_outbound'] ) ) {
-				$affiliate_old_paths = $this->new_settings['track_internal_as_outbound'];
-				$affiliate_old_label = isset( $this->new_settings['track_internal_as_label'] ) ? $this->new_settings['track_internal_as_label'] : '';
+		// Convert affiliate field to repeater format
+		if ( ! empty( $this->new_settings['track_internal_as_outbound'] ) ) {
+			$affiliate_old_paths = $this->new_settings['track_internal_as_outbound'];
+			$affiliate_old_label = isset( $this->new_settings['track_internal_as_label'] ) ? $this->new_settings['track_internal_as_label'] : '';
 
-				$new_paths = explode( ',', $affiliate_old_paths );
+			$new_paths = explode( ',', $affiliate_old_paths );
 
-				$this->new_settings['affiliate_links'] = array();
-				if ( ! empty( $new_paths ) ) {
-					$this->new_settings['enable_affiliate_links'] = true;
-					foreach ( $new_paths as $new_path ) {
-						$this->new_settings['affiliate_links'][] = array(
-							'path'  => $new_path,
-							'label' => $affiliate_old_label,
-						);
-					}
-				}
-
-				$settings = array(
-					'track_internal_as_outbound',
-					'track_internal_as_label',
-				);
-				foreach ( $settings as $setting ) {
-					if ( ! empty( $this->new_settings[ $setting ] ) ) {
-						unset( $this->new_settings[ $setting ] );
-					}
+			$this->new_settings['affiliate_links'] = array();
+			if ( ! empty( $new_paths ) ) {
+				$this->new_settings['enable_affiliate_links'] = true;
+				foreach ( $new_paths as $new_path ) {
+					$this->new_settings['affiliate_links'][] = array(
+						'path'  => $new_path,
+						'label' => $affiliate_old_label,
+					);
 				}
 			}
 
-			// Update option to disable just reports or also the dashboard widget.
-			if ( isset( $this->new_settings['dashboards_disabled'] ) && $this->new_settings['dashboards_disabled'] ) {
-				$this->new_settings['dashboards_disabled'] = 'disabled';
+			$settings = array(
+				'track_internal_as_outbound',
+				'track_internal_as_label',
+			);
+			foreach ( $settings as $setting ) {
+				if ( ! empty( $this->new_settings[ $setting ] ) ) {
+					unset( $this->new_settings[ $setting ] );
+				}
 			}
+		}
 
-			$this->new_settings['tracking_mode'] = 'analytics';
-			$this->new_settings['events_mode']   = 'js';
+		// Update option to disable just reports or also the dashboard widget.
+		if ( isset( $this->new_settings['dashboards_disabled'] ) && $this->new_settings['dashboards_disabled'] ) {
+			$this->new_settings['dashboards_disabled'] = 'disabled';
+		}
 
-			// If opted in during allow_tracking era, move that over
-			if ( ! empty( $this->new_settings['allow_tracking'] ) ) {
-				$this->new_settings['anonymous_data'] = 1;
-			}
+		$this->new_settings['tracking_mode'] = 'analytics';
+		$this->new_settings['events_mode']   = 'js';
+
+		// If opted in during allow_tracking era, move that over
+		if ( ! empty( $this->new_settings['allow_tracking'] ) ) {
+			$this->new_settings['anonymous_data'] = 1;
+		}
 
 		// 2. Remove Yoast stuff
-			delete_option( 'yoast-ga-access_token' );
-			delete_option( 'yoast-ga-refresh_token' );
-			delete_option( 'yst_ga' );
-			delete_option( 'yst_ga_api' );
+		delete_option( 'yoast-ga-access_token' );
+		delete_option( 'yoast-ga-refresh_token' );
+		delete_option( 'yst_ga' );
+		delete_option( 'yst_ga_api' );
 
 
 		// 3. Remove fake settings from other plugins using our key for some reason and old settings of ours
-			$settings = array(
-				'debug_mode',
-				'track_download_as',
-				'analytics_profile',
-				'analytics_profile_code',
-				'analytics_profile_name',
-				'manual_ua_code',
-				'track_outbound',
-				'track_download_as',
-				'enhanced_link_attribution',
-				'oauth_version',
-				'monsterinsights_oauth_status',
-				'firebug_lite',
-				'google_auth_code',
-				'allow_tracking',
-			);
+		$settings = array(
+			'debug_mode',
+			'track_download_as',
+			'analytics_profile',
+			'analytics_profile_code',
+			'analytics_profile_name',
+			'manual_ua_code',
+			'track_outbound',
+			'track_download_as',
+			'enhanced_link_attribution',
+			'oauth_version',
+			'monsterinsights_oauth_status',
+			'firebug_lite',
+			'google_auth_code',
+			'allow_tracking',
+		);
 
-			foreach ( $settings as $setting ) {
-				if ( ! empty( $this->new_settings[ $setting ] ) ) {
-					unset( $this->new_settings[ $setting ] );
-				}
+		foreach ( $settings as $setting ) {
+			if ( ! empty( $this->new_settings[ $setting ] ) ) {
+				unset( $this->new_settings[ $setting ] );
 			}
+		}
 
-			$settings = array(
-				'_repeated',
-				'ajax',
-				'asmselect0',
-				'bawac_force_nonce',
-				'icl_post_language',
-				'saved_values',
-				'mlcf_email',
-				'mlcf_name',
-				'cron_failed',
-				'undefined',
-				'cf_email',
-				'cf_message',
-				'cf_name',
-				'cf_number',
-				'cf_phone',
-				'cf_subject',
-				'content',
-				'credentials',
-				'cron_failed',
-				'cron_last_run',
-				'global-css',
-				'grids',
-				'page',
-				'punch-fonts',
-				'return_tab',
-				'skins',
-				'navigation-skins',
-				'title',
-				'type',
-				'wpcf_email',
-				'wpcf_your_name',
-			);
+		$settings = array(
+			'_repeated',
+			'ajax',
+			'asmselect0',
+			'bawac_force_nonce',
+			'icl_post_language',
+			'saved_values',
+			'mlcf_email',
+			'mlcf_name',
+			'cron_failed',
+			'undefined',
+			'cf_email',
+			'cf_message',
+			'cf_name',
+			'cf_number',
+			'cf_phone',
+			'cf_subject',
+			'content',
+			'credentials',
+			'cron_failed',
+			'cron_last_run',
+			'global-css',
+			'grids',
+			'page',
+			'punch-fonts',
+			'return_tab',
+			'skins',
+			'navigation-skins',
+			'title',
+			'type',
+			'wpcf_email',
+			'wpcf_your_name',
+		);
 
-			foreach ( $settings as $setting ) {
-				if ( ! empty( $this->new_settings[ $setting ] ) ) {
-					unset( $this->new_settings[ $setting ] );
-				}
+		foreach ( $settings as $setting ) {
+			if ( ! empty( $this->new_settings[ $setting ] ) ) {
+				unset( $this->new_settings[ $setting ] );
 			}
+		}
 
 		// 4. Remove old crons
-			if ( wp_next_scheduled( 'monsterinsights_daily_cron' ) ) {
-				wp_clear_scheduled_hook( 'monsterinsights_daily_cron' );
-			}
-			if ( wp_next_scheduled( 'monsterinsights_send_tracking_data' ) ) {
-				wp_clear_scheduled_hook( 'monsterinsights_send_tracking_data' );
-			}
+		if ( wp_next_scheduled( 'monsterinsights_daily_cron' ) ) {
+			wp_clear_scheduled_hook( 'monsterinsights_daily_cron' );
+		}
+		if ( wp_next_scheduled( 'monsterinsights_send_tracking_data' ) ) {
+			wp_clear_scheduled_hook( 'monsterinsights_send_tracking_data' );
+		}
 
-			if ( wp_next_scheduled( 'monsterinsights_send_tracking_checkin' ) ) {
-				wp_clear_scheduled_hook( 'monsterinsights_send_tracking_checkin' );
-			}
+		if ( wp_next_scheduled( 'monsterinsights_send_tracking_checkin' ) ) {
+			wp_clear_scheduled_hook( 'monsterinsights_send_tracking_checkin' );
+		}
 
-			if ( wp_next_scheduled( 'monsterinsights_weekly_cron' ) ) {
-				wp_clear_scheduled_hook( 'monsterinsights_weekly_cron' );
-			}
+		if ( wp_next_scheduled( 'monsterinsights_weekly_cron' ) ) {
+			wp_clear_scheduled_hook( 'monsterinsights_weekly_cron' );
+		}
 
-			if ( wp_next_scheduled( 'yst_ga_aggregate_data' ) ) {
-				wp_clear_scheduled_hook( 'yst_ga_aggregate_data' );
-			}
+		if ( wp_next_scheduled( 'yst_ga_aggregate_data' ) ) {
+			wp_clear_scheduled_hook( 'yst_ga_aggregate_data' );
+		}
 
-			delete_option( 'monsterinsights_tracking_last_send' );
-			delete_option( 'mi_tracking_last_send' );
+		delete_option( 'monsterinsights_tracking_last_send' );
+		delete_option( 'mi_tracking_last_send' );
 
 		// 5. Remove old option
-			delete_option( 'monsterinsights_settings_version' );
+		delete_option( 'monsterinsights_settings_version' );
 	}
 
 
@@ -818,5 +822,28 @@ class MonsterInsights_Install {
 		// Delete transient for GA data with wrong expiration date.
 		delete_transient( 'monsterinsights_popular_posts_ga_data' );
 
+	}
+
+	/**
+	 * Upgrade routine for version 7.14.0
+	 */
+	public function v7140_upgrades() {
+
+		// Clear notification cron events no longer used.
+		$cron = get_option( 'cron' );
+
+		foreach ( $cron as $timestamp => $cron_array ) {
+			if ( ! is_array( $cron_array ) ) {
+				continue;
+			}
+			foreach ( $cron_array as $cron_key => $cron_data ) {
+				if ( 0 === strpos( $cron_key, 'monsterinsights_notification_' ) ) {
+					wp_unschedule_event( $timestamp, $cron_key, array() );
+				}
+			}
+		}
+
+		// Delete existing year in review report option.
+		delete_option( 'monsterinsights_report_data_yearinreview' );
 	}
 }

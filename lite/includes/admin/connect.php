@@ -111,7 +111,7 @@ class MonsterInsights_Connect {
 		$post_oth = ! empty( $_REQUEST['oth'] ) ? sanitize_text_field( $_REQUEST['oth'] ) : '';
 		$post_url = ! empty( $_REQUEST['file'] ) ? $_REQUEST['file'] : '';
 		$license  = get_option( 'monsterinsights_connect', false );
-		$network  = ! empty( $license['network'] ) ? boolval( $license['network'] ) : false;
+		$network  = ! empty( $license['network'] ) ? (bool) $license['network'] : false;
 		if ( empty( $post_oth ) || empty( $post_url ) ) {
 			wp_send_json_error( $error );
 		}
