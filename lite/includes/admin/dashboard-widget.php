@@ -241,9 +241,6 @@ class MonsterInsights_Dashboard_Widget {
 		$reports = $default['reports'];
 		if ( isset( $_POST['reports'] ) ) {
 			$reports = json_decode( sanitize_text_field( wp_unslash( $_POST['reports'] ) ), true );
-			foreach ( $reports as $report => $reports_sections ) {
-				$reports[ $report ] = array_map( 'boolval', $reports_sections );
-			}
 		}
 
 		$options = array(

@@ -267,8 +267,32 @@ class MonsterInsights_Notifications {
 		$notifications              = array();
 		$notifications['active']    = array_merge( $events, $feed );
 		$notifications['active']    = $this->get_notifications_with_human_readeable_start_time( $notifications['active'] );
+		$notifications['active']    = $this->get_notifications_with_formatted_content( $notifications['active'] );
 		$notifications['dismissed'] = ! empty( $option['dismissed'] ) ? $option['dismissed'] : array();
 		$notifications['dismissed'] = $this->get_notifications_with_human_readeable_start_time( $notifications['dismissed'] );
+		$notifications['dismissed'] = $this->get_notifications_with_formatted_content( $notifications['dismissed'] );
+
+		return $notifications;
+	}
+
+	/**
+	 * Improve format of the content of notifications before display. By default just runs wpautop.
+	 *
+	 * @param array $notifications The notifications to be parsed.
+	 *
+	 * @return mixed
+	 */
+	public function get_notifications_with_formatted_content( $notifications ) {
+		if ( ! is_array( $notifications ) || empty( $notifications ) ) {
+			return $notifications;
+		}
+
+		foreach ( $notifications as $key => $notification ) {
+			if ( ! empty( $notification['content'] ) ) {
+				$notifications[ $key ]['content'] = wpautop( $notification['content'] );
+				$notifications[ $key ]['content'] = apply_filters( 'monsterinsights_notification_content_display', $notifications[ $key ]['content'] );
+			}
+		}
 
 		return $notifications;
 	}
@@ -307,6 +331,7 @@ class MonsterInsights_Notifications {
 	 */
 	public function get_active_notifications() {
 		$notifications = $this->get();
+
 		return isset( $notifications['active'] ) ? $notifications['active'] : array();
 	}
 
@@ -319,6 +344,7 @@ class MonsterInsights_Notifications {
 	 */
 	public function get_dismissed_notifications() {
 		$notifications = $this->get();
+
 		return isset( $notifications['dismissed'] ) ? $notifications['dismissed'] : array();
 	}
 
@@ -350,8 +376,10 @@ class MonsterInsights_Notifications {
 
 		$option = $this->get_option();
 
-		if ( in_array( $notification['id'], $option['dismissed'] ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
-			return;
+		foreach ( $option['dismissed'] as $item ) {
+			if ( $item['id'] === $notification['id'] ) {
+				return;
+			}
 		}
 
 		foreach ( $option['events'] as $item ) {
@@ -376,6 +404,8 @@ class MonsterInsights_Notifications {
 	/**
 	 * Update notification data from feed.
 	 *
+	 * @param array $option (Optional) Added @since 7.13.2
+	 *
 	 * @since {VERSION}
 	 */
 	public function update() {
@@ -389,7 +419,7 @@ class MonsterInsights_Notifications {
 				'update'    => time(),
 				'feed'      => $feed,
 				'events'    => $option['events'],
-				'dismissed' => $option['dismissed'],
+				'dismissed' => array_slice( $option['dismissed'], 0, 30 ), // Limit dismissed notifications to last 30.
 			)
 		);
 	}
@@ -411,31 +441,31 @@ class MonsterInsights_Notifications {
 		$id     = sanitize_text_field( wp_unslash( $_POST['id'] ) );
 		$option = $this->get_option();
 
-		// dismiss all notifications and add them to dissmiss array
-		if ( $id === 'all' ) {
+		// Dismiss all notifications and add them to dissmiss array.
+		if ( 'all' === $id ) {
 			if ( is_array( $option['feed'] ) && ! empty( $option['feed'] ) ) {
 				foreach ( $option['feed'] as $key => $notification ) {
-					array_unshift($option['dismissed'], $notification);
+					array_unshift( $option['dismissed'], $notification );
 					unset( $option['feed'][ $key ] );
 				}
 			}
 			if ( is_array( $option['events'] ) && ! empty( $option['events'] ) ) {
 				foreach ( $option['events'] as $key => $notification ) {
-					array_unshift($option['dismissed'], $notification);
+					array_unshift( $option['dismissed'], $notification );
 					unset( $option['events'][ $key ] );
 				}
 			}
 		}
 
-		$type   = is_numeric( $id ) ? 'feed' : 'events';
+		$type = is_numeric( $id ) ? 'feed' : 'events';
 
 		// Remove notification and add in dismissed array.
 		if ( is_array( $option[ $type ] ) && ! empty( $option[ $type ] ) ) {
 			foreach ( $option[ $type ] as $key => $notification ) {
 				if ( $notification['id'] == $id ) { // phpcs:ignore WordPress.PHP.StrictComparisons
-					// add notification to dismissed array
-					array_unshift($option['dismissed'], $notification);
-					// remove notification from feed or events
+					// Add notification to dismissed array.
+					array_unshift( $option['dismissed'], $notification );
+					// Remove notification from feed or events.
 					unset( $option[ $type ][ $key ] );
 					break;
 				}
@@ -455,7 +485,7 @@ class MonsterInsights_Notifications {
 	public function get_menu_count() {
 
 		if ( $this->get_count() > 0 ) {
-			return '<span class="monsterinsights-menu-notification-indicator">'. $this->get_count() .'</span>';
+			return '<span class="monsterinsights-menu-notification-indicator">' . $this->get_count() . '</span>';
 		}
 
 		return '';
@@ -485,7 +515,7 @@ class MonsterInsights_Notifications {
 	 *
 	 * @return string
 	 */
-	public function get_view_url( ) {
+	public function get_view_url() {
 
 		$disabled = monsterinsights_get_option( 'dashboards_disabled', false );
 
@@ -510,8 +540,8 @@ class MonsterInsights_Notifications {
 
 		$url = add_query_arg(
 			array(
-				'page'    => 'monsterinsights_reports',
-				'open'    => 'monsterinsights_notification_sidebar',
+				'page' => 'monsterinsights_reports',
+				'open' => 'monsterinsights_notification_sidebar',
 			),
 			admin_url( 'admin.php' )
 		);

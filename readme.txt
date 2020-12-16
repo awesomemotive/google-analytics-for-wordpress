@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, WooCommerce stats, analytics dashboard, universal google analytics, statistics, tracking, stats, google, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
 Tested up to: 5.5
-Stable tag: 7.13.3
+Stable tag: 7.14.0
 Requires PHP: 5.2
 License: GPL v3
 
@@ -274,6 +274,16 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.14.0: December 16, 2020 =
+- New: See how your site did in 2020 with our upcoming, limited-time only, Year in Review report and how you can improve next year.
+- Tweak: We updated our campaign URL builder tool to encode parameters better.
+- Tweak: We improved the way our contextual insights work so they use resources more efficiently when loading report data.
+- Tweak: Selecting the no styling option in Popular Posts no longer loads any of the inline styles customized in the settings.
+- Tweak: We removed a JavaScript dependency from the Popular Posts widget settings screen.
+- Tweak: We limited the number of dismissed notifications stored.
+- Fix: Popular posts images now include a value for the alt parameter.
+- Fix: We added an extra check to prevent an infinite recursion error in the Popular Posts widget when just one post was selected.
+
 = 7.13.3: December 10, 2020 =
 - Fix: We adjusted our code to prevent a notice showing up on WordPress 5.6 in the post edit screen.
 

@@ -35,7 +35,10 @@
 		}
 
 		function init_multiselect() {
-			$('#widgets-right .monsterinsights-multiselect').select2({
+			if ( ! jQuery.fn.select300 ) {
+				return;
+			}
+			$('#widgets-right .monsterinsights-multiselect').select300({
 				ajax: {
 					type: 'POST',
 					url: ajaxurl,

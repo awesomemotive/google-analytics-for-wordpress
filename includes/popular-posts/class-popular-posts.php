@@ -499,6 +499,11 @@ class MonsterInsights_Popular_Posts {
 	 */
 	public function get_element_style( $theme = '', $object, $atts, $key = '' ) {
 
+		if ( 'no_styles' === $this->styling ) {
+			// If no styles is selected don't output any styles.
+			return '';
+		}
+
 		if ( empty( $theme ) ) {
 			$theme = $this->theme;
 		}
@@ -688,7 +693,7 @@ class MonsterInsights_Popular_Posts {
 			}
 		}
 
-		if ( apply_filters( 'monsterinsights_popular_posts_show_duplicates', true ) && count( $posts ) > 0 && count( $returned_posts ) === 0 ) {
+		if ( apply_filters( 'monsterinsights_popular_posts_show_duplicates', true ) && count( $posts ) > 0 && count( $this->shown_posts ) > 0 && count( $returned_posts ) === 0 ) {
 			$this->shown_posts = array(); // Reset shown posts.
 			return $this->get_posts_to_display(); // Run the function to grab the same posts again.
 		}

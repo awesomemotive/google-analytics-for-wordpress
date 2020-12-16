@@ -6,7 +6,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/?utm_source=liteplugin&utm_medium=pluginheader&utm_campaign=authoruri&utm_content=7%2E0%2E0
  *
- * Version:             7.13.3
+ * Version:             7.14.0
  * Requires at least:   3.8.0
  * Requires PHP:        5.2
  *
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '7.13.3';
+	public $version = '7.14.0';
 
 	/**
 	 * Plugin file.
@@ -225,7 +225,7 @@ final class MonsterInsights_Lite {
 
 			// This does the version to version background upgrade routines and initial install
 			$mi_version = get_option( 'monsterinsights_current_version', '5.5.3' );
-			if ( version_compare( $mi_version, '7.13.0', '<' ) ) {
+			if ( version_compare( $mi_version, '7.14.0', '<' ) ) {
 				monsterinsights_lite_call_install_and_upgrade();
 			}
 
@@ -545,6 +545,7 @@ final class MonsterInsights_Lite {
 			// Notifications class.
 			require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/notifications.php';
 			require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/notification-event.php';
+			require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/notification-event-runner.php';
 			// Add notification manual events for lite version.
 			require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/admin/notifications/notification-events.php';
 		}

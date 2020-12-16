@@ -85,7 +85,7 @@ class MonsterInsights_Popular_Posts_Widget extends MonsterInsights_Popular_Posts
 		}
 
 		if ( isset( $atts['widget_title'] ) ) {
-			$show_title = boolval( $atts['widget_title'] );
+			$show_title = (bool) $atts['widget_title'];
 			$title_text = empty( $atts['widget_title_text'] ) ? '' : $atts['widget_title_text'];
 		} else {
 			$show_title = $this->title;
@@ -110,7 +110,7 @@ class MonsterInsights_Popular_Posts_Widget extends MonsterInsights_Popular_Posts
 			$html .= '<a href="' . $post['link'] . '">';
 			if ( ! empty( $theme_styles['image'] ) && ! empty( $post['image'] ) ) {
 				$html .= '<div class="monsterinsights-widget-popular-posts-image">';
-				$html .= '<img src="' . $post['image'] . '" srcset=" ' . $post['srcset'] . ' " />';
+				$html .= '<img src="' . $post['image'] . '" srcset=" ' . $post['srcset'] . ' " alt="' . esc_attr( $post['title'] ) . '" />';
 				$html .= '</div>';
 			}
 			$html .= '<div class="monsterinsights-widget-popular-posts-text">';

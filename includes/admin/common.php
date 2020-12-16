@@ -805,267 +805,6 @@ function monsterinsights_remove_unnecessary_footer_hooks() {
 
 add_action( 'admin_head', 'monsterinsights_remove_unnecessary_footer_hooks', 15 );
 
-/**
- * Display dismissable admin pointer for year in review 2019 report
- *
- */
-function monsterinsights_yearinreview_admin_menu_tooltip() {
-
-	$dismiss_tooltip     = get_option( 'monsterinsights_yearinreview_dismiss_admin_tooltip', false );
-	$activated           = get_option( 'monsterinsights_over_time', array() );
-	$ua_code             = monsterinsights_get_ua();
-	$dashboards_disabled = monsterinsights_get_option( 'dashboards_disabled', false );
-
-	if ( $dashboards_disabled ) {
-		return;
-	}
-
-	if ( ! current_user_can( 'monsterinsights_view_dashboard' ) ) {
-		return;
-	}
-
-	if ( monsterinsights_is_reports_page() || monsterinsights_is_settings_page() ) {
-		// Don't show on MI pages.
-		return;
-	}
-
-	// equivalent to: 01/01/2020 @ 12:00am (UTC)
-	$new_year = '1577836800';
-
-	// equivalent to: 01/02/2020 @ 12:00am (UTC)
-	$start_time = '1577923200';
-
-	// equivalent to: 01/13/2020 @ 12:00am (UTC)
-	$end_time = '1578873600';
-
-	if ( $dismiss_tooltip ) {
-		return;
-	}
-
-	// don't show before January 02, 2020
-	if ( $start_time > time() ) {
-		return;
-	}
-
-	// don't show after January 13, 2020
-	if ( $end_time < time() ) {
-		return;
-	}
-
-	if ( empty( $activated['connected_date'] ) || ( $activated['connected_date'] > $new_year ) || empty( $ua_code ) ) {
-		return;
-	}
-
-	// remove lite upsell
-	remove_action( 'adminmenu', 'monsterinsights_get_admin_menu_tooltip' );
-
-	$url = admin_url( 'admin.php?page=monsterinsights_reports#/year-in-review' );
-	?>
-	<div id="monsterinsights-yearinreview-admin-menu-tooltip" class="monsterinsights-yearinreview-admin-menu-tooltip-hide">
-		<div class="monsterinsights-yearinreview-admin-menu-tooltip-header">
-			<span class="monsterinsights-yearinreview-admin-menu-tooltip-icon">
-				<span class="dashicons dashicons-megaphone"></span>
-			</span>
-			<?php esc_html_e( 'Your 2019 Analytics Report', 'google-analytics-for-wordpress' ); ?>
-			<a href="#" class="monsterinsights-yearinreview-admin-menu-tooltip-close">
-				<span class="dashicons dashicons-dismiss"></span>
-			</a>
-		</div>
-		<div class="monsterinsights-yearinreview-admin-menu-tooltip-content">
-			<strong><?php esc_html_e( 'See how your website performed this year and find tips along the way to help grow even more in 2020!', 'google-analytics-for-wordpress' ); ?></strong>
-			<p>
-				<a href="<?php echo esc_url( $url ); ?>" class="button button-primary monsterinsights-yearinreview-admin-menu-tooltip-btn-link">
-					<?php esc_html_e( 'View 2019 Year in Review report!', 'google-analytics-for-wordpress' ); ?>
-				</a>
-			</p>
-		</div>
-	</div>
-	<style type="text/css">
-		#monsterinsights-yearinreview-admin-menu-tooltip {
-			position: absolute;
-			left: 100%;
-			top: 100%;
-			background: #fff;
-			margin-left: 16px;
-			width: 350px;
-			box-shadow: 0px 4px 7px 0px #ccc;
-		}
-
-		#monsterinsights-yearinreview-admin-menu-tooltip:before {
-			content: '';
-			width: 0;
-			height: 0;
-			border-style: solid;
-			border-width: 12px 12px 12px 0;
-			border-color: transparent #fff transparent transparent;
-			position: absolute;
-			right: 100%;
-			top: 130px;
-			z-index: 10;
-		}
-
-		#monsterinsights-yearinreview-admin-menu-tooltip:after {
-			content: '';
-			width: 0;
-			height: 0;
-			border-style: solid;
-			border-width: 13px 13px 13px 0;
-			border-color: transparent #ccc transparent transparent;
-			position: absolute;
-			right: 100%;
-			margin-left: -1px;
-			top: 129px;
-			z-index: 5;
-		}
-
-		#monsterinsights-yearinreview-admin-menu-tooltip.monsterinsights-yearinreview-tooltip-arrow-top:before {
-			top: 254px;
-		}
-
-		#monsterinsights-yearinreview-admin-menu-tooltip.monsterinsights-yearinreview-tooltip-arrow-top:after {
-			top: 253px;
-		}
-
-		.monsterinsights-yearinreview-admin-menu-tooltip-header {
-			background: #03a0d2;
-			padding: 5px 12px;
-			font-size: 14px;
-			font-weight: 700;
-			font-family: Arial, Helvetica, "Trebuchet MS", sans-serif;
-			color: #fff;
-			line-height: 1.6;
-		}
-
-		.monsterinsights-yearinreview-admin-menu-tooltip-icon {
-			background: #fff;
-			border-radius: 50%;
-			width: 28px;
-			height: 25px;
-			display: inline-block;
-			color: #03a0d2;
-			text-align: center;
-			padding: 3px 0 0;
-			margin-right: 6px;
-		}
-
-		.monsterinsights-yearinreview-admin-menu-tooltip-hide {
-			display: none;
-		}
-
-		.monsterinsights-yearinreview-admin-menu-tooltip-content {
-			padding: 20px 15px 7px;
-		}
-
-		.monsterinsights-yearinreview-admin-menu-tooltip-content strong {
-			font-size: 14px;
-		}
-
-		.monsterinsights-yearinreview-admin-menu-tooltip-content p strong {
-			font-size: 13px;
-		}
-
-		.monsterinsights-yearinreview-admin-menu-tooltip-close {
-			color: #fff;
-			text-decoration: none;
-			position: absolute;
-			right: 10px;
-			top: 12px;
-			display: block;
-		}
-
-		.monsterinsights-yearinreview-admin-menu-tooltip-close:hover {
-			color: #fff;
-			text-decoration: none;
-		}
-
-		.monsterinsights-yearinreview-admin-menu-tooltip-close .dashicons {
-			font-size: 14px;
-		}
-
-		@media ( max-width: 782px ) {
-			#monsterinsights-yearinreview-admin-menu-tooltip {
-				display: none;
-			}
-		}
-	</style>
-	<script type="text/javascript">
-		if ( 'undefined' !== typeof jQuery ) {
-			jQuery( function ( $ ) {
-				var $tooltip = $( document.getElementById( 'monsterinsights-yearinreview-admin-menu-tooltip' ) );
-				var $menuwrapper = $( document.getElementById( 'adminmenuwrap' ) );
-				var $menuitem = $( document.getElementById( 'toplevel_page_monsterinsights_reports' ) );
-				if ( 0 === $menuitem.length ) {
-					$menuitem = $( document.getElementById( 'toplevel_page_monsterinsights_network' ) );
-				}
-
-				if ( $menuitem.length ) {
-					$menuwrapper.append( $tooltip );
-					$tooltip.removeClass( 'monsterinsights-yearinreview-admin-menu-tooltip-hide' );
-				}
-
-				function alignTooltip() {
-					var sticky = $( 'body' ).hasClass( 'sticky-menu' );
-
-					var menuitem_pos = $menuitem.position();
-					var tooltip_top = menuitem_pos.top - 124;
-					if ( sticky && $( window ).height() > $menuwrapper.height() + 150 ) {
-						$tooltip.removeClass( 'monsterinsights-yearinreview-tooltip-arrow-top' );
-					} else {
-						tooltip_top = menuitem_pos.top - 250;
-						$tooltip.addClass( 'monsterinsights-yearinreview-tooltip-arrow-top' );
-					}
-					// Don't let the tooltip go outside of the screen and make the close button not visible.
-					if ( tooltip_top < 40 ) {
-						tooltip_top = 40;
-					}
-					$tooltip.css( {
-						top: tooltip_top + 'px'
-					} );
-				}
-
-				var $document = $( document );
-				var timeout = setTimeout( alignTooltip, 10 );
-				$document.on( 'wp-pin-menu wp-window-resized.pin-menu postboxes-columnchange.pin-menu postbox-toggled.pin-menu wp-collapse-menu.pin-menu wp-scroll-start.pin-menu', function () {
-					if ( timeout ) {
-						clearTimeout( timeout );
-					}
-					timeout = setTimeout( alignTooltip, 10 );
-				} );
-
-				$( '.monsterinsights-yearinreview-admin-menu-tooltip-btn-link' ).on( 'click', function ( e ) {
-					hideYearInReviewTooltip();
-				} );
-
-				$( '.monsterinsights-yearinreview-admin-menu-tooltip-close' ).on( 'click', function ( e ) {
-					e.preventDefault();
-					hideYearInReviewTooltip();
-				} );
-
-				function hideYearInReviewTooltip() {
-					$tooltip.addClass( 'monsterinsights-yearinreview-admin-menu-tooltip-hide' );
-					$.post( ajaxurl, {
-						action: 'monsterinsights_yearinreview_hide_admin_tooltip',
-						nonce: '<?php echo esc_js( wp_create_nonce( 'mi-admin-nonce' ) ); ?>',
-					} );
-				}
-			} );
-		}
-	</script>
-	<?php
-}
-
-add_action( 'adminmenu', 'monsterinsights_yearinreview_admin_menu_tooltip', 5 );
-
-/**
- * Store the time when the year in review tooltip was hidden so it won't show again
- */
-function monsterinsights_mark_yearinreview_tooltip_hidden() {
-	check_ajax_referer( 'mi-admin-nonce', 'nonce' );
-	update_option( 'monsterinsights_yearinreview_dismiss_admin_tooltip', true );
-	wp_send_json_success();
-}
-
-add_action( 'wp_ajax_monsterinsights_yearinreview_hide_admin_tooltip', 'monsterinsights_mark_yearinreview_tooltip_hidden' );
 
 /**
  * Prevent plugins/themes from removing the version number from scripts loaded by our plugin.
@@ -1110,3 +849,105 @@ function monsterinsights_get_php_wp_version_warning_data() {
 		'wp_update_link'       => monsterinsights_get_url( 'settings-notice', 'settings-page', 'https://www.monsterinsights.com/docs/update-wordpress/' ),
 	);
 }
+
+/**
+ * Check WP and PHP version and add contextual notifications for upgrades.
+ */
+function monsterinsights_maybe_add_wp_php_version_notification() {
+	global $wp_version;
+
+	$icon              = '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16" fill="#FAD1D1"/><path d="M17.3634 19.0714C17.792 19.4821 18.0063 19.9821 18.0063 20.5714C18.0063 21.1607 17.792 21.6607 17.3634 22.0714C16.9527 22.5 16.4527 22.7143 15.8634 22.7143C15.2742 22.7143 14.7652 22.5 14.3367 22.0714C13.9259 21.6607 13.7206 21.1607 13.7206 20.5714C13.7206 19.9821 13.9259 19.4821 14.3367 19.0714C14.7652 18.6429 15.2742 18.4286 15.8634 18.4286C16.4527 18.4286 16.9527 18.6429 17.3634 19.0714ZM13.9617 9.66964C13.9617 9.49107 14.0242 9.33929 14.1492 9.21429C14.2742 9.07143 14.4259 9 14.6045 9H17.1224C17.3009 9 17.4527 9.07143 17.5777 9.21429C17.7027 9.33929 17.7652 9.49107 17.7652 9.66964L17.3902 16.9554C17.3902 17.1339 17.3277 17.2857 17.2027 17.4107C17.0777 17.5179 16.9259 17.5714 16.7474 17.5714H14.9795C14.8009 17.5714 14.6492 17.5179 14.5242 17.4107C14.3992 17.2857 14.3367 17.1339 14.3367 16.9554L13.9617 9.66964Z" fill="#EB5757"/></svg>';
+	$needs_php_warning = version_compare( phpversion(), '5.6', '<' );
+	$needs_wp_warning  = version_compare( $wp_version, '4.9', '<' );
+
+	if ( $needs_php_warning ) {
+		$notification['id']    = 'upgrade_php_56_notification';
+		$notification['title'] = __( 'ACTION REQUIRED: Your PHP version is putting your site at risk!', 'google-analytics-for-wordpress' );
+		if ( $needs_wp_warning ) {
+			$notification['title'] = __( 'ACTION REQUIRED: Speed your website up 400% with a single email!', 'google-analytics-for-wordpress' );
+		}
+
+		$php_url = monsterinsights_get_url( 'notifications', 'upgrade-php', 'https://www.monsterinsights.com/docs/update-php' );
+
+		$notification['type'] = array( 'basic', 'lite', 'master', 'plus', 'pro' );
+		// Translators: Placeholder is for the current PHP version.
+		$notification['content'] = sprintf( esc_html__( 'In the next major release of MonsterInsights we are planning to remove support for the version of PHP you are using (%s). This insecure version is no longer supported by WordPress itself, so you are already missing out on the latest features of WordPress along with critical updates for security and performance (modern PHP versions make websites much faster).', 'google-analytics-for-wordpress' ), phpversion() ) . "\n\n";
+
+		// Translators: Placeholders add a link to an article.
+		$notification['content'] .= sprintf( esc_html__( 'To ensure MonsterInsights and other plugins on your site continue to function properly, and avoid putting your site at risk, please take a few minutes to ask your website hosting provider to upgrade the version of PHP to a modern PHP version (7.2 or newer). We provide helpful templates for how to ask them %1$shere%2$s.', 'google-analytics-for-wordpress' ), '<a target="_blank" href="' . $php_url . '">', '</a>' ) . "\n\n";
+		$notification['content'] .= esc_html__( 'Upgrading your PHP version will make sure you are able to continue using WordPress without issues in the future, keep your site secure, and will also make your website up to 400% faster!', 'google-analytics-for-wordpress' );
+
+		$notification['icon'] = $icon;
+		$notification['btns'] = array(
+			'learn_more' => array(
+				'url'  => $php_url,
+				'text' => esc_html__( 'Learn More', 'google-analytics-for-wordpress' ),
+			),
+		);
+
+		// Add the notification.
+		MonsterInsights()->notifications->add( $notification );
+	}
+
+	if ( $needs_wp_warning ) {
+
+		$isitwp_url     = 'https://www.isitwp.com/upgrading-wordpress-is-easier-than-you-think/?utm_source=monsterinsights&utm_medium=notifications&utm_campaign=upgradewp';
+		$wpbeginner_url = 'https://www.wpbeginner.com/beginners-guide/why-you-should-always-use-the-latest-version-of-wordpress/utm_source=monsterinsights&utm_medium=notifications&utm_campaign=upgradewp';
+
+		$notification['id']    = 'upgrade_wp_49_notification';
+		$notification['title'] = __( 'ACTION REQUIRED: Your WordPress version is putting your site at risk!', 'google-analytics-for-wordpress' );
+		$notification['type']  = array( 'basic', 'lite', 'master', 'plus', 'pro' );
+		// Translators: Placeholder is for the current WordPress version.
+		$notification['content'] = sprintf( esc_html__( 'In the next major release of MonsterInsights we are planning to remove support for the version of WordPress you are using (version %s). This version is several years out of date, and most plugins do not support this version anymore, so you could be missing out on critical updates for performance and security already!', 'google-analytics-for-wordpress' ), $wp_version ) . "\n\n";
+
+		$notification['content'] .= esc_html__( 'The good news: updating WordPress has never been easier and only takes a few moments.', 'google-analytics-for-wordpress' );
+		// Translators: Placeholders add links to articles.
+		$notification['content'] .= sprintf( esc_html__( 'To update, we recommend following this %1$sstep by step guide for updating WordPress%2$s from IsItWP and afterwards check out %3$sWhy You Should Always Use the Latest Version of WordPress%4$s on WPBeginner.', 'google-analytics-for-wordpress' ), '<a target="_blank" href="' . $isitwp_url . '">', '</a>', '<a target="_blank" href="' . $wpbeginner_url . '">', '</a>' ) . "\n\n";
+
+		$notification['icon'] = $icon;
+		$notification['btns'] = array(
+			'learn_more' => array(
+				'url'  => $isitwp_url,
+				'text' => esc_html__( 'Learn More', 'google-analytics-for-wordpress' ),
+			),
+		);
+
+		// Add the notification.
+		MonsterInsights()->notifications->add( $notification );
+	}
+
+}
+
+add_action( 'admin_init', 'monsterinsights_maybe_add_wp_php_version_notification' );
+
+/**
+ * Add notification for Year In Review report for year 2021.
+ *
+ * @since 7.13.2
+ *
+ * @return void
+ */
+function monsterinsights_year_in_review_notification() {
+
+	// Check if dates are between Jan 1st 2021 & 13th Jan 2021.
+	if ( monsterinsights_date_is_between( '2021-01-01', '2021-01-14' ) ) {
+
+		$notification['id']      = 'monsterinsights_notification_year_in_review';
+		$notification['type']    = array( 'basic', 'lite', 'master', 'plus', 'pro' );
+		$notification['start']   = '2021-01-01';
+		$notification['end']     = '2021-01-14';
+		$notification['title']   = esc_html__( 'View 2020 Year in Review report!', 'google-analytics-for-wordpress' );
+		$notification['content'] = esc_html__( 'See how your website performed this year and find tips along the way to help grow even more in 2021!', 'google-analytics-for-wordpress' );
+		$notification['btns']    = array(
+			'learn_more' => array(
+				'url'  => esc_url( admin_url( 'admin.php?page=monsterinsights_reports#/year-in-review' ) ),
+				'text' => esc_html__( 'Learn More', 'google-analytics-for-wordpress' ),
+			),
+		);
+
+		// Add the notification.
+		MonsterInsights()->notifications->add( $notification );
+	}
+}
+
+add_action( 'admin_init', 'monsterinsights_year_in_review_notification' );

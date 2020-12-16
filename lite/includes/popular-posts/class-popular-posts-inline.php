@@ -79,7 +79,7 @@ class MonsterInsights_Popular_Posts_Inline extends MonsterInsights_Popular_Posts
 
 		if ( ! empty( $theme_styles['image'] ) && ! empty( $posts[0]['image'] ) ) {
 			$html .= '<div class="monsterinsights-inline-popular-posts-image">';
-			$html .= '<img src="' . $posts[0]['image'] . '" srcset=" ' . $posts[0]['srcset'] . ' " />';
+			$html .= '<img src="' . $posts[0]['image'] . '" srcset=" ' . $posts[0]['srcset'] . ' " alt="' . esc_attr( $posts[0]['title'] ) . '" />';
 			$html .= '</div>';
 		}
 		$html .= '<div class="monsterinsights-inline-popular-posts-text">';
