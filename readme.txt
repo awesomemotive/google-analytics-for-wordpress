@@ -3,8 +3,8 @@ Contributors: chriscct7, smub
 Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, WooCommerce stats, analytics dashboard, universal google analytics, statistics, tracking, stats, google, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
-Tested up to: 5.5
-Stable tag: 7.14.0
+Tested up to: 5.6
+Stable tag: 7.15.0
 Requires PHP: 5.2
 License: GPL v3
 
@@ -259,7 +259,13 @@ If you like this plugin, then consider checking out our other projects:
 
 * <a href="http://optinmonster.com/" rel="friend" title="OptinMonster">OptinMonster</a> - Get More Email Subscribers
 * <a href="https://wpforms.com/" rel="friend" title="WPForms">WPForms</a> - Best WordPress Contact Form Plugin
-* <a href="https://www.seedprod.com/" rel="friend">SeedProd</a> - Most popular coming soon & maintenance mode plugin for WordPress
+* <a href="https://aioseo.com/" rel="friend" title="AIOSEO">AIOSEO</a> - The original WordPress SEO plugin to help you rank higher in search results (trusted by over 2 million sites)
+* <a href="https://www.seedprod.com/" rel="friend" title="SeedProd">SeedProd</a> - Most popular coming soon & maintenance mode plugin for WordPress
+* <a href="https://wpmailsmtp.com/" rel="friend" title="WP Mail SMTP">WP Mail SMTP</a> - Improve email deliverability for your contact form with the most popular SMTP plugin for WordPress
+* <a href="https://rafflepress.com/" rel="friend" title="RafflePress">RafflePress</a> - Best WordPress giveaway and contest plugin to grow traffic and social followers
+* <a href="https://smashballoon.com/" rel="friend" title="Smash Balloon">Smash Balloon</a> - #1 social feeds plugin for WordPress - display social media content in WordPress without code
+* <a href="https://pushengage.com/" rel="friend" title="PushEngage">PushEngage</a> - Connect with visitors after they leave your website with the leading web push notification plugin
+* <a href="https://trustpulse.com/" rel="friend" title="TrustPulse">TrustPulse</a> - Add real-time social proof notifications to boost your store conversions by up to 15%
 
 This plugin would not be possible without the help and support of <a href="http://www.wpbeginner.com/" rel="friend" title="WPBeginner">WPBeginner</a>, the largest WordPress resource site. You can learn from our <a href="http://www.wpbeginner.com/category/wp-tutorials/" rel="friend" title="WordPress Tutorials">free WordPress Tutorials</a> like <a href="http://www.wpbeginner.com/how-to-install-wordpress/" rel="friend" title="How to Install WordPress - Step by Step">how to install WordPress</a>, <a href="http://www.wpbeginner.com/wordpress-hosting/" rel="friend" title="How to choose the best WordPress hosting">choose the best WordPress hosting</a>, <a href="http://www.wpbeginner.com/glossary/" rel="friend" title="WordPress Glossary Terms for Beginners">WordPress glossary</a>, and more.
 
@@ -274,6 +280,10 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.15.0: January 21, 2021 =
+- New: Upgrade to the Global Site Tag (gtag.js) tracking code without having to worry about your existing events or integrations using analytics.js code. In this version you can manually opt-in to the gtag.js tracking code that will be the standard in a future release.
+- Fix: Improved compatibility for older PHP versions with our Popular Posts feature.
+
 = 7.14.0: December 16, 2020 =
 - New: See how your site did in 2020 with our upcoming, limited-time only, Year in Review report and how you can improve next year.
 - Tweak: We updated our campaign URL builder tool to encode parameters better.
