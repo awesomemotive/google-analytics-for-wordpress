@@ -6,7 +6,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/?utm_source=liteplugin&utm_medium=pluginheader&utm_campaign=authoruri&utm_content=7%2E0%2E0
  *
- * Version:             7.14.0
+ * Version:             7.15.0
  * Requires at least:   3.8.0
  * Requires PHP:        5.2
  *
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '7.14.0';
+	public $version = '7.15.0';
 
 	/**
 	 * Plugin file.
@@ -171,6 +171,15 @@ final class MonsterInsights_Lite {
 	public $routes;
 
 	/**
+	 * The tracking mode used in the frontend.
+	 *
+	 * @since 7.15.0
+	 * @accces public
+	 * @var string
+	 */
+	public $tracking_mode;
+
+	/**
 	 * Primary class constructor.
 	 *
 	 * @since 6.0.0
@@ -225,7 +234,7 @@ final class MonsterInsights_Lite {
 
 			// This does the version to version background upgrade routines and initial install
 			$mi_version = get_option( 'monsterinsights_current_version', '5.5.3' );
-			if ( version_compare( $mi_version, '7.14.0', '<' ) ) {
+			if ( version_compare( $mi_version, '7.15.0', '<' ) ) {
 				monsterinsights_lite_call_install_and_upgrade();
 			}
 
@@ -560,6 +569,21 @@ final class MonsterInsights_Lite {
 		require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/frontend/frontend.php';
 		require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/frontend/seedprod.php';
 		require_once MONSTERINSIGHTS_PLUGIN_DIR . 'includes/measurement-protocol.php';
+	}
+
+	/**
+	 * Get the tracking mode for the frontend scripts.
+	 *
+	 * @return string
+	 */
+	public function get_tracking_mode() {
+
+		if ( ! isset( $this->tracking_mode ) ) {
+			// This will already be set to 'analytics' to anybody already using the plugin before 7.15.0.
+			$this->tracking_mode = monsterinsights_get_option( 'tracking_mode', 'gtag' );
+		}
+
+		return $this->tracking_mode;
 	}
 }
 

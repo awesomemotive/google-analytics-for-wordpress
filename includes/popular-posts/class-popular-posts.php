@@ -561,6 +561,10 @@ class MonsterInsights_Popular_Posts {
 	 */
 	public static function get_instance() {
 
+		if ( ! function_exists( 'get_called_class' ) ) {
+			return false;
+		}
+
 		$class = get_called_class();
 
 		if ( ! isset( self::$instances[ $class ] ) ) {

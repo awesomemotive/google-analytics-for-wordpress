@@ -148,6 +148,10 @@ class MonsterInsights_Install {
 				$this->v7140_upgrades();
 			}
 
+			if ( version_compare( $version, '7.15.0', '<' ) ) {
+				$this->v7150_upgrades();
+			}
+
 			// Do not use. See monsterinsights_after_install_routine comment below.
 			do_action( 'monsterinsights_after_existing_upgrade_routine', $version );
 			$version = get_option( 'monsterinsights_current_version', $version );
@@ -283,7 +287,8 @@ class MonsterInsights_Install {
 			'save_settings'                            => array( 'administrator' ),
 			'view_reports'                             => array( 'administrator', 'editor' ),
 			'events_mode'                              => 'js',
-			'tracking_mode'                            => 'analytics',
+			'tracking_mode'                            => 'gtag', // Default new users to gtag.
+			'gtagtracker_compatibility_mode'           => true,
 			'email_summaries'                          => 'on',
 			'summaries_html_template'                  => 'yes',
 			'summaries_email_addresses'                => $admin_email_array,
@@ -845,5 +850,15 @@ class MonsterInsights_Install {
 
 		// Delete existing year in review report option.
 		delete_option( 'monsterinsights_report_data_yearinreview' );
+	}
+
+	/**
+	 * Upgrade routine for version 7.15.0
+	 */
+	public function v7150_upgrades() {
+		// Enable gtag compatibility mode by default.
+		if ( empty( $this->new_settings['gtagtracker_compatibility_mode'] ) ) {
+			$this->new_settings['gtagtracker_compatibility_mode'] = true;
+		}
 	}
 }
