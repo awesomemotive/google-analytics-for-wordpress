@@ -497,7 +497,7 @@ class MonsterInsights_Popular_Posts {
 	 *
 	 * @return string
 	 */
-	public function get_element_style( $theme = '', $object, $atts, $key = '' ) {
+	public function get_element_style( $theme, $object, $atts, $key = '' ) {
 
 		if ( 'no_styles' === $this->styling ) {
 			// If no styles is selected don't output any styles.
