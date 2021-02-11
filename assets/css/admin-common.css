@@ -63,6 +63,10 @@
 	padding: 0 5px;
 }
 
+#adminmenu .monsterinsights-menu-notification-indicator.update-plugins {
+	margin-left: 8px;
+}
+
 @media (max-width: 782px) {
 	#wpadminbar .monsterinsights-menu-notification-indicator {
 		margin: 0 0 10px -13px;

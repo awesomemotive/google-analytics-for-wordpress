@@ -394,17 +394,17 @@ function monsterinsights_export_settings() {
 	return wp_json_encode( $settings );
 }
 
-///**
-// * Always return 'analytics' when grabbing the tracking mode.
-// *
-// * @param string $value The value to override.
-// *
-// * @return string
-// */
-//function monsterinsights_force_tracking_mode( $value ) {
-//	return 'analytics';
-//}
-//add_filter( 'monsterinsights_get_option_tracking_mode', 'monsterinsights_force_tracking_mode' );
+/**
+ * Always return 'gtag' when grabbing the tracking mode.
+ *
+ * @param string $value The value to override.
+ *
+ * @return string
+ */
+function monsterinsights_force_tracking_mode( $value ) {
+	return 'gtag';
+}
+add_filter( 'monsterinsights_get_option_tracking_mode', 'monsterinsights_force_tracking_mode' );
 
 /**
  * Always return 'js' when grabbing the events mode.
