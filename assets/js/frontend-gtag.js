@@ -17,6 +17,7 @@ var MonsterInsights = function () {
 	   for IE 7/8 will continue to work, with the exception of events tracking of downloads. */
 	var lastClicked = [];
 	var internalAsOutboundCategory = '';
+	var beforeUnloadChanged = false;
 
 	this.setLastClicked = function ( valuesArray, fieldsArray, tracked ) {
 		valuesArray = typeof valuesArray !== 'undefined' ? valuesArray : [];
@@ -358,6 +359,7 @@ var MonsterInsights = function () {
 					if ( __gtagTrackerHitBackRun ) {
 						return;
 					}
+					maybePreventBeforeUnload();
 					__gtagTrackerHitBackRun = true;
 					window.location.href = link;
 				};
@@ -446,6 +448,7 @@ var MonsterInsights = function () {
 
 						__gtagTrackerSend( 'event', action || link, fieldsArray, valuesArray );
 					} else if ( type == 'internal-as-outbound' ) {
+						beforeUnloadChanged = true;
 						window.onbeforeunload = function ( e ) {
 							if ( !event.defaultPrevented ) {
 								if ( event.preventDefault ) {
@@ -469,6 +472,7 @@ var MonsterInsights = function () {
 							setTimeout( __gtagTrackerHitBack, 1000 );
 						};
 					} else if ( type == 'external' ) {
+						beforeUnloadChanged = true;
 						window.onbeforeunload = function ( e ) {
 							if ( !event.defaultPrevented ) {
 								if ( event.preventDefault ) {
@@ -492,6 +496,7 @@ var MonsterInsights = function () {
 							setTimeout( __gtagTrackerHitBack, 1000 );
 						};
 					} else if ( type == 'cross-hostname' ) {
+						beforeUnloadChanged = true;
 						window.onbeforeunload = function ( e ) {
 							if ( !event.defaultPrevented ) {
 								if ( event.preventDefault ) {
@@ -541,8 +546,12 @@ var MonsterInsights = function () {
 							setTimeout( __gtagTrackerNoRedirectInboundAsExternal, 1100 );
 						}
 					}
+
+					// Clear out the beforeunload event if it was set to avoid sending false events.
+					setTimeout( maybePreventBeforeUnload, 100 );
 				}
 			} else {
+				maybePreventBeforeUnload();
 				valuesArray.exit = 'internal';
 				__gtagTrackerNotSend( valuesArray );
 			}
@@ -564,6 +573,12 @@ var MonsterInsights = function () {
 			__gtagTrackerLog( "Hash change to: " + location.pathname + location.search + location.hash );
 		} else {
 			__gtagTrackerLog( "Hash change to (untracked): " + location.pathname + location.search + location.hash );
+		}
+	}
+
+	function maybePreventBeforeUnload() {
+		if ( beforeUnloadChanged ) {
+			window.onbeforeunload = null;
 		}
 	}
 

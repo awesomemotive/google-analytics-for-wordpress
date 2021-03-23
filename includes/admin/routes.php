@@ -327,6 +327,18 @@ class MonsterInsights_Rest_Routes {
 		$parsed_addons['lifterlms'] = array(
 			'active' => function_exists( 'LLMS' ) && version_compare( LLMS()->version, '3.32.0', '>=' ),
 		);
+		// Restrict Content Pro.
+		$parsed_addons['rcp'] = array(
+			'active' => class_exists( 'Restrict_Content_Pro' ) && version_compare( RCP_PLUGIN_VERSION, '3.5.4', '>=' ),
+		);
+		// GiveWP.
+		$parsed_addons['givewp'] = array(
+			'active' => function_exists( 'Give' ),
+		);
+		// GiveWP Analytics.
+		$parsed_addons['givewp_google_analytics'] = array(
+			'active' => function_exists( 'Give_Google_Analytics' ),
+		);
 		// Cookiebot.
 		$parsed_addons['cookiebot'] = array(
 			'active' => function_exists( 'cookiebot_active' ) && cookiebot_active(),

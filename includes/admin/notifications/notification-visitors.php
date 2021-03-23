@@ -39,8 +39,8 @@ final class MonsterInsights_Notification_Visitors extends MonsterInsights_Notifi
 		$notification['content'] = sprintf( __( 'Your website has been visited by %s visitors in the past 30 days. Click the button below to view the full analytics report.', 'google-analytics-for-wordpress' ), $total_visitors );
 		$notification['btns']    = array(
 			"view_report" => array(
-				'url'  => $this->get_view_url(),
-				'text' => __( 'View Report', 'google-analytics-for-wordpress' )
+				'url'           => $this->get_view_url( 'monsterinsights-report-overview', 'monsterinsights_reports' ),
+				'text'          => __( 'View Report', 'google-analytics-for-wordpress' ),
 			),
 		);
 

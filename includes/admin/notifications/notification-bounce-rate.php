@@ -32,12 +32,13 @@ final class MonsterInsights_Notification_Bounce_Rate extends MonsterInsights_Not
 			$notification['content'] = sprintf( __( 'Your website bounce rate is %1$s. High bounce rates can hurt your site’s conversions rates. A high bounce rate might mean that people aren\'t finding what they\'re looking for on your site. %2$sHere%3$s are some points to remember and steps to follow to get your bounce rates back to manageable levels.', 'google-analytics-for-wordpress' ), $data['bounce_rate'], '<a href="' . $this->build_external_link( 'https://www.monsterinsights.com/how-to-reduce-bounce-rate/' ) . '" target="_blank">', '</a>' );
 			$notification['btns']    = array(
 				'view_report' => array(
-					'url'  => $this->get_view_url(),
+					'url'  => $this->get_view_url( 'monsterinsights-report-infobox-bounce-rate', 'monsterinsights_reports' ),
 					'text' => __( 'View Report', 'google-analytics-for-wordpress' ),
 				),
 				'learn_more'  => array(
-					'url'  => $this->build_external_link( 'https://www.monsterinsights.com/how-to-reduce-bounce-rate/' ),
-					'text' => __( 'Learn More', 'google-analytics-for-wordpress' ),
+					'url'           => $this->build_external_link( 'https://www.monsterinsights.com/how-to-reduce-bounce-rate/' ),
+					'text'          => __( 'Learn More', 'google-analytics-for-wordpress' ),
+					'is_external'   => true,
 				),
 			);
 

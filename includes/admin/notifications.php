@@ -503,7 +503,7 @@ class MonsterInsights_Notifications {
 		$notifications_data = array(
 			'notifications' => $this->get_active_notifications(),
 			'dismissed'     => $this->get_dismissed_notifications(),
-			'view_url'      => $this->get_view_url(),
+			'view_url'      => $this->get_view_url( 'monsterinsights-report-overview', 'monsterinsights_reports' ),
 			'sidebar_url'   => $this->get_sidebar_url(),
 		);
 
@@ -515,11 +515,18 @@ class MonsterInsights_Notifications {
 	 *
 	 * @return string
 	 */
-	public function get_view_url() {
+	public function get_view_url( $scroll_to, $page, $tab='' ) {
+		$disabled   = monsterinsights_get_option( 'dashboards_disabled', false );
 
-		$disabled = monsterinsights_get_option( 'dashboards_disabled', false );
+		$url = add_query_arg( array(
+			'page' => $page,
+			'monsterinsights-scroll' => $scroll_to,
+			'monsterinsights-highlight' => $scroll_to,
+		), admin_url( 'admin.php' ) );
 
-		$url = add_query_arg( 'page', 'monsterinsights_reports', admin_url( 'admin.php' ) );
+		if ( ! empty( $tab ) ) {
+			$url .= '#/'. $tab;
+		}
 
 		if ( false !== $disabled ) {
 			$url = is_multisite() ? network_admin_url( 'admin.php?page=monsterinsights_network' ) : admin_url( 'admin.php?page=monsterinsights_settings' );
