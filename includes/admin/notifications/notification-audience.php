@@ -35,12 +35,13 @@ final class MonsterInsights_Notification_Audience extends MonsterInsights_Notifi
 		$notification['content'] = sprintf( __( 'Is your site properly translated? By adding translated content specific to your audience you could gain big boosts in pageviews, time spent on page and a reduced bounce rate.<br><br>If you need help choosing a translation plugin to get you started take a look at %sthis article%s for the best options available.', 'google-analytics-for-wordpress' ), '<a href="' . $this->build_external_link( 'https://www.wpbeginner.com/showcase/9-best-translation-plugins-for-wordpress-websites/' ) . '" target="_blank">', '</a>' );
 		$notification['btns']    = array(
 			"view_report" => array(
-				'url'  => $this->get_view_url(),
+				'url'  => $this->get_view_url( 'monsterinsights-report-top-countries', 'monsterinsights_reports' ),
 				'text' => __( 'View Report', 'google-analytics-for-wordpress' )
 			),
 			"learn_more"  => array(
-				'url'  => $this->build_external_link( 'https://www.wpbeginner.com/showcase/9-best-translation-plugins-for-wordpress-websites/' ),
-				'text' => __( 'Learn More', 'google-analytics-for-wordpress' )
+				'url'           => $this->build_external_link( 'https://www.wpbeginner.com/showcase/9-best-translation-plugins-for-wordpress-websites/' ),
+				'text'          => __( 'Learn More', 'google-analytics-for-wordpress' ),
+				'is_external'   => true,
 			),
 		);
 

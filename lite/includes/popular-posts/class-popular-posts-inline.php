@@ -61,7 +61,7 @@ class MonsterInsights_Popular_Posts_Inline extends MonsterInsights_Popular_Posts
 			return '';
 		}
 
-		if ( 'curated' === $this->sort ) {
+		if ( 'curated' === $this->sort && apply_filters( 'monsterinsights_popular_posts_inline_curated_shuffle', true ) ) {
 			// Randomize the order.
 			shuffle( $posts );
 		}

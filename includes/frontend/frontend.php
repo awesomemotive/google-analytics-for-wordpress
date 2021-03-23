@@ -70,7 +70,7 @@ function monsterinsights_events_tracking() {
 	$track_user = monsterinsights_track_user();
 
 	if ( $track_user ) {
-		$tracking_mode = monsterinsights_get_option( 'tracking_mode', 'gtag' );
+		$tracking_mode = MonsterInsights()->get_tracking_mode();
 		if ( 'analytics' === $tracking_mode ) {
 			require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/events/class-analytics-events.php';
 			new MonsterInsights_Analytics_Events();

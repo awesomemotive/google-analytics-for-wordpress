@@ -30,8 +30,9 @@ final class MonsterInsights_Notification_Upgrade_To_Pro extends MonsterInsights_
 		$notification['content'] = __( 'By upgrading to MonsterInsights Pro you get access to additional reports right in your WordPress dashboard and advanced tracking features like eCommerce, Custom Dimensions, Forms tracking and more!', 'google-analytics-for-wordpress' );
 		$notification['btns']    = array(
 			"upgrade_to_pro" => array(
-				'url'  => $this->get_upgrade_url(),
-				'text' => __( 'Upgrade to Pro', 'google-analytics-for-wordpress' )
+				'url'           => $this->get_upgrade_url(),
+				'text'          => __( 'Upgrade to Pro', 'google-analytics-for-wordpress' ),
+				'is_external'   => true,
 			),
 		);
 

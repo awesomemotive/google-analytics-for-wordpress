@@ -77,6 +77,11 @@ class MonsterInsights_Popular_Posts_Widget extends MonsterInsights_Popular_Posts
 			return '';
 		}
 
+		if ( 'curated' === $this->sort && apply_filters( 'monsterinsights_popular_posts_widget_curated_shuffle', true ) ) {
+			// Randomize the order.
+			shuffle( $posts );
+		}
+
 		$theme_styles = $this->get_theme_props( $theme )->get_theme();
 
 		$label_text = '';

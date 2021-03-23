@@ -16,7 +16,7 @@ class MonsterInsightsHeadlineToolPlugin{
 	/**
 	 * Class Variables.
 	 */
-	private $emotion_power_words2 = array();
+	private $emotion_power_words = array();
 	private $power_words = array();
 	private $common_words = array();
 	private $uncommon_words = array();
@@ -28,18 +28,6 @@ class MonsterInsightsHeadlineToolPlugin{
 	 */
 	function __construct() {
 		$this->init();
-
-		// Emotion words - 10–15% Density
-		$this->emotion_power_words2 = $this->emotion_power_words();
-
-		// Power words - atleast 1
-		$this->power_words = $this->power_words();
-
-		// Common words - 20-30% of headline
-		$this->common_words = $this->common_words();
-
-		// Un-Common words - 10-20% of headline
-		$this->uncommon_words = $this->uncommon_words();
 	}
 
 	/**
@@ -64,8 +52,8 @@ class MonsterInsightsHeadlineToolPlugin{
 			);
 		}
 
-  	    // get whether or not the website is up
-  	    $result = $this->get_headline_scores();
+		// get whether or not the website is up
+		$result = $this->get_headline_scores();
 
 		if ( !empty( $result->err ) ) {
 			$content = self::output_template( 'results-error.php', $result );
@@ -76,12 +64,12 @@ class MonsterInsightsHeadlineToolPlugin{
 
 			// send the response
 			wp_send_json_success(
-					array(
-						'result' => $result,
-						'analysed' => !$result->err,
-						'sentence' => ucwords( wp_unslash( sanitize_text_field( $_REQUEST['q'] ) ) ),
-						'score' => ( isset( $result->score ) && ! empty( $result->score ) ) ? $result->score : 0
-					)
+				array(
+					'result' => $result,
+					'analysed' => !$result->err,
+					'sentence' => ucwords( wp_unslash( sanitize_text_field( $_REQUEST['q'] ) ) ),
+					'score' => ( isset( $result->score ) && ! empty( $result->score ) ) ? $result->score : 0
+				)
 			);
 
 		}
@@ -132,11 +120,11 @@ class MonsterInsightsHeadlineToolPlugin{
 
 		$result->input = $input;
 
-  	    // bad input
+		// bad input
 		if ( ! $input || $input == ' ' || trim( $input ) == '' ) {
-				$result->err = true;
-				$result->msg = __('Bad Input', 'google-analytics-for-wordpress');
-				return $result;
+			$result->err = true;
+			$result->msg = __('Bad Input', 'google-analytics-for-wordpress');
+			return $result;
 		}
 
 		// overall score;
@@ -171,13 +159,13 @@ class MonsterInsightsHeadlineToolPlugin{
 		elseif ( $result->word_count >= 12 ) { $scoret += 5; }
 
 		// Calculate word match counts
-		$result->power_words = $this->match_words( $result->input, $result->input_array, $this->power_words );
+		$result->power_words = $this->match_words( $result->input, $result->input_array, $this->power_words() );
 		$result->power_words_per = count( $result->power_words ) / $result->word_count;
-		$result->emotion_words = $this->match_words( $result->input, $result->input_array, $this->emotion_power_words2 );
+		$result->emotion_words = $this->match_words( $result->input, $result->input_array, $this->emotion_power_words() );
 		$result->emotion_words_per = count( $result->emotion_words ) / $result->word_count;
-		$result->common_words = $this->match_words( $result->input, $result->input_array, $this->common_words );
+		$result->common_words = $this->match_words( $result->input, $result->input_array, $this->common_words() );
 		$result->common_words_per = count( $result->common_words ) / $result->word_count;
-		$result->uncommon_words = $this->match_words( $result->input, $result->input_array, $this->uncommon_words );
+		$result->uncommon_words = $this->match_words( $result->input, $result->input_array, $this->uncommon_words() );
 		$result->uncommon_words_per = count( $result->uncommon_words ) / $result->word_count;
 		$result->word_balance = __('Can Be Improved', 'google-analytics-for-wordpress');
 		$result->word_balance_use = array();
@@ -306,7 +294,7 @@ class MonsterInsightsHeadlineToolPlugin{
 		// put to result
 		$result->headline_types = $headline_types;
 
-        // Resources for more reading:
+		// Resources for more reading:
 		// https://kopywritingkourse.com/copywriting-headlines-that-sell/
 		// How To _______ That Will Help You ______
 		// https://coschedule.com/blog/how-to-write-the-best-headlines-that-will-increase-traffic/
@@ -363,7 +351,11 @@ class MonsterInsightsHeadlineToolPlugin{
 	 * @return array emotional power words
 	 */
 	function emotion_power_words() {
-		return array(
+		if ( isset( $this->emotion_power_words ) && ! empty( $this->emotion_power_words ) ) {
+			return $this->emotion_power_words;
+		}
+
+		$this->emotion_power_words = array(
 			__("destroy", "google-analytics-for-wordpress"),
 			__("extra", "google-analytics-for-wordpress"),
 			__("in a", "google-analytics-for-wordpress"),
@@ -646,6 +638,8 @@ class MonsterInsightsHeadlineToolPlugin{
 			__("to be", "google-analytics-for-wordpress"),
 			__("vaporize", "google-analytics-for-wordpress"),
 		);
+
+		return $this->emotion_power_words;
 	}
 
 	/**
@@ -654,7 +648,11 @@ class MonsterInsightsHeadlineToolPlugin{
 	 * @return array power words
 	 */
 	function power_words() {
-		return array(
+		if ( isset( $this->power_words ) && ! empty( $this->power_words ) ) {
+			return $this->power_words;
+		}
+
+		$this->power_words = array(
 			__("great", "google-analytics-for-wordpress"),
 			__("free", "google-analytics-for-wordpress"),
 			__("focus", "google-analytics-for-wordpress"),
@@ -829,6 +827,8 @@ class MonsterInsightsHeadlineToolPlugin{
 			__("delighted", "google-analytics-for-wordpress"),
 			__("download", "google-analytics-for-wordpress"),
 		);
+
+		return $this->power_words;
 	}
 
 	/**
@@ -837,7 +837,11 @@ class MonsterInsightsHeadlineToolPlugin{
 	 * @return array common words
 	 */
 	function common_words() {
-		return array(
+		if ( isset( $this->common_words ) && ! empty( $this->common_words ) ) {
+			return $this->common_words;
+		}
+
+		$this->common_words = array(
 			__("a", "google-analytics-for-wordpress"),
 			__("for", "google-analytics-for-wordpress"),
 			__("about", "google-analytics-for-wordpress"),
@@ -902,6 +906,8 @@ class MonsterInsightsHeadlineToolPlugin{
 			__("your", "google-analytics-for-wordpress"),
 			__("there", "google-analytics-for-wordpress"),
 		);
+
+		return $this->common_words;
 	}
 
 
@@ -911,7 +917,11 @@ class MonsterInsightsHeadlineToolPlugin{
 	 * @return array uncommon words
 	 */
 	function uncommon_words() {
-		return array(
+		if ( isset( $this->uncommon_words ) && ! empty( $this->uncommon_words ) ) {
+			return $this->uncommon_words;
+		}
+
+		$this->uncommon_words = array(
 			__("actually", "google-analytics-for-wordpress"),
 			__("happened", "google-analytics-for-wordpress"),
 			__("need", "google-analytics-for-wordpress"),
@@ -974,6 +984,8 @@ class MonsterInsightsHeadlineToolPlugin{
 			__("more", "google-analytics-for-wordpress"),
 			__("something", "google-analytics-for-wordpress"),
 		);
+
+		return $this->uncommon_words;
 	}
 }
 

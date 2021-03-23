@@ -29,8 +29,9 @@ final class MonsterInsights_Notification_Upgrade_For_Search_Console extends Mons
 		$notification['content'] = sprintf( __( 'Do you want to find out which search terms from Google bring your site the most visitors? %sUpgrade to MonsterInsights PRO%s today and get access to the %sSearch Console Report%s and more directly in your WordPress admin.', 'google-analytics-for-wordpress' ), '<a href="' . $this->get_upgrade_url() . '" target="_blank">', '</a>', '<a href="' . $this->build_external_link( 'https://www.monsterinsights.com/feature/search-console-report/' ) . '" target="_blank">', '</a>' );
 		$notification['btns']    = array(
 			"get_monsterinsights_pro" => array(
-				'url'  => $this->get_upgrade_url(),
-				'text' => __( 'Get MonsterInsights Pro', 'google-analytics-for-wordpress' )
+				'url'           => $this->get_upgrade_url(),
+				'text'          => __( 'Get MonsterInsights Pro', 'google-analytics-for-wordpress' ),
+				'is_external'   => true,
 			),
 		);
 

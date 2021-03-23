@@ -36,8 +36,9 @@ final class MonsterInsights_Notification_To_Setup_Affiliate_Links extends Monste
 			$notification['content'] = sprintf( __( 'By tracking your affiliate links in Google Analytics, you can gather all the data you need to optimize your links for maximizing affiliate revenue. You can track affiliate link clicks on your website with little configuration needed.<br><br>%sIn this article%s, we’ll show you how to set up affiliate link tracking in WordPress.', 'google-analytics-for-wordpress' ), '<a href="' . $this->build_external_link( 'https://www.monsterinsights.com/how-to-set-up-affiliate-link-tracking-in-wordpress/' ) . '" target="_blank">', '</a>' );
 			$notification['btns']    = array(
 				"read_more" => array(
-					'url'  => $this->build_external_link( 'https://www.monsterinsights.com/how-to-set-up-affiliate-link-tracking-in-wordpress/' ),
-					'text' => __( 'Read More', 'google-analytics-for-wordpress' )
+					'url'           => $this->build_external_link( 'https://www.monsterinsights.com/how-to-set-up-affiliate-link-tracking-in-wordpress/' ),
+					'text'          => __( 'Read More', 'google-analytics-for-wordpress' ),
+					'is_external'   => true,
 				),
 			);
 

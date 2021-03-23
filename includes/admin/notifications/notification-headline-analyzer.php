@@ -26,8 +26,9 @@ final class MonsterInsights_Notification_Headline_Analyzer extends MonsterInsigh
 		$notification['content'] = sprintf( __( 'Did you know that 36%% of SEO experts think the headline is the most important SEO element? Yet many website owners don’t know how to optimize their headlines for SEO and clicks. Instead, they write copy and hope for the best, only to see disappointing results. Now there’s an easier way! <br><br>%1$sWith the MonsterInsights Headline Analyzer%2$s, you can get targeted suggestions to improve your headlines, right in the WordPress editor.', 'google-analytics-for-wordpress' ), '<a href="' . $this->build_external_link( 'https://www.monsterinsights.com/announcing-monsterinsights-new-headline-analyzer/' ) . '" target="_blank">', '</a>' );
 		$notification['btns']    = array(
 			"learn_more" => array(
-				'url'  => $this->build_external_link( 'https://www.monsterinsights.com/announcing-monsterinsights-new-headline-analyzer/' ),
-				'text' => __( 'Learn More', 'google-analytics-for-wordpress' )
+				'url'           => $this->build_external_link( 'https://www.monsterinsights.com/announcing-monsterinsights-new-headline-analyzer/' ),
+				'text'          => __( 'Learn More', 'google-analytics-for-wordpress' ),
+				'is_external'   => true,
 			),
 		);
 

@@ -31,12 +31,13 @@ final class MonsterInsights_Notification_Returning_Visitors extends MonsterInsig
 			$notification['content'] = sprintf( __( 'For any website, returning visitors are important because they indicate how successful your marketing campaigns are, who are your loyal customers, and how powerful your brand is. %sIn this article%s, we’ll show you 7 proven ways to increase your returning visitor rate.', 'google-analytics-for-wordpress' ), '<a href="' . $this->build_external_link( 'https://www.monsterinsights.com/proven-ways-to-increase-your-returning-visitor-rate/' ) . '" target="_blank">', '</a>' );
 			$notification['btns']    = array(
 				"view_report" => array(
-					'url'  => $this->get_view_url(),
+					'url'  => $this->get_view_url( 'newvsreturning', 'monsterinsights_reports' ),
 					'text' => __( 'View Report', 'google-analytics-for-wordpress' )
 				),
 				"learn_more"  => array(
-					'url'  => $this->build_external_link( 'https://www.monsterinsights.com/proven-ways-to-increase-your-returning-visitor-rate/' ),
-					'text' => __( 'Learn More', 'google-analytics-for-wordpress' )
+					'url'           => $this->build_external_link( 'https://www.monsterinsights.com/proven-ways-to-increase-your-returning-visitor-rate/' ),
+					'text'          => __( 'Learn More', 'google-analytics-for-wordpress' ),
+					'is_external'   => true,
 				),
 			);
 
