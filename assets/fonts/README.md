@@ -4,9 +4,11 @@ The main font used by MonsterInsights for icons has the font-family: 'Misettings
 
 The files used by this font are
 
+<!-- 
 - assets/fonts/icons.eot
 - assets/fonts/icons.otf
-- assets/fonts/icons.ttf
+- assets/fonts/icons.ttf 
+-->
 - assets/fonts/icons.woff
 - assets/fonts/icons.woff2
 
