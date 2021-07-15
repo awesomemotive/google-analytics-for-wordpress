@@ -100,7 +100,7 @@ class MonsterInsights_Notification_Event_Runner {
 	 */
 	public function save_last_runs() {
 		if ( $this->changed ) {
-			update_option( $this->last_run_key, $this->last_run );
+			update_option( $this->last_run_key, $this->last_run, false );
 		}
 	}
 
@@ -168,6 +168,13 @@ class MonsterInsights_Notification_Event_Runner {
 			self::$notifications[ $notification_id ] = $notification;
 		}
 
+	}
+
+	/**
+	 * Delete the data on uninstall.
+	 */
+	public function delete_data() {
+		delete_option( $this->last_run_key );
 	}
 
 }

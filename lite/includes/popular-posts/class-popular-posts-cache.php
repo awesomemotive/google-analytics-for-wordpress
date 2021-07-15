@@ -121,4 +121,11 @@ class MonsterInsights_Popular_Posts_Cache {
 
 	}
 
+	/**
+	 * Delete database option for cache.
+	 */
+	public function delete_data() {
+		delete_option( $this->get_cache_key() );
+	}
+
 }

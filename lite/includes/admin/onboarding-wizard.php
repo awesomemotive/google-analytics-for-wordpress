@@ -198,7 +198,7 @@ class MonsterInsights_Onboarding_Wizard {
 	public function should_include_eu_addon() {
 
 		// Is WooCommerce installed and the countries class installed.
-		if ( class_exists( 'WooCommerce' ) && class_exists( 'WC_Countries' ) ) {
+		if ( class_exists( 'WooCommerce' ) && class_exists( 'WC_Countries' ) && method_exists( 'WC_Countries', 'get_continent_code_for_country' ) ) {
 			$wc_countries = new WC_Countries();
 			$country      = $wc_countries->get_base_country();
 			$continent    = $wc_countries->get_continent_code_for_country( $country );

@@ -74,3 +74,12 @@
 		position: relative;
 	}
 }
+
+.monsterinsights-submenu-highlight {
+	background: #7cc048;
+}
+
+.monsterinsights-submenu-highlight a span {
+	color: #fff;
+	font-weight: 600;
+}

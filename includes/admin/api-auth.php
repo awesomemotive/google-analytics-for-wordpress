@@ -580,4 +580,12 @@ final class MonsterInsights_API_Auth {
 
 		return $url;
 	}
+
+	/**
+	 * Delete auth-related options from the db - should be run at site level.
+	 */
+	public function uninstall_auth() {
+		delete_option( 'monsterinsights_site_profile' );
+		delete_option( 'monsterinsights_site_tt' );
+	}
 }

@@ -1,10 +1,10 @@
-﻿=== Google Analytics Dashboard Plugin for WordPress by MonsterInsights ===
+﻿=== MonsterInsights - Google Analytics Dashboard for WordPress (Website Stats Made Easy) ===
 Contributors: chriscct7, smub
 Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, WooCommerce stats, analytics dashboard, universal google analytics, statistics, tracking, stats, google, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 3.8.0
-Tested up to: 5.7
-Stable tag: 7.17.0
+Tested up to: 5.8
+Stable tag: 7.18.0
 Requires PHP: 5.2
 License: GPL v3
 
@@ -285,6 +285,13 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 7.18.0: July 15, 2021 =
+- Tweak: We updated the way we load the main tracking script to improve page load performance.
+- Tweak: We tweaked how most of the objects stored in the database are loaded and improved the overall sizes for better performance in the WordPress administration area.
+- Tweak: We optimized our plugin’s assets to reduce the plugin size and improve loading times in the admin area.
+- Tweak: We extended our compatibility shim to support virtual pageview events added using legacy code.
+- Fix: We updated the image size used by our Popular Posts widgets for improved performance and compatibility.
+
 = 7.17.0: March 23, 2021 =
 - New: Our contextual education messages will now highlight the report or setting mentioned so it’s easier to make informed decisions.
 - Tweak: We added extra checks to the methods used for sending server-side events with the measurement protocol to prevent preloading plugins from triggering them.
