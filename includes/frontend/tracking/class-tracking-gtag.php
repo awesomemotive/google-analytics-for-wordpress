@@ -181,7 +181,8 @@ class MonsterInsights_Tracking_Gtag extends MonsterInsights_Tracking_Abstract {
 		$output      = '';
 		$reason      = '';
 		$attr_string = monsterinsights_get_frontend_analytics_script_atts();
-		ob_start();
+		$gtag_async  = apply_filters( 'monsterinsights_frontend_gtag_script_async', true ) ? 'async' : '';
+ 		ob_start();
 		?>
 		<!-- This site uses the Google Analytics by MonsterInsights plugin v<?php echo MONSTERINSIGHTS_VERSION; ?> - Using Analytics tracking - https://www.monsterinsights.com/ -->
 		<?php if ( ! $track_user ) {
@@ -198,7 +199,7 @@ class MonsterInsights_Tracking_Gtag extends MonsterInsights_Tracking_Abstract {
 			echo $output;
 		} ?>
 		<?php if ( $ua ) { ?>
-			<script src="<?php echo esc_attr( $src ); ?>" <?php echo $attr_string; ?>></script>
+			<script src="<?php echo esc_attr( $src ); ?>" <?php echo $attr_string; ?> <?php echo esc_attr( $gtag_async ); ?>></script>
 			<script<?php echo $attr_string; ?>>
 				var mi_version = '<?php echo MONSTERINSIGHTS_VERSION; ?>';
 				var mi_track_user = <?php echo( $track_user ? 'true' : 'false' ); ?>;
@@ -302,16 +303,25 @@ class MonsterInsights_Tracking_Gtag extends MonsterInsights_Tracking_Abstract {
 												}
 											}
 										}
+										if ( 'pageview' === arguments[1] ) {
+											if ( 'undefined' !== typeof arguments[2] ) {
+												hitObject = {
+													'eventAction': 'page_view',
+													'page_path' : arguments[2],
+												}
+											}
+										}
 										if ( typeof arguments[2] === 'object' ) {
 											hitObject = arguments[2];
 										}
 										if ( typeof arguments[5] === 'object' ) {
 											Object.assign( hitObject, arguments[5] );
 										}
-										if ( 'undefined' !== typeof (
-											arguments[1].hitType
-										) ) {
+										if ( 'undefined' !== typeof arguments[1].hitType ) {
 											hitObject = arguments[1];
+											if ( 'pageview' === hitObject.hitType ) {
+												hitObject.eventAction = 'page_view';
+											}
 										}
 										if ( hitObject ) {
 											action = 'timing' === arguments[1].hitType ? 'timing_complete' : hitObject.eventAction;
@@ -323,7 +333,7 @@ class MonsterInsights_Tracking_Gtag extends MonsterInsights_Tracking_Abstract {
 								}
 
 								function mapArgs( args ) {
-									var gaKey, hit = {};
+									var arg, hit = {};
 									var gaMap = {
 										'eventCategory': 'event_category',
 										'eventAction': 'event_action',
@@ -334,10 +344,15 @@ class MonsterInsights_Tracking_Gtag extends MonsterInsights_Tracking_Abstract {
 										'timingVar': 'name',
 										'timingValue': 'value',
 										'timingLabel': 'event_label',
+										'page' : 'page_path',
+										'location' : 'page_location',
+										'title' : 'page_title',
 									};
-									for ( gaKey in gaMap ) {
-										if ( 'undefined' !== typeof args[gaKey] ) {
-											hit[gaMap[gaKey]] = args[gaKey];
+									for ( arg in args ) {
+										if ( args.hasOwnProperty(arg) && gaMap.hasOwnProperty(arg) ) {
+											hit[gaMap[arg]] = args[arg];
+										} else {
+											hit[arg] = args[arg];
 										}
 									}
 									return hit;

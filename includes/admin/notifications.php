@@ -397,7 +397,8 @@ class MonsterInsights_Notifications {
 				'feed'      => $option['feed'],
 				'events'    => array_merge( $notification, $option['events'] ),
 				'dismissed' => $option['dismissed'],
-			)
+			),
+			false
 		);
 	}
 
@@ -420,7 +421,8 @@ class MonsterInsights_Notifications {
 				'feed'      => $feed,
 				'events'    => $option['events'],
 				'dismissed' => array_slice( $option['dismissed'], 0, 30 ), // Limit dismissed notifications to last 30.
-			)
+			),
+			false
 		);
 	}
 
@@ -472,7 +474,7 @@ class MonsterInsights_Notifications {
 			}
 		}
 
-		update_option( $this->option_name, $option );
+		update_option( $this->option_name, $option, false );
 
 		wp_send_json_success();
 	}
@@ -558,5 +560,19 @@ class MonsterInsights_Notifications {
 		}
 
 		return $url;
+	}
+
+	/**
+	 * Delete the notification options.
+	 */
+	public function delete_notifications_data() {
+
+		delete_option( $this->option_name );
+
+		// Delete old notices option.
+		delete_option( 'monsterinsights_notices' );
+
+		monsterinsights_notification_event_runner()->delete_data();
+
 	}
 }

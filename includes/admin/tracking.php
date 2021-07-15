@@ -94,10 +94,6 @@ class MonsterInsights_Tracking {
 		$data['usercount']     = function_exists( 'get_user_count' ) ? get_user_count() : 'Not Set';
 		$data['usesauth']      = $usesauth;
 		$data['timezoneoffset']= date('P');
-		$data['installed_lite']= get_option( 'monsterinsights_installed_lite', array() );
-		$data['installed_pro'] = get_option( 'monsterinsights_installed_pro', array() );
-
-
 
 		// Retrieve current plugin information
 		if( ! function_exists( 'get_plugins' ) ) {

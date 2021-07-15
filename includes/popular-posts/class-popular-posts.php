@@ -333,11 +333,11 @@ class MonsterInsights_Popular_Posts {
 			$post_image        = '';
 			$post_image_srcset = '';
 			if ( ! empty( $post_thumbnail ) ) {
-				$post_image = wp_get_attachment_image_src( $post_thumbnail, 'small' );
+				$post_image = wp_get_attachment_image_src( $post_thumbnail, 'medium' );
 				if ( is_array( $post_image ) && ! empty( $post_image[0] ) ) {
 					$post_image = $post_image[0];
 				}
-				$post_image_srcset = wp_get_attachment_image_srcset( $post_thumbnail, 'small' );
+				$post_image_srcset = wp_get_attachment_image_srcset( $post_thumbnail, 'medium' );
 			}
 
 			$author_data = get_userdata( $post->post_author );

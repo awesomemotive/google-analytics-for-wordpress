@@ -6,7 +6,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/?utm_source=liteplugin&utm_medium=pluginheader&utm_campaign=authoruri&utm_content=7%2E0%2E0
  *
- * Version:             7.17.0
+ * Version:             7.18.0
  * Requires at least:   3.8.0
  * Requires PHP:        5.2
  *
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '7.17.0';
+	public $version = '7.18.0';
 
 	/**
 	 * Plugin file.
@@ -656,43 +656,61 @@ function monsterinsights_lite_uninstall_hook() {
 		return;
 	}
 
+	require_once 'includes/admin/uninstall.php';
+
 	if ( is_multisite() ) {
 		$site_list = get_sites();
 		foreach ( (array) $site_list as $site ) {
 			switch_to_blog( $site->blog_id );
 
-			// Delete auth
+			// Deauthenticate.
 			$instance->api_auth->delete_auth();
 
-			// Delete data
-			$instance->reporting->delete_aggregate_data('site');
+			// Delete report cache.
+			$instance->reporting->delete_aggregate_data();
+
+			// Delete options.
+			$instance->api_auth->uninstall_auth();
 
 			restore_current_blog();
 		}
 		// Delete network auth using a custom function as some variables are not initiated.
 		$instance->api_auth->uninstall_network_auth();
 
-		// Delete network data
-		$instance->reporting->delete_aggregate_data('network');
+		// Delete network data.
+		$instance->reporting->delete_aggregate_data( 'network' );
 	} else {
-		// Delete auth
+		// Delete auth.
 		$instance->api_auth->delete_auth();
 
-		// Delete data
-		$instance->reporting->delete_aggregate_data('site');
+		// Delete report cache.
+		$instance->reporting->delete_aggregate_data();
+
+		// Delete options.
+		$instance->api_auth->uninstall_auth();
 	}
 
-	// Clear notification cron schedules
+	// Clear notification cron schedules.
 	$schedules = wp_get_schedules();
 
-	if  ( is_array( $schedules ) && ! empty( $schedules ) ) {
+	if ( is_array( $schedules ) && ! empty( $schedules ) ) {
 		foreach ( $schedules as $key => $value ) {
-			if ( 0 === strpos($key, "monsterinsights_notification_") ) {
-				$cron_hook = implode("_", explode( "_", $key, -2 ) ) . '_cron';
+			if ( 0 === strpos( $key, "monsterinsights_notification_" ) ) {
+				$cron_hook = implode( "_", explode( "_", $key, - 2 ) ) . '_cron';
 				wp_clear_scheduled_hook( $cron_hook );
 			}
 		}
 	}
+
+	// Delete the notifications data.
+	$instance->notifications->delete_notifications_data();
+
+	// Delete Popular Posts data.
+	MonsterInsights_Popular_Posts_Inline()->get_cache()->delete_data();
+	MonsterInsights_Popular_Posts_Widget()->get_cache()->delete_data();
+
+	// Delete other options.
+	monsterinsights_uninstall_remove_options();
 
 }
 register_uninstall_hook( __FILE__, 'monsterinsights_lite_uninstall_hook' );
