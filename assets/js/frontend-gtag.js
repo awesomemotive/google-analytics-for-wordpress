@@ -52,7 +52,6 @@ var MonsterInsights = function () {
 		}
 	}
 
-<<<<<<< HEAD
 	function cloneFields( fields, allowedKeys, disallowedKeys ) {
 		var clone = {};
 
@@ -134,8 +133,6 @@ var MonsterInsights = function () {
 		__gtagTrackerLog( lastClicked );
 	}
 
-=======
->>>>>>> origin/master
 	/**
 	 * This attempts to be compatible with the gtag function.
 	 *
@@ -413,11 +410,8 @@ var MonsterInsights = function () {
 			valuesArray.el_search = el.search; 			/* "?search=test" */
 			valuesArray.el_hash = el.hash;				/* "#hash" */
 			valuesArray.el_host = el.host; 				/* "example.com:3000" */
-<<<<<<< HEAD
 			valuesArray.el_classes = el.getAttribute('class')
 			valuesArray.el_id = el.id
-=======
->>>>>>> origin/master
 
 			/* Settings */
 			valuesArray.debug_mode = __gtagTrackerIsDebug(); /* "example.com:3000" */
@@ -472,7 +466,6 @@ var MonsterInsights = function () {
 						fieldsArray = {
 							event_category: 'download',
 							event_label: label || valuesArray.title,
-<<<<<<< HEAD
 							file_extension: valuesArray.extension,
 							file_name: valuesArray.link.replace(/^.*\//g, ''),
 							link_text: label || valuesArray.title,
@@ -480,14 +473,11 @@ var MonsterInsights = function () {
 							link_domain: valuesArray.el_hostname,
 							link_classes: valuesArray.el_classes,
 							link_id: valuesArray.el_id,
-=======
->>>>>>> origin/master
 						};
 					} else if ( type == 'tel' ) {
 						fieldsArray = {
 							event_category: 'tel',
 							event_label: label || valuesArray.title.replace( 'tel:', '' ),
-<<<<<<< HEAD
 							tel_number: link.replace( 'tel:', '' ),
 							link_text: label || valuesArray.title,
 							link_url: link,
@@ -503,20 +493,11 @@ var MonsterInsights = function () {
 							link_url: link,
 							link_classes: valuesArray.el_classes,
 							link_id: valuesArray.el_id,
-=======
-						};
-					} else if ( type == 'mailto' ) {
-						console.log( label || valuesArray.title.replace( 'mailto:', '' ) );
-						fieldsArray = {
-							event_category: 'mailto',
-							event_label: label || valuesArray.title.replace( 'mailto:', '' ),
->>>>>>> origin/master
 						};
 					} else if ( type == 'internal-as-outbound' ) {
 						fieldsArray = {
 							event_category: internalAsOutboundCategory,
 							event_label: label || valuesArray.title,
-<<<<<<< HEAD
 							event_name: 'click',
 							is_affiliate_link: true,
 							affiliate_label: internalAsOutboundCategory.replace('outbound-link-', ''),
@@ -526,14 +507,11 @@ var MonsterInsights = function () {
 							link_classes: valuesArray.el_classes,
 							link_id: valuesArray.el_id,
 							outbound: true,
-=======
->>>>>>> origin/master
 						};
 					} else if ( type == 'external' ) {
 						fieldsArray = {
 							event_category: 'outbound-link',
 							event_label: label || valuesArray.title,
-<<<<<<< HEAD
 							is_affiliate_link: false,
 							link_text: label || valuesArray.title,
 							link_url: link,
@@ -541,36 +519,26 @@ var MonsterInsights = function () {
 							link_classes: valuesArray.el_classes,
 							link_id: valuesArray.el_id,
 							outbound: true,
-=======
->>>>>>> origin/master
 						};
 					} else if ( type == 'cross-hostname' ) {
 						fieldsArray = {
 							event_category: 'cross-hostname',
 							event_label: label || valuesArray.title,
-<<<<<<< HEAD
 							link_text: label || valuesArray.title,
 							link_url: link,
 							link_domain: valuesArray.el_hostname,
 							link_classes: valuesArray.el_classes,
 							link_id: valuesArray.el_id,
-=======
->>>>>>> origin/master
 						};
 					}
 
 					if ( fieldsArray ) {
-<<<<<<< HEAD
 						__gtagTrackerSendDual( 'event', action || link, fieldsArray, valuesArray );
-=======
-						__gtagTrackerSend( 'event', action || link, fieldsArray, valuesArray );
->>>>>>> origin/master
 					} else {
 						if ( type && type != 'internal' ) {
 							fieldsArray = {
 								event_category: type,
 								event_label: label || valuesArray.title,
-<<<<<<< HEAD
 								link_text: label || valuesArray.title,
 								link_url: link,
 								link_domain: valuesArray.el_hostname,
@@ -579,11 +547,6 @@ var MonsterInsights = function () {
 							};
 
 							__gtagTrackerSendDual( 'event', action || link, fieldsArray, valuesArray );
-=======
-							};
-
-							__gtagTrackerSend( 'event', action || link, fieldsArray, valuesArray );
->>>>>>> origin/master
 						} else {
 							valuesArray.exit = 'type';
 							__gtagTrackerNotSend( valuesArray );
@@ -606,7 +569,6 @@ var MonsterInsights = function () {
 							event_category: 'download',
 							event_label: label || valuesArray.title,
 							event_callback: __gtagTrackerHitBack,
-<<<<<<< HEAD
 							file_extension: valuesArray.extension,
 							file_name: valuesArray.link.replace(/^.*\//g, ''),
 							link_text: label || valuesArray.title,
@@ -617,11 +579,6 @@ var MonsterInsights = function () {
 						};
 
 						__gtagTrackerSendDual( 'event', action || link, fieldsArray, valuesArray );
-=======
-						};
-
-						__gtagTrackerSend( 'event', action || link, fieldsArray, valuesArray );
->>>>>>> origin/master
 					} else if ( type == 'internal-as-outbound' ) {
 						beforeUnloadChanged = true;
 						window.onbeforeunload = function ( e ) {
@@ -637,7 +594,6 @@ var MonsterInsights = function () {
 								event_category: internalAsOutboundCategory,
 								event_label: label || valuesArray.title,
 								event_callback: __gtagTrackerHitBack,
-<<<<<<< HEAD
 								is_affiliate_link: true,
 								affiliate_label: internalAsOutboundCategory.replace('outbound-link-', ''),
 								link_text: label || valuesArray.title,
@@ -646,20 +602,14 @@ var MonsterInsights = function () {
 								link_classes: valuesArray.el_classes,
 								link_id: valuesArray.el_id,
 								outbound: true,
-=======
->>>>>>> origin/master
 							};
 
 							if ( navigator.sendBeacon ) {
 								fieldsArray.transport = 'beacon';
 							}
 
-<<<<<<< HEAD
 							__gtagTrackerSendDual( 'event', action || link, fieldsArray, valuesArray );
 
-=======
-							__gtagTrackerSend( 'event', action || link, fieldsArray, valuesArray );
->>>>>>> origin/master
 							setTimeout( __gtagTrackerHitBack, 1000 );
 						};
 					} else if ( type == 'external' ) {
@@ -677,7 +627,6 @@ var MonsterInsights = function () {
 								event_category: 'outbound-link',
 								event_label: label || valuesArray.title,
 								event_callback: __gtagTrackerHitBack,
-<<<<<<< HEAD
 								is_affiliate_link: false,
 								link_text: label || valuesArray.title,
 								link_url: link,
@@ -685,19 +634,13 @@ var MonsterInsights = function () {
 								link_classes: valuesArray.el_classes,
 								link_id: valuesArray.el_id,
 								outbound: true,
-=======
->>>>>>> origin/master
 							};
 
 							if ( navigator.sendBeacon ) {
 								fieldsArray.transport = 'beacon';
 							}
 
-<<<<<<< HEAD
 							__gtagTrackerSendDual( 'event', action || link, fieldsArray, valuesArray );
-=======
-							__gtagTrackerSend( 'event', action || link, fieldsArray, valuesArray );
->>>>>>> origin/master
 							setTimeout( __gtagTrackerHitBack, 1000 );
 						};
 					} else if ( type == 'cross-hostname' ) {
@@ -715,25 +658,18 @@ var MonsterInsights = function () {
 								event_category: 'cross-hostname',
 								event_label: label || valuesArray.title,
 								event_callback: __gtagTrackerHitBack,
-<<<<<<< HEAD
 								link_text: label || valuesArray.title,
 								link_url: link,
 								link_domain: valuesArray.el_hostname,
 								link_classes: valuesArray.el_classes,
 								link_id: valuesArray.el_id,
-=======
->>>>>>> origin/master
 							};
 
 							if ( navigator.sendBeacon ) {
 								fieldsArray.transport = 'beacon';
 							}
 
-<<<<<<< HEAD
 							__gtagTrackerSendDual( 'event', action || link, fieldsArray, valuesArray );
-=======
-							__gtagTrackerSend( 'event', action || link, fieldsArray, valuesArray );
->>>>>>> origin/master
 							setTimeout( __gtagTrackerHitBack, 1000 );
 						};
 					} else {
@@ -742,7 +678,6 @@ var MonsterInsights = function () {
 								event_category: type,
 								event_label: label || valuesArray.title,
 								event_callback: __gtagTrackerHitBack,
-<<<<<<< HEAD
 								link_text: label || valuesArray.title,
 								link_url: link,
 								link_domain: valuesArray.el_hostname,
@@ -751,11 +686,6 @@ var MonsterInsights = function () {
 							};
 
 							__gtagTrackerSendDual( 'event', action || link, fieldsArray, valuesArray );
-=======
-							};
-
-							__gtagTrackerSend( 'event', action || link, fieldsArray, valuesArray );
->>>>>>> origin/master
 						} else {
 							valuesArray.exit = 'type';
 							__gtagTrackerNotSend( valuesArray );
@@ -793,7 +723,6 @@ var MonsterInsights = function () {
 
 	function __gtagTrackerHashChangeEvent() {
 		/* Todo: Ready this section for JS unit testing */
-<<<<<<< HEAD
 		if ( monsterinsights_frontend.hash_tracking === "true" && prevHash != window.location.hash && ( monsterinsights_frontend.ua || monsterinsights_frontend.v4_id ) ) {
 			prevHash = window.location.hash;
 			if ( monsterinsights_frontend.ua ) {
@@ -807,13 +736,6 @@ var MonsterInsights = function () {
 					page_path: location.pathname + location.search + location.hash,
 				} );
 			}
-=======
-		if ( monsterinsights_frontend.hash_tracking === "true" && prevHash != window.location.hash && monsterinsights_frontend.ua ) {
-			prevHash = window.location.hash;
-			__gtagTracker( 'config', monsterinsights_frontend.ua, {
-				page_path: location.pathname + location.search + location.hash,
-			} )
->>>>>>> origin/master
 			__gtagTrackerLog( "Hash change to: " + location.pathname + location.search + location.hash );
 		} else {
 			__gtagTrackerLog( "Hash change to (untracked): " + location.pathname + location.search + location.hash );
