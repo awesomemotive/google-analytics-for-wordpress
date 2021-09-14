@@ -95,7 +95,7 @@ class MonsterInsights_Review {
 				$data['connected_date'] = time();
 			}
 
-			update_option( 'monsterinsights_over_time', $data );
+			update_option( 'monsterinsights_over_time', $data, false );
 			return;
 		}
 

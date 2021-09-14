@@ -90,6 +90,22 @@ function monsterinsights_get_ua() {
 	return $pre_filter === $ua ? $ua : monsterinsights_is_valid_ua( $ua );
 }
 
+function monsterinsights_get_tracking_ids() {
+	$ids = array();
+
+	$ua = monsterinsights_get_ua_to_output();
+	if ( $ua ) {
+		$ids[] = $ua;
+	}
+
+	$v4 = monsterinsights_get_v4_id_to_output();
+	if ( $v4 ) {
+		$ids[] = $v4;
+	}
+
+	return $ids;
+}
+
 /**
  * Helper method for getting the network UA string.
  *
@@ -136,6 +152,92 @@ function monsterinsights_get_ua_to_output( $args = array() ) {
 	$ua = monsterinsights_get_ua();
 	$ua = apply_filters( 'monsterinsights_get_ua_to_output', $ua, $args );
 	return monsterinsights_is_valid_ua( $ua );
+}
+
+/**
+ * Helper method for getting the V4 string.
+ *
+ * @since 6.0.0
+ * @access public
+ *
+ * @return string The V4 ID to use.
+ */
+function monsterinsights_get_v4_id() {
+	// Allow short circuiting (for staging sites)
+	if ( defined( 'MONSTERINSIGHTS_DISABLE_TRACKING' ) && MONSTERINSIGHTS_DISABLE_TRACKING ) {
+		return '';
+	}
+
+	// Try getting it from the auth V4
+	$v4_id = MonsterInsights()->auth->get_v4_id();
+
+	// If that didn't work, try the manual V4 at the site level
+	if ( empty( $v4_id ) ) {
+		$v4_id = MonsterInsights()->auth->get_manual_v4_id();
+		// If that didn't work try getting it from the network
+		if ( empty( $v4_id ) ) {
+			$v4_id = monsterinsights_get_network_v4_id();
+			// If that didn't work, try getting it from the overall constant. If it's not there, leave it blank
+			if ( empty( $v4_id ) ) {
+				$v4_id = defined( 'MONSTERINSIGHTS_GA_V4_ID' ) && MONSTERINSIGHTS_GA_V4_ID ? monsterinsights_is_valid_v4_id( MONSTERINSIGHTS_GA_V4_ID ) : '';
+			}
+		}
+	}
+
+	// Feed through the filter
+	$pre_filter = $v4_id;
+	$v4_id = apply_filters( 'monsterinsights_get_v4_id', $v4_id );
+
+	// Only run through monsterinsights_is_valid_v4 if it's different than pre-filter
+	return $pre_filter === $v4_id ? $v4_id : monsterinsights_is_valid_v4_id( $v4_id );
+}
+
+/**
+ * Helper method for getting the network V4 string.
+ *
+ * @since 6.0.0
+ * @access public
+ *
+ * @return string The V4 ID to use.
+ */
+function monsterinsights_get_network_v4_id() {
+	if ( ! is_multisite() ) {
+		return '';
+	}
+
+	// First try network auth UA
+	$v4_id = MonsterInsights()->auth->get_network_v4_id();
+	if ( ! empty( $v4_id ) ) {
+		return $v4_id;
+	}
+
+	// Then try manual network UA
+	$v4_id = MonsterInsights()->auth->get_network_manual_v4_id();
+	if ( ! empty( $v4_id ) ) {
+		return $v4_id;
+	}
+
+	// See if the constant is defined
+	if ( defined( 'MONSTERINSIGHTS_MS_GA_V4_ID' ) && monsterinsights_is_valid_v4_id( MONSTERINSIGHTS_MS_GA_V4_ID ) ) {
+		return MONSTERINSIGHTS_MS_GA_V4_ID;
+	}
+
+	return '';
+}
+
+/**
+ * Helper method for getting the UA string that's output on the frontend.
+ *
+ * @since 6.0.0
+ * @access public
+ *
+ * @param array $args Allow calling functions to give args to use in future applications.
+ * @return string The UA to use on frontend.
+ */
+function monsterinsights_get_v4_id_to_output( $args = array() ) {
+	$v4_id = monsterinsights_get_v4_id();
+	$v4_id = apply_filters( 'monsterinsights_get_v4_id_to_output', $v4_id, $args );
+	return monsterinsights_is_valid_v4_id( $v4_id );
 }
 
 /**
@@ -301,6 +403,20 @@ function monsterinsights_delete_options( $keys = array() ) {
 	return $did_update;
 }
 
+function monsterinsights_sanitize_tracking_id( $id ) {
+	$id = (string) $id; // Rare case, but let's make sure it never happens.
+	$id = trim( $id );
+
+	if ( empty( $id ) ) {
+		return '';
+	}
+
+	// Replace all type of dashes (n-dash, m-dash, minus) with normal dashes.
+	$id = str_replace( array( '–', '—', '−' ), '-', $id );
+
+	return $id;
+}
+
 /**
  * Is valid ua code.
  *
@@ -312,21 +428,23 @@ function monsterinsights_delete_options( $keys = array() ) {
  * @return string|false Return cleaned ua string if valid, else returns false.
  */
 function monsterinsights_is_valid_ua( $ua_code = '' ) {
-	$ua_code = (string) $ua_code; // Rare case, but let's make sure it never happens.
-	$ua_code = trim( $ua_code );
+	$ua_code = monsterinsights_sanitize_tracking_id( $ua_code );
 
-	if ( empty( $ua_code ) ) {
-		return '';
-	}
-
-	// Replace all type of dashes (n-dash, m-dash, minus) with normal dashes.
-	$ua_code = str_replace( array( '–', '—', '−' ), '-', $ua_code );
-
-	if ( preg_match( "/^(UA|YT|MO)-\d{4,}-\d+$/", strval( $ua_code ) ) ) {
+	if ( preg_match( "/^(UA|YT|MO)-\d{4,}-\d+$/", $ua_code ) ) {
 		return $ua_code;
-	} else {
-		return '';
 	}
+
+	return '';
+}
+
+function monsterinsights_is_valid_v4_id( $v4_code = '' ) {
+	$v4_code = monsterinsights_sanitize_tracking_id( $v4_code );
+
+	if ( preg_match( '/G-[A-Za-z\d]+/', $v4_code ) ) {
+		return strtoupper( $v4_code );
+	}
+
+	return '';
 }
 
 /**
@@ -395,14 +513,14 @@ function monsterinsights_export_settings() {
 }
 
 /**
- * Always return 'analytics' when grabbing the tracking mode.
+ * Always return 'gtag' when grabbing the tracking mode.
  *
  * @param string $value The value to override.
  *
  * @return string
  */
 function monsterinsights_force_tracking_mode( $value ) {
-	return 'analytics';
+	return 'gtag';
 }
 add_filter( 'monsterinsights_get_option_tracking_mode', 'monsterinsights_force_tracking_mode' );
 

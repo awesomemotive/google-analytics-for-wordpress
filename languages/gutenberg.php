@@ -1,6 +1,147 @@
 <?php
 /* THIS IS A GENERATED FILE. DO NOT EDIT DIRECTLY. */
 $generated_i18n_strings = array(
+	// Reference: src/blocks/popular-posts-inline/index.js:103
+	// Reference: src/blocks/popular-posts-widget/index.js:107
+	__( 'Popular', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:104
+	// Reference: src/blocks/popular-posts-widget/index.js:108
+	__( 'Posts', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:105
+	__( 'Inline', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:214
+	// Reference: src/blocks/popular-posts-widget/index.js:255
+	__( 'Title Font Size', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:217
+	// Reference: src/blocks/popular-posts-widget/index.js:258
+	__( 'Title Color', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:222
+	// Reference: src/blocks/popular-posts-widget/index.js:263
+	__( 'Title Settings', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:236
+	// Reference: src/blocks/popular-posts-widget/index.js:313
+	__( 'Label Text', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:239
+	// Reference: src/blocks/popular-posts-widget/index.js:316
+	__( 'Label Color', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:242
+	// Reference: src/blocks/popular-posts-widget/index.js:319
+	__( 'Label Background', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:247
+	// Reference: src/blocks/popular-posts-widget/index.js:324
+	__( 'Label Settings', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:259
+	// Reference: src/blocks/popular-posts-widget/index.js:512
+	__( 'Bottom Border Color', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:262
+	// Reference: src/blocks/popular-posts-widget/index.js:515
+	__( 'Border Color', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:270
+	// Reference: src/blocks/popular-posts-widget/index.js:523
+	__( 'Border Settings', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:282
+	// Reference: src/blocks/popular-posts-widget/index.js:535
+	__( 'Background Color', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:287
+	// Reference: src/blocks/popular-posts-widget/index.js:540
+	__( 'Background Settings', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:299
+	__( 'Icon Color', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:302
+	__( 'Icon Background Color', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:307
+	__( 'Icon Settings', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:439
+	// Reference: src/blocks/popular-posts-widget/index.js:721
+	__( 'Theme', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:98
+	__( 'Inline Popular Posts', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:99
+	__( 'Add inline popular posts from MonsterInsights', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:102
+	__( 'Popular Posts', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:103
+	__( 'Add popular posts from MonsterInsights', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:109
+	__( 'Widget', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:277
+	__( 'Meta Font Size', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:280
+	__( 'Meta Color', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:285
+	__( 'Meta Settings', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:299
+	__( 'Comment Settings', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:302
+	__( 'Comment Color', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:333
+	__( 'Wide-Layout Options', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:336
+	__( 'Choose Layout', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:337
+	__( 'Adjust the number of columns displayed when the widget is placed in a wide container.', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:365
+	__( 'Post Count', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:366
+	__( 'Number of posts displayed.', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:404
+	__( 'Display Options', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:418
+	__( 'Behavior Settings', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:421
+	__( 'Display Widget Title', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:428
+	__( 'Widget Title', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:432
+	__( 'Only Show Posts From These Categories', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:452
+	__( 'Display Author', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:464
+	__( 'Display Date', 'google-analytics-for-wordpress' ),
+
+	// Reference: src/blocks/popular-posts-widget/index.js:476
+	__( 'Display Comments', 'google-analytics-for-wordpress' ),
+
 	// Reference: src/plugins/monsterinsights-Headline-Analyzer/components/HeadlinePanelCharacterCount.js:10
 	__( 'Character Count', 'google-analytics-for-wordpress' ),
 

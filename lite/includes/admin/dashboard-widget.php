@@ -41,12 +41,14 @@ class MonsterInsights_Dashboard_Widget {
 				'downloadlinks'  => false,
 			),
 			'ecommerce'   => array(
-				'infobox'     => false, // E-commerce Overview.
-				'products'    => false, // Top Products.
-				'conversions' => false, // Top Products.
-				'addremove'   => false, // Total Add/Remove.
-				'days'        => false, // Time to purchase.
-				'sessions'    => false, // Sessions to purchase.
+				'infobox'            => false, // E-commerce Overview.
+				'products'           => false, // Top Products.
+				'conversions'        => false, // Top Products.
+				'addremove'          => false, // Total Add/Remove.
+				'days'               => false, // Time to purchase.
+				'sessions'           => false, // Sessions to purchase.
+				'newcustomers'       => false,
+				'abandonedcheckouts' => false,
 			),
 			'notice30day' => false,
 		),
@@ -171,7 +173,7 @@ class MonsterInsights_Dashboard_Widget {
 			$plugins           = get_plugins();
 			$wp_forms_url      = false;
 			$wpforms_installed = false;
-			if ( current_user_can( 'install_plugins' ) ) {
+			if ( monsterinsights_can_install_plugins() ) {
 				$wpforms_key = 'wpforms-lite/wpforms.php';
 				if ( array_key_exists( $wpforms_key, $plugins ) ) {
 					$wp_forms_url      = wp_nonce_url( self_admin_url( 'plugins.php?action=activate&plugin=' . $wpforms_key ), 'activate-plugin_' . $wpforms_key );
@@ -180,7 +182,10 @@ class MonsterInsights_Dashboard_Widget {
 					$wp_forms_url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=wpforms-lite' ), 'install-plugin_wpforms-lite' );
 				}
 			}
-			$is_authed = ( MonsterInsights()->auth->is_authed() || MonsterInsights()->auth->is_network_authed() );
+
+			// We do not have a current auth.
+			$auth = MonsterInsights()->auth;
+			$is_authed = ( $auth->is_authed() || $auth->is_network_authed() );
 			wp_localize_script(
 				'monsterinsights-vue-widget',
 				'monsterinsights',
@@ -198,6 +203,7 @@ class MonsterInsights_Dashboard_Widget {
 					'wpforms_installed'   => $wpforms_installed,
 					'wpforms_url'         => $wp_forms_url,
 					'authed'              => $is_authed,
+					'auth_connected_type' => $auth->get_connected_type(),
 					// Used to add notices for future deprecations.
 					'versions'            => monsterinsights_get_php_wp_version_warning_data(),
 					'plugin_version'      => MONSTERINSIGHTS_VERSION,
@@ -241,9 +247,6 @@ class MonsterInsights_Dashboard_Widget {
 		$reports = $default['reports'];
 		if ( isset( $_POST['reports'] ) ) {
 			$reports = json_decode( sanitize_text_field( wp_unslash( $_POST['reports'] ) ), true );
-			foreach ( $reports as $report => $reports_sections ) {
-				$reports[ $report ] = array_map( 'boolval', $reports_sections );
-			}
 		}
 
 		$options = array(
