@@ -40,6 +40,8 @@ final class MonsterInsights_API_Auth {
 		add_action( 'wp_ajax_nopriv_monsterinsights_rauthenticate',   array( $this, 'rauthenticate' ) );
 
 		add_filter( 'monsterinsights_maybe_authenticate_siteurl', array( $this, 'before_redirect' ) );
+
+		add_action( 'wp_ajax_nopriv_monsterinsights_push_mp_token', array( $this, 'handle_relay_mp_token_push' ) );
 	}
 
 	public function get_tt(){
@@ -127,19 +129,28 @@ final class MonsterInsights_API_Auth {
 		wp_send_json_success( array( 'redirect' => $siteurl ) );
 	}
 
+	private function send_missing_args_error( $arg ) {
+		wp_send_json_error(
+			array(
+				'error'   => 'authenticate_missing_arg',
+				'message' => 'Authenticate missing parameter: ' . $arg,
+				'version'   => MONSTERINSIGHTS_VERSION,
+				'pro'   	=> monsterinsights_is_pro_version(),
+			)
+		);
+	}
+
 	public function rauthenticate() {
 		// Check for missing params
-		$reqd_args = array( 'key', 'token', 'ua', 'miview', 'a', 'w', 'p', 'tt', 'network' );
+		$reqd_args = array( 'key', 'token', 'miview', 'a', 'w', 'p', 'tt', 'network' );
+
+		if ( empty( $_REQUEST['ua'] ) && empty( $_REQUEST['v4'] ) ) {
+			$this->send_missing_args_error( 'ua/v4' );
+		}
+
 		foreach ( $reqd_args as $arg ) {
 			if ( empty( $_REQUEST[$arg] ) ) {
-				wp_send_json_error(
-					array(
-						'error'   => 'authenticate_missing_arg',
-						'message' => 'Authenticate missing parameter: ' . $arg,
-						'version'   => MONSTERINSIGHTS_VERSION,
-						'pro'   	=> monsterinsights_is_pro_version(),
-					)
-				);
+				$this->send_missing_args_error( $arg );
 			}
 		}
 
@@ -179,34 +190,47 @@ final class MonsterInsights_API_Auth {
 		}
 
 		// Make sure has required params
-		if ( empty( $_REQUEST['key'] )      ||
-			 empty( $_REQUEST['token'] )    ||
-			 empty( $_REQUEST['ua'] )       ||
-			 empty( $_REQUEST['miview'] )   ||
-			 empty( $_REQUEST['a'] )        ||
-			 empty( $_REQUEST['w'] )        ||
-			 empty( $_REQUEST['p'] )
+		if (
+			empty( $_REQUEST['key'] )    ||
+			empty( $_REQUEST['token'] )  ||
+			empty( $_REQUEST['miview'] ) ||
+			empty( $_REQUEST['a'] )      ||
+			empty( $_REQUEST['w'] )      ||
+			empty( $_REQUEST['p'] )      ||
+			( empty( $_REQUEST['ua'] ) && empty( $_REQUEST['v4'] ) )
 		) {
 			return;
 		}
 
-		// Invalid UA code
-		$ua = monsterinsights_is_valid_ua( $_REQUEST['ua'] );
-		if ( empty( $ua ) ) {
+		if ( ! empty( $_REQUEST['ua'] ) ) {
+			$code_key = 'ua';
+			$code_value = monsterinsights_is_valid_ua( $_REQUEST['ua'] );
+		} else if ( ! empty( $_REQUEST['v4'] ) ) {
+			$code_key = 'v4';
+			$code_value = monsterinsights_is_valid_v4_id( $_REQUEST['v4'] );
+		}
+
+		if ( empty( $code_value ) ) {
 			return;
 		}
 
 		$profile = array(
-			'key'      => sanitize_text_field( $_REQUEST['key'] ),
-			'token'    => sanitize_text_field( $_REQUEST['token'] ),
-			'ua'       => monsterinsights_is_valid_ua( $_REQUEST['ua'] ),
-			'viewname' => sanitize_text_field( $_REQUEST['miview'] ),
-			'a'        => sanitize_text_field( $_REQUEST['a'] ), // AccountID
-			'w'        => sanitize_text_field( $_REQUEST['w'] ), // PropertyID
-			'p'        => sanitize_text_field( $_REQUEST['p'] ), // View ID
-			'siteurl'  => site_url(),
-			'neturl'   => network_admin_url(),
+			'key'           => sanitize_text_field( $_REQUEST['key'] ),
+			'token'         => sanitize_text_field( $_REQUEST['token'] ),
+			'viewname'      => sanitize_text_field( $_REQUEST['miview'] ),
+			'a'             => sanitize_text_field( $_REQUEST['a'] ), // AccountID
+			'w'             => sanitize_text_field( $_REQUEST['w'] ), // PropertyID
+			'p'             => sanitize_text_field( $_REQUEST['p'] ), // View ID
+			'siteurl'       => site_url(),
+			'neturl'        => network_admin_url(),
+			'connectedtype' => $code_key,
 		);
+
+		if ( ! empty( $_REQUEST['mp'] ) ) {
+			$profile['measurement_protocol_secret'] = sanitize_text_field( $_REQUEST['mp'] );
+		}
+
+		$profile[ $code_key ] = $code_value;
 
 		$worked = $this->verify_auth( $profile );
 		if ( ! $worked || is_wp_error( $worked ) ) {
@@ -300,18 +324,24 @@ final class MonsterInsights_API_Auth {
 
 		// Make sure has required params
 		if (
-			 empty( $_REQUEST['ua'] )       ||
-			 empty( $_REQUEST['miview'] )   ||
-			 empty( $_REQUEST['a'] )        ||
-			 empty( $_REQUEST['w'] )        ||
-			 empty( $_REQUEST['p'] )
+			( empty( $_REQUEST['ua'] ) && empty( $_REQUEST['v4'] ) ) ||
+			empty( $_REQUEST['miview'] ) ||
+			empty( $_REQUEST['a'] ) ||
+			empty( $_REQUEST['w'] ) ||
+			empty( $_REQUEST['p'] )
 		) {
 			return;
 		}
 
-		// Invalid UA code
-		$ua = monsterinsights_is_valid_ua( $_REQUEST['ua'] );
-		if ( empty( $ua ) ) {
+		if ( ! empty( $_REQUEST['ua'] ) ) {
+			$code_key = 'ua';
+			$code_value = monsterinsights_is_valid_ua( $_REQUEST['ua'] );
+		} else if ( ! empty( $_REQUEST['v4'] ) ) {
+			$code_key = 'v4';
+			$code_value = monsterinsights_is_valid_v4_id( $_REQUEST['v4'] );
+		}
+
+		if ( empty( $code_value ) ) {
 			return;
 		}
 
@@ -324,14 +354,22 @@ final class MonsterInsights_API_Auth {
 		$profile = array(
 			'key'      => $existing['key'],
 			'token'    => $existing['token'],
-			'ua'       => monsterinsights_is_valid_ua( $_REQUEST['ua'] ),
 			'viewname' => sanitize_text_field( $_REQUEST['miview'] ),
 			'a'        => sanitize_text_field( $_REQUEST['a'] ),
 			'w'        => sanitize_text_field( $_REQUEST['w'] ),
 			'p'        => sanitize_text_field( $_REQUEST['p'] ),
+			'ua'       => $existing['ua'],
+			'v4'       => $existing['v4'],
 			'siteurl'  => site_url(),
 			'neturl'   => network_admin_url(),
+			'connectedtype' => $code_key,
 		);
+
+		if ( ! empty( $_REQUEST['mp'] ) ) {
+			$profile['measurement_protocol_secret'] = sanitize_text_field( $_REQUEST['mp'] );
+		}
+
+		$profile[ $code_key ] = $code_value;
 
 		// Save Profile
 		$this->is_network_admin() ? MonsterInsights()->auth->set_network_analytics_profile( $profile ) : MonsterInsights()->auth->set_analytics_profile( $profile );
@@ -579,5 +617,54 @@ final class MonsterInsights_API_Auth {
 		}
 
 		return $url;
+	}
+
+	/**
+	 * Delete auth-related options from the db - should be run at site level.
+	 */
+	public function uninstall_auth() {
+		delete_option( 'monsterinsights_site_profile' );
+		delete_option( 'monsterinsights_site_tt' );
+	}
+
+	/**
+	 * Save the measurement protocol that Relay pushes to this site
+	 */
+	public function handle_relay_mp_token_push() {
+		$mp_token = sanitize_text_field( $_POST['mp_token'] );
+		$timestamp = (int) sanitize_text_field( $_POST['timestamp'] );
+		$signature = sanitize_text_field( $_POST['signature'] );
+
+		// check if expired
+		if ( time() > $timestamp + 1000 ) {
+			wp_send_json_error( new WP_Error( 'monsterinsights_mp_token_timestamp_expired' ) );
+		}
+
+		// Check hashed signature
+		$auth = MonsterInsights()->auth;
+
+		$is_network = is_multisite();
+		$public_key = $is_network
+			? $auth->get_network_key()
+			: $auth->get_key();
+
+		$hashed_data = array(
+			'mp_token' => $_POST['mp_token'],
+			'timestamp' => $timestamp,
+		);
+
+		// These `hash_` functions are polyfilled by WP in wp-includes/compat.php
+		$expected_signature = hash_hmac( 'md5', http_build_query( $hashed_data ), $public_key );
+		if ( ! hash_equals( $signature, $expected_signature ) ) {
+			wp_send_json_error( new WP_Error( 'monsterinsights_mp_token_invalid_signature' ) );
+		}
+
+		// Save measurement protocol token
+		if ( $is_network ) {
+			$auth->set_network_measurement_protocol_secret( $mp_token );
+		} else {
+			$auth->set_measurement_protocol_secret( $mp_token );
+		}
+		wp_send_json_success();
 	}
 }

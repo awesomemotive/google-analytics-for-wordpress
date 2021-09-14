@@ -23,3 +23,11 @@ jQuery( document ).ready( function( $ ) {
 
 	} );
 });
+
+var submenu_item = document.querySelector( '.monsterinsights-upgrade-submenu' );
+if ( null !== submenu_item ) {
+	var li = submenu_item.parentNode.parentNode;
+	if ( li ) {
+		li.classList.add( 'monsterinsights-submenu-highlight' );
+	}
+}

@@ -19,6 +19,13 @@ class MonsterInsights_License_Compat {
 	/**
 	 * @return string
 	 */
+	public function get_license_type() {
+		return 'lite';
+	}
+
+	/**
+	 * @return string
+	 */
 	public function get_site_license_type() {
 		return '';
 	}

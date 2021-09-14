@@ -69,9 +69,9 @@ final class MonsterInsights_Report_Overview extends MonsterInsights_Report {
 		// Add GA links.
 		if ( ! empty( $data['data'] ) ) {
 			$data['data']['galinks'] = array(
-				'countries' => 'https://analytics.google.com/analytics/web/#report/visitors-geo/' . MonsterInsights()->auth->get_referral_url() . $this->get_ga_report_range( $data['data'] ),
-				'referrals' => 'https://analytics.google.com/analytics/web/#report/trafficsources-referrals/' . MonsterInsights()->auth->get_referral_url() . $this->get_ga_report_range( $data['data'] ),
-				'topposts'  => 'https://analytics.google.com/analytics/web/#/report/content-pages/' . MonsterInsights()->auth->get_referral_url() . $this->get_ga_report_range( $data['data'] ),
+				'countries' => $this->get_ga_report_url( 'visitors-geo', 'user-demographics-detail', $data['data'] ),
+				'referrals' => $this->get_ga_report_url( 'trafficsources-referrals', 'lifecycle-user-acquisition', $data['data'], '', '_r.explorerCard..seldim=["userAcquiredCampaignSource"]' ),
+				'topposts'  => $this->get_ga_report_url( 'content-pages', 'all-pages-and-screens', $data['data'] ),
 			);
 		}
 
