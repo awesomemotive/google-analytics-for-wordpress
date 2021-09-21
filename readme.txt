@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, WooCommerce stats, analytics dashboard, universal google analytics, statistics, tracking, stats, google, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 4.8.0
 Tested up to: 5.8
-Stable tag: 8.0.0
+Stable tag: 8.0.1
 Requires PHP: 5.5
 License: GPL v3
 
@@ -288,6 +288,9 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 8.0.1: September 21, 2021 =
+- Fix: We fixed an issue that caused the bounce rate box to appear twice on the dashboard widget.
+
 = 8.0.0: September 14, 2021 =
 - New: Full Google Analytics v4 support! After working very closely with the Google Analytics team for many months, we're excited to unveil full support for Google's newest version of Google Analytics. Google Analytics 4 (GA4) is the latest version of Google’s web analytics platform, and it can track both websites and apps in the same property. It also has some new reporting features and can give you better, more in-depth insights into how users are interacting with your website. We've taken the time to ensure that users who run GAv4 can do so effortlessly, for example by ensuring your events from GAv3 will work the same in GAv4 without having to touch any code or configuration. You can learn all about GAv4 and MonsterInsights on our [announcement blog post](https://www.monsterinsights.com/introducing-google-analytics-4-dual-analytics-tracking-for-wordpress/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion).
 - New: GAv3 + GAv4 Dual Tracking support. We're also excited to announce our exclusive dual-tracking feature. This feature lets you to track your site visitors to both a Google Analytics v3 (Universal) and a Google Analytics v4 (GAv4) property at the same time, which allows you to take advantage of the new GAv4 features without having to sacrifice your historical data. You can [learn more](https://www.monsterinsights.com/introducing-google-analytics-4-dual-analytics-tracking-for-wordpress/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) about this MonsterInsights exclusive feature on our [site](https://www.monsterinsights.com/introducing-google-analytics-4-dual-analytics-tracking-for-wordpress/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion).
@@ -377,7 +380,6 @@ Our EU compliance addon allows you to:
 * Anonymize IPs to Google Analytics
 * Disable the Demographics and Interest Reports for Remarketing and Advertising
 * Disable UserID and author name tracking
-* Enable the ga() compatibility mode
 * Integrate with Cookie Notice and CookieBot plugins to collect user consent before tracking
 * Integrate with Google AMP Consent Box before enable tracking
 * Integrate with Google Analytics Chrome browser opt-out extension and built-in cookie opt-out system
