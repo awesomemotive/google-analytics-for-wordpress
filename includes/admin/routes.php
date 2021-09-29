@@ -373,6 +373,10 @@ class MonsterInsights_Rest_Routes {
 		$parsed_addons['yoast_seo'] = array(
 			'active' => defined( 'WPSEO_VERSION' ),
 		);
+		// EasyAffiliate.
+		$parsed_addons['easy_affiliate'] = array(
+			'active' => defined( 'ESAF_EDITION' ),
+		);
 		// WPForms.
 		$parsed_addons['wpforms-lite'] = array(
 			'active'    => function_exists( 'wpforms' ),

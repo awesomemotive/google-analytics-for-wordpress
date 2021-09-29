@@ -58,18 +58,16 @@ class MonsterInsights_Measurement_Protocol_V4 {
 	private function validate_args( $args, $defaults ) {
 		$out = array();
 
-		$valid_keys = array( 'client_id', 'user_id', 'events' );
-
 		foreach ( $defaults as $key => $default ) {
-			if ( ! in_array( $key, $valid_keys, true ) ) {
-				continue;
-			}
-
 			if ( array_key_exists( $key, $args ) ) {
 				$out[ $key ] = $args[ $key ];
 			} else {
 				$out[ $key ] = $default;
 			}
+		}
+
+		if ( ! empty( $args['user_id'] ) && monsterinsights_get_option( 'userid', false ) ) {
+			$out['user_id'] = $args['user_id'];
 		}
 
 		return $out;
@@ -80,10 +78,12 @@ class MonsterInsights_Measurement_Protocol_V4 {
 			return;
 		}
 
-		$body = $this->validate_args( $args, array(
+		$defaults = array(
 			'client_id' => $this->get_client_id( $args ),
 			'events'    => array(),
-		) );
+		);
+
+		$body = $this->validate_args( $args, $defaults );
 
 		if ( $this->is_debug ) {
 			foreach ( $body['events'] as $index => $event ) {
