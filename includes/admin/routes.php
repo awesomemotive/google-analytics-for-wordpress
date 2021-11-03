@@ -138,9 +138,6 @@ class MonsterInsights_Rest_Routes {
 				$options[ $array_field ] = array();
 			}
 		}
-		if ( isset( $options['custom_code'] ) ) {
-			$options['custom_code'] = stripslashes( $options['custom_code'] );
-		}
 
 		//add email summaries options
 		if ( monsterinsights_is_pro_version() ) {
@@ -245,9 +242,7 @@ class MonsterInsights_Rest_Routes {
 		$value = wp_unslash( $value );
 
 		// Textarea fields.
-		$textarea_fields = array(
-			'custom_code',
-		);
+		$textarea_fields = array();
 
 		if ( in_array( $field, $textarea_fields, true ) ) {
 			if ( function_exists( 'sanitize_textarea_field' ) ) {
@@ -332,6 +327,13 @@ class MonsterInsights_Rest_Routes {
 		// Edd.
 		$parsed_addons['easy_digital_downloads'] = array(
 			'active' => class_exists( 'Easy_Digital_Downloads' ),
+			'icon'      => plugin_dir_url( MONSTERINSIGHTS_PLUGIN_FILE ) . 'assets/images/plugin-edd.png',
+			'title'     => 'Easy Digital Downloads',
+			'excerpt'   => __( 'Easy digital downloads plugin.', 'google-analytics-for-wordpress' ),
+			'installed' => array_key_exists( 'easy-digital-downloads/easy-digital-downloads.php', $installed_plugins ),
+			'basename'  => 'easy-digital-downloads/easy-digital-downloads.php',
+			'slug'      => 'easy-digital-downloads',
+			'settings'  => admin_url( 'edit.php?post_type=download' ),
 		);
 		// MemberPress.
 		$parsed_addons['memberpress'] = array(
@@ -386,6 +388,7 @@ class MonsterInsights_Rest_Routes {
 			'installed' => array_key_exists( 'wpforms-lite/wpforms.php', $installed_plugins ),
 			'basename'  => 'wpforms-lite/wpforms.php',
 			'slug'      => 'wpforms-lite',
+			'settings'  => admin_url( 'admin.php?page=wpforms-overview' ),
 		);
 		// AIOSEO.
 		$parsed_addons['aioseo'] = array(
@@ -396,6 +399,7 @@ class MonsterInsights_Rest_Routes {
 			'installed' => array_key_exists( 'all-in-one-seo-pack/all_in_one_seo_pack.php', $installed_plugins ),
 			'basename'  => ( monsterinsights_is_installed_aioseo_pro() ) ? 'all-in-one-seo-pack-pro/all_in_one_seo_pack.php' : 'all-in-one-seo-pack/all_in_one_seo_pack.php',
 			'slug'      => 'all-in-one-seo-pack',
+			'settings'  => admin_url( 'admin.php?page=aioseo' ),
 		);
 		// OptinMonster.
 		$parsed_addons['optinmonster'] = array(
@@ -406,6 +410,7 @@ class MonsterInsights_Rest_Routes {
 			'installed' => array_key_exists( 'optinmonster/optin-monster-wp-api.php', $installed_plugins ),
 			'basename'  => 'optinmonster/optin-monster-wp-api.php',
 			'slug'      => 'optinmonster',
+			'settings'  => admin_url( 'admin.php?page=optin-monster-dashboard' ),
 		);
 		// WP Mail Smtp.
 		$parsed_addons['wp-mail-smtp'] = array(
@@ -419,13 +424,14 @@ class MonsterInsights_Rest_Routes {
 		);
 		// SeedProd.
 		$parsed_addons['coming-soon']    = array(
-			'active'    => function_exists( 'seed_csp4_activation' ),
+			'active'    => defined( 'SEEDPROD_VERSION' ),
 			'icon'      => plugin_dir_url( MONSTERINSIGHTS_PLUGIN_FILE ) . 'assets/images/plugin-seedprod.png',
 			'title'     => 'SeedProd',
 			'excerpt'   => __( 'The fastest drag & drop landing page builder for WordPress. Create custom landing pages without writing code, connect them with your CRM, collect subscribers, and grow your audience. Trusted by 1 million sites.', 'google-analytics-for-wordpress' ),
 			'installed' => array_key_exists( 'coming-soon/coming-soon.php', $installed_plugins ),
 			'basename'  => 'coming-soon/coming-soon.php',
 			'slug'      => 'coming-soon',
+			'settings'  => admin_url( 'admin.php?page=seedprod_lite' ),
 		);
 		// RafflePress
 		$parsed_addons['rafflepress']    = array(
@@ -436,6 +442,7 @@ class MonsterInsights_Rest_Routes {
 			'installed' => array_key_exists( 'rafflepress/rafflepress.php', $installed_plugins ),
 			'basename'  => 'rafflepress/rafflepress.php',
 			'slug'      => 'rafflepress',
+			'settings'  => admin_url( 'admin.php?page=rafflepress_lite' ),
 		);
 		// TrustPulse
 		$parsed_addons['trustpulse-api'] = array(
@@ -449,13 +456,25 @@ class MonsterInsights_Rest_Routes {
 		);
 		// Smash Balloon (Instagram)
 		$parsed_addons['smash-balloon-instagram'] = array(
-			'active'    => class_exists( 'sb_instagram_feed_init' ),
+			'active'    => defined( 'SBIVER' ),
 			'icon'      => plugin_dir_url( MONSTERINSIGHTS_PLUGIN_FILE ) . 'assets/images/plugin-smash-balloon.png',
 			'title'     => 'Smash Balloon Instagram Feeds',
 			'excerpt'   => __( 'Easily display Instagram content on your WordPress site without writing any code. Comes with multiple templates, ability to show content from multiple accounts, hashtags, and more. Trusted by 1 million websites.', 'google-analytics-for-wordpress' ),
 			'installed' => array_key_exists( 'instagram-feed/instagram-feed.php', $installed_plugins ),
 			'basename'  => 'instagram-feed/instagram-feed.php',
 			'slug'      => 'instagram-feed',
+			'settings'  => admin_url( 'admin.php?page=sb-instagram-feed' ),
+		);
+		// Smash Balloon (Facebook)
+		$parsed_addons['smash-balloon-facebook'] = array(
+			'active'    => defined( 'CFFVER' ),
+			'icon'      => plugin_dir_url( MONSTERINSIGHTS_PLUGIN_FILE ) . 'assets/images/plugin-smash-balloon.png',
+			'title'     => 'Smash Balloon Facebook Feeds',
+			'excerpt'   => __( 'Easily display Facebook content on your WordPress site without writing any code. Comes with multiple templates, ability to show content from multiple accounts, hashtags, and more. Trusted by 1 million websites.', 'google-analytics-for-wordpress' ),
+			'installed' => array_key_exists( 'custom-facebook-feed/custom-facebook-feed.php', $installed_plugins ),
+			'basename'  => 'custom-facebook-feed/custom-facebook-feed.php',
+			'slug'      => 'custom-facebook-feed',
+			'settings'  => admin_url( 'admin.php?page=cff-feed-builder' ),
 		);
 		// PushEngage
 		$parsed_addons['pushengage'] = array(
@@ -476,7 +495,32 @@ class MonsterInsights_Rest_Routes {
 			'installed' => array_key_exists( 'pretty-link/pretty-link.php', $installed_plugins ),
 			'basename'  => 'pretty-link/pretty-link.php',
 			'slug'      => 'pretty-link',
+			'settings'  => admin_url( 'edit.php?post_type=pretty-link' ),
 		);
+		// Thirsty Affiliates
+		$parsed_addons['thirstyaffiliates'] = array(
+			'active'    => class_exists( 'ThirstyAffiliates' ),
+			'icon'      => '',
+			'title'     => 'Thirsty Affiliates',
+			'excerpt'   => __( 'ThirstyAffiliates is a revolution in affiliate link management. Collect, collate and store your affiliate links for use in your posts and pages.', 'google-analytics-for-wordpress' ),
+			'installed' => array_key_exists( 'thirstyaffiliates/thirstyaffiliates.php', $installed_plugins ),
+			'basename'  => 'thirstyaffiliates/thirstyaffiliates.php',
+			'slug'      => 'thirstyaffiliates',
+			'settings'  => admin_url( 'edit.php?post_type=thirstylink' ),
+		);
+		if ( function_exists( 'WC' ) ) {
+			// Advanced Coupons
+			$parsed_addons['advancedcoupons'] = array(
+				'active'    => class_exists( 'ACFWF' ),
+				'icon'      => '',
+				'title'     => 'Advanced Coupons',
+				'excerpt'   => __( 'Advanced Coupons for WooCommerce (Free Version) gives WooCommerce store owners extra coupon features so they can market their stores better.', 'google-analytics-for-wordpress' ),
+				'installed' => array_key_exists( 'advanced-coupons-for-woocommerce-free/advanced-coupons-for-woocommerce-free.php', $installed_plugins ),
+				'basename'  => 'advanced-coupons-for-woocommerce-free/advanced-coupons-for-woocommerce-free.php',
+				'slug'      => 'advanced-coupons-for-woocommerce-free',
+				'settings'  => admin_url( 'edit.php?post_type=shop_coupon&acfw' ),
+			);
+		}
 		// Gravity Forms.
 		$parsed_addons['gravity_forms'] = array(
 			'active' => class_exists( 'GFCommon' ),
@@ -786,12 +830,6 @@ class MonsterInsights_Rest_Routes {
 		foreach ( $exclude as $e ) {
 			if ( ! empty( $new_settings[ $e ] ) ) {
 				unset( $new_settings[ $e ] );
-			}
-		}
-
-		if ( ! is_super_admin() ) {
-			if ( ! empty( $new_settings['custom_code'] ) ) {
-				unset( $new_settings['custom_code'] );
 			}
 		}
 

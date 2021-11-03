@@ -70,6 +70,8 @@ function monsterinsights_admin_menu() {
     // Add About us page.
     add_submenu_page( $hook, __( 'About Us:', 'google-analytics-for-wordpress' ), __( 'About Us', 'google-analytics-for-wordpress' ), 'manage_options', $submenu_base . '#/about' );
 
+    add_submenu_page( $hook, __( 'Growth Tools:', 'google-analytics-for-wordpress' ), __( 'Growth Tools', 'google-analytics-for-wordpress' ), 'manage_options', $submenu_base . '#/growth-tools' );
+
     if ( ! monsterinsights_is_pro_version() ) {
 	    add_submenu_page( $hook, __( 'Upgrade to Pro:', 'google-analytics-for-wordpress' ), '<span class="monsterinsights-upgrade-submenu"> ' . __( 'Upgrade to Pro', 'google-analytics-for-wordpress' ) . '</span>', 'monsterinsights_save_settings', monsterinsights_get_upgrade_link( 'admin-menu', 'submenu', "https://www.monsterinsights.com/lite/" ) );
     }

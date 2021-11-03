@@ -284,12 +284,10 @@ class MonsterInsights_Install {
 			'tag_links_in_rss'                         => true,
 			'allow_anchor'                             => 0,
 			'add_allow_linker'                         => 0,
-			'custom_code'                              => '',
 			'save_settings'                            => array( 'administrator' ),
 			'view_reports'                             => array( 'administrator', 'editor' ),
 			'events_mode'                              => 'js',
 			'tracking_mode'                            => 'gtag', // Default new users to gtag.
-			'gtagtracker_compatibility_mode'           => true,
 			'email_summaries'                          => 'on',
 			'summaries_html_template'                  => 'yes',
 			'summaries_email_addresses'                => $admin_email_array,
