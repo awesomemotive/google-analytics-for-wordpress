@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, WooCommerce stats, analytics dashboard, universal google analytics, statistics, tracking, stats, google, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 4.8.0
 Tested up to: 5.8
-Stable tag: 8.1.0
+Stable tag: 8.2.0
 Requires PHP: 5.5
 License: GPL v3
 
@@ -288,6 +288,12 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 8.2.0: November 3, 2021 =
+- Tweak: The GA Compatibility layer feature has had it's output cleaned up.
+- Bugfix: Updated events when dual-tracking mode is enabled to not alter bounce rate on GAv3 properties.
+- New In Pro: Email summaries that show traffic results over the last 7 days
+- New In Pro: We've added official integrations with the Complianz and CookieYes plugins.
+
 = 8.1.0: September 30, 2021 =
 - Tweak: We've updated some of the GAv4 report labels to be more accurate.
 - New in Pro: We've added Google Ads conversion tracking for WooCommerce, Easy Digital Downloads, and MemberPress.
