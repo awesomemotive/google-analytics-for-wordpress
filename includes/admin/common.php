@@ -940,15 +940,15 @@ add_action( 'admin_init', 'monsterinsights_maybe_add_wp_php_version_notification
  */
 function monsterinsights_year_in_review_notification() {
 
-	// Check if dates are between Jan 1st 2021 & 13th Jan 2021.
-	if ( monsterinsights_date_is_between( '2021-01-01', '2021-01-14' ) ) {
+	// Check if dates are between Jan 1st 2022 & 13th Jan 2022.
+	if ( monsterinsights_date_is_between( '2022-01-01', '2022-01-14' ) ) {
 
 		$notification['id']      = 'monsterinsights_notification_year_in_review';
 		$notification['type']    = array( 'basic', 'lite', 'master', 'plus', 'pro' );
-		$notification['start']   = '2021-01-01';
-		$notification['end']     = '2021-01-14';
-		$notification['title']   = esc_html__( 'View 2020 Year in Review report!', 'google-analytics-for-wordpress' );
-		$notification['content'] = esc_html__( 'See how your website performed this year and find tips along the way to help grow even more in 2021!', 'google-analytics-for-wordpress' );
+		$notification['start']   = '2022-01-01';
+		$notification['end']     = '2022-01-14';
+		$notification['title']   = esc_html__( 'View 2021 Year in Review report!', 'google-analytics-for-wordpress' );
+		$notification['content'] = esc_html__( 'See how your website performed this year and find tips along the way to help grow even more in 2022!', 'google-analytics-for-wordpress' );
 		$notification['btns']    = array(
 			'learn_more' => array(
 				'url'  => esc_url( admin_url( 'admin.php?page=monsterinsights_reports#/year-in-review' ) ),

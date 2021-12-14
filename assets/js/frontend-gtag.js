@@ -812,8 +812,8 @@ var MonsterInsights = function () {
 					1 / 0
 				) ) { /* jshint ignore:line */
 					n = (
-						    n > 0 || - 1
-					    ) * Math.floor( Math.abs( n ) );
+							n > 0 || - 1
+						) * Math.floor( Math.abs( n ) );
 				}
 			}
 
