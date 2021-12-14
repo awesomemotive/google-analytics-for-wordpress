@@ -37,13 +37,9 @@ function monsterinsights_tracking_script() {
 		require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/tracking/class-tracking-preview.php';
 		$tracking = new MonsterInsights_Tracking_Preview();
 		echo $tracking->frontend_output();
-	} else if ( 'gtag' === $mode ) {
+	} else {
 		require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/tracking/class-tracking-gtag.php';
 		$tracking = new MonsterInsights_Tracking_Gtag();
-		echo $tracking->frontend_output();
-	} else {
-		require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/tracking/class-tracking-analytics.php';
-		$tracking = new MonsterInsights_Tracking_Analytics();
 		echo $tracking->frontend_output();
 	}
 
@@ -70,14 +66,8 @@ function monsterinsights_events_tracking() {
 	$track_user = monsterinsights_track_user();
 
 	if ( $track_user ) {
-		$tracking_mode = MonsterInsights()->get_tracking_mode();
-		if ( 'analytics' === $tracking_mode ) {
-			require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/events/class-analytics-events.php';
-			new MonsterInsights_Analytics_Events();
-		} else {
-			require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/events/class-gtag-events.php';
-			new MonsterInsights_Gtag_Events();
-		}
+		require_once plugin_dir_path( MONSTERINSIGHTS_PLUGIN_FILE ) . 'includes/frontend/events/class-gtag-events.php';
+		new MonsterInsights_Gtag_Events();
 	} else {
 		// User is in the disabled group or events mode is off
 	}

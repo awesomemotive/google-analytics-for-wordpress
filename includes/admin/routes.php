@@ -363,6 +363,14 @@ class MonsterInsights_Rest_Routes {
 		$parsed_addons['cookie_notice'] = array(
 			'active' => class_exists( 'Cookie_Notice' ),
 		);
+		// Complianz.
+		$parsed_addons['complianz'] = array(
+			'active' => defined( 'cmplz_plugin') || defined( 'cmplz_premium'),
+		);
+		// Cookie Yes
+		$parsed_addons['cookie_yes'] = array(
+			'active' => defined( 'CLI_SETTINGS_FIELD'),
+		);
 		// Fb Instant Articles.
 		$parsed_addons['instant_articles'] = array(
 			'active' => defined( 'IA_PLUGIN_VERSION' ) && version_compare( IA_PLUGIN_VERSION, '3.3.4', '>' ),
@@ -378,6 +386,9 @@ class MonsterInsights_Rest_Routes {
 		// EasyAffiliate.
 		$parsed_addons['easy_affiliate'] = array(
 			'active' => defined( 'ESAF_EDITION' ),
+		);
+		$parsed_addons['affiliate_wp'] = array(
+			'active' => function_exists( 'affiliate_wp' ) && defined( 'AFFILIATEWP_VERSION' ),
 		);
 		// WPForms.
 		$parsed_addons['wpforms-lite'] = array(

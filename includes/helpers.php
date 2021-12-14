@@ -1268,15 +1268,12 @@ function monsterinsights_detect_tracking_code_error( $body, $type = 'ua' ) {
 		return $errors;
 	}
 
-	if (
-		( $type === 'ua' && false === strpos( $body, '__gaTracker' ) ) ||
-		( $type === 'v4' && false === strpos( $body, '__gtagTracker' ) )
-	) {
+	if ( $type === 'v4' && false === strpos( $body, '__gtagTracker' ) ) {
 		$errors[] = $cache_error;
 		return $errors;
 	}
 
-	$limit = 'gtag' === MonsterInsights()->get_tracking_mode() ? 3 : 2;
+	$limit = 3;
 
 	// TODO: Need to re-evaluate this regularly when third party plugins start supporting v4
 	$limit += monsterinsights_count_third_party_ua_codes( $body, $type );
@@ -1695,7 +1692,8 @@ function monsterinsights_get_frontend_analytics_script_atts() {
 
 	$attributes = apply_filters( 'monsterinsights_tracking_analytics_script_attributes', array(
 		'type'         => "text/javascript",
-		'data-cfasync' => 'false'
+		'data-cfasync' => 'false',
+		'data-wpfc-render' => 'false'
 	) );
 
 	if ( ! empty( $attributes ) ) {

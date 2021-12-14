@@ -6,7 +6,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/?utm_source=liteplugin&utm_medium=pluginheader&utm_campaign=authoruri&utm_content=7%2E0%2E0
  *
- * Version:             8.2.0
+ * Version:             8.3.0
  * Requires at least:   4.8.0
  * Requires PHP:        5.5
  *
@@ -69,7 +69,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '8.2.0';
+	public $version = '8.3.0';
 
 	/**
 	 * Plugin file.
@@ -176,6 +176,7 @@ final class MonsterInsights_Lite {
 	 * @since 7.15.0
 	 * @accces public
 	 * @var string
+	 * @deprecated Since 8.3 with the removal of ga compatibility
 	 */
 	public $tracking_mode;
 
@@ -568,6 +569,7 @@ final class MonsterInsights_Lite {
 	/**
 	 * Get the tracking mode for the frontend scripts.
 	 *
+	 * @deprecated Since 8.3 with the removal of ga compatibility
 	 * @return string
 	 */
 	public function get_tracking_mode() {

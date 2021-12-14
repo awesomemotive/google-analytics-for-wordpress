@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, WooCommerce stats, analytics dashboard, universal google analytics, statistics, tracking, stats, google, google analytics by yoast, ga, monster insights, monsterinsights, universal analytics, web stats, ecommerce, ecommerce tracking
 Requires at least: 4.8.0
 Tested up to: 5.8
-Stable tag: 8.2.0
+Stable tag: 8.3.0
 Requires PHP: 5.5
 License: GPL v3
 
@@ -288,6 +288,18 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 8.3.0: December 14, 2021 =
+- New: With our limited-time only Year in Review report you’ll be able to see how your site performed in 2020 and how to improve in 2021. This report will be automatically available from January 1 to January 14, 2022 inside the Reports section of MonsterInsights.
+- New In Pro: Introducing the MonsterInsights Media addon which allows for impression and video watch time tracking for videos uploaded to WordPress, embedded from YouTube or embedded from Vimeo automatically!
+- New In Pro: We've added a new integration with AffiliateWP allowing you to more effectively track your affiliate impact on conversions!
+- Tweak: External links to our documentation now will always open in a new tab to make it easier to perform the action listed in the docs.
+- Fixed: A bug that caused some reports to show a blank numbers.
+- Fixed: The Headline Analyzer feature will no longer unpin when another plugin's tab is unpinned.
+- Fixed: Legacy analytics.js code has been removed which increases performance by removing unnecessary switches and database lookups.
+- Fixed: An issue that caused the dashboard widget to sometimes show the bounce rate box twice for GAv3 properties.
+- Fixed: An issue with Cookie Notice when used in Cookie Notice's legacy mode.
+- Fixed: An issue that could prevent auth for networks on the multisite panel has been fixed.
+
 = 8.2.0: November 3, 2021 =
 - Tweak: The GA Compatibility layer feature has had it's output cleaned up.
 - Bugfix: Updated events when dual-tracking mode is enabled to not alter bounce rate on GAv3 properties.
