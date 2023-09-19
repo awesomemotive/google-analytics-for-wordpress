@@ -100,6 +100,7 @@ class MonsterInsights_Gtag_Events {
 			$suffix = '';
 		}
 		wp_enqueue_script( 'monsterinsights-frontend-script', plugins_url( 'assets/js/frontend-gtag' . $suffix . '.js', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version(), false );
+		wp_script_add_data( 'monsterinsights-frontend-script', 'strategy', 'defer' );
 		wp_localize_script(
 			'monsterinsights-frontend-script',
 			'monsterinsights_frontend',
