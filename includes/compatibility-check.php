@@ -18,8 +18,8 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		/**
 		 * Return Singleton instance
 		 *
-		 * @since 8.0.0
 		 * @return MonsterInsights_Compatibility_Check
+		 * @since 8.0.0
 		 */
 		public static function get_instance() {
 			if ( empty( self::$instance ) ) {
@@ -34,15 +34,15 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		 * @var array {
 		 *     PHP Version requirement and recommendation
 		 *
-		 *     @type string $required Halt and deactivate plugin if PHP is under this version
-		 *     @type string $warning Display undismissable warning if PHP is under this version
-		 *     @type string $recommended Display undismissable warning if PHP is under this version
+		 * @type string $required Halt and deactivate plugin if PHP is under this version
+		 * @type string $warning Display undismissable warning if PHP is under this version
+		 * @type string $recommended Display undismissable warning if PHP is under this version
 		 * }
 		 */
 		private $compatible_php_version = array(
-			'required'    => '5.5',
+			'required'    => '7.2',
 			'warning'     => '7.0',
-			'recommended' => '7.2',
+			'recommended' => false,
 		);
 
 		/**
@@ -50,14 +50,14 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		 * @var array {
 		 *     WP Version requirement and recommendation
 		 *
-		 *     @type string $required Halt and deactivate plugin if WP is under this version
-		 *     @type string $warning Display undismissable warning if WP is under this version
-		 *     @type string $recommended Display undismissable warning if WP is under this version
+		 * @type string $required Halt and deactivate plugin if WP is under this version
+		 * @type string $warning Display undismissable warning if WP is under this version
+		 * @type string $recommended Display undismissable warning if WP is under this version
 		 * }
 		 */
 		private $compatible_wp_version = array(
-			'required'    => '4.8',
-			'warning'     => '4.9',
+			'required'    => '5.6',
+			'warning'     => '6.0',
 			'recommended' => false,
 		);
 
@@ -67,8 +67,14 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		 * @since 8.0.0
 		 */
 		private function __construct() {
-			add_filter( 'monsterinsights_compatible_php_version', array( $this, 'filter_compatible_php_version' ), 10, 1 );
-			add_filter( 'monsterinsights_compatible_wp_version', array( $this, 'filter_compatible_wp_version' ), 10, 1 );
+			add_filter( 'monsterinsights_compatible_php_version', array(
+				$this,
+				'filter_compatible_php_version'
+			), 10, 1 );
+			add_filter( 'monsterinsights_compatible_wp_version', array(
+				$this,
+				'filter_compatible_wp_version'
+			), 10, 1 );
 		}
 
 		/**
@@ -77,19 +83,19 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		 * @param array $version {
 		 *     PHP Version requirement and recommendation
 		 *
-		 *     @type string $required    Halt and deactivate plugin if PHP is under this version
-		 *     @type string $warning     Display undismissable warning if PHP is under this version
-		 *     @type string $recommended Display undismissable warning if PHP is under this version
+		 * @type string $required Halt and deactivate plugin if PHP is under this version
+		 * @type string $warning Display undismissable warning if PHP is under this version
+		 * @type string $recommended Display undismissable warning if PHP is under this version
 		 * }
 		 *
-		 * @since 8.0.0
 		 * @return array {
 		 *     PHP Version requirement and recommendation
 		 *
-		 *     @type string $required    Halt and deactivate plugin if PHP is under this version
-		 *     @type string $warning     Display undismissable warning if PHP is under this version
-		 *     @type string $recommended Display undismissable warning if PHP is under this version
+		 * @type string $required Halt and deactivate plugin if PHP is under this version
+		 * @type string $warning Display undismissable warning if PHP is under this version
+		 * @type string $recommended Display undismissable warning if PHP is under this version
 		 * }
+		 * @since 8.0.0
 		 */
 		public function filter_compatible_php_version( $version ) {
 			if ( ! $version || version_compare( $version['required'], $this->compatible_php_version['required'], '<' ) ) {
@@ -102,22 +108,22 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		/**
 		 * Return the strictest WP compatibility versions
 		 *
-		 * @param array $version     {
+		 * @param array $version {
 		 *     WP Version requirement and recommendation
 		 *
-		 *     @type string $required Halt and deactivate plugin if WP is under this version
-		 *     @type string $warning Display undismissable warning if WP is under this version
-		 *     @type string $recommended Display undismissable warning if WP is under this version
+		 * @type string $required Halt and deactivate plugin if WP is under this version
+		 * @type string $warning Display undismissable warning if WP is under this version
+		 * @type string $recommended Display undismissable warning if WP is under this version
 		 * }
 		 *
-		 * @since 8.0.0
 		 * @return array {
 		 *     WP Version requirement and recommendation
 		 *
-		 *     @type string $required Halt and deactivate plugin if WP is under this version
-		 *     @type string $warning Display undismissable warning if WP is under this version
-		 *     @type string $recommended Display undismissable warning if WP is under this version
+		 * @type string $required Halt and deactivate plugin if WP is under this version
+		 * @type string $warning Display undismissable warning if WP is under this version
+		 * @type string $recommended Display undismissable warning if WP is under this version
 		 * }
+		 * @since 8.0.0
 		 */
 		public function filter_compatible_wp_version( $version ) {
 			if ( ! $version || version_compare( $version['required'], $this->compatible_wp_version['required'], '<' ) ) {
@@ -130,14 +136,14 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		/**
 		 * Return required, warning and recommended PHP versions
 		 *
-		 * @since 8.0.0
 		 * @return array {
 		 *     PHP Version requirement and recommendation
 		 *
-		 *     @type string $required    Halt and deactivate plugin if PHP is under this version
-		 *     @type string $warning     Display undismissable warning if PHP is under this version
-		 *     @type string $recommended Display undismissable warning if PHP is under this version
+		 * @type string $required Halt and deactivate plugin if PHP is under this version
+		 * @type string $warning Display undismissable warning if PHP is under this version
+		 * @type string $recommended Display undismissable warning if PHP is under this version
 		 * }
+		 * @since 8.0.0
 		 */
 		public function get_compatible_php_version() {
 			return apply_filters( 'monsterinsights_compatible_php_version', $this->compatible_php_version );
@@ -146,8 +152,8 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		/**
 		 * Check to see if PHP version meets the minimum required version
 		 *
-		 * @since 8.0.0
 		 * @return bool
+		 * @since 8.0.0
 		 */
 		public function is_php_compatible() {
 			$compatible_php_version = $this->get_compatible_php_version();
@@ -158,14 +164,14 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		/**
 		 * Return required, warning and recommended WP versions
 		 *
-		 * @since 8.0.0
 		 * @return array {
 		 *     WP Version requirement and recommendation
 		 *
-		 *     @type string $required Halt and deactivate plugin if WP is under this version
-		 *     @type string $warning Display undismissable warning if WP is under this version
-		 *     @type string $recommended Display undismissable warning if WP is under this version
+		 * @type string $required Halt and deactivate plugin if WP is under this version
+		 * @type string $warning Display undismissable warning if WP is under this version
+		 * @type string $recommended Display undismissable warning if WP is under this version
 		 * }
+		 * @since 8.0.0
 		 */
 		public function get_compatible_wp_version() {
 			return apply_filters( 'monsterinsights_compatible_wp_version', $this->compatible_wp_version );
@@ -174,8 +180,8 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		/**
 		 * Check to see if WP version meets the minimum required version
 		 *
-		 * @since 8.0.0
 		 * @return bool
+		 * @since 8.0.0
 		 */
 		public function is_wp_compatible() {
 			global $wp_version;
@@ -187,8 +193,8 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		/**
 		 * Check to see if the main plugin or any other add-ons have displayed the required version notice
 		 *
-		 * @since 8.0.0
 		 * @return bool
+		 * @since 8.0.0
 		 */
 		private function is_notice_already_active() {
 			return defined( 'MONSTERINSIGHTS_VERSION_NOTICE_ACTIVE' ) && MONSTERINSIGHTS_VERSION_NOTICE_ACTIVE;
@@ -198,8 +204,8 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		 * Set global constant so that main plugin or other add-ons are aware that the version notice
 		 * has been set for display already
 		 *
-		 * @since 8.0.0
 		 * @return void
+		 * @since 8.0.0
 		 */
 		private function set_notice_active() {
 			if ( ! defined( 'MONSTERINSIGHTS_VERSION_NOTICE_ACTIVE' ) ) {
@@ -212,8 +218,8 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		 * 1. Minimum PHP and WP versions are not met
 		 * 2. The notice has been displayed elsewhere (in case there are multiple add-ons)
 		 *
-		 * @since 8.0.0
 		 * @return void
+		 * @since 8.0.0
 		 */
 		public function maybe_display_notice() {
 			if ( defined( 'MONSTERINSIGHTS_FORCE_ACTIVATION' ) && MONSTERINSIGHTS_FORCE_ACTIVATION ) {
@@ -236,27 +242,29 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		/**
 		 * Deactivate plugin if minimum PHP and WP requirements are not met.
 		 *
-		 * @since 8.0.0
 		 * @param $plugin
+		 *
 		 * @return void
+		 * @since 8.0.0
 		 */
 		public function maybe_deactivate_plugin( $plugin ) {
 			if ( defined( 'MONSTERINSIGHTS_FORCE_ACTIVATION' ) && MONSTERINSIGHTS_FORCE_ACTIVATION ) {
 				return;
 			}
 
-			$url = admin_url( 'plugins.php' );
+			$url                    = admin_url( 'plugins.php' );
 			$compatible_php_version = $this->get_compatible_php_version();
 			$compatible_wp_version  = $this->get_compatible_wp_version();
 
 			if ( ! empty( $compatible_php_version['required'] ) && ! $this->is_php_compatible() ) {
 				deactivate_plugins( $plugin );
+				// Translators: HTML strong tag starts, PHP version number, HTML string tag end, plugins page Link tag starts with url and plugins page link tag ends.
 				wp_die(
-					sprintf( esc_html__( 'Sorry, but your version of PHP does not meet MonsterInsights\' required version of %1$s%2$s%3$s to run properly. The plugin has not been activated. %4$sClick here to return to the Dashboard%5$s.', 'google-analytics-for-wordpress' ),
+					sprintf( esc_html__( 'Sorry, but your current version of PHP does not meet the minimum required version %1$s%2$s%3$s or newer to run MonsterInsights properly. For information on how to upgrade your PHP version, contact your web host. %4$sClick here to return to the Dashboard%5$s.', 'google-analytics-for-wordpress' ),
 						'<strong>',
-						$compatible_php_version['required'],
+						$compatible_php_version['required'], // phpcs:ignore
 						'</strong>',
-						'<a href="' . $url . '">',
+						'<a target="_blank" href="' . esc_url($url) . '">',
 						'</a>'
 					)
 				);
@@ -264,13 +272,14 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 
 			if ( ! empty( $compatible_wp_version['required'] ) && ! $this->is_wp_compatible() ) {
 				deactivate_plugins( plugin_basename( __FILE__ ) );
+				// Translators: HTML strong tag starts, WP version number, HTML string tag end, plugins page Link tag starts with url and plugins page link tag ends.
 				wp_die(
 					sprintf(
-						esc_html__( 'Sorry, but your version of WordPress does not meet MonsterInsights\' required version of %1$s%2$s%3$s to run properly. The plugin has not been activated. %4$sClick here to return to the Dashboard%5$s.', 'google-analytics-for-wordpress' ),
+						esc_html__( 'Sorry, but your WordPress version is not %1$s%2$s%3$s or newer. Please update your WordPress version and then activate MonsterInsights. For help on how to update your WordPress %4$sclick here%5$s.', 'google-analytics-for-wordpress' ),
 						'<strong>',
-						$compatible_wp_version['required'],
+						$compatible_wp_version['required'], // phpcs:ignore
 						'</strong>',
-						'<a href="' . $url . '">',
+						'<a target="_blank" href="' . esc_url($url) . '">',
 						'</a>'
 					)
 				);
@@ -280,8 +289,8 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		/**
 		 * Output a nag notice if the user has an out of date PHP version installed
 		 *
-		 * @since 8.0.0
 		 * @return void
+		 * @since 8.0.0
 		 */
 		public function display_php_notice() {
 			$url = admin_url( 'plugins.php' );
@@ -299,12 +308,14 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 			?>
 			<div class="error">
 				<p>
-					<?php echo sprintf(
-						esc_html__( 'Sorry, but your version of PHP does not meet MonsterInsights\' required version of %1$s%2$s%3$s to run properly. The plugin has not been activated. %4$sClick here to return to the Dashboard%5$s.', 'google-analytics-for-wordpress' ),
+					<?php
+					// Translators: HTML strong tag starts, PHP version number, HTML string tag end, plugins page Link tag starts with url and plugins page link tag ends.
+					echo sprintf(
+						esc_html__( 'Sorry, but your current version of PHP does not meet the minimum required version %1$s%2$s%3$s or newer to run MonsterInsights properly. For information on how to upgrade your PHP version, contact your web host. %4$sClick here to return to the Dashboard%5$s.', 'google-analytics-for-wordpress' ),
 						'<strong>',
-						$compatible_php_version['required'],
+						$compatible_php_version['required'], // phpcs:ignore
 						'</strong>',
-						'<a href="' . $url . '">',
+						'<a target="_blank" href="' . $url . '">', // phpcs:ignore
 						'</a>' );
 					?>
 				</p>
@@ -315,16 +326,11 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 		/**
 		 * Output a nag notice if the user has an out of date WP version installed
 		 *
-		 * @since 8.0.0
 		 * @return void
+		 * @since 8.0.0
 		 */
 		public function display_wp_notice() {
-			$url = admin_url( 'plugins.php' );
-
-			// Check for MS dashboard
-			if( is_network_admin() ) {
-				$url = network_admin_url( 'plugins.php' );
-			}
+			$url = monsterinsights_get_url( 'notice', 'wrong-wp-version', 'https://www.wpbeginner.com/beginners-guide/ultimate-guide-to-upgrade-wordpress-for-beginners-infograph/' );
 
 			$compatible_wp_version = $this->get_compatible_wp_version();
 			if ( empty( $compatible_wp_version['required'] ) ) {
@@ -338,11 +344,11 @@ if ( ! class_exists( 'MonsterInsights_Compatibility_Check' ) ) {
 					<?php
 					// Translators: Make version number bold and add a link to return to the plugins page.
 					echo sprintf(
-						esc_html__( 'Sorry, but your version of WordPress does not meet MonsterInsights\' required version of %1$s%2$s%3$s to run properly. The plugin has not been activated. %4$sClick here to return to the Dashboard%5$s.', 'google-analytics-for-wordpress' ),
+						esc_html__( 'Sorry, but your WordPress version is not %1$s%2$s%3$s or newer. Please update your WordPress version and then activate MonsterInsights. For help on how to update your WordPress %4$sclick here%5$s.', 'google-analytics-for-wordpress' ),
 						'<strong>',
-						$compatible_wp_version['required'],
+						$compatible_wp_version['required'], // phpcs:ignore
 						'</strong>',
-						'<a href="' . $url . '">',
+						'<a target="_blank" href="' . $url . '">', // phpcs:ignore
 						'</a>'
 					);
 					?>

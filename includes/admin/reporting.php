@@ -20,11 +20,11 @@ final class MonsterInsights_Reporting {
 
 	public $reports = array();
 
-	public function __construct( ) {
+	public function __construct() {
 
 	}
 
-	public function add_report( $report = false ){
+	public function add_report( $report = false ) {
 		if ( empty( $report ) || ! is_object( $report ) ) {
 			return;
 		}
@@ -63,6 +63,7 @@ final class MonsterInsights_Reporting {
 				return $report;
 			}
 		}
+
 		return false;
 	}
 }

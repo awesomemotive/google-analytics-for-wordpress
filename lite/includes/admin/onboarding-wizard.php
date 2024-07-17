@@ -38,6 +38,10 @@ class MonsterInsights_Onboarding_Wizard {
 			'get_install_errors',
 		) );
 
+		add_action( 'monsterinsights_after_ajax_activate_addon', array( $this, 'disable_aioseo_onboarding_wizard' ) );
+		add_action( 'monsterinsights_after_ajax_activate_addon', array( $this, 'disable_wpforms_onboarding_wizard' ) );
+		add_action( 'monsterinsights_after_ajax_activate_addon', array( $this, 'disable_optin_monster_onboarding_wizard' ) );
+
 		// This will only be called in the Onboarding Wizard context because of previous checks.
 		add_filter( 'monsterinsights_maybe_authenticate_siteurl', array( $this, 'change_return_url' ) );
 		add_filter( 'monsterinsights_auth_success_redirect_url', array( $this, 'change_success_url' ) );
@@ -97,28 +101,14 @@ class MonsterInsights_Onboarding_Wizard {
 	 * Load the scripts needed for the Onboarding Wizard.
 	 */
 	public function enqueue_scripts() {
+		$version_path = 'lite';
 
-		global $wp_version;
-		$version_path = monsterinsights_is_pro_version() ? 'pro' : 'lite';
-		$rtl          = is_rtl() ? '.rtl' : '';
-		if ( ! defined( 'MONSTERINSIGHTS_LOCAL_WIZARD_JS_URL' ) ) {
-			wp_enqueue_style( 'monsterinsights-vue-style-vendors', plugins_url( $version_path . '/assets/vue/css/chunk-vendors' . $rtl . '.css', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version() );
-			wp_enqueue_style( 'monsterinsights-vue-style-common', plugins_url( $version_path . '/assets/vue/css/chunk-common' . $rtl . '.css', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version() );
-			wp_enqueue_style( 'monsterinsights-vue-style', plugins_url( $version_path . '/assets/vue/css/wizard' . $rtl . '.css', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version() );
-			wp_enqueue_script( 'monsterinsights-vue-vendors', plugins_url( $version_path . '/assets/vue/js/chunk-vendors.js', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version(), true );
-			wp_enqueue_script( 'monsterinsights-vue-common', plugins_url( $version_path . '/assets/vue/js/chunk-common.js', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version(), true );
-			wp_register_script( 'monsterinsights-vue-script', plugins_url( $version_path . '/assets/vue/js/wizard.js', MONSTERINSIGHTS_PLUGIN_FILE ), array(
-				'monsterinsights-vue-vendors',
-				'monsterinsights-vue-common',
-			), monsterinsights_get_asset_version(), true );
-		} else {
-			wp_enqueue_script( 'monsterinsights-vue-vendors', MONSTERINSIGHTS_LOCAL_VENDORS_JS_URL, array(), monsterinsights_get_asset_version(), true );
-			wp_enqueue_script( 'monsterinsights-vue-common', MONSTERINSIGHTS_LOCAL_COMMON_JS_URL, array(), monsterinsights_get_asset_version(), true );
-			wp_register_script( 'monsterinsights-vue-script', MONSTERINSIGHTS_LOCAL_WIZARD_JS_URL, array(
-				'monsterinsights-vue-vendors',
-				'monsterinsights-vue-common',
-			), monsterinsights_get_asset_version(), true );
+		if ( ! defined( 'MONSTERINSIGHTS_LOCAL_JS_URL' ) ) {
+			MonsterInsights_Admin_Assets::enqueue_script_specific_css( 'src/modules/wizard-onboarding/wizard.js' );
 		}
+
+		$app_js_url = MonsterInsights_Admin_Assets::get_js_url( 'src/modules/wizard-onboarding/wizard.js' );
+		wp_register_script( 'monsterinsights-vue-script', $app_js_url, array(), monsterinsights_get_asset_version(), true );
 		wp_enqueue_script( 'monsterinsights-vue-script' );
 
 		$settings_page = is_network_admin() ? add_query_arg( 'page', 'monsterinsights_network', network_admin_url( 'admin.php' ) ) : add_query_arg( 'page', 'monsterinsights_settings', admin_url( 'admin.php' ) );
@@ -154,6 +144,16 @@ class MonsterInsights_Onboarding_Wizard {
 	 * Outputs the simplified header used for the Onboarding Wizard.
 	 */
 	public function onboarding_wizard_header() {
+		/**
+		 * Since WordPress 6.4 print_emoji_styles() and wp_admin_bar_header() have been deprecated.
+		 */
+		if ( has_action( 'admin_head', 'wp_admin_bar_header') && function_exists( 'wp_enqueue_admin_bar_header_styles' ) ) {
+			remove_action( 'admin_head', 'wp_admin_bar_header' );
+			add_action( 'admin_head', 'wp_enqueue_admin_bar_header_styles' );
+		}
+		if ( has_action( 'admin_print_styles', 'print_emoji_styles') ) {
+			remove_action( 'admin_print_styles', 'print_emoji_styles' );
+		}
 		?>
 		<!DOCTYPE html>
 		<html <?php language_attributes(); ?>>
@@ -165,7 +165,7 @@ class MonsterInsights_Onboarding_Wizard {
 			<?php do_action( 'admin_print_scripts' ); ?>
 			<?php do_action( 'admin_head' ); ?>
 		</head>
-		<body class="monsterinsights-onboarding">
+		<body class="monsterinsights-onboarding monsterinsights_page">
 		<?php
 	}
 
@@ -241,7 +241,7 @@ class MonsterInsights_Onboarding_Wizard {
 
 		if ( ! monsterinsights_can_install_plugins() ) {
 			wp_send_json( array(
-				'message' => esc_html__( 'You are not allowed to install plugins', 'google-analytics-for-wordpress' ),
+				'message' => esc_html__( 'Oops! You are not allowed to install plugins. Please contact your site administrator for assistance.', 'google-analytics-for-wordpress' ),
 			) );
 		}
 
@@ -436,6 +436,50 @@ class MonsterInsights_Onboarding_Wizard {
 
 		wp_send_json( monsterinsights_is_code_installed_frontend() );
 
+	}
+
+	public function disable_aioseo_onboarding_wizard( $plugin ) {
+		if ( empty( $plugin ) ) {
+			return;
+		}
+
+		if ( 'all-in-one-seo-pack/all_in_one_seo_pack.php' !== $plugin ) {
+			return;
+		}
+
+		update_option( 'aioseo_activation_redirect', true );
+	}
+
+	public function disable_wpforms_onboarding_wizard( $plugin ) {
+		if ( empty( $plugin ) ) {
+			return;
+		}
+
+		if ( 'wpforms-lite/wpforms.php' !== $plugin ) {
+			return;
+		}
+
+		if ( false === get_transient( 'wpforms_activation_redirect' ) ) {
+			return;
+		}
+
+		delete_transient( 'wpforms_activation_redirect' );
+	}
+
+	public function disable_optin_monster_onboarding_wizard( $plugin ) {
+		if ( empty( $plugin ) ) {
+			return;
+		}
+
+		if ( 'optinmonster/optin-monster-wp-api.php' !== $plugin ) {
+			return;
+		}
+
+		if ( false === get_transient( 'optin_monster_api_activation_redirect' ) ){
+			return;
+		}
+
+		delete_transient( 'optin_monster_api_activation_redirect' );
 	}
 
 }

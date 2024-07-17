@@ -7,10 +7,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 final class MonsterInsights_Lite_Report_Dimensions extends MonsterInsights_Report {
 
 	public $title;
-	public $class   = 'MonsterInsights_Lite_Report_Dimensions';
-	public $name    = 'dimensions';
+	public $class = 'MonsterInsights_Lite_Report_Dimensions';
+	public $name = 'dimensions';
 	public $version = '1.0.0';
-	public $level   = 'pro';
+	public $level = 'pro';
 
 	/**
 	 * Primary class constructor.
@@ -23,7 +23,7 @@ final class MonsterInsights_Lite_Report_Dimensions extends MonsterInsights_Repor
 		parent::__construct();
 	}
 
-	protected function get_report_html( $data = array() ){
+	protected function get_report_html( $data = array() ) {
 		return $this->get_upsell_notice();
 	}
 }

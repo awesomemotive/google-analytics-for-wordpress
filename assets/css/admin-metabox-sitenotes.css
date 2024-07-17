@@ -1,0 +1,25 @@
+/*
+***************************
+******* Site Notes ********
+***************************
+*/
+#monsterinsights-metabox-site-notes{
+    margin-top: 20px;
+    border-top: 1px solid #efefef;
+}
+.monsterinsights-metabox-input{
+    margin-bottom: 10px;
+}
+#monsterinsights-metabox-site-notes .hidden{
+    display: none;
+}
+.monsterinsights-metabox-textarea textarea,
+.monsterinsights-metabox-select select{
+    width: 100%;
+}
+.monsterinsights-metabox-select select{
+    margin-top: 10px;
+}
+.site-notes-select select{
+    line-height: 2 !important;
+}

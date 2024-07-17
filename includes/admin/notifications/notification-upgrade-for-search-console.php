@@ -12,6 +12,8 @@ final class MonsterInsights_Notification_Upgrade_For_Search_Console extends Mons
 	public $notification_interval = 30; // in days
 	public $notification_type = array( 'lite' );
 	public $notification_icon = 'warning';
+	public $notification_category = 'insight';
+	public $notification_priority = 3;
 
 	/**
 	 * Build Notification
@@ -21,14 +23,14 @@ final class MonsterInsights_Notification_Upgrade_For_Search_Console extends Mons
 	 * @since 7.12.3
 	 */
 	public function prepare_notification_data( $notification ) {
-		$notification['title'] = __( 'Get access to Google Search Keywords data by upgrading to MonsterInsights Pro', 'google-analytics-for-wordpress' );
-		// Translators: upgrade for search console notification content
-		$notification['content'] = sprintf( __( 'Do you want to find out which search terms from Google bring your site the most visitors? %sUpgrade to MonsterInsights PRO%s today and get access to the %sSearch Console Report%s and more directly in your WordPress admin.', 'google-analytics-for-wordpress' ), '<a href="' . $this->get_upgrade_url() . '" target="_blank">', '</a>', '<a href="' . $this->build_external_link( 'https://www.monsterinsights.com/feature/search-console-report/' ) . '" target="_blank">', '</a>' );
+		$notification['title'] = __( 'See Top Performing Keywords', 'google-analytics-for-wordpress' );
+		/* translators: Placeholders add a link to the upgrade url. */
+		$notification['content'] = sprintf( __( '%1$sUpgrade to MonsterInsights Pro%2$s to see which keywords are driving traffic to your website so you can focus on what\'s working.', 'google-analytics-for-wordpress' ), '<a href="' . $this->get_upgrade_url() . '" target="_blank">', '</a>' );
 		$notification['btns']    = array(
 			"get_monsterinsights_pro" => array(
-				'url'           => $this->get_upgrade_url(),
-				'text'          => __( 'Get MonsterInsights Pro', 'google-analytics-for-wordpress' ),
-				'is_external'   => true,
+				'url'         => $this->get_upgrade_url(),
+				'text'        => __( 'Upgrade Now', 'google-analytics-for-wordpress' ),
+				'is_external' => true,
 			),
 		);
 

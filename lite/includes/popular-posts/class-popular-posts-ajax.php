@@ -95,7 +95,7 @@ class MonsterInsights_Popular_Posts_Ajax {
 	 * Helper to get themes by type.
 	 *
 	 * @param string $type The widget type: inline/widget/products.
-	 * @param bool   $styled Whether to style the selected theme or not.
+	 * @param bool $styled Whether to style the selected theme or not.
 	 *
 	 * @return array
 	 */
@@ -232,13 +232,14 @@ class MonsterInsights_Popular_Posts_Ajax {
 	 * Ajax handler to get the output for Popular Posts widgets from the JSON data on the frontend.
 	 */
 	public function get_ajax_output() {
+		check_ajax_referer( 'mi-popular-posts' );
 
 		if ( empty( $_POST['data'] ) || ! is_array( $_POST['data'] ) ) {
 			return;
 		}
 
 		$html         = array();
-		$widgets_args = $_POST['data'];
+		$widgets_args = $_POST['data']; // phpcs:ignore
 
 		foreach ( $widgets_args as $args ) {
 			$args = json_decode( sanitize_text_field( wp_unslash( $args ) ), true );

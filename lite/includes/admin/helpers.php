@@ -38,7 +38,7 @@ function monsterinsights_get_admin_menu_tooltip() {
 
 	$show_tooltip = get_option( 'monsterinsights_admin_menu_tooltip', 0 );
 	$activated    = get_option( 'monsterinsights_over_time', array() );
-	$ua_code      = monsterinsights_get_ua();
+	$tracking_id  = monsterinsights_get_v4_id();
 
 	if ( monsterinsights_is_reports_page() || monsterinsights_is_settings_page() ) {
 		// Don't show on MI pages.
@@ -54,7 +54,7 @@ function monsterinsights_get_admin_menu_tooltip() {
 		return;
 	}
 
-	if ( empty( $activated['installed_date'] ) || ( $activated['installed_date'] + 30 * DAY_IN_SECONDS > time() ) || empty( $ua_code ) ) {
+	if ( empty( $activated['installed_date'] ) || ( $activated['installed_date'] + 30 * DAY_IN_SECONDS > time() ) || empty( $tracking_id ) ) {
 		return;
 	}
 	// More than 30 days since it was installed & is tracking.
@@ -63,10 +63,10 @@ function monsterinsights_get_admin_menu_tooltip() {
 	<div id="monterinsights-admin-menu-tooltip" class="monterinsights-admin-menu-tooltip-hide">
 		<div class="monsterinsights-admin-menu-tooltip-header">
 			<span class="monsterinsights-admin-menu-tooltip-icon"><span
-						class="dashicons dashicons-megaphone"></span></span>
+					class="dashicons dashicons-megaphone"></span></span>
 			<?php esc_html_e( 'Get Better Insights. Grow FASTER!', 'google-analytics-for-wordpress' ); ?>
 			<a href="#" class="monsterinsights-admin-menu-tooltip-close"><span
-						class="dashicons dashicons-dismiss"></span></a>
+					class="dashicons dashicons-dismiss"></span></a>
 		</div>
 		<div class="monsterinsights-admin-menu-tooltip-content">
 			<strong><?php esc_html_e( 'Grow Your Business with MonsterInsights Pro', 'google-analytics-for-wordpress' ); ?></strong>
@@ -80,6 +80,8 @@ function monsterinsights_get_admin_menu_tooltip() {
 			</p>
 			<p>
 				<a href="<?php echo esc_url( $url ); ?>"
+				   target="_blank"
+				   rel="noopener"
 				   class="button button-primary"><?php esc_html_e( 'Upgrade to MonsterInsights Pro', 'google-analytics-for-wordpress' ); ?></a>
 			</p>
 		</div>
@@ -193,68 +195,68 @@ function monsterinsights_get_admin_menu_tooltip() {
 		}
 	</style>
 	<script type="text/javascript">
-		if ( 'undefined' !== typeof jQuery ) {
-			jQuery( function ( $ ) {
-				var $tooltip = $( document.getElementById( 'monterinsights-admin-menu-tooltip' ) );
-				var $menuwrapper = $( document.getElementById( 'adminmenuwrap' ) );
-				var $menuitem = $( document.getElementById( 'toplevel_page_monsterinsights_reports' ) );
-				if ( 0 === $menuitem.length ) {
-					$menuitem = $( document.getElementById( 'toplevel_page_monsterinsights_network' ) );
+		if ('undefined' !== typeof jQuery) {
+			jQuery(function ($) {
+				var $tooltip = $(document.getElementById('monterinsights-admin-menu-tooltip'));
+				var $menuwrapper = $(document.getElementById('adminmenuwrap'));
+				var $menuitem = $(document.getElementById('toplevel_page_monsterinsights_reports'));
+				if (0 === $menuitem.length) {
+					$menuitem = $(document.getElementById('toplevel_page_monsterinsights_network'));
 				}
-				if ( 0 === $menuitem.length ) {
-					$menuitem = $( document.getElementById( 'toplevel_page_monsterinsights_settings' ) );
+				if (0 === $menuitem.length) {
+					$menuitem = $(document.getElementById('toplevel_page_monsterinsights_settings'));
 				}
-				if ( 0 === $menuitem.length ) {
+				if (0 === $menuitem.length) {
 					return;
 				}
 
-				if ( $menuitem.length ) {
-					$menuwrapper.append( $tooltip );
-					$tooltip.removeClass( 'monterinsights-admin-menu-tooltip-hide' );
+				if ($menuitem.length) {
+					$menuwrapper.append($tooltip);
+					$tooltip.removeClass('monterinsights-admin-menu-tooltip-hide');
 				}
 
 				function alignTooltip() {
-					var sticky = $( 'body' ).hasClass( 'sticky-menu' );
+					var sticky = $('body').hasClass('sticky-menu');
 
 					var menuitem_pos = $menuitem.position();
 					var tooltip_top = menuitem_pos.top - 124;
-					if ( sticky && $( window ).height() > $menuwrapper.height() + 150 ) {
-						$tooltip.removeClass( 'monsterinsights-tooltip-arrow-top' );
+					if (sticky && $(window).height() > $menuwrapper.height() + 150) {
+						$tooltip.removeClass('monsterinsights-tooltip-arrow-top');
 					} else {
 						tooltip_top = menuitem_pos.top - 250;
-						$tooltip.addClass( 'monsterinsights-tooltip-arrow-top' );
+						$tooltip.addClass('monsterinsights-tooltip-arrow-top');
 					}
 					// Don't let the tooltip go outside of the screen and make the close button not visible.
-					if ( tooltip_top < 40 ) {
+					if (tooltip_top < 40) {
 						tooltip_top = 40;
 					}
-					$tooltip.css( {
+					$tooltip.css({
 						top: tooltip_top + 'px'
-					} );
+					});
 				}
 
-				var $document = $( document );
-				var timeout = setTimeout( alignTooltip, 10 );
-				$document.on( 'wp-pin-menu wp-window-resized.pin-menu postboxes-columnchange.pin-menu postbox-toggled.pin-menu wp-collapse-menu.pin-menu wp-scroll-start.pin-menu', function () {
-					if ( timeout ) {
-						clearTimeout( timeout );
+				var $document = $(document);
+				var timeout = setTimeout(alignTooltip, 10);
+				$document.on('wp-pin-menu wp-window-resized.pin-menu postboxes-columnchange.pin-menu postbox-toggled.pin-menu wp-collapse-menu.pin-menu wp-scroll-start.pin-menu', function () {
+					if (timeout) {
+						clearTimeout(timeout);
 					}
-					timeout = setTimeout( alignTooltip, 10 );
-				} );
+					timeout = setTimeout(alignTooltip, 10);
+				});
 
-				$( '.monsterinsights-admin-menu-tooltip-close' ).on( 'click', function ( e ) {
+				$('.monsterinsights-admin-menu-tooltip-close').on('click', function (e) {
 					e.preventDefault();
 					hideTooltip();
-				} );
+				});
 
 				function hideTooltip() {
-					$tooltip.addClass( 'monterinsights-admin-menu-tooltip-hide' );
-					$.post( ajaxurl, {
+					$tooltip.addClass('monterinsights-admin-menu-tooltip-hide');
+					$.post(ajaxurl, {
 						action: 'monsterinsights_hide_admin_menu_tooltip',
 						nonce: '<?php echo esc_js( wp_create_nonce( 'mi-admin-nonce' ) ); ?>',
-					} );
+					});
 				}
-			} );
+			});
 		}
 	</script>
 	<?php

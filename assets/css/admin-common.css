@@ -83,3 +83,9 @@
 	color: #fff;
 	font-weight: 600;
 }
+
+.monsterinsights-menu-new-indicator{
+	color:#f18200;
+	vertical-align:super;
+	font-size:9px
+}

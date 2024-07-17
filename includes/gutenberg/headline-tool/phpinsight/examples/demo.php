@@ -1,5 +1,5 @@
 <?php
-if (PHP_SAPI != 'cli') {
+if ( PHP_SAPI != 'cli' ) {
 	echo "<pre>";
 }
 
@@ -14,19 +14,17 @@ $strings = array(
 );
 
 
-
-
 require_once __DIR__ . '/../autoload.php';
 $sentiment = new \PHPInsight\Sentiment();
-foreach ($strings as $string) {
+foreach ( $strings as $string ) {
 
 	// calculations:
-	$scores = $sentiment->score($string);
-	$class = $sentiment->categorise($string);
+	$scores = $sentiment->score( $string );
+	$class  = $sentiment->categorise( $string );
 
 	// output:
-	echo "String: $string\n";
-	echo "Dominant: $class, scores: ";
-	print_r($scores);
+	echo "String: $string\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo "Dominant: $class, scores: "; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	print_r( $scores );
 	echo "\n";
 }

@@ -49,10 +49,10 @@ class MonsterInsights_Gtag_Events {
 	/**
 	 * Outputs the Javascript for JS tracking on the page.
 	 *
+	 * @return string
 	 * @since 6.0.0
 	 * @access public
 	 *
-	 * @return string
 	 */
 	public function output_javascript() {
 		// Affiliate Links
@@ -60,20 +60,20 @@ class MonsterInsights_Gtag_Events {
 		if ( ! is_array( $inbound_paths ) ) {
 			$inbound_paths = array();
 		} else {
-			foreach( $inbound_paths as $index => $pair ) {
+			foreach ( $inbound_paths as $index => $pair ) {
 				// if empty pair, unset and continue
 				if ( empty( $pair['path'] ) ) {
-					unset( $inbound_paths[$index] );
+					unset( $inbound_paths[ $index ] );
 					continue;
 				}
 
 				// if path does not start with a /, start it with that
-				$path                           = ! empty( $pair['path'] ) ? $pair['path'] : 'aff';
-				$inbound_paths[$index]['path']  = trim( $path );
+				$path                            = ! empty( $pair['path'] ) ? $pair['path'] : 'aff';
+				$inbound_paths[ $index ]['path'] = trim( $path );
 
 				// js escape the link label
-				$label                          = ! empty( $pair['label'] ) ? $pair['label'] : 'aff';
-				$inbound_paths[$index]['label'] = esc_js( trim( $label ) );
+				$label                            = ! empty( $pair['label'] ) ? $pair['label'] : 'aff';
+				$inbound_paths[ $index ]['label'] = esc_js( trim( $label ) );
 			}
 		}
 
@@ -86,9 +86,9 @@ class MonsterInsights_Gtag_Events {
 			$download_extensions = array( $download_extensions );
 		}
 		$i = 0;
-		foreach( $download_extensions as $extension ){
+		foreach ( $download_extensions as $extension ) {
 			$download_extensions[ $i ] = esc_js( trim( $extension ) );
-			$i++;
+			$i ++;
 		}
 
 		$download_extensions = implode( ",", $download_extensions );
@@ -100,7 +100,8 @@ class MonsterInsights_Gtag_Events {
 			$suffix = '';
 		}
 		wp_enqueue_script( 'monsterinsights-frontend-script', plugins_url( 'assets/js/frontend-gtag' . $suffix . '.js', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version(), false );
-		wp_localize_script(
+
+        monsterinsights_localize_script(
 			'monsterinsights-frontend-script',
 			'monsterinsights_frontend',
 			array(
@@ -109,7 +110,6 @@ class MonsterInsights_Gtag_Events {
 				'inbound_paths'       => $inbound_paths, /* Let's get the internal paths to track */
 				'home_url'            => home_url(), /* Let's get the url to compare for external/internal use */
 				'hash_tracking'       => $hash_tracking, /* Should hash track */
-				'ua'                  => monsterinsights_get_ua(), /* UA code used for tracking */
 				'v4_id'               => monsterinsights_get_v4_id(), /* V4 ID used for tracking */
 			)
 		);

@@ -11,7 +11,8 @@ final class MonsterInsights_Notification_Upgrade_For_Form_Conversion extends Mon
 	public $notification_id = 'monsterinsights_notification_upgrade_for_form_conversion';
 	public $notification_interval = 20; // in days
 	public $notification_type = array( 'basic', 'lite', 'plus' );
-	public $notification_icon = 'warning';
+	public $notification_category = 'insight';
+	public $notification_priority = 3;
 
 	/**
 	 * Build Notification
@@ -21,14 +22,14 @@ final class MonsterInsights_Notification_Upgrade_For_Form_Conversion extends Mon
 	 * @since 7.12.3
 	 */
 	public function prepare_notification_data( $notification ) {
-		$notification['title'] = __( 'Upgrade to MonsterInsights Pro to Track Form Conversion', 'google-analytics-for-wordpress' );
-		// Translators: upgrade for form conversion notification content
-		$notification['content'] = sprintf( __( 'Forms are one of the most important points of interaction on your website. When a visitor fills out a form on your site, they’re taking the next step in their customer journey. That’s why it’s so crucial that your WordPress forms are optimized for conversions. Upgrade to %sMonsterInsights Pro%s to track %sform conversions in Google Analytics.%s', 'google-analytics-for-wordpress' ), '<a href="' . $this->get_upgrade_url() . '" target="_blank">', '</a>', '<a href="' . $this->build_external_link( 'https://www.monsterinsights.com/addon/forms/' ) . '" target="_blank">', '</a>' );
+		$notification['title'] = __( 'Easily Track Form Conversions', 'google-analytics-for-wordpress' );
+		/* translators: Placeholders add a link to the settings page. */
+		$notification['content'] = sprintf( __( 'Track your website\'s form conversion rates by upgrading to %1$sMonsterInsights Pro%2$s.', 'google-analytics-for-wordpress' ), '<a href="' . $this->get_upgrade_url() . '" target="_blank">', '</a>' );
 		$notification['btns']    = array(
 			"get_monsterinsights_pro" => array(
-				'url'           => $this->get_upgrade_url(),
-				'text'          => __( 'Get MonsterInsights Pro', 'google-analytics-for-wordpress' ),
-				'is_external'   => true,
+				'url'         => $this->get_upgrade_url(),
+				'text'        => __( 'Upgrade Now', 'google-analytics-for-wordpress' ),
+				'is_external' => true,
 			),
 		);
 
