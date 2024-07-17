@@ -12,6 +12,6 @@ The files used by this font are
 
 The font files are generated using [FortAwesome](https://fortawesome.com).
 
-After generating new  files, you'll need to update the files mentioned above & the css
+After generating new files, you'll need to update the files mentioned above & the css
 used for the icons which can be found in assets/css/admin.css starting on line 135, look
 for the class `.monstericon-`.

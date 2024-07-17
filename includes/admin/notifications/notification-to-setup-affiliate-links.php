@@ -11,6 +11,8 @@ final class MonsterInsights_Notification_To_Setup_Affiliate_Links extends Monste
 	public $notification_id = 'monsterinsights_notification_to_setup_affiliate_links';
 	public $notification_interval = 25; // in days
 	public $notification_type = array( 'basic', 'lite', 'master', 'plus', 'pro' );
+	public $notification_category = 'insight';
+	public $notification_priority = 2;
 
 	/**
 	 * Build Notification
@@ -31,14 +33,24 @@ final class MonsterInsights_Notification_To_Setup_Affiliate_Links extends Monste
 
 		if ( true === $no_new_links || ( is_array( $affiliate_links ) && empty( $affiliate_links ) ) ) {
 
+			$is_em = defined( 'EXACTMETRICS_VERSION' );
+
+			$learn_more_url = $is_em
+				? 'https://www.exactmetrics.com/how-to-set-up-affiliate-link-tracking-in-wordpress/'
+				: 'https://www.monsterinsights.com/how-to-set-up-affiliate-link-tracking-in-wordpress/';
+
 			$notification['title'] = __( 'Set Up Affiliate Link Tracking', 'google-analytics-for-wordpress' );
-			// Translators: Set up affiliate links notification content
-			$notification['content'] = sprintf( __( 'By tracking your affiliate links in Google Analytics, you can gather all the data you need to optimize your links for maximizing affiliate revenue. You can track affiliate link clicks on your website with little configuration needed.<br><br>%sIn this article%s, we’ll show you how to set up affiliate link tracking in WordPress.', 'google-analytics-for-wordpress' ), '<a href="' . $this->build_external_link( 'https://www.monsterinsights.com/how-to-set-up-affiliate-link-tracking-in-wordpress/' ) . '" target="_blank">', '</a>' );
+			$notification['content'] = sprintf(
+				/* translators: Placeholders add a link to an article. */
+				__( 'By tracking your affiliate links in Google Analytics, you can gather all the data you need to optimize your links for maximizing affiliate revenue. You can track affiliate link clicks on your website with little configuration needed.<br><br>%1$sIn this article%2$s, we’ll show you how to set up affiliate link tracking in WordPress.', 'google-analytics-for-wordpress' ),
+				'<a href="' . $this->build_external_link( 'https://www.monsterinsights.com/how-to-set-up-affiliate-link-tracking-in-wordpress/' ) . '" target="_blank">',
+				'</a>'
+			);
 			$notification['btns']    = array(
 				"read_more" => array(
-					'url'           => $this->build_external_link( 'https://www.monsterinsights.com/how-to-set-up-affiliate-link-tracking-in-wordpress/' ),
-					'text'          => __( 'Read More', 'google-analytics-for-wordpress' ),
-					'is_external'   => true,
+					'url'         => $this->build_external_link( $learn_more_url ),
+					'text'        => __( 'Read More', 'google-analytics-for-wordpress' ),
+					'is_external' => true,
 				),
 			);
 

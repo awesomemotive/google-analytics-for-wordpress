@@ -97,13 +97,16 @@ class MonsterInsights_Popular_Posts_Widget_Sidebar extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $args['before_widget'];
-
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
 		if ( $instance['display_title'] && ! empty( $instance['title'] ) ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $args['before_title'];
 			echo wp_kses_post( $title );
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $args['after_title'];
 		}
 
@@ -119,9 +122,9 @@ class MonsterInsights_Popular_Posts_Widget_Sidebar extends WP_Widget {
 				$atts[ $key ] = $instance[ $key ];
 			}
 		}
-
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo MonsterInsights_Popular_Posts_Widget()->shortcode_output( $atts );
-
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $args['after_widget'];
 
 	}
@@ -158,9 +161,9 @@ class MonsterInsights_Popular_Posts_Widget_Sidebar extends WP_Widget {
 	/**
 	 * Process dynamic and checkbox values so they are stored correctly and specific to the current theme.
 	 *
-	 * @param bool   $is_used A check if this property is used in the currently selected theme.
+	 * @param bool $is_used A check if this property is used in the currently selected theme.
 	 * @param string $key The key of the property we're checking.
-	 * @param array  $instance The current widget instance, new instance.
+	 * @param array $instance The current widget instance, new instance.
 	 *
 	 * @return mixed
 	 */
@@ -256,7 +259,8 @@ class MonsterInsights_Popular_Posts_Widget_Sidebar extends WP_Widget {
 			<span class="monsterinsights-widget-theme-preview-label">
 				<?php esc_html_e( 'Theme Preview', 'google-analytics-for-wordpress' ); ?>
 			</span>
-			<div class="monsterinsights-widget-theme-preview-icon monsterinsights-widget-theme-preview-icon-<?php echo esc_attr( $instance['theme'] ); ?>"></div>
+			<div
+				class="monsterinsights-widget-theme-preview-icon monsterinsights-widget-theme-preview-icon-<?php echo esc_attr( $instance['theme'] ); ?>"></div>
 		</div>
 		<?php if ( ! empty( $theme['styles']['title']['color'] ) ) {
 			$this->color_input( 'title_color', _x( 'Title Color:', 'Widget', 'google-analytics-for-wordpress' ), $instance );
@@ -288,21 +292,22 @@ class MonsterInsights_Popular_Posts_Widget_Sidebar extends WP_Widget {
 				<?php echo esc_html( _x( 'Only Show Posts from These Categories:', 'Widget', 'google-analytics-for-wordpress' ) ); ?>
 				<span class="monsterinsights-pro-pill">PRO</span>
 			</label>
-			<div class="select300 select300-container select300-container--default select300-container--disabled select300-container--focus"
-				  dir="ltr" data-select300-id="2" style="width: auto;">
-				<div class="selection">
-					<div class="select300-selection select300-selection--multiple">
-						<ul class="select300-selection__rendered">
-							<li class="select300-selection__choice" title="News" data-select300-id="5">
-								<span class="select300-selection__choice__remove" role="presentation">×</span>News
-							</li>
-							<li class="select300-selection__choice" title="Technology" data-select300-id="6">
-								<span class="select300-selection__choice__remove" role="presentation">×</span>Technology
-							</li>
-						</ul>
-					</div>
+		<div
+			class="select300 select300-container select300-container--default select300-container--disabled select300-container--focus"
+			dir="ltr" data-select300-id="2" style="width: auto;">
+			<div class="selection">
+				<div class="select300-selection select300-selection--multiple">
+					<ul class="select300-selection__rendered">
+						<li class="select300-selection__choice" title="News" data-select300-id="5">
+							<span class="select300-selection__choice__remove" role="presentation">×</span>News
+						</li>
+						<li class="select300-selection__choice" title="Technology" data-select300-id="6">
+							<span class="select300-selection__choice__remove" role="presentation">×</span>Technology
+						</li>
+					</ul>
 				</div>
 			</div>
+		</div>
 		</p>
 		<?php
 	}
@@ -312,7 +317,7 @@ class MonsterInsights_Popular_Posts_Widget_Sidebar extends WP_Widget {
 	 *
 	 * @param string $name Name of the input, for saving/loading.
 	 * @param string $label Label of the element.
-	 * @param array  $instance The current widget instance.
+	 * @param array $instance The current widget instance.
 	 */
 	public function color_input( $name, $label, $instance ) {
 		?>
@@ -335,7 +340,7 @@ class MonsterInsights_Popular_Posts_Widget_Sidebar extends WP_Widget {
 	 *
 	 * @param string $name Name of the input, for saving/loading.
 	 * @param string $label Label of the element.
-	 * @param array  $instance The current widget instance.
+	 * @param array $instance The current widget instance.
 	 */
 	public function text_input( $name, $label, $instance ) {
 		?>
@@ -356,8 +361,8 @@ class MonsterInsights_Popular_Posts_Widget_Sidebar extends WP_Widget {
 	 *
 	 * @param string $name Name of the input, for saving/loading.
 	 * @param string $label Label of the element.
-	 * @param array  $instance The current widget instance.
-	 * @param array  $range The options available to select.
+	 * @param array $instance The current widget instance.
+	 * @param array $range The options available to select.
 	 */
 	public function size_input( $name, $label, $instance, $range = array() ) {
 		?>
@@ -368,7 +373,9 @@ class MonsterInsights_Popular_Posts_Widget_Sidebar extends WP_Widget {
 			<select id="<?php echo esc_attr( $this->get_field_id( $name ) ); ?>"
 					name="<?php echo esc_attr( $this->get_field_name( $name ) ); ?>" class="widefat">
 				<?php foreach ( $range as $font_size ) { ?>
-					<option value="<?php echo absint( $font_size ); ?>" <?php selected( $instance[ $name ], $font_size ); ?>><?php printf( esc_html_x( '%dpx', 'google-analytics-for-wordpress' ), $font_size ); ?></option>
+					<option value="<?php echo absint( $font_size ); ?>" <?php selected( $instance[ $name ], $font_size ); ?>>
+						<?php printf( esc_html_x( '%dpx', 'google-analytics-for-wordpress' ), $font_size ); // phpcs:ignore ?>
+					</option>
 				<?php } ?>
 			</select>
 		</p>

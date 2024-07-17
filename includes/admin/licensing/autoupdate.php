@@ -57,13 +57,13 @@ function monsterinsights_modify_wordpress_autoupdater_setting( $html, $plugin_fi
 			),
 			__( 'Enable the MonsterInsights PRO plugin to manage auto-updates', 'google-analytics-for-wordpress' )
 		);
-		add_filter( "monsterinsights_is_autoupdate_setting_html_filtered_${plugin_file}", '__return_true' );
+		add_filter( "monsterinsights_is_autoupdate_setting_html_filtered_" . $plugin_file, '__return_true' );
 	} elseif ( $has_permission &&
 	           ( $is_main_free || $is_main_pro || ( $is_addon && $is_pro ) )
 	) {
-		$text  = __( 'Manage auto-updates', 'google-analytics-for-wordpress' );
+		$text = __( 'Manage auto-updates', 'google-analytics-for-wordpress' );
 		$html .= '<br>' . sprintf( '<a href="%s"">%s</a>', admin_url( 'admin.php?page=monsterinsights_settings#/advanced' ), $text );
-		add_filter( "monsterinsights_is_autoupdate_setting_html_filtered_${plugin_file}", '__return_true' );
+		add_filter( "monsterinsights_is_autoupdate_setting_html_filtered_" . $plugin_file, '__return_true' );
 	}
 
 	return $html;
@@ -90,11 +90,12 @@ add_filter( 'plugin_auto_update_setting_html', 'monsterinsights_modify_wordpress
  * to the user, because WordPress auto-update UI does not deal with the same granularity
  * as our opt-in setting.
  *
+ * @param bool $update Flag to update the plugin or not.
+ * @param array $item Update data about a specific plugin.
+ *
+ * @return bool $update The new update state.
  * @since 6.3.0
  *
- * @param bool $update  Flag to update the plugin or not.
- * @param array $item   Update data about a specific plugin.
- * @return bool $update The new update state.
  */
 function monsterinsights_automatic_updates( $update, $item ) {
 	$item = (array) $item;
@@ -126,48 +127,49 @@ function monsterinsights_automatic_updates( $update, $item ) {
 		}
 	}
 
-    // If this is multisite and is not on the main site, return early.
-    if ( is_multisite() && ! is_main_site() ) {
-        return $update;
-    }
+	// If this is multisite and is not on the main site, return early.
+	if ( is_multisite() && ! is_main_site() ) {
+		return $update;
+	}
 
-    // When used in the context of automatic plugin update routine, the $item
+	// When used in the context of automatic plugin update routine, the $item
 	// variable will have `new_version`, `slug` and `monsterinsights_plugin` filled out:
 
-    // If we don't have everything we need, return early.
-    if ( ! isset( $item['new_version'] ) || ! isset( $item['slug'] ) ) {
-        return $update;
-    }
+	// If we don't have everything we need, return early.
+	if ( ! isset( $item['new_version'] ) || ! isset( $item['slug'] ) ) {
+		return $update;
+	}
 
-    // If the plugin isn't ours, return early.
-    if ( ( ! $is_free && ! $is_paid ) || ( $is_free && ! defined( 'MONSTERINSIGHTS_LITE_VERSION' ) ) ) {
-        return $update;
-    }
+	// If the plugin isn't ours, return early.
+	if ( ( ! $is_free && ! $is_paid ) || ( $is_free && ! defined( 'MONSTERINSIGHTS_LITE_VERSION' ) ) ) {
+		return $update;
+	}
 
-    $version           = $is_free ? MONSTERINSIGHTS_LITE_VERSION : $item['old_version'];
-    $current_major     = monsterinsights_get_major_version( $version );
-    $new_major         = monsterinsights_get_major_version( $item['new_version'] );
+	$current_version = $is_free ? MONSTERINSIGHTS_LITE_VERSION : $item['old_version'];
+	$new_version     = $item['new_version'];
+	$current_major   = monsterinsights_get_major_version( $current_version );
+	$new_major       = monsterinsights_get_major_version( $new_version );
 
-    // If the opt in update allows major updates but there is no major version update, return early.
-    if ( $current_major < $new_major ) {
-        if ( $automatic_updates === 'all' ) {
-            return true;
-        } else {
-            return $update;
-        }
-    }
+	// If this is a major update, and they have opted in to all updates, then autoupdate
+	if ( version_compare( $current_major, $new_major, '<' ) ) {
+		if ( $automatic_updates === 'all' ) {
+			return true;
+		} else {
+			return $update;
+		}
+	}
 
-    // If the opt in update allows minor updates but there is no minor version update, return early.
-    if ( $current_major == $new_major ) {
-        if ( $automatic_updates === 'all' || $automatic_updates === 'minor' ) {
-            return true;
-        } else {
-            return $update;
-        }
-    }
+	// If this is a minor update, and they have opted in to all updates or minor updates, then autoupdate
+	if ( version_compare( $current_major, $new_major, '==' ) && version_compare( $current_version, $new_version, '<' ) ) {
+		if ( $automatic_updates === 'all' || $automatic_updates === 'minor' ) {
+			return true;
+		} else {
+			return $update;
+		}
+	}
 
-    // All our checks have passed - this plugin can be updated!
-    return true;
+	// Otherwise stick with default value
+	return $update;
 }
 
 add_filter( 'auto_update_plugin', 'monsterinsights_automatic_updates', 10, 2 );
@@ -196,13 +198,7 @@ add_filter( 'auto_update_plugin', 'monsterinsights_automatic_updates', 10, 2 );
  * - Because WP's updater asks the OS if the file is writable, make sure you do not have any files/folders for the plugin you are trying to autoupdate open when testing.
  * - You may need to delete the plugin info transient to get it to hard refresh the plugin info.
  */
-
-
 function monsterinsights_get_major_version( $version ) {
-    $exploded_version = explode( '.', $version );
-    if ( isset( $exploded_version[2] ) ) {
-        return $exploded_version[0] . '.' . $exploded_version[1] . '.' . $exploded_version[2];
-    } else {
-        return $exploded_version[0] . '.' . $exploded_version[1] . '.0';
-    }
+	$exploded_version = explode( '.', $version );
+	return $exploded_version[0] . '.' . $exploded_version[1];
 }

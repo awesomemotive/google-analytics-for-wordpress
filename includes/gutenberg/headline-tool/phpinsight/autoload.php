@@ -7,6 +7,6 @@
  * file that was distributed with this source code.
  */
 
-require __DIR__.'/lib/PHPInsight/Autoloader.php';
+require __DIR__ . '/lib/PHPInsight/Autoloader.php';
 
 PHPInsight\Autoloader::register();

@@ -1,0 +1,1400 @@
+{
+  "SlideDownUp.css": {
+    "file": "css/SlideDownUp.css",
+    "src": "SlideDownUp.css"
+  },
+  "WelcomeOverlay.css": {
+    "file": "css/WelcomeOverlay.css",
+    "src": "WelcomeOverlay.css"
+  },
+  "_SettingsInfoTooltip-8ce0e85d.min.js": {
+    "file": "js/chunks/SettingsInfoTooltip-8ce0e85d.min.js",
+    "imports": [
+      "_vendor-abf23f8e.min.js"
+    ]
+  },
+  "_SlideDownUp-80f4c9d9.min.js": {
+    "css": [
+      "css/SlideDownUp.css"
+    ],
+    "file": "js/chunks/SlideDownUp-80f4c9d9.min.js",
+    "imports": [
+      "_vendor-abf23f8e.min.js"
+    ]
+  },
+  "_WelcomeOverlay-4cc28278.min.js": {
+    "css": [
+      "css/WelcomeOverlay.css"
+    ],
+    "file": "js/chunks/WelcomeOverlay-4cc28278.min.js",
+    "imports": [
+      "_vendor-abf23f8e.min.js",
+      "_index-9dee18c5.min.js",
+      "_SettingsInfoTooltip-8ce0e85d.min.js",
+      "_SlideDownUp-80f4c9d9.min.js"
+    ]
+  },
+  "_WidgetReportError-60e8a049.min.js": {
+    "file": "js/chunks/WidgetReportError-60e8a049.min.js",
+    "imports": [
+      "_vendor-abf23f8e.min.js"
+    ]
+  },
+  "_date-intervals-99bc51b5.min.js": {
+    "file": "js/chunks/date-intervals-99bc51b5.min.js",
+    "imports": [
+      "_vendor-abf23f8e.min.js",
+      "_SettingsInfoTooltip-8ce0e85d.min.js"
+    ]
+  },
+  "_html2canvas-9e5302fc.min.js": {
+    "file": "js/chunks/html2canvas-9e5302fc.min.js",
+    "imports": [
+      "_vendor-abf23f8e.min.js"
+    ],
+    "isDynamicEntry": true
+  },
+  "_index-3b247c04.min.js": {
+    "file": "js/chunks/index-3b247c04.min.js",
+    "imports": [
+      "_vendor-abf23f8e.min.js",
+      "_index-9dee18c5.min.js"
+    ]
+  },
+  "_index-999d9e4f.min.js": {
+    "assets": [
+      "img/icon-info.svg",
+      "img/mascot.png",
+      "fonts/Roboto-Regular.woff2",
+      "fonts/Roboto-Bold.woff2",
+      "fonts/lato-regular-webfont.woff",
+      "fonts/lato-regular-webfont.woff2",
+      "fonts/lato-bold-webfont.woff",
+      "fonts/lato-bold-webfont.woff2",
+      "fonts/text-security-disc.woff2",
+      "fonts/text-security-disc.woff",
+      "fonts/text-security-disc.ttf",
+      "fonts/icons.woff2",
+      "fonts/icons.woff",
+      "fonts/icons.ttf",
+      "fonts/icons.otf",
+      "img/icon-celebrate-small.png",
+      "img/icon-media.svg"
+    ],
+    "css": [
+      "css/index.css"
+    ],
+    "file": "js/chunks/index-999d9e4f.min.js",
+    "imports": [
+      "_vendor-abf23f8e.min.js",
+      "_SlideDownUp-80f4c9d9.min.js"
+    ]
+  },
+  "_index-9dee18c5.min.js": {
+    "file": "js/chunks/index-9dee18c5.min.js",
+    "imports": [
+      "_vendor-abf23f8e.min.js"
+    ]
+  },
+  "_vendor-abf23f8e.min.js": {
+    "assets": [
+      "img/sucker.png"
+    ],
+    "css": [
+      "css/vendor.css"
+    ],
+    "dynamicImports": [
+      "_html2canvas-9e5302fc.min.js",
+      "node_modules/dompurify/dist/purify.es.js",
+      "node_modules/canvg/lib/index.es.js"
+    ],
+    "file": "js/chunks/vendor-abf23f8e.min.js"
+  },
+  "index.css": {
+    "file": "css/index.css",
+    "src": "index.css"
+  },
+  "node_modules/@caohenghu/vue-colorpicker/src/img/sucker.png": {
+    "file": "img/sucker.png",
+    "src": "node_modules/@caohenghu/vue-colorpicker/src/img/sucker.png"
+  },
+  "node_modules/canvg/lib/index.es.js": {
+    "file": "js/chunks/index.es-02af04ac.min.js",
+    "imports": [
+      "_vendor-abf23f8e.min.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "node_modules/canvg/lib/index.es.js"
+  },
+  "node_modules/dompurify/dist/purify.es.js": {
+    "file": "js/chunks/purify.es-2ba3e0d8.min.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/dompurify/dist/purify.es.js"
+  },
+  "src/assets/fonts/Roboto-Bold.woff2": {
+    "file": "fonts/Roboto-Bold.woff2",
+    "src": "src/assets/fonts/Roboto-Bold.woff2"
+  },
+  "src/assets/fonts/Roboto-Regular.woff2": {
+    "file": "fonts/Roboto-Regular.woff2",
+    "src": "src/assets/fonts/Roboto-Regular.woff2"
+  },
+  "src/assets/fonts/icons.otf": {
+    "file": "fonts/icons.otf",
+    "src": "src/assets/fonts/icons.otf"
+  },
+  "src/assets/fonts/icons.ttf": {
+    "file": "fonts/icons.ttf",
+    "src": "src/assets/fonts/icons.ttf"
+  },
+  "src/assets/fonts/icons.woff": {
+    "file": "fonts/icons.woff",
+    "src": "src/assets/fonts/icons.woff"
+  },
+  "src/assets/fonts/icons.woff2": {
+    "file": "fonts/icons.woff2",
+    "src": "src/assets/fonts/icons.woff2"
+  },
+  "src/assets/fonts/lato-bold-webfont.woff": {
+    "file": "fonts/lato-bold-webfont.woff",
+    "src": "src/assets/fonts/lato-bold-webfont.woff"
+  },
+  "src/assets/fonts/lato-bold-webfont.woff2": {
+    "file": "fonts/lato-bold-webfont.woff2",
+    "src": "src/assets/fonts/lato-bold-webfont.woff2"
+  },
+  "src/assets/fonts/lato-regular-webfont.woff": {
+    "file": "fonts/lato-regular-webfont.woff",
+    "src": "src/assets/fonts/lato-regular-webfont.woff"
+  },
+  "src/assets/fonts/lato-regular-webfont.woff2": {
+    "file": "fonts/lato-regular-webfont.woff2",
+    "src": "src/assets/fonts/lato-regular-webfont.woff2"
+  },
+  "src/assets/fonts/text-security-disc.ttf": {
+    "file": "fonts/text-security-disc.ttf",
+    "src": "src/assets/fonts/text-security-disc.ttf"
+  },
+  "src/assets/fonts/text-security-disc.woff": {
+    "file": "fonts/text-security-disc.woff",
+    "src": "src/assets/fonts/text-security-disc.woff"
+  },
+  "src/assets/fonts/text-security-disc.woff2": {
+    "file": "fonts/text-security-disc.woff2",
+    "src": "src/assets/fonts/text-security-disc.woff2"
+  },
+  "src/assets/img/about-icon-addons.png": {
+    "file": "img/about-icon-addons.png",
+    "src": "src/assets/img/about-icon-addons.png"
+  },
+  "src/assets/img/about-icon-check.svg": {
+    "file": "img/about-icon-check.svg",
+    "src": "src/assets/img/about-icon-check.svg"
+  },
+  "src/assets/img/about-icon-connect.png": {
+    "file": "img/about-icon-connect.png",
+    "src": "src/assets/img/about-icon-connect.png"
+  },
+  "src/assets/img/about-icon-ecommerce.png": {
+    "file": "img/about-icon-ecommerce.png",
+    "src": "src/assets/img/about-icon-ecommerce.png"
+  },
+  "src/assets/img/about-icon-gdpr.png": {
+    "file": "img/about-icon-gdpr.png",
+    "src": "src/assets/img/about-icon-gdpr.png"
+  },
+  "src/assets/img/about-icon-guide.png": {
+    "file": "img/about-icon-guide.png",
+    "src": "src/assets/img/about-icon-guide.png"
+  },
+  "src/assets/img/about-team.jpg": {
+    "file": "img/about-team.jpg",
+    "src": "src/assets/img/about-team.jpg"
+  },
+  "src/assets/img/affiliates-promo-logo.png": {
+    "file": "img/affiliates-promo-logo.png",
+    "src": "src/assets/img/affiliates-promo-logo.png"
+  },
+  "src/assets/img/aioseo-client-logo-1.svg": {
+    "file": "img/aioseo-client-logo-1.svg",
+    "src": "src/assets/img/aioseo-client-logo-1.svg"
+  },
+  "src/assets/img/aioseo-client-logo-10.svg": {
+    "file": "img/aioseo-client-logo-10.svg",
+    "src": "src/assets/img/aioseo-client-logo-10.svg"
+  },
+  "src/assets/img/aioseo-client-logo-11.svg": {
+    "file": "img/aioseo-client-logo-11.svg",
+    "src": "src/assets/img/aioseo-client-logo-11.svg"
+  },
+  "src/assets/img/aioseo-client-logo-12.svg": {
+    "file": "img/aioseo-client-logo-12.svg",
+    "src": "src/assets/img/aioseo-client-logo-12.svg"
+  },
+  "src/assets/img/aioseo-client-logo-2.svg": {
+    "file": "img/aioseo-client-logo-2.svg",
+    "src": "src/assets/img/aioseo-client-logo-2.svg"
+  },
+  "src/assets/img/aioseo-client-logo-3.svg": {
+    "file": "img/aioseo-client-logo-3.svg",
+    "src": "src/assets/img/aioseo-client-logo-3.svg"
+  },
+  "src/assets/img/aioseo-client-logo-4.svg": {
+    "file": "img/aioseo-client-logo-4.svg",
+    "src": "src/assets/img/aioseo-client-logo-4.svg"
+  },
+  "src/assets/img/aioseo-client-logo-5.svg": {
+    "file": "img/aioseo-client-logo-5.svg",
+    "src": "src/assets/img/aioseo-client-logo-5.svg"
+  },
+  "src/assets/img/aioseo-client-logo-6.svg": {
+    "file": "img/aioseo-client-logo-6.svg",
+    "src": "src/assets/img/aioseo-client-logo-6.svg"
+  },
+  "src/assets/img/aioseo-client-logo-7.svg": {
+    "file": "img/aioseo-client-logo-7.svg",
+    "src": "src/assets/img/aioseo-client-logo-7.svg"
+  },
+  "src/assets/img/aioseo-client-logo-8.svg": {
+    "file": "img/aioseo-client-logo-8.svg",
+    "src": "src/assets/img/aioseo-client-logo-8.svg"
+  },
+  "src/assets/img/aioseo-client-logo-9.svg": {
+    "file": "img/aioseo-client-logo-9.svg",
+    "src": "src/assets/img/aioseo-client-logo-9.svg"
+  },
+  "src/assets/img/aioseo-screen-1.svg": {
+    "file": "img/aioseo-screen-1.svg",
+    "src": "src/assets/img/aioseo-screen-1.svg"
+  },
+  "src/assets/img/aioseo-screen-2.svg": {
+    "file": "img/aioseo-screen-2.svg",
+    "src": "src/assets/img/aioseo-screen-2.svg"
+  },
+  "src/assets/img/arrow-right.svg": {
+    "file": "img/arrow-right.svg",
+    "src": "src/assets/img/arrow-right.svg"
+  },
+  "src/assets/img/badge-dark.svg": {
+    "file": "img/badge-dark.svg",
+    "src": "src/assets/img/badge-dark.svg"
+  },
+  "src/assets/img/badge-light.svg": {
+    "file": "img/badge-light.svg",
+    "src": "src/assets/img/badge-light.svg"
+  },
+  "src/assets/img/check.svg": {
+    "file": "img/check.svg",
+    "src": "src/assets/img/check.svg"
+  },
+  "src/assets/img/chris.png": {
+    "file": "img/chris.png",
+    "src": "src/assets/img/chris.png"
+  },
+  "src/assets/img/easy-digital-downloads.png": {
+    "file": "img/easy-digital-downloads.png",
+    "src": "src/assets/img/easy-digital-downloads.png"
+  },
+  "src/assets/img/ecommerce-report.png": {
+    "file": "img/ecommerce-report.png",
+    "src": "src/assets/img/ecommerce-report.png"
+  },
+  "src/assets/img/flags.png": {
+    "file": "img/flags.png",
+    "src": "src/assets/img/flags.png"
+  },
+  "src/assets/img/give-wp.png": {
+    "file": "img/give-wp.png",
+    "src": "src/assets/img/give-wp.png"
+  },
+  "src/assets/img/growth-tools-icons/icon-advancedcoupons.svg": {
+    "file": "img/icon-advancedcoupons.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-advancedcoupons.svg"
+  },
+  "src/assets/img/growth-tools-icons/icon-aioseo.svg": {
+    "file": "img/icon-aioseo.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-aioseo.svg"
+  },
+  "src/assets/img/growth-tools-icons/icon-constantcontact.svg": {
+    "file": "img/icon-constantcontact.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-constantcontact.svg"
+  },
+  "src/assets/img/growth-tools-icons/icon-easyaffiliate.svg": {
+    "file": "img/icon-easyaffiliate.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-easyaffiliate.svg"
+  },
+  "src/assets/img/growth-tools-icons/icon-edd.svg": {
+    "file": "img/icon-edd.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-edd.svg"
+  },
+  "src/assets/img/growth-tools-icons/icon-guide.svg": {
+    "file": "img/icon-guide.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-guide.svg"
+  },
+  "src/assets/img/growth-tools-icons/icon-memberpress.svg": {
+    "file": "img/icon-memberpress.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-memberpress.svg"
+  },
+  "src/assets/img/growth-tools-icons/icon-mi.svg": {
+    "file": "img/icon-mi.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-mi.svg"
+  },
+  "src/assets/img/growth-tools-icons/icon-optinmonster.svg": {
+    "file": "img/icon-optinmonster.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-optinmonster.svg"
+  },
+  "src/assets/img/growth-tools-icons/icon-prettylinks.svg": {
+    "file": "img/icon-prettylinks.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-prettylinks.svg"
+  },
+  "src/assets/img/growth-tools-icons/icon-pushengage.svg": {
+    "file": "img/icon-pushengage.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-pushengage.svg"
+  },
+  "src/assets/img/growth-tools-icons/icon-rafflepress.svg": {
+    "file": "img/icon-rafflepress.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-rafflepress.svg"
+  },
+  "src/assets/img/growth-tools-icons/icon-searchwp.svg": {
+    "file": "img/icon-searchwp.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-searchwp.svg"
+  },
+  "src/assets/img/growth-tools-icons/icon-seedprod.png": {
+    "file": "img/icon-seedprod.png",
+    "src": "src/assets/img/growth-tools-icons/icon-seedprod.png"
+  },
+  "src/assets/img/growth-tools-icons/icon-semrush.svg": {
+    "file": "img/icon-semrush.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-semrush.svg"
+  },
+  "src/assets/img/growth-tools-icons/icon-smashballoon.svg": {
+    "file": "img/icon-smashballoon.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-smashballoon.svg"
+  },
+  "src/assets/img/growth-tools-icons/icon-thirstyaffiliates.png": {
+    "file": "img/icon-thirstyaffiliates.png",
+    "src": "src/assets/img/growth-tools-icons/icon-thirstyaffiliates.png"
+  },
+  "src/assets/img/growth-tools-icons/icon-wp-simple-pay.png": {
+    "file": "img/icon-wp-simple-pay.png",
+    "src": "src/assets/img/growth-tools-icons/icon-wp-simple-pay.png"
+  },
+  "src/assets/img/growth-tools-icons/icon-wpforms.svg": {
+    "file": "img/icon-wpforms.svg",
+    "src": "src/assets/img/growth-tools-icons/icon-wpforms.svg"
+  },
+  "src/assets/img/icon-addon-ads.png": {
+    "file": "img/icon-addon-ads.png",
+    "src": "src/assets/img/icon-addon-ads.png"
+  },
+  "src/assets/img/icon-addon-amp.png": {
+    "file": "img/icon-addon-amp.png",
+    "src": "src/assets/img/icon-addon-amp.png"
+  },
+  "src/assets/img/icon-addon-dimensions.png": {
+    "file": "img/icon-addon-dimensions.png",
+    "src": "src/assets/img/icon-addon-dimensions.png"
+  },
+  "src/assets/img/icon-addon-eu-compliance.png": {
+    "file": "img/icon-addon-eu-compliance.png",
+    "src": "src/assets/img/icon-addon-eu-compliance.png"
+  },
+  "src/assets/img/icon-addon-forms.png": {
+    "file": "img/icon-addon-forms.png",
+    "src": "src/assets/img/icon-addon-forms.png"
+  },
+  "src/assets/img/icon-addon-instant-articles.png": {
+    "file": "img/icon-addon-instant-articles.png",
+    "src": "src/assets/img/icon-addon-instant-articles.png"
+  },
+  "src/assets/img/icon-addon-media.png": {
+    "file": "img/icon-addon-media.png",
+    "src": "src/assets/img/icon-addon-media.png"
+  },
+  "src/assets/img/icon-addon-performance.png": {
+    "file": "img/icon-addon-performance.png",
+    "src": "src/assets/img/icon-addon-performance.png"
+  },
+  "src/assets/img/icon-celebrate-small.png": {
+    "file": "img/icon-celebrate-small.png",
+    "src": "src/assets/img/icon-celebrate-small.png"
+  },
+  "src/assets/img/icon-download.png": {
+    "file": "img/icon-download.png",
+    "src": "src/assets/img/icon-download.png"
+  },
+  "src/assets/img/icon-exception-report.svg": {
+    "file": "img/icon-exception-report.svg",
+    "src": "src/assets/img/icon-exception-report.svg"
+  },
+  "src/assets/img/icon-fb-small.png": {
+    "file": "img/icon-fb-small.png",
+    "src": "src/assets/img/icon-fb-small.png"
+  },
+  "src/assets/img/icon-linkedin-small.png": {
+    "file": "img/icon-linkedin-small.png",
+    "src": "src/assets/img/icon-linkedin-small.png"
+  },
+  "src/assets/img/icon-plus.png": {
+    "file": "img/icon-plus.png",
+    "src": "src/assets/img/icon-plus.png"
+  },
+  "src/assets/img/icon-privacy-guard.svg": {
+    "file": "img/icon-privacy-guard.svg",
+    "src": "src/assets/img/icon-privacy-guard.svg"
+  },
+  "src/assets/img/icon-scroll-tracking.png": {
+    "file": "img/icon-scroll-tracking.png",
+    "src": "src/assets/img/icon-scroll-tracking.png"
+  },
+  "src/assets/img/icon-site-notes-settings.svg": {
+    "file": "img/icon-site-notes-settings.svg",
+    "src": "src/assets/img/icon-site-notes-settings.svg"
+  },
+  "src/assets/img/icon-smile.png": {
+    "file": "img/icon-smile.png",
+    "src": "src/assets/img/icon-smile.png"
+  },
+  "src/assets/img/icon-star.png": {
+    "file": "img/icon-star.png",
+    "src": "src/assets/img/icon-star.png"
+  },
+  "src/assets/img/icon-twitter-small.png": {
+    "file": "img/icon-twitter-small.png",
+    "src": "src/assets/img/icon-twitter-small.png"
+  },
+  "src/assets/img/icon-warning.png": {
+    "file": "img/icon-warning.png",
+    "src": "src/assets/img/icon-warning.png"
+  },
+  "src/assets/img/icon-watch.png": {
+    "file": "img/icon-watch.png",
+    "src": "src/assets/img/icon-watch.png"
+  },
+  "src/assets/img/icon-youtube-small.png": {
+    "file": "img/icon-youtube-small.png",
+    "src": "src/assets/img/icon-youtube-small.png"
+  },
+  "src/assets/img/lifterlms.png": {
+    "file": "img/lifterlms.png",
+    "src": "src/assets/img/lifterlms.png"
+  },
+  "src/assets/img/mascot.png": {
+    "file": "img/mascot.png",
+    "src": "src/assets/img/mascot.png"
+  },
+  "src/assets/img/memberpress.png": {
+    "file": "img/memberpress.png",
+    "src": "src/assets/img/memberpress.png"
+  },
+  "src/assets/img/mi-and-pl-logo.svg": {
+    "file": "img/mi-and-pl-logo.svg",
+    "src": "src/assets/img/mi-and-pl-logo.svg"
+  },
+  "src/assets/img/monsterinsights-addons-upsell-logo.svg": {
+    "file": "img/monsterinsights-addons-upsell-logo.svg",
+    "src": "src/assets/img/monsterinsights-addons-upsell-logo.svg"
+  },
+  "src/assets/img/monsterinsights-aioseo.jpg": {
+    "file": "img/monsterinsights-aioseo.jpg",
+    "src": "src/assets/img/monsterinsights-aioseo.jpg"
+  },
+  "src/assets/img/monsterinsights-report-ecommerce.png": {
+    "file": "img/monsterinsights-report-ecommerce.png",
+    "src": "src/assets/img/monsterinsights-report-ecommerce.png"
+  },
+  "src/assets/img/monsterinsights-setup-checklist-site-note.png": {
+    "file": "img/monsterinsights-setup-checklist-site-note.png",
+    "src": "src/assets/img/monsterinsights-setup-checklist-site-note.png"
+  },
+  "src/assets/img/popular-posts/popular-products-bg.jpg": {
+    "file": "img/popular-products-bg.jpg",
+    "src": "src/assets/img/popular-posts/popular-products-bg.jpg"
+  },
+  "src/assets/img/popular-posts/popular-products-browser.jpg": {
+    "file": "img/popular-products-browser.jpg",
+    "src": "src/assets/img/popular-posts/popular-products-browser.jpg"
+  },
+  "src/assets/img/popular-posts/theme-icons-products.png": {
+    "file": "img/theme-icons-products.png",
+    "src": "src/assets/img/popular-posts/theme-icons-products.png"
+  },
+  "src/assets/img/popular-posts/theme-icons-widget.png": {
+    "file": "img/theme-icons-widget.png",
+    "src": "src/assets/img/popular-posts/theme-icons-widget.png"
+  },
+  "src/assets/img/popular-posts/theme-icons.png": {
+    "file": "img/theme-icons.png",
+    "src": "src/assets/img/popular-posts/theme-icons.png"
+  },
+  "src/assets/img/popular-posts/theme-preview-beta.png": {
+    "file": "img/theme-preview-beta.png",
+    "src": "src/assets/img/popular-posts/theme-preview-beta.png"
+  },
+  "src/assets/img/popular-posts/theme-preview-image-2.jpg": {
+    "file": "img/theme-preview-image-2.jpg",
+    "src": "src/assets/img/popular-posts/theme-preview-image-2.jpg"
+  },
+  "src/assets/img/popular-posts/theme-preview-image.jpg": {
+    "file": "img/theme-preview-image.jpg",
+    "src": "src/assets/img/popular-posts/theme-preview-image.jpg"
+  },
+  "src/assets/img/popular-posts/theme-products-1.jpg": {
+    "file": "img/theme-products-1.jpg",
+    "src": "src/assets/img/popular-posts/theme-products-1.jpg"
+  },
+  "src/assets/img/popular-posts/theme-products-2.jpg": {
+    "file": "img/theme-products-2.jpg",
+    "src": "src/assets/img/popular-posts/theme-products-2.jpg"
+  },
+  "src/assets/img/popular-posts/theme-products-3.jpg": {
+    "file": "img/theme-products-3.jpg",
+    "src": "src/assets/img/popular-posts/theme-products-3.jpg"
+  },
+  "src/assets/img/popular-posts/theme-products-4.jpg": {
+    "file": "img/theme-products-4.jpg",
+    "src": "src/assets/img/popular-posts/theme-products-4.jpg"
+  },
+  "src/assets/img/popular-posts/theme-products-5.jpg": {
+    "file": "img/theme-products-5.jpg",
+    "src": "src/assets/img/popular-posts/theme-products-5.jpg"
+  },
+  "src/assets/img/popular-posts/theme-products-6.jpg": {
+    "file": "img/theme-products-6.jpg",
+    "src": "src/assets/img/popular-posts/theme-products-6.jpg"
+  },
+  "src/assets/img/popular-posts/theme-products-7.jpg": {
+    "file": "img/theme-products-7.jpg",
+    "src": "src/assets/img/popular-posts/theme-products-7.jpg"
+  },
+  "src/assets/img/popular-posts/theme-products-8.jpg": {
+    "file": "img/theme-products-8.jpg",
+    "src": "src/assets/img/popular-posts/theme-products-8.jpg"
+  },
+  "src/assets/img/popular-posts/theme-widget-1.jpg": {
+    "file": "img/theme-widget-1.jpg",
+    "src": "src/assets/img/popular-posts/theme-widget-1.jpg"
+  },
+  "src/assets/img/popular-posts/theme-widget-2.jpg": {
+    "file": "img/theme-widget-2.jpg",
+    "src": "src/assets/img/popular-posts/theme-widget-2.jpg"
+  },
+  "src/assets/img/popular-posts/theme-widget-3.jpg": {
+    "file": "img/theme-widget-3.jpg",
+    "src": "src/assets/img/popular-posts/theme-widget-3.jpg"
+  },
+  "src/assets/img/popular-posts/theme-widget-4.jpg": {
+    "file": "img/theme-widget-4.jpg",
+    "src": "src/assets/img/popular-posts/theme-widget-4.jpg"
+  },
+  "src/assets/img/popular-posts/theme-widget-5.jpg": {
+    "file": "img/theme-widget-5.jpg",
+    "src": "src/assets/img/popular-posts/theme-widget-5.jpg"
+  },
+  "src/assets/img/popular-posts/theme-widget-6.jpg": {
+    "file": "img/theme-widget-6.jpg",
+    "src": "src/assets/img/popular-posts/theme-widget-6.jpg"
+  },
+  "src/assets/img/popular-posts/theme-widget-7.jpg": {
+    "file": "img/theme-widget-7.jpg",
+    "src": "src/assets/img/popular-posts/theme-widget-7.jpg"
+  },
+  "src/assets/img/popular-posts/theme-widget-8.jpg": {
+    "file": "img/theme-widget-8.jpg",
+    "src": "src/assets/img/popular-posts/theme-widget-8.jpg"
+  },
+  "src/assets/img/pretty-links-logo-white.svg": {
+    "file": "img/pretty-links-logo-white.svg",
+    "src": "src/assets/img/pretty-links-logo-white.svg"
+  },
+  "src/assets/img/prettylinks-ad-bg.png": {
+    "file": "img/prettylinks-ad-bg.png",
+    "src": "src/assets/img/prettylinks-ad-bg.png"
+  },
+  "src/assets/img/reports-upsell-bg.png": {
+    "file": "img/reports-upsell-bg.png",
+    "src": "src/assets/img/reports-upsell-bg.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-dimensions@2x.png": {
+    "file": "img/bg-dimensions@2x.png",
+    "src": "src/assets/img/reports/lite-modals/bg-dimensions@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-ecommerce-coupons@2x.png": {
+    "file": "img/bg-ecommerce-coupons@2x.png",
+    "src": "src/assets/img/reports/lite-modals/bg-ecommerce-coupons@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-ecommerce-product-sales@2x.png": {
+    "file": "img/bg-ecommerce-product-sales@2x.png",
+    "src": "src/assets/img/reports/lite-modals/bg-ecommerce-product-sales@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-ecommerce@2x.png": {
+    "file": "img/bg-ecommerce@2x.png",
+    "src": "src/assets/img/reports/lite-modals/bg-ecommerce@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-engagement-pages@2x.png": {
+    "file": "img/bg-engagement-pages@2x.png",
+    "src": "src/assets/img/reports/lite-modals/bg-engagement-pages@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-forms@2x.png": {
+    "file": "img/bg-forms@2x.png",
+    "src": "src/assets/img/reports/lite-modals/bg-forms@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-media-upsell.svg": {
+    "file": "img/bg-media-upsell.svg",
+    "src": "src/assets/img/reports/lite-modals/bg-media-upsell.svg"
+  },
+  "src/assets/img/reports/lite-modals/bg-publisher@2x.png": {
+    "file": "img/bg-publisher@2x.png",
+    "src": "src/assets/img/reports/lite-modals/bg-publisher@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-queries@2x.png": {
+    "file": "img/bg-queries@2x.png",
+    "src": "src/assets/img/reports/lite-modals/bg-queries@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-realtime@2x.png": {
+    "file": "img/bg-realtime@2x.png",
+    "src": "src/assets/img/reports/lite-modals/bg-realtime@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-sitespeed@2x.png": {
+    "file": "img/bg-sitespeed@2x.png",
+    "src": "src/assets/img/reports/lite-modals/bg-sitespeed@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-traffic-campaigns@2x.png": {
+    "file": "img/bg-traffic-campaigns@2x.png",
+    "src": "src/assets/img/reports/lite-modals/bg-traffic-campaigns@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-traffic-landing-page@2x.png": {
+    "file": "img/bg-traffic-landing-page@2x.png",
+    "src": "src/assets/img/reports/lite-modals/bg-traffic-landing-page@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-traffic-overview@2x.png": {
+    "file": "img/bg-traffic-overview@2x.png",
+    "src": "src/assets/img/reports/lite-modals/bg-traffic-overview@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-traffic-source-medium@2x.png": {
+    "file": "img/bg-traffic-source-medium@2x.png",
+    "src": "src/assets/img/reports/lite-modals/bg-traffic-source-medium@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-traffic-technology@2x.png": {
+    "file": "img/bg-traffic-technology@2x.png",
+    "src": "src/assets/img/reports/lite-modals/bg-traffic-technology@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/bg-user-journey.svg": {
+    "file": "img/bg-user-journey.svg",
+    "src": "src/assets/img/reports/lite-modals/bg-user-journey.svg"
+  },
+  "src/assets/img/reports/lite-modals/bullet.svg": {
+    "file": "img/bullet.svg",
+    "src": "src/assets/img/reports/lite-modals/bullet.svg"
+  },
+  "src/assets/img/reports/lite-modals/ecommerce-funnel@2x.png": {
+    "file": "img/ecommerce-funnel@2x.png",
+    "src": "src/assets/img/reports/lite-modals/ecommerce-funnel@2x.png"
+  },
+  "src/assets/img/reports/lite-modals/exceptions-report.png": {
+    "file": "img/exceptions-report.png",
+    "src": "src/assets/img/reports/lite-modals/exceptions-report.png"
+  },
+  "src/assets/img/reports/lite-modals/icon-info.svg": {
+    "file": "img/icon-info.svg",
+    "src": "src/assets/img/reports/lite-modals/icon-info.svg"
+  },
+  "src/assets/img/reports/lite-modals/icon-lock.svg": {
+    "file": "img/icon-lock.svg",
+    "src": "src/assets/img/reports/lite-modals/icon-lock.svg"
+  },
+  "src/assets/img/reports/lite-modals/social-media-report@2x.png": {
+    "file": "img/social-media-report@2x.png",
+    "src": "src/assets/img/reports/lite-modals/social-media-report@2x.png"
+  },
+  "src/assets/img/reports/report-arrow-down-green.png": {
+    "file": "img/report-arrow-down-green.png",
+    "src": "src/assets/img/reports/report-arrow-down-green.png"
+  },
+  "src/assets/img/reports/report-arrow-down-red.png": {
+    "file": "img/report-arrow-down-red.png",
+    "src": "src/assets/img/reports/report-arrow-down-red.png"
+  },
+  "src/assets/img/reports/report-arrow-up-green.png": {
+    "file": "img/report-arrow-up-green.png",
+    "src": "src/assets/img/reports/report-arrow-up-green.png"
+  },
+  "src/assets/img/reports/report-arrow-up-red.png": {
+    "file": "img/report-arrow-up-red.png",
+    "src": "src/assets/img/reports/report-arrow-up-red.png"
+  },
+  "src/assets/img/restrict-content-pro.png": {
+    "file": "img/restrict-content-pro.png",
+    "src": "src/assets/img/restrict-content-pro.png"
+  },
+  "src/assets/img/right-arrow-black.png": {
+    "file": "img/right-arrow-black.png",
+    "src": "src/assets/img/right-arrow-black.png"
+  },
+  "src/assets/img/site-notes-category-upsell-mi.png": {
+    "file": "img/site-notes-category-upsell-mi.png",
+    "src": "src/assets/img/site-notes-category-upsell-mi.png"
+  },
+  "src/assets/img/site-notes-integration-upsell.png": {
+    "file": "img/site-notes-integration-upsell.png",
+    "src": "src/assets/img/site-notes-integration-upsell.png"
+  },
+  "src/assets/img/site-notes-trigger-icon.svg": {
+    "file": "img/site-notes-trigger-icon.svg",
+    "src": "src/assets/img/site-notes-trigger-icon.svg"
+  },
+  "src/assets/img/site-notes/arrow-down.svg": {
+    "file": "img/arrow-down.svg",
+    "src": "src/assets/img/site-notes/arrow-down.svg"
+  },
+  "src/assets/img/site-notes/icon-bottom.svg": {
+    "file": "img/icon-bottom.svg",
+    "src": "src/assets/img/site-notes/icon-bottom.svg"
+  },
+  "src/assets/img/site-notes/icon-media.svg": {
+    "file": "img/icon-media.svg",
+    "src": "src/assets/img/site-notes/icon-media.svg"
+  },
+  "src/assets/img/site-notes/icon-plus.svg": {
+    "file": "img/icon-plus.svg",
+    "src": "src/assets/img/site-notes/icon-plus.svg"
+  },
+  "src/assets/img/site-notes/icon-selected.svg": {
+    "file": "img/icon-selected.svg",
+    "src": "src/assets/img/site-notes/icon-selected.svg"
+  },
+  "src/assets/img/site-notes/star-empty.svg": {
+    "file": "img/star-empty.svg",
+    "src": "src/assets/img/site-notes/star-empty.svg"
+  },
+  "src/assets/img/site-notes/star.svg": {
+    "file": "img/star.svg",
+    "src": "src/assets/img/site-notes/star.svg"
+  },
+  "src/assets/img/site-speed-blur.png": {
+    "file": "img/site-speed-blur.png",
+    "src": "src/assets/img/site-speed-blur.png"
+  },
+  "src/assets/img/syed.png": {
+    "file": "img/syed.png",
+    "src": "src/assets/img/syed.png"
+  },
+  "src/assets/img/tools-prettylinks-icons.png": {
+    "file": "img/tools-prettylinks-icons.png",
+    "src": "src/assets/img/tools-prettylinks-icons.png"
+  },
+  "src/assets/img/underline-small.png": {
+    "file": "img/underline-small.png",
+    "src": "src/assets/img/underline-small.png"
+  },
+  "src/assets/img/underline.png": {
+    "file": "img/underline.png",
+    "src": "src/assets/img/underline.png"
+  },
+  "src/assets/img/welcome/testimonial-avatar-2.png": {
+    "file": "img/testimonial-avatar-2.png",
+    "src": "src/assets/img/welcome/testimonial-avatar-2.png"
+  },
+  "src/assets/img/welcome/testimonial-avatar.jpeg": {
+    "file": "img/testimonial-avatar.jpeg",
+    "src": "src/assets/img/welcome/testimonial-avatar.jpeg"
+  },
+  "src/assets/img/welcome/welcome-mascot.png": {
+    "file": "img/welcome-mascot.png",
+    "src": "src/assets/img/welcome/welcome-mascot.png"
+  },
+  "src/assets/img/welcome/welcome-video-image.jpg": {
+    "file": "img/welcome-video-image.jpg",
+    "src": "src/assets/img/welcome/welcome-video-image.jpg"
+  },
+  "src/assets/img/wizard-onboarding/addon-icon-ads.png": {
+    "file": "img/addon-icon-ads.png",
+    "src": "src/assets/img/wizard-onboarding/addon-icon-ads.png"
+  },
+  "src/assets/img/wizard-onboarding/addon-icon-amp.png": {
+    "file": "img/addon-icon-amp.png",
+    "src": "src/assets/img/wizard-onboarding/addon-icon-amp.png"
+  },
+  "src/assets/img/wizard-onboarding/addon-icon-dimensions.png": {
+    "file": "img/addon-icon-dimensions.png",
+    "src": "src/assets/img/wizard-onboarding/addon-icon-dimensions.png"
+  },
+  "src/assets/img/wizard-onboarding/addon-icon-ecommerce.png": {
+    "file": "img/addon-icon-ecommerce.png",
+    "src": "src/assets/img/wizard-onboarding/addon-icon-ecommerce.png"
+  },
+  "src/assets/img/wizard-onboarding/addon-icon-eu-compliance.png": {
+    "file": "img/addon-icon-eu-compliance.png",
+    "src": "src/assets/img/wizard-onboarding/addon-icon-eu-compliance.png"
+  },
+  "src/assets/img/wizard-onboarding/addon-icon-forms.png": {
+    "file": "img/addon-icon-forms.png",
+    "src": "src/assets/img/wizard-onboarding/addon-icon-forms.png"
+  },
+  "src/assets/img/wizard-onboarding/addon-icon-media.png": {
+    "file": "img/addon-icon-media.png",
+    "src": "src/assets/img/wizard-onboarding/addon-icon-media.png"
+  },
+  "src/assets/img/wizard-onboarding/addon-icon-page-insights.png": {
+    "file": "img/addon-icon-page-insights.png",
+    "src": "src/assets/img/wizard-onboarding/addon-icon-page-insights.png"
+  },
+  "src/assets/img/wizard-onboarding/addon-icon-performance.png": {
+    "file": "img/addon-icon-performance.png",
+    "src": "src/assets/img/wizard-onboarding/addon-icon-performance.png"
+  },
+  "src/assets/img/wizard-onboarding/mi-onboarding-logo.png": {
+    "file": "img/mi-onboarding-logo.png",
+    "src": "src/assets/img/wizard-onboarding/mi-onboarding-logo.png"
+  },
+  "src/assets/img/wizard-onboarding/wpforms.png": {
+    "file": "img/wpforms.png",
+    "src": "src/assets/img/wizard-onboarding/wpforms.png"
+  },
+  "src/assets/img/woo-insights-hero-image.png": {
+    "file": "img/woo-insights-hero-image.png",
+    "src": "src/assets/img/woo-insights-hero-image.png"
+  },
+  "src/assets/img/woocommerce.png": {
+    "file": "img/woocommerce.png",
+    "src": "src/assets/img/woocommerce.png"
+  },
+  "src/assets/img/yir-bar-chart-bg.svg": {
+    "file": "img/yir-bar-chart-bg.svg",
+    "src": "src/assets/img/yir-bar-chart-bg.svg"
+  },
+  "src/assets/img/yir-charlie.svg": {
+    "file": "img/yir-charlie.svg",
+    "src": "src/assets/img/yir-charlie.svg"
+  },
+  "src/assets/img/yir-dashboard.png": {
+    "file": "img/yir-dashboard.png",
+    "src": "src/assets/img/yir-dashboard.png"
+  },
+  "src/assets/img/yir-icon-bar-chart.svg": {
+    "file": "img/yir-icon-bar-chart.svg",
+    "src": "src/assets/img/yir-icon-bar-chart.svg"
+  },
+  "src/assets/img/yir-icon-behavior.svg": {
+    "file": "img/yir-icon-behavior.svg",
+    "src": "src/assets/img/yir-icon-behavior.svg"
+  },
+  "src/assets/img/yir-icon-chart.svg": {
+    "file": "img/yir-icon-chart.svg",
+    "src": "src/assets/img/yir-icon-chart.svg"
+  },
+  "src/assets/img/yir-icon-chat.svg": {
+    "file": "img/yir-icon-chat.svg",
+    "src": "src/assets/img/yir-icon-chat.svg"
+  },
+  "src/assets/img/yir-icon-desktop-small.svg": {
+    "file": "img/yir-icon-desktop-small.svg",
+    "src": "src/assets/img/yir-icon-desktop-small.svg"
+  },
+  "src/assets/img/yir-icon-desktop.svg": {
+    "file": "img/yir-icon-desktop.svg",
+    "src": "src/assets/img/yir-icon-desktop.svg"
+  },
+  "src/assets/img/yir-icon-dollar.svg": {
+    "file": "img/yir-icon-dollar.svg",
+    "src": "src/assets/img/yir-icon-dollar.svg"
+  },
+  "src/assets/img/yir-icon-global.svg": {
+    "file": "img/yir-icon-global.svg",
+    "src": "src/assets/img/yir-icon-global.svg"
+  },
+  "src/assets/img/yir-icon-google.svg": {
+    "file": "img/yir-icon-google.svg",
+    "src": "src/assets/img/yir-icon-google.svg"
+  },
+  "src/assets/img/yir-icon-loyalty.svg": {
+    "file": "img/yir-icon-loyalty.svg",
+    "src": "src/assets/img/yir-icon-loyalty.svg"
+  },
+  "src/assets/img/yir-icon-mobile-small.svg": {
+    "file": "img/yir-icon-mobile-small.svg",
+    "src": "src/assets/img/yir-icon-mobile-small.svg"
+  },
+  "src/assets/img/yir-icon-mobile.svg": {
+    "file": "img/yir-icon-mobile.svg",
+    "src": "src/assets/img/yir-icon-mobile.svg"
+  },
+  "src/assets/img/yir-icon-pen.svg": {
+    "file": "img/yir-icon-pen.svg",
+    "src": "src/assets/img/yir-icon-pen.svg"
+  },
+  "src/assets/img/yir-icon-sessions.svg": {
+    "file": "img/yir-icon-sessions.svg",
+    "src": "src/assets/img/yir-icon-sessions.svg"
+  },
+  "src/assets/img/yir-icon-tablet-small.svg": {
+    "file": "img/yir-icon-tablet-small.svg",
+    "src": "src/assets/img/yir-icon-tablet-small.svg"
+  },
+  "src/assets/img/yir-icon-tablet.svg": {
+    "file": "img/yir-icon-tablet.svg",
+    "src": "src/assets/img/yir-icon-tablet.svg"
+  },
+  "src/assets/img/yir-icon-tip.svg": {
+    "file": "img/yir-icon-tip.svg",
+    "src": "src/assets/img/yir-icon-tip.svg"
+  },
+  "src/assets/img/yir-icon-visitors.svg": {
+    "file": "img/yir-icon-visitors.svg",
+    "src": "src/assets/img/yir-icon-visitors.svg"
+  },
+  "src/assets/img/yir-icon-world.svg": {
+    "file": "img/yir-icon-world.svg",
+    "src": "src/assets/img/yir-icon-world.svg"
+  },
+  "src/assets/img/yir-map-bg.svg": {
+    "file": "img/yir-map-bg.svg",
+    "src": "src/assets/img/yir-map-bg.svg"
+  },
+  "src/assets/img/yir-mi-hero.svg": {
+    "file": "img/yir-mi-hero.svg",
+    "src": "src/assets/img/yir-mi-hero.svg"
+  },
+  "src/assets/img/yir-purple-star.svg": {
+    "file": "img/yir-purple-star.svg",
+    "src": "src/assets/img/yir-purple-star.svg"
+  },
+  "src/assets/img/yir-star.svg": {
+    "file": "img/yir-star.svg",
+    "src": "src/assets/img/yir-star.svg"
+  },
+  "src/assets/img/yir-table-footer.svg": {
+    "file": "img/yir-table-footer.svg",
+    "src": "src/assets/img/yir-table-footer.svg"
+  },
+  "src/assets/img/yir-table-header.svg": {
+    "file": "img/yir-table-header.svg",
+    "src": "src/assets/img/yir-table-header.svg"
+  },
+  "src/assets/img/yir-thank-you-charlie.svg": {
+    "file": "img/yir-thank-you-charlie.svg",
+    "src": "src/assets/img/yir-thank-you-charlie.svg"
+  },
+  "src/assets/img/yir-time-spent-table-icon.svg": {
+    "file": "img/yir-time-spent-table-icon.svg",
+    "src": "src/assets/img/yir-time-spent-table-icon.svg"
+  },
+  "src/modules/frontend/frontend.css": {
+    "file": "css/frontend.css",
+    "src": "src/modules/frontend/frontend.css"
+  },
+  "src/modules/frontend/frontend.js": {
+    "assets": [
+      "img/mascot.png"
+    ],
+    "css": [
+      "css/frontend.css"
+    ],
+    "file": "js/frontend.min.js",
+    "imports": [
+      "_vendor-abf23f8e.min.js",
+      "_index-3b247c04.min.js",
+      "_WidgetReportError-60e8a049.min.js",
+      "_index-9dee18c5.min.js"
+    ],
+    "isEntry": true,
+    "src": "src/modules/frontend/frontend.js"
+  },
+  "src/modules/reports/reports.css": {
+    "file": "css/reports.css",
+    "src": "src/modules/reports/reports.css"
+  },
+  "src/modules/reports/reports.js": {
+    "assets": [
+      "img/flags.png",
+      "img/yir-mi-hero.svg",
+      "img/yir-icon-visitors.svg",
+      "img/yir-icon-sessions.svg",
+      "img/yir-bar-chart-bg.svg",
+      "img/yir-icon-tip.svg",
+      "img/yir-map-bg.svg",
+      "img/yir-table-header.svg",
+      "img/yir-table-footer.svg",
+      "img/yir-icon-world.svg",
+      "img/yir-icon-behavior.svg",
+      "img/icon-watch.png",
+      "img/yir-time-spent-table-icon.svg",
+      "img/yir-icon-mobile.svg",
+      "img/yir-icon-desktop.svg",
+      "img/yir-icon-tablet.svg",
+      "img/yir-icon-mobile-small.svg",
+      "img/yir-icon-desktop-small.svg",
+      "img/yir-icon-tablet-small.svg",
+      "img/yir-icon-loyalty.svg",
+      "img/yir-icon-dollar.svg",
+      "img/yir-charlie.svg",
+      "img/yir-icon-bar-chart.svg",
+      "img/yir-icon-google.svg",
+      "img/yir-dashboard.png",
+      "img/yir-thank-you-charlie.svg",
+      "img/chris.png",
+      "img/yir-purple-star.svg",
+      "img/syed.png",
+      "img/yir-star.svg",
+      "img/yir-icon-chat.svg",
+      "img/yir-icon-pen.svg",
+      "img/yir-icon-global.svg",
+      "img/icon-youtube-small.png",
+      "img/icon-fb-small.png",
+      "img/icon-twitter-small.png",
+      "img/icon-linkedin-small.png",
+      "img/yir-icon-chart.svg",
+      "img/site-speed-blur.png",
+      "img/site-notes-trigger-icon.svg",
+      "img/star.svg",
+      "img/star-empty.svg",
+      "img/icon-bottom.svg",
+      "img/icon-selected.svg",
+      "img/icon-media.svg",
+      "img/bg-user-journey.svg",
+      "img/bullet.svg",
+      "img/icon-lock.svg",
+      "img/report-arrow-down-red.png",
+      "img/report-arrow-down-green.png",
+      "img/report-arrow-up-green.png",
+      "img/report-arrow-up-red.png",
+      "img/reports-upsell-bg.png",
+      "img/bg-publisher@2x.png",
+      "img/bg-queries@2x.png",
+      "img/bg-forms@2x.png",
+      "img/bg-realtime@2x.png",
+      "img/bg-ecommerce@2x.png",
+      "img/ecommerce-funnel@2x.png",
+      "img/bg-dimensions@2x.png",
+      "img/bg-sitespeed@2x.png",
+      "img/bg-media-upsell.svg",
+      "img/bg-traffic-overview@2x.png",
+      "img/bg-traffic-landing-page@2x.png",
+      "img/bg-traffic-technology@2x.png",
+      "img/bg-traffic-source-medium@2x.png",
+      "img/bg-traffic-campaigns@2x.png",
+      "img/bg-ecommerce-product-sales@2x.png",
+      "img/bg-ecommerce-coupons@2x.png",
+      "img/bg-engagement-pages@2x.png",
+      "img/social-media-report@2x.png",
+      "img/exceptions-report.png"
+    ],
+    "css": [
+      "css/reports.css"
+    ],
+    "file": "js/reports.min.js",
+    "imports": [
+      "_vendor-abf23f8e.min.js",
+      "_index-3b247c04.min.js",
+      "_SettingsInfoTooltip-8ce0e85d.min.js",
+      "_date-intervals-99bc51b5.min.js",
+      "_index-999d9e4f.min.js",
+      "_index-9dee18c5.min.js",
+      "_SlideDownUp-80f4c9d9.min.js"
+    ],
+    "isEntry": true,
+    "src": "src/modules/reports/reports.js"
+  },
+  "src/modules/settings/settings.css": {
+    "file": "css/settings.css",
+    "src": "src/modules/settings/settings.css"
+  },
+  "src/modules/settings/settings.js": {
+    "assets": [
+      "img/ecommerce-report.png",
+      "img/monsterinsights-addons-upsell-logo.svg",
+      "img/prettylinks-ad-bg.png",
+      "img/icon-download.png",
+      "img/pretty-links-logo-white.svg",
+      "img/icon-star.png",
+      "img/mi-and-pl-logo.svg",
+      "img/tools-prettylinks-icons.png",
+      "img/badge-light.svg",
+      "img/badge-dark.svg",
+      "img/about-icon-check.svg",
+      "img/about-icon-connect.png",
+      "img/about-icon-guide.png",
+      "img/about-icon-gdpr.png",
+      "img/about-icon-addons.png",
+      "img/about-icon-ecommerce.png",
+      "img/about-team.jpg",
+      "img/icon-mi.svg",
+      "img/icon-aioseo.svg",
+      "img/icon-pushengage.svg",
+      "img/icon-rafflepress.svg",
+      "img/icon-constantcontact.svg",
+      "img/icon-semrush.svg",
+      "img/icon-wpforms.svg",
+      "img/icon-optinmonster.svg",
+      "img/icon-smashballoon.svg",
+      "img/icon-seedprod.png",
+      "img/icon-easyaffiliate.svg",
+      "img/icon-searchwp.svg",
+      "img/icon-edd.svg",
+      "img/icon-memberpress.svg",
+      "img/icon-thirstyaffiliates.png",
+      "img/icon-advancedcoupons.svg",
+      "img/icon-prettylinks.svg",
+      "img/icon-wp-simple-pay.png",
+      "img/icon-guide.svg",
+      "img/arrow-right.svg",
+      "img/check.svg",
+      "img/theme-icons.png",
+      "img/theme-icons-widget.png",
+      "img/theme-icons-products.png",
+      "img/theme-preview-beta.png",
+      "img/theme-preview-image.jpg",
+      "img/theme-preview-image-2.jpg",
+      "img/theme-widget-1.jpg",
+      "img/theme-widget-2.jpg",
+      "img/theme-widget-3.jpg",
+      "img/theme-widget-4.jpg",
+      "img/theme-widget-5.jpg",
+      "img/theme-widget-6.jpg",
+      "img/theme-widget-7.jpg",
+      "img/theme-widget-8.jpg",
+      "img/theme-products-1.jpg",
+      "img/theme-products-2.jpg",
+      "img/theme-products-3.jpg",
+      "img/theme-products-4.jpg",
+      "img/theme-products-5.jpg",
+      "img/theme-products-6.jpg",
+      "img/theme-products-7.jpg",
+      "img/theme-products-8.jpg",
+      "img/popular-products-bg.jpg",
+      "img/popular-products-browser.jpg",
+      "fonts/Roboto-Regular.woff2",
+      "fonts/Roboto-Bold.woff2",
+      "fonts/lato-regular-webfont.woff",
+      "fonts/lato-regular-webfont.woff2",
+      "fonts/lato-bold-webfont.woff",
+      "fonts/lato-bold-webfont.woff2",
+      "fonts/text-security-disc.woff2",
+      "fonts/text-security-disc.woff",
+      "fonts/text-security-disc.ttf",
+      "fonts/icons.woff2",
+      "fonts/icons.woff",
+      "fonts/icons.ttf",
+      "fonts/icons.otf",
+      "img/icon-celebrate-small.png",
+      "img/aioseo-client-logo-1.svg",
+      "img/aioseo-client-logo-2.svg",
+      "img/aioseo-client-logo-3.svg",
+      "img/aioseo-client-logo-4.svg",
+      "img/aioseo-client-logo-5.svg",
+      "img/aioseo-client-logo-6.svg",
+      "img/aioseo-client-logo-7.svg",
+      "img/aioseo-client-logo-8.svg",
+      "img/aioseo-client-logo-9.svg",
+      "img/aioseo-client-logo-10.svg",
+      "img/aioseo-client-logo-11.svg",
+      "img/aioseo-client-logo-12.svg",
+      "img/aioseo-screen-1.svg",
+      "img/aioseo-screen-2.svg",
+      "img/monsterinsights-aioseo.jpg",
+      "img/woo-insights-hero-image.png",
+      "img/underline.png",
+      "img/underline-small.png",
+      "img/right-arrow-black.png",
+      "img/star.svg",
+      "img/star-empty.svg",
+      "img/icon-media.svg",
+      "img/arrow-down.svg",
+      "img/site-notes-category-upsell-mi.png",
+      "img/site-notes-integration-upsell.png",
+      "img/icon-plus.svg",
+      "img/icon-warning.png",
+      "img/monsterinsights-setup-checklist-site-note.png",
+      "img/icon-site-notes-settings.svg",
+      "img/woocommerce.png",
+      "img/easy-digital-downloads.png",
+      "img/memberpress.png",
+      "img/give-wp.png",
+      "img/lifterlms.png",
+      "img/restrict-content-pro.png",
+      "img/monsterinsights-report-ecommerce.png",
+      "img/icon-addon-eu-compliance.png",
+      "img/icon-addon-ads.png",
+      "img/icon-addon-amp.png",
+      "img/icon-addon-instant-articles.png",
+      "img/icon-addon-media.png",
+      "img/icon-addon-forms.png",
+      "img/icon-addon-dimensions.png",
+      "img/icon-addon-performance.png",
+      "img/icon-scroll-tracking.png",
+      "img/icon-privacy-guard.svg",
+      "img/icon-exception-report.svg",
+      "img/icon-plus.png",
+      "img/icon-smile.png",
+      "img/affiliates-promo-logo.png"
+    ],
+    "css": [
+      "css/settings.css"
+    ],
+    "file": "js/settings.min.js",
+    "imports": [
+      "_vendor-abf23f8e.min.js",
+      "_index-9dee18c5.min.js",
+      "_SlideDownUp-80f4c9d9.min.js",
+      "_WelcomeOverlay-4cc28278.min.js",
+      "_SettingsInfoTooltip-8ce0e85d.min.js",
+      "_index-999d9e4f.min.js"
+    ],
+    "isEntry": true,
+    "src": "src/modules/settings/settings.js"
+  },
+  "src/modules/widget/widget.css": {
+    "file": "css/widget.css",
+    "src": "src/modules/widget/widget.css"
+  },
+  "src/modules/widget/widget.js": {
+    "assets": [
+      "fonts/icons.woff2",
+      "fonts/icons.woff",
+      "fonts/icons.ttf",
+      "fonts/icons.otf",
+      "img/flags.png",
+      "img/yir-mi-hero.svg",
+      "img/yir-icon-visitors.svg",
+      "img/yir-icon-sessions.svg",
+      "img/yir-bar-chart-bg.svg",
+      "img/yir-icon-tip.svg",
+      "img/yir-map-bg.svg",
+      "img/yir-table-header.svg",
+      "img/yir-table-footer.svg",
+      "img/yir-icon-world.svg",
+      "img/yir-icon-behavior.svg",
+      "img/icon-watch.png",
+      "img/yir-time-spent-table-icon.svg",
+      "img/yir-icon-mobile.svg",
+      "img/yir-icon-desktop.svg",
+      "img/yir-icon-tablet.svg",
+      "img/yir-icon-mobile-small.svg",
+      "img/yir-icon-desktop-small.svg",
+      "img/yir-icon-tablet-small.svg",
+      "img/yir-icon-loyalty.svg",
+      "img/yir-icon-dollar.svg",
+      "img/yir-charlie.svg",
+      "img/yir-icon-bar-chart.svg",
+      "img/yir-icon-google.svg",
+      "img/yir-dashboard.png",
+      "img/yir-thank-you-charlie.svg",
+      "img/chris.png",
+      "img/yir-purple-star.svg",
+      "img/syed.png",
+      "img/yir-star.svg",
+      "img/yir-icon-chat.svg",
+      "img/yir-icon-pen.svg",
+      "img/yir-icon-global.svg",
+      "img/icon-youtube-small.png",
+      "img/icon-fb-small.png",
+      "img/icon-twitter-small.png",
+      "img/icon-linkedin-small.png",
+      "img/yir-icon-chart.svg",
+      "img/site-speed-blur.png",
+      "img/site-notes-trigger-icon.svg",
+      "img/star.svg",
+      "img/star-empty.svg",
+      "img/icon-bottom.svg",
+      "img/icon-selected.svg",
+      "img/icon-media.svg",
+      "img/bg-user-journey.svg",
+      "img/bullet.svg",
+      "img/icon-lock.svg",
+      "img/report-arrow-down-red.png",
+      "img/report-arrow-down-green.png",
+      "img/report-arrow-up-green.png",
+      "img/report-arrow-up-red.png",
+      "img/reports-upsell-bg.png",
+      "img/bg-publisher@2x.png",
+      "img/bg-queries@2x.png",
+      "img/bg-forms@2x.png",
+      "img/bg-realtime@2x.png",
+      "img/bg-ecommerce@2x.png",
+      "img/ecommerce-funnel@2x.png",
+      "img/bg-dimensions@2x.png",
+      "img/bg-sitespeed@2x.png",
+      "img/bg-media-upsell.svg",
+      "img/bg-traffic-overview@2x.png",
+      "img/bg-traffic-landing-page@2x.png",
+      "img/bg-traffic-technology@2x.png",
+      "img/bg-traffic-source-medium@2x.png",
+      "img/bg-traffic-campaigns@2x.png",
+      "img/bg-ecommerce-product-sales@2x.png",
+      "img/bg-ecommerce-coupons@2x.png",
+      "img/bg-engagement-pages@2x.png",
+      "img/social-media-report@2x.png",
+      "img/exceptions-report.png",
+      "img/mascot.png"
+    ],
+    "css": [
+      "css/widget.css"
+    ],
+    "file": "js/widget.min.js",
+    "imports": [
+      "_vendor-abf23f8e.min.js",
+      "_index-3b247c04.min.js",
+      "_date-intervals-99bc51b5.min.js",
+      "_SettingsInfoTooltip-8ce0e85d.min.js",
+      "_WidgetReportError-60e8a049.min.js",
+      "_index-9dee18c5.min.js"
+    ],
+    "isEntry": true,
+    "src": "src/modules/widget/widget.js"
+  },
+  "src/modules/wizard-onboarding/wizard.css": {
+    "file": "css/wizard.css",
+    "src": "src/modules/wizard-onboarding/wizard.css"
+  },
+  "src/modules/wizard-onboarding/wizard.js": {
+    "assets": [
+      "fonts/Roboto-Regular.woff2",
+      "fonts/Roboto-Bold.woff2",
+      "fonts/lato-regular-webfont.woff",
+      "fonts/lato-regular-webfont.woff2",
+      "fonts/lato-bold-webfont.woff",
+      "fonts/lato-bold-webfont.woff2",
+      "fonts/text-security-disc.woff2",
+      "fonts/text-security-disc.woff",
+      "fonts/text-security-disc.ttf",
+      "fonts/icons.woff2",
+      "fonts/icons.woff",
+      "fonts/icons.ttf",
+      "fonts/icons.otf",
+      "img/mi-onboarding-logo.png",
+      "img/icon-smile.png",
+      "img/addon-icon-ads.png",
+      "img/addon-icon-amp.png",
+      "img/addon-icon-dimensions.png",
+      "img/addon-icon-ecommerce.png",
+      "img/addon-icon-eu-compliance.png",
+      "img/addon-icon-forms.png",
+      "img/addon-icon-page-insights.png",
+      "img/addon-icon-performance.png",
+      "img/addon-icon-media.png",
+      "img/wpforms.png",
+      "img/icon-warning.png",
+      "img/welcome-mascot.png",
+      "img/testimonial-avatar.jpeg",
+      "img/testimonial-avatar-2.png",
+      "img/welcome-video-image.jpg"
+    ],
+    "css": [
+      "css/wizard.css"
+    ],
+    "file": "js/wizard.min.js",
+    "imports": [
+      "_vendor-abf23f8e.min.js",
+      "_WelcomeOverlay-4cc28278.min.js",
+      "_SettingsInfoTooltip-8ce0e85d.min.js",
+      "_index-9dee18c5.min.js",
+      "_SlideDownUp-80f4c9d9.min.js"
+    ],
+    "isEntry": true,
+    "src": "src/modules/wizard-onboarding/wizard.js"
+  },
+  "vendor.css": {
+    "file": "css/vendor.css",
+    "src": "vendor.css"
+  }
+}

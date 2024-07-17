@@ -12,6 +12,8 @@ final class MonsterInsights_Notification_Visitors extends MonsterInsights_Notifi
 	public $notification_interval = 30; // in days
 	public $notification_type = array( 'basic', 'lite', 'master', 'plus', 'pro' );
 	public $notification_icon = 'lightning';
+	public $notification_category = 'insight';
+	public $notification_priority = 2;
 
 	/**
 	 * Build Notification
@@ -31,13 +33,13 @@ final class MonsterInsights_Notification_Visitors extends MonsterInsights_Notifi
 
 		$total_visitors = isset( $report['data']['infobox']['sessions']['value'] ) ? $report['data']['infobox']['sessions']['value'] : 0;
 		// Translators: visitors notification title
-		$notification['title'] = sprintf( __( 'See how %s visitors found your site!', 'google-analytics-for-wordpress' ), $total_visitors );
+		$notification['title'] = sprintf( __( 'See how %s Visitors Found Your Site!', 'google-analytics-for-wordpress' ), $total_visitors );
 		// Translators: visitors notification content
 		$notification['content'] = sprintf( __( 'Your website has been visited by %s visitors in the past 30 days. Click the button below to view the full analytics report.', 'google-analytics-for-wordpress' ), $total_visitors );
 		$notification['btns']    = array(
 			"view_report" => array(
-				'url'           => $this->get_view_url( 'monsterinsights-report-overview', 'monsterinsights_reports' ),
-				'text'          => __( 'View Report', 'google-analytics-for-wordpress' ),
+				'url'  => $this->get_view_url( 'monsterinsights-report-overview', 'monsterinsights_reports' ),
+				'text' => __( 'View Report', 'google-analytics-for-wordpress' ),
 			),
 		);
 

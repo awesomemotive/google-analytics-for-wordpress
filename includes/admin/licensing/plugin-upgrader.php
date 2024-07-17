@@ -24,43 +24,47 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 	 * Attempt to download the package (if it is not a local file), unpack it, and
 	 * install it in the destination folder.
 	 *
-	 * @since 1.5.6.1
-	 *
 	 * @param array $options {
 	 *     Array or string of arguments for upgrading/installing a package.
 	 *
-	 *     @type string $package                     The full path or URI of the package to install.
+	 * @type string $package The full path or URI of the package to install.
 	 *                                               Default empty.
-	 *     @type string $destination                 The full path to the destination folder.
+	 * @type string $destination The full path to the destination folder.
 	 *                                               Default empty.
-	 *     @type bool   $clear_destination           Whether to delete any files already in the
+	 * @type bool $clear_destination Whether to delete any files already in the
 	 *                                               destination folder. Default false.
-	 *     @type bool   $clear_working               Whether to delete the files form the working
+	 * @type bool $clear_working Whether to delete the files form the working
 	 *                                               directory after copying to the destination.
 	 *                                               Default false.
-	 *     @type bool   $abort_if_destination_exists Whether to abort the installation if the destination
+	 * @type bool $abort_if_destination_exists Whether to abort the installation if the destination
 	 *                                               folder already exists. When true, `$clear_destination`
 	 *                                               should be false. Default true.
-	 *     @type bool   $is_multi                    Whether this run is one of multiple upgrade/installation
+	 * @type bool $is_multi Whether this run is one of multiple upgrade/installation
 	 *                                               actions being performed in bulk. When true, the skin
 	 *                                               WP_Upgrader::header() and WP_Upgrader::footer()
 	 *                                               aren't called. Default false.
-	 *     @type array  $hook_extra                  Extra arguments to pass to the filter hooks called by
+	 * @type array $hook_extra Extra arguments to pass to the filter hooks called by
 	 *                                               WP_Upgrader::run().
 	 * }
 	 * @return array|false|WP_error The result from self::install_package() on success, otherwise a WP_Error,
 	 *                              or false if unable to connect to the filesystem.
+	 * @since 1.5.6.1
+	 *
 	 */
 	public function run( $options ) {
 
 		$defaults = array(
-			'package'                     => '', // Please always pass this.
-			'destination'                 => '', // And this
+			'package'                     => '',
+			// Please always pass this.
+			'destination'                 => '',
+			// And this
 			'clear_destination'           => false,
-			'abort_if_destination_exists' => true, // Abort if the Destination directory exists, Pass clear_destination as false please
+			'abort_if_destination_exists' => true,
+			// Abort if the Destination directory exists, Pass clear_destination as false please
 			'clear_working'               => true,
 			'is_multi'                    => false,
-			'hook_extra'                  => array(), // Pass any extra $hook_extra args here, this will be passed to any hooked filters.
+			'hook_extra'                  => array(),
+			// Pass any extra $hook_extra args here, this will be passed to any hooked filters.
 		);
 
 		$options = wp_parse_args( $options, $defaults );
@@ -70,30 +74,30 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 		 *
 		 * See also {@see 'upgrader_process_complete'}.
 		 *
-		 * @since 4.3.0
-		 *
 		 * @param array $options {
 		 *     Options used by the upgrader.
 		 *
-		 *     @type string $package                     Package for update.
-		 *     @type string $destination                 Update location.
-		 *     @type bool   $clear_destination           Clear the destination resource.
-		 *     @type bool   $clear_working               Clear the working resource.
-		 *     @type bool   $abort_if_destination_exists Abort if the Destination directory exists.
-		 *     @type bool   $is_multi                    Whether the upgrader is running multiple times.
-		 *     @type array  $hook_extra {
+		 * @type string $package Package for update.
+		 * @type string $destination Update location.
+		 * @type bool $clear_destination Clear the destination resource.
+		 * @type bool $clear_working Clear the working resource.
+		 * @type bool $abort_if_destination_exists Abort if the Destination directory exists.
+		 * @type bool $is_multi Whether the upgrader is running multiple times.
+		 * @type array $hook_extra {
 		 *         Extra hook arguments.
 		 *
-		 *         @type string $action               Type of action. Default 'update'.
-		 *         @type string $type                 Type of update process. Accepts 'plugin', 'theme', or 'core'.
-		 *         @type bool   $bulk                 Whether the update process is a bulk update. Default true.
-		 *         @type string $plugin               Path to the plugin file relative to the plugins directory.
-		 *         @type string $theme                The stylesheet or template name of the theme.
-		 *         @type string $language_update_type The language pack update type. Accepts 'plugin', 'theme',
+		 * @type string $action Type of action. Default 'update'.
+		 * @type string $type Type of update process. Accepts 'plugin', 'theme', or 'core'.
+		 * @type bool $bulk Whether the update process is a bulk update. Default true.
+		 * @type string $plugin Path to the plugin file relative to the plugins directory.
+		 * @type string $theme The stylesheet or template name of the theme.
+		 * @type string $language_update_type The language pack update type. Accepts 'plugin', 'theme',
 		 *                                            or 'core'.
-		 *         @type object $language_update      The language pack update offer.
+		 * @type object $language_update The language pack update offer.
 		 *     }
 		 * }
+		 * @since 4.3.0
+		 *
 		 */
 		$options = apply_filters( 'upgrader_package_options', $options );
 
@@ -108,6 +112,7 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 			if ( ! $options['is_multi'] ) {
 				$this->skin->footer();
 			}
+
 			return false;
 		}
 
@@ -119,6 +124,7 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 			if ( ! $options['is_multi'] ) {
 				$this->skin->footer();
 			}
+
 			return $res;
 		}
 
@@ -156,6 +162,7 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 			if ( ! $options['is_multi'] ) {
 				$this->skin->footer();
 			}
+
 			return $download;
 		}
 
@@ -169,6 +176,7 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 			if ( ! $options['is_multi'] ) {
 				$this->skin->footer();
 			}
+
 			return $working_dir;
 		}
 
@@ -202,30 +210,30 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 			 *
 			 * See also {@see 'upgrader_package_options'}.
 			 *
-			 * @since 3.6.0
-			 * @since 3.7.0 Added to WP_Upgrader::run().
-			 * @since 4.6.0 `$translations` was added as a possible argument to `$hook_extra`.
-			 *
 			 * @param WP_Upgrader $this WP_Upgrader instance. In other contexts, $this, might be a
 			 *                          Theme_Upgrader, Plugin_Upgrader, Core_Upgrade, or Language_Pack_Upgrader instance.
-			 * @param array       $hook_extra {
+			 * @param array $hook_extra {
 			 *     Array of bulk item update data.
 			 *
-			 *     @type string $action       Type of action. Default 'update'.
-			 *     @type string $type         Type of update process. Accepts 'plugin', 'theme', 'translation', or 'core'.
-			 *     @type bool   $bulk         Whether the update process is a bulk update. Default true.
-			 *     @type array  $plugins      Array of the basename paths of the plugins' main files.
-			 *     @type array  $themes       The theme slugs.
-			 *     @type array  $translations {
+			 * @type string $action Type of action. Default 'update'.
+			 * @type string $type Type of update process. Accepts 'plugin', 'theme', 'translation', or 'core'.
+			 * @type bool $bulk Whether the update process is a bulk update. Default true.
+			 * @type array $plugins Array of the basename paths of the plugins' main files.
+			 * @type array $themes The theme slugs.
+			 * @type array $translations {
 			 *         Array of translations update data.
 			 *
-			 *         @type string $language The locale the translation is for.
-			 *         @type string $type     Type of translation. Accepts 'plugin', 'theme', or 'core'.
-			 *         @type string $slug     Text domain the translation is for. The slug of a theme/plugin or
+			 * @type string $language The locale the translation is for.
+			 * @type string $type Type of translation. Accepts 'plugin', 'theme', or 'core'.
+			 * @type string $slug Text domain the translation is for. The slug of a theme/plugin or
 			 *                                'default' for core translations.
-			 *         @type string $version  The version of a theme, plugin, or core.
+			 * @type string $version The version of a theme, plugin, or core.
 			 *     }
 			 * }
+			 * @since 4.6.0 `$translations` was added as a possible argument to `$hook_extra`.
+			 *
+			 * @since 3.6.0
+			 * @since 3.7.0 Added to WP_Upgrader::run().
 			 */
 			do_action( 'upgrader_process_complete', $this, $options['hook_extra'] );
 
@@ -240,11 +248,12 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 	 *
 	 * Create/delete the maintenance file to enable/disable maintenance mode.
 	 *
-	 * @since 2.8.0
+	 * @param bool $enable True to enable maintenance mode, false to disable.
 	 *
 	 * @global WP_Filesystem_Base $wp_filesystem Subclass
 	 *
-	 * @param bool $enable True to enable maintenance mode, false to disable.
+	 * @since 2.8.0
+	 *
 	 */
 	public function maintenance_mode( $enable = false ) {
 		global $wp_filesystem;
@@ -264,26 +273,27 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 	/**
 	 * Download a package.
 	 *
-	 * @since 2.8.0
-	 *
-	 * @param string $package          The URI of the package. If this is the full path to an
+	 * @param string $package The URI of the package. If this is the full path to an
 	 *                                 existing local file, it will be returned untouched.
-	 * @param bool   $check_signatures Whether to validate file signatures. Default false.
-	 * @param array  $hook_extra       Added in WP 5.5.
+	 * @param bool $check_signatures Whether to validate file signatures. Default false.
+	 * @param array $hook_extra Added in WP 5.5.
 	 *
 	 * @return string|WP_Error The full path to the downloaded package file, or a WP_Error object.
+	 * @since 2.8.0
+	 *
 	 */
 	public function download_package( $package, $check_signatures = false, $hook_extra = array() ) {
 
 		/**
 		 * Filter whether to return the package.
 		 *
+		 * @param bool $reply Whether to bail without returning the package.
+		 *                             Default false.
+		 * @param string $package The package file name.
+		 * @param WP_Upgrader $this The WP_Upgrader instance.
+		 *
 		 * @since 3.7.0
 		 *
-		 * @param bool        $reply   Whether to bail without returning the package.
-		 *                             Default false.
-		 * @param string      $package The package file name.
-		 * @param WP_Upgrader $this    The WP_Upgrader instance.
 		 */
 		$reply = apply_filters( 'upgrader_pre_download', false, $package, $this );
 		if ( false !== $reply ) {
@@ -312,14 +322,15 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 	/**
 	 * Unpack a compressed package file.
 	 *
-	 * @since 2.8.0
+	 * @param string $package Full path to the package file.
+	 * @param bool $delete_package Optional. Whether to delete the package file after attempting
+	 *                               to unpack it. Default true.
 	 *
+	 * @return string|WP_Error The path to the unpacked contents, or a WP_Error on failure.
 	 * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
 	 *
-	 * @param string $package        Full path to the package file.
-	 * @param bool   $delete_package Optional. Whether to delete the package file after attempting
-	 *                               to unpack it. Default true.
-	 * @return string|WP_Error The path to the unpacked contents, or a WP_Error on failure.
+	 * @since 2.8.0
+	 *
 	 */
 	public function unpack_package( $package, $delete_package = true ) {
 		global $wp_filesystem;
@@ -357,6 +368,7 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 			if ( 'incompatible_archive' == $result->get_error_code() ) {
 				return new WP_Error( 'incompatible_archive', $this->strings['incompatible_archive'], $result->get_error_data() );
 			}
+
 			return $result;
 		}
 
@@ -370,28 +382,28 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 	 * a destination directory. Optionally removes the source. It can also optionally
 	 * clear out the destination folder if it already exists.
 	 *
-	 * @since 2.8.0
-	 *
-	 * @global WP_Filesystem_Base $wp_filesystem        WordPress filesystem subclass.
-	 * @global array              $wp_theme_directories
-	 *
 	 * @param array|string $args {
 	 *     Optional. Array or string of arguments for installing a package. Default empty array.
 	 *
-	 *     @type string $source                      Required path to the package source. Default empty.
-	 *     @type string $destination                 Required path to a folder to install the package in.
+	 * @type string $source Required path to the package source. Default empty.
+	 * @type string $destination Required path to a folder to install the package in.
 	 *                                               Default empty.
-	 *     @type bool   $clear_destination           Whether to delete any files already in the destination
+	 * @type bool $clear_destination Whether to delete any files already in the destination
 	 *                                               folder. Default false.
-	 *     @type bool   $clear_working               Whether to delete the files form the working directory
+	 * @type bool $clear_working Whether to delete the files form the working directory
 	 *                                               after copying to the destination. Default false.
-	 *     @type bool   $abort_if_destination_exists Whether to abort the installation if
+	 * @type bool $abort_if_destination_exists Whether to abort the installation if
 	 *                                               the destination folder already exists. Default true.
-	 *     @type array  $hook_extra                  Extra arguments to pass to the filter hooks called by
+	 * @type array $hook_extra Extra arguments to pass to the filter hooks called by
 	 *                                               WP_Upgrader::install_package(). Default empty array.
 	 * }
 	 *
 	 * @return array|WP_Error The result (also stored in `WP_Upgrader::$result`), or a WP_Error on failure.
+	 * @global array $wp_theme_directories
+	 *
+	 * @since 2.8.0
+	 *
+	 * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
 	 */
 	public function install_package( $args = array() ) {
 		global $wp_filesystem, $wp_theme_directories;
@@ -426,10 +438,11 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 		 * will effectively short-circuit the installation, returning that value
 		 * instead.
 		 *
+		 * @param bool|WP_Error $response Response.
+		 * @param array $hook_extra Extra arguments passed to hooked filters.
+		 *
 		 * @since 2.8.0
 		 *
-		 * @param bool|WP_Error $response   Response.
-		 * @param array         $hook_extra Extra arguments passed to hooked filters.
 		 */
 		$res = apply_filters( 'upgrader_pre_install', true, $args['hook_extra'] );
 
@@ -456,13 +469,14 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 		/**
 		 * Filter the source file location for the upgrade package.
 		 *
+		 * @param string $source File source location.
+		 * @param string $remote_source Remote file source location.
+		 * @param WP_Upgrader $this WP_Upgrader instance.
+		 * @param array $hook_extra Extra arguments passed to hooked filters.
+		 *
 		 * @since 2.8.0
 		 * @since 4.4.0 The $hook_extra parameter became available.
 		 *
-		 * @param string      $source        File source location.
-		 * @param string      $remote_source Remote file source location.
-		 * @param WP_Upgrader $this          WP_Upgrader instance.
-		 * @param array       $hook_extra    Extra arguments passed to hooked filters.
 		 */
 		$source = apply_filters( 'upgrader_source_selection', $source, $remote_source, $this, $args['hook_extra'] );
 
@@ -502,12 +516,13 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 			/**
 			 * Filter whether the upgrader cleared the destination.
 			 *
+			 * @param mixed $removed Whether the destination was cleared. true on success, WP_Error on failure
+			 * @param string $local_destination The local package destination.
+			 * @param string $remote_destination The remote package destination.
+			 * @param array $hook_extra Extra arguments passed to hooked filters.
+			 *
 			 * @since 2.8.0
 			 *
-			 * @param mixed  $removed            Whether the destination was cleared. true on success, WP_Error on failure
-			 * @param string $local_destination  The local package destination.
-			 * @param string $remote_destination The remote package destination.
-			 * @param array  $hook_extra         Extra arguments passed to hooked filters.
 			 */
 			$removed = apply_filters( 'upgrader_clear_destination', $removed, $local_destination, $remote_destination, $args['hook_extra'] );
 
@@ -520,6 +535,7 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 			$_files = $wp_filesystem->dirlist( $remote_destination );
 			if ( ! empty( $_files ) ) {
 				$wp_filesystem->delete( $remote_source, true ); //Clear out the source files.
+
 				return new WP_Error( 'folder_exists', $this->strings['folder_exists'], $remote_destination );
 			}
 		}
@@ -536,6 +552,7 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 			if ( $args['clear_working'] ) {
 				$wp_filesystem->delete( $remote_source, true );
 			}
+
 			return $result;
 		}
 
@@ -554,16 +571,18 @@ class MonsterInsights_Plugin_Upgrader extends Plugin_Upgrader {
 		/**
 		 * Filter the installation response after the installation has finished.
 		 *
+		 * @param bool $response Installation response.
+		 * @param array $hook_extra Extra arguments passed to hooked filters.
+		 * @param array $result Installation result data.
+		 *
 		 * @since 2.8.0
 		 *
-		 * @param bool  $response   Installation response.
-		 * @param array $hook_extra Extra arguments passed to hooked filters.
-		 * @param array $result     Installation result data.
 		 */
 		$res = apply_filters( 'upgrader_post_install', true, $args['hook_extra'], $this->result );
 
 		if ( is_wp_error( $res ) ) {
 			$this->result = $res;
+
 			return $res;
 		}
 

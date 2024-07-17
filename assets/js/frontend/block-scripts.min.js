@@ -1,0 +1,5 @@
+(()=>{var __webpack_exports__={};
+/*!***********************************************\
+  *** ./src/blocks/site-insights/frontend.js ***
+  \**********************************************/
+(function(o,t){const blocks=document.querySelectorAll('.monsterinsights-graph-item');if(blocks.length<0){return};const applyFormatterFunctions=obj=>{if(typeof obj!=='object'){return obj};Object.keys(obj).map(k=>{if(typeof obj!=='object'){return obj[k]};if(k==='formatter'&&obj[k].hasOwnProperty('args')&&obj[k].hasOwnProperty('body')){const f=new Function(obj[k]['args'],obj[k]['body']);obj[k]=f;return f};return applyFormatterFunctions(obj[k])});return obj};blocks.forEach(function(o){const json=o.querySelector('script').textContent;let options=null;try{options=JSON.parse(json)}catch(t){return!1};if(null!==options){const parsedOptions=applyFormatterFunctions(options);const chart=new ApexCharts(o,parsedOptions);chart.render()}})})(window,jQuery)})();

@@ -156,7 +156,6 @@ class MonsterInsights_Blocks {
 		return wp_parse_args( $atts, $default_values );
 
 	}
-
 }
 
 new MonsterInsights_Blocks();

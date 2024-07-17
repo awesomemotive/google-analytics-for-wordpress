@@ -108,7 +108,7 @@ class MonsterInsights_Popular_Posts_Themes {
 	 * Go through the themes and apply styles from the stored settings.
 	 *
 	 * @var string $type The instance type: inline/widget/products.
-	 * @var array  $themes The themes to process/apply styles for.
+	 * @var array $themes The themes to process/apply styles for.
 	 */
 	public function process_themes_styles( $type, $themes ) {
 

@@ -87,13 +87,12 @@ class MonsterInsights_Welcome {
 		delete_transient( '_monsterinsights_activation_redirect' );
 
 		// Bail if activating from network, or bulk.
-		if ( isset( $_GET['activate-multi'] ) ) { // WPCS: CSRF ok, input var ok.
+		if ( isset( $_GET['activate-multi'] ) ) {
 			return;
 		}
 
 		$upgrade = get_option( 'monsterinsights_version_upgraded_from', false );
 		if ( apply_filters( 'monsterinsights_enable_onboarding_wizard', false === $upgrade ) ) {
-			$redirect = admin_url( 'index.php?page=monsterinsights-getting-started&monsterinsights-redirect=1' );
 			$path     = 'index.php?page=monsterinsights-getting-started&monsterinsights-redirect=1';
 			$redirect = is_network_admin() ? network_admin_url( $path ) : admin_url( $path );
 			wp_safe_redirect( $redirect );
@@ -116,32 +115,19 @@ class MonsterInsights_Welcome {
 			return;
 		}
 
-		global $wp_version;
 		$version_path = monsterinsights_is_pro_version() ? 'pro' : 'lite';
-		if ( ! defined( 'MONSTERINSIGHTS_LOCAL_WIZARD_JS_URL' ) ) {
-			wp_enqueue_style( 'monsterinsights-vue-welcome-style-vendors', plugins_url( $version_path . '/assets/vue/css/chunk-vendors.css', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version() );
-			wp_enqueue_style( 'monsterinsights-vue-welcome-style-common', plugins_url( $version_path . '/assets/vue/css/chunk-common.css', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version() );
-			wp_enqueue_style( 'monsterinsights-vue-welcome-style', plugins_url( $version_path . '/assets/vue/css/wizard.css', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version() );
-			wp_enqueue_script( 'monsterinsights-vue-welcome-vendors', plugins_url( $version_path . '/assets/vue/js/chunk-vendors.js', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version(), true );
-			wp_enqueue_script( 'monsterinsights-vue-welcome-common', plugins_url( $version_path . '/assets/vue/js/chunk-common.js', MONSTERINSIGHTS_PLUGIN_FILE ), array(), monsterinsights_get_asset_version(), true );
-			wp_register_script( 'monsterinsights-vue-welcome-script', plugins_url( $version_path . '/assets/vue/js/wizard.js', MONSTERINSIGHTS_PLUGIN_FILE ), array(
-				'monsterinsights-vue-welcome-vendors',
-				'monsterinsights-vue-welcome-common',
-			), monsterinsights_get_asset_version(), true );
-		} else {
-			wp_enqueue_script( 'monsterinsights-vue-welcome-vendors', MONSTERINSIGHTS_LOCAL_VENDORS_JS_URL, array(), monsterinsights_get_asset_version(), true );
-			wp_enqueue_script( 'monsterinsights-vue-welcome-common', MONSTERINSIGHTS_LOCAL_COMMON_JS_URL, array(), monsterinsights_get_asset_version(), true );
-			wp_register_script( 'monsterinsights-vue-welcome-script', MONSTERINSIGHTS_LOCAL_WIZARD_JS_URL, array(
-				'monsterinsights-vue-welcome-vendors',
-				'monsterinsights-vue-welcome-common',
-			), monsterinsights_get_asset_version(), true );
+		if ( ! defined( 'MONSTERINSIGHTS_LOCAL_JS_URL' ) ) {
+			MonsterInsights_Admin_Assets::enqueue_script_specific_css( 'src/modules/wizard-onboarding/wizard.js' );
 		}
-		wp_enqueue_script( 'monsterinsights-vue-welcome-script' );
+
+		$app_js_url = MonsterInsights_Admin_Assets::get_js_url( 'src/modules/wizard-onboarding/wizard.js' );
+		wp_register_script( 'monsterinsights-vue-script', $app_js_url, array(), monsterinsights_get_asset_version(), true );
+		wp_enqueue_script( 'monsterinsights-vue-script' );
 
 		$user_data = wp_get_current_user();
 
 		wp_localize_script(
-			'monsterinsights-vue-welcome-script',
+			'monsterinsights-vue-script',
 			'monsterinsights',
 			array(
 				'ajax'                 => add_query_arg( 'page', 'monsterinsights-onboarding', admin_url( 'admin-ajax.php' ) ),
