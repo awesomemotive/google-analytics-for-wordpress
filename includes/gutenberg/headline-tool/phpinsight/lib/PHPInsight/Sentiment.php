@@ -227,7 +227,7 @@ class Sentiment {
 
 		if ( file_exists( $fn ) && is_readable( $fn ) ) {
 			$temp  = file_get_contents( $fn );
-			$words = unserialize( $temp );
+			$words = unserialize( trim( $temp ) );
 		} else {
 			echo 'File does not exist: ' . $fn;
 			$words = array();
@@ -357,7 +357,7 @@ class Sentiment {
 		$fn = "{$this->dataFolder}data.{$type}.php";;
 		if ( file_exists( $fn ) ) {
 			$temp  = file_get_contents( $fn );
-			$words = unserialize( $temp );
+			$words = unserialize( trim( $temp ) );
 		} else {
 			return 'File does not exist: ' . $fn;
 		}

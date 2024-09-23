@@ -108,7 +108,7 @@ class MonsterInsights_Onboarding_Wizard {
 		}
 
 		$app_js_url = MonsterInsights_Admin_Assets::get_js_url( 'src/modules/wizard-onboarding/wizard.js' );
-		wp_register_script( 'monsterinsights-vue-script', $app_js_url, array(), monsterinsights_get_asset_version(), true );
+		wp_register_script( 'monsterinsights-vue-script', $app_js_url, array( 'wp-i18n' ), monsterinsights_get_asset_version(), true );
 		wp_enqueue_script( 'monsterinsights-vue-script' );
 
 		$settings_page = is_network_admin() ? add_query_arg( 'page', 'monsterinsights_network', network_admin_url( 'admin.php' ) ) : add_query_arg( 'page', 'monsterinsights_settings', admin_url( 'admin.php' ) );

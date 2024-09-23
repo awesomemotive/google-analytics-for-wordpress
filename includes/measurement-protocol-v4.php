@@ -165,6 +165,9 @@ class MonsterInsights_Measurement_Protocol_V4 {
 		$defaults = array(
 			'client_id' => $this->get_client_id( $args ),
 			'events'    => array(),
+			'consent' => array(
+				'ad_personalization' => 'GRANTED',
+			),
 		);
 
 		$body = $this->validate_args( $args, $defaults );

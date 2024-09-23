@@ -173,13 +173,6 @@ rect.legend-mouseover-inactive,
   padding-bottom: 4px
 }
 
-.apexcharts-tooltip-series-group-hidden {
-  opacity: 0;
-  height: 0;
-  line-height: 0;
-  padding: 0 !important
-}
-
 .apexcharts-tooltip-y-group {
   padding: 6px 0 5px
 }
@@ -630,7 +623,7 @@ rect.legend-mouseover-inactive,
 .apexcharts-line,
 .apexcharts-line-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
 .apexcharts-point-annotation-label,
-.apexcharts-radar-series path,
+.apexcharts-radar-series path:not(.apexcharts-marker),
 .apexcharts-radar-series polygon,
 .apexcharts-toolbar svg,
 .apexcharts-tooltip .apexcharts-marker,
@@ -640,7 +633,7 @@ rect.legend-mouseover-inactive,
   pointer-events: none
 }
 
-.apexcharts-marker {
+.apexcharts-tooltip-active .apexcharts-marker {
   transition: .15s ease all
 }
 
