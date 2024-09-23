@@ -38,7 +38,7 @@ class MonsterInsights_Notification_Event_Runner {
 	 *
 	 * @var array|bool
 	 */
-	private $last_run;
+	private $last_run = array();
 
 	/**
 	 * Only update the option if something changed.
@@ -73,8 +73,8 @@ class MonsterInsights_Notification_Event_Runner {
 	 * @return false|mixed|void
 	 */
 	public function get_notifications_last_run() {
-		if ( ! isset( $this->last_run ) ) {
-			$this->last_run = get_option( $this->last_run_key );
+		if ( empty( $this->last_run ) ) {
+			$this->last_run = get_option( $this->last_run_key, array() );
 		}
 
 		return $this->last_run;
@@ -121,7 +121,7 @@ class MonsterInsights_Notification_Event_Runner {
 
 		// Loop through registered notifications.
 		foreach ( $notifications as $notification ) {
-			/**¬
+			/**
 			 * The notification instance.
 			 *
 			 * @var MonsterInsights_Notification_Event $notification

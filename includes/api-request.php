@@ -128,6 +128,21 @@ final class MonsterInsights_API_Request {
 	public $testurl = '';
 
 	/**
+	 * Store license.
+	 */
+	public $license;
+
+	/**
+	 * Store version.
+	 */
+	public $miversion;
+
+	/**
+	 * Site secret key.
+	 */
+	public $sitei;
+
+	/**
 	 * Compare end date.
 	 *
 	 * @var string
@@ -335,7 +350,7 @@ final class MonsterInsights_API_Request {
 		}
 
 		// If not a 200 status header, send back error.
-		if ( 200 != $response_code ) {
+		if ( 200 != $response_code && 204 != $response_code) {
 			$type = ! empty( $response_body['type'] ) ? $response_body['type'] : 'api-error';
 
 			if ( empty( $response_code ) ) {

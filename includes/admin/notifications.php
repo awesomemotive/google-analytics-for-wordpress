@@ -103,6 +103,7 @@ class MonsterInsights_Notifications {
 			'events'    => ! empty( $option['events'] ) ? $option['events'] : array(),
 			'feed'      => ! empty( $option['feed'] ) ? $option['feed'] : array(),
 			'dismissed' => ! empty( $option['dismissed'] ) ? $option['dismissed'] : array(),
+			'feed_fetched' => ! empty( $option['feed_fetched'] ),
 		);
 
 		return $this->option;
@@ -249,13 +250,21 @@ class MonsterInsights_Notifications {
 			}
 		}
 
+		// If cron has not finish running then display no notifications.
+		if ( empty( $option['feed_fetched'] ) ) {
+			return array();
+		}
+
 		$events = ! empty( $option['events'] ) ? $this->verify_active( $option['events'] ) : array();
 		$feed   = ! empty( $option['feed'] ) ? $this->verify_active( $option['feed'] ) : array();
 
 		$notifications              = array();
-		$notifications['active']    = array_merge( $events, $feed );
-		$notifications['active']    = $this->get_notifications_with_human_readeable_start_time( $notifications['active'] );
-		$notifications['active']    = $this->get_notifications_with_formatted_content( $notifications['active'] );
+		$notifications['events']    = $events;
+		$notifications['events']    = $this->get_notifications_with_human_readeable_start_time( $notifications['events'] );
+		$notifications['events']    = $this->get_notifications_with_formatted_content( $notifications['events'] );
+		$notifications['feed']      = $feed;
+		$notifications['feed']      = $this->get_notifications_with_human_readeable_start_time( $notifications['feed'] );
+		$notifications['feed']      = $this->get_notifications_with_formatted_content( $notifications['feed'] );
 		$notifications['dismissed'] = ! empty( $option['dismissed'] ) ? $option['dismissed'] : array();
 		$notifications['dismissed'] = $this->get_notifications_with_human_readeable_start_time( $notifications['dismissed'] );
 		$notifications['dismissed'] = $this->get_notifications_with_formatted_content( $notifications['dismissed'] );
@@ -321,8 +330,16 @@ class MonsterInsights_Notifications {
 		$notifications = $this->get();
 
 		// Show only 5 active notifications plus any that has a priority of 1
-		$all_active = isset( $notifications['active'] ) ? $notifications['active'] : array();
+		$all_active = isset( $notifications['events'] ) ? $notifications['events'] : array();
+		$all_feeds  = isset( $notifications['feed'] ) ? $notifications['feed'] : array();
 		$displayed  = array();
+
+		// Set 3 feeds.
+		foreach ( $all_feeds as $notification ) {
+			if ( count( $displayed ) < 3 ) {
+				$displayed[] = $notification;
+			}
+		}
 
 		foreach ( $all_active as $notification ) {
 			if ( ( isset( $notification['priority'] ) && $notification['priority'] === 1 ) || count( $displayed ) < 5 ) {
@@ -429,6 +446,7 @@ class MonsterInsights_Notifications {
 				'feed'      => $option['feed'],
 				'events'    => $notifications,
 				'dismissed' => $option['dismissed'],
+				'feed_fetched' => $option['feed_fetched'],
 			),
 			false
 		);
@@ -455,6 +473,7 @@ class MonsterInsights_Notifications {
 				'feed'      => $feed,
 				'events'    => $option['events'],
 				'dismissed' => array_slice( $option['dismissed'], 0, 30 ), // Limit dismissed notifications to last 30.
+				'feed_fetched' => true,
 			),
 			false
 		);

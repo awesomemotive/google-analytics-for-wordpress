@@ -180,7 +180,7 @@ function monsterinsights_frontend_admin_bar_scripts() {
 
 	$version_path    = monsterinsights_is_pro_version() ? 'pro' : 'lite';
 	$frontend_js_url = MonsterInsights_Admin_Assets::get_js_url( 'src/modules/frontend/frontend.js' );
-	wp_register_script( 'monsterinsights-vue-frontend', $frontend_js_url, array(), monsterinsights_get_asset_version(), true );
+	wp_register_script( 'monsterinsights-vue-frontend', $frontend_js_url, array( 'wp-i18n' ), monsterinsights_get_asset_version(), true );
 	wp_enqueue_script( 'monsterinsights-vue-frontend' );
 
 	$page_title = is_singular() ? get_the_title() : monsterinsights_get_page_title();

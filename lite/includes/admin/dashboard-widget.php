@@ -168,7 +168,7 @@ class MonsterInsights_Dashboard_Widget {
 				MonsterInsights_Admin_Assets::enqueue_script_specific_css( 'src/modules/widget/widget.js' );
 			}
 			$widget_js_url = MonsterInsights_Admin_Assets::get_js_url( 'src/modules/widget/widget.js' );
-			wp_register_script( 'monsterinsights-vue-widget', $widget_js_url, array(), monsterinsights_get_asset_version(), true );
+			wp_register_script( 'monsterinsights-vue-widget', $widget_js_url, array( 'wp-i18n' ), monsterinsights_get_asset_version(), true );
 			wp_enqueue_script( 'monsterinsights-vue-widget' );
 
 			$plugins                = get_plugins();

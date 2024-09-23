@@ -3,8 +3,8 @@ Contributors: chriscct7, smub
 Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: WordPress analytics, google analytics, google analytics dashboard, google analytics widget, Website Analytics
 Requires at least: 5.6.0
-Tested up to: 6.5.2
-Stable tag: 8.28.0
+Tested up to: 6.6.2
+Stable tag: 9.1.0
 Requires PHP: 7.2
 License: GPL v3
 
@@ -83,7 +83,7 @@ We have even created customized reports to help you filter through the noise and
 
 * **Coupon Report** showcases your coupon usage, and shows important metrics like average order value and revenue.
 
-* **Funnel Report** visually shows you how many people view items in your store, add to cart, and make a purchase. You can easily breakdown the funnel and conversion report into channel, and customize your dates for in depth analysis. 
+* **Funnel Report** visually shows you how many people view items in your store, add to cart, and make a purchase. You can easily breakdown the funnel and conversion report into channel, and customize your dates for in depth analysis. Works automatically with WooCommerce analytics, and Easy Digital Downloads. 
 
 Our custom Google Analytics Dashboard reports are based on over 12+ years of online business experience. We built MonsterInsights to be the Google Analytics plugin that we wish we had.
 
@@ -119,6 +119,20 @@ MonsterInsights&reg; is a registered trademark of MonsterInsights LLC. When writ
 4. Want more features? <a href="https://www.monsterinsights.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase MonsterInsights Pro</a>!
 
 == Changelog ==
+= 9.1.0: September 23, 2024 =
+- New: Stats at a Glance report shows you information about your website in a whole new way.
+- New: Google Ads Enhanced Conversion Support & Meta Conversion API Support (CAPI) for PPC Campaigns
+- Enhanced: Updated Google Analytics tag loading order to help increase Core Web Vital scores. 
+- Fixed: Lots of minor updates and bug fixes.
+
+= 9.0.1: August 21, 2024 =
+- Fix: We resolved an issue in the Onboarding Recommended Addons page.
+
+= 9.0.0: July 29, 2024 =
+- New: Conversations AI - chat with your website's analytics without any need to read reports
+- New: AI Insights - Get automated insights about your website with the power of AI
+- Fix: We fixed a PHP error occurring inside our Forms reports 
+
 = 8.28.0: July 08, 2024 =
 -New: Date Comparisons - Now you can easily compare your stats on any chart or graph.
 -Enhancement: We updated tooltips to make it easier to understand some options.

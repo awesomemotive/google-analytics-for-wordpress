@@ -17,6 +17,9 @@ if ( is_admin() || ( defined( 'DOING_CRON' ) && DOING_CRON ) ) {
 	$overview_report = new MonsterInsights_Report_Overview();
 	MonsterInsights()->reporting->add_report( $overview_report );
 
+	$site_summary = new MonsterInsights_Report_Site_Summary();
+	MonsterInsights()->reporting->add_report( $site_summary );
+
 	require_once MONSTERINSIGHTS_PLUGIN_DIR . 'lite/includes/admin/reports/report-publisher.php';
 	$publisher_report = new MonsterInsights_Lite_Report_Publisher();
 	MonsterInsights()->reporting->add_report( $publisher_report );

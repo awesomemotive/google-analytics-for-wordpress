@@ -26,7 +26,7 @@ function monsterinsights_gutenberg_editor_assets() {
 	wp_enqueue_script( 'lodash', includes_url('js') . '/underscore.min.js' );
 	// @TODO Robo minification is breaking the editor. We will use the main version for now.
 	$plugins_js_path    = '/assets/gutenberg/js/editor.js';
-	$plugins_style_path = '/assets/gutenberg/css/editor' . $suffix . '.css';
+	$plugins_style_path = '/assets/gutenberg/css/editor.css';
 	$version_path       = monsterinsights_is_pro_version() ? 'pro' : 'lite';
 
 	$plugins_js_url = apply_filters(
