@@ -7,7 +7,7 @@
  * Author:              MonsterInsights
  * Author URI:          https://www.monsterinsights.com/lite/?utm_source=liteplugin&utm_medium=pluginheader&utm_campaign=authoruri&utm_content=7%2E0%2E0
  *
- * Version:             9.1.0
+ * Version:             9.1.1
  * Requires at least:   5.6.0
  * Requires PHP:        7.2
  *
@@ -71,7 +71,7 @@ final class MonsterInsights_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '9.1.0';
+	public $version = '9.1.1';
 
 	/**
 	 * Plugin file.
@@ -404,16 +404,11 @@ final class MonsterInsights_Lite {
 
 		$plugin_dir = basename( __DIR__ );
 
-		$result = load_plugin_textdomain(
+		load_plugin_textdomain(
 			$plugin_text_domain,
 			false,
 			$plugin_dir . '/languages'
 		);
-
-		if ( ! $result ) {
-			error_log( 'Failed to load textdomain ' . $plugin_text_domain );
-			error_log( 'Path searched: ' . $plugin_dir . '/languages' );
-		}
 	}
 
 	/**
